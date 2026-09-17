@@ -1,0 +1,13 @@
+{
+  "name": "intfloat/multilingual-e5-base",
+  "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+  "requested_revision": null,
+  "max_length": 512,
+  "device": "cuda",
+  "encoded": 3227,
+  "tokens": 285874,
+  "truncated": 3,
+  "dtype": "torch.float32",
+  "batch_size": 1,
+  "low_vram": true
+}

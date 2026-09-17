@@ -1,0 +1,110 @@
+{
+  "config": {
+    "source": "construcao_controlada",
+    "manual_annotations": false,
+    "training": false,
+    "head_threshold": 0.7,
+    "nli_threshold": 0.7,
+    "nli_margin": 0.2,
+    "hypothesis": "pergunta literal",
+    "n": 560,
+    "families": 70,
+    "selection": {
+      "chosen_method": "congelado",
+      "dev_means": {
+        "sem_ajuste": 0.539006438045343,
+        "congelado": 0.8348649315406439
+      },
+      "runs": [
+        {
+          "method": "sem_ajuste",
+          "dev_macro_f1": 0.539006438045343
+        },
+        {
+          "method": "congelado",
+          "seed": 13,
+          "dev_macro_f1": 0.8348649315406439
+        },
+        {
+          "method": "congelado",
+          "seed": 42,
+          "dev_macro_f1": 0.8348649315406439
+        },
+        {
+          "method": "congelado",
+          "seed": 77,
+          "dev_macro_f1": 0.8348649315406439
+        }
+      ],
+      "comparison_complete": false,
+      "seed_for_application": 13,
+      "no_intensity_scale": true
+    },
+    "effect_usage": "descriptive only; never stance labels",
+    "no_intensity_scale": true,
+    "format_ablation": true,
+    "literal_proposition_repeated": true,
+    "head_sha256": "748331274c75be2da582322fa95797709c4548743f92e5a8897d7a47474e1744",
+    "encoder": {
+      "name": "intfloat/multilingual-e5-base",
+      "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+      "requested_revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+      "max_length": 512,
+      "device": "cuda",
+      "encoded": 560,
+      "tokens": 26376,
+      "truncated": 0,
+      "dtype": "torch.float32",
+      "batch_size": 1,
+      "low_vram": true
+    },
+    "nli": {
+      "name": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+      "revision": "8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c",
+      "requested_revision": null,
+      "device": "cuda",
+      "pairs": 1120,
+      "tokens": 61496,
+      "truncated": 0,
+      "id2label": {
+        "0": "entailment",
+        "1": "neutral",
+        "2": "contradiction"
+      },
+      "max_length": 512,
+      "dtype": "float32",
+      "batch_size": 1,
+      "low_vram": true
+    }
+  },
+  "input_hashes": {
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\content\\questions.json": "419421bb85e157cd4a4c81e2014bb2a7b0e3a7347241750d57a60ee6b0ef8e9b",
+    "analises\\execucoes\\brmoral_baselines_gpu_20260917\\frozen_selection.json": "d8bab0615cc032ddca456d1bc25ca3a3d34406868606aca1623f97accf8a0cc0",
+    "analises\\execucoes\\brmoral_baselines_gpu_20260917\\congelado_13\\encoder_config.json": "9fcaddcdcb279b1cf43e0e80b82492ef7aa6d69b7441204a93dbc433a8edf1f0"
+  },
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.7.1+cu118",
+    "transformers": "5.17.0",
+    "sentence-transformers": "6.0.1",
+    "scikit-learn": "1.9.1"
+  },
+  "elapsed_seconds": 46.83459440000297,
+  "rss_bytes_at_end": 3762601984,
+  "rss_is_peak": false,
+  "gpu": {
+    "name": "NVIDIA GeForce GTX 1060 3GB",
+    "cuda_build": "11.8",
+    "capability": [
+      6,
+      1
+    ],
+    "peak_allocated_bytes": 1139558912,
+    "peak_reserved_bytes": 1178599424
+  },
+  "limitations": [
+    "Diagnósticos conhecidos não são teste cego",
+    "Acurácia documental não estimada"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "experiment": "leave_one_topic_out_with_disjoint_authors",
+  "seed": 13,
+  "cs": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "head_threshold": 0.7,
+  "nli_threshold": 0.7,
+  "nli_margin": 0.2,
+  "propositions": {
+    "casamento entre pessoas do mesmo sexo": "O casamento entre pessoas do mesmo sexo deve ser permitido.",
+    "legalização do porte de armas": "O porte de armas deve ser legalizado.",
+    "legalização do aborto": "O aborto deve ser legalizado.",
+    "pena de morte": "A pena de morte deve ser adotada.",
+    "legalização das drogas": "As drogas devem ser legalizadas.",
+    "redução da maioridade penal": "A maioridade penal deve ser reduzida.",
+    "cotas raciais": "As cotas raciais devem ser adotadas.",
+    "isenção de impostos para igrejas": "As igrejas devem ser isentas de impostos."
+  },
+  "test_previously_inspected": true,
+  "topic_held_out_from_train_and_dev": true,
+  "author_partitions_preserved": true,
+  "encoder_finetuned": false,
+  "label_source": "corpus_publico",
+  "nli_variants": [
+    "literal",
+    "O autor concorda com a seguinte afirmação: {proposition}"
+  ]
+}

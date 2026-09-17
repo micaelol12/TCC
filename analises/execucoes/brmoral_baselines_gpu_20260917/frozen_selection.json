@@ -1,0 +1,31 @@
+{
+  "chosen_method": "congelado",
+  "dev_means": {
+    "sem_ajuste": 0.539006438045343,
+    "congelado": 0.8348649315406439
+  },
+  "runs": [
+    {
+      "method": "sem_ajuste",
+      "dev_macro_f1": 0.539006438045343
+    },
+    {
+      "method": "congelado",
+      "seed": 13,
+      "dev_macro_f1": 0.8348649315406439
+    },
+    {
+      "method": "congelado",
+      "seed": 42,
+      "dev_macro_f1": 0.8348649315406439
+    },
+    {
+      "method": "congelado",
+      "seed": 77,
+      "dev_macro_f1": 0.8348649315406439
+    }
+  ],
+  "comparison_complete": false,
+  "seed_for_application": 13,
+  "no_intensity_scale": true
+}

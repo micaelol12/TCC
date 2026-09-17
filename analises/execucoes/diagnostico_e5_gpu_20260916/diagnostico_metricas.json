@@ -1,0 +1,626 @@
+[
+  {
+    "axis": "economic",
+    "method": "B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        1,
+        8
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "macro_f1": 0.48235294117647054,
+    "balanced_accuracy": 0.5555555555555556,
+    "mcc": 0.26226526415648105,
+    "missing_classes": []
+  },
+  {
+    "axis": "economic",
+    "method": "B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        2,
+        7
+      ],
+      [
+        4,
+        9
+      ]
+    ],
+    "macro_f1": 0.44367816091954027,
+    "balanced_accuracy": 0.45726495726495725,
+    "mcc": -0.09435641951204965,
+    "missing_classes": []
+  },
+  {
+    "axis": "economic",
+    "method": "margem_equivalente_B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        1,
+        8
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "macro_f1": 0.48235294117647054,
+    "balanced_accuracy": 0.5555555555555556,
+    "mcc": 0.26226526415648105,
+    "missing_classes": []
+  },
+  {
+    "axis": "economic",
+    "method": "margem_equivalente_B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        2,
+        7
+      ],
+      [
+        4,
+        9
+      ]
+    ],
+    "macro_f1": 0.44367816091954027,
+    "balanced_accuracy": 0.45726495726495725,
+    "mcc": -0.09435641951204965,
+    "missing_classes": []
+  },
+  {
+    "axis": "economic",
+    "method": "B2",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        12
+      ]
+    ],
+    "macro_f1": 0.4545454545454546,
+    "balanced_accuracy": 0.5170940170940171,
+    "mcc": 0.05847053462046861,
+    "missing_classes": []
+  },
+  {
+    "axis": "economic",
+    "method": "B2",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 22,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        12
+      ]
+    ],
+    "macro_f1": 0.4545454545454546,
+    "balanced_accuracy": 0.5170940170940171,
+    "mcc": 0.05847053462046861,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        3
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "macro_f1": 0.6190476190476191,
+    "balanced_accuracy": 0.625,
+    "mcc": 0.25819888974716115,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        3
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "macro_f1": 0.6190476190476191,
+    "balanced_accuracy": 0.625,
+    "mcc": 0.25819888974716115,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "margem_equivalente_B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        3
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "macro_f1": 0.6190476190476191,
+    "balanced_accuracy": 0.625,
+    "mcc": 0.25819888974716115,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "margem_equivalente_B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        3
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "macro_f1": 0.6190476190476191,
+    "balanced_accuracy": 0.625,
+    "mcc": 0.25819888974716115,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "B2",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "macro_f1": 0.49650349650349646,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": []
+  },
+  {
+    "axis": "diplomatic",
+    "method": "B2",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 24,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "macro_f1": 0.49650349650349646,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        11,
+        13
+      ],
+      [
+        2,
+        11
+      ]
+    ],
+    "macro_f1": 0.5945945945945946,
+    "balanced_accuracy": 0.6522435897435898,
+    "mcc": 0.30448717948717946,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        14,
+        10
+      ],
+      [
+        7,
+        6
+      ]
+    ],
+    "macro_f1": 0.518007662835249,
+    "balanced_accuracy": 0.5224358974358975,
+    "mcc": 0.043239543471897575,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "margem_equivalente_B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        11,
+        13
+      ],
+      [
+        2,
+        11
+      ]
+    ],
+    "macro_f1": 0.5945945945945946,
+    "balanced_accuracy": 0.6522435897435898,
+    "mcc": 0.30448717948717946,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "margem_equivalente_B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        14,
+        10
+      ],
+      [
+        7,
+        6
+      ]
+    ],
+    "macro_f1": 0.518007662835249,
+    "balanced_accuracy": 0.5224358974358975,
+    "mcc": 0.043239543471897575,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "B2",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        23,
+        1
+      ],
+      [
+        13,
+        0
+      ]
+    ],
+    "macro_f1": 0.38333333333333336,
+    "balanced_accuracy": 0.4791666666666667,
+    "mcc": -0.12266334536566455,
+    "missing_classes": []
+  },
+  {
+    "axis": "state",
+    "method": "B2",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 37,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        3,
+        21
+      ],
+      [
+        1,
+        12
+      ]
+    ],
+    "macro_f1": 0.36801242236024845,
+    "balanced_accuracy": 0.5240384615384616,
+    "mcc": 0.07391404949863532,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        6
+      ],
+      [
+        5,
+        13
+      ]
+    ],
+    "macro_f1": 0.6616961789375583,
+    "balanced_accuracy": 0.6611111111111111,
+    "mcc": 0.3246359055587426,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        6
+      ],
+      [
+        5,
+        13
+      ]
+    ],
+    "macro_f1": 0.6616961789375583,
+    "balanced_accuracy": 0.6611111111111111,
+    "mcc": 0.3246359055587426,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "margem_equivalente_B0",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        6
+      ],
+      [
+        5,
+        13
+      ]
+    ],
+    "macro_f1": 0.6616961789375583,
+    "balanced_accuracy": 0.6611111111111111,
+    "mcc": 0.3246359055587426,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "margem_equivalente_B0",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        9,
+        6
+      ],
+      [
+        5,
+        13
+      ]
+    ],
+    "macro_f1": 0.6616961789375583,
+    "balanced_accuracy": 0.6611111111111111,
+    "mcc": 0.3246359055587426,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "B2",
+    "calibration": "zero",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        5,
+        10
+      ],
+      [
+        3,
+        15
+      ]
+    ],
+    "macro_f1": 0.5662285136501517,
+    "balanced_accuracy": 0.5833333333333334,
+    "mcc": 0.19364916731037085,
+    "missing_classes": []
+  },
+  {
+    "axis": "society",
+    "method": "B2",
+    "calibration": "B3b_transfer_B5",
+    "label_source": "instrumento",
+    "known_development": true,
+    "n": 33,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        7,
+        8
+      ],
+      [
+        4,
+        14
+      ]
+    ],
+    "macro_f1": 0.6192307692307693,
+    "balanced_accuracy": 0.6222222222222222,
+    "mcc": 0.25819888974716115,
+    "missing_classes": []
+  }
+]

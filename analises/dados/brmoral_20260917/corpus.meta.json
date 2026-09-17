@@ -1,0 +1,29 @@
+{
+  "name": "BRmoral",
+  "version": "5.10-sept2019",
+  "license": "CC-BY-4.0",
+  "source": "https://ivandreparaboni.wixsite.com/research/downloads",
+  "annotation_unit": "text_target",
+  "author_ids_unavailable": false,
+  "label_definition": "s=0/1 against; s=4/5 favor; st verified; s=2/3 excluded",
+  "split_policy": "64/16/20 train/dev/test by connected author/duplicate components",
+  "seed": 42,
+  "participants": 510,
+  "exclusions": {
+    "neutral": 861,
+    "missing_text_or_score": 8
+  },
+  "archive_sha256": "c34a2841618263f8829331050fde5c244770a23e852fdf17320810076fe66430",
+  "target_mapping": {
+    "gay-marriage": "casamento entre pessoas do mesmo sexo",
+    "gun-control": "legalização do porte de armas",
+    "abortion": "legalização do aborto",
+    "death-penalty": "pena de morte",
+    "drugs": "legalização das drogas",
+    "criminal-age": "redução da maioridade penal",
+    "racial-quotas": "cotas raciais",
+    "church-tax": "isenção de impostos para igrejas"
+  },
+  "groups": 508,
+  "largest_group": 8
+}

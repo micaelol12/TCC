@@ -1,0 +1,9 @@
+{
+  "command": ".venv-gpu/Scripts/python.exe -m unittest discover -s tests -v",
+  "tests": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "scope": "Testes de engenharia no runtime GPU; residência testada por fixture, kernels reais validados nos experimentos."
+}

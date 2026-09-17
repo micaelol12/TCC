@@ -1,0 +1,18 @@
+# Dependencias diretas importadas por TCC.ipynb.
+# O notebook usa google.colab.data_table e google.colab.userdata, fornecidos pelo
+# runtime do Google Colab e, portanto, nao declarados como pacote pip.
+
+anthropic
+google-genai
+matplotlib
+nltk
+numpy
+openai
+pandas
+plotly
+pydantic>=2
+pymupdf4llm
+sentence-transformers
+torch
+transformers
+wordcloud

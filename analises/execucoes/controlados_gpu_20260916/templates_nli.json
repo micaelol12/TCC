@@ -1,0 +1,170 @@
+[
+  {
+    "id": "template-0-favor",
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.",
+    "target": "reduzir a jornada semanal de trabalho",
+    "label": "favor",
+    "split": "diagnostic",
+    "family_id": "template-0",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos favoráveis a {target}.",
+    "source_id": "alvo_controlado-0",
+    "hypothesis": "Somos favoráveis a reduzir a jornada semanal de trabalho.",
+    "expected": "favoravel",
+    "predicted": "favoravel",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.9987240433692932,
+      "neutral": 0.001164155313745141,
+      "contradiction": 0.00011184003960806876
+    }
+  },
+  {
+    "id": "template-0-against",
+    "text": "Somos contrários a reduzir a jornada semanal de trabalho.",
+    "target": "reduzir a jornada semanal de trabalho",
+    "label": "against",
+    "split": "diagnostic",
+    "family_id": "template-0",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos contrários a {target}.",
+    "source_id": "alvo_controlado-0",
+    "hypothesis": "Somos favoráveis a reduzir a jornada semanal de trabalho.",
+    "expected": "contraria",
+    "predicted": "contraria",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.0003769673057831824,
+      "neutral": 0.000234946608543396,
+      "contradiction": 0.9993880987167358
+    }
+  },
+  {
+    "id": "template-1-favor",
+    "text": "Somos favoráveis a ampliar a tributação progressiva.",
+    "target": "ampliar a tributação progressiva",
+    "label": "favor",
+    "split": "diagnostic",
+    "family_id": "template-1",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos favoráveis a {target}.",
+    "source_id": "alvo_controlado-1",
+    "hypothesis": "Somos favoráveis a ampliar a tributação progressiva.",
+    "expected": "favoravel",
+    "predicted": "favoravel",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.9984866380691528,
+      "neutral": 0.0013898209435865283,
+      "contradiction": 0.00012359683751128614
+    }
+  },
+  {
+    "id": "template-1-against",
+    "text": "Somos contrários a ampliar a tributação progressiva.",
+    "target": "ampliar a tributação progressiva",
+    "label": "against",
+    "split": "diagnostic",
+    "family_id": "template-1",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos contrários a {target}.",
+    "source_id": "alvo_controlado-1",
+    "hypothesis": "Somos favoráveis a ampliar a tributação progressiva.",
+    "expected": "contraria",
+    "predicted": "contraria",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.00043187523260712624,
+      "neutral": 0.0002552452788222581,
+      "contradiction": 0.9993128776550293
+    }
+  },
+  {
+    "id": "template-2-favor",
+    "text": "Somos favoráveis a privatizar empresas públicas.",
+    "target": "privatizar empresas públicas",
+    "label": "favor",
+    "split": "diagnostic",
+    "family_id": "template-2",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos favoráveis a {target}.",
+    "source_id": "alvo_controlado-2",
+    "hypothesis": "Somos favoráveis a privatizar empresas públicas.",
+    "expected": "favoravel",
+    "predicted": "favoravel",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.9988310933113098,
+      "neutral": 0.001042339950799942,
+      "contradiction": 0.00012654058809857816
+    }
+  },
+  {
+    "id": "template-2-against",
+    "text": "Somos contrários a privatizar empresas públicas.",
+    "target": "privatizar empresas públicas",
+    "label": "against",
+    "split": "diagnostic",
+    "family_id": "template-2",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos contrários a {target}.",
+    "source_id": "alvo_controlado-2",
+    "hypothesis": "Somos favoráveis a privatizar empresas públicas.",
+    "expected": "contraria",
+    "predicted": "contraria",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.0005539524718187749,
+      "neutral": 0.00027206403319723904,
+      "contradiction": 0.9991739392280579
+    }
+  },
+  {
+    "id": "template-3-favor",
+    "text": "Somos favoráveis a ampliar a cooperação internacional.",
+    "target": "ampliar a cooperação internacional",
+    "label": "favor",
+    "split": "diagnostic",
+    "family_id": "template-3",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos favoráveis a {target}.",
+    "source_id": "alvo_controlado-3",
+    "hypothesis": "Somos favoráveis a ampliar a cooperação internacional.",
+    "expected": "favoravel",
+    "predicted": "favoravel",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.998577356338501,
+      "neutral": 0.0013196616200730205,
+      "contradiction": 0.00010294082312611863
+    }
+  },
+  {
+    "id": "template-3-against",
+    "text": "Somos contrários a ampliar a cooperação internacional.",
+    "target": "ampliar a cooperação internacional",
+    "label": "against",
+    "split": "diagnostic",
+    "family_id": "template-3",
+    "label_source": "construcao_controlada",
+    "generator": "template_declaracao_v1",
+    "template": "Somos contrários a {target}.",
+    "source_id": "alvo_controlado-3",
+    "hypothesis": "Somos favoráveis a ampliar a cooperação internacional.",
+    "expected": "contraria",
+    "predicted": "contraria",
+    "satisfied": true,
+    "probabilities": {
+      "entailment": 0.0003150434058625251,
+      "neutral": 0.00021958051365800202,
+      "contradiction": 0.9994654059410095
+    }
+  }
+]

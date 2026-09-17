@@ -1,0 +1,174 @@
+{
+  "config": {
+    "data_used": "dev_only",
+    "threshold": 0.0,
+    "hypotheses": {
+      "casamento entre pessoas do mesmo sexo": {
+        "nominal": [
+          "O autor é favorável a casamento entre pessoas do mesmo sexo.",
+          "O autor é contrário a casamento entre pessoas do mesmo sexo."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: O casamento entre pessoas do mesmo sexo deve ser permitido.",
+          "O autor discorda da seguinte afirmação: O casamento entre pessoas do mesmo sexo deve ser permitido."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: O casamento entre pessoas do mesmo sexo deve ser permitido.",
+          "O texto rejeita a seguinte posição: O casamento entre pessoas do mesmo sexo deve ser permitido."
+        ]
+      },
+      "legalização do porte de armas": {
+        "nominal": [
+          "O autor é favorável a legalização do porte de armas.",
+          "O autor é contrário a legalização do porte de armas."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: O porte de armas deve ser legalizado.",
+          "O autor discorda da seguinte afirmação: O porte de armas deve ser legalizado."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: O porte de armas deve ser legalizado.",
+          "O texto rejeita a seguinte posição: O porte de armas deve ser legalizado."
+        ]
+      },
+      "legalização do aborto": {
+        "nominal": [
+          "O autor é favorável a legalização do aborto.",
+          "O autor é contrário a legalização do aborto."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: O aborto deve ser legalizado.",
+          "O autor discorda da seguinte afirmação: O aborto deve ser legalizado."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: O aborto deve ser legalizado.",
+          "O texto rejeita a seguinte posição: O aborto deve ser legalizado."
+        ]
+      },
+      "pena de morte": {
+        "nominal": [
+          "O autor é favorável a pena de morte.",
+          "O autor é contrário a pena de morte."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: A pena de morte deve ser adotada.",
+          "O autor discorda da seguinte afirmação: A pena de morte deve ser adotada."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: A pena de morte deve ser adotada.",
+          "O texto rejeita a seguinte posição: A pena de morte deve ser adotada."
+        ]
+      },
+      "legalização das drogas": {
+        "nominal": [
+          "O autor é favorável a legalização das drogas.",
+          "O autor é contrário a legalização das drogas."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: As drogas devem ser legalizadas.",
+          "O autor discorda da seguinte afirmação: As drogas devem ser legalizadas."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: As drogas devem ser legalizadas.",
+          "O texto rejeita a seguinte posição: As drogas devem ser legalizadas."
+        ]
+      },
+      "redução da maioridade penal": {
+        "nominal": [
+          "O autor é favorável a redução da maioridade penal.",
+          "O autor é contrário a redução da maioridade penal."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: A maioridade penal deve ser reduzida.",
+          "O autor discorda da seguinte afirmação: A maioridade penal deve ser reduzida."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: A maioridade penal deve ser reduzida.",
+          "O texto rejeita a seguinte posição: A maioridade penal deve ser reduzida."
+        ]
+      },
+      "cotas raciais": {
+        "nominal": [
+          "O autor é favorável a cotas raciais.",
+          "O autor é contrário a cotas raciais."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: As cotas raciais devem ser adotadas.",
+          "O autor discorda da seguinte afirmação: As cotas raciais devem ser adotadas."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: As cotas raciais devem ser adotadas.",
+          "O texto rejeita a seguinte posição: As cotas raciais devem ser adotadas."
+        ]
+      },
+      "isenção de impostos para igrejas": {
+        "nominal": [
+          "O autor é favorável a isenção de impostos para igrejas.",
+          "O autor é contrário a isenção de impostos para igrejas."
+        ],
+        "concordancia": [
+          "O autor concorda com a seguinte afirmação: As igrejas devem ser isentas de impostos.",
+          "O autor discorda da seguinte afirmação: As igrejas devem ser isentas de impostos."
+        ],
+        "defesa": [
+          "O texto defende a seguinte posição: As igrejas devem ser isentas de impostos.",
+          "O texto rejeita a seguinte posição: As igrejas devem ser isentas de impostos."
+        ]
+      }
+    },
+    "selection": "mean balanced accuracy across topics; tie minimum topic BA",
+    "provisional_success": {
+      "mean_topic_ba": 0.75,
+      "minimum_topic_ba": 0.6
+    },
+    "success_is_development_only": true,
+    "no_test_evaluation": true,
+    "nli": {
+      "name": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+      "revision": "8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c",
+      "requested_revision": "8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c",
+      "device": "cuda",
+      "pairs": 3060,
+      "tokens": 332474,
+      "truncated": 0,
+      "id2label": {
+        "0": "entailment",
+        "1": "neutral",
+        "2": "contradiction"
+      },
+      "max_length": 512,
+      "dtype": "float32",
+      "batch_size": 1,
+      "low_vram": true
+    }
+  },
+  "input_hashes": {
+    "analises\\dados\\brmoral_20260917\\corpus.jsonl": "34fe9de364bd08b058e9830d96ba134592aa8de36396331bfddb2a479d94b981",
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\investigacao\\nli_bilateral.py": "a4f105a88b6f388b18deff2a7b74a56d04ac51e10c30aa2d46f5bd71b6601478"
+  },
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.7.1+cu118",
+    "transformers": "5.17.0",
+    "sentence-transformers": "6.0.1",
+    "scikit-learn": "1.9.1"
+  },
+  "elapsed_seconds": 99.15989690000424,
+  "rss_bytes_at_end": 2243477504,
+  "rss_is_peak": false,
+  "gpu": {
+    "name": "NVIDIA GeForce GTX 1060 3GB",
+    "cuda_build": "11.8",
+    "capability": [
+      6,
+      1
+    ],
+    "peak_allocated_bytes": 1181417984,
+    "peak_reserved_bytes": 1235222528
+  },
+  "limitations": [
+    "Diagnósticos conhecidos não são teste cego",
+    "Acurácia documental não estimada"
+  ]
+}

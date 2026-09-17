@@ -1,0 +1,366 @@
+{
+  "values": {
+    "TEXTOS_EIXOS_2": {
+      "economic": {
+        "equality": "\n        Redução das desigualdades econômicas e sociais.\n        Distribuição mais equilibrada de renda, riqueza, recursos e oportunidades.\n        Tributação progressiva e políticas de redistribuição de renda.\n        Ação do Estado para reduzir desigualdades econômicas e remover obstáculos sociais.\n        Proteção econômica aos grupos socialmente e economicamente menos favorecidos.\n        Limitação da concentração de riqueza e de poder econômico.\n        Maior participação pública, coletiva ou social na propriedade e na organização da economia.\n        Priorização da igualdade econômica mesmo quando isso exige maior intervenção estatal.\n        ",
+        "wealth": "\n        Livre iniciativa econômica e propriedade privada.\n        Autonomia dos indivíduos e das empresas para tomar decisões econômicas.\n        Concorrência como mecanismo de organização da economia.\n        Liberdade de produção, investimento, contratação e consumo.\n        Organização descentralizada da atividade econômica por mecanismos de mercado.\n        Redução da intervenção direta e do planejamento estatal da economia.\n        Defesa da propriedade particular e da iniciativa econômica individual.\n        Privatização, desregulamentação e maior liberdade para o funcionamento dos mercados.\n        Intervenção estatal limitada à garantia de direitos, contratos e regras de concorrência.\n        "
+      },
+      "diplomatic": {
+        "might": "\n        Soberania e independência do Estado nacional.\n        Autodeterminação política dos povos.\n        Prioridade das decisões tomadas pela própria comunidade nacional.\n        Valorização da identidade, história, cultura e instituições nacionais.\n        Preservação da autonomia nacional diante de interferências externas.\n        Prioridade dos interesses nacionais quando entram em conflito com interesses internacionais.\n        Manutenção da soberania estatal sobre decisões políticas fundamentais.\n        Valorização da coesão e da unidade nacional.\n        ",
+        "peace": "\n        Cooperação política entre diferentes povos e Estados.\n        Solidariedade e interdependência internacional.\n        Soluções multilaterais para problemas que ultrapassam as fronteiras nacionais.\n        Integração econômica, jurídica e política entre países.\n        Fortalecimento de instituições internacionais e supranacionais.\n        Compartilhamento de parcelas da soberania para solucionar problemas comuns.\n        Construção de estruturas federativas ou supranacionais acima dos Estados.\n        Valorização de interesses e direitos universais para além da pertença nacional.\n        Maior integração política da humanidade.\n        "
+      },
+      "state": {
+        "liberty": "\n        Proteção da autonomia individual diante do poder político.\n        Garantia das liberdades civis e políticas.\n        Liberdade de expressão, imprensa, reunião, associação e participação política.\n        Pluralismo político, social e ideológico.\n        Limitação jurídica do poder do Estado.\n        Existência de diferentes grupos, organizações e centros de poder autônomos.\n        Proteção dos direitos individuais contra interferências e restrições estatais.\n        Controle dos governantes por instituições representativas e pela participação dos cidadãos.\n        Resistência à censura, vigilância excessiva e concentração do poder político.\n        ",
+        "authority": "\n        Concentração e centralização do poder político.\n        Hierarquia, disciplina e obediência como princípios de organização social.\n        Prioridade da ordem e da estabilidade sobre a autonomia individual.\n        Fortalecimento da autoridade do Estado e do poder executivo.\n        Redução da autonomia de grupos e instituições diante do governo.\n        Restrição do pluralismo e da oposição política.\n        Limitação da participação política quando considerada incompatível com a ordem.\n        Uso de mecanismos coercitivos para assegurar o cumprimento das decisões políticas.\n        Subordinação dos indivíduos e grupos à autoridade política central.\n        "
+      },
+      "society": {
+        "progress": "\n        Transformação consciente das instituições sociais e políticas.\n        Confiança na capacidade humana de melhorar a sociedade.\n        Uso da razão, da ciência, do conhecimento e da crítica para avaliar instituições existentes.\n        Questionamento de tradições consideradas injustas, irracionais ou ultrapassadas.\n        Mudança social como possibilidade de aperfeiçoamento das condições humanas.\n        Reforma de instituições diante de novos conhecimentos e necessidades sociais.\n        Participação ativa dos indivíduos na transformação histórica da sociedade.\n        Superação de estruturas sociais consideradas inadequadas.\n        Valorização do aperfeiçoamento futuro em relação às condições existentes.\n        ",
+        "tradition": "\n        Preservação de instituições, costumes e valores desenvolvidos historicamente.\n        Valorização da continuidade e da estabilidade social.\n        Preferência por mudanças graduais em vez de transformações profundas ou abruptas.\n        Confiança na experiência histórica acumulada pelas instituições sociais.\n        Cautela diante de projetos de reorganização racional e radical da sociedade.\n        Preservação de estruturas sociais consideradas fundamentais para a ordem.\n        Valorização da tradição, da família, da religião, da autoridade e da moral histórica.\n        Resistência à ruptura com práticas e instituições consolidadas.\n        Mudança social condicionada à preservação de elementos essenciais da ordem existente.\n        "
+      }
+    },
+    "AXES": {
+      "economic": [
+        "equality",
+        "wealth"
+      ],
+      "diplomatic": [
+        "peace",
+        "might"
+      ],
+      "state": [
+        "liberty",
+        "authority"
+      ],
+      "society": [
+        "progress",
+        "tradition"
+      ]
+    },
+    "PAIRED_ANCHORS": {
+      "economic": [
+        [
+          "Defende ampliar a atuação do Estado na economia.",
+          "Defende reduzir a atuação do Estado na economia."
+        ],
+        [
+          "Defende tributação progressiva para reduzir desigualdades.",
+          "Defende redução de impostos e menor progressividade tributária."
+        ],
+        [
+          "Defende ampliar políticas de redistribuição de renda.",
+          "Defende reduzir políticas redistributivas e priorizar mecanismos de mercado."
+        ],
+        [
+          "Defende fortalecer empresas públicas.",
+          "Defende privatizar empresas públicas."
+        ],
+        [
+          "Defende maior regulação estatal da economia.",
+          "Defende desregulamentação dos mercados."
+        ]
+      ],
+      "diplomatic": [
+        [
+          "Defende maior cooperação internacional.",
+          "Defende priorizar os interesses nacionais."
+        ],
+        [
+          "Defende fortalecer instituições multilaterais.",
+          "Defende preservar a soberania nacional diante de instituições internacionais."
+        ],
+        [
+          "Defende maior integração entre países.",
+          "Defende maior autonomia política nacional."
+        ],
+        [
+          "Defende compartilhar decisões por meio de instituições internacionais.",
+          "Defende manter decisões políticas fundamentais sob controle nacional."
+        ],
+        [
+          "Defende maior solidariedade internacional.",
+          "Defende fortalecer identidade e independência nacionais."
+        ]
+      ],
+      "state": [
+        [
+          "Defende amplas liberdades civis.",
+          "Defende maior autoridade estatal em nome da ordem."
+        ],
+        [
+          "Defende ampla liberdade de expressão.",
+          "Defende restrições à expressão quando necessárias à ordem."
+        ],
+        [
+          "Defende pluralismo político e limites ao governo.",
+          "Defende maior concentração de poder político."
+        ],
+        [
+          "Defende limites à vigilância estatal.",
+          "Defende ampliar a vigilância estatal em nome da segurança."
+        ],
+        [
+          "Defende maior autonomia dos indivíduos.",
+          "Defende maior controle estatal sobre comportamentos."
+        ]
+      ],
+      "society": [
+        [
+          "Defende reformar costumes e instituições diante de novas necessidades sociais.",
+          "Defende preservar costumes e instituições historicamente consolidados."
+        ],
+        [
+          "Defende revisar tradições consideradas inadequadas.",
+          "Defende preservar tradições como referência social."
+        ],
+        [
+          "Defende mudanças sociais amplas.",
+          "Defende mudanças sociais graduais."
+        ],
+        [
+          "Defende adaptação das normas sociais a novos valores.",
+          "Defende preservação de normas e valores tradicionais."
+        ],
+        [
+          "Defende maior abertura à transformação dos costumes.",
+          "Defende maior preservação dos costumes tradicionais."
+        ]
+      ]
+    },
+    "MINIMAL_PAIRS": {
+      "economic": [
+        [
+          "O Estado deve ampliar sua participação na economia.",
+          "O Estado deve reduzir sua participação na economia."
+        ],
+        [
+          "O governo deve aumentar a tributação progressiva para reduzir desigualdades.",
+          "O governo deve reduzir a tributação progressiva e diminuir os impostos."
+        ],
+        [
+          "As empresas estatais devem ser fortalecidas.",
+          "As empresas estatais devem ser privatizadas."
+        ],
+        [
+          "O governo deve ampliar políticas de redistribuição de renda.",
+          "O governo deve reduzir políticas de redistribuição de renda."
+        ],
+        [
+          "Os mercados devem ser submetidos a maior regulação estatal.",
+          "Os mercados devem ter menor regulação estatal."
+        ]
+      ],
+      "diplomatic": [
+        [
+          "O país deve ampliar a cooperação com instituições internacionais.",
+          "O país deve priorizar sua soberania diante de instituições internacionais."
+        ],
+        [
+          "As decisões internacionais devem ser tomadas de forma multilateral.",
+          "As decisões políticas fundamentais devem permanecer sob controle nacional."
+        ],
+        [
+          "O país deve ampliar sua integração política com outras nações.",
+          "O país deve preservar maior autonomia política diante de outras nações."
+        ],
+        [
+          "Instituições multilaterais devem ter maior participação na solução de conflitos internacionais.",
+          "Cada país deve preservar sua autonomia na solução de conflitos internacionais."
+        ],
+        [
+          "A política externa deve priorizar a cooperação entre os países.",
+          "A política externa deve priorizar os interesses nacionais."
+        ]
+      ],
+      "state": [
+        [
+          "O Estado deve proteger amplamente as liberdades civis.",
+          "O Estado deve limitar liberdades civis quando necessário para preservar a ordem."
+        ],
+        [
+          "A liberdade de expressão deve ser protegida mesmo diante de opiniões controversas.",
+          "A liberdade de expressão pode ser restringida para preservar a ordem social."
+        ],
+        [
+          "A vigilância estatal deve ser limitada para proteger a privacidade.",
+          "A vigilância estatal deve ser ampliada para aumentar a segurança."
+        ],
+        [
+          "O poder do governo deve possuir fortes limites institucionais.",
+          "O governo deve possuir maior autoridade para tomar decisões."
+        ],
+        [
+          "Os indivíduos devem possuir maior autonomia sobre suas escolhas pessoais.",
+          "O Estado deve exercer maior controle sobre comportamentos individuais."
+        ]
+      ],
+      "society": [
+        [
+          "A sociedade deve adaptar suas tradições às novas necessidades sociais.",
+          "A sociedade deve preservar suas tradições diante das mudanças sociais."
+        ],
+        [
+          "As normas sociais devem acompanhar novos valores.",
+          "As normas sociais tradicionais devem ser preservadas."
+        ],
+        [
+          "Costumes tradicionais devem ser revistos quando entrarem em conflito com novas demandas sociais.",
+          "Costumes tradicionais devem ser preservados como referência para a sociedade."
+        ],
+        [
+          "Mudanças sociais amplas são necessárias para acompanhar a transformação da sociedade.",
+          "Mudanças sociais devem ocorrer de forma gradual para preservar a estabilidade."
+        ],
+        [
+          "A sociedade deve estar aberta à transformação dos costumes.",
+          "A sociedade deve priorizar a preservação dos costumes tradicionais."
+        ]
+      ]
+    },
+    "INDEPENDENT_MINIMAL_PAIRS": {
+      "economic": [
+        [
+          "Áreas consideradas essenciais deveriam permanecer sob responsabilidade pública para garantir acesso universal.",
+          "Áreas consideradas essenciais poderiam ser transferidas à iniciativa privada para aumentar a eficiência."
+        ],
+        [
+          "Pessoas com renda muito elevada deveriam contribuir proporcionalmente mais para financiar políticas públicas.",
+          "A cobrança de impostos deveria ser reduzida mesmo para as maiores faixas de renda para estimular investimentos."
+        ],
+        [
+          "Parte maior dos recursos arrecadados deveria ser destinada a programas voltados à redução das diferenças de renda.",
+          "A distribuição de renda deveria depender principalmente da atividade econômica e das escolhas individuais."
+        ],
+        [
+          "Empresas que atuam em setores estratégicos deveriam estar sujeitas a regras públicas mais rigorosas.",
+          "Empresas deveriam ter maior liberdade para definir suas atividades sem interferência excessiva do poder público."
+        ],
+        [
+          "O acesso a serviços essenciais não deveria depender da capacidade financeira de cada cidadão.",
+          "A oferta de serviços essenciais pode ser organizada predominantemente por mecanismos de mercado."
+        ],
+        [
+          "O poder público deveria utilizar investimentos e incentivos para orientar o desenvolvimento de setores considerados estratégicos.",
+          "A escolha dos setores que crescerão deveria ser determinada principalmente pelas decisões de empresas e consumidores."
+        ],
+        [
+          "Empresas controladas pelo governo podem ser importantes para garantir objetivos sociais e estratégicos.",
+          "Atividades empresariais atualmente controladas pelo governo deveriam ser transferidas para investidores privados."
+        ],
+        [
+          "Reduzir diferenças econômicas significativas entre os cidadãos deve ser uma prioridade das políticas públicas.",
+          "Diferenças de renda são aceitáveis quando resultam do funcionamento livre da economia."
+        ]
+      ],
+      "diplomatic": [
+        [
+          "Problemas que atravessam fronteiras deveriam ser enfrentados por meio de decisões coordenadas entre diversos países.",
+          "Mesmo diante de problemas internacionais, o país deve preservar sua liberdade para decidir conforme seus próprios interesses."
+        ],
+        [
+          "Compromissos internacionais podem justificar que os países aceitem regras comuns em determinadas áreas.",
+          "Nenhum compromisso externo deveria limitar de forma significativa a capacidade do país de definir suas próprias políticas."
+        ],
+        [
+          "Diante de disputas internacionais, soluções negociadas entre várias nações devem ser priorizadas.",
+          "Diante de disputas internacionais, a defesa firme dos interesses nacionais deve ter prioridade."
+        ],
+        [
+          "Uma integração maior com outros países pode beneficiar a solução de desafios compartilhados.",
+          "Uma dependência menor de decisões externas fortalece a capacidade do país de defender seus interesses."
+        ],
+        [
+          "A política externa deveria buscar construir consensos e compromissos com outros governos.",
+          "A política externa deveria evitar compromissos que reduzam a autonomia estratégica do país."
+        ],
+        [
+          "Decisões sobre desafios globais ganham legitimidade quando são construídas coletivamente entre diferentes países.",
+          "Governos nacionais devem possuir a palavra final mesmo quando organismos internacionais defendem outra solução."
+        ],
+        [
+          "Países com mais recursos deveriam contribuir para enfrentar crises humanitárias que ocorram fora de suas fronteiras.",
+          "Os recursos nacionais devem ser destinados prioritariamente aos próprios cidadãos antes de compromissos externos."
+        ],
+        [
+          "Em alguns temas, aceitar decisões conjuntas pode ser necessário para alcançar objetivos internacionais comuns.",
+          "Decisões fundamentais nunca deveriam ser transferidas para organismos externos ao Estado nacional."
+        ]
+      ],
+      "state": [
+        [
+          "Cidadãos não deveriam ter suas comunicações monitoradas sem autorização judicial.",
+          "Em situações de ameaça, autoridades deveriam poder monitorar comunicações mesmo com menos restrições legais."
+        ],
+        [
+          "Protestos devem permanecer permitidos mesmo quando causam transtornos à rotina das cidades.",
+          "Manifestações que prejudicam seriamente a ordem pública deveriam poder ser interrompidas pelas autoridades."
+        ],
+        [
+          "O governo não deveria impedir a divulgação de opiniões apenas porque elas são consideradas ofensivas ou controversas.",
+          "Determinados discursos deveriam poder ser proibidos quando representarem risco significativo para a estabilidade social."
+        ],
+        [
+          "Decisões importantes do governo devem permanecer sujeitas a controles de outras instituições.",
+          "Em períodos de crise, o chefe do governo deveria possuir maior liberdade para decidir sem tantas limitações institucionais."
+        ],
+        [
+          "A proteção da vida privada deve limitar a quantidade de informações que o governo pode coletar sobre os cidadãos.",
+          "A prevenção de ameaças pode justificar uma coleta mais ampla de informações pessoais pelas autoridades."
+        ],
+        [
+          "O exercício do poder policial deve estar sujeito a limites rigorosos para proteger direitos individuais.",
+          "A polícia deveria receber poderes mais amplos quando isso facilitar a manutenção da segurança."
+        ],
+        [
+          "Adultos deveriam poder tomar decisões pessoais mesmo quando o governo considera essas escolhas inadequadas.",
+          "O governo pode restringir determinadas escolhas pessoais quando considerar que elas prejudicam a sociedade."
+        ],
+        [
+          "A preservação de direitos individuais deve continuar sendo prioridade mesmo em momentos de instabilidade.",
+          "Em situações de grande instabilidade, restaurar a ordem pode exigir temporariamente a redução de algumas garantias individuais."
+        ]
+      ],
+      "society": [
+        [
+          "As leis relacionadas à família devem acompanhar as mudanças nas formas como as pessoas organizam suas relações.",
+          "As leis relacionadas à família devem preservar modelos que historicamente estruturaram a sociedade."
+        ],
+        [
+          "Práticas sociais antigas devem poder ser revistas quando deixam de refletir as necessidades atuais.",
+          "Práticas sociais transmitidas entre gerações merecem ser preservadas mesmo diante de pressões por mudança."
+        ],
+        [
+          "Transformações culturais podem representar avanços necessários para adaptar a sociedade a novas realidades.",
+          "Transformações culturais rápidas podem enfraquecer referências importantes para a estabilidade da sociedade."
+        ],
+        [
+          "Valores sociais devem poder evoluir à medida que surgem novas experiências e formas de vida.",
+          "Valores consolidados ao longo do tempo devem continuar orientando a organização da sociedade."
+        ],
+        [
+          "Instituições tradicionais devem ser reformuladas quando não acompanham mais as mudanças da população.",
+          "Instituições tradicionais devem ser protegidas porque oferecem continuidade entre diferentes gerações."
+        ],
+        [
+          "O fato de uma prática existir há muito tempo não é motivo suficiente para impedir sua revisão.",
+          "A continuidade de costumes antigos possui valor próprio e deve ser considerada antes de modificá-los."
+        ],
+        [
+          "Mudanças profundas podem ser necessárias quando estruturas antigas deixam de responder às demandas sociais.",
+          "Mudanças sociais devem ocorrer com cautela para evitar a ruptura de estruturas que funcionaram durante gerações."
+        ],
+        [
+          "Novas formas de organização social devem receber espaço mesmo quando diferem das convenções históricas.",
+          "As convenções sociais tradicionais continuam sendo referências importantes para orientar novas gerações."
+        ]
+      ]
+    }
+  },
+  "cells": {
+    "TEXTOS_EIXOS_2": 158,
+    "AXES": 182,
+    "PAIRED_ANCHORS": 196,
+    "MINIMAL_PAIRS": 211,
+    "INDEPENDENT_MINIMAL_PAIRS": 225
+  },
+  "sha256": "bd55dbbc1ccee74537706bdd08e0e416cfbed363e20d03e56757c32b204b0d2b"
+}

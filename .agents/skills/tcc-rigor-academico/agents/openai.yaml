@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rigor Acadêmico do TCC"
+  short_description: "Fundamenta, explica e valida código do TCC"
+  default_prompt: "Use $tcc-rigor-academico para implementar esta tarefa com fundamentação acadêmica, explicação e validação."

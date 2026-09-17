@@ -1,0 +1,140 @@
+[
+  {
+    "text_id": "template-0-favor",
+    "question_id": "controlled-work",
+    "specific": {
+      "entailment": 0.9987240433692932,
+      "neutral": 0.001164155313745141,
+      "contradiction": 0.00011184003960806876
+    },
+    "broad_anchors": {
+      "economic": {
+        "median_entailment_difference": -0.005170874297618866,
+        "median_with_contradiction": -0.9302875674329698,
+        "probabilities": [
+          {
+            "entailment": 0.0003084307536482811,
+            "neutral": 0.0011242128675803542,
+            "contradiction": 0.9985673427581787
+          },
+          {
+            "entailment": 0.005479305051267147,
+            "neutral": 0.9935858845710754,
+            "contradiction": 0.000934789190068841
+          },
+          {
+            "entailment": 0.0018279231153428555,
+            "neutral": 0.9915283918380737,
+            "contradiction": 0.006643624510616064
+          },
+          {
+            "entailment": 0.9264013767242432,
+            "neutral": 0.072669118642807,
+            "contradiction": 0.0009295106865465641
+          },
+          {
+            "entailment": 0.0006400177953764796,
+            "neutral": 0.0019150993321090937,
+            "contradiction": 0.9974448680877686
+          },
+          {
+            "entailment": 0.005434753838926554,
+            "neutral": 0.9787886142730713,
+            "contradiction": 0.01577666401863098
+          },
+          {
+            "entailment": 0.07646775245666504,
+            "neutral": 0.8784894347190857,
+            "contradiction": 0.04504283145070076
+          },
+          {
+            "entailment": 0.027114497497677803,
+            "neutral": 0.038413770496845245,
+            "contradiction": 0.9344716668128967
+          },
+          {
+            "entailment": 0.0021320816595107317,
+            "neutral": 0.9827471971511841,
+            "contradiction": 0.015120770782232285
+          },
+          {
+            "entailment": 0.03549882397055626,
+            "neutral": 0.9527301788330078,
+            "contradiction": 0.011771077290177345
+          }
+        ]
+      }
+    },
+    "label_source": "sem_rotulo",
+    "interpretation": "estimandos distintos; comparação de comportamento"
+  },
+  {
+    "text_id": "template-0-against",
+    "question_id": "controlled-work",
+    "specific": {
+      "entailment": 0.0003769673057831824,
+      "neutral": 0.000234946608543396,
+      "contradiction": 0.9993880987167358
+    },
+    "broad_anchors": {
+      "economic": {
+        "median_entailment_difference": 0.002183720702305436,
+        "median_with_contradiction": 0.0005214579869061708,
+        "probabilities": [
+          {
+            "entailment": 0.00520359119400382,
+            "neutral": 0.9476240873336792,
+            "contradiction": 0.04717233404517174
+          },
+          {
+            "entailment": 0.001632274012081325,
+            "neutral": 0.9909165501594543,
+            "contradiction": 0.007451205514371395
+          },
+          {
+            "entailment": 0.0017755926819518209,
+            "neutral": 0.917047917842865,
+            "contradiction": 0.08117641508579254
+          },
+          {
+            "entailment": 0.131758451461792,
+            "neutral": 0.6540847420692444,
+            "contradiction": 0.214156836271286
+          },
+          {
+            "entailment": 0.005466538015753031,
+            "neutral": 0.7290093898773193,
+            "contradiction": 0.2655240595340729
+          },
+          {
+            "entailment": 0.0010666492162272334,
+            "neutral": 0.931847333908081,
+            "contradiction": 0.06708601862192154
+          },
+          {
+            "entailment": 0.002932614414021373,
+            "neutral": 0.9902196526527405,
+            "contradiction": 0.006847746670246124
+          },
+          {
+            "entailment": 0.0007488937117159367,
+            "neutral": 0.004874125123023987,
+            "contradiction": 0.9943769574165344
+          },
+          {
+            "entailment": 0.0016099188942462206,
+            "neutral": 0.9913492202758789,
+            "contradiction": 0.007040822878479958
+          },
+          {
+            "entailment": 0.0041121067479252815,
+            "neutral": 0.985823392868042,
+            "contradiction": 0.01006446871906519
+          }
+        ]
+      }
+    },
+    "label_source": "sem_rotulo",
+    "interpretation": "estimandos distintos; comparação de comportamento"
+  }
+]

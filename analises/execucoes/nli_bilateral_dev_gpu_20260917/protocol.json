@@ -1,0 +1,125 @@
+{
+  "data_used": "dev_only",
+  "threshold": 0.0,
+  "hypotheses": {
+    "casamento entre pessoas do mesmo sexo": {
+      "nominal": [
+        "O autor é favorável a casamento entre pessoas do mesmo sexo.",
+        "O autor é contrário a casamento entre pessoas do mesmo sexo."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: O casamento entre pessoas do mesmo sexo deve ser permitido.",
+        "O autor discorda da seguinte afirmação: O casamento entre pessoas do mesmo sexo deve ser permitido."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: O casamento entre pessoas do mesmo sexo deve ser permitido.",
+        "O texto rejeita a seguinte posição: O casamento entre pessoas do mesmo sexo deve ser permitido."
+      ]
+    },
+    "legalização do porte de armas": {
+      "nominal": [
+        "O autor é favorável a legalização do porte de armas.",
+        "O autor é contrário a legalização do porte de armas."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: O porte de armas deve ser legalizado.",
+        "O autor discorda da seguinte afirmação: O porte de armas deve ser legalizado."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: O porte de armas deve ser legalizado.",
+        "O texto rejeita a seguinte posição: O porte de armas deve ser legalizado."
+      ]
+    },
+    "legalização do aborto": {
+      "nominal": [
+        "O autor é favorável a legalização do aborto.",
+        "O autor é contrário a legalização do aborto."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: O aborto deve ser legalizado.",
+        "O autor discorda da seguinte afirmação: O aborto deve ser legalizado."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: O aborto deve ser legalizado.",
+        "O texto rejeita a seguinte posição: O aborto deve ser legalizado."
+      ]
+    },
+    "pena de morte": {
+      "nominal": [
+        "O autor é favorável a pena de morte.",
+        "O autor é contrário a pena de morte."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: A pena de morte deve ser adotada.",
+        "O autor discorda da seguinte afirmação: A pena de morte deve ser adotada."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: A pena de morte deve ser adotada.",
+        "O texto rejeita a seguinte posição: A pena de morte deve ser adotada."
+      ]
+    },
+    "legalização das drogas": {
+      "nominal": [
+        "O autor é favorável a legalização das drogas.",
+        "O autor é contrário a legalização das drogas."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: As drogas devem ser legalizadas.",
+        "O autor discorda da seguinte afirmação: As drogas devem ser legalizadas."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: As drogas devem ser legalizadas.",
+        "O texto rejeita a seguinte posição: As drogas devem ser legalizadas."
+      ]
+    },
+    "redução da maioridade penal": {
+      "nominal": [
+        "O autor é favorável a redução da maioridade penal.",
+        "O autor é contrário a redução da maioridade penal."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: A maioridade penal deve ser reduzida.",
+        "O autor discorda da seguinte afirmação: A maioridade penal deve ser reduzida."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: A maioridade penal deve ser reduzida.",
+        "O texto rejeita a seguinte posição: A maioridade penal deve ser reduzida."
+      ]
+    },
+    "cotas raciais": {
+      "nominal": [
+        "O autor é favorável a cotas raciais.",
+        "O autor é contrário a cotas raciais."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: As cotas raciais devem ser adotadas.",
+        "O autor discorda da seguinte afirmação: As cotas raciais devem ser adotadas."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: As cotas raciais devem ser adotadas.",
+        "O texto rejeita a seguinte posição: As cotas raciais devem ser adotadas."
+      ]
+    },
+    "isenção de impostos para igrejas": {
+      "nominal": [
+        "O autor é favorável a isenção de impostos para igrejas.",
+        "O autor é contrário a isenção de impostos para igrejas."
+      ],
+      "concordancia": [
+        "O autor concorda com a seguinte afirmação: As igrejas devem ser isentas de impostos.",
+        "O autor discorda da seguinte afirmação: As igrejas devem ser isentas de impostos."
+      ],
+      "defesa": [
+        "O texto defende a seguinte posição: As igrejas devem ser isentas de impostos.",
+        "O texto rejeita a seguinte posição: As igrejas devem ser isentas de impostos."
+      ]
+    }
+  },
+  "selection": "mean balanced accuracy across topics; tie minimum topic BA",
+  "provisional_success": {
+    "mean_topic_ba": 0.75,
+    "minimum_topic_ba": 0.6
+  },
+  "success_is_development_only": true,
+  "no_test_evaluation": true
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "method": "brmoral_congelado",
+    "template": "all",
+    "n": 280,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        111,
+        29
+      ],
+      [
+        33,
+        107
+      ]
+    ],
+    "macro_f1": 0.778526229842825,
+    "balanced_accuracy": 0.7785714285714285,
+    "mcc": 0.5573704017131537,
+    "missing_classes": [],
+    "direction_coverage": 0.5178571428571429,
+    "expected_state_accuracy": 0.45714285714285713,
+    "accuracy_when_accepted": 0.8827586206896552,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 0.5571428571428572
+  },
+  {
+    "method": "brmoral_congelado",
+    "template": "concordancia",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        54,
+        16
+      ],
+      [
+        15,
+        55
+      ]
+    ],
+    "macro_f1": 0.7785601306189092,
+    "balanced_accuracy": 0.7785714285714286,
+    "mcc": 0.557199717158022,
+    "missing_classes": [],
+    "direction_coverage": 0.5285714285714286,
+    "expected_state_accuracy": 0.45,
+    "accuracy_when_accepted": 0.8513513513513513,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 0.5571428571428572
+  },
+  {
+    "method": "brmoral_congelado",
+    "template": "defesa",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        57,
+        13
+      ],
+      [
+        18,
+        52
+      ]
+    ],
+    "macro_f1": 0.7782886334610473,
+    "balanced_accuracy": 0.7785714285714286,
+    "mcc": 0.5585696017507576,
+    "missing_classes": [],
+    "direction_coverage": 0.5071428571428571,
+    "expected_state_accuracy": 0.4642857142857143,
+    "accuracy_when_accepted": 0.9154929577464789,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 0.5571428571428572
+  },
+  {
+    "method": "nli_pergunta",
+    "template": "all",
+    "n": 280,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        140
+      ],
+      [
+        0,
+        140
+      ]
+    ],
+    "macro_f1": 0.3333333333333333,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 0.5,
+    "accuracy_when_accepted": 0.5,
+    "pair_ordering": 0.36428571428571427,
+    "both_sides_correct": 0.0
+  },
+  {
+    "method": "nli_pergunta",
+    "template": "concordancia",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        70
+      ],
+      [
+        0,
+        70
+      ]
+    ],
+    "macro_f1": 0.3333333333333333,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 0.5,
+    "accuracy_when_accepted": 0.5,
+    "pair_ordering": 0.6857142857142857,
+    "both_sides_correct": 0.0
+  },
+  {
+    "method": "nli_pergunta",
+    "template": "defesa",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        70
+      ],
+      [
+        0,
+        70
+      ]
+    ],
+    "macro_f1": 0.3333333333333333,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 0.5,
+    "accuracy_when_accepted": 0.5,
+    "pair_ordering": 0.04285714285714286,
+    "both_sides_correct": 0.0
+  }
+]

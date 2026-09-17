@@ -1,0 +1,902 @@
+[
+  {
+    "method": "e5_tema_reservado",
+    "target": null,
+    "n": 641,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        152,
+        143
+      ],
+      [
+        162,
+        184
+      ]
+    ],
+    "macro_f1": 0.5229921655601831,
+    "balanced_accuracy": 0.5235230724012931,
+    "mcc": 0.046906647899342034,
+    "missing_classes": [],
+    "coverage": 0.47425897035881437,
+    "accepted_accuracy": 0.5460526315789473
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "n": 95,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        4,
+        0
+      ],
+      [
+        67,
+        24
+      ]
+    ],
+    "macro_f1": 0.26202898550724635,
+    "balanced_accuracy": 0.6318681318681318,
+    "mcc": 0.12189495910645426,
+    "missing_classes": [],
+    "coverage": 0.24210526315789474,
+    "accepted_accuracy": 0.21739130434782608
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "cotas raciais",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        24,
+        5
+      ],
+      [
+        36,
+        14
+      ]
+    ],
+    "macro_f1": 0.4725614720729523,
+    "balanced_accuracy": 0.5537931034482759,
+    "mcc": 0.12133558030932978,
+    "missing_classes": [],
+    "coverage": 0.3037974683544304,
+    "accepted_accuracy": 0.4583333333333333
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "isenção de impostos para igrejas",
+    "n": 82,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        1,
+        68
+      ],
+      [
+        1,
+        12
+      ]
+    ],
+    "macro_f1": 0.14311676510676966,
+    "balanced_accuracy": 0.46878483835005574,
+    "mcc": -0.14781952900398843,
+    "missing_classes": [],
+    "coverage": 0.7926829268292683,
+    "accepted_accuracy": 0.18461538461538463
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "legalização das drogas",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        18,
+        3
+      ],
+      [
+        18,
+        38
+      ]
+    ],
+    "macro_f1": 0.7075420510037982,
+    "balanced_accuracy": 0.7678571428571428,
+    "mcc": 0.4781825347975037,
+    "missing_classes": [],
+    "coverage": 0.33766233766233766,
+    "accepted_accuracy": 0.7307692307692307
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "legalização do aborto",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        4,
+        8
+      ],
+      [
+        11,
+        56
+      ]
+    ],
+    "macro_f1": 0.5756290641786825,
+    "balanced_accuracy": 0.5845771144278606,
+    "mcc": 0.15480153666731003,
+    "missing_classes": [],
+    "coverage": 0.5443037974683544,
+    "accepted_accuracy": 0.8372093023255814
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "legalização do porte de armas",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        3,
+        51
+      ],
+      [
+        0,
+        22
+      ]
+    ],
+    "macro_f1": 0.28421052631578947,
+    "balanced_accuracy": 0.5277777777777778,
+    "mcc": 0.129393856760774,
+    "missing_classes": [],
+    "coverage": 0.6710526315789473,
+    "accepted_accuracy": 0.39215686274509803
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "pena de morte",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        55,
+        6
+      ],
+      [
+        10,
+        5
+      ]
+    ],
+    "macro_f1": 0.6288156288156288,
+    "balanced_accuracy": 0.6174863387978142,
+    "mcc": 0.26581218902911075,
+    "missing_classes": [],
+    "coverage": 0.5263157894736842,
+    "accepted_accuracy": 0.85
+  },
+  {
+    "method": "e5_tema_reservado",
+    "target": "redução da maioridade penal",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        43,
+        2
+      ],
+      [
+        19,
+        13
+      ]
+    ],
+    "macro_f1": 0.6784649035593557,
+    "balanced_accuracy": 0.6809027777777779,
+    "mcc": 0.45020986079545966,
+    "missing_classes": [],
+    "coverage": 0.4155844155844156,
+    "accepted_accuracy": 0.90625
+  },
+  {
+    "method": "maioria_treino",
+    "target": null,
+    "n": 641,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        16,
+        279
+      ],
+      [
+        158,
+        188
+      ]
+    ],
+    "macro_f1": 0.26535745101587477,
+    "balanced_accuracy": 0.2987949446458313,
+    "mcc": -0.4510086557828561,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.31825273010920435
+  },
+  {
+    "method": "maioria_treino",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "n": 95,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        4,
+        0
+      ],
+      [
+        91,
+        0
+      ]
+    ],
+    "macro_f1": 0.04040404040404041,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.042105263157894736
+  },
+  {
+    "method": "maioria_treino",
+    "target": "cotas raciais",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        29
+      ],
+      [
+        0,
+        50
+      ]
+    ],
+    "macro_f1": 0.3875968992248062,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.6329113924050633
+  },
+  {
+    "method": "maioria_treino",
+    "target": "isenção de impostos para igrejas",
+    "n": 82,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        69
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "macro_f1": 0.1368421052631579,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.15853658536585366
+  },
+  {
+    "method": "maioria_treino",
+    "target": "legalização das drogas",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        21
+      ],
+      [
+        0,
+        56
+      ]
+    ],
+    "macro_f1": 0.42105263157894735,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.7272727272727273
+  },
+  {
+    "method": "maioria_treino",
+    "target": "legalização do aborto",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        12,
+        0
+      ],
+      [
+        67,
+        0
+      ]
+    ],
+    "macro_f1": 0.13186813186813187,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.1518987341772152
+  },
+  {
+    "method": "maioria_treino",
+    "target": "legalização do porte de armas",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        54
+      ],
+      [
+        0,
+        22
+      ]
+    ],
+    "macro_f1": 0.22448979591836735,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.2894736842105263
+  },
+  {
+    "method": "maioria_treino",
+    "target": "pena de morte",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        61
+      ],
+      [
+        0,
+        15
+      ]
+    ],
+    "macro_f1": 0.16483516483516483,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.19736842105263158
+  },
+  {
+    "method": "maioria_treino",
+    "target": "redução da maioridade penal",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        0,
+        45
+      ],
+      [
+        0,
+        32
+      ]
+    ],
+    "macro_f1": 0.29357798165137616,
+    "balanced_accuracy": 0.5,
+    "mcc": 0.0,
+    "missing_classes": [],
+    "coverage": 1.0,
+    "accepted_accuracy": 0.4155844155844156
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": null,
+    "n": 641,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        227,
+        68
+      ],
+      [
+        122,
+        224
+      ]
+    ],
+    "macro_f1": 0.703581650733075,
+    "balanced_accuracy": 0.7084451846771823,
+    "mcc": 0.4172215966430909,
+    "missing_classes": [],
+    "coverage": 0.5304212168486739,
+    "accepted_accuracy": 0.7382352941176471
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "n": 95,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        4,
+        0
+      ],
+      [
+        11,
+        80
+      ]
+    ],
+    "macro_f1": 0.6783625730994152,
+    "balanced_accuracy": 0.9395604395604396,
+    "mcc": 0.48418202613504197,
+    "missing_classes": [],
+    "coverage": 0.4631578947368421,
+    "accepted_accuracy": 0.8863636363636364
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "cotas raciais",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        19,
+        10
+      ],
+      [
+        18,
+        32
+      ]
+    ],
+    "macro_f1": 0.6357048748353096,
+    "balanced_accuracy": 0.6475862068965517,
+    "mcc": 0.2851243187768208,
+    "missing_classes": [],
+    "coverage": 0.4936708860759494,
+    "accepted_accuracy": 0.6410256410256411
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "isenção de impostos para igrejas",
+    "n": 82,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        59,
+        10
+      ],
+      [
+        8,
+        5
+      ]
+    ],
+    "macro_f1": 0.6123949579831933,
+    "balanced_accuracy": 0.6198439241917503,
+    "mcc": 0.22644316036935694,
+    "missing_classes": [],
+    "coverage": 0.7804878048780488,
+    "accepted_accuracy": 0.84375
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "legalização das drogas",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        16,
+        5
+      ],
+      [
+        23,
+        33
+      ]
+    ],
+    "macro_f1": 0.6177304964539008,
+    "balanced_accuracy": 0.6755952380952381,
+    "mcc": 0.31284000846309074,
+    "missing_classes": [],
+    "coverage": 0.5844155844155844,
+    "accepted_accuracy": 0.6444444444444445
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "legalização do aborto",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        10,
+        2
+      ],
+      [
+        41,
+        26
+      ]
+    ],
+    "macro_f1": 0.43241436925647453,
+    "balanced_accuracy": 0.6106965174129353,
+    "mcc": 0.1661222766025584,
+    "missing_classes": [],
+    "coverage": 0.4810126582278481,
+    "accepted_accuracy": 0.47368421052631576
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "legalização do porte de armas",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        45,
+        9
+      ],
+      [
+        8,
+        14
+      ]
+    ],
+    "macro_f1": 0.7316718587746625,
+    "balanced_accuracy": 0.7348484848484849,
+    "mcc": 0.4636861519287496,
+    "missing_classes": [],
+    "coverage": 0.5263157894736842,
+    "accepted_accuracy": 0.75
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "pena de morte",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        48,
+        13
+      ],
+      [
+        5,
+        10
+      ]
+    ],
+    "macro_f1": 0.6842105263157894,
+    "balanced_accuracy": 0.7267759562841529,
+    "mcc": 0.39294855572367426,
+    "missing_classes": [],
+    "coverage": 0.5921052631578947,
+    "accepted_accuracy": 0.8444444444444444
+  },
+  {
+    "method": "nli_posicao_autor",
+    "target": "redução da maioridade penal",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        26,
+        19
+      ],
+      [
+        8,
+        24
+      ]
+    ],
+    "macro_f1": 0.649113924050633,
+    "balanced_accuracy": 0.6638888888888889,
+    "mcc": 0.3253022493429343,
+    "missing_classes": [],
+    "coverage": 0.3246753246753247,
+    "accepted_accuracy": 0.72
+  },
+  {
+    "method": "nli_proposicao",
+    "target": null,
+    "n": 641,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        195,
+        100
+      ],
+      [
+        97,
+        249
+      ]
+    ],
+    "macro_f1": 0.6904709962864461,
+    "balanced_accuracy": 0.6903350641716469,
+    "mcc": 0.3809725779650145,
+    "missing_classes": [],
+    "coverage": 0.5959438377535101,
+    "accepted_accuracy": 0.7591623036649214
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "n": 95,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        4,
+        0
+      ],
+      [
+        8,
+        83
+      ]
+    ],
+    "macro_f1": 0.7270114942528736,
+    "balanced_accuracy": 0.956043956043956,
+    "mcc": 0.5513885236648511,
+    "missing_classes": [],
+    "coverage": 0.6210526315789474,
+    "accepted_accuracy": 0.9152542372881356
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "cotas raciais",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        16,
+        13
+      ],
+      [
+        10,
+        40
+      ]
+    ],
+    "macro_f1": 0.6792586054721976,
+    "balanced_accuracy": 0.6758620689655173,
+    "mcc": 0.3607958771684242,
+    "missing_classes": [],
+    "coverage": 0.6455696202531646,
+    "accepted_accuracy": 0.7647058823529411
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "isenção de impostos para igrejas",
+    "n": 82,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        53,
+        16
+      ],
+      [
+        5,
+        8
+      ]
+    ],
+    "macro_f1": 0.6335390508618854,
+    "balanced_accuracy": 0.6917502787068004,
+    "mcc": 0.3078524423443545,
+    "missing_classes": [],
+    "coverage": 0.7560975609756098,
+    "accepted_accuracy": 0.7580645161290323
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "legalização das drogas",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        16,
+        5
+      ],
+      [
+        20,
+        36
+      ]
+    ],
+    "macro_f1": 0.6518357750045216,
+    "balanced_accuracy": 0.7023809523809523,
+    "mcc": 0.36129347073589174,
+    "missing_classes": [],
+    "coverage": 0.6753246753246753,
+    "accepted_accuracy": 0.8269230769230769
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "legalização do aborto",
+    "n": 79,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        10,
+        2
+      ],
+      [
+        37,
+        30
+      ]
+    ],
+    "macro_f1": 0.47252182845403184,
+    "balanced_accuracy": 0.6405472636815921,
+    "mcc": 0.20552113829795457,
+    "missing_classes": [],
+    "coverage": 0.5949367088607594,
+    "accepted_accuracy": 0.6382978723404256
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "legalização do porte de armas",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        43,
+        11
+      ],
+      [
+        9,
+        13
+      ]
+    ],
+    "macro_f1": 0.6882690730106644,
+    "balanced_accuracy": 0.6936026936026936,
+    "mcc": 0.3777829196596917,
+    "missing_classes": [],
+    "coverage": 0.3026315789473684,
+    "accepted_accuracy": 0.8695652173913043
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "pena de morte",
+    "n": 76,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        45,
+        16
+      ],
+      [
+        4,
+        11
+      ]
+    ],
+    "macro_f1": 0.670995670995671,
+    "balanced_accuracy": 0.7355191256830601,
+    "mcc": 0.3917299715702813,
+    "missing_classes": [],
+    "coverage": 0.6973684210526315,
+    "accepted_accuracy": 0.7735849056603774
+  },
+  {
+    "method": "nli_proposicao",
+    "target": "redução da maioridade penal",
+    "n": 77,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        8,
+        37
+      ],
+      [
+        4,
+        28
+      ]
+    ],
+    "macro_f1": 0.4290106710074154,
+    "balanced_accuracy": 0.5263888888888889,
+    "mcc": 0.07171087882915773,
+    "missing_classes": [],
+    "coverage": 0.45454545454545453,
+    "accepted_accuracy": 0.45714285714285713
+  }
+]

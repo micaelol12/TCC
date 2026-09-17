@@ -1,0 +1,226 @@
+[
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a tributação progressiva.\n\nSomos contrários a ampliar a tributação progressiva.\n\nSomos favoráveis a privatizar empresas públicas.",
+    "start": 0,
+    "end": 57,
+    "source_id": "template-0-favor",
+    "target": "reduzir a jornada semanal de trabalho",
+    "label": "favor",
+    "family_id": "template-0",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-1-favor",
+      "template-1-against",
+      "template-2-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a ampliar a tributação progressiva.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos contrários a ampliar a tributação progressiva.\n\nSomos favoráveis a privatizar empresas públicas.",
+    "start": 54,
+    "end": 111,
+    "source_id": "template-0-against",
+    "target": "reduzir a jornada semanal de trabalho",
+    "label": "against",
+    "family_id": "template-0",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-1-favor",
+      "template-1-against",
+      "template-2-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a tributação progressiva.\n\nSomos favoráveis a privatizar empresas públicas.",
+    "start": 118,
+    "end": 170,
+    "source_id": "template-1-favor",
+    "target": "ampliar a tributação progressiva",
+    "label": "favor",
+    "family_id": "template-1",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-2-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a privatizar empresas públicas.\n\nSomos contrários a ampliar a tributação progressiva.",
+    "start": 168,
+    "end": 220,
+    "source_id": "template-1-against",
+    "target": "ampliar a tributação progressiva",
+    "label": "against",
+    "family_id": "template-1",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-2-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a privatizar empresas públicas.\n\nSomos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a tributação progressiva.",
+    "start": 0,
+    "end": 48,
+    "source_id": "template-2-favor",
+    "target": "privatizar empresas públicas",
+    "label": "favor",
+    "family_id": "template-2",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-1-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a privatizar empresas públicas.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a tributação progressiva.",
+    "start": 59,
+    "end": 107,
+    "source_id": "template-2-against",
+    "target": "privatizar empresas públicas",
+    "label": "against",
+    "family_id": "template-2",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-1-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a cooperação internacional.\n\nSomos favoráveis a ampliar a tributação progressiva.",
+    "start": 118,
+    "end": 172,
+    "source_id": "template-3-favor",
+    "target": "ampliar a cooperação internacional",
+    "label": "favor",
+    "family_id": "template-3",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-1-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  },
+  {
+    "text": "Somos favoráveis a reduzir a jornada semanal de trabalho.\n\nSomos contrários a reduzir a jornada semanal de trabalho.\n\nSomos favoráveis a ampliar a tributação progressiva.\n\nSomos contrários a ampliar a cooperação internacional.",
+    "start": 172,
+    "end": 226,
+    "source_id": "template-3-against",
+    "target": "ampliar a cooperação internacional",
+    "label": "against",
+    "family_id": "template-3",
+    "split": "diagnostic",
+    "label_source": "construcao_controlada",
+    "template": "passagem_inserida_v1",
+    "generator": "deterministico",
+    "distractor_ids": [
+      "template-0-favor",
+      "template-0-against",
+      "template-1-favor"
+    ],
+    "retrieval": {
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "recall_inserted": {
+        "1": 1,
+        "3": 1,
+        "5": 1
+      },
+      "contained_by_segmentation": true
+    }
+  }
+]

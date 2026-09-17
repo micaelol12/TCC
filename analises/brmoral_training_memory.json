@@ -1,0 +1,6 @@
+{
+  "checkpoint": "C:\\Users\\User\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-base\\snapshots\\d128750597153bb5987e10b1c3493a34e5a4502a\\model.safetensors",
+  "parameters_from_safetensors_shapes": 278044162,
+  "float32_weights_grad_adam_two_moments_bytes": 4448706592,
+  "note": "Lower bound excludes activations, CUDA context and optimizer temporaries. Current finetune uses full float32 AdamW. No training attempted on this GPU."
+}
