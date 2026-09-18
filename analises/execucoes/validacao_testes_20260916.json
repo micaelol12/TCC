@@ -1,9 +1,0 @@
-{
-  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
-  "tests": 14,
-  "failures": 0,
-  "errors": 0,
-  "skipped": 0,
-  "success": true,
-  "interpretation": "Engenharia e treino pequeno com fixture; não validação externa de E5."
-}
