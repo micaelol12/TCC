@@ -1,0 +1,14 @@
+{
+  "features": "BGE classifier out_proj input; normalized L2",
+  "template": "concordancia positive",
+  "cs": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "weighting": "equal topic/class mass",
+  "encoder_frozen": true,
+  "evaluation": "dev target excluded from train",
+  "test_used": false
+}

@@ -1,0 +1,58 @@
+{
+  "config": {
+    "features": "BGE classifier out_proj input; normalized L2",
+    "template": "concordancia positive",
+    "cs": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "weighting": "equal topic/class mass",
+    "encoder_frozen": true,
+    "evaluation": "dev target excluded from train",
+    "test_used": false,
+    "model": {
+      "name": "MoritzLaurer/bge-m3-zeroshot-v2.0",
+      "revision": "9abf1c8aaeb82a2447809c20753ed0b106b76652",
+      "dtype": "float16",
+      "device": "cuda",
+      "max_length": 512,
+      "id2label": {
+        "0": "entailment",
+        "1": "not_entailment"
+      },
+      "pairs": 2570,
+      "truncated": 3
+    }
+  },
+  "input_hashes": {
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\analises\\dados\\brmoral_20260917\\corpus.jsonl": "34fe9de364bd08b058e9830d96ba134592aa8de36396331bfddb2a479d94b981",
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\investigacao\\crossencoder_head.py": "b47513f22c0454b987afacee3d5fc16fd4ff3ee2220f0a68f5d640dfd6b29cb7"
+  },
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.7.1+cu118",
+    "transformers": "5.17.0",
+    "sentence-transformers": "6.0.1",
+    "scikit-learn": "1.9.1"
+  },
+  "elapsed_seconds": 108.04010479999124,
+  "rss_bytes_at_end": 1120976896,
+  "rss_is_peak": false,
+  "gpu": {
+    "name": "NVIDIA GeForce GTX 1060 3GB",
+    "cuda_build": "11.8",
+    "capability": [
+      6,
+      1
+    ],
+    "peak_allocated_bytes": 1155708416,
+    "peak_reserved_bytes": 1172307968
+  },
+  "limitations": [
+    "Diagnósticos conhecidos não são teste cego",
+    "Acurácia documental não estimada"
+  ]
+}

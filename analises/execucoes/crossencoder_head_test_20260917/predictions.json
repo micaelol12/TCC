@@ -1,0 +1,6412 @@
+[
+  {
+    "id": "sid6000:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2788920998573303,
+      "favor": 0.7211079001426697
+    }
+  },
+  {
+    "id": "sid6000:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14040428400039673,
+      "favor": 0.8595957159996033
+    }
+  },
+  {
+    "id": "sid6000:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8934115767478943,
+      "favor": 0.10658840090036392
+    }
+  },
+  {
+    "id": "sid6000:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4726114273071289,
+      "favor": 0.5273885726928711
+    }
+  },
+  {
+    "id": "sid6000:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21759462356567383,
+      "favor": 0.7824053764343262
+    }
+  },
+  {
+    "id": "sid6000:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5468301773071289,
+      "favor": 0.4531697928905487
+    }
+  },
+  {
+    "id": "sid842:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10642993450164795,
+      "favor": 0.893570065498352
+    }
+  },
+  {
+    "id": "sid842:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6778454780578613,
+      "favor": 0.32215455174446106
+    }
+  },
+  {
+    "id": "sid842:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9186357855796814,
+      "favor": 0.081364206969738
+    }
+  },
+  {
+    "id": "sid842:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.17761415243148804,
+      "favor": 0.822385847568512
+    }
+  },
+  {
+    "id": "sid842:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3933267593383789,
+      "favor": 0.6066732406616211
+    }
+  },
+  {
+    "id": "sid842:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9289741516113281,
+      "favor": 0.07102586328983307
+    }
+  },
+  {
+    "id": "sid774:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3528408408164978,
+      "favor": 0.6471591591835022
+    }
+  },
+  {
+    "id": "sid774:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.16140252351760864,
+      "favor": 0.8385974764823914
+    }
+  },
+  {
+    "id": "sid774:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6985212564468384,
+      "favor": 0.30147871375083923
+    }
+  },
+  {
+    "id": "sid774:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.669811487197876,
+      "favor": 0.3301885426044464
+    }
+  },
+  {
+    "id": "sid774:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6324461102485657,
+      "favor": 0.3675538897514343
+    }
+  },
+  {
+    "id": "sid774:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6909849643707275,
+      "favor": 0.30901506543159485
+    }
+  },
+  {
+    "id": "sid6007:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10745370388031006,
+      "favor": 0.8925462961196899
+    }
+  },
+  {
+    "id": "sid6007:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09645932912826538,
+      "favor": 0.9035406708717346
+    }
+  },
+  {
+    "id": "sid6007:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7783113718032837,
+      "favor": 0.22168859839439392
+    }
+  },
+  {
+    "id": "sid6007:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.085438072681427,
+      "favor": 0.914561927318573
+    }
+  },
+  {
+    "id": "sid6007:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7893240451812744,
+      "favor": 0.21067596971988678
+    }
+  },
+  {
+    "id": "sid6007:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07031822204589844,
+      "favor": 0.9296817779541016
+    }
+  },
+  {
+    "id": "sid1079:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5852531790733337,
+      "favor": 0.41474682092666626
+    }
+  },
+  {
+    "id": "sid1079:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23825591802597046,
+      "favor": 0.7617440819740295
+    }
+  },
+  {
+    "id": "sid1079:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2667121887207031,
+      "favor": 0.7332878112792969
+    }
+  },
+  {
+    "id": "sid1079:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8277013301849365,
+      "favor": 0.17229866981506348
+    }
+  },
+  {
+    "id": "sid1079:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8434427976608276,
+      "favor": 0.15655720233917236
+    }
+  },
+  {
+    "id": "sid1079:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8913906216621399,
+      "favor": 0.1086093932390213
+    }
+  },
+  {
+    "id": "sid1079:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8508518934249878,
+      "favor": 0.1491481214761734
+    }
+  },
+  {
+    "id": "sid6015:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3280636668205261,
+      "favor": 0.6719363331794739
+    }
+  },
+  {
+    "id": "sid6015:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14580440521240234,
+      "favor": 0.8541955947875977
+    }
+  },
+  {
+    "id": "sid6015:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3436729311943054,
+      "favor": 0.6563270688056946
+    }
+  },
+  {
+    "id": "sid6015:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8882426619529724,
+      "favor": 0.1117573156952858
+    }
+  },
+  {
+    "id": "sid6015:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.15369576215744019,
+      "favor": 0.8463042378425598
+    }
+  },
+  {
+    "id": "sid6015:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.41260015964508057,
+      "favor": 0.5873998403549194
+    }
+  },
+  {
+    "id": "sid6015:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8673735857009888,
+      "favor": 0.13262641429901123
+    }
+  },
+  {
+    "id": "sid6015:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8494307994842529,
+      "favor": 0.15056921541690826
+    }
+  },
+  {
+    "id": "sid6021:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2807914614677429,
+      "favor": 0.7192085385322571
+    }
+  },
+  {
+    "id": "sid6021:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.035753488540649414,
+      "favor": 0.9642465114593506
+    }
+  },
+  {
+    "id": "sid6021:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.873180091381073,
+      "favor": 0.1268198937177658
+    }
+  },
+  {
+    "id": "sid6021:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.24656587839126587,
+      "favor": 0.7534341216087341
+    }
+  },
+  {
+    "id": "sid6021:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6790550947189331,
+      "favor": 0.3209449350833893
+    }
+  },
+  {
+    "id": "sid42:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07868188619613647,
+      "favor": 0.9213181138038635
+    }
+  },
+  {
+    "id": "sid42:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10380667448043823,
+      "favor": 0.8961933255195618
+    }
+  },
+  {
+    "id": "sid42:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.38331806659698486,
+      "favor": 0.6166819334030151
+    }
+  },
+  {
+    "id": "sid42:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11196666955947876,
+      "favor": 0.8880333304405212
+    }
+  },
+  {
+    "id": "sid42:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10348236560821533,
+      "favor": 0.8965176343917847
+    }
+  },
+  {
+    "id": "sid42:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.38891565799713135,
+      "favor": 0.6110843420028687
+    }
+  },
+  {
+    "id": "sid42:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5166717767715454,
+      "favor": 0.4833282232284546
+    }
+  },
+  {
+    "id": "sid42:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8273764252662659,
+      "favor": 0.17262355983257294
+    }
+  },
+  {
+    "id": "sid6027:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1003793478012085,
+      "favor": 0.8996206521987915
+    }
+  },
+  {
+    "id": "sid6027:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8233858942985535,
+      "favor": 0.17661410570144653
+    }
+  },
+  {
+    "id": "sid6027:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9271565079689026,
+      "favor": 0.07284347712993622
+    }
+  },
+  {
+    "id": "sid6027:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8658903241157532,
+      "favor": 0.13410969078540802
+    }
+  },
+  {
+    "id": "sid6027:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6356538534164429,
+      "favor": 0.36434614658355713
+    }
+  },
+  {
+    "id": "sid6027:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.677209734916687,
+      "favor": 0.3227902948856354
+    }
+  },
+  {
+    "id": "sid6027:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8911003470420837,
+      "favor": 0.10889965295791626
+    }
+  },
+  {
+    "id": "sid6027:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.905364990234375,
+      "favor": 0.09463503956794739
+    }
+  },
+  {
+    "id": "sid6029:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.16942071914672852,
+      "favor": 0.8305792808532715
+    }
+  },
+  {
+    "id": "sid6029:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08125543594360352,
+      "favor": 0.9187445640563965
+    }
+  },
+  {
+    "id": "sid6029:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.060673415660858154,
+      "favor": 0.9393265843391418
+    }
+  },
+  {
+    "id": "sid6029:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12123405933380127,
+      "favor": 0.8787659406661987
+    }
+  },
+  {
+    "id": "sid6029:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9511082768440247,
+      "favor": 0.048891715705394745
+    }
+  },
+  {
+    "id": "sid51:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8547972440719604,
+      "favor": 0.14520272612571716
+    }
+  },
+  {
+    "id": "sid51:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23417270183563232,
+      "favor": 0.7658272981643677
+    }
+  },
+  {
+    "id": "sid51:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9662523865699768,
+      "favor": 0.03374762460589409
+    }
+  },
+  {
+    "id": "sid51:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6239132285118103,
+      "favor": 0.3760867714881897
+    }
+  },
+  {
+    "id": "sid51:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10048198699951172,
+      "favor": 0.8995180130004883
+    }
+  },
+  {
+    "id": "sid51:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5685503482818604,
+      "favor": 0.43144965171813965
+    }
+  },
+  {
+    "id": "sid51:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9283557534217834,
+      "favor": 0.07164423912763596
+    }
+  },
+  {
+    "id": "sid6038:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13183873891830444,
+      "favor": 0.8681612610816956
+    }
+  },
+  {
+    "id": "sid6038:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9162545800209045,
+      "favor": 0.08374541252851486
+    }
+  },
+  {
+    "id": "sid6038:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1179056167602539,
+      "favor": 0.8820943832397461
+    }
+  },
+  {
+    "id": "sid6038:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9617120027542114,
+      "favor": 0.03828798234462738
+    }
+  },
+  {
+    "id": "sid6038:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11488968133926392,
+      "favor": 0.8851103186607361
+    }
+  },
+  {
+    "id": "sid41:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.28873950242996216,
+      "favor": 0.7112604975700378
+    }
+  },
+  {
+    "id": "sid41:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.06996870040893555,
+      "favor": 0.9300312995910645
+    }
+  },
+  {
+    "id": "sid41:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8989399671554565,
+      "favor": 0.10106004774570465
+    }
+  },
+  {
+    "id": "sid41:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09140825271606445,
+      "favor": 0.9085917472839355
+    }
+  },
+  {
+    "id": "sid41:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8416572213172913,
+      "favor": 0.15834277868270874
+    }
+  },
+  {
+    "id": "sid41:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7474133968353271,
+      "favor": 0.25258663296699524
+    }
+  },
+  {
+    "id": "sid777:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07078361511230469,
+      "favor": 0.9292163848876953
+    }
+  },
+  {
+    "id": "sid777:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.49616533517837524,
+      "favor": 0.5038346648216248
+    }
+  },
+  {
+    "id": "sid777:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8121733665466309,
+      "favor": 0.18782661855220795
+    }
+  },
+  {
+    "id": "sid777:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09467887878417969,
+      "favor": 0.9053211212158203
+    }
+  },
+  {
+    "id": "sid777:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.30778688192367554,
+      "favor": 0.6922131180763245
+    }
+  },
+  {
+    "id": "sid777:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4516831040382385,
+      "favor": 0.5483168959617615
+    }
+  },
+  {
+    "id": "sid777:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9814243316650391,
+      "favor": 0.018575645983219147
+    }
+  },
+  {
+    "id": "sid948:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.20449775457382202,
+      "favor": 0.795502245426178
+    }
+  },
+  {
+    "id": "sid948:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3459530472755432,
+      "favor": 0.6540469527244568
+    }
+  },
+  {
+    "id": "sid948:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.165704607963562,
+      "favor": 0.834295392036438
+    }
+  },
+  {
+    "id": "sid948:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.904069721698761,
+      "favor": 0.09593027085065842
+    }
+  },
+  {
+    "id": "sid948:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12190258502960205,
+      "favor": 0.878097414970398
+    }
+  },
+  {
+    "id": "sid948:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.195828378200531,
+      "favor": 0.804171621799469
+    }
+  },
+  {
+    "id": "sid948:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.0878552794456482,
+      "favor": 0.9121447205543518
+    }
+  },
+  {
+    "id": "sid948:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9214534759521484,
+      "favor": 0.07854652404785156
+    }
+  },
+  {
+    "id": "sid924:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11344641447067261,
+      "favor": 0.8865535855293274
+    }
+  },
+  {
+    "id": "sid924:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8203219175338745,
+      "favor": 0.17967811226844788
+    }
+  },
+  {
+    "id": "sid924:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.06437259912490845,
+      "favor": 0.9356274008750916
+    }
+  },
+  {
+    "id": "sid924:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9149714112281799,
+      "favor": 0.08502858877182007
+    }
+  },
+  {
+    "id": "sid924:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23066586256027222,
+      "favor": 0.7693341374397278
+    }
+  },
+  {
+    "id": "sid924:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7172451615333557,
+      "favor": 0.2827548384666443
+    }
+  },
+  {
+    "id": "sid924:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.28264397382736206,
+      "favor": 0.7173560261726379
+    }
+  },
+  {
+    "id": "sid924:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8136487007141113,
+      "favor": 0.18635131418704987
+    }
+  },
+  {
+    "id": "sid93:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08299905061721802,
+      "favor": 0.917000949382782
+    }
+  },
+  {
+    "id": "sid93:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07483339309692383,
+      "favor": 0.9251666069030762
+    }
+  },
+  {
+    "id": "sid93:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9274181127548218,
+      "favor": 0.07258190959692001
+    }
+  },
+  {
+    "id": "sid93:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9670901894569397,
+      "favor": 0.0329098142683506
+    }
+  },
+  {
+    "id": "sid93:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3838512897491455,
+      "favor": 0.6161487102508545
+    }
+  },
+  {
+    "id": "sid6079:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.05328625440597534,
+      "favor": 0.9467137455940247
+    }
+  },
+  {
+    "id": "sid6079:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8117644786834717,
+      "favor": 0.18823550641536713
+    }
+  },
+  {
+    "id": "sid6079:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09028732776641846,
+      "favor": 0.9097126722335815
+    }
+  },
+  {
+    "id": "sid6079:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.894081175327301,
+      "favor": 0.10591882467269897
+    }
+  },
+  {
+    "id": "sid6079:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07206082344055176,
+      "favor": 0.9279391765594482
+    }
+  },
+  {
+    "id": "sid6079:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5378010272979736,
+      "favor": 0.46219897270202637
+    }
+  },
+  {
+    "id": "sid6079:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14048177003860474,
+      "favor": 0.8595182299613953
+    }
+  },
+  {
+    "id": "sid6079:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9278090000152588,
+      "favor": 0.07219099253416061
+    }
+  },
+  {
+    "id": "sid1140:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3127884864807129,
+      "favor": 0.6872115135192871
+    }
+  },
+  {
+    "id": "sid1140:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08774083852767944,
+      "favor": 0.9122591614723206
+    }
+  },
+  {
+    "id": "sid1140:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1207817792892456,
+      "favor": 0.8792182207107544
+    }
+  },
+  {
+    "id": "sid1140:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8172233700752258,
+      "favor": 0.18277661502361298
+    }
+  },
+  {
+    "id": "sid949:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7005889415740967,
+      "favor": 0.29941102862358093
+    }
+  },
+  {
+    "id": "sid949:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6776740550994873,
+      "favor": 0.3223259150981903
+    }
+  },
+  {
+    "id": "sid6090:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1502760648727417,
+      "favor": 0.8497239351272583
+    }
+  },
+  {
+    "id": "sid6090:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5182275772094727,
+      "favor": 0.48177242279052734
+    }
+  },
+  {
+    "id": "sid6090:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9323875308036804,
+      "favor": 0.06761246174573898
+    }
+  },
+  {
+    "id": "sid6090:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09226095676422119,
+      "favor": 0.9077390432357788
+    }
+  },
+  {
+    "id": "sid6090:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9531443119049072,
+      "favor": 0.046855710446834564
+    }
+  },
+  {
+    "id": "sid6090:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.17345905303955078,
+      "favor": 0.8265409469604492
+    }
+  },
+  {
+    "id": "sid6090:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8165008425712585,
+      "favor": 0.18349915742874146
+    }
+  },
+  {
+    "id": "sid6090:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8372328281402588,
+      "favor": 0.16276714205741882
+    }
+  },
+  {
+    "id": "sid6096:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12647294998168945,
+      "favor": 0.8735270500183105
+    }
+  },
+  {
+    "id": "sid6096:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.049977004528045654,
+      "favor": 0.9500229954719543
+    }
+  },
+  {
+    "id": "sid6096:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7341949939727783,
+      "favor": 0.26580503582954407
+    }
+  },
+  {
+    "id": "sid6096:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.284623920917511,
+      "favor": 0.715376079082489
+    }
+  },
+  {
+    "id": "sid6096:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.18288707733154297,
+      "favor": 0.817112922668457
+    }
+  },
+  {
+    "id": "sid377:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12037980556488037,
+      "favor": 0.8796201944351196
+    }
+  },
+  {
+    "id": "sid377:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1932174563407898,
+      "favor": 0.8067825436592102
+    }
+  },
+  {
+    "id": "sid377:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6625604629516602,
+      "favor": 0.33743953704833984
+    }
+  },
+  {
+    "id": "sid377:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9179280996322632,
+      "favor": 0.08207190036773682
+    }
+  },
+  {
+    "id": "sid377:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5437465906143188,
+      "favor": 0.45625337958335876
+    }
+  },
+  {
+    "id": "sid377:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2706722617149353,
+      "favor": 0.7293277382850647
+    }
+  },
+  {
+    "id": "sid377:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6877809762954712,
+      "favor": 0.3122190535068512
+    }
+  },
+  {
+    "id": "sid6100:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8916701674461365,
+      "favor": 0.10832984000444412
+    }
+  },
+  {
+    "id": "sid6100:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4639638066291809,
+      "favor": 0.5360361933708191
+    }
+  },
+  {
+    "id": "sid6100:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9608057737350464,
+      "favor": 0.0391942523419857
+    }
+  },
+  {
+    "id": "sid6109:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.128526508808136,
+      "favor": 0.871473491191864
+    }
+  },
+  {
+    "id": "sid6109:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5078647136688232,
+      "favor": 0.49213525652885437
+    }
+  },
+  {
+    "id": "sid6109:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14251548051834106,
+      "favor": 0.8574845194816589
+    }
+  },
+  {
+    "id": "sid6109:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.894938051700592,
+      "favor": 0.10506193339824677
+    }
+  },
+  {
+    "id": "sid6109:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5171759724617004,
+      "favor": 0.48282402753829956
+    }
+  },
+  {
+    "id": "sid6109:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7251822352409363,
+      "favor": 0.2748177647590637
+    }
+  },
+  {
+    "id": "sid6109:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19196736812591553,
+      "favor": 0.8080326318740845
+    }
+  },
+  {
+    "id": "sid6109:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9771324992179871,
+      "favor": 0.02286747470498085
+    }
+  },
+  {
+    "id": "sid6115:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14802604913711548,
+      "favor": 0.8519739508628845
+    }
+  },
+  {
+    "id": "sid6115:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.37845349311828613,
+      "favor": 0.6215465068817139
+    }
+  },
+  {
+    "id": "sid6115:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7252645492553711,
+      "favor": 0.2747354805469513
+    }
+  },
+  {
+    "id": "sid6115:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.24457240104675293,
+      "favor": 0.7554275989532471
+    }
+  },
+  {
+    "id": "sid6115:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8488525152206421,
+      "favor": 0.1511475145816803
+    }
+  },
+  {
+    "id": "sid6115:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.38435840606689453,
+      "favor": 0.6156415939331055
+    }
+  },
+  {
+    "id": "sid6115:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8529676198959351,
+      "favor": 0.14703240990638733
+    }
+  },
+  {
+    "id": "sid6126:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10333806276321411,
+      "favor": 0.8966619372367859
+    }
+  },
+  {
+    "id": "sid6126:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5505065321922302,
+      "favor": 0.4494934678077698
+    }
+  },
+  {
+    "id": "sid6126:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8990567922592163,
+      "favor": 0.1009431928396225
+    }
+  },
+  {
+    "id": "sid6126:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8762097954750061,
+      "favor": 0.1237901970744133
+    }
+  },
+  {
+    "id": "sid6126:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08443140983581543,
+      "favor": 0.9155685901641846
+    }
+  },
+  {
+    "id": "sid1133:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07618272304534912,
+      "favor": 0.9238172769546509
+    }
+  },
+  {
+    "id": "sid1133:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6953020095825195,
+      "favor": 0.30469802021980286
+    }
+  },
+  {
+    "id": "sid1133:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5628101825714111,
+      "favor": 0.43718984723091125
+    }
+  },
+  {
+    "id": "sid1133:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13734155893325806,
+      "favor": 0.8626584410667419
+    }
+  },
+  {
+    "id": "sid1133:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6285079121589661,
+      "favor": 0.37149208784103394
+    }
+  },
+  {
+    "id": "sid1133:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2623559832572937,
+      "favor": 0.7376440167427063
+    }
+  },
+  {
+    "id": "sid1133:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9551794528961182,
+      "favor": 0.04482052102684975
+    }
+  },
+  {
+    "id": "sid6140:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9308913946151733,
+      "favor": 0.06910859048366547
+    }
+  },
+  {
+    "id": "sid6140:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5463521480560303,
+      "favor": 0.4536478817462921
+    }
+  },
+  {
+    "id": "sid6140:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11429488658905029,
+      "favor": 0.8857051134109497
+    }
+  },
+  {
+    "id": "sid6140:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6342929601669312,
+      "favor": 0.36570706963539124
+    }
+  },
+  {
+    "id": "sid6140:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.25592654943466187,
+      "favor": 0.7440734505653381
+    }
+  },
+  {
+    "id": "sid6140:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8578980565071106,
+      "favor": 0.1421019285917282
+    }
+  },
+  {
+    "id": "sid1138:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1040884256362915,
+      "favor": 0.8959115743637085
+    }
+  },
+  {
+    "id": "sid1138:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8339479565620422,
+      "favor": 0.16605205833911896
+    }
+  },
+  {
+    "id": "sid1138:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8912762403488159,
+      "favor": 0.10872377455234528
+    }
+  },
+  {
+    "id": "sid1138:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13232755661010742,
+      "favor": 0.8676724433898926
+    }
+  },
+  {
+    "id": "sid1138:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9532068371772766,
+      "favor": 0.0467931404709816
+    }
+  },
+  {
+    "id": "sid6149:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9073257446289062,
+      "favor": 0.09267424792051315
+    }
+  },
+  {
+    "id": "sid6149:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8376747369766235,
+      "favor": 0.16232523322105408
+    }
+  },
+  {
+    "id": "sid6149:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9498202204704285,
+      "favor": 0.05017980560660362
+    }
+  },
+  {
+    "id": "sid6149:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8358235955238342,
+      "favor": 0.16417641937732697
+    }
+  },
+  {
+    "id": "sid6149:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9494077563285828,
+      "favor": 0.05059221759438515
+    }
+  },
+  {
+    "id": "sid6149:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.06890654563903809,
+      "favor": 0.9310934543609619
+    }
+  },
+  {
+    "id": "sid6149:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8311243653297424,
+      "favor": 0.16887561976909637
+    }
+  },
+  {
+    "id": "sid6156:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11906242370605469,
+      "favor": 0.8809375762939453
+    }
+  },
+  {
+    "id": "sid6156:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.38123536109924316,
+      "favor": 0.6187646389007568
+    }
+  },
+  {
+    "id": "sid6156:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9032365083694458,
+      "favor": 0.096763476729393
+    }
+  },
+  {
+    "id": "sid6156:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.884405791759491,
+      "favor": 0.11559422314167023
+    }
+  },
+  {
+    "id": "sid6156:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13181960582733154,
+      "favor": 0.8681803941726685
+    }
+  },
+  {
+    "id": "sid6156:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9134842753410339,
+      "favor": 0.08651570230722427
+    }
+  },
+  {
+    "id": "sid6158:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7959635853767395,
+      "favor": 0.2040364146232605
+    }
+  },
+  {
+    "id": "sid6158:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1392505168914795,
+      "favor": 0.8607494831085205
+    }
+  },
+  {
+    "id": "sid6158:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9039555788040161,
+      "favor": 0.09604444354772568
+    }
+  },
+  {
+    "id": "sid819:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4030640721321106,
+      "favor": 0.5969359278678894
+    }
+  },
+  {
+    "id": "sid819:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6109817028045654,
+      "favor": 0.38901829719543457
+    }
+  },
+  {
+    "id": "sid819:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.05392742156982422,
+      "favor": 0.9460725784301758
+    }
+  },
+  {
+    "id": "sid819:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9050830602645874,
+      "favor": 0.09491696208715439
+    }
+  },
+  {
+    "id": "sid819:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9490470290184021,
+      "favor": 0.0509529672563076
+    }
+  },
+  {
+    "id": "sid819:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.954055666923523,
+      "favor": 0.04594435915350914
+    }
+  },
+  {
+    "id": "sid6176:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.335344135761261,
+      "favor": 0.664655864238739
+    }
+  },
+  {
+    "id": "sid6176:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.30342555046081543,
+      "favor": 0.6965744495391846
+    }
+  },
+  {
+    "id": "sid6176:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07356017827987671,
+      "favor": 0.9264398217201233
+    }
+  },
+  {
+    "id": "sid6176:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7786754369735718,
+      "favor": 0.22132456302642822
+    }
+  },
+  {
+    "id": "sid6176:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9504565596580505,
+      "favor": 0.04954342171549797
+    }
+  },
+  {
+    "id": "sid6184:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13320982456207275,
+      "favor": 0.8667901754379272
+    }
+  },
+  {
+    "id": "sid6184:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3080151081085205,
+      "favor": 0.6919848918914795
+    }
+  },
+  {
+    "id": "sid6184:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7298177480697632,
+      "favor": 0.2701822519302368
+    }
+  },
+  {
+    "id": "sid6184:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8826292753219604,
+      "favor": 0.11737071722745895
+    }
+  },
+  {
+    "id": "sid6184:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9455056190490723,
+      "favor": 0.054494358599185944
+    }
+  },
+  {
+    "id": "sid6184:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6005107164382935,
+      "favor": 0.39948925375938416
+    }
+  },
+  {
+    "id": "sid6184:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6104955673217773,
+      "favor": 0.38950446248054504
+    }
+  },
+  {
+    "id": "sid6190:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07543915510177612,
+      "favor": 0.9245608448982239
+    }
+  },
+  {
+    "id": "sid6190:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08231121301651001,
+      "favor": 0.91768878698349
+    }
+  },
+  {
+    "id": "sid6190:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9029334187507629,
+      "favor": 0.09706658869981766
+    }
+  },
+  {
+    "id": "sid6190:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11345469951629639,
+      "favor": 0.8865453004837036
+    }
+  },
+  {
+    "id": "sid6190:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.44819825887680054,
+      "favor": 0.5518017411231995
+    }
+  },
+  {
+    "id": "sid6190:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.957275927066803,
+      "favor": 0.042724087834358215
+    }
+  },
+  {
+    "id": "sid6190:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.36663609743118286,
+      "favor": 0.6333639025688171
+    }
+  },
+  {
+    "id": "sid6194:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5006964206695557,
+      "favor": 0.4993036091327667
+    }
+  },
+  {
+    "id": "sid6194:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.650334358215332,
+      "favor": 0.34966567158699036
+    }
+  },
+  {
+    "id": "sid6194:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9095397591590881,
+      "favor": 0.09046023339033127
+    }
+  },
+  {
+    "id": "sid6194:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3305473327636719,
+      "favor": 0.6694526672363281
+    }
+  },
+  {
+    "id": "sid6194:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.955096960067749,
+      "favor": 0.044903043657541275
+    }
+  },
+  {
+    "id": "sid6195:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08606106042861938,
+      "favor": 0.9139389395713806
+    }
+  },
+  {
+    "id": "sid6195:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7486330270767212,
+      "favor": 0.2513669431209564
+    }
+  },
+  {
+    "id": "sid6195:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9523195624351501,
+      "favor": 0.047680433839559555
+    }
+  },
+  {
+    "id": "sid6195:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9236742258071899,
+      "favor": 0.07632578164339066
+    }
+  },
+  {
+    "id": "sid6195:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9800369143486023,
+      "favor": 0.019963085651397705
+    }
+  },
+  {
+    "id": "sid790:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10851824283599854,
+      "favor": 0.8914817571640015
+    }
+  },
+  {
+    "id": "sid790:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4782881736755371,
+      "favor": 0.5217118263244629
+    }
+  },
+  {
+    "id": "sid790:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.15769213438034058,
+      "favor": 0.8423078656196594
+    }
+  },
+  {
+    "id": "sid790:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.37870311737060547,
+      "favor": 0.6212968826293945
+    }
+  },
+  {
+    "id": "sid790:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4123280644416809,
+      "favor": 0.5876719355583191
+    }
+  },
+  {
+    "id": "sid790:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9577611684799194,
+      "favor": 0.04223882034420967
+    }
+  },
+  {
+    "id": "sid6199:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08649486303329468,
+      "favor": 0.9135051369667053
+    }
+  },
+  {
+    "id": "sid6199:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.818038821220398,
+      "favor": 0.18196114897727966
+    }
+  },
+  {
+    "id": "sid6199:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8108197450637817,
+      "favor": 0.18918026983737946
+    }
+  },
+  {
+    "id": "sid6199:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09623485803604126,
+      "favor": 0.9037651419639587
+    }
+  },
+  {
+    "id": "sid6199:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.581529438495636,
+      "favor": 0.418470561504364
+    }
+  },
+  {
+    "id": "sid6199:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21453773975372314,
+      "favor": 0.7854622602462769
+    }
+  },
+  {
+    "id": "sid6201:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.06552255153656006,
+      "favor": 0.9344774484634399
+    }
+  },
+  {
+    "id": "sid6201:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5230538845062256,
+      "favor": 0.4769461452960968
+    }
+  },
+  {
+    "id": "sid6201:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.32988202571868896,
+      "favor": 0.670117974281311
+    }
+  },
+  {
+    "id": "sid6201:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5448193550109863,
+      "favor": 0.45518064498901367
+    }
+  },
+  {
+    "id": "sid6203:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08968889713287354,
+      "favor": 0.9103111028671265
+    }
+  },
+  {
+    "id": "sid6203:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5471996068954468,
+      "favor": 0.4528003931045532
+    }
+  },
+  {
+    "id": "sid6203:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.04484963417053223,
+      "favor": 0.9551503658294678
+    }
+  },
+  {
+    "id": "sid6203:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.15968412160873413,
+      "favor": 0.8403158783912659
+    }
+  },
+  {
+    "id": "sid6203:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2910262942314148,
+      "favor": 0.7089737057685852
+    }
+  },
+  {
+    "id": "sid6203:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8550026416778564,
+      "favor": 0.14499738812446594
+    }
+  },
+  {
+    "id": "sid6203:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8466401100158691,
+      "favor": 0.15335987508296967
+    }
+  },
+  {
+    "id": "sid6223:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.47521692514419556,
+      "favor": 0.5247830748558044
+    }
+  },
+  {
+    "id": "sid6223:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.34947097301483154,
+      "favor": 0.6505290269851685
+    }
+  },
+  {
+    "id": "sid6223:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.44315004348754883,
+      "favor": 0.5568499565124512
+    }
+  },
+  {
+    "id": "sid6223:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.902188241481781,
+      "favor": 0.09781178086996078
+    }
+  },
+  {
+    "id": "sid6223:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.05378282070159912,
+      "favor": 0.9462171792984009
+    }
+  },
+  {
+    "id": "sid6223:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9359696507453918,
+      "favor": 0.06403034925460815
+    }
+  },
+  {
+    "id": "sid6223:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08023804426193237,
+      "favor": 0.9197619557380676
+    }
+  },
+  {
+    "id": "sid6223:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23468488454818726,
+      "favor": 0.7653151154518127
+    }
+  },
+  {
+    "id": "sid6225:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13545078039169312,
+      "favor": 0.8645492196083069
+    }
+  },
+  {
+    "id": "sid6225:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6522254347801208,
+      "favor": 0.34777456521987915
+    }
+  },
+  {
+    "id": "sid6225:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12636464834213257,
+      "favor": 0.8736353516578674
+    }
+  },
+  {
+    "id": "sid6225:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19273513555526733,
+      "favor": 0.8072648644447327
+    }
+  },
+  {
+    "id": "sid6225:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8476691842079163,
+      "favor": 0.15233081579208374
+    }
+  },
+  {
+    "id": "sid6226:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.17254501581192017,
+      "favor": 0.8274549841880798
+    }
+  },
+  {
+    "id": "sid6226:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13924920558929443,
+      "favor": 0.8607507944107056
+    }
+  },
+  {
+    "id": "sid6226:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.18082290887832642,
+      "favor": 0.8191770911216736
+    }
+  },
+  {
+    "id": "sid6226:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.0811166763305664,
+      "favor": 0.9188833236694336
+    }
+  },
+  {
+    "id": "sid6226:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8233577013015747,
+      "favor": 0.17664232850074768
+    }
+  },
+  {
+    "id": "sid6229:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1935715675354004,
+      "favor": 0.8064284324645996
+    }
+  },
+  {
+    "id": "sid6229:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.726952075958252,
+      "favor": 0.27304792404174805
+    }
+  },
+  {
+    "id": "sid6229:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6279016733169556,
+      "favor": 0.3720983564853668
+    }
+  },
+  {
+    "id": "sid6229:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.910698652267456,
+      "favor": 0.08930132538080215
+    }
+  },
+  {
+    "id": "sid6229:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23128563165664673,
+      "favor": 0.7687143683433533
+    }
+  },
+  {
+    "id": "sid6229:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10000371932983398,
+      "favor": 0.899996280670166
+    }
+  },
+  {
+    "id": "sid6229:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8725167512893677,
+      "favor": 0.12748323380947113
+    }
+  },
+  {
+    "id": "sid6236:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10950744152069092,
+      "favor": 0.8904925584793091
+    }
+  },
+  {
+    "id": "sid6236:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9668924808502197,
+      "favor": 0.03310750797390938
+    }
+  },
+  {
+    "id": "sid6236:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9792425632476807,
+      "favor": 0.020757459104061127
+    }
+  },
+  {
+    "id": "sid70:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3083893656730652,
+      "favor": 0.6916106343269348
+    }
+  },
+  {
+    "id": "sid70:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7224643230438232,
+      "favor": 0.27753570675849915
+    }
+  },
+  {
+    "id": "sid70:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07843255996704102,
+      "favor": 0.921567440032959
+    }
+  },
+  {
+    "id": "sid70:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6969013214111328,
+      "favor": 0.3030986487865448
+    }
+  },
+  {
+    "id": "sid70:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5496528148651123,
+      "favor": 0.4503471851348877
+    }
+  },
+  {
+    "id": "sid70:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.35877561569213867,
+      "favor": 0.6412243843078613
+    }
+  },
+  {
+    "id": "sid70:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5730140209197998,
+      "favor": 0.4269860088825226
+    }
+  },
+  {
+    "id": "sid70:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.929240345954895,
+      "favor": 0.07075968384742737
+    }
+  },
+  {
+    "id": "sid6243:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4248706102371216,
+      "favor": 0.5751293897628784
+    }
+  },
+  {
+    "id": "sid6243:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4051485061645508,
+      "favor": 0.5948514938354492
+    }
+  },
+  {
+    "id": "sid6243:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8516154885292053,
+      "favor": 0.14838449656963348
+    }
+  },
+  {
+    "id": "sid6243:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9377557635307312,
+      "favor": 0.0622442364692688
+    }
+  },
+  {
+    "id": "sid6243:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9709873199462891,
+      "favor": 0.029012691229581833
+    }
+  },
+  {
+    "id": "sid6243:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8008195161819458,
+      "favor": 0.1991804540157318
+    }
+  },
+  {
+    "id": "sid6243:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.253335177898407,
+      "favor": 0.746664822101593
+    }
+  },
+  {
+    "id": "sid6243:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1097409725189209,
+      "favor": 0.8902590274810791
+    }
+  },
+  {
+    "id": "sid6248:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5532761216163635,
+      "favor": 0.4467238783836365
+    }
+  },
+  {
+    "id": "sid6248:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4589862823486328,
+      "favor": 0.5410137176513672
+    }
+  },
+  {
+    "id": "sid6248:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.03220278024673462,
+      "favor": 0.9677972197532654
+    }
+  },
+  {
+    "id": "sid6248:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8982274532318115,
+      "favor": 0.10177253186702728
+    }
+  },
+  {
+    "id": "sid6248:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10567134618759155,
+      "favor": 0.8943286538124084
+    }
+  },
+  {
+    "id": "sid6248:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9080724716186523,
+      "favor": 0.09192754328250885
+    }
+  },
+  {
+    "id": "sid6248:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08533287048339844,
+      "favor": 0.9146671295166016
+    }
+  },
+  {
+    "id": "sid6248:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9384050369262695,
+      "favor": 0.06159497797489166
+    }
+  },
+  {
+    "id": "sid6249:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10869157314300537,
+      "favor": 0.8913084268569946
+    }
+  },
+  {
+    "id": "sid6249:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08103924989700317,
+      "favor": 0.9189607501029968
+    }
+  },
+  {
+    "id": "sid6249:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7025681734085083,
+      "favor": 0.2974318265914917
+    }
+  },
+  {
+    "id": "sid6249:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5107476115226746,
+      "favor": 0.48925238847732544
+    }
+  },
+  {
+    "id": "sid6249:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4787629246711731,
+      "favor": 0.5212370753288269
+    }
+  },
+  {
+    "id": "sid6249:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11767655611038208,
+      "favor": 0.8823234438896179
+    }
+  },
+  {
+    "id": "sid6249:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.807067334651947,
+      "favor": 0.19293268024921417
+    }
+  },
+  {
+    "id": "sid6254:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.32021600008010864,
+      "favor": 0.6797839999198914
+    }
+  },
+  {
+    "id": "sid6254:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3274661898612976,
+      "favor": 0.6725338101387024
+    }
+  },
+  {
+    "id": "sid6254:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1536647081375122,
+      "favor": 0.8463352918624878
+    }
+  },
+  {
+    "id": "sid6254:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8100119829177856,
+      "favor": 0.18998801708221436
+    }
+  },
+  {
+    "id": "sid6254:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07905226945877075,
+      "favor": 0.9209477305412292
+    }
+  },
+  {
+    "id": "sid6254:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08985108137130737,
+      "favor": 0.9101489186286926
+    }
+  },
+  {
+    "id": "sid6262:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.04545438289642334,
+      "favor": 0.9545456171035767
+    }
+  },
+  {
+    "id": "sid6262:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5535959005355835,
+      "favor": 0.4464040994644165
+    }
+  },
+  {
+    "id": "sid6262:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.20097237825393677,
+      "favor": 0.7990276217460632
+    }
+  },
+  {
+    "id": "sid6262:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8569777607917786,
+      "favor": 0.14302225410938263
+    }
+  },
+  {
+    "id": "sid6262:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9591131806373596,
+      "favor": 0.04088681563735008
+    }
+  },
+  {
+    "id": "sid6262:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.16194844245910645,
+      "favor": 0.8380515575408936
+    }
+  },
+  {
+    "id": "sid6262:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08334130048751831,
+      "favor": 0.9166586995124817
+    }
+  },
+  {
+    "id": "sid6262:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9443913102149963,
+      "favor": 0.05560869351029396
+    }
+  },
+  {
+    "id": "sid6268:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9481992721557617,
+      "favor": 0.05180072784423828
+    }
+  },
+  {
+    "id": "sid6268:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5208951830863953,
+      "favor": 0.47910481691360474
+    }
+  },
+  {
+    "id": "sid6268:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9577863812446594,
+      "favor": 0.042213596403598785
+    }
+  },
+  {
+    "id": "sid6271:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.34132885932922363,
+      "favor": 0.6586711406707764
+    }
+  },
+  {
+    "id": "sid6271:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.03995329141616821,
+      "favor": 0.9600467085838318
+    }
+  },
+  {
+    "id": "sid6271:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9414511322975159,
+      "favor": 0.05854886770248413
+    }
+  },
+  {
+    "id": "sid6274:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.34970420598983765,
+      "favor": 0.6502957940101624
+    }
+  },
+  {
+    "id": "sid6274:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.061752498149871826,
+      "favor": 0.9382475018501282
+    }
+  },
+  {
+    "id": "sid6274:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9652372598648071,
+      "favor": 0.03476275876164436
+    }
+  },
+  {
+    "id": "sid6274:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9130345582962036,
+      "favor": 0.086965411901474
+    }
+  },
+  {
+    "id": "sid6274:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7135961055755615,
+      "favor": 0.2864038646221161
+    }
+  },
+  {
+    "id": "sid6274:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1566804051399231,
+      "favor": 0.8433195948600769
+    }
+  },
+  {
+    "id": "sid6274:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6666154861450195,
+      "favor": 0.33338451385498047
+    }
+  },
+  {
+    "id": "sid6279:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13251632452011108,
+      "favor": 0.8674836754798889
+    }
+  },
+  {
+    "id": "sid6279:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5634021759033203,
+      "favor": 0.4365978240966797
+    }
+  },
+  {
+    "id": "sid6280:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.095852792263031,
+      "favor": 0.904147207736969
+    }
+  },
+  {
+    "id": "sid6280:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4056946635246277,
+      "favor": 0.5943053364753723
+    }
+  },
+  {
+    "id": "sid6280:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5828641057014465,
+      "favor": 0.41713589429855347
+    }
+  },
+  {
+    "id": "sid6280:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5543055534362793,
+      "favor": 0.4456944763660431
+    }
+  },
+  {
+    "id": "sid6280:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.35929375886917114,
+      "favor": 0.6407062411308289
+    }
+  },
+  {
+    "id": "sid6280:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8891029953956604,
+      "favor": 0.11089702695608139
+    }
+  },
+  {
+    "id": "sid6280:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21371328830718994,
+      "favor": 0.7862867116928101
+    }
+  },
+  {
+    "id": "sid6280:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9566105008125305,
+      "favor": 0.04338950291275978
+    }
+  },
+  {
+    "id": "sid6284:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.095669686794281,
+      "favor": 0.904330313205719
+    }
+  },
+  {
+    "id": "sid6284:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5214085578918457,
+      "favor": 0.4785914719104767
+    }
+  },
+  {
+    "id": "sid6284:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.47735166549682617,
+      "favor": 0.5226483345031738
+    }
+  },
+  {
+    "id": "sid6284:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3554868698120117,
+      "favor": 0.6445131301879883
+    }
+  },
+  {
+    "id": "sid6284:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2106063961982727,
+      "favor": 0.7893936038017273
+    }
+  },
+  {
+    "id": "sid6284:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4748515486717224,
+      "favor": 0.5251484513282776
+    }
+  },
+  {
+    "id": "sid6285:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8202219605445862,
+      "favor": 0.17977802455425262
+    }
+  },
+  {
+    "id": "sid6285:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7926656603813171,
+      "favor": 0.20733435451984406
+    }
+  },
+  {
+    "id": "sid6285:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.04158443212509155,
+      "favor": 0.9584155678749084
+    }
+  },
+  {
+    "id": "sid6285:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5690362453460693,
+      "favor": 0.43096375465393066
+    }
+  },
+  {
+    "id": "sid6285:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07383459806442261,
+      "favor": 0.9261654019355774
+    }
+  },
+  {
+    "id": "sid6285:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9621633887290955,
+      "favor": 0.03783658519387245
+    }
+  },
+  {
+    "id": "sid6285:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9356777667999268,
+      "favor": 0.06432223320007324
+    }
+  },
+  {
+    "id": "sid6285:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9484821557998657,
+      "favor": 0.05151786655187607
+    }
+  },
+  {
+    "id": "sid6290:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.20575374364852905,
+      "favor": 0.794246256351471
+    }
+  },
+  {
+    "id": "sid6290:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.406741738319397,
+      "favor": 0.593258261680603
+    }
+  },
+  {
+    "id": "sid6290:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5021032691001892,
+      "favor": 0.4978967308998108
+    }
+  },
+  {
+    "id": "sid6290:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6696087718009949,
+      "favor": 0.3303912281990051
+    }
+  },
+  {
+    "id": "sid6290:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6423336863517761,
+      "favor": 0.3576663136482239
+    }
+  },
+  {
+    "id": "sid6290:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4943714737892151,
+      "favor": 0.5056285262107849
+    }
+  },
+  {
+    "id": "sid6290:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3126724362373352,
+      "favor": 0.6873275637626648
+    }
+  },
+  {
+    "id": "sid6290:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.36515235900878906,
+      "favor": 0.6348476409912109
+    }
+  },
+  {
+    "id": "sid6297:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3617420196533203,
+      "favor": 0.6382579803466797
+    }
+  },
+  {
+    "id": "sid6297:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2669374346733093,
+      "favor": 0.7330625653266907
+    }
+  },
+  {
+    "id": "sid6297:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6847110390663147,
+      "favor": 0.3152889609336853
+    }
+  },
+  {
+    "id": "sid6297:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.863788366317749,
+      "favor": 0.13621161878108978
+    }
+  },
+  {
+    "id": "sid6297:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.03465205430984497,
+      "favor": 0.965347945690155
+    }
+  },
+  {
+    "id": "sid6297:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23726660013198853,
+      "favor": 0.7627333998680115
+    }
+  },
+  {
+    "id": "sid6297:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8871237635612488,
+      "favor": 0.11287621408700943
+    }
+  },
+  {
+    "id": "sid6311:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11582636833190918,
+      "favor": 0.8841736316680908
+    }
+  },
+  {
+    "id": "sid6311:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08677899837493896,
+      "favor": 0.913221001625061
+    }
+  },
+  {
+    "id": "sid6311:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5902988910675049,
+      "favor": 0.40970107913017273
+    }
+  },
+  {
+    "id": "sid6311:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2948577404022217,
+      "favor": 0.7051422595977783
+    }
+  },
+  {
+    "id": "sid6311:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4401018023490906,
+      "favor": 0.5598981976509094
+    }
+  },
+  {
+    "id": "sid6311:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.32142794132232666,
+      "favor": 0.6785720586776733
+    }
+  },
+  {
+    "id": "sid6316:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7047738432884216,
+      "favor": 0.29522615671157837
+    }
+  },
+  {
+    "id": "sid6316:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8984023928642273,
+      "favor": 0.10159758478403091
+    }
+  },
+  {
+    "id": "sid6323:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1659216284751892,
+      "favor": 0.8340783715248108
+    }
+  },
+  {
+    "id": "sid6323:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.47742635011672974,
+      "favor": 0.5225736498832703
+    }
+  },
+  {
+    "id": "sid6323:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.42978835105895996,
+      "favor": 0.57021164894104
+    }
+  },
+  {
+    "id": "sid6323:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7882779240608215,
+      "favor": 0.21172209084033966
+    }
+  },
+  {
+    "id": "sid6327:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.28598594665527344,
+      "favor": 0.7140140533447266
+    }
+  },
+  {
+    "id": "sid6327:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3377144932746887,
+      "favor": 0.6622855067253113
+    }
+  },
+  {
+    "id": "sid6327:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12244987487792969,
+      "favor": 0.8775501251220703
+    }
+  },
+  {
+    "id": "sid6327:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.0855942964553833,
+      "favor": 0.9144057035446167
+    }
+  },
+  {
+    "id": "sid6327:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9482044577598572,
+      "favor": 0.05179556459188461
+    }
+  },
+  {
+    "id": "sid6328:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10023647546768188,
+      "favor": 0.8997635245323181
+    }
+  },
+  {
+    "id": "sid6328:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6527531147003174,
+      "favor": 0.34724685549736023
+    }
+  },
+  {
+    "id": "sid6328:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6418002843856812,
+      "favor": 0.35819968581199646
+    }
+  },
+  {
+    "id": "sid6328:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8599928617477417,
+      "favor": 0.1400071531534195
+    }
+  },
+  {
+    "id": "sid6328:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8063544631004333,
+      "favor": 0.19364552199840546
+    }
+  },
+  {
+    "id": "sid6328:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6075308918952942,
+      "favor": 0.3924691081047058
+    }
+  },
+  {
+    "id": "sid6328:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6408206224441528,
+      "favor": 0.35917940735816956
+    }
+  },
+  {
+    "id": "sid6328:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9626287221908569,
+      "favor": 0.03737128898501396
+    }
+  },
+  {
+    "id": "sid6332:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09968072175979614,
+      "favor": 0.9003192782402039
+    }
+  },
+  {
+    "id": "sid6332:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7568325996398926,
+      "favor": 0.24316737055778503
+    }
+  },
+  {
+    "id": "sid6332:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.03128880262374878,
+      "favor": 0.9687111973762512
+    }
+  },
+  {
+    "id": "sid6332:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9067897200584412,
+      "favor": 0.09321030229330063
+    }
+  },
+  {
+    "id": "sid6332:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9296059608459473,
+      "favor": 0.07039406895637512
+    }
+  },
+  {
+    "id": "sid6332:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6544570922851562,
+      "favor": 0.34554290771484375
+    }
+  },
+  {
+    "id": "sid6332:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7553969621658325,
+      "favor": 0.2446030229330063
+    }
+  },
+  {
+    "id": "sid6332:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6419687867164612,
+      "favor": 0.3580312132835388
+    }
+  },
+  {
+    "id": "sid6334:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.581491231918335,
+      "favor": 0.4185087978839874
+    }
+  },
+  {
+    "id": "sid6334:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7641872763633728,
+      "favor": 0.2358127385377884
+    }
+  },
+  {
+    "id": "sid6334:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8628166317939758,
+      "favor": 0.13718335330486298
+    }
+  },
+  {
+    "id": "sid6334:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2498130202293396,
+      "favor": 0.7501869797706604
+    }
+  },
+  {
+    "id": "sid6334:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7985695600509644,
+      "favor": 0.20143043994903564
+    }
+  },
+  {
+    "id": "sid6334:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9485040307044983,
+      "favor": 0.05149596557021141
+    }
+  },
+  {
+    "id": "sid6340:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3464341163635254,
+      "favor": 0.6535658836364746
+    }
+  },
+  {
+    "id": "sid6340:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8424183130264282,
+      "favor": 0.15758171677589417
+    }
+  },
+  {
+    "id": "sid6340:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07371819019317627,
+      "favor": 0.9262818098068237
+    }
+  },
+  {
+    "id": "sid6340:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9125934839248657,
+      "favor": 0.08740653097629547
+    }
+  },
+  {
+    "id": "sid6340:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5480374097824097,
+      "favor": 0.45196259021759033
+    }
+  },
+  {
+    "id": "sid6340:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6167677640914917,
+      "favor": 0.3832322657108307
+    }
+  },
+  {
+    "id": "sid6340:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1086854338645935,
+      "favor": 0.8913145661354065
+    }
+  },
+  {
+    "id": "sid6340:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7672164440155029,
+      "favor": 0.23278358578681946
+    }
+  },
+  {
+    "id": "sid6342:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19967669248580933,
+      "favor": 0.8003233075141907
+    }
+  },
+  {
+    "id": "sid6342:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4364616870880127,
+      "favor": 0.5635383129119873
+    }
+  },
+  {
+    "id": "sid6342:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3828292489051819,
+      "favor": 0.6171707510948181
+    }
+  },
+  {
+    "id": "sid6342:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10097575187683105,
+      "favor": 0.899024248123169
+    }
+  },
+  {
+    "id": "sid6342:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14400267601013184,
+      "favor": 0.8559973239898682
+    }
+  },
+  {
+    "id": "sid6342:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.32122379541397095,
+      "favor": 0.678776204586029
+    }
+  },
+  {
+    "id": "sid6342:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9188827276229858,
+      "favor": 0.08111729472875595
+    }
+  },
+  {
+    "id": "sid6342:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5093993544578552,
+      "favor": 0.4906006455421448
+    }
+  },
+  {
+    "id": "sid6358:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09407836198806763,
+      "favor": 0.9059216380119324
+    }
+  },
+  {
+    "id": "sid6358:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.39943617582321167,
+      "favor": 0.6005638241767883
+    }
+  },
+  {
+    "id": "sid6358:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08647090196609497,
+      "favor": 0.913529098033905
+    }
+  },
+  {
+    "id": "sid6358:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9361596703529358,
+      "favor": 0.0638403370976448
+    }
+  },
+  {
+    "id": "sid6358:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12180447578430176,
+      "favor": 0.8781955242156982
+    }
+  },
+  {
+    "id": "sid6358:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6489756107330322,
+      "favor": 0.3510243892669678
+    }
+  },
+  {
+    "id": "sid6358:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09545785188674927,
+      "favor": 0.9045421481132507
+    }
+  },
+  {
+    "id": "sid6358:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8907272815704346,
+      "favor": 0.10927274078130722
+    }
+  },
+  {
+    "id": "sid6359:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2562270164489746,
+      "favor": 0.7437729835510254
+    }
+  },
+  {
+    "id": "sid6359:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4662066698074341,
+      "favor": 0.5337933301925659
+    }
+  },
+  {
+    "id": "sid6359:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5415064096450806,
+      "favor": 0.45849359035491943
+    }
+  },
+  {
+    "id": "sid6359:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9269679188728333,
+      "favor": 0.07303208112716675
+    }
+  },
+  {
+    "id": "sid6359:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08929908275604248,
+      "favor": 0.9107009172439575
+    }
+  },
+  {
+    "id": "sid6359:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8067358732223511,
+      "favor": 0.19326411187648773
+    }
+  },
+  {
+    "id": "sid6359:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21062332391738892,
+      "favor": 0.7893766760826111
+    }
+  },
+  {
+    "id": "sid6365:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08200591802597046,
+      "favor": 0.9179940819740295
+    }
+  },
+  {
+    "id": "sid6365:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09619832038879395,
+      "favor": 0.903801679611206
+    }
+  },
+  {
+    "id": "sid6365:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.44985342025756836,
+      "favor": 0.5501465797424316
+    }
+  },
+  {
+    "id": "sid6365:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.31654655933380127,
+      "favor": 0.6834534406661987
+    }
+  },
+  {
+    "id": "sid6365:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3803865909576416,
+      "favor": 0.6196134090423584
+    }
+  },
+  {
+    "id": "sid6365:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7393118143081665,
+      "favor": 0.2606882154941559
+    }
+  },
+  {
+    "id": "sid6367:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3733897805213928,
+      "favor": 0.6266102194786072
+    }
+  },
+  {
+    "id": "sid6367:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6699450016021729,
+      "favor": 0.33005499839782715
+    }
+  },
+  {
+    "id": "sid6367:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7181204557418823,
+      "favor": 0.28187957406044006
+    }
+  },
+  {
+    "id": "sid6367:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9241288900375366,
+      "favor": 0.07587113231420517
+    }
+  },
+  {
+    "id": "sid6367:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.40148770809173584,
+      "favor": 0.5985122919082642
+    }
+  },
+  {
+    "id": "sid6367:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9451698064804077,
+      "favor": 0.05483020469546318
+    }
+  },
+  {
+    "id": "sid6367:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19824206829071045,
+      "favor": 0.8017579317092896
+    }
+  },
+  {
+    "id": "sid6367:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9775863885879517,
+      "favor": 0.02241360954940319
+    }
+  },
+  {
+    "id": "sid6372:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5395142436027527,
+      "favor": 0.4604857563972473
+    }
+  },
+  {
+    "id": "sid6372:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7372046709060669,
+      "favor": 0.2627953290939331
+    }
+  },
+  {
+    "id": "sid6372:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6286367177963257,
+      "favor": 0.3713632822036743
+    }
+  },
+  {
+    "id": "sid6372:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7493981122970581,
+      "favor": 0.2506018877029419
+    }
+  },
+  {
+    "id": "sid6372:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.11228287220001221,
+      "favor": 0.8877171277999878
+    }
+  },
+  {
+    "id": "sid6372:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5359303951263428,
+      "favor": 0.4640696346759796
+    }
+  },
+  {
+    "id": "sid6372:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3291349411010742,
+      "favor": 0.6708650588989258
+    }
+  },
+  {
+    "id": "sid6372:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9748155474662781,
+      "favor": 0.02518446184694767
+    }
+  },
+  {
+    "id": "sid6392:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5921242237091064,
+      "favor": 0.40787580609321594
+    }
+  },
+  {
+    "id": "sid6392:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.33968859910964966,
+      "favor": 0.6603114008903503
+    }
+  },
+  {
+    "id": "sid6392:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1900741457939148,
+      "favor": 0.8099258542060852
+    }
+  },
+  {
+    "id": "sid6392:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8498141765594482,
+      "favor": 0.15018579363822937
+    }
+  },
+  {
+    "id": "sid6392:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5729491710662842,
+      "favor": 0.4270508587360382
+    }
+  },
+  {
+    "id": "sid6392:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4860224723815918,
+      "favor": 0.5139775276184082
+    }
+  },
+  {
+    "id": "sid6392:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2735821008682251,
+      "favor": 0.7264178991317749
+    }
+  },
+  {
+    "id": "sid6393:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19667112827301025,
+      "favor": 0.8033288717269897
+    }
+  },
+  {
+    "id": "sid6393:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6175323724746704,
+      "favor": 0.3824675977230072
+    }
+  },
+  {
+    "id": "sid6393:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8290588855743408,
+      "favor": 0.17094112932682037
+    }
+  },
+  {
+    "id": "sid6393:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.15756845474243164,
+      "favor": 0.8424315452575684
+    }
+  },
+  {
+    "id": "sid6393:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13967061042785645,
+      "favor": 0.8603293895721436
+    }
+  },
+  {
+    "id": "sid6393:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5249248743057251,
+      "favor": 0.4750750958919525
+    }
+  },
+  {
+    "id": "sid6393:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8750001788139343,
+      "favor": 0.12499982118606567
+    }
+  },
+  {
+    "id": "sid6395:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.41800886392593384,
+      "favor": 0.5819911360740662
+    }
+  },
+  {
+    "id": "sid6395:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.45324957370758057,
+      "favor": 0.5467504262924194
+    }
+  },
+  {
+    "id": "sid6395:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.32171815633773804,
+      "favor": 0.678281843662262
+    }
+  },
+  {
+    "id": "sid6395:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.496441125869751,
+      "favor": 0.503558874130249
+    }
+  },
+  {
+    "id": "sid6395:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5607948303222656,
+      "favor": 0.4392051696777344
+    }
+  },
+  {
+    "id": "sid6395:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5011564493179321,
+      "favor": 0.49884355068206787
+    }
+  },
+  {
+    "id": "sid6395:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8014148473739624,
+      "favor": 0.1985851228237152
+    }
+  },
+  {
+    "id": "sid6405:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12709683179855347,
+      "favor": 0.8729031682014465
+    }
+  },
+  {
+    "id": "sid6405:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1506327986717224,
+      "favor": 0.8493672013282776
+    }
+  },
+  {
+    "id": "sid6405:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10588639974594116,
+      "favor": 0.8941136002540588
+    }
+  },
+  {
+    "id": "sid6405:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8761914372444153,
+      "favor": 0.12380858510732651
+    }
+  },
+  {
+    "id": "sid6405:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.43348467350006104,
+      "favor": 0.566515326499939
+    }
+  },
+  {
+    "id": "sid6405:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1144106388092041,
+      "favor": 0.8855893611907959
+    }
+  },
+  {
+    "id": "sid6405:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7963858246803284,
+      "favor": 0.20361419022083282
+    }
+  },
+  {
+    "id": "sid6406:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13935333490371704,
+      "favor": 0.860646665096283
+    }
+  },
+  {
+    "id": "sid6406:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7404966354370117,
+      "favor": 0.25950339436531067
+    }
+  },
+  {
+    "id": "sid6406:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.38786882162094116,
+      "favor": 0.6121311783790588
+    }
+  },
+  {
+    "id": "sid6406:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7720916271209717,
+      "favor": 0.22790834307670593
+    }
+  },
+  {
+    "id": "sid6406:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7830601930618286,
+      "favor": 0.21693982183933258
+    }
+  },
+  {
+    "id": "sid6406:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07453328371047974,
+      "favor": 0.9254667162895203
+    }
+  },
+  {
+    "id": "sid6406:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8509864211082458,
+      "favor": 0.14901359379291534
+    }
+  },
+  {
+    "id": "sid6413:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07183772325515747,
+      "favor": 0.9281622767448425
+    }
+  },
+  {
+    "id": "sid6413:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14798080921173096,
+      "favor": 0.852019190788269
+    }
+  },
+  {
+    "id": "sid6413:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21720153093338013,
+      "favor": 0.7827984690666199
+    }
+  },
+  {
+    "id": "sid6413:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.16410380601882935,
+      "favor": 0.8358961939811707
+    }
+  },
+  {
+    "id": "sid6413:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07849514484405518,
+      "favor": 0.9215048551559448
+    }
+  },
+  {
+    "id": "sid6413:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6722931861877441,
+      "favor": 0.32770684361457825
+    }
+  },
+  {
+    "id": "sid6416:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.243646502494812,
+      "favor": 0.756353497505188
+    }
+  },
+  {
+    "id": "sid6416:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6992321014404297,
+      "favor": 0.3007679283618927
+    }
+  },
+  {
+    "id": "sid6416:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5033562183380127,
+      "favor": 0.4966438114643097
+    }
+  },
+  {
+    "id": "sid6416:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.23792845010757446,
+      "favor": 0.7620715498924255
+    }
+  },
+  {
+    "id": "sid6416:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3088696002960205,
+      "favor": 0.6911303997039795
+    }
+  },
+  {
+    "id": "sid6416:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7700843811035156,
+      "favor": 0.229915589094162
+    }
+  },
+  {
+    "id": "sid6416:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1553834080696106,
+      "favor": 0.8446165919303894
+    }
+  },
+  {
+    "id": "sid6425:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5287501215934753,
+      "favor": 0.47124987840652466
+    }
+  },
+  {
+    "id": "sid6425:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.24661237001419067,
+      "favor": 0.7533876299858093
+    }
+  },
+  {
+    "id": "sid6425:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4671114683151245,
+      "favor": 0.5328885316848755
+    }
+  },
+  {
+    "id": "sid6425:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9351837635040283,
+      "favor": 0.06481623649597168
+    }
+  },
+  {
+    "id": "sid6425:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08866727352142334,
+      "favor": 0.9113327264785767
+    }
+  },
+  {
+    "id": "sid6425:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10756301879882812,
+      "favor": 0.8924369812011719
+    }
+  },
+  {
+    "id": "sid6425:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9071424603462219,
+      "favor": 0.09285754710435867
+    }
+  },
+  {
+    "id": "sid6428:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8728410601615906,
+      "favor": 0.12715892493724823
+    }
+  },
+  {
+    "id": "sid6428:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7900481820106506,
+      "favor": 0.20995181798934937
+    }
+  },
+  {
+    "id": "sid6428:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.06914037466049194,
+      "favor": 0.9308596253395081
+    }
+  },
+  {
+    "id": "sid6428:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.418018639087677,
+      "favor": 0.581981360912323
+    }
+  },
+  {
+    "id": "sid6428:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.967448890209198,
+      "favor": 0.03255109861493111
+    }
+  },
+  {
+    "id": "sid6428:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8464208245277405,
+      "favor": 0.15357917547225952
+    }
+  },
+  {
+    "id": "sid6432:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4700239896774292,
+      "favor": 0.5299760103225708
+    }
+  },
+  {
+    "id": "sid6432:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6310124397277832,
+      "favor": 0.3689875900745392
+    }
+  },
+  {
+    "id": "sid6432:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6965104341506958,
+      "favor": 0.3034895360469818
+    }
+  },
+  {
+    "id": "sid6432:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4374256134033203,
+      "favor": 0.5625743865966797
+    }
+  },
+  {
+    "id": "sid6432:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6665627956390381,
+      "favor": 0.3334371745586395
+    }
+  },
+  {
+    "id": "sid6432:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5016511678695679,
+      "favor": 0.49834883213043213
+    }
+  },
+  {
+    "id": "sid6439:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09308141469955444,
+      "favor": 0.9069185853004456
+    }
+  },
+  {
+    "id": "sid6439:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.40770065784454346,
+      "favor": 0.5922993421554565
+    }
+  },
+  {
+    "id": "sid6439:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19221270084381104,
+      "favor": 0.807787299156189
+    }
+  },
+  {
+    "id": "sid6439:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8620644807815552,
+      "favor": 0.13793553411960602
+    }
+  },
+  {
+    "id": "sid6439:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.48160821199417114,
+      "favor": 0.5183917880058289
+    }
+  },
+  {
+    "id": "sid6439:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.19482600688934326,
+      "favor": 0.8051739931106567
+    }
+  },
+  {
+    "id": "sid6439:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08467185497283936,
+      "favor": 0.9153281450271606
+    }
+  },
+  {
+    "id": "sid6439:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7639167308807373,
+      "favor": 0.23608329892158508
+    }
+  },
+  {
+    "id": "sid6441:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1000182032585144,
+      "favor": 0.8999817967414856
+    }
+  },
+  {
+    "id": "sid6441:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5281871557235718,
+      "favor": 0.4718128442764282
+    }
+  },
+  {
+    "id": "sid6441:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1747773289680481,
+      "favor": 0.8252226710319519
+    }
+  },
+  {
+    "id": "sid6441:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9059649705886841,
+      "favor": 0.0940350592136383
+    }
+  },
+  {
+    "id": "sid6441:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8394632339477539,
+      "favor": 0.1605367362499237
+    }
+  },
+  {
+    "id": "sid6441:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.059522926807403564,
+      "favor": 0.9404770731925964
+    }
+  },
+  {
+    "id": "sid6441:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9681888222694397,
+      "favor": 0.0318111777305603
+    }
+  },
+  {
+    "id": "sid6446:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10913914442062378,
+      "favor": 0.8908608555793762
+    }
+  },
+  {
+    "id": "sid6446:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.28930139541625977,
+      "favor": 0.7106986045837402
+    }
+  },
+  {
+    "id": "sid6446:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.422732949256897,
+      "favor": 0.577267050743103
+    }
+  },
+  {
+    "id": "sid6446:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09235179424285889,
+      "favor": 0.9076482057571411
+    }
+  },
+  {
+    "id": "sid6446:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08844047784805298,
+      "favor": 0.911559522151947
+    }
+  },
+  {
+    "id": "sid6446:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4419584274291992,
+      "favor": 0.5580415725708008
+    }
+  },
+  {
+    "id": "sid6454:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.21224480867385864,
+      "favor": 0.7877551913261414
+    }
+  },
+  {
+    "id": "sid6454:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6866472959518433,
+      "favor": 0.31335267424583435
+    }
+  },
+  {
+    "id": "sid6454:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8429199457168579,
+      "favor": 0.1570800542831421
+    }
+  },
+  {
+    "id": "sid6454:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.321242094039917,
+      "favor": 0.678757905960083
+    }
+  },
+  {
+    "id": "sid6454:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9399085640907288,
+      "favor": 0.06009141728281975
+    }
+  },
+  {
+    "id": "sid6454:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2108885645866394,
+      "favor": 0.7891114354133606
+    }
+  },
+  {
+    "id": "sid6455:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09617078304290771,
+      "favor": 0.9038292169570923
+    }
+  },
+  {
+    "id": "sid6455:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4339771866798401,
+      "favor": 0.5660228133201599
+    }
+  },
+  {
+    "id": "sid6455:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6416312456130981,
+      "favor": 0.35836872458457947
+    }
+  },
+  {
+    "id": "sid6455:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9074497818946838,
+      "favor": 0.09255022555589676
+    }
+  },
+  {
+    "id": "sid6455:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1146399974822998,
+      "favor": 0.8853600025177002
+    }
+  },
+  {
+    "id": "sid6455:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.28745365142822266,
+      "favor": 0.7125463485717773
+    }
+  },
+  {
+    "id": "sid6455:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.616268515586853,
+      "favor": 0.38373151421546936
+    }
+  },
+  {
+    "id": "sid6455:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9623252153396606,
+      "favor": 0.037674758583307266
+    }
+  },
+  {
+    "id": "sid6462:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.48899805545806885,
+      "favor": 0.5110019445419312
+    }
+  },
+  {
+    "id": "sid6462:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.04666978120803833,
+      "favor": 0.9533302187919617
+    }
+  },
+  {
+    "id": "sid6462:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9507384896278381,
+      "favor": 0.04926151782274246
+    }
+  },
+  {
+    "id": "sid6462:death-penalty",
+    "target": "pena de morte",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12608587741851807,
+      "favor": 0.8739141225814819
+    }
+  },
+  {
+    "id": "sid6462:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9659990668296814,
+      "favor": 0.034000929445028305
+    }
+  },
+  {
+    "id": "sid6462:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.019480764865875244,
+      "favor": 0.9805192351341248
+    }
+  },
+  {
+    "id": "sid6462:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9093771576881409,
+      "favor": 0.09062284231185913
+    }
+  },
+  {
+    "id": "sid6462:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6344870328903198,
+      "favor": 0.3655129671096802
+    }
+  },
+  {
+    "id": "sid6463:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.0910191535949707,
+      "favor": 0.9089808464050293
+    }
+  },
+  {
+    "id": "sid6463:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9380993843078613,
+      "favor": 0.06190062314271927
+    }
+  },
+  {
+    "id": "sid6478:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5749083757400513,
+      "favor": 0.4250916540622711
+    }
+  },
+  {
+    "id": "sid6478:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.43698060512542725,
+      "favor": 0.5630193948745728
+    }
+  },
+  {
+    "id": "sid6478:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6346547603607178,
+      "favor": 0.3653452694416046
+    }
+  },
+  {
+    "id": "sid6478:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4987249970436096,
+      "favor": 0.5012750029563904
+    }
+  },
+  {
+    "id": "sid6478:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.3932332992553711,
+      "favor": 0.6067667007446289
+    }
+  },
+  {
+    "id": "sid6487:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2126949429512024,
+      "favor": 0.7873050570487976
+    }
+  },
+  {
+    "id": "sid6487:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12579065561294556,
+      "favor": 0.8742093443870544
+    }
+  },
+  {
+    "id": "sid6487:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9134858250617981,
+      "favor": 0.08651416003704071
+    }
+  },
+  {
+    "id": "sid6487:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.2792631983757019,
+      "favor": 0.7207368016242981
+    }
+  },
+  {
+    "id": "sid6487:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10481995344161987,
+      "favor": 0.8951800465583801
+    }
+  },
+  {
+    "id": "sid6487:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.7538421750068665,
+      "favor": 0.24615783989429474
+    }
+  },
+  {
+    "id": "sid6487:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9186426997184753,
+      "favor": 0.08135731518268585
+    }
+  },
+  {
+    "id": "sid6487:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12561523914337158,
+      "favor": 0.8743847608566284
+    }
+  },
+  {
+    "id": "sid6490:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08813375234603882,
+      "favor": 0.9118662476539612
+    }
+  },
+  {
+    "id": "sid6490:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5130097270011902,
+      "favor": 0.4869902729988098
+    }
+  },
+  {
+    "id": "sid6490:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6909859776496887,
+      "favor": 0.3090140223503113
+    }
+  },
+  {
+    "id": "sid6490:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09682649374008179,
+      "favor": 0.9031735062599182
+    }
+  },
+  {
+    "id": "sid6490:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1258205771446228,
+      "favor": 0.8741794228553772
+    }
+  },
+  {
+    "id": "sid6490:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9132162928581238,
+      "favor": 0.08678371459245682
+    }
+  },
+  {
+    "id": "sid6492:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.33140313625335693,
+      "favor": 0.6685968637466431
+    }
+  },
+  {
+    "id": "sid6492:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.39674174785614014,
+      "favor": 0.6032582521438599
+    }
+  },
+  {
+    "id": "sid6492:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1476491093635559,
+      "favor": 0.8523508906364441
+    }
+  },
+  {
+    "id": "sid6492:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9500554800033569,
+      "favor": 0.04994450509548187
+    }
+  },
+  {
+    "id": "sid6492:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07357805967330933,
+      "favor": 0.9264219403266907
+    }
+  },
+  {
+    "id": "sid6492:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5391541123390198,
+      "favor": 0.4608458876609802
+    }
+  },
+  {
+    "id": "sid6492:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.14959114789962769,
+      "favor": 0.8504088521003723
+    }
+  },
+  {
+    "id": "sid6494:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.47246450185775757,
+      "favor": 0.5275354981422424
+    }
+  },
+  {
+    "id": "sid6494:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.43459171056747437,
+      "favor": 0.5654082894325256
+    }
+  },
+  {
+    "id": "sid6494:abortion",
+    "target": "legalização do aborto",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4929962158203125,
+      "favor": 0.5070037841796875
+    }
+  },
+  {
+    "id": "sid6494:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4780755043029785,
+      "favor": 0.5219244956970215
+    }
+  },
+  {
+    "id": "sid6494:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5788639187812805,
+      "favor": 0.4211360812187195
+    }
+  },
+  {
+    "id": "sid6494:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4277558922767639,
+      "favor": 0.5722441077232361
+    }
+  },
+  {
+    "id": "sid6494:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8014321327209473,
+      "favor": 0.19856785237789154
+    }
+  },
+  {
+    "id": "sid6494:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.13620495796203613,
+      "favor": 0.8637950420379639
+    }
+  },
+  {
+    "id": "sid6495:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.10207265615463257,
+      "favor": 0.8979273438453674
+    }
+  },
+  {
+    "id": "sid6495:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5653719902038574,
+      "favor": 0.43462803959846497
+    }
+  },
+  {
+    "id": "sid6495:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09259051084518433,
+      "favor": 0.9074094891548157
+    }
+  },
+  {
+    "id": "sid6495:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.8862754106521606,
+      "favor": 0.11372458189725876
+    }
+  },
+  {
+    "id": "sid6495:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4527541399002075,
+      "favor": 0.5472458600997925
+    }
+  },
+  {
+    "id": "sid6495:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6437448263168335,
+      "favor": 0.3562551736831665
+    }
+  },
+  {
+    "id": "sid6495:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9097062945365906,
+      "favor": 0.09029372036457062
+    }
+  },
+  {
+    "id": "sid6496:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.09620308876037598,
+      "favor": 0.903796911239624
+    }
+  },
+  {
+    "id": "sid6496:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.12422007322311401,
+      "favor": 0.875779926776886
+    }
+  },
+  {
+    "id": "sid6496:drugs",
+    "target": "legalização das drogas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5039082765579224,
+      "favor": 0.4960917532444
+    }
+  },
+  {
+    "id": "sid6500:gay-marriage",
+    "target": "casamento entre pessoas do mesmo sexo",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.08758169412612915,
+      "favor": 0.9124183058738708
+    }
+  },
+  {
+    "id": "sid6500:gun-control",
+    "target": "legalização do porte de armas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.6317958831787109,
+      "favor": 0.3682040870189667
+    }
+  },
+  {
+    "id": "sid6500:abortion",
+    "target": "legalização do aborto",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.07101267576217651,
+      "favor": 0.9289873242378235
+    }
+  },
+  {
+    "id": "sid6500:death-penalty",
+    "target": "pena de morte",
+    "truth": "against",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.4657638669013977,
+      "favor": 0.5342361330986023
+    }
+  },
+  {
+    "id": "sid6500:drugs",
+    "target": "legalização das drogas",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.05285912752151489,
+      "favor": 0.9471408724784851
+    }
+  },
+  {
+    "id": "sid6500:criminal-age",
+    "target": "redução da maioridade penal",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.5009980201721191,
+      "favor": 0.49900195002555847
+    }
+  },
+  {
+    "id": "sid6500:racial-quotas",
+    "target": "cotas raciais",
+    "truth": "favor",
+    "prediction": "favor",
+    "probabilities": {
+      "against": 0.1059538722038269,
+      "favor": 0.8940461277961731
+    }
+  },
+  {
+    "id": "sid6500:church-tax",
+    "target": "isenção de impostos para igrejas",
+    "truth": "against",
+    "prediction": "against",
+    "probabilities": {
+      "against": 0.9558525085449219,
+      "favor": 0.044147491455078125
+    }
+  }
+]

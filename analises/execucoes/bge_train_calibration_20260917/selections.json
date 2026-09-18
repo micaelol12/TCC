@@ -1,0 +1,730 @@
+[
+  {
+    "target": "casamento entre pessoas do mesmo sexo",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.7437766918132791,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.6853199693539315
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6918170577691463
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7060877368203139
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7188070081982794
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7247934597478771
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.731546436241301
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7403305064026579
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7379640966466577
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7437766918132791
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7353222385584595
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7177077008564897
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7093022140781636
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.6979065477805568
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.6964636359368682
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.6920496040877371
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6842454720993526
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6747340917673385
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6642899352875098
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6590365267281502
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6525237632446848
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6389159551558864
+      }
+    ]
+  },
+  {
+    "target": "cotas raciais",
+    "threshold": -0.19999999999999996,
+    "mean_topic_ba": 0.7485154133205076,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.7047829894609828
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.7096273865141266
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7210512274797856
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7306390154470501
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7338469847731502
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.7410287340751491
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7485154133205076
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7443152325763417
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.743380758137025
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7323110814047977
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7163344668732228
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7056390497867971
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.6908498462707005
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.6880688956668981
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.6846477247164051
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6753169725226208
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.664210616123196
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6571816628301402
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6509230104991659
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6450778147450306
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6312280729873176
+      }
+    ]
+  },
+  {
+    "target": "isenção de impostos para igrejas",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.7580852722899777,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.6830546592506812
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6949054278113217
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7108830803131203
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7263897321763082
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7333123452546461
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.7428527022332921
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7519148138029441
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7524206107245275
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7580852722899777
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7519297317846576
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7409746648655968
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7280885520617755
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.7146621795021105
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.7107377941905797
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.7064327660475745
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6998186594824605
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6885087179993672
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6759527171604394
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6681299355281095
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.662240050365364
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.648913971780181
+      }
+    ]
+  },
+  {
+    "target": "legalização das drogas",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.7514450684283684,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.693888307617408
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6992756410539254
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7123217328102852
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7301666325277455
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7367199564614338
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.74119177617513
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7442455008557717
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7438412013071292
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7514450684283684
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7424437262680729
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7261925979665056
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7147311361756915
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.7009354744713773
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.6983499810823902
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.6956411221333196
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6860657016689323
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.67595288708129
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6661044232412839
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6590797262059214
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6535888833416595
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.641090642507278
+      }
+    ]
+  },
+  {
+    "target": "legalização do aborto",
+    "threshold": -0.19999999999999996,
+    "mean_topic_ba": 0.7630390465269683,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.7058328017265829
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.7164748215928051
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7303647277259818
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7404322642490643
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7475109267669325
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.7586971626191803
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7630390465269683
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7592641146237895
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7629164320976879
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7499388184076057
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7350671192238146
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7238683932037844
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.7082841168838188
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.7063604015640988
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.7031161937888449
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6938035090952414
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6839079947691494
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6730797042952431
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6643118281534622
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6578304552705162
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6439987810129839
+      }
+    ]
+  },
+  {
+    "target": "legalização do porte de armas",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.7523690586790274,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.6908096235845929
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6967417493844853
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7102083164804619
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7233340159626973
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.727928693818363
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.7362785746065329
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7439429610942493
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.743773994183174
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7523690586790274
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7412154460703719
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.733475146839763
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7236881279245092
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.7130909437203484
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.7109305838570535
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.7078160319045246
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6974425268431699
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6929091421366336
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6803001241394252
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.672111042140795
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.668602109359002
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6565484425725465
+      }
+    ]
+  },
+  {
+    "target": "pena de morte",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.7374007971269149,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.6878940091782952
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6928973019064975
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7065652204460614
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7177647146635822
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7215827106090257
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.7293669303501682
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7370085652623379
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7334922727989682
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.7374007971269149
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7276210952865803
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7159956801366939
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7058065271236538
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.6945293552053438
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.6915448195178728
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.6863894512388135
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6766259727968024
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6659260579330526
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6547185369895151
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6489661487319264
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6457566835632658
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6339697790000941
+      }
+    ]
+  },
+  {
+    "target": "redução da maioridade penal",
+    "threshold": -0.09999999999999998,
+    "mean_topic_ba": 0.763363178334757,
+    "grid": [
+      {
+        "threshold": -0.5,
+        "mean_topic_ba": 0.6885721844068551
+      },
+      {
+        "threshold": -0.45,
+        "mean_topic_ba": 0.6972477314539614
+      },
+      {
+        "threshold": -0.4,
+        "mean_topic_ba": 0.7111556604667096
+      },
+      {
+        "threshold": -0.35,
+        "mean_topic_ba": 0.7296508823603073
+      },
+      {
+        "threshold": -0.3,
+        "mean_topic_ba": 0.7377544972458302
+      },
+      {
+        "threshold": -0.25,
+        "mean_topic_ba": 0.749269757227028
+      },
+      {
+        "threshold": -0.19999999999999996,
+        "mean_topic_ba": 0.7580910998814876
+      },
+      {
+        "threshold": -0.14999999999999997,
+        "mean_topic_ba": 0.7580131030882972
+      },
+      {
+        "threshold": -0.09999999999999998,
+        "mean_topic_ba": 0.763363178334757
+      },
+      {
+        "threshold": -0.04999999999999999,
+        "mean_topic_ba": 0.7493926513787248
+      },
+      {
+        "threshold": 0.0,
+        "mean_topic_ba": 0.7370401895777933
+      },
+      {
+        "threshold": 0.050000000000000044,
+        "mean_topic_ba": 0.7258467412710354
+      },
+      {
+        "threshold": 0.10000000000000009,
+        "mean_topic_ba": 0.7117627575927985
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "mean_topic_ba": 0.7086733597989975
+      },
+      {
+        "threshold": 0.20000000000000007,
+        "mean_topic_ba": 0.7049013806965041
+      },
+      {
+        "threshold": 0.25,
+        "mean_topic_ba": 0.6950609246756613
+      },
+      {
+        "threshold": 0.30000000000000004,
+        "mean_topic_ba": 0.6830606409925611
+      },
+      {
+        "threshold": 0.3500000000000001,
+        "mean_topic_ba": 0.6718840214426766
+      },
+      {
+        "threshold": 0.4,
+        "mean_topic_ba": 0.6661934359723937
+      },
+      {
+        "threshold": 0.45000000000000007,
+        "mean_topic_ba": 0.6619026979311835
+      },
+      {
+        "threshold": 0.5,
+        "mean_topic_ba": 0.6486093504274353
+      }
+    ]
+  }
+]

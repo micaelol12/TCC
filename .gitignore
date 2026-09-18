@@ -2,3 +2,4 @@
 .venv-gpu/
 __pycache__/
 *.py[cod]
+analises/modelos/

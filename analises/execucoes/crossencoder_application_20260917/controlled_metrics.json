@@ -1,0 +1,86 @@
+[
+  {
+    "method": "crossencoder_head",
+    "template": "all",
+    "n": 280,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        140,
+        0
+      ],
+      [
+        0,
+        140
+      ]
+    ],
+    "macro_f1": 1.0,
+    "balanced_accuracy": 1.0,
+    "mcc": 1.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 1.0,
+    "accuracy_when_accepted": 1.0,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 1.0
+  },
+  {
+    "method": "crossencoder_head",
+    "template": "concordancia",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        70,
+        0
+      ],
+      [
+        0,
+        70
+      ]
+    ],
+    "macro_f1": 1.0,
+    "balanced_accuracy": 1.0,
+    "mcc": 1.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 1.0,
+    "accuracy_when_accepted": 1.0,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 1.0
+  },
+  {
+    "method": "crossencoder_head",
+    "template": "defesa",
+    "n": 140,
+    "labels": [
+      "against",
+      "favor"
+    ],
+    "confusion": [
+      [
+        70,
+        0
+      ],
+      [
+        0,
+        70
+      ]
+    ],
+    "macro_f1": 1.0,
+    "balanced_accuracy": 1.0,
+    "mcc": 1.0,
+    "missing_classes": [],
+    "direction_coverage": 1.0,
+    "expected_state_accuracy": 1.0,
+    "accuracy_when_accepted": 1.0,
+    "pair_ordering": 1.0,
+    "both_sides_correct": 1.0
+  }
+]

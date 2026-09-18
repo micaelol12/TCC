@@ -1,5 +1,60 @@
 # Rastreabilidade da implementação
 
+## Cabeça sobre representação conjunta texto–hipótese
+
+`crossencoder_head.py` liga R6 (Tunstall et al., 2022, §3.1: representação e
+cabeça) e R10 (Laurer et al., 2024, §2: pares premissa/hipótese). Adaptação:
+captura, sem gradiente, a entrada de `classifier.out_proj` do BGE, com hipótese
+positiva de concordância. É uma representação cruzada de 1.024 dimensões,
+normalizada L2. Não é embedding E5 nem reprodução do treinamento SetFit.
+Regressão logística C={0,01;0,1;1;10}, pesos por (tema,classe), tema do dev
+excluído do treino e autores preservados. Escolha de C pela BA média entre temas
+do dev, desempate pelo pior tema. Nenhum parâmetro do BGE é ajustado. Representações
+e IDs ficam em NPZ para reprodução; são dados derivados do corpus CC BY 4.0.
+
+## Combinação e fronteira do segundo modelo
+
+`ensemble_dev.py` combina com pesos iguais margens do mDeBERTa e BGE escolhidas
+no desenvolvimento. R4/R7/R10 sustentam origem/hipóteses; a média de margens é
+adaptação local, sem alegar que escalas sejam igualmente calibradas. Confere IDs,
+alvos e rótulos antes de combinar. Não usa teste para selecionar pesos.
+`bge_train_calibration.py` ajusta limiar na grade [-0,5;0,5] com passo 0,05,
+usando apenas treino de outros temas. Otimiza BA média entre esses temas,
+desempatando perto de zero, e avalia no tema reservado do desenvolvimento.
+O template já havia sido escolhido no dev: resultado exploratório, não avaliação
+independente de toda seleção. Fonte do procedimento de separação: R4; modelo R10.
+
+## Busca de melhoria restrita ao desenvolvimento
+
+`nli_bilateral.py` (R7/Yin et al., §3) compara hipóteses explícitas de apoio e
+oposição, por entailment e por E−C, mais médias de templates. Adaptação local,
+sem pesos treinados. `lexical_dev.py` usa Santos e Paraboni (2019), *Moral Stance
+Recognition and Polarity Classification from Twitter and Elicited Text*,
+§§3.3.1–3.3.3, https://aclanthology.org/R19-1123/: n-gramas TF-IDF e regressão
+logística. Diferenças: sem seleção ANOVA, char 3–5/word 1–2, C=1/10 e pesos
+iguais por (tema,classe), calculados apenas no treino. Cada tema do dev é
+previsto por modelo cujo vocabulário/ajuste não incluem esse tema ou autores.
+
+Critério provisório local, registrado antes das execuções: média de acurácia
+balanceada entre temas ≥0,75 e pior tema ≥0,60. Não é padrão da literatura ou
+aceite informado pelo usuário. Usa desenvolvimento para triagem, não comprova
+generalização. Teste não foi usado para escolher novos candidatos nesta busca.
+
+## R10 — segundo modelo de inferência
+
+Laurer, van Atteveldt, Casas e Welbers (2024), *Building Efficient Universal
+Classifiers with Natural Language Inference*, §2 e Figura 1, pp.2–3,
+https://arxiv.org/abs/2312.17543 (v2). O trecho lido distingue entailment de
+not-entailment e descreve verbalização de classes, incluindo stance.
+`bge_dev.py` compara apoio/oposição com
+`MoritzLaurer/bge-m3-zeroshot-v2.0`, revisão
+`9abf1c8aaeb82a2447809c20753ed0b106b76652`. Licença MIT no model card salvo.
+Usa FP16 CUDA, lote 1 e máximo 512 tokens (o modelo permite janela maior).
+Not-entailment não é renomeado como contradiction nem interpretado como neutral.
+Adaptação: português, mesmas hipóteses nominais/concordância já definidas e média
+de ambas. Comparação no dev somente. Arquitetura/dados de treinamento mudam;
+não é ablação causal exclusiva da capacidade. Pesos externos ignorados no Git.
+
 ## Decisão seletiva usando desenvolvimento
 
 `calibracao_seletiva.py` usa isolamento R4 e probabilidades NLI R7. É ajuste de
@@ -155,3 +210,24 @@ determinismo e isolamento transitivo; dados artificiais não estimam acurácia.
 no dev e seeds 13/42/77. Apenas embeddings e NLI usam CUDA; a cabeça logística
 usa CPU. A comparação fica explicitamente incompleta sem ajuste contrastivo.
 O bootstrap compara congelado e sem ajuste por componentes do teste (R4).
+
+## Avaliação final da cabeça conjunta e aplicação
+
+`crossencoder_head.evaluate_test` (R4/R6/R8/R10) exclui cada tema tanto do treino
+quanto do dev usado para escolher C. Desempate nessa avaliação favorece menor C;
+no desenvolvimento inicial favorece maior pior-BA. Todos os oito ajustes
+selecionaram C=10. IDs e escolhas são persistidos antes da inferência de teste.
+Bootstrap pareado: 1.000 reamostragens dos 102 grupos de autoria, seed 13.
+O teste histórico foi visto em rodadas anteriores: não é confirmação cega nova,
+e o intervalo não corrige a seleção adaptativa de métodos durante a investigação.
+
+`crossencoder_application.run` (R4/R5/R6/R10) treina a cabeça final somente nos
+2.060 exemplos de treino, usa C selecionado no dev e a mesma representação L2.
+Aplica aos 280 templates conhecidos e às evidências previamente recuperadas do
+documento 6x1. A regra confiança >=0,7 é exploratória, não calibração probabilística.
+Agregação: direções opostas geram conflito; nenhuma direção aceita gera incerta;
+ausência de trechos gera sem_evidencia. Nenhuma intensidade é inferida. Estados
+documentais não possuem gabarito, e retrieval não foi reavaliado por humanos.
+BGE executou em CUDA/FP16 na GTX 1060 3 GB; regressão logística executou em CPU.
+R6 apoia a separação representação/cabeça, não atribuímos a SetFit esta arquitetura.
+Resultados, alternativas e limitações: `analises/melhoria_generalizacao_20260917.md`.

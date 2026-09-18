@@ -1,0 +1,17 @@
+{
+  "model": "MoritzLaurer/bge-m3-zeroshot-v2.0",
+  "revision": "9abf1c8aaeb82a2447809c20753ed0b106b76652",
+  "license": "MIT",
+  "source": "https://huggingface.co/MoritzLaurer/bge-m3-zeroshot-v2.0",
+  "paper": "https://arxiv.org/abs/2312.17543",
+  "weights_sha256": "142bc710004b7552bef46b36a2f749eeb0ca198db2608445841926f78202d12c",
+  "files": {
+    "config.json": 912,
+    "model.safetensors": 1135561748,
+    "README.md": 21112,
+    "sentencepiece.bpe.model": 5069051,
+    "special_tokens_map.json": 964,
+    "tokenizer.json": 17082821,
+    "tokenizer_config.json": 1147
+  }
+}

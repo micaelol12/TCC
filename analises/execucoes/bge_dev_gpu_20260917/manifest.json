@@ -1,0 +1,59 @@
+{
+  "config": {
+    "split": "dev",
+    "templates": [
+      "nominal",
+      "concordancia"
+    ],
+    "max_length": 512,
+    "selection": "mean_topic_ba then min_topic_ba",
+    "no_test": true,
+    "provisional_success": {
+      "mean_topic_ba": 0.75,
+      "minimum_topic_ba": 0.6
+    },
+    "model": {
+      "name": "MoritzLaurer/bge-m3-zeroshot-v2.0",
+      "revision": "9abf1c8aaeb82a2447809c20753ed0b106b76652",
+      "dtype": "float16",
+      "device": "cuda",
+      "max_length": 512,
+      "id2label": {
+        "0": "entailment",
+        "1": "not_entailment"
+      },
+      "pairs": 2040,
+      "truncated": 0
+    }
+  },
+  "input_hashes": {
+    "analises\\dados\\brmoral_20260917\\corpus.jsonl": "34fe9de364bd08b058e9830d96ba134592aa8de36396331bfddb2a479d94b981",
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\investigacao\\bge_dev.py": "c9975f45b4ac0afe310c7b4e84f3c4746227d9dd4313c926e3e006f756e41e73",
+    "analises\\modelos\\bge-m3-zeroshot-v2\\config.json": "dbb1c74ce96adfab6f89e4d1182186ceb4afd0a06de1b21f271b8e4981ee937c"
+  },
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.7.1+cu118",
+    "transformers": "5.17.0",
+    "sentence-transformers": "6.0.1",
+    "scikit-learn": "1.9.1"
+  },
+  "elapsed_seconds": 92.59184880000248,
+  "rss_bytes_at_end": 1120112640,
+  "rss_is_peak": false,
+  "gpu": {
+    "name": "NVIDIA GeForce GTX 1060 3GB",
+    "cuda_build": "11.8",
+    "capability": [
+      6,
+      1
+    ],
+    "peak_allocated_bytes": 1150073344,
+    "peak_reserved_bytes": 1170210816
+  },
+  "limitations": [
+    "Diagnósticos conhecidos não são teste cego",
+    "Acurácia documental não estimada"
+  ]
+}

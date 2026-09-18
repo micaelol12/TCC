@@ -1,0 +1,14 @@
+{
+  "split": "dev",
+  "templates": [
+    "nominal",
+    "concordancia"
+  ],
+  "max_length": 512,
+  "selection": "mean_topic_ba then min_topic_ba",
+  "no_test": true,
+  "provisional_success": {
+    "mean_topic_ba": 0.75,
+    "minimum_topic_ba": 0.6
+  }
+}

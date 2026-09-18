@@ -472,6 +472,96 @@ condicional. Para pena de morte, nenhum candidato cumpriu a meta no dev e houve
 abstenção total. Não promovemos essa política ao pipeline documental.
 Ver [relatório](analises/calibracao_seletiva_20260917.md). Suite: 21 testes aprovados.
 ''')
+    md('''## D5 — Busca de alternativas somente no treino/desenvolvimento
+
+**R4/R7/R10:** prevenção de vazamento, hipóteses de classe e classificadores
+universais. Laurer et al. (2024), *Building Efficient Universal Classifiers with
+Natural Language Inference*, §2, https://arxiv.org/abs/2312.17543.
+Baseline lexical: Santos e Paraboni (2019), §§3.3.1–3.3.3,
+https://aclanthology.org/R19-1123/. Adaptações descritas em METODOLOGIA.md.
+
+Comparações: hipóteses bilaterais no mDeBERTa; n-gramas TF-IDF em temas reservados;
+BGE multilíngue FP16 com duas classes NLI (not-entailment não é contradição);
+média fixa entre modelos; fronteira BGE ajustada no treino excluindo tema do dev.
+Meta provisória: BA média entre temas ≥0,75 e pior tema ≥0,60. Critério local,
+não padrão da literatura. Triagem no desenvolvimento não é validação externa.
+''')
+    code('''search_runs = {
+    'NLI bilateral': 'nli_bilateral_dev_gpu_20260917',
+    'Lexical': 'lexical_dev_20260917',
+    'BGE': 'bge_dev_gpu_20260917',
+    'Média de modelos': 'ensemble_dev_20260917',
+    'BGE limiar treino': 'bge_train_calibration_20260917',
+    'Cabeça BGE conjunta': 'crossencoder_head_dev_20260917',
+}
+search_summary = []
+for label, run_name in search_runs.items():
+    path = ROOT / 'analises/execucoes' / run_name / 'metrics.json'
+    if not path.exists():
+        continue
+    result = load(path)
+    best = result[0] if isinstance(result, list) else result
+    search_summary.append([label, best.get('candidate', 'fixo'),
+                           f"{best['mean_topic_ba']:.4f}", f"{best['min_topic_ba']:.4f}",
+                           best['satisfies_provisional_criterion']])
+table(['Alternativa', 'Candidato', 'BA média temas', 'Pior tema BA', 'Meta dev'], search_summary)
+''')
+    md('''Os candidatos foram examinados no desenvolvimento; comparar o melhor
+resultado desse processo ao teste exigirá congelar método, hipóteses e regra
+antes da execução. O teste histórico já foi consultado e continua exploratório.
+Modelos maiores não foram confundidos com ajuste contrastivo do E5.
+''')
+    md('''## D6 — Resultado em temas reservados e transferência exploratória
+
+**R4/R6/R8/R10:** separação de dados, cabeça sobre representação congelada,
+bootstrap por autor e pares texto–hipótese; referências em METODOLOGIA.md.
+Adaptação: BGE congelado em FP16/CUDA e regressão logística sobre 1.024 features.
+Em cada rodada, o tema avaliado fica fora do treino e da seleção de C no dev.
+O teste histórico já foi examinado: resultado exploratório, não novo teste cego.
+''')
+    code('''HEAD_RUN = ROOT / 'analises/execucoes/crossencoder_head_test_20260917'
+head_metrics = load(HEAD_RUN / 'metrics.json')
+print('Macro-F1 global:', round(head_metrics['global']['macro_f1'], 4))
+print('BA média entre temas:', round(head_metrics['mean_topic_ba'], 4))
+print('BA no pior tema:', round(head_metrics['min_topic_ba'], 4))
+table(['Tema', 'N', 'Macro-F1', 'BA'], [
+    [r['target'], r['n'], f"{r['macro_f1']:.4f}", f"{r['balanced_accuracy']:.4f}"]
+    for r in head_metrics['topics']])
+for interval in load(HEAD_RUN / 'intervals.json'):
+    print(interval['comparison'], 'delta F1:', round(interval['delta_macro_f1'], 4),
+          'IC95%:', interval['percentile_interval_95'])
+''')
+    md('''A meta provisória foi atingida: macro-F1 global 0,786, BA média 0,780 e
+pior BA 0,703. O ganho sobre NLI anterior foi 0,082 em macro-F1, com intervalo
+bootstrap de 0,043 a 0,118. A seleção adaptativa de métodos e o teste histórico
+limitam a interpretação desse intervalo. Aborto permanece difícil (macro-F1
+0,590); casamento tem apenas quatro exemplos contrários no teste.
+
+**R5/R10 — transferência:** cabeça final ajustada nos 2.060 exemplos de treino,
+C escolhido no dev, sem usar teste para ajuste. Os 280 templates conhecidos
+verificam direção, não generalização a documentos naturais. Limiar 0,7 é uma
+regra exploratória sem garantia de probabilidade calibrada. Evidências do
+documento são reaproveitadas do recuperador anterior, sem gabarito humano.
+''')
+    code('''APP_RUN = ROOT / 'analises/execucoes/crossencoder_application_20260917'
+controlled = load(APP_RUN / 'controlled_metrics.json')[0]
+document_result = load(APP_RUN / 'document_transfer.json')
+print('Templates:', controlled['n'], '| Macro-F1:', controlled['macro_f1'],
+      '| Cobertura:', controlled['direction_coverage'])
+print('Estados documentais:', document_result['counts'])
+assert all(item['response'] is None for item in document_result['items'])
+print('Nenhuma intensidade 8values foi inferida.')
+''')
+    md('''**Conclusão desta rodada:** melhora satisfatória segundo o critério local
+para temas reservados do BRmoral; transferência controlada correta em 280/280
+casos. O documento tem 18 posições favoráveis, 11 contrárias e 41 incertas,
+sem estimativa de acurácia. Isso não valida um perfil político nem as cinco
+intensidades do 8values. Próxima validação científica: documentos independentes
+com evidências e posições anotadas por humanos. O ajuste contrastivo original
+do E5 segue pendente; o resultado atual usa outro método.
+
+Relatório: [melhoria de generalização](analises/melhoria_generalizacao_20260917.md).
+''')
     namespace = {'__name__': '__notebook__'}
     count = 0
     for cell in cells:

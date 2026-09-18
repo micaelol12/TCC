@@ -1,0 +1,47 @@
+{
+  "config": {
+    "model": {
+      "name": "MoritzLaurer/bge-m3-zeroshot-v2.0",
+      "revision": "9abf1c8aaeb82a2447809c20753ed0b106b76652",
+      "dtype": "float16",
+      "device": "cuda",
+      "max_length": 512,
+      "id2label": {
+        "0": "entailment",
+        "1": "not_entailment"
+      },
+      "pairs": 4120,
+      "truncated": 6
+    },
+    "test_used": false
+  },
+  "input_hashes": {
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\analises\\dados\\brmoral_20260917\\corpus.jsonl": "34fe9de364bd08b058e9830d96ba134592aa8de36396331bfddb2a479d94b981",
+    "C:\\Users\\User\\Desktop\\Micael\\code\\TCC\\investigacao\\bge_train_calibration.py": "2ad3996ee6350341ad2f571980265c995200c030d4f658a7f0706aa4ba95d6ce"
+  },
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.7.1+cu118",
+    "transformers": "5.17.0",
+    "sentence-transformers": "6.0.1",
+    "scikit-learn": "1.9.1"
+  },
+  "elapsed_seconds": 163.40666280000005,
+  "rss_bytes_at_end": 1120862208,
+  "rss_is_peak": false,
+  "gpu": {
+    "name": "NVIDIA GeForce GTX 1060 3GB",
+    "cuda_build": "11.8",
+    "capability": [
+      6,
+      1
+    ],
+    "peak_allocated_bytes": 1155708416,
+    "peak_reserved_bytes": 1172307968
+  },
+  "limitations": [
+    "Diagnósticos conhecidos não são teste cego",
+    "Acurácia documental não estimada"
+  ]
+}
