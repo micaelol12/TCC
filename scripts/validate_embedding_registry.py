@@ -13,7 +13,26 @@ import json
 
 from dotenv import load_dotenv
 
-from compare_embedding_models import ROOT, execute_notebook_cell, load_notebook_definitions
+from compare_embedding_models import (
+    NOTEBOOK_PATH,
+    ROOT,
+    execute_notebook_cell,
+    load_notebook_definitions,
+)
+
+
+def find_code_cell(marker: str) -> int:
+    """Localiza uma célula de código por conteúdo estável, sem depender da posição."""
+    notebook = json.loads(NOTEBOOK_PATH.read_text(encoding="utf-8"))
+    matches = [
+        index
+        for index, cell in enumerate(notebook["cells"])
+        if cell.get("cell_type") == "code"
+        and marker in "".join(cell.get("source", []))
+    ]
+    if len(matches) != 1:
+        raise RuntimeError(f"Marcador {marker!r}: esperava 1 célula, encontrei {matches}.")
+    return matches[0]
 
 
 def main() -> None:
@@ -21,8 +40,16 @@ def main() -> None:
     namespace = load_notebook_definitions()
     namespace["display"] = lambda _value: None
 
-    for cell_index in (169, 170, 171, 172, 175, 176):
-        execute_notebook_cell(cell_index, namespace)
+    markers = (
+        "EMBEDDING_MODELS = {",
+        "def build_embedding_experiments(",
+        "embedding_experiments, embedding_initialization =",
+        "# Validação de engenharia de todas as condições registradas.",
+        "embedding_benchmark_frames = {}",
+        "embedding_sensitivity_frames = {}",
+    )
+    for marker in markers:
+        execute_notebook_cell(find_code_cell(marker), namespace)
 
     models = namespace["EMBEDDING_MODELS"]
     prototypes = namespace["EMBEDDING_PROTOTYPES"]
