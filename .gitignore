@@ -3,3 +3,6 @@
 __pycache__/
 *.py[cod]
 analises/modelos/
+.env
+.env.*
+!.env.example
