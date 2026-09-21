@@ -1,0 +1,51 @@
+{
+  "models": [
+    "multilingual_e5_base",
+    "openai_text_embedding_3_large"
+  ],
+  "prototype_sets": [
+    "single_text",
+    "multiple_prototypes"
+  ],
+  "conditions": 4,
+  "pipeline_model": "openai_text_embedding_3_large",
+  "pipeline_prototypes": "multiple_prototypes",
+  "overall": [
+    {
+      "model_key": "multilingual_e5_base",
+      "prototype_set": "single_text",
+      "accuracy": 0.5824175824175825,
+      "balanced_accuracy": 0.5826086956521739,
+      "mcc": 0.16529726435291225,
+      "majority_baseline": 0.5604395604395604,
+      "evaluation_seconds": 0.8049670000036713
+    },
+    {
+      "model_key": "multilingual_e5_base",
+      "prototype_set": "multiple_prototypes",
+      "accuracy": 0.5824175824175825,
+      "balanced_accuracy": 0.5842995169082126,
+      "mcc": 0.17931421089964994,
+      "majority_baseline": 0.5604395604395604,
+      "evaluation_seconds": 0.01786089999950491
+    },
+    {
+      "model_key": "openai_text_embedding_3_large",
+      "prototype_set": "single_text",
+      "accuracy": 0.7142857142857143,
+      "balanced_accuracy": 0.7135265700483092,
+      "mcc": 0.4314526263218992,
+      "majority_baseline": 0.5604395604395604,
+      "evaluation_seconds": 2.2059569000048214
+    },
+    {
+      "model_key": "openai_text_embedding_3_large",
+      "prototype_set": "multiple_prototypes",
+      "accuracy": 0.7362637362637363,
+      "balanced_accuracy": 0.735024154589372,
+      "mcc": 0.48305839256555655,
+      "majority_baseline": 0.5604395604395604,
+      "evaluation_seconds": 0.012417900004948024
+    }
+  ]
+}
