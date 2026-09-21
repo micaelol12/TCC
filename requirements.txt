@@ -12,6 +12,8 @@ pandas
 plotly
 pydantic>=2
 pymupdf4llm
+scikit-learn
+scipy
 sentence-transformers
 torch
 transformers
