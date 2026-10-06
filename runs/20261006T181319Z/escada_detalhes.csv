@@ -1,0 +1,81 @@
+etapa,eixo,nível esperado,relevante,nível previsto,método,frase,nível exato,direção correta
+JEV,economic,-2,True,-2.0,jev_ordinal,"Todas as empresas estatais serão vendidas, e saúde, educação e previdência passarão a ser oferecidas por empresas privadas, com forte redução de impostos.",True,True
+cascata,economic,-2,True,-2.0,jev_ordinal,"Todas as empresas estatais serão vendidas, e saúde, educação e previdência passarão a ser oferecidas por empresas privadas, com forte redução de impostos.",True,True
+JEV,economic,-2,True,-2.0,jev_ordinal,"O governo deixará de intervir na economia: a maior parte das regras sobre preços, salários e contratos será eliminada e a carga tributária cairá pela metade.",True,True
+cascata,economic,-2,True,-2.0,jev_ordinal,"O governo deixará de intervir na economia: a maior parte das regras sobre preços, salários e contratos será eliminada e a carga tributária cairá pela metade.",True,True
+JEV,economic,-1,True,-1.0,jev_ordinal,"A administração de alguns aeroportos será concedida à iniciativa privada, e o número de tributos sobre o consumo será reduzido de cinco para dois.",True,True
+cascata,economic,-1,True,-1.0,jev_ordinal,"A administração de alguns aeroportos será concedida à iniciativa privada, e o número de tributos sobre o consumo será reduzido de cinco para dois.",True,True
+JEV,economic,-1,True,-1.0,jev_ordinal,"O orçamento federal terá um limite de crescimento, e os encargos sobre a folha de pagamento cairão gradualmente nos próximos quatro anos.",True,True
+cascata,economic,-1,True,-1.0,jev_ordinal,"O orçamento federal terá um limite de crescimento, e os encargos sobre a folha de pagamento cairão gradualmente nos próximos quatro anos.",True,True
+JEV,economic,0,False,,jev_ordinal,"Segundo dados oficiais, a taxa de desemprego caiu de 9% para 7% entre 2023 e 2025.",True,True
+cascata,economic,0,False,,jev_ordinal,"Segundo dados oficiais, a taxa de desemprego caiu de 9% para 7% entre 2023 e 2025.",True,True
+JEV,economic,0,False,,jev_ordinal,Este capítulo apresenta a evolução da dívida pública e da arrecadação federal na última década.,True,True
+cascata,economic,0,False,,jev_ordinal,Este capítulo apresenta a evolução da dívida pública e da arrecadação federal na última década.,True,True
+JEV,economic,1,True,1.0,jev_ordinal,"O benefício pago às famílias de baixa renda será reajustado acima da inflação, e será criada uma alíquota adicional de imposto de renda para salários muito altos.",True,True
+cascata,economic,1,True,1.0,jev_ordinal,"O benefício pago às famílias de baixa renda será reajustado acima da inflação, e será criada uma alíquota adicional de imposto de renda para salários muito altos.",True,True
+JEV,economic,1,True,1.0,jev_ordinal,Serão contratados mais fiscais do trabalho e abertas novas unidades públicas de saúde nas regiões de menor renda.,True,True
+cascata,economic,1,True,1.0,jev_ordinal,Serão contratados mais fiscais do trabalho e abertas novas unidades públicas de saúde nas regiões de menor renda.,True,True
+JEV,economic,2,True,2.0,jev_ordinal,"Bancos, mineradoras e empresas de energia passarão ao controle público, e grandes fortunas e heranças serão taxadas para financiar uma redistribuição ampla da riqueza.",True,True
+cascata,economic,2,True,2.0,jev_ordinal,"Bancos, mineradoras e empresas de energia passarão ao controle público, e grandes fortunas e heranças serão taxadas para financiar uma redistribuição ampla da riqueza.",True,True
+JEV,economic,2,True,2.0,jev_ordinal,"A produção dos setores estratégicos será planejada pelo Estado, e terras improdutivas serão desapropriadas e redistribuídas em larga escala.",True,True
+cascata,economic,2,True,2.0,jev_ordinal,"A produção dos setores estratégicos será planejada pelo Estado, e terras improdutivas serão desapropriadas e redistribuídas em larga escala.",True,True
+JEV,diplomatic,-2,True,-2.0,jev_ordinal,O país deixará as organizações internacionais que limitam suas decisões e dobrará o orçamento militar para impor seus interesses na região.,True,True
+cascata,diplomatic,-2,True,-2.0,jev_ordinal,O país deixará as organizações internacionais que limitam suas decisões e dobrará o orçamento militar para impor seus interesses na região.,True,True
+JEV,diplomatic,-2,True,-2.0,jev_ordinal,"Nenhum tratado internacional terá validade se contrariar a vontade do governo nacional, e as Forças Armadas estarão prontas para agir além das fronteiras.",True,True
+cascata,diplomatic,-2,True,-2.0,jev_ordinal,"Nenhum tratado internacional terá validade se contrariar a vontade do governo nacional, e as Forças Armadas estarão prontas para agir além das fronteiras.",True,True
+JEV,diplomatic,-1,True,-1.0,jev_ordinal,"O acordo comercial com o bloco europeu será renegociado para proteger a indústria nacional, e os equipamentos das Forças Armadas serão modernizados.",True,True
+cascata,diplomatic,-1,True,-1.0,jev_ordinal,"O acordo comercial com o bloco europeu será renegociado para proteger a indústria nacional, e os equipamentos das Forças Armadas serão modernizados.",True,True
+JEV,diplomatic,-1,True,-1.0,jev_ordinal,"As decisões sobre a exploração de recursos naturais na fronteira caberão exclusivamente ao governo nacional, sem consulta a organismos estrangeiros.",True,True
+cascata,diplomatic,-1,True,-1.0,jev_ordinal,"As decisões sobre a exploração de recursos naturais na fronteira caberão exclusivamente ao governo nacional, sem consulta a organismos estrangeiros.",True,True
+JEV,diplomatic,0,True,0.0,jev_ordinal,O país mantém embaixadas em mais de 130 países.,True,True
+cascata,diplomatic,0,True,0.0,llm_ordinal,O país mantém embaixadas em mais de 130 países.,True,True
+JEV,diplomatic,0,False,,jev_ordinal,A seção descreve a balança comercial e os principais parceiros comerciais do país em 2025.,True,True
+cascata,diplomatic,0,False,,jev_ordinal,A seção descreve a balança comercial e os principais parceiros comerciais do país em 2025.,True,True
+JEV,diplomatic,1,True,1.0,jev_ordinal,O país aderirá ao novo acordo multilateral sobre emissões e ampliará a cooperação técnica com os países vizinhos.,True,True
+cascata,diplomatic,1,True,1.0,jev_ordinal,O país aderirá ao novo acordo multilateral sobre emissões e ampliará a cooperação técnica com os países vizinhos.,True,True
+JEV,diplomatic,1,True,1.0,jev_ordinal,"Diante de conflitos internacionais, o governo priorizará a mediação diplomática e apoiará as missões de paz das Nações Unidas.",True,True
+cascata,diplomatic,1,True,1.0,jev_ordinal,"Diante de conflitos internacionais, o governo priorizará a mediação diplomática e apoiará as missões de paz das Nações Unidas.",True,True
+JEV,diplomatic,2,True,2.0,jev_ordinal,"Propomos criar um parlamento e uma moeda comuns aos países da região, com decisões acima das leis nacionais.",True,True
+cascata,diplomatic,2,True,2.0,jev_ordinal,"Propomos criar um parlamento e uma moeda comuns aos países da região, com decisões acima das leis nacionais.",True,True
+JEV,diplomatic,2,True,2.0,jev_ordinal,"As Forças Armadas serão reduzidas progressivamente, e a segurança do país passará a depender de um sistema internacional de defesa coletiva.",True,True
+cascata,diplomatic,2,True,2.0,jev_ordinal,"As Forças Armadas serão reduzidas progressivamente, e a segurança do país passará a depender de um sistema internacional de defesa coletiva.",True,True
+JEV,state,-2,True,-2.0,jev_ordinal,O presidente poderá suspender partidos de oposição e fechar veículos de imprensa considerados uma ameaça à ordem pública.,True,True
+cascata,state,-2,True,-2.0,jev_ordinal,O presidente poderá suspender partidos de oposição e fechar veículos de imprensa considerados uma ameaça à ordem pública.,True,True
+JEV,state,-2,True,-2.0,jev_ordinal,"Todas as comunicações pela internet serão monitoradas pelo governo, e manifestações de rua dependerão de autorização prévia.",True,True
+cascata,state,-2,True,-2.0,jev_ordinal,"Todas as comunicações pela internet serão monitoradas pelo governo, e manifestações de rua dependerão de autorização prévia.",True,True
+JEV,state,-1,True,-1.0,jev_ordinal,"O efetivo da polícia será ampliado em 20%, e as penas para roubo e homicídio serão aumentadas.",True,True
+cascata,state,-1,True,-1.0,jev_ordinal,"O efetivo da polícia será ampliado em 20%, e as penas para roubo e homicídio serão aumentadas.",True,True
+JEV,state,-1,True,-1.0,jev_ordinal,As autoridades poderão decretar prisão preventiva em mais situações e instalar câmeras de reconhecimento facial nas estações de transporte.,True,True
+cascata,state,-1,True,-1.0,jev_ordinal,As autoridades poderão decretar prisão preventiva em mais situações e instalar câmeras de reconhecimento facial nas estações de transporte.,True,True
+JEV,state,0,False,,jev_ordinal,"Segundo o anuário de segurança pública, o número de homicídios caiu 6% em 2025.",True,True
+cascata,state,0,False,,jev_ordinal,"Segundo o anuário de segurança pública, o número de homicídios caiu 6% em 2025.",True,True
+JEV,state,0,False,,jev_ordinal,"O capítulo descreve a organização atual dos tribunais, das polícias e das defensorias públicas.",True,True
+cascata,state,0,False,,jev_ordinal,"O capítulo descreve a organização atual dos tribunais, das polícias e das defensorias públicas.",True,True
+JEV,state,1,True,1.0,jev_ordinal,"Os dados de gastos públicos serão publicados em tempo real, e a Defensoria Pública terá mais recursos para garantir a defesa dos acusados.",True,True
+cascata,state,1,True,1.0,jev_ordinal,"Os dados de gastos públicos serão publicados em tempo real, e a Defensoria Pública terá mais recursos para garantir a defesa dos acusados.",True,True
+JEV,state,1,True,1.0,jev_ordinal,"O uso de dados pessoais por órgãos públicos dependerá de autorização judicial, e os conselhos municipais terão participação popular ampliada.",True,True
+cascata,state,1,True,1.0,jev_ordinal,"O uso de dados pessoais por órgãos públicos dependerá de autorização judicial, e os conselhos municipais terão participação popular ampliada.",True,True
+JEV,state,2,True,2.0,jev_ordinal,"O porte de drogas para consumo pessoal e outras condutas individuais deixarão de ser crime, e os poderes de vigilância da polícia serão drasticamente reduzidos.",True,True
+cascata,state,2,True,2.0,jev_ordinal,"O porte de drogas para consumo pessoal e outras condutas individuais deixarão de ser crime, e os poderes de vigilância da polícia serão drasticamente reduzidos.",True,True
+JEV,state,2,True,2.0,jev_ordinal,"A maior parte das decisões políticas passará a assembleias locais, e todos os órgãos estatais de monitoramento e de censura serão extintos.",True,True
+cascata,state,2,True,2.0,jev_ordinal,"A maior parte das decisões políticas passará a assembleias locais, e todos os órgãos estatais de monitoramento e de censura serão extintos.",True,True
+JEV,society,-2,True,-2.0,jev_ordinal,"As políticas públicas de educação, saúde e cultura deverão seguir os princípios morais da religião majoritária e o modelo tradicional de família.",True,True
+cascata,society,-2,True,-2.0,jev_ordinal,"As políticas públicas de educação, saúde e cultura deverão seguir os princípios morais da religião majoritária e o modelo tradicional de família.",True,True
+JEV,society,-2,True,-2.0,jev_ordinal,"As leis aprovadas nas últimas décadas que mudaram os costumes serão revogadas, restaurando as normas morais anteriores.",True,True
+cascata,society,-2,True,-2.0,jev_ordinal,"As leis aprovadas nas últimas décadas que mudaram os costumes serão revogadas, restaurando as normas morais anteriores.",True,True
+JEV,society,-1,True,-1.0,jev_ordinal,"As festas e tradições religiosas locais receberão apoio público, e mudanças no conteúdo escolar sobre valores só ocorrerão após consulta às famílias.",True,True
+cascata,society,-1,True,-1.0,jev_ordinal,"As festas e tradições religiosas locais receberão apoio público, e mudanças no conteúdo escolar sobre valores só ocorrerão após consulta às famílias.",True,True
+JEV,society,-1,True,-1.0,jev_ordinal,Mudanças nas regras sobre casamento e família só serão feitas de forma gradual e após amplo debate na sociedade.,True,True
+cascata,society,-1,True,-1.0,jev_ordinal,Mudanças nas regras sobre casamento e família só serão feitas de forma gradual e após amplo debate na sociedade.,True,True
+JEV,society,0,False,,jev_ordinal,Os dados do censo mostram que o número médio de pessoas por domicílio diminuiu na última década.,True,True
+cascata,society,0,False,,jev_ordinal,Os dados do censo mostram que o número médio de pessoas por domicílio diminuiu na última década.,True,True
+JEV,society,0,True,0.0,jev_ordinal,Serão construídas 300 escolas técnicas e instalados laboratórios de ciências nas escolas públicas.,True,True
+cascata,society,0,True,0.0,jev_ordinal,Serão construídas 300 escolas técnicas e instalados laboratórios de ciências nas escolas públicas.,True,True
+JEV,society,1,True,1.0,jev_ordinal,"Será criada uma política de combate à discriminação no mercado de trabalho, e a licença parental passará a valer também para os pais.",True,True
+cascata,society,1,True,1.0,jev_ordinal,"Será criada uma política de combate à discriminação no mercado de trabalho, e a licença parental passará a valer também para os pais.",True,True
+JEV,society,1,True,1.0,jev_ordinal,O currículo escolar passará a incluir conteúdos sobre a diversidade de arranjos familiares existentes no país.,True,True
+cascata,society,1,True,1.0,jev_ordinal,O currículo escolar passará a incluir conteúdos sobre a diversidade de arranjos familiares existentes no país.,True,True
+JEV,society,2,True,2.0,jev_ordinal,Propomos uma ampla reforma das instituições sociais para eliminar os papéis de gênero e a influência religiosa sobre a vida pública.,True,True
+cascata,society,2,True,2.0,jev_ordinal,Propomos uma ampla reforma das instituições sociais para eliminar os papéis de gênero e a influência religiosa sobre a vida pública.,True,True
+JEV,society,2,True,2.0,jev_ordinal,Todas as normas sociais herdadas serão revistas para dar lugar a novas formas de organização da vida em comum.,True,True
+cascata,society,2,True,2.0,jev_ordinal,Todas as normas sociais herdadas serão revistas para dar lugar a novas formas de organização da vida em comum.,True,True

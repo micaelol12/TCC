@@ -1,0 +1,4 @@
+medida,valor,IC95
+acurácia JEV,0.7214285714285714,"(np.float64(0.6642), np.float64(0.7786))"
+acurácia cascata,0.7357142857142858,"(np.float64(0.6714), np.float64(0.7964))"
+diferença cascata − JEV,0.014285714285714346,"(np.float64(-0.0107), np.float64(0.0393))"

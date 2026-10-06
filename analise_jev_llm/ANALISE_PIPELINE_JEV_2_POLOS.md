@@ -460,3 +460,30 @@ Os testes podem ser executados no próprio pipeline e respondem diretamente à e
 - A igualdade "confiança = margem" foi conferida em cerca de 20 linhas visíveis. O SDK documenta o `score`, mas não a fórmula da `confidence`. Antes de remover `margem_score_minima`, confira nos 280 pares persistidos.
 - As hipóteses sobre efeito-teto (society, economic) e sobre o eixo diplomático vêm de um único plano. Só se confirmam ou refutam processando os 12 planos com a mesma configuração.
 - Afirmações sobre as APIs se baseiam na documentação pública e no código do SDK em 06/10/2026. A aplicação do `service_tier="flex"` à Responses API da Maritaca não está confirmada.
+
+## 10. Status das recomendações (06/10/2026)
+
+### Resolvido no notebook
+
+| Tema | O que mudou | Achados |
+|---|---|---|
+| Estimando e escala | Polaridade ordinal de 5 níveis (Score ou Choice), com "sem posição"; índice `50 × (1 + média(nível/2))`, contagens por nível, índice só JEV e IC por bootstrap em blocos; regra de evidência mínima | API-01, BEN-03, DOC-02, DOC-04, DOC-V01, API-V02, LIT-13 |
+| Rubricas | Âncoras espelhadas por nível; notas do que não indica posição; autoridade moderada inclui ordem e segurança; eixo diplomático com força × diplomacia | VIE-02 a VIE-05 (parcial), API-06 (parcial) |
+| Neutralidade das figuras | Gráfico com identificador cego e IC; rótulos só quando o IC cabe numa faixa | VIE-01, DOC-17 |
+| Reprodutibilidade | `runs/<RUN_ID>/` com manifesto (versões, commit, modelos, assinatura do pipeline), registros em JSONL item a item, tabelas em CSV com escrita atômica; retomada pelo `RUN_ID`; JEV fixado em `jev-1.13.0`; `temperature=0`; `requirements-pipeline.txt` | COD-01 a COD-06, BEN-13, API-03 a API-05, CMP-03 |
+| Robustez | Novas tentativas no JEV e no LLM; falha do LLM vira abstenção registrada (`falha_llm`); timeout explícito; recusa (`output_parsed=None`) tratada; eixo validado por `Literal` | COD-03, COD-11, API-07, API-10 |
+| Prompt e evidência | Regras em `instructions`, dados em `input`; citação com ≥ 4 palavras, ignorando Markdown e escapes; reversão de relevância pelo LLM registrada | COD-07, API-09, COD-12/API-08 (medição) |
+| Métricas | Relevância (matriz, precisão, revocação, acurácia balanceada, κ), direção nos detectados e pelo nível do JEV, referência "tudo irrelevante", orçamento de erros, estratos do gabarito, McNemar, teste do sinal, IC por pergunta, calibração, prior do JEV, correções por motivo; margens do JEV em todos os pares; dtype corrigido | BEN-01, BEN-02, BEN-04, BEN-06, BEN-10, BEN-14, BEN-15, BEN-18, COD-08, COD-16, VIE-11, VIE-15 |
+| Texto de entrada | Limpeza do Markdown com log; hash do documento conferido; prévia offline do número de trechos nos 12 planos | DOC-06, COD-13, DOC-07, DOC-18 |
+| Execução | Amostra estratificada em `LIMITE_PERGUNTAS`; Python ≥ 3.11 checado; `T` definido antes do uso | BEN-19, COD-02 |
+| Experimentos prontos (desligados) | Teste-reteste do JEV, LLM em todos os eixos com simulação offline de limiares (Pareto, LLM sozinho, oráculo), permutação da ordem dos níveis | COD-20, BEN-09, LIT-05, BEN-12, VIE-06 |
+
+### Primeira execução da versão ordinal (antes da rodada 2)
+
+- **Benchmark:** JEV 197/280 (70,4%), cascata 206/280 (73,6%), 10 pares corrigidos e 1 piorado, 23 chamadas ao LLM. O valor é menor que o da versão de 2 níveis porque "sem posição" conta como erro de direção.
+- **Escada:** acerto de 100% no JEV e na cascata. Como frases e âncoras foram escritas pela mesma pessoa, esse resultado é condição necessária, não suficiente.
+- **Documento de exemplo:** o efeito-teto do eixo social desapareceu (98,75 → 56,4; 52 de 70 trechos "sem posição"), e nenhum trecho recebeu "polo B forte".
+
+### Pendente: depende de decisão ou de ação do autor
+
+Ver a resposta da sessão de 06/10/2026 e os achados citados: rodar de novo e versionar `runs/`; rótulos ligados nas células finais; revisão do log de limpeza; limiares escolhidos por desenvolvimento; validação humana; tradução das perguntas; snapshot do Sabiá; mascaramento de identidade; os 12 planos; alinhamento com o usuário; baselines externos; arquivos truncados em `tcc/`; LGPD; ficha do instrumento; pré-registro.

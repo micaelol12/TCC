@@ -1,0 +1,43 @@
+{
+  "run_id": "20261006T181319Z",
+  "criado_em_utc": "2026-10-06T18:13:19+00:00",
+  "python": "3.12.10",
+  "pacotes": {
+    "typesafe-sdk": "0.7.2",
+    "openai": "3.24.0",
+    "pydantic": "2.13.5",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "langchain-text-splitters": "1.1.3",
+    "tiktoken": "0.14.0",
+    "matplotlib": "3.11.2"
+  },
+  "commit_git": "6472c671c3d24eb33e96ffd15404aafd996bae6e",
+  "modelo_jev": "jev-1.13.0",
+  "modelo_llm": "sabia-4",
+  "temperatura_llm": 0.0,
+  "config": {
+    "tipo_relevancia": "choice",
+    "limiar_noul": 0.5,
+    "margem_relevancia_minima": 0.2,
+    "primitiva_polaridade": "score",
+    "confianca_nivel_minima": 0.5,
+    "margem_direcao_minima": 0.2,
+    "usar_fallback": true
+  },
+  "config_chunks": {
+    "max_tokens": 600,
+    "overlap_tokens": 0,
+    "encoding_name": "cl100k_base"
+  },
+  "config_indice": {
+    "n_bootstrap": 2000,
+    "semente": 42,
+    "minimo_trechos": 16
+  },
+  "limite_perguntas": null,
+  "semente": 42,
+  "limpar_markdown": true,
+  "assinatura_pipeline": "2aef1a3263be0fde26c1fb8b94933fce8c2899066890b18eff8ac92907f5eaa9",
+  "hash_questions_json": "86fd4bbf97ef8000f6e29238a60704968553e956fa5fd1d19bdfe59cb6d8eb4a"
+}

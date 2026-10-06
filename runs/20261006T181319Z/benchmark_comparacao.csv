@@ -1,0 +1,5 @@
+eixo,casos,acuracia_jev,acuracia_cascata,eixos_llm,corrigidos,piorados
+diplomatic,70,0.8,0.8,1,0,0
+economic,70,0.8714285714285714,0.8428571428571429,3,0,2
+society,70,0.6142857142857143,0.6428571428571429,14,3,1
+state,70,0.6,0.6571428571428571,10,5,1
