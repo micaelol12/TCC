@@ -1,0 +1,4 @@
+medida,valor,IC95
+acurácia JEV,0.7107142857142857,"(0.6536, 0.7679)"
+acurácia cascata,0.775,"(0.7179, 0.825)"
+diferença cascata − JEV,0.06428571428571428,"(0.0357, 0.0929)"

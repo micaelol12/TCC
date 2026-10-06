@@ -1,0 +1,9 @@
+etapa,eixo,frases,spearman,nível exato,direção correta (não neutras),acerto polo A,acerto polo B,erro absoluto médio (níveis),sem nível
+JEV,diplomatic,10,1.0,1.0,1.0,1.0,1.0,0.0,1
+JEV,economic,10,1.0,1.0,1.0,1.0,1.0,0.0,2
+JEV,society,10,1.0,1.0,1.0,1.0,1.0,0.0,1
+JEV,state,10,1.0,1.0,1.0,1.0,1.0,0.0,2
+cascata,diplomatic,10,1.0,1.0,1.0,1.0,1.0,0.0,2
+cascata,economic,10,1.0,1.0,1.0,1.0,1.0,0.0,2
+cascata,society,10,1.0,1.0,1.0,1.0,1.0,0.0,1
+cascata,state,10,1.0,1.0,1.0,1.0,1.0,0.0,2

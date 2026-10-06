@@ -1,0 +1,205 @@
+{
+ "eixo": null,
+ "paragrafos": [
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Este documento reúne, em um único volume, o conjunto de textos preparados ao longo dos últimos meses pela equipe de redação. A intenção desta abertura é apenas situar quem chega agora ao material, indicando como ele foi montado e de que maneira as partes se relacionam entre si. Nas páginas seguintes, o leitor encontrará capítulos de tamanhos diferentes, cada um precedido por uma breve nota de abertura e seguido por um resumo de fechamento. Optou-se por manter essa estrutura repetida porque ela facilita a consulta rápida e permite que cada capítulo seja lido de forma independente, sem prejuízo do entendimento. Recomenda-se, ainda assim, que a primeira leitura siga a ordem indicada no sumário, já que algumas expressões são apresentadas no início e retomadas depois sem nova explicação. Ao final do volume há um conjunto de anexos, um glossário e um índice remissivo, descritos em detalhe nas seções correspondentes desta introdução."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Quem preferir uma leitura seletiva pode começar pelo sumário, que traz os títulos de todos os capítulos e das principais seções, acompanhados do número da página em que cada um se inicia. Na versão em arquivo, esses títulos funcionam como atalhos e levam diretamente ao trecho escolhido. Ao longo do texto, chamadas entre parênteses remetem a outras partes do volume, sempre com a indicação do capítulo e da seção, para que o leitor possa ir e voltar sem perder o fio. As notas de rodapé foram reservadas para observações de caráter editorial, como esclarecimentos sobre uma palavra ou sobre a origem de um quadro, e podem ser ignoradas numa primeira passagem sem nenhum prejuízo. Os destaques em negrito marcam apenas termos que aparecem no glossário, e não indicam ênfase ou hierarquia de importância. Já o itálico foi usado para palavras estrangeiras e para títulos de outras obras mencionadas."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A redação deste material seguiu um percurso em etapas. Primeiro, cada integrante da equipe recebeu a incumbência de preparar um rascunho inicial de uma das partes, a partir de um roteiro comum com a extensão aproximada e a ordem dos tópicos. Esses rascunhos foram reunidos em uma pasta compartilhada e lidos por pelo menos duas outras pessoas, que deixaram comentários à margem. Na etapa seguinte, os autores revisaram seus textos com base nessas anotações e devolveram uma segunda versão, já com a padronização de títulos e de formatação. Por fim, um pequeno grupo ficou responsável pela unificação do estilo, cuidando para que o conjunto soasse como um texto só, e não como uma colagem de contribuições isoladas. Esse cuidado explica por que algumas passagens foram reescritas quase por completo, enquanto outras chegaram à versão final praticamente sem alterações em relação ao primeiro rascunho."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Depois de concluída a fase de escrita, o texto passou por duas rodadas de revisão ortográfica e gramatical. Na primeira, o foco esteve na correção de erros de digitação, na concordância e na pontuação, com atenção especial às vírgulas, que costumam se multiplicar quando várias pessoas escrevem a mesma página. Na segunda, os revisores conferiram a uniformidade de grafia de palavras que admitem mais de uma forma, adotando sempre a variante registrada no vocabulário ortográfico de referência. Também foram verificadas as remissões internas, para garantir que cada chamada apontasse para o capítulo e a página corretos depois das mudanças de paginação. Ainda assim, é provável que alguns deslizes tenham escapado, como acontece em qualquer texto extenso. Por isso, as edições posteriores incorporarão as correções enviadas pelos leitores, conforme o procedimento descrito mais adiante, na seção dedicada às erratas e à atualização do arquivo."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "O trabalho de elaboração deste volume ocupou cerca de vinte semanas, distribuídas em quatro fases de duração desigual. As seis primeiras semanas foram dedicadas à definição do roteiro geral, à divisão das tarefas e à reunião do material de apoio. As oito semanas seguintes concentraram a maior parte da escrita propriamente dita, com entregas parciais a cada quinze dias. Seguiram-se quatro semanas de revisão, nas quais os capítulos circularam entre os integrantes da equipe e receberam ajustes sucessivos. As duas semanas finais foram reservadas à diagramação, à conferência das provas e à preparação dos arquivos para impressão. Houve pequenos atrasos ao longo do caminho, sobretudo na passagem da escrita para a revisão, mas eles foram absorvidos por uma margem de folga prevista desde o início. O calendário detalhado, com as datas de cada entrega, está reproduzido no segundo anexo."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As reuniões de redação aconteceram, em sua maioria, às terças e quintas-feiras no fim da tarde, horário escolhido por permitir a presença do maior número de integrantes. Cada encontro durava em média uma hora e meia e seguia uma pauta enviada com um dia de antecedência, com a lista dos trechos a serem discutidos e o nome de quem apresentaria cada um. Uma pessoa ficava encarregada de controlar o tempo, e outra registrava em ata as decisões tomadas e as pendências que ficavam para o encontro seguinte. Parte das reuniões ocorreu em uma sala alugada, com mesa grande e um quadro branco, e parte foi realizada por videochamada, o que permitiu a presença de colaboradores que estavam viajando. As atas de todos os encontros foram arquivadas junto com os rascunhos e podem ser consultadas por quem tiver interesse em acompanhar a evolução do texto."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Cabe registrar aqui um agradecimento sincero a todas as pessoas que se envolveram na preparação deste volume. Muitas delas dedicaram noites e fins de semana à leitura de rascunhos, à conferência de números de página e à paciente tarefa de padronizar notas e referências. Outras contribuíram de maneira menos visível, organizando agendas, reservando salas, providenciando café e mantendo em ordem a pasta compartilhada onde os arquivos circulavam. Sem esse trabalho silencioso, a parte mais aparente da tarefa teria sido muito mais difícil. Agradecemos também a quem leu as versões preliminares e apontou trechos confusos, repetições e frases longas demais, ajudando a tornar o texto mais claro. Por fim, um agradecimento especial à equipe de diagramação, que acomodou com bom humor as inúmeras mudanças de última hora e conseguiu entregar as provas finais dentro do prazo combinado."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As siglas empregadas ao longo do volume são apresentadas por extenso na primeira vez em que aparecem em cada capítulo, seguidas da forma abreviada entre parênteses. A partir daí, apenas a forma abreviada é utilizada até o fim daquele capítulo. Optou-se por repetir o desdobramento no início de cada capítulo, e não apenas na primeira ocorrência do volume, porque se sabe que muitos leitores consultarão as partes de forma isolada. Siglas com até três letras foram escritas inteiramente em maiúsculas; as mais longas, que podem ser pronunciadas como palavra, seguem a convenção de usar maiúscula apenas na inicial. Não se acrescentou o s de plural às siglas, deixando que o artigo indique o número. Uma lista completa, em ordem alfabética, encontra-se logo antes do glossário, para consulta rápida sempre que uma abreviação parecer desconhecida."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A numeração das seções segue um sistema decimal simples. O primeiro algarismo indica o capítulo, o segundo a seção dentro dele e, quando necessário, um terceiro algarismo identifica a subseção. Assim, a referência três ponto dois ponto um remete à primeira subseção da segunda seção do terceiro capítulo. Evitou-se ir além de três níveis, porque a experiência mostra que divisões muito profundas acabam dificultando a orientação em vez de ajudar. Os parágrafos não são numerados individualmente, mas as linhas da versão em arquivo podem ser localizadas pela ferramenta de busca do leitor de documentos. Quadros e figuras têm numeração própria, reiniciada a cada capítulo e precedida do número dele, de modo que o quadro dois ponto quatro é o quarto quadro do segundo capítulo. As páginas preliminares usam algarismos romanos minúsculos, e a contagem em arábicos começa na primeira página do capítulo inicial."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As notas foram posicionadas no rodapé de cada página, e não ao final dos capítulos, para poupar o leitor de ir e voltar entre partes distantes do volume. A numeração das notas recomeça em cada capítulo. Elas foram mantidas curtas, raramente ultrapassando três linhas, e servem sobretudo para indicar a origem de uma citação, esclarecer uma expressão pouco usual ou remeter a outra parte do texto. Quando uma observação precisava de mais espaço, preferiu-se transformá-la em um quadro destacado no corpo do capítulo ou em um item dos anexos. Na versão em arquivo, o número de cada nota funciona como atalho: basta selecioná-lo para que a nota seja exibida, e um segundo clique devolve o leitor ao ponto de origem. Na versão impressa, as chamadas aparecem em sobrescrito, logo após a pontuação da frase a que se referem, conforme a convenção tipográfica mais comum."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "O projeto gráfico deste volume foi pensado para favorecer a leitura prolongada. Adotou-se uma fonte serifada de corpo onze para o texto principal, com entrelinha generosa, e uma fonte sem serifa para títulos, legendas e notas, criando um contraste discreto entre os diferentes níveis de informação. As margens externas são um pouco mais largas que as internas, o que deixa espaço para anotações à mão na versão impressa. Cada capítulo começa em página ímpar, precedido por uma página de abertura com o título e uma pequena vinheta. Os cabeçalhos trazem, nas páginas pares, o título do volume e, nas ímpares, o título do capítulo em curso. A paleta de cores foi limitada a dois tons, além do preto, usados com parcimônia em fios, fundos de quadros e números de seção, para que a impressão em preto e branco não comprometa a legibilidade."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As ilustrações que acompanham o texto têm função essencialmente decorativa e de orientação visual. Não trazem informações adicionais e podem ser deixadas de lado sem perda de conteúdo. Foram produzidas especialmente para este volume, a partir de um conjunto de esboços feitos à mão e depois finalizados em traço limpo, com preenchimento em uma única cor. Cada abertura de capítulo exibe uma pequena composição de formas geométricas, e algumas páginas internas trazem vinhetas que ajudam a marcar a passagem entre seções mais longas. Para manter a unidade visual, todas as ilustrações seguem a mesma espessura de linha e a mesma paleta. Na versão em arquivo, cada imagem vem acompanhada de um texto alternativo curto, que descreve sua forma para quem utiliza leitores de tela. Os créditos de autoria das ilustrações estão reunidos na página de expediente, ao final do volume."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Os anexos reúnem materiais de apoio que, por sua extensão ou natureza, ficariam deslocados no corpo do texto. O primeiro anexo traz a lista de siglas e abreviaturas; o segundo, o calendário de elaboração com as datas de cada etapa; o terceiro, o modelo de formulário usado para registrar comentários durante a revisão; e o quarto, um quadro de correspondência entre as numerações desta edição e da edição anterior, útil para quem já tinha anotações na versão antiga. Cada anexo começa em página nova e tem paginação contínua em relação ao restante do volume. Na versão em arquivo, os anexos também estão disponíveis como documentos separados, que podem ser baixados individualmente sem a necessidade de abrir o volume inteiro. Recomenda-se consultar os anexos apenas quando houver remissão explícita no texto, pois eles não foram escritos para leitura corrida."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Este volume circula em duas versões com conteúdo idêntico. A versão impressa foi produzida em formato próximo ao de um livro de bolso grande, com capa em papel cartão e miolo em papel de gramatura média, encadernado com costura para resistir ao manuseio frequente. A versão em arquivo reproduz fielmente a paginação da impressa, de modo que as referências a números de página valem para ambas. Além disso, ela oferece recursos próprios, como sumário clicável, busca por palavras e marcadores laterais que permitem saltar entre capítulos. Quem preferir ler em telas pequenas encontrará também uma variante de layout fluido, em que o texto se ajusta à largura do aparelho; nessa variante, porém, os números de página não correspondem aos da versão impressa, e as remissões internas são feitas apenas pelo número da seção."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "O glossário, situado ao final do volume, reúne cerca de sessenta termos que aparecem no texto com sentido específico ou que podem gerar dúvida em uma primeira leitura. As entradas estão em ordem alfabética e trazem uma definição curta, de no máximo três linhas, seguida da indicação das seções em que o termo é mais utilizado. Quando uma palavra admite mais de um sentido, o glossário registra apenas aquele adotado no volume, sem pretender esgotar as possibilidades de uso. Sinônimos e variantes de grafia remetem à entrada principal por meio da indicação ver. No corpo do texto, os termos incluídos no glossário aparecem em negrito na primeira ocorrência de cada capítulo, sinalizando ao leitor que ali há uma definição disponível. A redação das entradas buscou a linguagem mais simples possível, evitando definir uma palavra por meio de outras igualmente pouco conhecidas."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "O índice remissivo complementa o sumário e o glossário, oferecendo um caminho diferente para localizar assuntos ao longo do volume. Enquanto o sumário acompanha a ordem dos capítulos, o índice organiza as entradas em ordem alfabética e indica todas as páginas em que cada expressão aparece de forma relevante. Menções apenas de passagem não foram registradas, para evitar listas longas e pouco úteis. Entradas mais amplas foram desdobradas em subentradas, recuadas em relação à principal, o que permite encontrar com rapidez o aspecto específico procurado. Os números de página em negrito indicam o trecho em que o assunto é tratado com maior detalhe. A elaboração do índice foi feita manualmente, a partir das provas finais, e conferida por duas pessoas diferentes. Na versão em arquivo, cada número de página do índice funciona como atalho direto para o ponto correspondente do texto."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "O arquivo que deu origem a este volume passou por diversas versões até chegar à forma atual. Cada versão recebeu um número composto por duas partes separadas por ponto: a primeira muda quando há alteração de estrutura, como a inclusão ou a supressão de um capítulo, e a segunda muda a cada rodada de correções menores. A versão aqui apresentada é a quatro ponto dois. As versões anteriores foram preservadas em uma pasta de histórico, com a data de fechamento e uma breve nota sobre as mudanças introduzidas em relação à anterior. Esse registro permite reconstituir, se necessário, o momento em que determinada frase foi incluída ou modificada. Para evitar confusão, o número da versão aparece impresso na página de créditos e no rodapé da primeira página de cada capítulo, e o nome do arquivo sempre termina com essa mesma numeração."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Leitores que encontrarem erros de digitação, palavras repetidas, remissões quebradas ou qualquer outro problema de forma podem comunicá-los à equipe editorial pelo endereço indicado na página de créditos. Para facilitar o trabalho, pede-se que cada mensagem informe a versão do arquivo, o número da página e da linha, o trecho como aparece e a correção sugerida. Não é necessário justificar a mudança quando se trata de erro evidente. As mensagens recebidas são reunidas em uma planilha e conferidas uma a uma; as correções aceitas entram na versão seguinte do arquivo e são listadas em uma errata disponibilizada junto com ele. Pedidos que envolvam mudança de conteúdo, e não apenas de forma, são encaminhados separadamente e seguem outro fluxo de análise. Agradecemos de antemão a todos que dedicarem alguns minutos a esse trabalho de garimpo, sempre bem-vindo em textos longos."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Algumas convenções de escrita foram adotadas para dar uniformidade ao texto. Os números de zero a dez aparecem por extenso, e os demais em algarismos, exceto quando iniciam frase, caso em que também são escritos por extenso. Nos números com mais de quatro dígitos, usa-se ponto para separar os milhares, e a vírgula marca as casas decimais. As datas seguem o padrão dia, mês e ano, com o nome do mês por extenso e em minúscula no corpo do texto, e em forma numérica apenas nos quadros e anexos, onde o espaço é mais restrito. Horários foram registrados com a letra h, sem espaço entre o número e a abreviação. Porcentagens trazem o símbolo junto ao número. Essas regras foram reunidas em uma folha de estilo distribuída a todos os autores logo no início dos trabalhos, o que evitou boa parte das divergências durante a revisão."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Sempre que o texto reproduz trechos de outras obras, as citações curtas, de até três linhas, aparecem entre aspas duplas no corpo do parágrafo. As mais longas foram destacadas em bloco recuado, com corpo de letra menor e sem aspas. Supressões dentro de uma citação são indicadas por reticências entre colchetes, e eventuais intervenções da equipe de redação, como uma palavra acrescentada para dar sentido à frase, também vêm entre colchetes. Aspas simples foram reservadas para citações dentro de citações. A origem de cada trecho é informada em nota de rodapé, com autor, título, edição e página, de acordo com o modelo de referência adotado em todo o volume. Quando o original estava em outra língua, a tradução é da própria equipe, salvo indicação em contrário, e o texto original pode ser consultado na nota correspondente."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Os quadros distribuídos ao longo do volume seguem um padrão visual comum. Todos têm título na parte superior, precedido pela palavra quadro e pelo número correspondente, e uma linha de fonte na parte inferior, mesmo quando o conteúdo foi elaborado pela própria equipe. As linhas de grade foram reduzidas ao mínimo, mantendo-se apenas os fios horizontais que separam o cabeçalho do corpo e marcam o fim do quadro. Colunas com números foram alinhadas pela casa das unidades, e colunas com texto pela margem inicial, para facilitar a comparação visual. Quando um quadro ocupa mais de uma página, o cabeçalho é repetido no início de cada continuação, acompanhado da indicação continua entre parênteses. Na versão em arquivo, os quadros podem ser copiados como texto, o que permite reaproveitar seu conteúdo em planilhas sem a necessidade de digitação manual."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Durante a elaboração, todos os arquivos ficaram reunidos em uma pasta compartilhada organizada por capítulo. Dentro de cada subpasta havia três divisões: uma para os rascunhos em andamento, outra para os textos já revisados e uma terceira para os materiais de apoio, como imagens e quadros em formato editável. Convencionou-se que ninguém editaria diretamente o arquivo de outra pessoa; os comentários deveriam ser feitos por meio da função de anotação à margem, de modo que o autor decidisse o que aceitar. Os nomes dos arquivos seguiam um padrão fixo, com o número do capítulo, uma palavra-chave e a data da última alteração, o que tornava fácil identificar a versão mais recente. Uma vez por semana, uma cópia completa da pasta era salva em um disco externo, prevenindo perdas acidentais. Ao fim do processo, a pasta foi arquivada e substituída por um único arquivo consolidado."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Buscou-se, ao longo de todo o volume, uma linguagem direta e acessível, com frases de extensão moderada e parágrafos que tratam de uma ideia de cada vez. Sempre que possível, a voz ativa foi preferida à passiva, e expressões excessivamente técnicas foram substituídas por equivalentes de uso corrente. Quando não havia alternativa simples, o termo foi mantido e explicado no glossário. Evitou-se o uso de jargões internos da equipe, que, embora práticos nas conversas de trabalho, poderiam soar obscuros para quem não acompanhou as reuniões. Os capítulos procuram manter um tom homogêneo, ainda que tenham sido escritos por pessoas diferentes, e para isso a etapa final de revisão incluiu uma leitura em voz alta de trechos escolhidos, recurso simples que ajuda a identificar frases truncadas, repetições sonoras e ritmos irregulares que passam despercebidos na leitura silenciosa."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A página de expediente, localizada ao final do volume, reúne as informações editoriais básicas sobre esta edição. Ali constam o número da versão, a data de fechamento do arquivo, a tiragem da versão impressa e os nomes das funções envolvidas na produção, como coordenação de texto, revisão, diagramação, ilustração e conferência de provas. Também estão indicadas as fontes tipográficas utilizadas, o tipo de papel e o processo de impressão. Essas informações não têm interesse para a maioria dos leitores, mas são úteis para quem precisa citar o volume com precisão ou comparar edições diferentes. O expediente traz ainda o endereço para envio de correções e comentários de forma, já mencionado em outra seção, e uma nota sobre a licença de reprodução do material, que permite cópias integrais ou parciais desde que a fonte seja indicada corretamente."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A conferência das provas foi a última etapa antes da liberação do arquivo para impressão. Nessa fase, já não se faziam alterações de conteúdo; o objetivo era apenas verificar se a diagramação havia reproduzido fielmente o texto revisado. Duas pessoas leram cada página, uma em voz alta e outra acompanhando no original, marcando qualquer diferença encontrada. Também foram conferidas as quebras de linha e de página, para evitar palavras isoladas no topo de uma coluna ou títulos sozinhos no pé de uma página. As marcações seguiram os sinais de revisão usuais, feitos à caneta vermelha nas margens. Foram necessárias três rodadas de provas até que não restassem pendências. Só então o arquivo final foi gerado, conferido mais uma vez quanto às cores e à resolução das imagens, e enviado à gráfica responsável pela impressão."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A versão em arquivo foi gerada em um formato de documento portátil amplamente compatível, que pode ser aberto em computadores, tablets e celulares sem a instalação de programas específicos. O tamanho total do arquivo ficou em torno de oito megabytes, medida que permite o envio por mensagem e a cópia para o aparelho mesmo em conexões mais lentas. As imagens foram comprimidas com cuidado para não perder nitidez na tela, e as fontes tipográficas foram incorporadas ao documento, garantindo que a aparência seja a mesma em qualquer aparelho. Quem desejar imprimir trechos isolados pode fazê-lo diretamente a partir do arquivo, já que a paginação foi preparada para folhas de tamanho comum. Recomenda-se, nesse caso, ativar a opção de ajustar à página no programa de impressão, para evitar cortes nas margens externas."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Cada capítulo obedece a uma estrutura interna semelhante, pensada para facilitar a orientação. Abre com um parágrafo de apresentação que antecipa, em poucas linhas, o percurso a ser seguido. Em seguida vêm as seções, numeradas e tituladas, cada uma iniciada por uma frase que retoma o fio da seção anterior. Ao longo do caminho, quadros e figuras aparecem o mais perto possível do trecho que os menciona, ainda que isso às vezes exija pequenas variações no espaço em branco das páginas. O capítulo se encerra com um resumo destacado em fundo colorido, que repete de maneira condensada os pontos tratados, e com uma lista de remissões para outras partes do volume que tocam em assuntos próximos. Essa repetição de formato pode parecer monótona em uma leitura contínua, mas tem a vantagem de tornar previsível o lugar onde cada tipo de informação será encontrado."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Para ajudar na navegação, alguns sinais gráficos foram colocados nas margens das páginas. Um pequeno círculo preenchido indica que o trecho ao lado tem continuação em um dos anexos. Um losango vazado sinaliza a presença de um termo definido no glossário que ainda não havia aparecido naquele capítulo. Já uma seta curva, posicionada no canto inferior da página, indica que o quadro ou a figura mencionados estão na página seguinte, e não na atual. Esses sinais foram desenhados para serem discretos e não competir com o texto principal; quem não quiser utilizá-los pode simplesmente ignorá-los. Na versão em arquivo, os mesmos sinais funcionam como botões e levam diretamente ao destino indicado. Uma legenda com todos os símbolos e seus significados aparece na página que antecede o primeiro capítulo, para consulta sempre que houver dúvida."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Antes do fechamento, uma versão quase final do texto foi entregue a um pequeno grupo de leitores que não haviam colaborado com a redação. A ideia era verificar se o material se sustentava para quem chegava a ele sem conhecer o contexto das reuniões e das conversas internas. Cada leitor recebeu um capítulo diferente e uma ficha simples, com perguntas sobre clareza das frases, facilidade de encontrar informações e eventuais trechos cansativos. As respostas foram reveladoras: vários apontaram parágrafos longos demais, remissões que não levavam a lugar algum e títulos que não correspondiam bem ao conteúdo da seção. Com base nessas observações, a equipe dividiu parágrafos, corrigiu as remissões e reescreveu cerca de uma dezena de títulos. O exercício mostrou a utilidade de um olhar de fora, capaz de perceber obstáculos que os próprios autores, de tão familiarizados com o texto, já não notavam."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A capa deste volume foi desenhada para ser simples e facilmente reconhecível. Sobre um fundo de cor sólida, o título aparece em letras grandes, alinhado à esquerda, acompanhado apenas do número da versão e do ano de fechamento. Uma composição de linhas finas atravessa a metade inferior, retomando o mesmo motivo gráfico que reaparece, em menor escala, nas aberturas de capítulo. A quarta capa traz um breve texto de apresentação, extraído desta introdução, e o código de barras exigido para a circulação da versão impressa. A lombada, larga o suficiente para receber texto, repete o título em leitura de baixo para cima. Foram estudadas diversas alternativas antes da escolha final, incluindo versões com fotografias e com ilustrações mais elaboradas, mas prevaleceu a opção mais sóbria, que se mostrou mais legível em tamanho reduzido, como nas miniaturas exibidas em telas."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Leitores atentos notarão que algumas páginas aparecem parcialmente em branco, sobretudo ao final de capítulos e antes de quadros extensos. Isso não decorre de erro de diagramação, mas de uma escolha deliberada. Como cada capítulo começa sempre em página ímpar, o capítulo anterior pode terminar deixando a página par seguinte vazia. Do mesmo modo, quando um quadro não cabe no espaço restante de uma página, preferiu-se transferi-lo inteiro para a próxima em vez de dividi-lo, o que às vezes deixa um vão no pé da página anterior. Nas páginas totalmente vazias, foi inserida uma pequena indicação em cinza claro informando que a página foi deixada em branco intencionalmente, prática que evita dúvidas sobre falhas de impressão. Na versão de layout fluido, essas páginas vazias não existem, e o texto corre de maneira contínua do início ao fim de cada capítulo."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As referências às obras citadas foram padronizadas segundo um modelo único, aplicado tanto nas notas de rodapé quanto na lista final. Em cada referência, o sobrenome do autor aparece em maiúsculas, seguido do prenome, do título em itálico, do número da edição quando diferente da primeira, da cidade, da editora e do ano. Para capítulos de coletâneas, indica-se também o título do volume maior e as páginas inicial e final do trecho. Nas notas, a primeira menção a uma obra é sempre completa, e as seguintes usam forma abreviada, com o sobrenome do autor, uma palavra do título e a página. A lista final reúne todas as obras em ordem alfabética de sobrenome, e, quando há mais de uma do mesmo autor, a ordem segue o ano de publicação. Endereços eletrônicos foram acompanhados da data em que foram acessados pela última vez."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A versão impressa foi produzida em tiragem limitada, suficiente para atender às solicitações recebidas durante o período de preparação. Os exemplares foram embalados em pacotes de dez unidades, com etiqueta indicando a versão e a data de impressão, e armazenados em local seco até o momento da entrega. Quem desejar receber exemplares adicionais pode solicitá-los pelo endereço indicado no expediente, informando a quantidade desejada e o local de retirada. Pedidos de grandes quantidades poderão ser atendidos em uma reimpressão, caso a procura justifique. Recomenda-se que os exemplares sejam guardados longe da luz direta, para evitar o desbotamento da capa, e que não sejam dobrados na lombada, pois a costura, embora resistente, pode se soltar com o uso inadequado. Exemplares com defeito de impressão ou de encadernação podem ser trocados mediante devolução no mesmo local de retirada."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A versão em arquivo recebeu atenção especial para que pudesse ser utilizada com leitores de tela e outros recursos de apoio à leitura. Os títulos foram marcados com a hierarquia correta, permitindo a navegação por níveis, e a ordem de leitura de cada página foi conferida manualmente, para que colunas, quadros e notas fossem lidos na sequência adequada. Todas as imagens receberam descrições curtas, e as que são puramente decorativas foram marcadas como tal, para não interromper a leitura com informações desnecessárias. O contraste entre texto e fundo foi verificado em todas as combinações de cor usadas no volume. Os quadros têm cabeçalhos identificados, o que permite ao leitor saber a qual coluna pertence cada célula. Eventuais dificuldades encontradas nesse uso podem ser comunicadas pelo mesmo endereço destinado às correções, para que sejam resolvidas nas próximas versões."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Quem desejar mencionar este volume em outros trabalhos pode utilizar a forma de citação sugerida na página de expediente, que reúne título, número da versão, ano de fechamento e local de edição. Recomenda-se sempre indicar a versão consultada, já que a paginação e a redação de alguns trechos podem mudar de uma versão para outra. Ao citar uma passagem específica, convém informar também o número da seção, além da página, pois a seção permanece a mesma tanto na versão impressa quanto na de layout fluido, enquanto a página só tem correspondência na primeira. Para trechos dos anexos, basta indicar o número do anexo e a página. Caso a citação seja feita a partir da versão em arquivo, é útil acrescentar a data em que ele foi obtido, de modo que outras pessoas possam localizar exatamente a mesma edição, mesmo depois do lançamento de versões posteriores."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "A divisão das tarefas dentro da equipe de redação foi definida logo na primeira reunião e ajustada algumas vezes ao longo do caminho. Cada capítulo teve um responsável principal, encarregado de escrever o rascunho inicial e acompanhar o texto até a versão final, e um responsável secundário, que atuava como primeiro leitor e substituía o principal em caso de ausência. Paralelamente, uma pessoa cuidou da folha de estilo e das dúvidas de padronização, outra organizou a pasta compartilhada e os nomes dos arquivos, e uma terceira acompanhou o calendário, avisando sobre prazos próximos. Esse arranjo evitou que decisões ficassem sem dono e permitiu que o trabalho seguisse mesmo quando alguém precisava se afastar por alguns dias. Ao final, todos os integrantes tinham lido o volume inteiro pelo menos uma vez, o que ajudou a manter a coerência entre as partes."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Além do texto final, a equipe preservou um conjunto de materiais produzidos durante a elaboração, que podem interessar a quem queira conhecer os bastidores do trabalho. Esse acervo inclui os roteiros iniciais de cada capítulo, as versões intermediárias com os comentários de margem, as atas das reuniões, as folhas de estilo em suas diferentes edições e os esboços das ilustrações. Todo o material foi organizado em ordem cronológica e acompanhado de uma ficha descritiva com a data e o tipo de cada item. Não se trata de leitura indispensável, e muito do que está ali foi superado pelas versões seguintes, mas o conjunto documenta com fidelidade o caminho percorrido até a forma atual. O acesso ao acervo pode ser solicitado pelo endereço indicado no expediente, e as cópias são enviadas em arquivo compactado, com um pequeno guia de navegação pelas pastas."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Palavras de outras línguas que ainda não foram incorporadas ao vocabulário corrente aparecem em itálico, sem tradução no corpo do texto quando o sentido é evidente pelo contexto, e com tradução entre parênteses quando há risco de dúvida. Termos estrangeiros já adaptados à grafia portuguesa foram escritos na forma aportuguesada, em letra normal. Nos casos em que existem duas grafias aceitas, a equipe optou pela mais frequente nos dicionários de referência, mantendo essa escolha em todo o volume. Nomes próprios de obras citadas foram mantidos na língua original, com a primeira letra maiúscula apenas na palavra inicial e nos nomes que naturalmente a exigem. Essa padronização, aparentemente miúda, consumiu um tempo considerável nas rodadas de revisão, já que cada autor tinha hábitos próprios, e a uniformização exigiu uma busca atenta, palavra por palavra, ao longo de todos os capítulos."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "As cores utilizadas na diagramação têm função de orientação, e não de hierarquia. O tom azul acinzentado marca os elementos de navegação, como números de seção, cabeçalhos e sinais de margem, enquanto o tom ocre aparece nos fundos dos resumos de fim de capítulo e nos quadros de destaque. O preto foi reservado para o texto corrido e para as legendas. Essa distinção ajuda o olhar a separar, de imediato, o que é conteúdo do que é estrutura. Para quem imprime o arquivo em preto e branco, os dois tons foram calibrados de modo a gerar cinzas claramente diferentes entre si, preservando a distinção mesmo sem cor. Os fundos foram mantidos bem claros, para não prejudicar a leitura do texto sobreposto nem gastar tinta em excesso. Por fim, nenhum elemento depende exclusivamente da cor para ser compreendido, já que todos trazem também um rótulo ou um símbolo."
+  },
+  {
+   "nivel": null,
+   "estilo": "neutro",
+   "texto": "Com essas indicações, encerra-se a parte introdutória deste volume. O que se pretendeu aqui foi apenas oferecer um mapa do material, explicando como ele está organizado, quais convenções foram seguidas e de que forma os diferentes recursos podem ser aproveitados. Nada do que foi dito nesta abertura é indispensável para compreender os capítulos seguintes, mas espera-se que as informações reunidas tornem a leitura mais confortável e a consulta mais rápida. Nas próximas versões, a equipe pretende ampliar o índice remissivo, revisar algumas legendas e incorporar as correções que forem recebidas até lá, mantendo o registro de cada mudança no histórico do arquivo. Fica, desde já, o convite para que os leitores apontem qualquer falha de forma que encontrarem. A partir da próxima página, inicia-se o primeiro capítulo, precedido, como todos os demais, por sua página de abertura."
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+sistema,chamadas LLM,acurácia conjunta
+JEV sozinho,0.0,0.7142857142857143
+LLM sozinho (4 eixos),70.0,0.7642857142857142
+oráculo (JEV ou LLM),,0.8285714285714286

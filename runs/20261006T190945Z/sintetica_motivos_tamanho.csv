@@ -1,0 +1,6 @@
+tamanho,motivo relevancia_ambigua,motivo empate_nivel,motivo baixa_confianca_nivel,motivo direcao_ambigua
+curto,23,0,7,1
+medio,22,0,9,1
+longo,30,0,8,0
+muito_longo,32,1,8,0
+extra,37,0,8,0

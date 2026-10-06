@@ -1,0 +1,2 @@
+perguntas,pares,chamadas JEV,chamadas LLM,eixos com evidência não verificada,eixos com falha do LLM,relevâncias revertidas pelo LLM,latência JEV total (s),latência LLM total (s),tempo total (s)
+70,280,70,51,0,0,1,21.31499590000749,60.64610159999211,96.8522129999983

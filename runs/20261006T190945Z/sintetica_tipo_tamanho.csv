@@ -1,0 +1,21 @@
+tipo,tamanho,textos,textos com LLM (%),eixos encaminhados/texto,textos 100% corretos cascata
+duplo,curto,8,87.5,1.0,0.625
+duplo,medio,8,87.5,1.125,0.625
+duplo,longo,8,62.5,0.75,0.5
+duplo,muito_longo,8,62.5,0.875,0.375
+duplo,extra,8,75.0,1.0,0.25
+misto,curto,4,100.0,1.25,0.0
+misto,medio,4,75.0,1.0,0.0
+misto,longo,4,100.0,1.5,0.0
+misto,muito_longo,4,75.0,1.5,0.25
+misto,extra,4,100.0,1.5,0.0
+nenhum,curto,4,0.0,0.0,1.0
+nenhum,medio,4,0.0,0.0,1.0
+nenhum,longo,4,0.0,0.0,1.0
+nenhum,muito_longo,4,0.0,0.0,1.0
+nenhum,extra,4,0.0,0.0,1.0
+simples,curto,20,55.00000000000001,0.8,0.6
+simples,medio,20,65.0,0.75,0.6
+simples,longo,20,70.0,1.05,0.5
+simples,muito_longo,20,80.0,1.25,0.4
+simples,extra,20,90.0,1.35,0.45
