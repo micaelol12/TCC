@@ -1,0 +1,74 @@
+{
+  "scores": {
+    "equality": 69.77611940298507,
+    "wealth": 30.223880597014926,
+    "peace": 48.333333333333336,
+    "might": 51.666666666666664,
+    "liberty": 59.48275862068966,
+    "authority": 40.51724137931034,
+    "progress": 59.42622950819672,
+    "tradition": 40.57377049180328
+  },
+  "labels": [
+    "Social",
+    "Equilibrado",
+    "Moderado",
+    "Neutro"
+  ],
+  "eixos": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "valor A": 69.77611940298507,
+      "polo B": "Mercado",
+      "valor B": 30.223880597014926,
+      "rótulo por faixa": "Social",
+      "chunks com nível": 67,
+      "cobertura": 0.8072289156626506,
+      "evidência suficiente": true
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "valor A": 48.333333333333336,
+      "polo B": "Nação",
+      "valor B": 51.666666666666664,
+      "rótulo por faixa": "Equilibrado",
+      "chunks com nível": 30,
+      "cobertura": 0.3614457831325301,
+      "evidência suficiente": true
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "valor A": 59.48275862068966,
+      "polo B": "Autoridade",
+      "valor B": 40.51724137931034,
+      "rótulo por faixa": "Moderado",
+      "chunks com nível": 29,
+      "cobertura": 0.3493975903614458,
+      "evidência suficiente": true
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "valor A": 59.42622950819672,
+      "polo B": "Tradição",
+      "valor B": 40.57377049180328,
+      "rótulo por faixa": "Neutro",
+      "chunks com nível": 61,
+      "cobertura": 0.7349397590361446,
+      "evidência suficiente": true
+    }
+  ],
+  "closest_ideology": {
+    "name": "Liberalismo Social",
+    "stats": {
+      "econ": 60,
+      "dipl": 60,
+      "govt": 60,
+      "scty": 80
+    }
+  },
+  "distance_score": 359.43519288372187
+}
