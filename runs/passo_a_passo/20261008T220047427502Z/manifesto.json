@@ -1,0 +1,39 @@
+{
+  "run_id": "20261008T220047427502Z",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "modelo_jev": "jev-1.13.0",
+  "modelo_llm": "sabia-4",
+  "temperatura": 0.0,
+  "config": {
+    "tipo_relevancia": "choice",
+    "limiar_noul": 0.5,
+    "margem_relevancia_minima": 0.6,
+    "primitiva_polaridade": "choice",
+    "confianca_nivel_minima": 0.5,
+    "margem_direcao_minima": 0.2,
+    "usar_fallback": true
+  },
+  "chunks": {
+    "max_tokens": 600,
+    "overlap_tokens": 0,
+    "encoding_name": "cl100k_base"
+  },
+  "indice": {
+    "n_bootstrap": 2000,
+    "semente": 42,
+    "minimo_trechos": 16
+  },
+  "limite_perguntas": 8,
+  "documento": "Lula (PT)",
+  "pacotes": {
+    "typesafe-sdk": "0.7.2",
+    "openai": "3.24.0",
+    "pydantic": "2.13.5",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6"
+  },
+  "hash_perguntas": "0a908fc283dbf7daa5b24712f4614644661cd2430c488a6ed902c00616a21fe8",
+  "hash_exemplo": "c8b59a7cc42d66b1a05b6b7e0ef26ad52780e29643da76faadad42d97d334b75",
+  "hash_texto_limpo": "f63c55d5876ad721f3d3328a69ec084a2462eeafa7f5240fcbcfc50f0e7af849",
+  "hash_rubricas": "2da35a6c8ab28f18052c6ddf44339f342fd595a50580489a31c5eb71d0c452cc"
+}
