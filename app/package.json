@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:browser": "node scripts/test-browser.mjs",
     "test:reports": "node scripts/test-reports-browser.mjs",
+    "test:profile-transfer": "node scripts/test-profile-transfer-browser.mjs",
     "check:questions": "node web/scripts/check-questions.mjs",
     "package:extension": "npm run package --workspace=8values-extension"
   },

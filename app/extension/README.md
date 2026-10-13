@@ -1,6 +1,6 @@
 # Extensão 8values + textos
 
-Extensão Manifest V3 para Chrome e Edge. Permite revisar e analisar texto selecionado, consultar os quatro eixos e suas evidências e comparar com um perfil 8values importado. A API FastAPI do projeto continua responsável pela classificação.
+Extensão Manifest V3 para Chrome e Edge. Permite revisar e analisar texto selecionado, consultar os quatro eixos e suas evidências e comparar com um perfil 8values enviado pelo site ou importado. A API FastAPI do projeto continua responsável pela classificação.
 
 ## Instalar para uso local
 
@@ -64,7 +64,11 @@ O histórico guarda até 10 resultados e um orçamento de 700 KB por janela. Ent
 
 ## Perfil pessoal
 
-No site, conclua o questionário, abra **Meu resultado** e exporte o perfil JSON. Na extensão, abra **Comparação** e importe o arquivo de até 10 KB. A versão, o hash do instrumento, a data e os quatro valores são validados; campos extras são descartados.
+No site, conclua o questionário, abra **Meu resultado** e clique em **Usar resultado na extensão**. A extensão instalada no mesmo navegador recebe o perfil diretamente, sem arquivo ou servidor, e atualiza a comparação aberta. O sucesso só aparece após salvar. Use **Abrir meu resultado no site**, na aba **Comparação**, para acessar o endereço configurado na extensão. Após instalar ou recarregar a extensão, recarregue também a página do site.
+
+O envio usa a origem exata definida por `VITE_WEB_BASE_URL`, inclusive a porta. O script de conexão só é habilitado no host do site configurado, não lê respostas nem envia perfis automaticamente. O botão transmite somente os resultados agregados, a data e a versão do questionário. A extensão valida origem, versão, hash, data e os quatro valores; campos extras são descartados.
+
+O padrão é uso temporário. Marque **Manter meu resultado salvo na extensão** no site para persistir o envio. Cada envio substitui o perfil anterior. A exportação JSON e a importação de arquivos de até 10 KB continuam disponíveis como alternativa.
 
 O padrão é uso temporário. A opção **Salvar o próximo perfil neste navegador** permite guardar a próxima importação localmente. **Apagar perfil** remove as cópias temporária e permanente da extensão. O site conserva sua própria cópia; as duas origens têm armazenamentos independentes.
 
@@ -76,8 +80,9 @@ O padrão é uso temporário. A opção **Salvar o próximo perfil neste navegad
 | `sidePanel` | Interface de análise |
 | `storage` | Dados temporários e preferências |
 | Host da API | Consultar capacidades, analisar o texto revisado e enviar reports confirmados |
+| Script no host do site | Receber o perfil enviado pelo botão em Meu resultado |
 
-Não há script injetado, leitura automática de páginas, acesso ao histórico de navegação ou sincronização dos textos. A navegação anônima fica desabilitada para esta versão.
+Há um script de conexão somente no host do site configurado para receber o resultado mediante clique. Não há leitura automática de páginas, acesso ao histórico de navegação ou sincronização dos textos. A navegação anônima fica desabilitada para esta versão.
 
 O rascunho, a seleção e o histórico usam `chrome.storage.session`, apagado em reinício do navegador, recarga, atualização ou desativação da extensão. **Limpar histórico e rascunhos** limpa os dados da janela atual. O modo preferido e o perfil salvo por escolha explícita ficam em `chrome.storage.local`. Desinstalar a extensão remove esses dados.
 
@@ -94,6 +99,8 @@ npm run test:browser -- chrome
 npm run test:browser -- edge
 npm run test:reports -- chrome
 npm run test:reports -- edge
+npm run test:profile-transfer -- chrome
+npm run test:profile-transfer -- edge
 npm run package:extension
 ```
 

@@ -14,8 +14,10 @@ export default defineConfig(({ mode }) => {
         ...['react', 'react-dom', 'scheduler'].map(name => `\n## ${name}\n\n${readFileSync(new URL(`../node_modules/${name}/LICENSE`, import.meta.url), 'utf8')}`),
       ].join('\n')
       this.emitFile({ type: 'asset', fileName: 'THIRD_PARTY_NOTICES.md', source: notices })
+      this.emitFile({ type: 'asset', fileName: 'profile-bridge.js', source: readFileSync(new URL('./src/platform/profileBridge.js', import.meta.url), 'utf8').replace('__WEB_ORIGIN__', JSON.stringify(config.webBase)) })
       this.emitFile({ type: 'asset', fileName: 'manifest.json', source: JSON.stringify({ ...manifest,
         host_permissions: [config.hostPermission],
+        content_scripts: [{ matches: [config.webMatchPattern], js: ['profile-bridge.js'], run_at: 'document_start' }],
         content_security_policy: { extension_pages: `script-src 'self'; object-src 'self'; connect-src ${config.apiBase}; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'` },
       }, null, 2) })
     } }],

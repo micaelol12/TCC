@@ -10,5 +10,5 @@ export function extensionConfig(mode: string, env: Record<string, string>) {
   }
   const web = new URL(env.VITE_WEB_BASE_URL || (production ? api.origin : 'http://127.0.0.1:5173'))
   if (web.username || web.password || web.search || web.hash || web.pathname !== '/' || (production && web.protocol !== 'https:') || !['http:', 'https:'].includes(web.protocol)) throw new Error('VITE_WEB_BASE_URL deve ser uma origem HTTP(S), com HTTPS na produção.')
-  return { apiBase: api.origin, webBase: web.origin, hostPermission: `${api.protocol}//${api.hostname}/*` }
+  return { apiBase: api.origin, webBase: web.origin, hostPermission: `${api.protocol}//${api.hostname}/*`, webMatchPattern: `${web.protocol}//${web.hostname}/*` }
 }

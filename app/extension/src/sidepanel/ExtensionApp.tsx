@@ -192,7 +192,8 @@ export default function ExtensionApp() {
         </details>
       </> : <>
         <ComparisonPanel profile={profile} analysis={selected?.analysis ?? null} profileAction={<a className="button secondary" href={`${WEB_BASE_URL}/teste`} target="_blank" rel="noreferrer">Fazer meu teste no site</a>} />
-        <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e exporte o perfil. Importe o JSON aqui para comparar; ele fica neste navegador.</p>
+        <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e clique em “Usar resultado na extensão”. A comparação será atualizada aqui automaticamente.</p>
+          <a className="button secondary" href={`${WEB_BASE_URL}/resultado`} target="_blank" rel="noreferrer">Abrir meu resultado no site</a>
           {profile && <><p role="status" className="small">{profileStored ? 'Perfil salvo localmente nesta extensão.' : 'Perfil temporário nesta sessão.'}</p><button className="danger" disabled={profileBusy} onClick={() => void deleteProfile()}>Apagar perfil</button></>}
           <label className="check"><input type="checkbox" checked={permanent} onChange={e => setPermanent(e.target.checked)} disabled={profileBusy} />Salvar o próximo perfil neste navegador</label>
           <label htmlFor="profile-file">Importar perfil JSON</label><input id="profile-file" type="file" accept="application/json,.json" disabled={profileBusy || !ready} onChange={e => { void importProfile(e.target.files?.[0]); e.target.value = '' }} />

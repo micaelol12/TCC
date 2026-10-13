@@ -1,4 +1,8 @@
 import { captureKey, isCapture, makeCapture, MENU_ID, sessionKey } from './platform/selection'
+import { registerProfileTransfer } from './platform/profileTransfer'
+
+declare const __WEB_BASE_URL__: string
+registerProfileTransfer(__WEB_BASE_URL__)
 
 // Register synchronously on each worker start; only installation creates the menu.
 chrome.runtime.onInstalled.addListener(() => {
