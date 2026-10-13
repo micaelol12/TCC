@@ -16,6 +16,7 @@ export default function ResultPage({ profile, stored, onDelete }: { profile: Pro
     <button className="secondary" onClick={() => downloadProfile(profile)}>Exportar perfil para a extensão</button>
     <p className="muted small">O arquivo contém apenas os quatro resultados agregados e a versão do questionário.</p>
     <div className="actions"><Link className="button" to="/analise">Analisar um texto</Link><Link className="button secondary" to="/teste">Refazer teste</Link><button className="danger" onClick={onDelete}>Apagar meus dados locais</button></div>
+    <p className="muted small">Apagar os dados locais não remove reports já enviados e armazenados no servidor.</p>
     <p className="muted small">Os percentuais descrevem suas respostas ao questionário e não são um diagnóstico político.</p>
   </main>
 }

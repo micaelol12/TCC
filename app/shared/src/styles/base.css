@@ -116,3 +116,16 @@ footer{background:#faf9f6;border-color:#e9e7e2}
 .aiDisclaimer{border-left:3px solid #8c8275;background:#f1eee8;border-radius:6px;color:#4e483f;padding:.8rem 1rem;margin:0 0 1.25rem;max-width:870px}
 footer a{color:#514a40;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:760px){.quizIntro{align-items:flex-start;flex-direction:column}.axisGuideList{grid-template-columns:1fr}.axisGuideDialog{padding:1rem}.axisGuideHeader{align-items:center}}
+
+.reportAction{margin-top:1.2rem;border-top:1px solid #e7e3dc;padding-top:1rem}
+.reportDialog{width:min(620px,calc(100vw - 1.5rem));max-height:calc(100dvh - 1.5rem);overflow:auto;border:1px solid #dedad2;border-radius:16px;background:#fffefa;color:#242424;padding:1.3rem;box-shadow:0 20px 70px #25201830}
+.reportDialog::backdrop{background:#211d19a8}
+.reportDialog p,.reportDialog li{overflow-wrap:anywhere}
+.reportDialog .privacyNote{margin-top:1rem;font-size:.9rem}
+.reportDialog .sourceText{max-height:160px}
+.reportDialog.analysisContent .reportConsent{display:flex;align-items:flex-start;gap:.65rem;font-size:.9rem;font-weight:500;margin:1rem 0}
+.reportConsent input{flex:none;accent-color:#33302b}
+.reportSnapshot{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;padding:.75rem;background:#f2f0eb;border-radius:8px;font-size:.78rem}
+.reportReceipt{margin:.8rem 0 0;overflow-wrap:anywhere}
+.reportReceipt span{display:block;color:#6e6962;font-size:.8rem}
+@media(max-width:400px){.reportDialog{padding:1rem}.reportDialog .actions button{flex:1}}

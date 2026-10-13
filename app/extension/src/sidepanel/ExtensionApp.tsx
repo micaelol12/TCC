@@ -5,7 +5,7 @@ import ComparisonPanel from '@8values/shared/components/ComparisonPanel'
 import { modeLabels, type Capabilities } from '@8values/shared/api'
 import { useAnalysisRequest } from '@8values/shared/hooks/useAnalysisRequest'
 import { validateProfile, type Profile } from '@8values/shared/profile'
-import { API_BASE_URL, WEB_BASE_URL, client } from '../config'
+import { API_BASE_URL, WEB_BASE_URL, client, reportClient } from '../config'
 import { captureKey, sessionKey, isCapture, type Capture } from '../platform/selection'
 import { emptySession, hydrateSession, reduceSession, fitSession, type Action, type Session } from '../storage/sessionState'
 import { createSessionStore } from '../storage/sessionStore'
@@ -184,9 +184,10 @@ export default function ExtensionApp() {
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}
           onSend={() => void send()} onCancel={() => { cancelRequested.current = true; cancel() }} onRetry={() => void refreshCapabilities()} onClose={selected ? () => update({ type: 'close-composer' }) : undefined} />}
-        {!state.showComposer && selected && <AnalysisResult entry={selected} compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button></div></AnalysisResult>}
+        {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button></div></AnalysisResult>}
         <details className="sessionHistory"><summary>Histórico desta sessão ({state.entries.length})</summary>{state.entries.length ? <ul>{state.entries.map(entry => <li key={entry.id}><button className="secondary historyEntry" aria-pressed={entry.id === state.selectedId && !state.showComposer} disabled={isBusy} onClick={() => { update({ type: 'select', id: entry.id }); clearError() }}>{entry.title}<span>{modeLabels[entry.mode]}</span></button></li>)}</ul> : <p className="muted small">Nenhuma análise nesta sessão.</p>}
           <p className="muted small">Até 10 análises, com limite de espaço. Os dados temporários são removidos ao reiniciar o navegador ou recarregar a extensão.</p>
+          <p className="muted small">Limpar este histórico não apaga reports já enviados e armazenados no servidor.</p>
           <button className="danger" disabled={!ready || isBusy} onClick={() => { update({ type: 'clear' }); clearError(); setStorageError(''); if (windowId.current !== null) void chrome.storage.session.remove(captureKey(windowId.current)).catch(() => setStorageError('Não foi possível apagar a seleção temporária.')) }}>Limpar histórico e rascunhos</button>
         </details>
       </> : <>
@@ -198,6 +199,6 @@ export default function ExtensionApp() {
           {profileError && <p className="error" role="alert">{profileError}</p>}
         </section>
       </>}
-    </main><footer className="panelFooter"><span>Projeto acadêmico · baseado no <a href="https://8values.github.io/" target="_blank" rel="noreferrer">8values</a></span><details><summary>Conexão e dados</summary><p>API: {API_BASE_URL}</p><p>Selecionar texto não o envia. A análise envia o trecho revisado aos serviços indicados no modo escolhido. Perfil, domínio de origem e histórico não fazem parte do envio. A retenção dos serviços externos depende de suas políticas.</p></details></footer>
+    </main><footer className="panelFooter"><span>Projeto acadêmico · baseado no <a href="https://8values.github.io/" target="_blank" rel="noreferrer">8values</a></span><details><summary>Conexão e dados</summary><p>API: {API_BASE_URL}</p><p>Selecionar texto não o envia. A análise envia o trecho revisado aos serviços indicados no modo escolhido. Perfil, domínio de origem e histórico não fazem parte do envio. A retenção dos serviços externos depende de suas políticas.</p><p>Ao confirmar um report, o trecho, a análise e o comentário opcional são armazenados no servidor para posterior avaliação. Limpar os dados locais não apaga os reports enviados.</p></details></footer>
   </>
 }

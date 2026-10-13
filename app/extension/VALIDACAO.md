@@ -5,13 +5,14 @@ Execução local em 13/10/2026. Resultados de classificação nos testes são si
 ## Automação executada
 
 - Build do site e da extensão com React/TypeScript/Vite.
-- 34 testes TypeScript aprovados: questionário, ideologias, histórico, perfil, cliente HTTP, estado da sessão, fila de gravação, preferências, listener do menu e configuração de produção.
-- 11 testes Python existentes da API aprovados, incluindo contrato HTTP, limites, tokenização e estratégias dos três modos.
+- 47 testes TypeScript aprovados: questionário, ideologias, histórico, perfil, clientes HTTP de análise/report, estado da sessão, fila de gravação, preferências, listener do menu e configuração de produção.
+- 24 testes Python da API aprovados, incluindo contrato HTTP, limites, tokenização, estratégias dos três modos e reports: confirmação obrigatória, gravação persistente, novas tentativas concorrentes, conflito de conteúdo, limite de bytes, falhas de banco e exportação.
 - Extensão instalada em perfis temporários: Chrome 155.0.8059.40 e Edge 155.0.4283.45.
 - Documento compilado do painel executado com APIs reais de armazenamento da extensão.
 - Revisão antes do envio, POST contendo somente texto e modo, estimativas parciais, evidências, recarga de rascunho e histórico, HTTP 429, cancelamento, seleção pendente, recuperação de interrupção sem reenvio, isolamento entre janelas, importação/exclusão de perfil, limpeza, limite de caracteres e exibição segura de texto.
 - Resposta HTTP simulada após 31 segundos no Chrome, sem depender da duração do service worker.
 - Inspeção visual das capturas em largura de 380 px, sem transbordamento horizontal.
+- Report validado no site e na extensão em ambos os navegadores: resultado do histórico, texto original após edição do rascunho, aviso explícito de armazenamento, aceite inicialmente desmarcado, cancelamento sem envio, Tab/Escape, limite do comentário, perda de resposta e nova tentativa com mesmo UUID, bloqueio durante envio e sucesso somente com recibo. Capturas em 380 px e 1440 px, sem erros de JavaScript.
 - ZIP verificado por leitura e CRC, com manifest, scripts, estilos, ícones e avisos de terceiros; sem arquivos de configuração de credenciais.
 
 Relatórios JSON e capturas ficam em `app/test-results`. Os scripts criam perfis isolados; não modificam os perfis pessoais do usuário. O pacote usa somente três permissões funcionais e o host da API local.

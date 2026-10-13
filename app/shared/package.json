@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./api": "./src/api/analysisApi.ts",
+    "./reports": "./src/api/reportApi.ts",
     "./domain/*": "./src/domain/*.ts",
     "./profile": "./src/domain/profile.ts",
     "./components/*": "./src/components/*.tsx",

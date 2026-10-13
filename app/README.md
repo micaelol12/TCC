@@ -53,7 +53,26 @@ Para comparar com seu teste, abra **Meu resultado** no site, use **Exportar perf
 
 Por padrão, um envio admite 60.000 caracteres, 12.000 tokens e 20 trechos de cerca de 600 tokens, com prazo total de 120 segundos. Há até dois trechos em paralelo por análise, três análises simultâneas, 30 requisições por hora no processo e orçamento de 1.000 chamadas lógicas de provedores por dia. Configure `MAX_CHARS`, `MAX_TOKENS`, `MAX_CHUNKS`, `ANALYSIS_TIMEOUT_SECONDS`, `CONCURRENT_CHUNKS`, `CONCURRENT_REQUESTS`, `HOURLY_REQUESTS` e `DAILY_PROVIDER_CALLS`. Contadores em memória reiniciam com o processo e não substituem proteção no proxy de produção.
 
-As respostas individuais do teste ficam apenas em `sessionStorage` durante o preenchimento. O resultado agregado pode ficar em `localStorage` ou somente em memória, conforme escolha ao concluir. O histórico de análises fica em `sessionStorage` durante a sessão da aba, inclusive ao navegar pelo app ou recarregar a página. O corpo de `POST /api/analyze` contém somente `text` e `processing_level`; o servidor não recebe respostas, perfil ou comparação. A API não grava análises em arquivos. O vocabulário do tokenizador está incluído no pacote, sem download durante requisições.
+As respostas individuais do teste ficam apenas em `sessionStorage` durante o preenchimento. O resultado agregado pode ficar em `localStorage` ou somente em memória, conforme escolha ao concluir. O histórico de análises fica em `sessionStorage` durante a sessão da aba, inclusive ao navegar pelo app ou recarregar a página. O corpo de `POST /api/analyze` contém somente `text` e `processing_level`; o servidor não recebe respostas, perfil ou comparação. A análise comum não é gravada no banco; o armazenamento ocorre quando o usuário confirma um report. O vocabulário do tokenizador está incluído no pacote, sem download durante requisições.
+
+## Reports de classificação
+
+No site e na extensão, **Reportar classificação** abre uma confirmação com prévia do texto, análise completa e comentário opcional de até 2.000 caracteres. O aviso declara que o trecho, a análise e o comentário serão armazenados no banco para posterior avaliação pela equipe responsável. A caixa **Estou ciente e concordo com o envio e o armazenamento desses dados** começa desmarcada; somente **Enviar report** faz o envio. Cancelar não envia dados.
+
+`POST /api/reports` recebe `submission_id` (UUID), `text`, `analysis`, `comment`, `client` (`web` ou `extension`), `storage_consent: true` e `notice_version: "1"`. Usa o texto original associado ao resultado selecionado e não chama provedores novamente. Perfil, respostas do questionário, comparação, título e domínio/URL de origem não entram no report. O resultado é um snapshot enviado pelo cliente, sem garantia de autenticidade da classificação.
+
+A rota retorna `201` com `report_id`, `received_at` (UTC) e `status: "pending"` após confirmar a transação. Uma tentativa repetida com o mesmo UUID e conteúdo retorna `200` com o recibo original; conteúdo diferente com o mesmo UUID retorna `409`. A interface preserva o identificador em tentativas manuais enquanto o resultado estiver aberto, inclusive ao fechar e reabrir o modal. Editar o comentário após uma tentativa cria um novo report. Fechar o painel, recarregar ou trocar o resultado reinicia esse estado da interface; não há reenvio automático.
+
+SQLite cria o arquivo `app/api/data/reports.sqlite3` e a tabela `classification_reports` no primeiro report aceito. `REPORTS_DB_PATH` permite usar outro caminho persistente. Há limite de 2 MB para o corpo, os limites configurados de texto/trechos e `REPORTS_HOURLY_REQUESTS=60` tentativas válidas por hora no processo, independentemente do orçamento de análises. Falha de armazenamento retorna `503`, sem confirmar sucesso ou expor conteúdo. A base é ignorada pelo Git e não é servida pelo frontend.
+
+Para exportar reports pendentes em JSONL, execute na pasta `app/api`:
+
+```powershell
+python scripts/export_reports.py --output reports.jsonl
+# Opcional: --database CAMINHO --status pending|reviewed|all
+```
+
+A exportação abre o banco somente para leitura e recusa sobrescrever uma saída existente. A equipe consulta os dados localmente; não existe rota pública de listagem. O status inicial é `pending`; um painel e fluxo de revisão ficam para uma etapa posterior. Limpar histórico, dados locais ou desinstalar a extensão não apaga reports já enviados. Configure retenção, acesso restrito e backup do banco e das exportações conforme o ambiente antes da distribuição pública; o limite por processo deve ser acompanhado pela proteção do serviço publicado.
 
 O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente Maritaca no médio, ou Maritaca no alto. A aplicação não controla a retenção feita por esses provedores. Antes da publicação, revise políticas, contratos, transferência internacional, HTTPS, configuração do proxy e logs de infraestrutura. O corte de 16 trechos válidos por eixo para evidência suficiente é uma escolha metodológica do notebook, mantida aqui mesmo em textos curtos.
 
@@ -67,6 +86,9 @@ npm test
 # navegadores instalados; perfis temporários, API simulada, sem uso de provedores
 npm run test:browser -- chrome
 npm run test:browser -- edge
+# Report no site e na extensão, com API simulada
+npm run test:reports -- chrome
+npm run test:reports -- edge
 
 # app/api, no ambiente Python com requirements-test.txt instalado
 python -m pip install -r requirements-test.txt

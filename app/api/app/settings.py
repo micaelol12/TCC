@@ -22,6 +22,8 @@ class Settings:
     concurrent_requests: int = int(os.getenv("CONCURRENT_REQUESTS", "3"))
     hourly_requests: int = int(os.getenv("HOURLY_REQUESTS", "30"))
     daily_calls: int = int(os.getenv("DAILY_PROVIDER_CALLS", "1000"))
+    reports_db_path: str = os.getenv("REPORTS_DB_PATH", str(Path(__file__).resolve().parents[1] / "data" / "reports.sqlite3"))
+    reports_hourly_requests: int = int(os.getenv("REPORTS_HOURLY_REQUESTS", "60"))
 
 
 settings = Settings()

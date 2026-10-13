@@ -11,5 +11,10 @@ test-results/
 api/.venv/
 api/.deps/
 api/.runtime/
+api/data/
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
 **/__pycache__/
 **/.pytest_cache/

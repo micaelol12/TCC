@@ -9,8 +9,10 @@ import type { Capabilities, Mode } from '../../services/analysisApi'
 import ComparisonPanel from '../comparison/ComparisonPanel'
 import { readAnalysisHistory, saveAnalysisHistory } from './analysisHistory'
 import type { Entry } from './analysisHistory'
+import { createReportClient } from '@8values/shared/reports'
 
 const client = createAnalysisClient()
+const reportClient = createReportClient()
 
 export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const [title, setTitle] = useState('')
@@ -48,7 +50,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
       <div className="conversation">
         <div className="mobileTabs" role="group" aria-label="Visualização"><button aria-pressed={mobileTab === 'analysis'} className={mobileTab === 'analysis' ? 'tab active' : 'tab'} onClick={() => setMobileTab('analysis')}>Análise</button><button aria-pressed={mobileTab === 'comparison'} className={mobileTab === 'comparison' ? 'tab active' : 'tab'} onClick={() => setMobileTab('comparison')}>Comparação</button></div>
         <div className={mobileTab === 'analysis' ? 'analysisContent' : 'analysisContent mobileHidden'}>
-          {!showComposer && selected && <AnalysisResult entry={selected}>
+          {!showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="web">
             <div className="actions"><button className="secondary" onClick={() => { setText(selected.text); setTitle(selected.title); setShowComposer(true) }}>Usar este texto em nova análise</button><button className="secondary" onClick={() => setMobileTab('comparison')}>Comparar comigo</button></div>
           </AnalysisResult>}
           {showComposer && <AnalysisComposer text={text} title={title} mode={mode} caps={caps} busy={busy} seconds={seconds} error={error} capsError={capsError}

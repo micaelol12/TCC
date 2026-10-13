@@ -29,7 +29,7 @@ Sem chaves de provedores na API, os modos aparecem indisponíveis. A API carrega
 
 Os padrões locais são API `http://127.0.0.1:8000` e site `http://127.0.0.1:5173`. Para substituir, crie `app/extension/.env.local` com as variáveis do arquivo `.env.example` e recompile.
 
-O endereço deve conter somente a origem, sem caminho `/api`, parâmetros, fragmentos ou credenciais. O cliente acrescenta `/api/capabilities` e `/api/analyze`.
+O endereço deve conter somente a origem, sem caminho `/api`, parâmetros, fragmentos ou credenciais. O cliente acrescenta `/api/capabilities`, `/api/analyze` e `/api/reports`.
 
 Para gerar o pacote de produção, crie `.env.production.local` contendo as **origens HTTPS reais**:
 
@@ -52,6 +52,10 @@ O build local usa o modo de configuração `development`, mas produz um bundle c
 
 Cada envio é independente. A seleção apenas preenche o painel; o POST contém `text` e `processing_level`. Os resultados não classificam a página inteira ou o autor.
 
+Em um resultado concluído ou do histórico, **Reportar classificação** permite enviar uma discordância. O modal mostra o trecho original, a análise completa, um comentário opcional e o aviso explícito de que esses dados serão armazenados no banco para posterior avaliação. A caixa de confirmação começa desmarcada. Abrir ou cancelar o modal não envia dados; **Enviar report** faz `POST /api/reports` somente após o aceite. Perfil, título, domínio/URL de origem e outras entradas do histórico não são enviados.
+
+A confirmação de sucesso aparece após a gravação no banco. Falhas preservam o comentário e permitem tentativa manual com o mesmo identificador enquanto o resultado estiver aberto, sem duplicação do registro. Fechar/reabrir o modal preserva essa tentativa; editar o comentário cria um novo identificador. Recarregar o painel ou trocar o resultado reinicia o estado do report na interface. Não há reenvio automático. Limpar o histórico ou desinstalar a extensão não apaga reports já enviados. A equipe acessa o banco e a exportação local descritos no [README principal](../README.md#reports-de-classificação).
+
 Se chegar outra seleção com um rascunho existente, escolha **Usar nova seleção** ou **Manter rascunho**. Durante uma análise, a seleção nova fica pendente e o texto enviado permanece fixo. O histórico e as seleções são separados por janela.
 
 O painel executa a requisição HTTP. Cancelar aborta a espera; chamadas já recebidas por provedores podem ter sido processadas. Se o documento do painel for fechado ou recarregado durante a requisição, ao reabrir o texto é recuperado como análise interrompida, sem reenvio automático. O prazo do cliente considera o prazo declarado pela API e 15 segundos de margem de rede.
@@ -71,13 +75,13 @@ O padrão é uso temporário. A opção **Salvar o próximo perfil neste navegad
 | `contextMenus` | Ação explícita sobre texto selecionado |
 | `sidePanel` | Interface de análise |
 | `storage` | Dados temporários e preferências |
-| Host da API | Consultar capacidades e analisar o texto revisado |
+| Host da API | Consultar capacidades, analisar o texto revisado e enviar reports confirmados |
 
 Não há script injetado, leitura automática de páginas, acesso ao histórico de navegação ou sincronização dos textos. A navegação anônima fica desabilitada para esta versão.
 
 O rascunho, a seleção e o histórico usam `chrome.storage.session`, apagado em reinício do navegador, recarga, atualização ou desativação da extensão. **Limpar histórico e rascunhos** limpa os dados da janela atual. O modo preferido e o perfil salvo por escolha explícita ficam em `chrome.storage.local`. Desinstalar a extensão remove esses dados.
 
-Somente o texto vai para os serviços indicados antes do envio: TypeSafe no baixo; TypeSafe e eventualmente Maritaca no médio; Maritaca no alto. Domínio de origem, perfil, título e histórico não integram o POST. O aplicativo não controla a retenção dos provedores. A API existente não grava textos em arquivos.
+Somente o texto vai para os serviços indicados antes da análise: TypeSafe no baixo; TypeSafe e eventualmente Maritaca no médio; Maritaca no alto. Domínio de origem, perfil, título e histórico não integram esse POST. O aplicativo não controla a retenção dos provedores. A análise comum não é gravada no banco. Ao confirmar um report, o texto, a análise e o comentário opcional são armazenados no servidor para posterior avaliação, juntamente com a confirmação do aviso e a origem `extension`.
 
 ## Verificar e empacotar
 
@@ -88,6 +92,8 @@ npm test
 npm run build
 npm run test:browser -- chrome
 npm run test:browser -- edge
+npm run test:reports -- chrome
+npm run test:reports -- edge
 npm run package:extension
 ```
 

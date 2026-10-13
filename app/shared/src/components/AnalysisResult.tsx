@@ -6,8 +6,10 @@ import AxisBar from './AxisBar'
 import AnalysisRadar from './AnalysisRadar'
 import IdeologyMatch from './IdeologyMatch'
 import styles from '../styles/Cards.module.css'
+import ReportDialog from './ReportDialog'
+import type { ReportClient, ReportRequest } from '../api/reportApi'
 
-export default function AnalysisResult({ entry, compact = false, children }: { entry: AnalysisEntry<number | string>; compact?: boolean; children?: ReactNode }) {
+export default function AnalysisResult({ entry, reportClient, reportOrigin, compact = false, children }: { entry: AnalysisEntry<number | string>; reportClient: ReportClient; reportOrigin: ReportRequest['client']; compact?: boolean; children?: ReactNode }) {
   const analysis = entry.analysis
   const scores = Object.fromEntries(analysis.axes.map(axis => [axis.axis, axis.pole_a])) as Scores
   const complete = axisOrder.every(axis => Number.isFinite(scores[axis]))
@@ -31,6 +33,7 @@ export default function AnalysisResult({ entry, compact = false, children }: { e
         </details></div> : <AxisBar key={axis} axis={axis} score={null} headingLevel={4} />
     })}
     {compact && <details><summary>Ver radar e detalhes gerais</summary><AnalysisRadar analysis={analysis} /></details>}
-    {complete && <IdeologyMatch scores={scores} source="analysis" />}{children}
+    {complete && <IdeologyMatch scores={scores} source="analysis" />}
+    <ReportDialog key={entry.id} entry={entry} client={reportClient} origin={reportOrigin} />{children}
   </section>
 }
