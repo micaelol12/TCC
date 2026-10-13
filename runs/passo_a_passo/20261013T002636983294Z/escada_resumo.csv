@@ -1,0 +1,9 @@
+eixo,etapa,acerto_exato,sem_nivel,erro_absoluto_medio
+diplomatic,eixos,0.9,2,0.125
+diplomatic,eixos_jev,1.0,1,0.0
+economic,eixos,1.0,2,0.0
+economic,eixos_jev,1.0,2,0.0
+society,eixos,1.0,1,0.0
+society,eixos_jev,1.0,1,0.0
+state,eixos,1.0,2,0.0
+state,eixos_jev,1.0,2,0.0

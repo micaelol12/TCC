@@ -1,0 +1,9 @@
+etapa,eixo,pares,acuracia_relevancia,acuracia_conjunta,abstencoes,referencia_tudo_irrelevante
+eixos,diplomatic,8,0.875,0.875,0,0.75
+eixos,economic,8,1.0,1.0,0,0.75
+eixos,society,8,0.75,0.75,0,0.375
+eixos,state,8,0.875,0.875,0,0.625
+eixos_jev,diplomatic,8,0.875,0.75,0,0.75
+eixos_jev,economic,8,1.0,0.875,0,0.75
+eixos_jev,society,8,0.75,0.625,0,0.375
+eixos_jev,state,8,0.875,0.875,0,0.625
