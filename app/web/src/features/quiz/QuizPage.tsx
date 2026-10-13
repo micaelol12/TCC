@@ -5,7 +5,7 @@ import type { Answer, Answers } from '../../domain/quizScoring'
 import type { Profile } from '../../storage/localProfile'
 import { DRAFT_KEY, removeLocalData, saveProfile } from '../../storage/localProfile'
 import { QUESTION_HASH } from '../../domain/quizScoring'
-import styles from '../../components/Cards.module.css'
+import styles from '@8values/shared/styles/Cards.module.css'
 import AxisGuide from './AxisGuide'
 
 type QuizState = { index: number; answers: Answers; review: boolean }

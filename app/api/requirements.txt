@@ -4,3 +4,4 @@ pydantic>=2.9,<3
 typesafe-sdk>=0.7,<1
 openai>=2,<4
 tiktoken>=0.8,<1
+python-dotenv>=1.0,<2

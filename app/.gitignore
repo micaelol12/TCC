@@ -1,7 +1,15 @@
 web/node_modules/
 web/dist/
 web/*.tsbuildinfo
+node_modules/
+extension/dist/
+extension/artifacts/
+extension/*.tsbuildinfo
+extension/.env.local
+extension/.env.production.local
+test-results/
 api/.venv/
 api/.deps/
+api/.runtime/
 **/__pycache__/
 **/.pytest_cache/

@@ -4,7 +4,7 @@ Data: 13/10/2026. Base: aplicativo React e API FastAPI existentes neste projeto.
 
 Permitir que o usuário selecione um trecho de uma página, escolha **Analisar com 8values**, revise o texto e consulte seus quatro eixos políticos em um painel lateral. Reaproveitar os componentes e o pipeline do app, mantendo os resultados ao lado da leitura.
 
-Este documento descreve a implementação proposta. A extensão ainda não foi implementada.
+Este documento registra o plano original. Em 13/10/2026 foram implementados o pacote compartilhado, a extensão local, a integração com a API, o histórico, a recuperação de interrupções e a importação/exportação de perfil. O pacote compilado foi exercitado em Chrome e Edge com API simulada. Consulte [instalação](C:/Users/User/Desktop/TCC/app/extension/README.md) e [limites da validação](C:/Users/User/Desktop/TCC/app/extension/VALIDACAO.md). A distribuição pública depende de API HTTPS e controle de acesso; o menu nativo e os provedores reais têm verificações manuais pendentes.
 
 ## 1. Escopo inicial
 

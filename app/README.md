@@ -6,7 +6,7 @@ O guia dos oito valores na aba do teste adapta as descrições do [8values origi
 
 ## Rodar localmente
 
-Requisitos: Node.js 20+, Python 3.11+ e acesso aos serviços para os modos de análise. Na pasta `app/web`:
+Requisitos: Node.js 22.18+ (recomendado 24+), Python 3.11+ e acesso aos serviços para os modos de análise. Na pasta `app`:
 
 ```powershell
 npm ci
@@ -19,12 +19,27 @@ Em outro terminal, na pasta `app/api`:
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
-$env:TYPESAFE_API_KEY = "sua-chave"
-$env:MARITACA_API_KEY = "sua-chave"
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-O Vite abre o frontend e encaminha `/api` à porta 8000. Para servir um único pacote, execute `npm run build` em `app/web` e inicie a API; ela servirá `web/dist` quando a pasta existir. `GET /api/capabilities` indica quais modos estão disponíveis conforme as chaves configuradas. Sem chaves, o questionário funciona e a análise fica indisponível.
+A API carrega automaticamente o `.env` na raiz do projeto TCC e, se existir, `app/api/.env`. Configure `TYPESAFE_API_KEY` e `MARITACA_API_KEY` nesses arquivos. A prioridade é: variáveis já definidas no processo, depois `app/api/.env`, depois o `.env` da raiz. Não é necessário exportar as chaves no terminal. Reinicie a API depois de alterar o arquivo; no painel da extensão, use **Verificar conexão e modos**.
+
+O Vite abre o frontend e encaminha `/api` à porta 8000. O workspace reúne `web`, `shared` e `extension`; instale as dependências na pasta `app`. Para servir um único pacote web, execute `npm run build --workspace=8values-textos` em `app` e inicie a API; ela servirá `web/dist` quando a pasta existir. `GET /api/capabilities` indica quais modos estão disponíveis conforme as chaves configuradas. Sem chaves, o questionário funciona e a análise fica indisponível.
+
+## Extensão Chrome e Edge
+
+A extensão oferece **Analisar com 8values** no menu de seleção de textos de páginas HTTP/HTTPS. O painel lateral recebe o trecho para revisão; somente o botão **Analisar texto** envia o texto e o modo para a API. Componentes, eixos, questionário e cliente HTTP são compartilhados com o site.
+
+Na pasta `app`, execute:
+
+```powershell
+npm run build
+npm run package:extension
+```
+
+Carregue `app/extension/dist` como extensão descompactada em `chrome://extensions` ou `edge://extensions`, com o modo de desenvolvedor ativado. O pacote ZIP fica em `app/extension/artifacts`. Inicie a API na porta 8000 antes de analisar. [Instalação, configuração e dados da extensão](extension/README.md).
+
+Para comparar com seu teste, abra **Meu resultado** no site, use **Exportar perfil para a extensão** e importe o JSON na aba **Comparação** do painel. Escolha uso temporário ou salvamento local. O perfil não é enviado à API.
 
 | Modo | Serviço | Variáveis necessárias |
 |---|---|---|
@@ -45,9 +60,13 @@ O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente Marita
 ## Testar
 
 ```powershell
-# app/web
+# app — site, cliente compartilhado e extensão
 npm run build
 npm test
+
+# navegadores instalados; perfis temporários, API simulada, sem uso de provedores
+npm run test:browser -- chrome
+npm run test:browser -- edge
 
 # app/api, no ambiente Python com requirements-test.txt instalado
 python -m pip install -r requirements-test.txt

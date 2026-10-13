@@ -1,0 +1,15 @@
+{
+  "name": "@8values/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./api": "./src/api/analysisApi.ts",
+    "./domain/*": "./src/domain/*.ts",
+    "./profile": "./src/domain/profile.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./styles/*": "./src/styles/*"
+  },
+  "peerDependencies": { "react": "^19.2.0" }
+}

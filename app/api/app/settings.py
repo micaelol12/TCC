@@ -1,6 +1,11 @@
-"""Configuration is read from the process environment, never from requests."""
+"""Configuration comes from the environment and local .env files, never requests."""
 from dataclasses import dataclass
+from pathlib import Path
 import os
+from .environment import load_environment
+
+
+load_environment(Path(__file__).resolve().parents[3])
 
 
 @dataclass(frozen=True)

@@ -1,6 +1,6 @@
-import type { Analysis, Mode } from '../../services/analysisApi'
+import type { AnalysisEntry } from '../../services/analysisApi'
 
-export type Entry = { id: number; title: string; text: string; analysis: Analysis; mode: Mode }
+export type Entry = AnalysisEntry
 
 const HISTORY_KEY = '8values-analysis-history-v1'
 let memoryEntries: Entry[] = []
