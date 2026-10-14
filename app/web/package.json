@@ -7,6 +7,9 @@
     "dev": "vite --host 127.0.0.1",
     "prebuild": "node scripts/check-questions.mjs",
     "build": "tsc -b && vite build",
+    "build:lab": "npm run prebuild && tsc -b && vite build --mode lab",
+    "dev:lab": "vite --mode lab --host 127.0.0.1",
+    "preview:lab": "vite preview --mode lab",
     "preview": "vite preview",
     "test": "vitest run"
   },

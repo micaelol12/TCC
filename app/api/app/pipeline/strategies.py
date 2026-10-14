@@ -28,14 +28,20 @@ def empty(reason: str, method: str | None = None) -> dict:
     return {"relevante": None, "nivel": None, "method": method, "methods": [method] if method else [], "reason": [reason], "quote": None}
 
 
-def jev_decisions(response) -> tuple[dict, str | None]:
+def authentication_failure(error):
+    status = getattr(error, "status_code", None) or getattr(getattr(error, "response", None), "status_code", None)
+    return status in (401, 403)
+
+
+def jev_decisions(response, config=None) -> tuple[dict, str | None]:
+    config = config if config is not None else JEV_CONFIG
     answers = response["answers"] if isinstance(response, dict) else response.answers
     model = response.get("model") if isinstance(response, dict) else getattr(response, "model", None)
     decisions = {}
     for axis in AXIS_SPECS:
         try:
-            original = decidir_jev(axis, answers, JEV_CONFIG)
-            reasons = motivos_fallback(original, JEV_CONFIG)
+            original = decidir_jev(axis, answers, config)
+            reasons = motivos_fallback(original, config)
             decisions[axis] = {
                 "relevante": original["relevante"], "nivel": original["nivel"],
                 "method": "jev", "methods": ["jev"], "reason": reasons, "quote": None,
@@ -65,18 +71,20 @@ async def ask_llm(client, model: str, text: str, axes: list[str]):
             return validate_answer(response.output_parsed, axes, text), getattr(response, "model", model)
         except asyncio.CancelledError:
             raise
-        except Exception:
+        except Exception as error:
+            if authentication_failure(error):
+                return {axis: empty("falha_autenticacao_llm", "llm") for axis in axes}, model
             if attempt == 0:
                 await asyncio.sleep(0.25)
     return {axis: empty("falha_llm", "llm") for axis in axes}, model
 
 
-async def classify_chunk(text: str, mode: str, jev, questions, llm, settings):
+async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
     calls = {"jev": 0, "llm": 0}
     models = []
     if mode == "high":
         calls["llm"] = 1
-        result, model = await ask_llm(llm, settings.llm_model, text, list(AXIS_SPECS))
+        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS))
         for decision in result.values():
             decision["methods"] = ["llm"]
         models.append(model)
@@ -84,18 +92,19 @@ async def classify_chunk(text: str, mode: str, jev, questions, llm, settings):
     try:
         calls["jev"] = 1
         response = await jev.system_one(state=text, questions=questions)
-        decisions, model = jev_decisions(response)
+        decisions, model = jev_decisions(response, config.jev_config() if config else None)
         if model:
             models.append(model)
     except asyncio.CancelledError:
         raise
-    except Exception:
-        decisions = {axis: empty("falha_jev", "jev") for axis in AXIS_SPECS}
+    except Exception as error:
+        reason = "falha_autenticacao_jev" if authentication_failure(error) else "falha_jev"
+        decisions = {axis: empty(reason, "jev") for axis in AXIS_SPECS}
     if mode == "medium":
         requested = [axis for axis, d in decisions.items() if d["reason"]]
         if requested:
             calls["llm"] = 1
-            reviewed, model = await ask_llm(llm, settings.llm_model, text, requested)
+            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested)
             models.append(model)
             for axis in requested:
                 reviewed[axis]["reason"] = list(dict.fromkeys(decisions[axis]["reason"] + reviewed[axis]["reason"]))

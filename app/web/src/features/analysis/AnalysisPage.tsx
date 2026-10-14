@@ -10,6 +10,10 @@ import ComparisonPanel from '../comparison/ComparisonPanel'
 import { readAnalysisHistory, saveAnalysisHistory } from './analysisHistory'
 import type { Entry } from './analysisHistory'
 import { createReportClient } from '@8values/shared/reports'
+import ExperimentPanel from '@8values/shared/components/ExperimentPanel'
+import ExperimentComparison from '@8values/shared/components/ExperimentComparison'
+import { useExperimentConfig } from '@8values/shared/hooks/useExperimentConfig'
+import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
 const client = createAnalysisClient()
 const reportClient = createReportClient()
@@ -25,6 +29,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const [showComposer, setShowComposer] = useState(() => readAnalysisHistory().length === 0)
   const [mobileTab, setMobileTab] = useState<'analysis' | 'comparison'>('analysis')
   const { busy, seconds, error, run, cancel } = useAnalysisRequest(client)
+  const experiment = useExperimentConfig(caps, window.location.origin, mode)
   const idRef = useRef(Math.max(0, ...readAnalysisHistory().map(entry => entry.id)))
   useEffect(() => { client.getCapabilities().then(setCaps).catch(() => setCapsError('API indisponível. Inicie o servidor para analisar textos.')) }, [])
   useEffect(() => { saveAnalysisHistory(entries) }, [entries])
@@ -33,9 +38,9 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const enabled = caps?.modes[mode] ?? false
 
   async function send(inputText = text, inputTitle = title) {
-    if (!inputText.trim() || Array.from(inputText).length > limit || busy || !enabled || !caps) return
+    if (!inputText.trim() || Array.from(inputText).length > limit || busy || !enabled || !caps || experiment.blocked) return
     try {
-      const result = await run(inputText, mode, caps)
+      const result = await run(inputText, mode, caps, experiment.requestConfig)
       const entry: Entry = { id: ++idRef.current, title: inputTitle.trim() || `Análise ${idRef.current}`, text: inputText, analysis: result, mode }
       setEntries(current => [...current, entry]); setSelectedId(entry.id); setMobileTab('analysis'); setShowComposer(false)
       setText(''); setTitle('')
@@ -43,6 +48,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   }
 
   return <main className="analysisShell">
+    {isLabBuild && <p className="labBadge">8values Lab · Versão de teste</p>}
     <header className="analysisHeading"><div><div className="eyebrow">Análise de textos</div><h1>Leia posições em quatro eixos</h1><p className="muted">Cada envio é independente. O histórico fica nesta sessão do navegador.</p></div>{!profile && <Link className="button secondary" to="/teste">Fazer meu teste</Link>}</header>
     <p className="aiDisclaimer">A análise é realizada por IA e pode cometer erros. Confira o texto original, a cobertura e as evidências antes de interpretar os resultados.</p>
     <div className="analysisGrid">
@@ -51,10 +57,14 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
         <div className="mobileTabs" role="group" aria-label="Visualização"><button aria-pressed={mobileTab === 'analysis'} className={mobileTab === 'analysis' ? 'tab active' : 'tab'} onClick={() => setMobileTab('analysis')}>Análise</button><button aria-pressed={mobileTab === 'comparison'} className={mobileTab === 'comparison' ? 'tab active' : 'tab'} onClick={() => setMobileTab('comparison')}>Comparação</button></div>
         <div className={mobileTab === 'analysis' ? 'analysisContent' : 'analysisContent mobileHidden'}>
           {!showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="web">
+            {isLabBuild && <ExperimentComparison key={selected.id} entry={selected} entries={entries} />}
             <div className="actions"><button className="secondary" onClick={() => { setText(selected.text); setTitle(selected.title); setShowComposer(true) }}>Usar este texto em nova análise</button><button className="secondary" onClick={() => setMobileTab('comparison')}>Comparar comigo</button></div>
           </AnalysisResult>}
           {showComposer && <AnalysisComposer text={text} title={title} mode={mode} caps={caps} busy={busy} seconds={seconds} error={error} capsError={capsError}
+            recipient={experiment.config && experiment.available?.model_providers?.[experiment.config.llm_model] === 'gemini' ? mode === 'medium' ? 'TypeSafe (JEV) e, quando necessário, Google Gemini' : mode === 'high' ? 'Google Gemini' : undefined : undefined}
+            configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={mode} busy={busy} error={experiment.error} storageKey={experiment.storageKey} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
             onText={setText} onTitle={setTitle} onMode={setMode} onSend={() => void send()} onCancel={cancel}
+            onRetry={() => { setCapsError(''); setCaps(null); void client.getCapabilities().then(setCaps).catch(() => setCapsError('API indisponível. Inicie o servidor para analisar textos.')) }}
             onClose={entries.length ? () => setShowComposer(false) : undefined} />}
         </div>
       </div>

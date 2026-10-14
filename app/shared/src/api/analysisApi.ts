@@ -1,6 +1,9 @@
 import { axisOrder, type Axis } from '../domain/axes'
+import { isExperimentCapabilities, isExperimentConfig, type ExperimentConfig, type ExperimentCapabilities } from '../domain/experimentConfig'
+import { isLabBuild } from '../domain/experimentConfig'
 
 export type Mode = 'low' | 'medium' | 'high'
+export type LabProvider = 'typesafe' | 'maritaca' | 'gemini'
 export const modes: Mode[] = ['low', 'medium', 'high']
 export const modeLabels: Record<Mode, string> = { low: 'Baixo', medium: 'Médio', high: 'Alto' }
 export const modeDescriptions: Record<Mode, string> = { low: 'Análise com JEV', medium: 'JEV com revisão por LLM quando necessária', high: 'Análise diretamente com LLM' }
@@ -16,10 +19,12 @@ export type AxisResult = {
 export type Analysis = {
   schema_version: string; pipeline_version: string; processing_level: Mode;
   models_used: string[]; axes: AxisResult[]; chunks: { index: number; text: string }[];
-  logical_calls: { jev: number; llm: number }; warnings: string[]
+  logical_calls: { jev: number; llm: number }; warnings: string[];
+  effective_config?: ExperimentConfig; config_version?: '1'; config_hash?: string; environment?: 'development' | 'lab' | 'production'; lab_execution_id?: string
 }
 export type AnalysisEntry<Id extends number | string = number> = { id: Id; title: string; text: string; analysis: Analysis; mode: Mode; source?: string }
-export type Capabilities = { max_chars: number; max_tokens: number; max_chunks: number; modes: Record<Mode, boolean>; timeout_seconds: number }
+export type Capabilities = { max_chars: number; max_tokens: number; max_chunks: number; modes: Record<Mode, boolean>; timeout_seconds: number;
+  environment?: 'development' | 'lab' | 'production'; experimental?: ExperimentCapabilities | { enabled: false } }
 
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
 function strings(value: unknown): value is string[] { return Array.isArray(value) && value.every(item => typeof item === 'string') }
@@ -29,11 +34,17 @@ function score(value: unknown): value is number { return typeof value === 'numbe
 export function isCapabilities(value: unknown): value is Capabilities {
   if (!object(value) || !object(value.modes)) return false
   const available = value.modes
+  if (value.environment !== undefined && !['development', 'lab', 'production'].includes(value.environment as string)) return false
+  if (value.experimental !== undefined && (!object(value.experimental) ||
+    (value.experimental.enabled !== false && !(value.environment === 'lab' && isExperimentCapabilities(value.experimental))))) return false
   return positive(value.max_chars) && positive(value.max_tokens) && positive(value.max_chunks) &&
     typeof value.timeout_seconds === 'number' && Number.isFinite(value.timeout_seconds) && value.timeout_seconds > 0 &&
     modes.every(mode => typeof available[mode] === 'boolean')
 }
 export function isAnalysis(value: unknown): value is Analysis {
+  if (object(value) && value.lab_execution_id !== undefined && (typeof value.lab_execution_id !== 'string' || !/^[a-f0-9-]{36}$/.test(value.lab_execution_id))) return false
+  if (object(value) && ['effective_config', 'config_version', 'config_hash', 'environment'].some(name => name in value) &&
+    (!isExperimentConfig(value.effective_config) || value.config_version !== '1' || typeof value.config_hash !== 'string' || !/^[a-f0-9]{64}$/.test(value.config_hash) || !['development', 'lab', 'production'].includes(value.environment as string))) return false
   if (!object(value) || value.schema_version !== '1' || typeof value.pipeline_version !== 'string' ||
     !modes.includes(value.processing_level as Mode) || !strings(value.models_used) || !strings(value.warnings) ||
     !object(value.logical_calls) || !count(value.logical_calls.jev) || !count(value.logical_calls.llm) ||
@@ -61,9 +72,40 @@ export class AnalysisTimeoutError extends Error {
   constructor() { super('A análise excedeu o tempo de espera. O texto foi preservado.'); this.name = 'AnalysisTimeoutError' }
 }
 
-export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args)) {
+export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args), labClient: 'web' | 'extension' = 'web') {
   const base = baseUrl.replace(/\/$/, '')
+  const sessionKey = `8values-lab-key-session-v1:${base || 'same-origin'}`
+  let memoryToken = ''
+  function token() { try { return sessionStorage.getItem(sessionKey) || memoryToken } catch { return memoryToken } }
+  function setToken(value: string) { memoryToken = value; try { if (value) sessionStorage.setItem(sessionKey, value); else sessionStorage.removeItem(sessionKey) } catch { /* keep opaque token in memory */ } }
+  function headers() { const value = token(); return { ...(value ? { 'X-Lab-Session': value } : {}), ...(isLabBuild ? { 'X-Lab-Client': labClient } : {}) } }
+  async function updateKey(provider: LabProvider, apiKey?: string) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 10000)
+    try {
+      const response = await fetcher(`${base}/api/lab/api-keys${apiKey === undefined ? `/${provider}` : ''}`, {
+        method: apiKey === undefined ? 'DELETE' : 'POST', headers: { ...headers(), 'Content-Type': 'application/json' },
+        body: apiKey === undefined ? undefined : JSON.stringify({ provider, api_key: apiKey }), signal: controller.signal, cache: 'no-store', credentials: 'omit',
+      })
+      if (response.status === 401) { setToken(''); throw new Error('Sessão expirada. Tente cadastrar a chave novamente.') }
+      if (!response.ok) throw new Error('Não foi possível atualizar a chave. Confira o formato e a conexão com a API Lab.')
+      const data = await response.json()
+      if (typeof data.session_token !== 'string' || !/^[A-Za-z0-9_-]{40,100}$/.test(data.session_token)) throw new Error('Resposta inválida da API Lab.')
+      setToken(data.session_token)
+    } finally { clearTimeout(timer) }
+  }
   return {
+    saveLabKey: (provider: LabProvider, apiKey: string) => updateKey(provider, apiKey),
+    removeLabKey: (provider: LabProvider) => updateKey(provider),
+    async clearLabSession() {
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), 10000)
+      try {
+        const response = await fetcher(`${base}/api/lab/session`, { method: 'DELETE', headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        if (!response.ok) throw new Error('Não foi possível encerrar a sessão de chaves.')
+        setToken('')
+      } finally { clearTimeout(timer) }
+    },
     async getCapabilities(signal?: AbortSignal): Promise<Capabilities> {
       const controller = new AbortController()
       const abort = () => controller.abort()
@@ -71,14 +113,15 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
       if (signal?.aborted) abort()
       const timer = setTimeout(abort, 10000)
       try {
-        const response = await fetcher(`${base}/api/capabilities`, { cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        let response = await fetcher(`${base}/api/capabilities`, { headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        if (response.status === 401 && token()) { setToken(''); response = await fetcher(`${base}/api/capabilities`, { headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal }) }
         if (!response.ok) throw new Error('Não foi possível consultar a API.')
         const data: unknown = await response.json()
         if (!isCapabilities(data)) throw new Error('A API retornou capacidades inválidas.')
         return data
       } finally { clearTimeout(timer); signal?.removeEventListener('abort', abort) }
     },
-    async analyze(text: string, processingLevel: Mode, signal: AbortSignal, timeoutSeconds = 120): Promise<Analysis> {
+    async analyze(text: string, processingLevel: Mode, signal: AbortSignal, timeoutSeconds = 120, experimentConfig?: ExperimentConfig): Promise<Analysis> {
       const controller = new AbortController()
       let timedOut = false
       const abort = () => controller.abort()
@@ -87,15 +130,17 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
       const timer = setTimeout(() => { timedOut = true; controller.abort() }, (timeoutSeconds + 15) * 1000)
       try {
         const response = await fetcher(`${base}/api/analyze`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'omit', cache: 'no-store',
-          body: JSON.stringify({ text, processing_level: processingLevel }), signal: controller.signal,
+          method: 'POST', headers: { 'Content-Type': 'application/json', ...headers() }, credentials: 'omit', cache: 'no-store',
+          body: JSON.stringify({ text, processing_level: processingLevel, ...(experimentConfig ? { experiment_config: experimentConfig } : {}) }), signal: controller.signal,
         })
         if (!response.ok) {
-          const messages: Record<number, string> = { 413: 'Texto acima do limite.', 422: 'Entrada inválida.', 429: 'Limite de uso atingido. Tente mais tarde.', 503: 'Modo indisponível no servidor.', 504: 'A análise excedeu o tempo disponível.' }
+          if (response.status === 401) { setToken(''); throw new Error('Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.') }
+          const messages: Record<number, string> = { 403: 'Configuração experimental indisponível nesta API. Atualize a conexão.', 413: 'Texto acima do limite. No Lab, aumente os tokens por trecho ou reduza o texto.', 422: 'Entrada ou configuração inválida. Atualize a conexão e confira os parâmetros.', 429: 'Limite de uso atingido. Tente mais tarde.', 503: 'Modo indisponível no servidor.', 504: 'A análise excedeu o tempo disponível.' }
           throw new Error(messages[response.status] ?? 'Falha na análise. Tente novamente.')
         }
         const data: unknown = await response.json()
         if (!isAnalysis(data) || data.processing_level !== processingLevel) throw new Error('A API retornou uma análise inválida.')
+        if (experimentConfig && (data.environment !== 'lab' || !data.effective_config || Object.keys(experimentConfig).some(name => data.effective_config![name as keyof ExperimentConfig] !== experimentConfig[name as keyof ExperimentConfig]))) throw new Error('A API não confirmou a configuração experimental utilizada.')
         return data
       } catch (err) {
         if (timedOut) throw new AnalysisTimeoutError()

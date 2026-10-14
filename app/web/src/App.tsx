@@ -6,6 +6,7 @@ import AnalysisPage from './features/analysis/AnalysisPage'
 import type { Profile } from './storage/localProfile'
 import { PROFILE_KEY, readProfile, removeLocalData } from './storage/localProfile'
 import { clearAnalysisHistory } from './features/analysis/analysisHistory'
+import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
 export default function App() {
   const [profile, setProfile] = useState<Profile | null>(() => readProfile())
@@ -14,6 +15,7 @@ export default function App() {
   const location = useLocation()
   const contentRef = useRef<HTMLDivElement>(null)
   const initialRoute = useRef(true)
+  useEffect(() => { if (isLabBuild) document.title = '8values Lab · versão de teste' }, [])
   useEffect(() => {
     const sync = (event: StorageEvent) => {
       if (event.key === PROFILE_KEY || event.key === null) { const current = readProfile(); setProfile(current); setStored(current !== null) }

@@ -3,6 +3,10 @@ web/dist/
 web/*.tsbuildinfo
 node_modules/
 extension/dist/
+extension/dist-lab/
+web/dist-lab/
+api/.env.lab
+**/.env*.local
 extension/artifacts/
 extension/*.tsbuildinfo
 extension/.env.local

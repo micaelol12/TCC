@@ -8,6 +8,7 @@ import IdeologyMatch from './IdeologyMatch'
 import styles from '../styles/Cards.module.css'
 import ReportDialog from './ReportDialog'
 import type { ReportClient, ReportRequest } from '../api/reportApi'
+const warningLabels: Record<string, string> = { falha_autenticacao_jev: 'A API não conseguiu autenticar no TypeSafe. Confira a chave no servidor.', falha_autenticacao_llm: 'A API não conseguiu autenticar no provedor LLM selecionado. Confira sua chave.', evidencia_nao_verificada: 'O modelo retornou uma citação que não confere com o texto. A estimativa correspondente foi descartada.' }
 
 export default function AnalysisResult({ entry, reportClient, reportOrigin, compact = false, children }: { entry: AnalysisEntry<number | string>; reportClient: ReportClient; reportOrigin: ReportRequest['client']; compact?: boolean; children?: ReactNode }) {
   const analysis = entry.analysis
@@ -17,8 +18,13 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
     <div className="cardTop"><span className={styles.chip}>{modeLabels[analysis.processing_level]} · {analysis.models_used.join(', ') || 'Serviço externo'}</span><span className="muted small">{analysis.chunks.length} trechos</span></div>
     <h2>{entry.title}</h2>{entry.source && <p className="muted small sourceOrigin">Trecho selecionado em {entry.source}</p>}
     <p className="muted small">O resultado descreve somente o trecho enviado.</p>
+    {analysis.lab_execution_id && <p className="small configHash" role="status">Execução gravada no banco: {analysis.lab_execution_id}</p>}
     <details className="sourceDetails"><summary>Ver texto analisado</summary><p className="sourceText">{entry.text}</p></details>
-    {analysis.warnings.length > 0 && <p className="notice">Há limitações nesta análise: {analysis.warnings.join(', ')}.</p>}
+    {analysis.effective_config ? <details className="experimentSnapshot"><summary>Configuração utilizada{analysis.environment === 'lab' ? ' · versão de teste' : ''}</summary>
+      <p className="small muted">Ambiente: {analysis.environment}. Pipeline: {analysis.pipeline_version}. Configuração v{analysis.config_version}.</p>
+      <pre className="reportSnapshot">{JSON.stringify(analysis.effective_config, null, 2)}</pre><p className="small configHash">Identificador: {analysis.config_hash}</p>
+    </details> : <p className="muted small">Configuração não registrada nesta análise.</p>}
+    {analysis.warnings.length > 0 && <p className="notice">Há limitações nesta análise: {analysis.warnings.map(reason => warningLabels[reason] ?? reason).join(' ')}.</p>}
     {!compact && <AnalysisRadar analysis={analysis} />}
     <div className="sectionHeading detailHeading"><div><div className="eyebrow">Detalhamento</div><h3>Quatro eixos</h3></div></div>
     {axisOrder.map(axis => {

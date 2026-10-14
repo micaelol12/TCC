@@ -10,6 +10,10 @@ import { captureKey, sessionKey, isCapture, type Capture } from '../platform/sel
 import { emptySession, hydrateSession, reduceSession, fitSession, type Action, type Session } from '../storage/sessionState'
 import { createSessionStore } from '../storage/sessionStore'
 import { readPreferences, saveMode, saveProfile, TEMP_PROFILE_KEY, LOCAL_PROFILE_KEY } from '../storage/preferences'
+import ExperimentPanel from '@8values/shared/components/ExperimentPanel'
+import ExperimentComparison from '@8values/shared/components/ExperimentComparison'
+import { useExperimentConfig } from '@8values/shared/hooks/useExperimentConfig'
+import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
 export default function ExtensionApp() {
   const [state, setState] = useState<Session>(emptySession)
@@ -31,6 +35,7 @@ export default function ExtensionApp() {
   const owner = useRef(crypto.randomUUID())
   const cancelRequested = useRef(false)
   const { busy, seconds, error, run, cancel, clearError } = useAnalysisRequest(client)
+  const experiment = useExperimentConfig(caps, API_BASE_URL, state.mode)
 
   function update(action: Action) {
     const reduced = reduceSession(stateRef.current, action)
@@ -129,7 +134,8 @@ export default function ExtensionApp() {
 
   async function send() {
     const current = stateRef.current
-    if (!readyRef.current || current.request || !caps || !caps.modes[current.mode] || !current.draft.text.trim() || Array.from(current.draft.text).length > caps.max_chars) return
+    if (!readyRef.current || current.request || !caps || !caps.modes[current.mode] || !current.draft.text.trim() || Array.from(current.draft.text).length > caps.max_chars || experiment.blocked) return
+    const requestConfig = experiment.requestConfig
     const request = { ...current.draft, id: crypto.randomUUID(), owner: owner.current, mode: current.mode, startedAt: Date.now() }
     cancelRequested.current = false
     const started = update({ type: 'begin', request })
@@ -141,7 +147,7 @@ export default function ExtensionApp() {
     if (!mounted.current) return
     if (cancelRequested.current) { update({ type: 'failure', id: request.id, message: 'Análise cancelada. O texto foi preservado.' }); return }
     try {
-      const result = await run(request.text, request.mode, caps)
+      const result = await run(request.text, request.mode, caps, requestConfig)
       if (mounted.current) update({ type: 'success', id: request.id, analysis: result })
     } catch (err) {
       if (mounted.current) update({ type: 'failure', id: request.id, message: err instanceof Error ? err.message : 'Falha na análise.' })
@@ -172,6 +178,7 @@ export default function ExtensionApp() {
     <a className="skipLink" href="#panel-content">Pular para o conteúdo</a>
     <header className="panelHeader"><div className="brand"><span className="brandMark">8</span><span>valores <span className="brandPlus">+ textos</span></span></div><button className="secondary" disabled={!ready || isBusy} onClick={() => { update({ type: 'compose' }); clearError(); setTab('analysis') }}>+ Nova</button></header>
     <main id="panel-content" className="panelMain analysisContent">
+      {isLabBuild && <p className="labBadge">8values Lab · Versão de teste</p>}
       <div className="eyebrow">Leitura crítica · quatro eixos</div><h1>Analise um trecho</h1>
       <p className="muted small">Selecione um texto na página e use “Analisar com 8values” no botão direito.</p>
       <p className="aiDisclaimer small">A IA pode cometer erros. Confira o texto, a cobertura e as evidências.</p>
@@ -181,11 +188,14 @@ export default function ExtensionApp() {
       <nav className="panelTabs" aria-label="Visualização"><button className={tab === 'analysis' ? '' : 'secondary'} aria-pressed={tab === 'analysis'} onClick={() => setTab('analysis')}>Análise</button><button className={tab === 'comparison' ? '' : 'secondary'} aria-pressed={tab === 'comparison'} onClick={() => setTab('comparison')}>Comparação</button></nav>
       {tab === 'analysis' ? <>
         {ready && state.showComposer && <AnalysisComposer text={state.draft.text} title={state.draft.title} source={state.draft.source} mode={state.mode} caps={caps} busy={isBusy} seconds={seconds} error={state.notice || error} capsError={capsError}
+          recipient={experiment.config && experiment.available?.model_providers?.[experiment.config.llm_model] === 'gemini' ? state.mode === 'medium' ? 'TypeSafe (JEV) e, quando necessário, Google Gemini' : state.mode === 'high' ? 'Google Gemini' : undefined : undefined}
+          configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} storageKey={experiment.storageKey} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}
           onSend={() => void send()} onCancel={() => { cancelRequested.current = true; cancel() }} onRetry={() => void refreshCapabilities()} onClose={selected ? () => update({ type: 'close-composer' }) : undefined} />}
         {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button></div></AnalysisResult>}
         <details className="sessionHistory"><summary>Histórico desta sessão ({state.entries.length})</summary>{state.entries.length ? <ul>{state.entries.map(entry => <li key={entry.id}><button className="secondary historyEntry" aria-pressed={entry.id === state.selectedId && !state.showComposer} disabled={isBusy} onClick={() => { update({ type: 'select', id: entry.id }); clearError() }}>{entry.title}<span>{modeLabels[entry.mode]}</span></button></li>)}</ul> : <p className="muted small">Nenhuma análise nesta sessão.</p>}
+          {isLabBuild && selected && !state.showComposer && <ExperimentComparison key={selected.id} entry={selected} entries={state.entries} />}
           <p className="muted small">Até 10 análises, com limite de espaço. Os dados temporários são removidos ao reiniciar o navegador ou recarregar a extensão.</p>
           <p className="muted small">Limpar este histórico não apaga reports já enviados e armazenados no servidor.</p>
           <button className="danger" disabled={!ready || isBusy} onClick={() => { update({ type: 'clear' }); clearError(); setStorageError(''); if (windowId.current !== null) void chrome.storage.session.remove(captureKey(windowId.current)).catch(() => setStorageError('Não foi possível apagar a seleção temporária.')) }}>Limpar histórico e rascunhos</button>

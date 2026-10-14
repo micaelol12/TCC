@@ -1,5 +1,9 @@
 # 8values + textos
 
+Para experimentar parâmetros do algoritmo, modelos e chaves da API na edição **8values Lab**, consulte [o guia da versão de teste](LAB.md). Inicie com `npm run api:lab` e `npm run dev:lab` em terminais separados; gere o pacote com `npm run build:lab` e `npm run package:lab`.
+
+O Lab possui uma aba **API keys** para chaves Maritaca e Gemini por sessão e registra automaticamente todas as execuções de análise em `lab_executions`, no banco Lab, incluindo texto e resultado. Os parágrafos abaixo sobre armazenamento somente por report descrevem a edição comum. [Chaves, modelos e registros do Lab](LAB.md).
+
 Aplicativo React + TypeScript e API FastAPI para o questionário 8values e análise de textos políticos em quatro eixos. Implementação do MVP descrito em [`../PLANO_APP_8VALUES.md`](../PLANO_APP_8VALUES.md).
 
 O guia dos oito valores na aba do teste adapta as descrições do [8values original](https://8values.github.io/). A ideologia mais próxima usa os 52 perfis de [`../tcc/ideologies.json`](../tcc/ideologies.json) e a distância definida em [`../TCC.ipynb`](../TCC.ipynb): quadrado das diferenças nos eixos econômico e civil, e expoente `1.73856063` nos eixos diplomático e social. É uma correspondência exploratória, menos precisa que os quatro eixos segundo o próprio 8values. Na análise de texto ela só aparece quando os quatro eixos têm estimativa; as classificações feitas por IA podem conter erros.

@@ -1,8 +1,10 @@
 import type { AnalysisEntry } from '../../services/analysisApi'
+import { storagePrefix } from '@8values/shared/domain/experimentConfig'
+import { isAnalysis } from '../../services/analysisApi'
 
 export type Entry = AnalysisEntry
 
-const HISTORY_KEY = '8values-analysis-history-v1'
+const HISTORY_KEY = `${storagePrefix}-analysis-history-v1`
 let memoryEntries: Entry[] = []
 
 export function readAnalysisHistory(): Entry[] {
@@ -16,8 +18,7 @@ export function readAnalysisHistory(): Entry[] {
       const item = entry as Partial<Entry>
       return Number.isSafeInteger(item.id) && typeof item.title === 'string' &&
         typeof item.text === 'string' && ['low', 'medium', 'high'].includes(item.mode ?? '') &&
-        Array.isArray(item.analysis?.axes) && Array.isArray(item.analysis?.chunks) &&
-        Array.isArray(item.analysis?.warnings) && Array.isArray(item.analysis?.models_used)
+        isAnalysis(item.analysis) && item.mode === item.analysis.processing_level
     })
     return memoryEntries
   } catch { return memoryEntries }

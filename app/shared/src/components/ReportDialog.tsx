@@ -62,7 +62,7 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
       <p id={`${id}-notice`} className="privacyNote"><strong>{REPORT_NOTICE}</strong></p>
       <details className="sourceDetails"><summary>Ver trecho que será armazenado</summary><p className="sourceText">{entry.text}</p></details>
       <details><summary>Ver análise que será armazenada</summary>
-        <p className="small">A análise completa inclui eixos, evidências, trechos, avisos, modelos utilizados e versões.</p>
+        <p className="small">A análise completa inclui eixos, evidências, trechos, avisos, modelos utilizados, versões e a configuração registrada.</p>
         <ul>{entry.analysis.axes.map(axis => <li key={axis.axis}>{AXES[axis.axis].title}: {axis.pole_a === null || axis.pole_b === null ? 'Sem estimativa' : `${AXES[axis.axis].a} ${axis.pole_a.toFixed(1)}% · ${AXES[axis.axis].b} ${axis.pole_b.toFixed(1)}%`}</li>)}</ul>
         <pre className="reportSnapshot">{JSON.stringify(entry.analysis, null, 2)}</pre>
       </details>

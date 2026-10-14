@@ -1,0 +1,120 @@
+# 8values Lab — versão de teste
+
+O site e a extensão Lab permitem alterar os parâmetros da próxima análise, escolher modelos permitidos, salvar/importar/exportar configurações e comparar resultados do mesmo texto. O nome **Versão de teste**, a configuração efetiva e seu identificador acompanham os resultados experimentais.
+
+## Iniciar
+
+Na pasta `app`, com as dependências instaladas pelo README principal:
+
+```powershell
+# Terminal 1: API Lab em http://127.0.0.1:8001
+npm run api:lab
+
+# Terminal 2: site Lab em http://127.0.0.1:5174
+npm run dev:lab
+```
+
+Para gerar o site compilado e a extensão instalável:
+
+```powershell
+npm run build:lab
+npm run package:lab
+```
+
+Carregue `app/extension/dist-lab` como extensão descompactada no Chrome ou Edge. O ZIP é `app/extension/artifacts/8values-extension-0.1.0-lab.zip`; extraia antes de carregar. O build do site fica em `app/web/dist-lab`, servido pela API Lab na porta 8001 quando essa pasta existe. Para desenvolvimento e transferência de perfil, use o site na porta 5174, configurada na extensão. `npm run preview:lab --workspace=8values-textos` também usa 5174 com proxy para a API Lab.
+
+Para usar o site servido pela API em vez da porta 5174, defina `VITE_WEB_BASE_URL=http://127.0.0.1:8001` em `app/extension/.env.lab.local` e recompile a extensão Lab. A conexão de perfil exige origem e edição correspondentes.
+
+## Chaves e padrões
+
+Copie `app/api/.env.lab.example` para `app/api/.env.lab` se quiser padrões próprios para o Lab. O launcher define `APP_ENV=lab` e habilita os controles experimentais. Para iniciar manualmente na pasta `app/api`:
+
+```powershell
+$env:APP_ENV='lab'
+$env:EXPERIMENTAL_CONFIG_ENABLED='true'
+.venv/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8001
+```
+
+Para configurações que não são credenciais, a prioridade é: variáveis do processo > `app/api/.env.lab` > `app/api/.env` > `.env` da raiz. O arquivo Lab só é carregado quando `APP_ENV=lab` foi selecionado pelo processo ou por um dos arquivos comuns de ambiente. Reinicie a API depois de editar as variáveis e use **Verificar conexão e modos** no painel.
+
+Abra **Configuração da análise → API keys** no site ou na extensão. Cole sua chave TypeSafe, Maritaca ou Gemini e clique em **Salvar chave**. Os modelos do provedor ficam disponíveis imediatamente, sem reiniciar a API. As chaves são enviadas à API local e mantidas somente na memória de uma sessão de até 8 horas. O campo é limpo após salvar; o navegador conserva apenas um token opaco em `sessionStorage`. As chaves não entram no banco, presets, histórico ou pacote. Site e extensão têm sessões independentes: cadastre a chave na interface em que vai analisar.
+
+**Desabilitar** remove o acesso ao provedor naquela sessão; **Limpar chaves da sessão** encerra a sessão e bloqueia todos os modos até um novo cadastro. Após reiniciar a API ou expirar a sessão, cadastre novamente. A presença da chave libera a seleção, mas não comprova acesso ao modelo; uma chave inválida produz aviso de autenticação na análise.
+
+O Lab inicia sem nenhuma chave pré-cadastrada e ignora `TYPESAFE_API_KEY`, `MARITACA_API_KEY` e `GEMINI_API_KEY` do processo e dos arquivos de ambiente. Cada usuário precisa cadastrar suas chaves na sessão do site ou da extensão. O modo baixo exige TypeSafe; o modo médio exige TypeSafe e o provedor LLM selecionado; o modo alto exige apenas o provedor LLM selecionado. Sem essas chaves, as análises ficam bloqueadas tanto na interface quanto na API. A edição comum mantém sua configuração de chaves no servidor.
+
+`JEV_MODEL` e `LLM_MODEL` definem os modelos padrão. O Lab oferece `sabia-4` e `sabiazinho-4` pela Maritaca e `gemini-3.1-flash-lite` e `gemini-3.7-flash` pelo Google. `ALLOWED_LLM_MODELS` acrescenta modelos Maritaca; `ALLOWED_GEMINI_MODELS` define a lista Gemini. É possível escolher o modelo LLM antes de cadastrar a chave; modelos sem chave recebem a indicação **chave ausente**, e a análise nos modos médio e alto permanece bloqueada até o cadastro. No modo baixo, a escolha fica preparada para os modos que usam LLM. Durante uma análise, os parâmetros ficam bloqueados. O provedor é identificado pelo catálogo da API e não por uma URL fornecida pelo usuário.
+
+O Google informa que `gemini-3.7-flash` é redirecionado para `gemini-3.8-flash`. A escolha solicitada e o modelo efetivamente retornado ficam registrados separadamente. [Gemini 3.7 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash), [modelos Maritaca](https://docs.maritaca.ai/pt/modelos). O adaptador Gemini usa o endpoint REST de geração com JSON Schema e valida a saída com o mesmo contrato de eixos e evidências do Sabiá. [Referência de geração Gemini](https://ai.google.dev/api/generate-content).
+
+| Variável | Padrão | Efeito |
+|---|---|---|
+| `CHUNK_TOKENS` | 600 | Tamanho aproximado dos trechos, de 100 a 2.000 tokens |
+| `JEV_RELEVANCE_MARGIN_MIN` | 0.60 | Relevância ambígua abaixo da margem |
+| `JEV_LEVEL_CONFIDENCE_MIN` | 0.50 | Nível com confiança insuficiente abaixo do limiar |
+| `JEV_DIRECTION_MARGIN_MIN` | 0.20 | Direção ambígua abaixo da margem |
+| `MIN_VALID_CHUNKS` | 16 | Corte para indicar evidência suficiente |
+| `BOOTSTRAP_SAMPLES` | 2000 | Reamostragens do intervalo entre trechos, de 200 a 10.000 |
+| `BOOTSTRAP_SEED` | 42 | Semente do bootstrap, de 0 a 2³² − 1 |
+
+Os limiares JEV acionam revisão no modo médio e motivos de incerteza no modo baixo. No modo alto, eles não se aplicam. O corte de evidência suficiente não muda a média. A semente reproduz o bootstrap, mas não garante respostas idênticas dos provedores. As faixas permitidas são limites de engenharia; mudar valores não equivale a validar cientificamente um novo método.
+
+O painel substitui os padrões somente para a próxima requisição. A configuração de uma análise em andamento é fixa. Limites totais, concorrência, prazo, orçamento diário e limites horários continuam definidos pelo servidor. Trechos menores podem gerar mais chamadas ou ultrapassar `MAX_CHUNKS`.
+
+## Presets, histórico e reports
+
+**Salvar configuração** guarda um preset neste navegador, separado por origem da API/site. **Exportar JSON** e **Importar configuração JSON** usam um formato versionado sem credenciais e com limite de 20 KB. Importações e presets salvos são revalidados contra os modelos e faixas da API atual. **Restaurar padrões** muda a próxima análise; salve novamente se quiser substituir seu preset persistente.
+
+Os resultados exibem uma cópia de todos os parâmetros, os modelos retornados e o hash da configuração pública. A comparação entre experimentos permite selecionar outra análise do mesmo texto, com pontuações do polo A, cobertura, chamadas lógicas e parâmetros lado a lado. Use **Usar este texto em nova análise** no site ou **Editar e reanalisar** na extensão. Na extensão, a comparação fica dentro do histórico expandido.
+
+Reports mantêm os metadados da configuração junto do snapshot e continuam exigindo consentimento. O banco Lab padrão é `app/api/data/reports-lab.sqlite3`. Para alterá-lo, use `LAB_REPORTS_DB_PATH`; o Lab não herda `REPORTS_DB_PATH` do ambiente comum. Não configure as duas variáveis para o mesmo banco. Reports Lab são rejeitados pela API comum e vice-versa. O hash detecta inconsistências de configuração, mas não autentica uma classificação enviada pelo cliente.
+
+**Toda execução de análise do Lab é gravada automaticamente**, sem depender de um report, na tabela `lab_executions` desse mesmo banco. O registro inclui UUID, datas UTC, cliente, texto, modo, parâmetros solicitados/efetivos, resultado completo, duração, status HTTP e um código de falha sem mensagens brutas dos provedores. Sucessos, resultados com avisos, entradas rejeitadas, falhas, timeouts e cancelamentos ficam registrados. Entradas acima do limite são limitadas no armazenamento; uploads cujo corpo excede 250 KB recebem um registro sem texto.
+
+A gravação inicial acontece antes das chamadas externas. Falha no banco impede iniciar a análise; falha na confirmação final retorna erro, preservando o registro inicial. Registros deixados em andamento por uma interrupção do servidor passam a `interrupted` na próxima inicialização. Não há duplicação automática de análise: cada nova tentativa recebe outro UUID. As respostas bem-sucedidas mostram **Execução gravada no banco** e seu identificador. Limpar o histórico no navegador mantém os registros do servidor.
+
+Para exportar todas as execuções sem alterar o banco, execute na pasta `app/api`:
+
+```powershell
+.venv/Scripts/python.exe scripts/export_lab_executions.py --output execucoes-lab.jsonl
+# Opcional: --database CAMINHO --status failed|cancelled|completed|all
+```
+
+O exportador recusa sobrescrever arquivos existentes. Tokens de sessão e chaves não são registrados nem exportados. As exportações contêm os textos e resultados das execuções e ficam sob administração de quem opera o Lab.
+
+As edições usam portas, pastas e chaves de armazenamento distintas. O site e a extensão enviam perfis somente para a edição correspondente. Resultados antigos permanecem legíveis e aparecem com **Configuração não registrada**.
+
+## Verificação
+
+```powershell
+# app: contratos, builds, navegador e pacote
+npm test
+npm run build
+npm run build:lab
+npm run package:lab
+npm run verify:lab
+npm run test:lab -- chrome
+npm run test:lab -- edge
+
+# app/api: provedores simulados, incluindo concorrência e reports
+.venv/Scripts/python.exe -m unittest discover -s tests -v
+
+# app/api: verificação explícita com texto sintético e provedores reais
+# Consome até uma análise curta por modo, além das retentativas do pipeline.
+.venv/Scripts/python.exe scripts/validate_lab_providers.py --live
+```
+
+Os testes de navegador usam perfis temporários, o site e as extensões compilados e uma API simulada. Capturas e relatórios ficam em `app/test-results`. `verify:lab` procura arquivos de ambiente e as credenciais fictícias usadas para validar o build; ele não atesta validade das chaves reais. A verificação real grava um resumo de integração e, como qualquer análise do Lab, registra a execução sintética no banco. Use `--llm-model sabiazinho-4` ou `--llm-model gemini-3.1-flash-lite` para verificar apenas o modo alto com aquele modelo; o script solicita as chaves sem exibi-las e as cadastra em uma sessão temporária. Deixe um campo vazio para pular esse provedor. Nenhuma chave é carregada do ambiente.
+
+Esta edição foi preparada para uso local: os builds Lab exigem origens locais, e o launcher da API usa loopback. Hospedagem remota, contas persistentes, outros provedores e edição livre de prompts/rubricas exigem etapas adicionais.
+
+## Validação realizada em 13/10/2026
+
+- Builds comum e Lab gerados; pacote Lab contém 11 arquivos e foi inspecionado sem arquivos de ambiente ou chaves fictícias.
+- Fluxo Lab verificado em Chrome 155.0.8059.40 e Edge 155.0.4283.45: parâmetros, presets, importação/exportação, comparação, histórico, report, largura de tela e transferência de perfil para a edição correta.
+- Regressão de transferência de perfil da edição comum verificada no Chrome; regressão de captura, cancelamento, recuperação, histórico e isolamento de janelas verificada no Edge.
+- Integração real com texto sintético: modo baixo usou JEV, modo médio usou JEV e Sabiá, e modo alto usou Sabiá. Todos retornaram HTTP 200, sem avisos de erro, com configuração registrada. Modelos: `jev-1.13.0` e `sabia-4`.
+- Atualização com API keys e persistência: 66 testes TypeScript e 42 testes da API passaram. Chrome e Edge exercitaram cadastro, liberação dos modelos por chave, seleção Gemini/Sabiazinho, isolamento das sessões e recibo de execução. O adaptador Gemini foi validado com transporte HTTP simulado; uma chamada real depende de uma chave Gemini configurada.
+- A chamada real ao `sabiazinho-4` retornou HTTP 200. Houve aviso `evidencia_nao_verificada`: a estimativa apoiada nessa citação foi descartada e a execução ficou registrada como `completed_with_warnings`, preservando a validação de evidências.
+
+Esses checks confirmam a integração e os fluxos exercitados; a avaliação de qualidade dos parâmetros experimentais continua dependendo de um conjunto de textos e critérios de pesquisa.

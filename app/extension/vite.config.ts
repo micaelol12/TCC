@@ -14,17 +14,18 @@ export default defineConfig(({ mode }) => {
         ...['react', 'react-dom', 'scheduler'].map(name => `\n## ${name}\n\n${readFileSync(new URL(`../node_modules/${name}/LICENSE`, import.meta.url), 'utf8')}`),
       ].join('\n')
       this.emitFile({ type: 'asset', fileName: 'THIRD_PARTY_NOTICES.md', source: notices })
-      this.emitFile({ type: 'asset', fileName: 'profile-bridge.js', source: readFileSync(new URL('./src/platform/profileBridge.js', import.meta.url), 'utf8').replace('__WEB_ORIGIN__', JSON.stringify(config.webBase)) })
+      this.emitFile({ type: 'asset', fileName: 'profile-bridge.js', source: readFileSync(new URL('./src/platform/profileBridge.js', import.meta.url), 'utf8').replace('__WEB_ORIGIN__', JSON.stringify(config.webBase)).replace('__BRIDGE_VARIANT__', JSON.stringify(mode === 'lab' ? 'lab' : 'standard')) })
       this.emitFile({ type: 'asset', fileName: 'manifest.json', source: JSON.stringify({ ...manifest,
+        ...(mode === 'lab' ? { name: '8values Lab', description: 'Versão de teste com parâmetros configuráveis para análise de textos.' } : {}),
         host_permissions: [config.hostPermission],
         content_scripts: [{ matches: [config.webMatchPattern], js: ['profile-bridge.js'], run_at: 'document_start' }],
         content_security_policy: { extension_pages: `script-src 'self'; object-src 'self'; connect-src ${config.apiBase}; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'` },
       }, null, 2) })
     } }],
-    define: { __API_BASE_URL__: JSON.stringify(config.apiBase), __WEB_BASE_URL__: JSON.stringify(config.webBase) },
+    define: { __API_BASE_URL__: JSON.stringify(config.apiBase), __WEB_BASE_URL__: JSON.stringify(config.webBase), __APP_VARIANT__: JSON.stringify(mode === 'lab' ? 'lab' : 'standard') },
     resolve: { dedupe: ['react', 'react-dom'] },
     base: './',
-    build: { rollupOptions: { input: { sidepanel: resolve('sidepanel.html'), background: resolve('src/background.ts') },
+    build: { outDir: mode === 'lab' ? 'dist-lab' : 'dist', rollupOptions: { input: { sidepanel: resolve('sidepanel.html'), background: resolve('src/background.ts') },
       output: { entryFileNames: chunk => chunk.name === 'background' ? 'background.js' : 'assets/[name]-[hash].js' } } },
   }
 })

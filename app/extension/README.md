@@ -1,5 +1,9 @@
 # Extensão 8values + textos
 
+A edição **8values Lab** acrescenta parâmetros por análise, presets e comparação de experimentos. Use `npm run package:lab` na pasta `app` e carregue `extension/dist-lab`. [Guia do Lab, chaves e configuração](../LAB.md).
+
+No Lab, a aba **API keys** libera modelos Maritaca e Gemini conforme as chaves cadastradas na sessão. Todas as execuções são gravadas automaticamente no banco da API, incluindo texto, parâmetros e resultado; as regras de armazenamento somente após report descritas abaixo pertencem à edição comum.
+
 Extensão Manifest V3 para Chrome e Edge. Permite revisar e analisar texto selecionado, consultar os quatro eixos e suas evidências e comparar com um perfil 8values enviado pelo site ou importado. A API FastAPI do projeto continua responsável pela classificação.
 
 ## Instalar para uso local

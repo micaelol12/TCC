@@ -1,5 +1,6 @@
 from typing import Literal
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator, model_serializer
+from .experiment_config import ExperimentOverrides, ExperimentConfig, CONFIG_VERSION, PIPELINE_VERSION, config_hash
 
 Axis = Literal["economic", "diplomatic", "state", "society"]
 Level = Literal["low", "medium", "high"]
@@ -9,6 +10,16 @@ class AnalyzeRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     text: str = Field(min_length=1)
     processing_level: Level
+    experiment_config: ExperimentOverrides | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def no_null_override(cls, value):
+        if isinstance(value, dict) and "experiment_config" in value:
+            config = value["experiment_config"]
+            if not isinstance(config, dict) or any(item is None for item in config.values()):
+                raise ValueError("Configuração experimental inválida.")
+        return value
 
     @model_validator(mode="after")
     def nonblank(self):
@@ -59,10 +70,33 @@ class LogicalCalls(BaseModel):
 
 class AnalysisResponse(BaseModel):
     schema_version: str = "1"
-    pipeline_version: str = "jev-2-polos-mvp-1"
+    pipeline_version: str = PIPELINE_VERSION
     processing_level: Level
     models_used: list[str]
     axes: list[AxisResult]
     chunks: list[Chunk]
     logical_calls: LogicalCalls
     warnings: list[str]
+    effective_config: ExperimentConfig | None = None
+    config_version: Literal["1"] | None = None
+    config_hash: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+    environment: Literal["development", "lab", "production"] | None = None
+    lab_execution_id: str | None = Field(default=None, pattern=r'^[a-f0-9-]{36}$')
+
+    @model_validator(mode="after")
+    def config_metadata(self):
+        metadata = (self.effective_config, self.config_version, self.config_hash, self.environment)
+        if any(item is not None for item in metadata):
+            if any(item is None for item in metadata) or self.config_version != CONFIG_VERSION:
+                raise ValueError("Metadados de configuração incompletos.")
+            if self.config_hash != config_hash(self.effective_config, self.pipeline_version):
+                raise ValueError("Hash de configuração inválido.")
+        return self
+
+    @model_serializer(mode="wrap")
+    def serialize(self, handler):
+        result = handler(self)
+        for name in ("effective_config", "config_version", "config_hash", "environment", "lab_execution_id"):
+            if result.get(name) is None:
+                result.pop(name, None)
+        return result

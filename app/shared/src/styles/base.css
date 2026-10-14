@@ -128,4 +128,23 @@ footer a{color:#514a40;text-decoration:underline;text-underline-offset:2px}
 .reportSnapshot{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;padding:.75rem;background:#f2f0eb;border-radius:8px;font-size:.78rem}
 .reportReceipt{margin:.8rem 0 0;overflow-wrap:anywhere}
 .reportReceipt span{display:block;color:#6e6962;font-size:.8rem}
+.labBadge{display:inline-block;border:1px solid #b89b48;background:#fff6d8;color:#5b4510;padding:.4rem .7rem;border-radius:8px;font-weight:700;font-size:.85rem}
+.experimentPanel,.experimentComparison{margin:1rem 0;padding:1rem;border:1px solid #dedad2;border-radius:12px;background:#fffefa;min-width:0}
+.experimentPanel fieldset{border:0;padding:0;margin:.75rem 0}
+.experimentPanel legend{font-size:.9rem;font-weight:600;margin-bottom:.7rem}
+.experimentFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.experimentFields>div{min-width:0}
+.experimentFields input,.experimentFields select,.experimentComparison select{width:100%;box-sizing:border-box;min-height:40px;border:1px solid #d5cfc4;border-radius:7px;padding:.4rem;background:#fffefa;color:#242424;font:inherit}
+.experimentFields small{display:block;font-size:.78rem;line-height:1.4;margin-top:.3rem}
+.experimentTable{overflow:auto;max-width:100%;margin-top:.8rem}
+.experimentTable table{width:100%;border-collapse:collapse;font-size:.8rem}
+.experimentTable caption{text-align:left;margin-bottom:.6rem}
+.experimentTable td,.experimentTable th{border-bottom:1px solid #dedad2;padding:.5rem;text-align:left;overflow-wrap:anywhere}
+.configHash{overflow-wrap:anywhere}
+.experimentPanel [role=tablist]{display:flex;gap:.5rem;margin:.8rem 0}
+.experimentPanel [hidden]{display:none}
+.labApiKeys fieldset{border:0;padding:0;min-width:0}
+.labKeyProvider{margin-bottom:1.2rem}
+.labKeyProvider input{width:100%;box-sizing:border-box}
+@media(max-width:600px){.experimentFields{grid-template-columns:1fr}.experimentPanel,.experimentComparison{padding:.75rem}}
 @media(max-width:400px){.reportDialog{padding:1rem}.reportDialog .actions button{flex:1}}

@@ -1,7 +1,8 @@
-export const MENU_ID = '8values-analyze-selection'
+import { storagePrefix } from '@8values/shared/domain/experimentConfig'
+export const MENU_ID = `${storagePrefix}-analyze-selection`
 export type Capture = { id: string; text: string; createdAt: number; windowId: number; tabId: number; source?: string }
-export const captureKey = (windowId: number) => `8values-capture-v1:${windowId}`
-export const sessionKey = (windowId: number) => `8values-session-v1:${windowId}`
+export const captureKey = (windowId: number) => `${storagePrefix}-capture-v1:${windowId}`
+export const sessionKey = (windowId: number) => `${storagePrefix}-session-v1:${windowId}`
 export function makeCapture(text: string, windowId: number, tabId: number, url?: string): Capture {
   let source: string | undefined
   try { const parsed = new URL(url ?? ''); if (['http:', 'https:'].includes(parsed.protocol)) source = parsed.hostname } catch { /* no origin available */ }

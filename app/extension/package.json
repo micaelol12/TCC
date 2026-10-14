@@ -7,6 +7,8 @@
     "prebuild": "node ../web/scripts/check-questions.mjs && node scripts/icons.mjs",
     "build": "tsc -b && vite build --mode development",
     "build:production": "npm run prebuild && tsc -b && vite build --mode production",
+    "build:lab": "npm run prebuild && tsc -b && vite build --mode lab",
+    "package:lab": "npm run build:lab && node scripts/package.mjs --lab",
     "test": "vitest run",
     "package": "npm run build && node scripts/package.mjs",
     "package:production": "npm run build:production && node scripts/package.mjs"

@@ -14,6 +14,8 @@ rate_lock = Lock()
 
 @router.post("/reports", response_model=ReportResponse, status_code=201)
 def report(payload: ReportRequest, response: Response):
+    if (payload.analysis.environment == "lab" and settings.app_env != "lab") or (settings.app_env == "lab" and payload.analysis.environment != "lab"):
+        raise HTTPException(422, "Envie o report à API do ambiente em que a análise foi realizada.")
     if len(payload.text) > settings.max_chars or len(payload.analysis.chunks) > settings.max_chunks:
         raise HTTPException(413, "Report acima do limite.")
     with rate_lock:

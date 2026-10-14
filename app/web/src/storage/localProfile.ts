@@ -1,9 +1,10 @@
 import { validateProfile, type Profile } from '@8values/shared/profile'
 export { validateProfile } from '@8values/shared/profile'
 export type { Profile } from '@8values/shared/profile'
+import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
-export const PROFILE_KEY = 'values-profile-v1'
-export const DRAFT_KEY = 'values-draft-v1'
+export const PROFILE_KEY = isLabBuild ? 'values-lab-profile-v1' : 'values-profile-v1'
+export const DRAFT_KEY = isLabBuild ? 'values-lab-draft-v1' : 'values-draft-v1'
 
 export function readProfile(): Profile | null {
   try {

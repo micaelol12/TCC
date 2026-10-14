@@ -21,3 +21,8 @@ def jev_questions():
 def llm_client(api_key: str, timeout: int):
     from openai import AsyncOpenAI
     return AsyncOpenAI(api_key=api_key, base_url="https://chat.maritaca.ai/api", timeout=timeout, max_retries=0)
+
+
+def gemini_client(api_key: str, timeout: int):
+    from .gemini import GeminiClient
+    return GeminiClient(api_key, timeout)

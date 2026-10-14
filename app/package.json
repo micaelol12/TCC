@@ -9,6 +9,12 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=8values-textos",
+    "dev:lab": "npm run dev:lab --workspace=8values-textos",
+    "build:lab": "npm run build:lab --workspace=8values-textos && npm run build:lab --workspace=8values-extension",
+    "package:lab": "npm run package:lab --workspace=8values-extension",
+    "api:lab": "powershell -NoProfile -File scripts/start-api-lab.ps1",
+    "test:lab": "node scripts/test-lab-browser.mjs",
+    "verify:lab": "node scripts/verify-lab-artifacts.mjs",
     "build": "npm run build --workspace=8values-textos && npm run build --workspace=8values-extension",
     "test": "vitest run",
     "test:browser": "node scripts/test-browser.mjs",

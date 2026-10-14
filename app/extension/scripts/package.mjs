@@ -2,8 +2,10 @@ import { readdirSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { deflateRawSync } from 'node:zlib'
 import { crc32 } from './binary.mjs'
 
-const root = new URL('../dist/', import.meta.url)
+const lab = process.argv.includes('--lab')
+const root = new URL(lab ? '../dist-lab/' : '../dist/', import.meta.url)
 const manifest = JSON.parse(readFileSync(new URL('manifest.json', root), 'utf8'))
+if (lab && manifest.name !== '8values Lab') throw new Error('O pacote Lab exige um build Lab.')
 const localApi = manifest.host_permissions.some(host => /localhost|127\.0\.0\.1/.test(host))
 function files(directory, prefix = '') {
   return readdirSync(directory, { withFileTypes: true }).flatMap(file => file.isDirectory() ? files(new URL(`${file.name}/`, directory), `${prefix}${file.name}/`) : [`${prefix}${file.name}`]).sort()
@@ -22,7 +24,7 @@ for (const path of entries) {
 }
 const directory = Buffer.concat(central), end = Buffer.alloc(22)
 end.writeUInt32LE(0x06054b50); end.writeUInt16LE(entries.length, 8); end.writeUInt16LE(entries.length, 10); end.writeUInt32LE(directory.length, 12); end.writeUInt32LE(offset, 16)
-const output = new URL(`../artifacts/8values-extension-${manifest.version}-${localApi ? 'local' : 'production'}.zip`, import.meta.url)
+const output = new URL(`../artifacts/8values-extension-${manifest.version}-${lab ? 'lab' : localApi ? 'local' : 'production'}.zip`, import.meta.url)
 mkdirSync(new URL('../artifacts/', import.meta.url), { recursive: true })
 writeFileSync(output, Buffer.concat([...records, directory, end]))
 console.log(`Pacote criado: ${decodeURIComponent(output.pathname)} (${entries.length} arquivos)`)

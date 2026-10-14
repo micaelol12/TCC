@@ -1,5 +1,6 @@
 import { captureKey, isCapture, makeCapture, MENU_ID, sessionKey } from './platform/selection'
 import { registerProfileTransfer } from './platform/profileTransfer'
+import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
 declare const __WEB_BASE_URL__: string
 registerProfileTransfer(__WEB_BASE_URL__)
@@ -7,7 +8,7 @@ registerProfileTransfer(__WEB_BASE_URL__)
 // Register synchronously on each worker start; only installation creates the menu.
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.removeAll(() => {
-    chrome.contextMenus.create({ id: MENU_ID, title: 'Analisar com 8values', contexts: ['selection'], documentUrlPatterns: ['http://*/*', 'https://*/*'] })
+    chrome.contextMenus.create({ id: MENU_ID, title: isLabBuild ? 'Analisar com 8values Lab' : 'Analisar com 8values', contexts: ['selection'], documentUrlPatterns: ['http://*/*', 'https://*/*'] })
   })
   void chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })
   void chrome.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' })
