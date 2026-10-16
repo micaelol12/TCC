@@ -1,0 +1,26 @@
+[
+  {
+    "limiar_nivel": 0.5,
+    "total": 72,
+    "nivel": 18,
+    "direcao": 0,
+    "ausente": 45,
+    "incerta": 9
+  },
+  {
+    "limiar_nivel": 0.7,
+    "total": 72,
+    "nivel": 18,
+    "direcao": 0,
+    "ausente": 45,
+    "incerta": 9
+  },
+  {
+    "limiar_nivel": 0.9,
+    "total": 72,
+    "nivel": 9,
+    "direcao": 9,
+    "ausente": 45,
+    "incerta": 9
+  }
+]

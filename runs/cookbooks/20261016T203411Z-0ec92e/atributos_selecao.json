@@ -1,0 +1,14 @@
+[
+  {
+    "rodada": 1,
+    "n_atributos": 5,
+    "balanced_accuracy_dev": 0.8333333333333333,
+    "selecionada": true
+  },
+  {
+    "rodada": 2,
+    "n_atributos": 10,
+    "balanced_accuracy_dev": 0.6666666666666666,
+    "selecionada": false
+  }
+]

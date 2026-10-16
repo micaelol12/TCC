@@ -1,0 +1,30 @@
+[
+  {
+    "axis": "economic",
+    "nivel_antes": 1.0,
+    "nivel_depois": 1.0,
+    "relevancia_antes": true,
+    "relevancia_depois": true
+  },
+  {
+    "axis": "diplomatic",
+    "nivel_antes": null,
+    "nivel_depois": null,
+    "relevancia_antes": false,
+    "relevancia_depois": false
+  },
+  {
+    "axis": "state",
+    "nivel_antes": 1.0,
+    "nivel_depois": 1.0,
+    "relevancia_antes": true,
+    "relevancia_depois": true
+  },
+  {
+    "axis": "society",
+    "nivel_antes": null,
+    "nivel_depois": null,
+    "relevancia_antes": false,
+    "relevancia_depois": false
+  }
+]

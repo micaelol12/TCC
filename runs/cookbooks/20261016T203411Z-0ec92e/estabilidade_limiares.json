@@ -1,0 +1,47 @@
+[
+  {
+    "limiar": 0.0,
+    "total_avaliacoes": 72,
+    "elegiveis": 18,
+    "aceitas": 18,
+    "cobertura_total": 0.25,
+    "grupos_com_2_aceitas": 6,
+    "acordo_entre_aceitas": 1.0
+  },
+  {
+    "limiar": 0.3,
+    "total_avaliacoes": 72,
+    "elegiveis": 18,
+    "aceitas": 18,
+    "cobertura_total": 0.25,
+    "grupos_com_2_aceitas": 6,
+    "acordo_entre_aceitas": 1.0
+  },
+  {
+    "limiar": 0.5,
+    "total_avaliacoes": 72,
+    "elegiveis": 18,
+    "aceitas": 18,
+    "cobertura_total": 0.25,
+    "grupos_com_2_aceitas": 6,
+    "acordo_entre_aceitas": 1.0
+  },
+  {
+    "limiar": 0.7,
+    "total_avaliacoes": 72,
+    "elegiveis": 18,
+    "aceitas": 18,
+    "cobertura_total": 0.25,
+    "grupos_com_2_aceitas": 6,
+    "acordo_entre_aceitas": 1.0
+  },
+  {
+    "limiar": 0.9,
+    "total_avaliacoes": 72,
+    "elegiveis": 18,
+    "aceitas": 9,
+    "cobertura_total": 0.125,
+    "grupos_com_2_aceitas": 3,
+    "acordo_entre_aceitas": 1.0
+  }
+]

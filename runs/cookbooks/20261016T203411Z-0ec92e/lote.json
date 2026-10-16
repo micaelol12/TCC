@@ -1,0 +1,56 @@
+[
+  {
+    "repeticao": 0,
+    "modo": "lote",
+    "chamadas": 1,
+    "segundos": 0.3182849000002079,
+    "input_tokens": 4806,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.07
+  },
+  {
+    "repeticao": 0,
+    "modo": "individual",
+    "chamadas": 8,
+    "segundos": 1.898034499999767,
+    "input_tokens": 6787,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.07
+  },
+  {
+    "repeticao": 1,
+    "modo": "individual",
+    "chamadas": 8,
+    "segundos": 1.8806376,
+    "input_tokens": 6787,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.030000000000000027
+  },
+  {
+    "repeticao": 1,
+    "modo": "lote",
+    "chamadas": 1,
+    "segundos": 0.25890830000003007,
+    "input_tokens": 4806,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.030000000000000027
+  },
+  {
+    "repeticao": 2,
+    "modo": "lote",
+    "chamadas": 1,
+    "segundos": 0.2833967000001394,
+    "input_tokens": 4806,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.06000000000000005
+  },
+  {
+    "repeticao": 2,
+    "modo": "individual",
+    "chamadas": 8,
+    "segundos": 1.9583252999996148,
+    "input_tokens": 6787,
+    "respostas_diferentes": 0,
+    "maior_diferenca_probabilidade": 0.06000000000000005
+  }
+]

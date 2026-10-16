@@ -1,0 +1,66 @@
+[
+  {
+    "experimento": "citacoes",
+    "status": "concluido",
+    "chamadas_reais": 3,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 0.8284728999999516
+  },
+  {
+    "experimento": "estabilidade",
+    "status": "concluido",
+    "chamadas_reais": 18,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 5.385114799999883
+  },
+  {
+    "experimento": "busca",
+    "status": "concluido",
+    "chamadas_reais": 2,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 0.48412370000005467
+  },
+  {
+    "experimento": "estrutura",
+    "status": "concluido",
+    "chamadas_reais": 4,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 1.2553841999999804
+  },
+  {
+    "experimento": "confianca",
+    "status": "concluido",
+    "chamadas_reais": 0,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 0.011929300000019794
+  },
+  {
+    "experimento": "lote",
+    "status": "concluido",
+    "chamadas_reais": 27,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 6.89817620000008
+  },
+  {
+    "experimento": "cascata",
+    "status": "concluido",
+    "chamadas_reais": 12,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 6.8470411999999214
+  },
+  {
+    "experimento": "atributos",
+    "status": "concluido",
+    "chamadas_reais": 41,
+    "erros": 0,
+    "cache": 0,
+    "segundos": 22.45594630000005
+  }
+]

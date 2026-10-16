@@ -1,0 +1,242 @@
+[
+  {
+    "id": "civil",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "civil",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "civil",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 0.6666666666666666,
+    "mudancas_sequenciais": 1,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 1.0
+  },
+  {
+    "id": "civil",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "dipl",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "dipl",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "dipl",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "dipl",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 1.0
+  },
+  {
+    "id": "econ",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "econ",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "econ",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 1.0
+  },
+  {
+    "id": "econ",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "negacao",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "negacao",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "negacao",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "negacao",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "neutro",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "neutro",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "neutro",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "neutro",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "social",
+    "axis": "diplomatic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "social",
+    "axis": "economic",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": null,
+    "amplitude_score": null,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "social",
+    "axis": "society",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  },
+  {
+    "id": "social",
+    "axis": "state",
+    "repeticoes": 3,
+    "acordo_modal": 1.0,
+    "mudancas_sequenciais": 0,
+    "desvio_score": 0.0,
+    "amplitude_score": 0.0,
+    "taxa_fallback": 0.0
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "consulta": "Qual proposta redistribui renda?",
+    "p_existe": 0.96,
+    "primeiro_ranking": "L000",
+    "status": "encontrada",
+    "selecionada": "L000",
+    "esperada_sintetica": "L000",
+    "acerto_sintetico": true,
+    "citacao": "Vamos ampliar a transferência de renda para famílias de baixa renda."
+  },
+  {
+    "consulta": "Qual proposta define a participação do país em organizações internacionais?",
+    "p_existe": 0.03,
+    "primeiro_ranking": "L002",
+    "status": "ausente",
+    "selecionada": null,
+    "esperada_sintetica": null,
+    "acerto_sintetico": true,
+    "citacao": null
+  }
+]

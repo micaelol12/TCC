@@ -1,0 +1,23 @@
+[
+  {
+    "modelo": "maioria",
+    "balanced_accuracy_teste": 0.5,
+    "n_treino_dev": 17,
+    "n_teste": 5,
+    "rotulo": "sinal do efeito econômico 8values (supervisão fraca)"
+  },
+  {
+    "modelo": "tfidf_logistica",
+    "balanced_accuracy_teste": 0.5,
+    "n_treino_dev": 17,
+    "n_teste": 5,
+    "rotulo": "sinal do efeito econômico 8values (supervisão fraca)"
+  },
+  {
+    "modelo": "jev_atributos_logistica",
+    "balanced_accuracy_teste": 0.5833333333333333,
+    "n_treino_dev": 17,
+    "n_teste": 5,
+    "rotulo": "sinal do efeito econômico 8values (supervisão fraca)"
+  }
+]

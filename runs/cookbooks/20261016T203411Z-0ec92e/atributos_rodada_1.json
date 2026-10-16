@@ -1,0 +1,32 @@
+{
+  "questions": [
+    "O Estado deve garantir salários mínimos definidos por lei para todos os trabalhadores?",
+    "A distribuição de renda deve ser ajustada por meio de políticas como subsídios diretos aos mais pobres?",
+    "As empresas devem operar sem restrições regulatórias impostas pelo governo?",
+    "O lucro gerado por uma empresa deve ser revertido integralmente aos acionistas ou compartilhado com os trabalhadores?",
+    "A propriedade intelectual deve ser limitada para ampliar o acesso a bens e tecnologias?",
+    "Os serviços essenciais, como educação e saneamento, devem ser fornecidos exclusivamente pelo setor privado ou pelo Estado?",
+    "A fixação de preços máximos por parte do governo é uma medida justificável em situações de crise de mercado?",
+    "O mercado deve determinar livremente o valor do salário mínimo ou esse valor deve ser definido por legislação?",
+    "A renda extraída do uso de recursos naturais deve ser redistribuída para toda a sociedade ou ficar com quem os explora?",
+    "A concorrência desregulada entre empresas é benéfica para o desenvolvimento econômico ou tende a gerar desigualdades?"
+  ],
+  "dev_balanced_accuracy": 0.6666666666666666,
+  "train_feedback": [
+    {
+      "texto": "Os impostos deveriam ser aumentados para os ricos para fornecer aos pobres.",
+      "esperado": 1,
+      "previsto": 0
+    },
+    {
+      "texto": "É melhor manter um orçamento equilibrado do que garantir bem-estar para todos os cidadãos.",
+      "esperado": 0,
+      "previsto": 1
+    },
+    {
+      "texto": "Tarifas no comércio internacional são importantes para incentivar a produção local.",
+      "esperado": 1,
+      "previsto": 0
+    }
+  ]
+}
