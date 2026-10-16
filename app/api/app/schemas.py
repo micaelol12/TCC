@@ -42,6 +42,22 @@ class LevelCounts(BaseModel):
     plus2: int = 0
 
 
+class EvidenceAudit(BaseModel):
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+    chunk_index: int = Field(ge=0)
+    kind: Literal["search", "semantic"]
+    status: Literal["found", "not_selected", "not_literal", "sustenta", "contradiz", "insuficiente", "uncertain", "failed", "invalid"]
+    level: Literal[-2, -1, 0, 1, 2]
+    quote: str | None = None
+    sentence_id: str | None = None
+    start: int | None = Field(default=None, ge=0)
+    end: int | None = Field(default=None, ge=0)
+    confidence: float | None = Field(default=None, ge=0, le=1)
+    existence_probability: float | None = Field(default=None, ge=0, le=1)
+    probabilities: dict[str, float] | None = None
+    model: str | None = None
+
+
 class AxisResult(BaseModel):
     axis: Axis
     pole_a: float | None
@@ -56,6 +72,14 @@ class AxisResult(BaseModel):
     methods_used: list[Literal["jev", "llm"]]
     reason_codes: list[str]
     evidence: list[Evidence]
+    evidence_audit: list[EvidenceAudit] = Field(default_factory=list)
+
+    @model_serializer(mode="wrap")
+    def serialize(self, handler):
+        result = handler(self)
+        if not self.evidence_audit:
+            result.pop("evidence_audit", None)
+        return result
 
 
 class Chunk(BaseModel):

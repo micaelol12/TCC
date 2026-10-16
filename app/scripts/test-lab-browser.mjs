@@ -99,6 +99,16 @@ try {
       result.environment = 'lab'; result.config_version = '1'; result.effective_config = payload.experiment_config
       result.config_hash = createHash('sha256').update(JSON.stringify(canonical({ effective_config: result.effective_config, config_version: '1', pipeline_version: result.pipeline_version }))).digest('hex')
       result.lab_execution_id = crypto.randomUUID()
+      if (payload.experiment_config.semantic_evidence_check) {
+        assert(session?.typesafe, 'Checagem semântica exige TypeSafe inclusive no modo alto.')
+        result.axes[0].evidence_audit = [{ chunk_index: 0, kind: 'semantic', status: 'contradiz', level: 1, quote: payload.text, confidence: 0.9, model: 'jev-simulado' }]
+      }
+      if (payload.experiment_config.jev_evidence_search && payload.processing_level !== 'high') {
+        result.axes[0].evidence = [{ chunk_index: 0, quote: payload.text, verified: true }]
+        result.axes[0].evidence_audit ??= []
+        result.axes[0].evidence_audit.unshift({ chunk_index: 0, kind: 'search', status: 'found', level: 1, quote: payload.text,
+          sentence_id: 'S000', start: 0, end: Array.from(payload.text).length, existence_probability: 0.95, confidence: 0.9, model: 'jev-simulado' })
+      }
     }
     await route.fulfill({ json: result })
   })
@@ -130,6 +140,9 @@ try {
   await website.locator('#local-title').fill('Configuração A')
   await website.locator('#lab-chunk_tokens').fill('400')
   await website.locator('#lab-level_confidence_min').fill('0.7')
+  await website.locator('#lab-semantic_evidence_check').check()
+  await website.locator('#lab-jev_evidence_search').check()
+  await website.locator('#lab-evidence_existence_min').fill('0.8')
   await website.getByRole('button', { name: 'Salvar configuração', exact: true }).click()
   const downloaded = website.waitForEvent('download')
   await website.getByRole('button', { name: 'Exportar JSON', exact: true }).click()
@@ -138,6 +151,9 @@ try {
   await download.saveAs(presetPath)
   const preset = JSON.parse(readFileSync(presetPath, 'utf8'))
   assert.equal(preset.config.chunk_tokens, 400)
+  assert.equal(preset.config.semantic_evidence_check, true)
+  assert.equal(preset.config.jev_evidence_search, true)
+  assert.equal(preset.config.evidence_existence_min, 0.8)
   assert.deepEqual(Object.keys(preset.config).sort(), Object.keys(experimentCapabilities.defaults).sort())
   await website.reload()
   await website.locator('#lab-chunk_tokens').waitFor()
@@ -148,12 +164,20 @@ try {
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests[0].experiment_config.chunk_tokens, 400)
+  await website.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
+  await website.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()
+  await website.getByText('Passagem encontrada', { exact: true }).waitFor()
+  await website.screenshot({ path: resolve(output, `${target}-lab-evidence-web.png`), fullPage: true })
   await website.getByRole('button', { name: 'Usar este texto em nova análise', exact: true }).click()
   await website.locator('#local-title').fill('Configuração B')
   await website.getByRole('button', { name: 'Restaurar padrões', exact: true }).click()
   await website.getByLabel('Alto', { exact: false }).check()
   assert(await website.locator('#lab-level_confidence_min').isDisabled())
   await website.locator('#lab-llm_model').selectOption('gemini-3.7-flash')
+  await website.locator('#lab-semantic_evidence_check').check()
+  assert(await website.locator('#lab-jev_evidence_search').isDisabled())
+  assert(await website.locator('#lab-jev_model').isEnabled())
+  assert((await website.locator('.privacyNote').innerText()).includes('TypeSafe'))
   assert((await website.locator('.privacyNote').innerText()).includes('Google Gemini'))
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
@@ -209,6 +233,12 @@ try {
   await panel.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests.at(-1).experiment_config.llm_model, 'sabiazinho-4')
+  assert.equal(requests.at(-1).experiment_config.semantic_evidence_check, true)
+  await panel.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
+  await panel.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()
+  await panel.getByText('Passagem encontrada', { exact: true }).waitFor()
+  assert(await panel.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  await panel.screenshot({ path: resolve(output, `${target}-lab-evidence-extension.png`), fullPage: true })
   await panel.reload()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   await panel.getByRole('button', { name: 'Editar e reanalisar', exact: true }).click()
@@ -256,7 +286,7 @@ try {
   await website.locator('#text-input').waitFor()
   assert.equal(await website.locator('#lab-chunk_tokens').count(), 0)
   assert.deepEqual(errors, [])
-  const report = { browser: target, version: context.browser().version(), checks: ['lab-web', 'lab-extension', 'api-keys-tabs', 'models-gated-by-provider-key', 'no-keys-in-browser-storage', 'key-session-isolation', 'gemini-selection', 'sabiazinho-selection', 'execution-record-receipt', 'edit-config', 'saved-preset', 'preset-export-import', 'invalid-config', 'high-mode-controls', 'effective-config', 'same-text-comparison', 'history-reload', 'report-metadata', 'mobile-width', 'isolated-standard-build', 'profile-transfer-to-matching-edition'], analyses: requests.length, reports: reports.length, pageErrors: errors }
+  const report = { browser: target, version: context.browser().version(), checks: ['evidence-controls-and-results', 'evidence-preset-transfer', 'high-semantic-recipient', 'lab-web', 'lab-extension', 'api-keys-tabs', 'models-gated-by-provider-key', 'no-keys-in-browser-storage', 'key-session-isolation', 'gemini-selection', 'sabiazinho-selection', 'execution-record-receipt', 'edit-config', 'saved-preset', 'preset-export-import', 'invalid-config', 'high-mode-controls', 'effective-config', 'same-text-comparison', 'history-reload', 'report-metadata', 'mobile-width', 'isolated-standard-build', 'profile-transfer-to-matching-edition'], analyses: requests.length, reports: reports.length, pageErrors: errors }
   writeFileSync(resolve(output, `${target}-lab-report.json`), JSON.stringify(report, null, 2))
   console.log(JSON.stringify(report, null, 2))
 } finally { await context.close() }

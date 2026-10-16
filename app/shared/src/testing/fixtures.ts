@@ -1,7 +1,7 @@
 import type { Analysis, Capabilities, Mode } from '../api/analysisApi'
 import type { ExperimentCapabilities } from '../domain/experimentConfig'
 export const experimentCapabilities: ExperimentCapabilities = {
-  enabled: true, config_version: '1', defaults: { chunk_tokens: 600, relevance_margin_min: 0.6, level_confidence_min: 0.5, direction_margin_min: 0.2, min_valid_chunks: 16, bootstrap_samples: 2000, bootstrap_seed: 42, jev_model: 'jev-1.13.0', llm_model: 'sabia-4' },
+  enabled: true, config_version: '1', defaults: { chunk_tokens: 600, relevance_margin_min: 0.6, level_confidence_min: 0.5, direction_margin_min: 0.2, min_valid_chunks: 16, bootstrap_samples: 2000, bootstrap_seed: 42, jev_model: 'jev-1.13.0', llm_model: 'sabia-4', semantic_evidence_check: false, jev_evidence_search: false, evidence_existence_min: 0.7 },
   ranges: { chunk_tokens: { min: 100, max: 2000, step: 1 }, relevance_margin_min: { min: 0, max: 1, step: 0.01 }, level_confidence_min: { min: 0, max: 1, step: 0.01 }, direction_margin_min: { min: 0, max: 1, step: 0.01 }, min_valid_chunks: { min: 1, max: 20, step: 1 }, bootstrap_samples: { min: 200, max: 10000, step: 1 }, bootstrap_seed: { min: 0, max: 2 ** 32 - 1, step: 1 } },
   allowed_models: { jev: ['jev-1.13.0', 'jev-test'], llm: ['sabia-4', 'sabiazinho-4', 'llm-test', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'] }, providers: { typesafe: true, maritaca: true, gemini: false },
   model_providers: { 'sabia-4': 'maritaca', 'sabiazinho-4': 'maritaca', 'llm-test': 'maritaca', 'gemini-3.1-flash-lite': 'gemini', 'gemini-3.7-flash': 'gemini' }, execution_storage: true,

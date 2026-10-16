@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { AnalysisEntry } from '../api/analysisApi'
 import { modeLabels } from '../api/analysisApi'
-import { configLabels, numericFields } from '../domain/experimentConfig'
+import { configLabels, numericFields, evidenceFields } from '../domain/experimentConfig'
 import { AXES, axisOrder } from '../domain/axes'
 
 export default function ExperimentComparison({ entry, entries }: { entry: AnalysisEntry<number | string>; entries: AnalysisEntry<number | string>[] }) {
@@ -22,7 +22,7 @@ export default function ExperimentComparison({ entry, entries }: { entry: Analys
           const label = (value: typeof a) => `${value.pole_a === null ? 'Sem estimativa' : value.pole_a.toFixed(1)} · cobertura ${(value.coverage * 100).toFixed(0)}%`
           return <tr key={axis}><th scope="row">{AXES[axis].title} · polo A</th><td>{label(a)}</td><td>{label(b)}</td></tr>
         })}
-        {[...numericFields, 'jev_model', 'llm_model'].map(name => <tr key={name}><th scope="row">{configLabels[name as keyof typeof configLabels]}</th><td>{config?.[name as keyof typeof configLabels] ?? 'Não registrada'}</td><td>{other.analysis.effective_config?.[name as keyof typeof configLabels] ?? 'Não registrada'}</td></tr>)}
+        {[...numericFields, ...evidenceFields, 'jev_model', 'llm_model'].map(name => <tr key={name}><th scope="row">{configLabels[name as keyof typeof configLabels]}</th><td>{String(config?.[name as keyof typeof configLabels] ?? 'Não registrada')}</td><td>{String(other.analysis.effective_config?.[name as keyof typeof configLabels] ?? 'Não registrada')}</td></tr>)}
       </tbody></table></div>
     </>}
   </section>

@@ -6,6 +6,8 @@ from .domain import decidir_jev, motivos_fallback, criar_questoes_eixo, criar_ru
 from .rubrics import AXIS_SPECS
 from .validation import LlmAnswer, LlmAxis, validate_answer
 from .clients import jev_client, jev_questions, llm_client
+from .evidence import audit_evidence
+from .domain import _score_evidencia_confere
 
 JEV_CONFIG = {
     "tipo_relevancia": "choice", "primitiva_polaridade": "score",
@@ -80,6 +82,18 @@ async def ask_llm(client, model: str, text: str, axes: list[str]):
 
 
 async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+    decisions, calls, models = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
+    if config and (config.semantic_evidence_check or config.jev_evidence_search):
+        decisions, extra_calls, extra_models = await audit_evidence(
+            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis) for axis in AXIS_SPECS},
+            _score_evidencia_confere, semantic_check=config.semantic_evidence_check,
+            quote_search=config.jev_evidence_search, existence_min=config.evidence_existence_min)
+        calls["jev"] += extra_calls
+        models.extend(extra_models)
+    return decisions, calls, models
+
+
+async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
     calls = {"jev": 0, "llm": 0}
     models = []
     if mode == "high":

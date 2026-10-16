@@ -18,7 +18,7 @@ export function useExperimentConfig(caps: Capabilities | null, scope: string, mo
     } catch { setNotice('A configuração salva não está disponível nesta API. Os padrões foram restaurados.') }
     setConfig(next)
   }, [available, key])
-  const error = available ? configError(config, available) || (mode !== 'low' && config && !modelReady(available, config.llm_model) ? 'Cadastre a chave do provedor selecionado na aba API keys ou escolha um modelo com chave configurada.' : '') : ''
+  const error = available ? configError(config, available) || (mode === 'high' && config?.semantic_evidence_check && !available.providers.typesafe ? 'Cadastre a chave TypeSafe para a checagem semântica no modo alto.' : '') || (mode !== 'low' && config && !modelReady(available, config.llm_model) ? 'Cadastre a chave do provedor selecionado na aba API keys ou escolha um modelo com chave configurada.' : '') : ''
   return { available, config, setConfig, notice, setNotice, storageKey: key, error,
     requestConfig: available && config && !error ? { ...config } : undefined,
     blocked: !!available && !!error }

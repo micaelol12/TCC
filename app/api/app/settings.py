@@ -71,7 +71,7 @@ class Settings:
     reports_hourly_requests: int = number("REPORTS_HOURLY_REQUESTS", 60)
 
     def algorithm_defaults(self):
-        return ExperimentConfig(**{name: getattr(self, name) for name in ExperimentConfig.model_fields})
+        return ExperimentConfig(**{name: getattr(self, name) for name in ExperimentConfig.model_fields if hasattr(self, name)})
 
     def __post_init__(self):
         if self.app_env == "lab":

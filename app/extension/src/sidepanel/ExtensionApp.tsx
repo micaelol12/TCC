@@ -1,3 +1,4 @@
+import { experimentRecipients } from '@8values/shared/domain/experimentConfig'
 import { useEffect, useRef, useState } from 'react'
 import AnalysisComposer from '@8values/shared/components/AnalysisComposer'
 import AnalysisResult from '@8values/shared/components/AnalysisResult'
@@ -188,7 +189,7 @@ export default function ExtensionApp() {
       <nav className="panelTabs" aria-label="Visualização"><button className={tab === 'analysis' ? '' : 'secondary'} aria-pressed={tab === 'analysis'} onClick={() => setTab('analysis')}>Análise</button><button className={tab === 'comparison' ? '' : 'secondary'} aria-pressed={tab === 'comparison'} onClick={() => setTab('comparison')}>Comparação</button></nav>
       {tab === 'analysis' ? <>
         {ready && state.showComposer && <AnalysisComposer text={state.draft.text} title={state.draft.title} source={state.draft.source} mode={state.mode} caps={caps} busy={isBusy} seconds={seconds} error={state.notice || error} capsError={capsError}
-          recipient={experiment.config && experiment.available?.model_providers?.[experiment.config.llm_model] === 'gemini' ? state.mode === 'medium' ? 'TypeSafe (JEV) e, quando necessário, Google Gemini' : state.mode === 'high' ? 'Google Gemini' : undefined : undefined}
+          recipient={experimentRecipients(state.mode, experiment.config, experiment.available)}
           configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} storageKey={experiment.storageKey} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}

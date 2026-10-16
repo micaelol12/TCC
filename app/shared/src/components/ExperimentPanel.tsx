@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { configLabels, exportPreset, importPreset, numericFields, modelReady, modelProvider, type ExperimentConfig, type ExperimentCapabilities } from '../domain/experimentConfig'
+import { evidenceFields, configLabels, exportPreset, importPreset, numericFields, modelReady, modelProvider, type ExperimentConfig, type ExperimentCapabilities } from '../domain/experimentConfig'
 import type { Mode } from '../api/analysisApi'
 import type { createAnalysisClient } from '../api/analysisApi'
 import LabApiKeys from './LabApiKeys'
@@ -21,7 +21,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
   if (!config) return <p role="status">Carregando a configuração Lab…</p>
-  const changed = [...numericFields, 'jev_model', 'llm_model'].filter(name => config[name as keyof ExperimentConfig] !== caps.defaults[name as keyof ExperimentConfig])
+  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model'].filter(name => config[name as keyof ExperimentConfig] !== caps.defaults[name as keyof ExperimentConfig])
   async function importFile(file?: File) {
     if (!file) return
     setFileError('')
@@ -55,15 +55,24 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
       })}
       {(['jev', 'llm'] as const).map(provider => {
         const name = `${provider}_model` as 'jev_model' | 'llm_model'
-        return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label><select id={`lab-${name}`} value={config[name]} disabled={provider === 'jev' && mode === 'high'} aria-describedby={`help-${name}`} onChange={e => onChange({ ...config, [name]: e.target.value })}>
+        return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label><select id={`lab-${name}`} value={config[name]} disabled={provider === 'jev' && mode === 'high' && !config.semantic_evidence_check} aria-describedby={`help-${name}`} onChange={e => onChange({ ...config, [name]: e.target.value })}>
           {!caps.allowed_models[provider].includes(config[name]) && <option value={config[name]}>Modelo indisponível</option>}
           {caps.allowed_models[provider].map(model => <option key={model} value={model}>{model}{provider === 'llm' ? ` · ${modelProvider(caps, model) === 'gemini' ? 'Gemini' : 'Maritaca'}${modelReady(caps, model) ? '' : ' · chave ausente'}` : ''}</option>)}</select>
           <small id={`help-${name}`} className="muted">{provider === 'llm'
             ? mode === 'low' ? 'O modo baixo usa apenas JEV. O modelo LLM escolhido será usado nos modos médio e alto.'
               : modelReady(caps, config.llm_model) ? 'Modelo usado nos modos médio e alto.' : 'Cadastre a chave deste provedor na aba API keys para analisar com este modelo.'
-            : mode === 'high' ? 'Não se aplica ao modo alto.' : 'Modelo JEV usado nos modos baixo e médio.'}</small></div>
+            : mode === 'high' && !config.semantic_evidence_check ? 'Não se aplica ao modo alto sem checagem semântica.' : 'Modelo JEV usado para classificação e checagem de evidências.'}</small></div>
       })}
     </div></fieldset>
+    <fieldset disabled={busy}><legend>Evidências experimentais</legend>
+      <label><input id="lab-semantic_evidence_check" type="checkbox" checked={config.semantic_evidence_check ?? false} onChange={e => onChange({ ...config, semantic_evidence_check: e.target.checked })} /> Verificar apoio semântico da citação</label>
+      <p className="small muted">O JEV avalia se a citação sustenta, contradiz ou não comprova a posição e sua intensidade. O parecer fica registrado e não altera a pontuação. Exige TypeSafe também no modo alto.</p>
+      <label><input id="lab-jev_evidence_search" type="checkbox" checked={config.jev_evidence_search ?? false} disabled={mode === 'high'} onChange={e => onChange({ ...config, jev_evidence_search: e.target.checked })} /> Buscar citações do JEV por ID</label>
+      <p className="small muted">Nos modos baixo e médio, procura uma passagem original para cada decisão final do JEV. Só apresenta a citação quando o teste de existência passa. A média continua usando todos os trechos válidos.</p>
+      <label htmlFor="lab-evidence_existence_min">Limiar de existência de evidência</label>
+      <input id="lab-evidence_existence_min" type="number" min="0" max="1" step="0.01" value={Number.isFinite(config.evidence_existence_min ?? 0.7) ? (config.evidence_existence_min ?? 0.7) : ''} disabled={!config.jev_evidence_search || mode === 'high'} onChange={e => onChange({ ...config, evidence_existence_min: e.target.value === '' ? NaN : Number(e.target.value) })} />
+      <p className="small muted">Até duas chamadas JEV adicionais por trecho com as duas opções ativas. Confiança do modelo não é probabilidade de acerto.</p>
+    </fieldset>
     <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
     {error && <p className="error" role="alert">{error}</p>}
     <div className="actions"><button className="secondary" disabled={busy} onClick={() => { onChange({ ...caps.defaults }); setFileError(''); onNotice('Padrões restaurados para a próxima análise.') }}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={save}>Salvar configuração</button><button className="secondary" disabled={busy || !!error} onClick={download}>Exportar JSON</button></div>
