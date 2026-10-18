@@ -41,7 +41,7 @@ Abra **Configuração da análise → API keys** no site ou na extensão. Cole s
 
 **Desabilitar** remove o acesso ao provedor naquela sessão; **Limpar chaves da sessão** encerra a sessão e bloqueia todos os modos até um novo cadastro. Após reiniciar a API ou expirar a sessão, cadastre novamente. A presença da chave libera a seleção, mas não comprova acesso ao modelo; uma chave inválida produz aviso de autenticação na análise.
 
-O Lab inicia sem nenhuma chave pré-cadastrada e ignora `TYPESAFE_API_KEY`, `MARITACA_API_KEY` e `GEMINI_API_KEY` do processo e dos arquivos de ambiente. Cada usuário precisa cadastrar suas chaves na sessão do site ou da extensão. O modo baixo exige TypeSafe; o modo médio exige TypeSafe e o provedor LLM selecionado; o modo alto exige apenas o provedor LLM selecionado. Sem essas chaves, as análises ficam bloqueadas tanto na interface quanto na API. A edição comum mantém sua configuração de chaves no servidor.
+O Lab inicia sem nenhuma chave pré-cadastrada e ignora `TYPESAFE_API_KEY`, `MARITACA_API_KEY` e `GEMINI_API_KEY` do processo e dos arquivos de ambiente. Cada usuário precisa cadastrar suas chaves na sessão do site ou da extensão. O modo baixo exige TypeSafe; o modo médio exige TypeSafe e o provedor LLM selecionado; o modo alto exige o provedor LLM selecionado e também TypeSafe quando a checagem semântica de evidências estiver ativa. Sem essas chaves, as análises ficam bloqueadas tanto na interface quanto na API. A edição comum mantém sua configuração de chaves no servidor.
 
 `JEV_MODEL` e `LLM_MODEL` definem os modelos padrão. O Lab oferece `sabia-4` e `sabiazinho-4` pela Maritaca e `gemini-3.1-flash-lite` e `gemini-3.7-flash` pelo Google. `ALLOWED_LLM_MODELS` acrescenta modelos Maritaca; `ALLOWED_GEMINI_MODELS` define a lista Gemini. É possível escolher o modelo LLM antes de cadastrar a chave; modelos sem chave recebem a indicação **chave ausente**, e a análise nos modos médio e alto permanece bloqueada até o cadastro. No modo baixo, a escolha fica preparada para os modos que usam LLM. Durante uma análise, os parâmetros ficam bloqueados. O provedor é identificado pelo catálogo da API e não por uma URL fornecida pelo usuário.
 
@@ -60,6 +60,27 @@ O Google informa que `gemini-3.7-flash` é redirecionado para `gemini-3.8-flash`
 Os limiares JEV acionam revisão no modo médio e motivos de incerteza no modo baixo. No modo alto, eles não se aplicam. O corte de evidência suficiente não muda a média. A semente reproduz o bootstrap, mas não garante respostas idênticas dos provedores. As faixas permitidas são limites de engenharia; mudar valores não equivale a validar cientificamente um novo método.
 
 O painel substitui os padrões somente para a próxima requisição. A configuração de uma análise em andamento é fixa. Limites totais, concorrência, prazo, orçamento diário e limites horários continuam definidos pelo servidor. Trechos menores podem gerar mais chamadas ou ultrapassar `MAX_CHUNKS`.
+
+## Evidências experimentais
+
+Em **Configuração da análise → Parâmetros → Evidências experimentais**, há duas opções independentes, inicialmente desligadas no site e na extensão:
+
+| Opção | Comportamento |
+|---|---|
+| Verificar apoio semântico da citação | O JEV verifica se a citação, no contexto integral, sustenta, contradiz ou é insuficiente para a posição e intensidade atribuídas. Funciona com citações do LLM e com citações recuperadas pela busca do JEV. |
+| Buscar citações do JEV por ID | Nos modos baixo e médio, procura uma passagem para cada decisão final do JEV. Um teste separado de existência precisa atingir o limiar configurado (padrão 0,70). A citação é recuperada diretamente do texto original pelo ID selecionado. |
+
+Os pareceres aparecem em **Distribuição e evidências** de cada eixo, com trecho, nível avaliado, modelo, confiança e, quando aplicável, ID e posições da citação. Uma contradição fica registrada para revisão, sem alterar nível, relevância, fallback ou pontuação. A busca também não filtra os chunks usados na média. Citação localizada literalmente e apoio semântico são verificações distintas; a confiança do modelo não representa uma taxa de acerto validada.
+
+São até duas chamadas lógicas JEV adicionais por chunk, agrupadas por etapa para os eixos elegíveis. Sem citação elegível, a checagem semântica não chama o provedor. O orçamento diário reserva o máximo adicional antes de iniciar; a contagem no resultado informa as chamadas efetivamente tentadas. Falhas e respostas inválidas do verificador aparecem no registro de auditoria sem apagar a classificação. Cancelamento e prazo global da análise continuam valendo.
+
+Os IDs são locais ao chunk. As posições usam caracteres Unicode e permitem recuperar a passagem original. A divisão em frases é uma heurística; acima de 200 passagens, frases adjacentes são agrupadas para respeitar o limite de alternativas sem omitir partes do texto.
+
+As configurações `semantic_evidence_check`, `jev_evidence_search` e `evidence_existence_min` acompanham presets, comparação, histórico, reports e registros de execução. Presets anteriores recebem as opções desligadas ao serem importados. Os pareceres ficam em `axes[].evidence_audit` no resultado salvo e na exportação das execuções. A API comum continua recusando configurações experimentais.
+
+No [Pipeline - Passo a Passo.ipynb](../Pipeline%20-%20Passo%20a%20Passo.ipynb), a seção **Evidências experimentais: presença literal e apoio à posição** explica a integração e contém uma demonstração simulada. Para usar com modelos reais, ajuste os mesmos três campos em `CONFIG_PIPELINE_PLAYGROUND["cascata"]`; a configuração geral também é herdada pelas análises de propostas. Reinicie o kernel e execute as definições atualizadas antes de analisar. O notebook e a API usam o mesmo módulo `api/app/pipeline/evidence.py`.
+
+Para comparar, analise o mesmo texto com as opções desligadas e depois ligadas, mantendo os demais parâmetros. Os modelos podem variar entre chamadas; os testes automatizados verificam a preservação da pontuação sobre decisões fixas. A qualidade dos novos pareceres ainda exige avaliação em textos reais com anotação humana.
 
 ## Presets, histórico e reports
 
@@ -99,6 +120,9 @@ npm run test:lab -- edge
 # app/api: provedores simulados, incluindo concorrência e reports
 .venv/Scripts/python.exe -m unittest discover -s tests -v
 
+# Raiz do TCC: compila o notebook e exercita apenas demonstrações simuladas
+.venv/Scripts/python.exe analise_jev_llm/test_evidencias_pipeline.py
+
 # app/api: verificação explícita com texto sintético e provedores reais
 # Consome até uma análise curta por modo, além das retentativas do pipeline.
 .venv/Scripts/python.exe scripts/validate_lab_providers.py --live
@@ -118,3 +142,11 @@ Esta edição foi preparada para uso local: os builds Lab exigem origens locais,
 - A chamada real ao `sabiazinho-4` retornou HTTP 200. Houve aviso `evidencia_nao_verificada`: a estimativa apoiada nessa citação foi descartada e a execução ficou registrada como `completed_with_warnings`, preservando a validação de evidências.
 
 Esses checks confirmam a integração e os fluxos exercitados; a avaliação de qualidade dos parâmetros experimentais continua dependendo de um conjunto de textos e critérios de pesquisa.
+
+## Validação da integração de evidências
+
+- 56 testes da API e 71 testes TypeScript passaram, incluindo preservação da pontuação, falhas do verificador, limite de chamadas, chave TypeSafe no modo alto, presets anteriores e offsets Unicode.
+- O teste Chrome do Lab exercitou as opções e os pareceres no site e na extensão, exportação/importação, histórico, reports e identificação dos provedores. Nenhum erro de página foi registrado.
+- Todas as células do notebook foram compiladas. As demonstrações e a integração da cascata foram executadas com dublês; a nova demonstração tem a saída salva no notebook.
+
+Essa validação usa provedores simulados. Não foi executado um novo benchmark com APIs reais para avaliar a qualidade das evidências nesta integração.
