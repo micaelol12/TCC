@@ -135,6 +135,34 @@ class TextosTesteNotebookTest(unittest.TestCase):
             self.assertGreater((pasta / "comparacao.png").stat().st_size, 0)
             self.assertGreater((pasta / "comparacao.csv").stat().st_size, 0)
 
+            # A exportação usa o protocolo da rodada e inclui recursos offline,
+            # mesmo se as configurações atuais já tiverem sido alteradas.
+            protocolo = {"contexto": {"id": "rodada", "pipeline": {
+                "modelo_llm": "modelo-usado", "cascata": {"limiar_noul": 0.7}}},
+                "preparacao_e_exibicao": self.config(tmp)}
+            (pasta / "protocolo.json").write_text(json.dumps(protocolo), encoding="utf-8")
+            ns["CONFIG_PIPELINE_TESTES"] = {"modelo_llm": "modelo-alterado-depois"}
+            resultados[0]["original"]["texto"] = "Texto <script>alert('entrada')</script> & fonte"
+            source = "".join(next(c for c in cells if c.get("id") == "testes-relatorio-html")["source"])
+            with patch("IPython.display.display") as mostrar:
+                ns["display"] = mostrar
+                exec(source, ns)
+            caminho = pasta / "resultados_textos.html"
+            self.assertEqual(ns["caminho_relatorio_testes"], caminho)
+            html = caminho.read_text(encoding="utf-8")
+            self.assertIn("modelo-usado", html)
+            self.assertNotIn("modelo-alterado-depois", html)
+            self.assertIn("contexto.pipeline.cascata.limiar_noul", html)
+            self.assertLess(html.index("Parâmetros usados"), html.index("Comparação geral"))
+            self.assertIn("&lt;script&gt;alert", html)
+            self.assertNotIn("<script>alert('entrada')</script>", html)
+            self.assertIn("data:image/png;base64,", html)
+            self.assertIn("srcdoc=", html)
+            self.assertIn("Textos concluídos:</strong> 2/3", html)
+            self.assertIn("Avaliação não concluída: " + falha["erro"], html)
+            self.assertIn("texto_1", html)
+            self.assertIn("texto_3", html)
+
 
 if __name__ == "__main__":
     unittest.main()

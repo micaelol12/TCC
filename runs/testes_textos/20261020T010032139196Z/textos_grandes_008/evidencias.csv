@@ -1,0 +1,13 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,llm_ordinal,-2.0,a privatização da Eletrobras,sim,,,,,não executada,insuficiente,0.67,jev-1.13.0
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,economic,llm_ordinal,1.0,a privatização deverá fortalecer a Eletrobras,sim,,,,,não executada,insuficiente,0.76,jev-1.13.0
+2,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,state,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,society,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,economic,jev_ordinal,1.0,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.",sim,S001,137.0,296.0,0.72,passagem encontrada,sustenta,0.28,jev-1.13.0
+3,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,state,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,society,llm_ordinal,,,sem citação,,,,,não executada,não executada,,

@@ -1,0 +1,651 @@
+{
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_pequenos_008",
+    "grupo": "textos_pequenos",
+    "posicao": 8,
+    "complexidade": "claro",
+    "data": "2025-08-26",
+    "fonte": {
+      "nome": "Agência Gov, via Planalto",
+      "url": "https://agenciagov.ebc.com.br/noticias/202508/lula-defende-soberania-negociacao-e-multilateralismo-em-reuniao-ministerial",
+      "tipo_texto": "parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 160,
+      "caracteres_apos_limpeza": 160,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+    "data": "2025-08-26",
+    "fonte": {
+      "nome": "Agência Gov, via Planalto",
+      "url": "https://agenciagov.ebc.com.br/noticias/202508/lula-defende-soberania-negociacao-e-multilateralismo-em-reuniao-ministerial",
+      "tipo_texto": "parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 2,
+      "modelos_evidencias": [
+        "jev-1.13.0",
+        "jev-1.13.0"
+      ],
+      "texto": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": -1,
+          "nivel_jev_bruto": -1,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.13,
+            "polo_B_moderado": 0.87,
+            "sem_posicao": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 1.0,
+            "C": 0.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 1.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": -1.13,
+          "confianca_nivel": 0.84,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.83,
+            "B": 0.17
+          },
+          "margem_relevancia": 0.6599999999999999,
+          "nivel": 0,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": 50.0,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.06,
+            "polo_B_moderado": 0.08,
+            "sem_posicao": 0.64,
+            "polo_A_moderado": 0.22,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.22,
+            "B": 0.14,
+            "C": 0.64
+          },
+          "p_polo_A": 0.22,
+          "p_polo_B": 0.14,
+          "p_sem_posicao": 0.64,
+          "margem_direcao": 0.07999999999999999,
+          "nivel_esperado_diagnostico": 0.020000000000000004,
+          "confianca_nivel": 0.55,
+          "status": "sem_posicao",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.14,
+            "sem_posicao": 0.86,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.14,
+            "C": 0.86
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.14,
+          "p_sem_posicao": 0.86,
+          "margem_direcao": 0.14,
+          "nivel_esperado_diagnostico": -0.14,
+          "confianca_nivel": 0.82,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": -1,
+          "nivel_jev_bruto": -1,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.13,
+            "polo_B_moderado": 0.87,
+            "sem_posicao": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 1.0,
+            "C": 0.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 1.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": -1.13,
+          "confianca_nivel": 0.84,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+          "evidencia_verificada": true,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "found",
+              "level": -1,
+              "sentence_id": "S000",
+              "start": 0,
+              "end": 160,
+              "quote": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+              "existence_probability": 0.81,
+              "confidence": 0.88,
+              "probabilities": {
+                "S000": 0.94,
+                "NONE": 0.06
+              },
+              "model": "jev-1.13.0"
+            },
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": -1,
+              "quote": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+              "confidence": 0.82,
+              "probabilities": {
+                "sustenta": 0.88,
+                "contradiz": 0.05,
+                "insuficiente": 0.07
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.83,
+            "B": 0.17
+          },
+          "margem_relevancia": 0.6599999999999999,
+          "nivel": 0,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": 50.0,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.06,
+            "polo_B_moderado": 0.08,
+            "sem_posicao": 0.64,
+            "polo_A_moderado": 0.22,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.22,
+            "B": 0.14,
+            "C": 0.64
+          },
+          "p_polo_A": 0.22,
+          "p_polo_B": 0.14,
+          "p_sem_posicao": 0.64,
+          "margem_direcao": 0.07999999999999999,
+          "nivel_esperado_diagnostico": 0.020000000000000004,
+          "confianca_nivel": 0.55,
+          "status": "sem_posicao",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "not_selected",
+              "level": 0,
+              "existence_probability": 0.12,
+              "confidence": 0.88,
+              "probabilities": {
+                "S000": 0.06,
+                "NONE": 0.94
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.14,
+            "sem_posicao": 0.86,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.14,
+            "C": 0.86
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.14,
+          "p_sem_posicao": 0.86,
+          "margem_direcao": 0.14,
+          "nivel_esperado_diagnostico": -0.14,
+          "confianca_nivel": 0.82,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [],
+        "society": []
+      },
+      "eixos_encaminhados": [],
+      "chamadas_llm": 0,
+      "latencia_jev_s": 0.21775220000017725,
+      "latencia_llm_s": 0.0,
+      "latencia_total_s": 0.6242275000004156,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 1,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 1,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 25.0,
+      "índice A entre posicionados": 25.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 75.0,
+      "índice A só JEV": 25.0
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 1,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 1,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 50.0,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 50.0,
+      "índice A só JEV": 50.0
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": null,
+      "wealth": null,
+      "peace": 25.0,
+      "might": 75.0,
+      "liberty": 50.0,
+      "authority": 50.0,
+      "progress": null,
+      "tradition": null
+    },
+    "labels": [
+      "Sem evidência",
+      "Patriota",
+      "Moderado",
+      "Sem evidência"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": null,
+        "polo B": "Mercado",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": 25.0,
+        "polo B": "Nação",
+        "valor B": 75.0,
+        "rótulo exploratório por faixa": "Patriota",
+        "chunks com nível": 1,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": 50.0,
+        "polo B": "Autoridade",
+        "valor B": 50.0,
+        "rótulo exploratório por faixa": "Moderado",
+        "chunks com nível": 1,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": null,
+        "polo B": "Tradição",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

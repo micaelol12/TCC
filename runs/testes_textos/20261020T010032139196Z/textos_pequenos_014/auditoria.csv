@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,diplomatic,search,found,1,S000,0.0,103.0,O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.,0.8,0.94,"{'S000': 0.97, 'NONE': 0.03}",jev-1.13.0
+0,diplomatic,semantic,sustenta,1,,,,O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.,,0.55,"{'sustenta': 0.7, 'contradiz': 0.03, 'insuficiente': 0.27}",jev-1.13.0
