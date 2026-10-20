@@ -82,6 +82,8 @@ O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente Marita
 
 ## Testar
 
+Para comparar os níveis atuais com a cascata em diferentes limiares de confiança JEV, use [benchmark_reasoning.py](api/scripts/benchmark_reasoning.py). Na raiz do projeto, execute `python app/api/scripts/benchmark_reasoning.py` para mostrar o plano; `--live --repeats 2` executa as chamadas reais. O script gera somente resultados JSONL, resumo CSV e relatório Markdown, com acurácia conjunta, relevância, direção, chamadas e latência. `--summarize PASTA` recalcula o resumo e o relatório sem chamar provedores.
+
 ```powershell
 # app — site, cliente compartilhado e extensão
 npm run build
