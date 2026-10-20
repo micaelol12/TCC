@@ -1,0 +1,73 @@
+{
+  "original": {
+    "texto": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.",
+    "data": "2022-08-12",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/conheca-os-planos-de-governo-dos-candidatos-a-presidencia/",
+      "tipo_texto": "parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_pequenos_012",
+    "grupo": "textos_pequenos",
+    "posicao": 12,
+    "complexidade": "ambiguo",
+    "data": "2022-08-12",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/conheca-os-planos-de-governo-dos-candidatos-a-presidencia/",
+      "tipo_texto": "parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 133,
+      "caracteres_apos_limpeza": 133,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+  ]
+}

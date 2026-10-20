@@ -1,0 +1,51 @@
+{
+  "contexto": {
+    "id": "20261019T233257003479Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    }
+  },
+  "preparacao_e_exibicao": {
+    "arquivo": "pesquisa_exemplos/textos_teste.json",
+    "grupos": [
+      "textos_pequenos",
+      "textos_grandes"
+    ],
+    "limpar_markdown": true,
+    "dividir_em_chunks": true,
+    "chunks": {
+      "max_tokens": 600,
+      "overlap_tokens": 0,
+      "encoding_name": "cl100k_base"
+    },
+    "mostrar_detalhes": true,
+    "mostrar_grafico": true,
+    "mostrar_fluxograma": true,
+    "dpi_grafico": 150,
+    "pasta_saida": "runs/testes_textos"
+  }
+}

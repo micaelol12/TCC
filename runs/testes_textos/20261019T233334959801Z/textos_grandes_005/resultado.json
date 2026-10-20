@@ -1,0 +1,973 @@
+{
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_005",
+    "grupo": "textos_grandes",
+    "posicao": 5,
+    "complexidade": "ambiguo",
+    "data": "2019-08-20",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/573454-SAIBA-MAIS-SOBRE-A-TRAMITACAO-DE-PROJETOS-DE-LEI",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3144,
+      "caracteres_apos_limpeza": 3143,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 1,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "Conheça a tramitação de projetos de lei\n\n1\n\nAPRESENTAÇÃO\n\nUm projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,\npelo procurador-geral da República, pelo Supremo Tribunal Federal, por tribunais superiores e cidadãos.\n\n2\n\nCASA INICIADORA E REVISORA\n\nOs projetos começam a tramitar na Câmara, à exceção dos apresentados por senadores, que começam no Senado.\nO Senado funciona como Casa revisora para os projetos iniciados na Câmara e vice-versa.\n\n- Se o projeto da Câmara for alterado no Senado, volta para a Câmara. Da mesma forma, se um projeto do Senado for alterado pelos deputados, volta para o Senado.\nA Casa onde o projeto se iniciou dá a palavra final sobre seu conteúdo, podendo aceitar ou não as alterações feitas na outra Casa.\n\n3\n\nANÁLISE PELAS COMISSÕES\n\nOs projetos são distribuídos às comissões conforme os assuntos de que tratam.\nAlém das comissões de mérito, existem duas que podem analisar mérito e/ou admissibilidade,\nque são as comissões de Finanças e tributação (análise de adequação financeira e orçamentária) e\nde Constituição e Justiça (análise de constitucionalidade).\n\n- COMISSÃO ESPECIAL\n\nOs projetos que tratarem de assuntos relativos a mais de quatro\ncomissões de mérito são enviados para uma comissão especial criada especificamente para analisá-los.\nEssa comissão substitui todas as outras.\n\n- ANÁLISE CONCLUSIVA NAS COMISSÕES\n\nA maioria dos projetos tramita em caráter conclusivo, o que significa que,\nse forem aprovados nas comissões, seguem para o Senado sem precisar passar pelo Plenário. Mas, se 52 deputados recorrerem,\no projeto vai para o Plenário.\n\n- URGÊNCIA\n\nO projeto de lei pode passar a tramitar em regime de urgência se o Plenário aprovar\nrequerimento com esse fim. Geralmente, a aprovação de urgência depende de acordo de líderes.\n\n- O projeto em regime de urgência\n\npode ser votado rapidamente no Plenário, sem necessidade de passar pelas comissões.\nOs relatores da proposta nas comissões dão parecer oral durante a sessão, permitindo a votação imediata.\n\n- O presidente da República também pode solicitar urgência para votação de projeto de sua iniciativa. Nesse caso, a\nproposta tem que ser votada em 45 dias ou passará a bloquear a pauta da Câmara ou do Senado (onde estiver no momento).\n\n4\n\nA APROVAÇÃO\n\nOs projetos de lei ordinária são aprovados com maioria de votos (maioria simples), desde que esteja\npresente no Plenário a maioria absoluta dos deputados (257).\n\n- A Constituição estabelece que alguns assuntos são tratados por lei complementar. Essa lei tem o mesmo valor da lei ordinária,\nmas exige maior número de votos para ser aprovada (257 votos favoráveis), o que torna mais difíceis sua aprovação e posterior alteração.\n\n5\n\nSANÇÃO E VETO\n\nOs projetos de lei aprovados nas duas Casas são enviados ao presidente da República para sanção.\nO presidente tem 15 dias úteis para sancionar ou vetar. O veto pode ser total ou parcial.\nTodos os vetos têm de ser votados pelo Congresso. Para rejeitar um veto, é preciso o voto da maioria absoluta de deputados (257) e senadores (41).\n\nAgência Câmara",
+    "data": "2019-08-20",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/573454-SAIBA-MAIS-SOBRE-A-TRAMITACAO-DE-PROJETOS-DE-LEI",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 0,
+      "modelos_evidencias": [],
+      "texto": "Conheça a tramitação de projetos de lei\n\n1\n\nAPRESENTAÇÃO\n\nUm projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,\npelo procurador-geral da República, pelo Supremo Tribunal Federal, por tribunais superiores e cidadãos.\n\n2\n\nCASA INICIADORA E REVISORA\n\nOs projetos começam a tramitar na Câmara, à exceção dos apresentados por senadores, que começam no Senado.\nO Senado funciona como Casa revisora para os projetos iniciados na Câmara e vice-versa.\n\n- Se o projeto da Câmara for alterado no Senado, volta para a Câmara. Da mesma forma, se um projeto do Senado for alterado pelos deputados, volta para o Senado.\nA Casa onde o projeto se iniciou dá a palavra final sobre seu conteúdo, podendo aceitar ou não as alterações feitas na outra Casa.\n\n3\n\nANÁLISE PELAS COMISSÕES\n\nOs projetos são distribuídos às comissões conforme os assuntos de que tratam.\nAlém das comissões de mérito, existem duas que podem analisar mérito e/ou admissibilidade,\nque são as comissões de Finanças e tributação (análise de adequação financeira e orçamentária) e\nde Constituição e Justiça (análise de constitucionalidade).\n\n- COMISSÃO ESPECIAL\n\nOs projetos que tratarem de assuntos relativos a mais de quatro\ncomissões de mérito são enviados para uma comissão especial criada especificamente para analisá-los.\nEssa comissão substitui todas as outras.\n\n- ANÁLISE CONCLUSIVA NAS COMISSÕES\n\nA maioria dos projetos tramita em caráter conclusivo, o que significa que,\nse forem aprovados nas comissões, seguem para o Senado sem precisar passar pelo Plenário. Mas, se 52 deputados recorrerem,\no projeto vai para o Plenário.\n\n- URGÊNCIA\n\nO projeto de lei pode passar a tramitar em regime de urgência se o Plenário aprovar\nrequerimento com esse fim. Geralmente, a aprovação de urgência depende de acordo de líderes.",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.08,
+            "B": 0.92
+          },
+          "margem_relevancia": 0.8400000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.99,
+            "polo_A_moderado": 0.01,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.01,
+            "B": 0.0,
+            "C": 0.99
+          },
+          "p_polo_A": 0.01,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.99,
+          "margem_direcao": 0.01,
+          "nivel_esperado_diagnostico": 0.01,
+          "confianca_nivel": 0.99,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.08,
+            "B": 0.92
+          },
+          "margem_relevancia": 0.8400000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.99,
+            "polo_A_moderado": 0.01,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.01,
+            "B": 0.0,
+            "C": 0.99
+          },
+          "p_polo_A": 0.01,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.99,
+          "margem_direcao": 0.01,
+          "nivel_esperado_diagnostico": 0.01,
+          "confianca_nivel": 0.99,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [],
+        "society": []
+      },
+      "eixos_encaminhados": [],
+      "chamadas_llm": 0,
+      "latencia_jev_s": 0.3009859999992841,
+      "latencia_llm_s": 0.0,
+      "latencia_total_s": 0.3012102999991839,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    },
+    {
+      "chamadas_jev_evidencias": 0,
+      "modelos_evidencias": [],
+      "texto": "- O projeto em regime de urgência pode ser votado rapidamente no Plenário, sem necessidade de passar pelas comissões.\nOs relatores da proposta nas comissões dão parecer oral durante a sessão, permitindo a votação imediata.\n\n- O presidente da República também pode solicitar urgência para votação de projeto de sua iniciativa. Nesse caso, a\nproposta tem que ser votada em 45 dias ou passará a bloquear a pauta da Câmara ou do Senado (onde estiver no momento).\n\n4\n\nA APROVAÇÃO\n\nOs projetos de lei ordinária são aprovados com maioria de votos (maioria simples), desde que esteja\npresente no Plenário a maioria absoluta dos deputados (257).\n\n- A Constituição estabelece que alguns assuntos são tratados por lei complementar. Essa lei tem o mesmo valor da lei ordinária,\nmas exige maior número de votos para ser aprovada (257 votos favoráveis), o que torna mais difíceis sua aprovação e posterior alteração.\n\n5\n\nSANÇÃO E VETO\n\nOs projetos de lei aprovados nas duas Casas são enviados ao presidente da República para sanção.\nO presidente tem 15 dias úteis para sancionar ou vetar. O veto pode ser total ou parcial.\nTodos os vetos têm de ser votados pelo Congresso. Para rejeitar um veto, é preciso o voto da maioria absoluta de deputados (257) e senadores (41).\n\nAgência Câmara",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.25,
+            "B": 0.75
+          },
+          "margem_relevancia": 0.5,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.02,
+            "sem_posicao": 0.97,
+            "polo_A_moderado": 0.01,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.01,
+            "B": 0.02,
+            "C": 0.97
+          },
+          "p_polo_A": 0.01,
+          "p_polo_B": 0.02,
+          "p_sem_posicao": 0.97,
+          "margem_direcao": 0.01,
+          "nivel_esperado_diagnostico": -0.01,
+          "confianca_nivel": 0.96,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "state",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-9e904a4202a54ae7be41755c",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 1898,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 0
+              },
+              "output_tokens": 45,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 1943,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [
+          "relevancia_ambigua"
+        ],
+        "society": []
+      },
+      "eixos_encaminhados": [
+        "state"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.26616290000038134,
+      "latencia_llm_s": 0.6424778999999035,
+      "latencia_total_s": 0.908934600000066,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": null,
+      "wealth": null,
+      "peace": null,
+      "might": null,
+      "liberty": null,
+      "authority": null,
+      "progress": null,
+      "tradition": null
+    },
+    "labels": [
+      "Sem evidência",
+      "Sem evidência",
+      "Sem evidência",
+      "Sem evidência"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": null,
+        "polo B": "Mercado",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": null,
+        "polo B": "Nação",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": null,
+        "polo B": "Autoridade",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": null,
+        "polo B": "Tradição",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

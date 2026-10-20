@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,existence_probability,confidence,probabilities,model
+0,state,search,not_selected,-1,0.56,0.78,"{'S000': 0.89, 'NONE': 0.11}",jev-1.13.0

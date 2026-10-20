@@ -1,0 +1,74 @@
+{
+  "original": {
+    "texto": "Proposta aumenta pena de feminicídio para até 40 anos\n\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.\n\n“Tal medida permitirá uma melhor compreensão e identificação desse delito, facilitando a coleta de dados e auxiliando no desenvolvimento de políticas públicas e estratégias de prevenção mais adequadas”, disse a autora, senadora Margareth Buzetti.\n\nPela legislação em vigor, o feminicídio é definido como crime de homicídio qualificado. Nesse caso, o fato de ser um assassinato cometido em razão da condição feminina da vítima contribui para o aumento da pena.\n\nOutras medidas\n\nA proposta prevê outras medidas para prevenir e coibir a violência contra a mulher, como por exemplo:\n\n- aumenta as penas para os casos de lesão corporal contra a mulher, para os crimes contra a honra ou de ameaça e para o descumprimento de medidas protetivas;\n- nos “saidões” da prisão, o condenado por crime contra a mulher deve usar tornozeleira eletrônica; e\n- o condenado perde o direito a visitas conjugais.\n\nDepois de proclamada a sentença, o agressor perde o poder familiar, da tutela (proteção de menor) ou da curatela (proteção de adulto incapaz). Também são vedadas a nomeação, a designação ou a diplomação em qualquer cargo, função pública ou mandato eletivo entre o trânsito julgado da condenação e o efetivo cumprimento da pena.\n\nO texto prevê ainda o cumprimento mínimo de 55% da pena de feminicídio para a progressão de regime. Atualmente, o percentual é de 50%.\n\nSegundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.\n\nTransferência\n\nA proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.\n\nA regra vale para o preso que tenha cometido crime de violência doméstica e familiar contra a mulher. Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.\n\nPor fim, o texto determina que processos que apuram crimes contra a mulher tenham tramitação prioritária e sejam isentos de taxas e custas.\n\nO projeto altera o Código Penal, a Lei das Contravenções Penais, a Lei de Execução Penal, a Lei de Crimes Hediondos e a Lei Maria da Penha.\n\nMargareth Buzetti defendeu a aprovação do conjunto de medidas para coibir a violência praticada contra a mulher, que ela nomeou como pacote antifeminicídio.\n\nDe acordo com dados publicados pelo Fórum Brasileiro de Segurança Pública (FBSP), 704 casos de feminicídio foram registrados entre janeiro e junho de 2022 - uma média de quatro mulheres mortas por dia.\n\nTramitação\n\nA proposta será analisada pelas comissões de Defesa dos Direitos da Mulher; de Segurança Pública e Combate ao Crime Organizado; e de Constituição e Justiça e de Cidadania da Câmara. Caso aprovada, segue para o Plenário.\n\nAgência Câmara",
+    "data": "2024-02-29",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1037757-proposta-aumenta-pena-de-feminicidio-para-ate-40-anos/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_003",
+    "grupo": "textos_grandes",
+    "posicao": 3,
+    "complexidade": "claro",
+    "data": "2024-02-29",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1037757-proposta-aumenta-pena-de-feminicidio-para-ate-40-anos/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3096,
+      "caracteres_apos_limpeza": 3096,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Proposta aumenta pena de feminicídio para até 40 anos\n\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.\n\n“Tal medida permitirá uma melhor compreensão e identificação desse delito, facilitando a coleta de dados e auxiliando no desenvolvimento de políticas públicas e estratégias de prevenção mais adequadas”, disse a autora, senadora Margareth Buzetti.\n\nPela legislação em vigor, o feminicídio é definido como crime de homicídio qualificado. Nesse caso, o fato de ser um assassinato cometido em razão da condição feminina da vítima contribui para o aumento da pena.\n\nOutras medidas\n\nA proposta prevê outras medidas para prevenir e coibir a violência contra a mulher, como por exemplo:\n\n- aumenta as penas para os casos de lesão corporal contra a mulher, para os crimes contra a honra ou de ameaça e para o descumprimento de medidas protetivas;\n- nos “saidões” da prisão, o condenado por crime contra a mulher deve usar tornozeleira eletrônica; e\n- o condenado perde o direito a visitas conjugais.\n\nDepois de proclamada a sentença, o agressor perde o poder familiar, da tutela (proteção de menor) ou da curatela (proteção de adulto incapaz). Também são vedadas a nomeação, a designação ou a diplomação em qualquer cargo, função pública ou mandato eletivo entre o trânsito julgado da condenação e o efetivo cumprimento da pena.\n\nO texto prevê ainda o cumprimento mínimo de 55% da pena de feminicídio para a progressão de regime. Atualmente, o percentual é de 50%.\n\nSegundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.\n\nTransferência\n\nA proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.",
+    "A regra vale para o preso que tenha cometido crime de violência doméstica e familiar contra a mulher. Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.\n\nPor fim, o texto determina que processos que apuram crimes contra a mulher tenham tramitação prioritária e sejam isentos de taxas e custas.\n\nO projeto altera o Código Penal, a Lei das Contravenções Penais, a Lei de Execução Penal, a Lei de Crimes Hediondos e a Lei Maria da Penha.\n\nMargareth Buzetti defendeu a aprovação do conjunto de medidas para coibir a violência praticada contra a mulher, que ela nomeou como pacote antifeminicídio.\n\nDe acordo com dados publicados pelo Fórum Brasileiro de Segurança Pública (FBSP), 704 casos de feminicídio foram registrados entre janeiro e junho de 2022 - uma média de quatro mulheres mortas por dia.\n\nTramitação\n\nA proposta será analisada pelas comissões de Defesa dos Direitos da Mulher; de Segurança Pública e Combate ao Crime Organizado; e de Constituição e Justiça e de Cidadania da Câmara. Caso aprovada, segue para o Plenário.\n\nAgência Câmara"
+  ]
+}

@@ -115,6 +115,8 @@ class FluxogramaTest(unittest.TestCase):
                   CONFIG_INDICE={"n_bootstrap": 100, "semente": 42},
                   chunks_playground=[records[0]['texto']], classificar_lote=classify,
                   resumir_documento=lambda r: coverage,
+                  display=lambda *args: None,
+                  tabela_auditoria_evidencias=lambda r: pd.DataFrame(),
                   converter_documento_8values=lambda c: {"eixos": []})
         with patch.dict(os.environ, TYPESAFE_API_KEY='teste', MARITACA_API_KEY='teste'):
             asyncio.run(eval(compile(source, '<playground-analise>', 'exec',

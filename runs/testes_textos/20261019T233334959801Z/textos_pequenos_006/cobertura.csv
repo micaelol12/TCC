@@ -1,0 +1,5 @@
+﻿eixo,polo A,polo B,chunks,chunks relevantes,chunks com nível,n polo_B_forte,n polo_B_moderado,n sem_posicao,n polo_A_moderado,n polo_A_forte,níveis do LLM,LLM → A,LLM → B,falhas do LLM,cobertura,índice A,índice A entre posicionados,IC95 inferior,IC95 superior,evidência disponível,base da estimativa,índice B,índice A só JEV
+economic,Igualdade,Mercado,1,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,False,sem evidência,,
+diplomatic,Globo,Nação,1,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,False,sem evidência,,
+state,Liberdade,Autoridade,1,1,1,0,1,0,0,0,1,0,1,0,1.0,25.0,25.0,,,True,trecho único,75.0,25.0
+society,Progresso,Tradição,1,1,1,1,0,0,0,0,1,0,1,0,1.0,0.0,0.0,,,True,trecho único,100.0,0.0

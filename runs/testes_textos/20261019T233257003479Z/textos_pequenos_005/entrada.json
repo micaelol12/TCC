@@ -1,0 +1,73 @@
+{
+  "original": {
+    "texto": "O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.",
+    "data": "2026-08-12",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1297155-camara-aprova-uso-de-reconhecimento-facial-em-transportes-e-vias-publicas",
+      "tipo_texto": "trecho_literal"
+    },
+    "complexidade": "claro"
+  },
+  "contexto": {
+    "id": "20261019T233257003479Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_pequenos_005",
+    "grupo": "textos_pequenos",
+    "posicao": 5,
+    "complexidade": "claro",
+    "data": "2026-08-12",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1297155-camara-aprova-uso-de-reconhecimento-facial-em-transportes-e-vias-publicas",
+      "tipo_texto": "trecho_literal"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 105,
+      "caracteres_apos_limpeza": 105,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado."
+  ]
+}
