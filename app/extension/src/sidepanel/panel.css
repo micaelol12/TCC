@@ -1,0 +1,35 @@
+#root { min-width: 0; min-height: 100dvh; }
+.panelHeader { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:1rem; border-bottom:1px solid #e9e7e2; }
+.panelHeader .brand { font-size:1rem; white-space:normal; }
+.panelHeader button { padding:.5rem .7rem; }
+.panelMain { padding:1.2rem 1rem; width:100%; min-width:0; }
+.panelMain h1 { font-size:1.8rem; }
+.panelMain h2 { font-size:1.15rem; }
+.panelMain section { min-width:0; }
+.panelMain .modeGroup { grid-template-columns:1fr; }
+.panelTabs { display:flex; gap:.5rem; margin:1rem 0; }
+.panelTabs button { flex:1; }
+.panelMain .radarLayout { grid-template-columns:1fr; gap:.3rem; }
+.panelMain .radarLegendRow { flex-direction:column; }
+.panelMain .radarLegendRow span { text-align:left; }
+.panelMain .cardTop { flex-wrap:wrap; }
+.panelMain .sectionHeading { align-items:flex-start; gap:.4rem; }
+.panelMain p,.panelMain li,.panelMain summary,.sourceOrigin,.panelFooter p { overflow-wrap:anywhere; }
+.panelMain .sourceText { white-space:pre-wrap; }
+.panelMain [class*="axisHeader"] { flex-wrap:wrap; gap:.3rem; }
+.panelMain [class*="axisHeader"] span { text-align:left; font-size:.85rem; }
+.pendingPreview { max-height:6rem; overflow:auto; margin:.5rem 0; }
+.sessionHistory { margin-top:1.25rem!important; }
+.sessionHistory ul { padding:0!important; list-style:none; }
+.sessionHistory li+li { margin-top:.5rem; }
+.historyEntry { display:flex; justify-content:space-between; gap:.5rem; text-align:left; width:100%; }
+.historyEntry[aria-pressed="true"] { box-shadow:inset 0 0 0 2px #716a60; }
+.historyEntry span { flex:none; font-size:.75rem; }
+.profileSettings { margin-top:1rem; border:1px solid #e7e4de; border-radius:16px; padding:1.2rem; background:#fff; }
+.profileSettings input[type="file"] { max-width:100%; font-size:.85rem; }
+.panelMain .check { display:flex!important; align-items:flex-start; font-size:.9rem; }
+.check input { flex:none; }
+.panelFooter { display:block; padding:1rem; font-size:.8rem; }
+.panelFooter details { margin-top:.5rem; }
+.panelFooter summary { cursor:pointer; }
+@media(max-width:350px) { .panelHeader { flex-wrap:wrap; }.panelMain { padding:1rem .65rem; } }

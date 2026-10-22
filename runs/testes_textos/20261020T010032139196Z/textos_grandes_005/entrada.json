@@ -1,0 +1,74 @@
+{
+  "original": {
+    "texto": "Conheça a tramitação de projetos de lei\n\n1\n\nAPRESENTAÇÃO\n\nUm projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,\npelo procurador-geral da República, pelo Supremo Tribunal Federal, por tribunais superiores e cidadãos.\n\n2\n\nCASA INICIADORA E REVISORA\n\nOs projetos começam a tramitar na Câmara, à exceção dos apresentados por senadores, que começam no Senado.\nO Senado funciona como Casa revisora para os projetos iniciados na Câmara e vice-versa.\n\n- Se o projeto da Câmara for alterado no Senado, volta para a Câmara. Da mesma forma, se um projeto do Senado for alterado pelos deputados, volta para o Senado.\nA Casa onde o projeto se iniciou dá a palavra final sobre seu conteúdo, podendo aceitar ou não as alterações feitas na outra Casa.\n\n3\n\nANÁLISE PELAS COMISSÕES\n\nOs projetos são distribuídos às comissões conforme os assuntos de que tratam.\nAlém das comissões de mérito, existem duas que podem analisar mérito e/ou admissibilidade,\nque são as comissões de Finanças e tributação (análise de adequação financeira e orçamentária) e\nde Constituição e Justiça (análise de constitucionalidade).\n\n- COMISSÃO ESPECIAL\n\nOs projetos que tratarem de assuntos relativos a mais de quatro\ncomissões de mérito são enviados para uma comissão especial criada especificamente para analisá-los.\nEssa comissão substitui todas as outras.\n\n- ANÁLISE CONCLUSIVA NAS COMISSÕES\n\nA maioria dos projetos tramita em caráter conclusivo, o que significa que,\nse forem aprovados nas comissões, seguem para o Senado sem precisar passar pelo Plenário. Mas, se 52 deputados recorrerem,\no projeto vai para o Plenário.\n\n- URGÊNCIA\n\nO projeto de lei pode passar a tramitar em regime de urgência se o Plenário aprovar\nrequerimento com esse fim. Geralmente, a aprovação de urgência depende de acordo de líderes.\n\n- O projeto em regime de urgência\n\npode ser votado rapidamente no Plenário, sem necessidade de passar pelas comissões.\nOs relatores da proposta nas comissões dão parecer oral durante a sessão, permitindo a votação imediata.\n\n- O presidente da República também pode solicitar urgência para votação de projeto de sua iniciativa. Nesse caso, a\nproposta tem que ser votada em 45 dias ou passará a bloquear a pauta da Câmara ou do Senado (onde estiver no momento).\n\n4\n\nA APROVAÇÃO\n\nOs projetos de lei ordinária são aprovados com maioria de votos (maioria simples), desde que esteja\npresente no Plenário a maioria absoluta dos deputados (257).\n\n- A Constituição estabelece que alguns assuntos são tratados por lei complementar. Essa lei tem o mesmo valor da lei ordinária,\nmas exige maior número de votos para ser aprovada (257 votos favoráveis), o que torna mais difíceis sua aprovação e posterior alteração.\n\n5\n\nSANÇÃO E VETO\n\nOs projetos de lei aprovados nas duas Casas são enviados ao presidente da República para sanção.\nO presidente tem 15 dias úteis para sancionar ou vetar. O veto pode ser total ou parcial.\nTodos os vetos têm de ser votados pelo Congresso. Para rejeitar um veto, é preciso o voto da maioria absoluta de deputados (257) e senadores (41).\n\nAgência Câmara",
+    "data": "2019-08-20",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/573454-SAIBA-MAIS-SOBRE-A-TRAMITACAO-DE-PROJETOS-DE-LEI",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_005",
+    "grupo": "textos_grandes",
+    "posicao": 5,
+    "complexidade": "ambiguo",
+    "data": "2019-08-20",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/573454-SAIBA-MAIS-SOBRE-A-TRAMITACAO-DE-PROJETOS-DE-LEI",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3144,
+      "caracteres_apos_limpeza": 3143,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 1,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Conheça a tramitação de projetos de lei\n\n1\n\nAPRESENTAÇÃO\n\nUm projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,\npelo procurador-geral da República, pelo Supremo Tribunal Federal, por tribunais superiores e cidadãos.\n\n2\n\nCASA INICIADORA E REVISORA\n\nOs projetos começam a tramitar na Câmara, à exceção dos apresentados por senadores, que começam no Senado.\nO Senado funciona como Casa revisora para os projetos iniciados na Câmara e vice-versa.\n\n- Se o projeto da Câmara for alterado no Senado, volta para a Câmara. Da mesma forma, se um projeto do Senado for alterado pelos deputados, volta para o Senado.\nA Casa onde o projeto se iniciou dá a palavra final sobre seu conteúdo, podendo aceitar ou não as alterações feitas na outra Casa.\n\n3\n\nANÁLISE PELAS COMISSÕES\n\nOs projetos são distribuídos às comissões conforme os assuntos de que tratam.\nAlém das comissões de mérito, existem duas que podem analisar mérito e/ou admissibilidade,\nque são as comissões de Finanças e tributação (análise de adequação financeira e orçamentária) e\nde Constituição e Justiça (análise de constitucionalidade).\n\n- COMISSÃO ESPECIAL\n\nOs projetos que tratarem de assuntos relativos a mais de quatro\ncomissões de mérito são enviados para uma comissão especial criada especificamente para analisá-los.\nEssa comissão substitui todas as outras.\n\n- ANÁLISE CONCLUSIVA NAS COMISSÕES\n\nA maioria dos projetos tramita em caráter conclusivo, o que significa que,\nse forem aprovados nas comissões, seguem para o Senado sem precisar passar pelo Plenário. Mas, se 52 deputados recorrerem,\no projeto vai para o Plenário.\n\n- URGÊNCIA\n\nO projeto de lei pode passar a tramitar em regime de urgência se o Plenário aprovar\nrequerimento com esse fim. Geralmente, a aprovação de urgência depende de acordo de líderes.",
+    "- O projeto em regime de urgência pode ser votado rapidamente no Plenário, sem necessidade de passar pelas comissões.\nOs relatores da proposta nas comissões dão parecer oral durante a sessão, permitindo a votação imediata.\n\n- O presidente da República também pode solicitar urgência para votação de projeto de sua iniciativa. Nesse caso, a\nproposta tem que ser votada em 45 dias ou passará a bloquear a pauta da Câmara ou do Senado (onde estiver no momento).\n\n4\n\nA APROVAÇÃO\n\nOs projetos de lei ordinária são aprovados com maioria de votos (maioria simples), desde que esteja\npresente no Plenário a maioria absoluta dos deputados (257).\n\n- A Constituição estabelece que alguns assuntos são tratados por lei complementar. Essa lei tem o mesmo valor da lei ordinária,\nmas exige maior número de votos para ser aprovada (257 votos favoráveis), o que torna mais difíceis sua aprovação e posterior alteração.\n\n5\n\nSANÇÃO E VETO\n\nOs projetos de lei aprovados nas duas Casas são enviados ao presidente da República para sanção.\nO presidente tem 15 dias úteis para sancionar ou vetar. O veto pode ser total ou parcial.\nTodos os vetos têm de ser votados pelo Congresso. Para rejeitar um veto, é preciso o voto da maioria absoluta de deputados (257) e senadores (41).\n\nAgência Câmara"
+  ]
+}

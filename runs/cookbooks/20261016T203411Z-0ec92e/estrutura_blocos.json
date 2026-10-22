@@ -1,0 +1,26 @@
+[
+  {
+    "bloco": 0,
+    "texto": "PROPOSTAS ECONÔMICAS",
+    "tipo": "titulo",
+    "palavras_preservadas": true
+  },
+  {
+    "bloco": 1,
+    "texto": "Defendemos ampliar a transferência de renda para famílias de baixa renda.",
+    "tipo": "paragrafo",
+    "palavras_preservadas": true
+  },
+  {
+    "bloco": 2,
+    "texto": "DIREITOS CIVIS",
+    "tipo": "titulo",
+    "palavras_preservadas": true
+  },
+  {
+    "bloco": 3,
+    "texto": "A proteção da privacidade deve limitar a vigilância estatal sem autorização judicial.",
+    "tipo": "paragrafo",
+    "palavras_preservadas": true
+  }
+]

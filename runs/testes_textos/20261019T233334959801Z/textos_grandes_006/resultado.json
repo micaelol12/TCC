@@ -1,0 +1,1418 @@
+{
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_006",
+    "grupo": "textos_grandes",
+    "posicao": 6,
+    "complexidade": "ambiguo",
+    "data": "2022-04-27",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/869697-DEPUTADOS-APROVAM-PROJETO-QUE-REGULAMENTA-TELESSAUDE",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 4538,
+      "caracteres_apos_limpeza": 4538,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.\n\nDe autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.\n\nTecnologias\n\nSegundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.\n\nEssas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.\n\nOs atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.\n\nEntretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.\n\nUm diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.\n\nPara Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.\n\nO relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.\n\nO texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19.\n\nLiberdade de decisão\n\nO substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.\n\nQuanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.\n\nEm busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.\n\nA todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.\n\nNormas e fiscalização\n\nSobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.\n\nA fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.\n\nPrincípios\n\nPara o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:\n\n- autonomia do profissional de saúde;\n- consentimento livre e informado do paciente;\n- direito de recusa ao atendimento na modalidade telessaúde;\n- dignidade e valorização do profissional de saúde;\n- assistência segura e com qualidade ao paciente;\n- confidencialidade dos dados;\n- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;\n- observância estrita das atribuições legais de cada profissão; e\n- responsabilidade digital.\n\nPonto rejeitado\n\nNa votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.\n\nAgência Câmara",
+    "data": "2022-04-27",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/869697-DEPUTADOS-APROVAM-PROJETO-QUE-REGULAMENTA-TELESSAUDE",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 1,
+      "modelos_evidencias": [
+        "jev-1.13.0"
+      ],
+      "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.\n\nDe autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.\n\nTecnologias\n\nSegundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.\n\nEssas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.\n\nOs atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.\n\nEntretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.\n\nUm diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.\n\nPara Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.\n\nO relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.\n\nO texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19.\n\nLiberdade de decisão",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.17,
+            "B": 0.83
+          },
+          "margem_relevancia": 0.6599999999999999,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.17,
+            "sem_posicao": 0.78,
+            "polo_A_moderado": 0.05,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.05,
+            "B": 0.17,
+            "C": 0.78
+          },
+          "p_polo_A": 0.05,
+          "p_polo_B": 0.17,
+          "p_sem_posicao": 0.78,
+          "margem_direcao": 0.12000000000000001,
+          "nivel_esperado_diagnostico": -0.12000000000000001,
+          "confianca_nivel": 0.73,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.03,
+            "sem_posicao": 0.97,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.03,
+            "C": 0.97
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.03,
+          "p_sem_posicao": 0.97,
+          "margem_direcao": 0.03,
+          "nivel_esperado_diagnostico": -0.03,
+          "confianca_nivel": 0.96,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.51,
+            "B": 0.49
+          },
+          "margem_relevancia": 0.020000000000000018,
+          "nivel": 0,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": 50.0,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.26,
+            "sem_posicao": 0.44,
+            "polo_A_moderado": 0.3,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.3,
+            "B": 0.26,
+            "C": 0.44
+          },
+          "p_polo_A": 0.3,
+          "p_polo_B": 0.26,
+          "p_sem_posicao": 0.44,
+          "margem_direcao": 0.03999999999999998,
+          "nivel_esperado_diagnostico": 0.03999999999999998,
+          "confianca_nivel": 0.3,
+          "status": "sem_posicao",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.88,
+            "B": 0.12
+          },
+          "margem_relevancia": 0.76,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.37,
+            "polo_A_moderado": 0.63,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.63,
+            "B": 0.0,
+            "C": 0.37
+          },
+          "p_polo_A": 0.63,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.37,
+          "margem_direcao": 0.63,
+          "nivel_esperado_diagnostico": 0.63,
+          "confianca_nivel": 0.54,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.17,
+            "B": 0.83
+          },
+          "margem_relevancia": 0.6599999999999999,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.17,
+            "sem_posicao": 0.78,
+            "polo_A_moderado": 0.05,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.05,
+            "B": 0.17,
+            "C": 0.78
+          },
+          "p_polo_A": 0.05,
+          "p_polo_B": 0.17,
+          "p_sem_posicao": 0.78,
+          "margem_direcao": 0.12000000000000001,
+          "nivel_esperado_diagnostico": -0.12000000000000001,
+          "confianca_nivel": 0.73,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.03,
+            "sem_posicao": 0.97,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.03,
+            "C": 0.97
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.03,
+          "p_sem_posicao": 0.97,
+          "margem_direcao": 0.03,
+          "nivel_esperado_diagnostico": -0.03,
+          "confianca_nivel": 0.96,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "state",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-99ede65e1b294d1c85a58231",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 2101,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 1501
+              },
+              "output_tokens": 45,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 2146,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.88,
+            "B": 0.12
+          },
+          "margem_relevancia": 0.76,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.37,
+            "polo_A_moderado": 0.63,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.63,
+            "B": 0.0,
+            "C": 0.37
+          },
+          "p_polo_A": 0.63,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.37,
+          "margem_direcao": 0.63,
+          "nivel_esperado_diagnostico": 0.63,
+          "confianca_nivel": 0.54,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "not_selected",
+              "level": 1,
+              "existence_probability": 0.37,
+              "confidence": 0.35,
+              "probabilities": {
+                "S000": 0.01,
+                "S001": 0.04,
+                "S002": 0.0,
+                "S003": 0.02,
+                "S004": 0.01,
+                "S005": 0.01,
+                "S006": 0.01,
+                "S007": 0.03,
+                "S008": 0.01,
+                "S009": 0.0,
+                "S010": 0.01,
+                "S011": 0.14,
+                "S012": 0.01,
+                "S013": 0.24,
+                "S014": 0.04,
+                "S015": 0.03,
+                "NONE": 0.39
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [
+          "relevancia_ambigua",
+          "baixa_confianca_nivel"
+        ],
+        "society": []
+      },
+      "eixos_encaminhados": [
+        "state"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.2457073000005039,
+      "latencia_llm_s": 0.3649820999999065,
+      "latencia_total_s": 0.8464161000001695,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    },
+    {
+      "chamadas_jev_evidencias": 1,
+      "modelos_evidencias": [
+        "jev-1.13.0"
+      ],
+      "texto": "O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.\n\nQuanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.\n\nEm busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.\n\nA todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.\n\nNormas e fiscalização\n\nSobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.\n\nA fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.\n\nPrincípios\n\nPara o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:\n\n- autonomia do profissional de saúde;\n- consentimento livre e informado do paciente;\n- direito de recusa ao atendimento na modalidade telessaúde;\n- dignidade e valorização do profissional de saúde;\n- assistência segura e com qualidade ao paciente;\n- confidencialidade dos dados;\n- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;\n- observância estrita das atribuições legais de cada profissão; e\n- responsabilidade digital.\n\nPonto rejeitado",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.07,
+            "B": 0.93
+          },
+          "margem_relevancia": 0.8600000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.96,
+            "polo_A_moderado": 0.03,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.03,
+            "B": 0.01,
+            "C": 0.96
+          },
+          "p_polo_A": 0.03,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.96,
+          "margem_direcao": 0.019999999999999997,
+          "nivel_esperado_diagnostico": 0.019999999999999997,
+          "confianca_nivel": 0.95,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.99,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.01,
+            "C": 0.99
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.99,
+          "margem_direcao": 0.01,
+          "nivel_esperado_diagnostico": -0.01,
+          "confianca_nivel": 0.99,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.86,
+            "B": 0.14
+          },
+          "margem_relevancia": 0.72,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.03,
+            "polo_A_moderado": 0.97,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.97,
+            "B": 0.0,
+            "C": 0.03
+          },
+          "p_polo_A": 0.97,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.03,
+          "margem_direcao": 0.97,
+          "nivel_esperado_diagnostico": 0.97,
+          "confianca_nivel": 0.96,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.59,
+            "B": 0.41
+          },
+          "margem_relevancia": 0.18,
+          "nivel": 0,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": 50.0,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.02,
+            "sem_posicao": 0.65,
+            "polo_A_moderado": 0.33,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.33,
+            "B": 0.02,
+            "C": 0.65
+          },
+          "p_polo_A": 0.33,
+          "p_polo_B": 0.02,
+          "p_sem_posicao": 0.65,
+          "margem_direcao": 0.31,
+          "nivel_esperado_diagnostico": 0.31,
+          "confianca_nivel": 0.56,
+          "status": "sem_posicao",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.07,
+            "B": 0.93
+          },
+          "margem_relevancia": 0.8600000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.96,
+            "polo_A_moderado": 0.03,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.03,
+            "B": 0.01,
+            "C": 0.96
+          },
+          "p_polo_A": 0.03,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.96,
+          "margem_direcao": 0.019999999999999997,
+          "nivel_esperado_diagnostico": 0.019999999999999997,
+          "confianca_nivel": 0.95,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.99,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.01,
+            "C": 0.99
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.99,
+          "margem_direcao": 0.01,
+          "nivel_esperado_diagnostico": -0.01,
+          "confianca_nivel": 0.99,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.86,
+            "B": 0.14
+          },
+          "margem_relevancia": 0.72,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.03,
+            "polo_A_moderado": 0.97,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.97,
+            "B": 0.0,
+            "C": 0.03
+          },
+          "p_polo_A": 0.97,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.03,
+          "margem_direcao": 0.97,
+          "nivel_esperado_diagnostico": 0.97,
+          "confianca_nivel": 0.96,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "not_selected",
+              "level": 1,
+              "existence_probability": 0.69,
+              "confidence": 0.29,
+              "probabilities": {
+                "S000": 0.32,
+                "S001": 0.03,
+                "S002": 0.05,
+                "S003": 0.02,
+                "S004": 0.01,
+                "S005": 0.14,
+                "S006": 0.0,
+                "S007": 0.01,
+                "S008": 0.0,
+                "S009": 0.01,
+                "S010": 0.09999999999999999,
+                "S011": 0.05,
+                "S012": 0.15000000000000002,
+                "S013": 0.0,
+                "S014": 0.0,
+                "S015": 0.06,
+                "S016": 0.0,
+                "S017": 0.0,
+                "S018": 0.0,
+                "S019": 0.0,
+                "NONE": 0.05
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "society",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-0f7643d32ad44617bcc767f1",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 1992,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 1388
+              },
+              "output_tokens": 46,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 2038,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [],
+        "society": [
+          "relevancia_ambigua"
+        ]
+      },
+      "eixos_encaminhados": [
+        "society"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.25386619999972027,
+      "latencia_llm_s": 1.2060162999996464,
+      "latencia_total_s": 1.7088362999993478,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    },
+    {
+      "chamadas_jev_evidencias": 0,
+      "modelos_evidencias": [],
+      "texto": "Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.\n\nAgência Câmara",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.69,
+            "B": 0.31
+          },
+          "margem_relevancia": 0.37999999999999995,
+          "nivel": 0,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": 50.0,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.01,
+            "polo_B_moderado": 0.02,
+            "sem_posicao": 0.88,
+            "polo_A_moderado": 0.09,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.09,
+            "B": 0.03,
+            "C": 0.88
+          },
+          "p_polo_A": 0.09,
+          "p_polo_B": 0.03,
+          "p_sem_posicao": 0.88,
+          "margem_direcao": 0.06,
+          "nivel_esperado_diagnostico": 0.049999999999999996,
+          "confianca_nivel": 0.85,
+          "status": "sem_posicao",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.14,
+            "B": 0.86
+          },
+          "margem_relevancia": 0.72,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.03,
+            "sem_posicao": 0.85,
+            "polo_A_moderado": 0.12,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.12,
+            "B": 0.03,
+            "C": 0.85
+          },
+          "p_polo_A": 0.12,
+          "p_polo_B": 0.03,
+          "p_sem_posicao": 0.85,
+          "margem_direcao": 0.09,
+          "nivel_esperado_diagnostico": 0.09,
+          "confianca_nivel": 0.81,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.07,
+            "B": 0.93
+          },
+          "margem_relevancia": 0.8600000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.9,
+            "polo_A_moderado": 0.09,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.09,
+            "B": 0.01,
+            "C": 0.9
+          },
+          "p_polo_A": 0.09,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.9,
+          "margem_direcao": 0.08,
+          "nivel_esperado_diagnostico": 0.08,
+          "confianca_nivel": 0.87,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "economic",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-f104cf4a3e014153afc07e90",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 1526,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 1437
+              },
+              "output_tokens": 45,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 1571,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.14,
+            "B": 0.86
+          },
+          "margem_relevancia": 0.72,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.03,
+            "sem_posicao": 0.85,
+            "polo_A_moderado": 0.12,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.12,
+            "B": 0.03,
+            "C": 0.85
+          },
+          "p_polo_A": 0.12,
+          "p_polo_B": 0.03,
+          "p_sem_posicao": 0.85,
+          "margem_direcao": 0.09,
+          "nivel_esperado_diagnostico": 0.09,
+          "confianca_nivel": 0.81,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.07,
+            "B": 0.93
+          },
+          "margem_relevancia": 0.8600000000000001,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "sem_posicao": 0.9,
+            "polo_A_moderado": 0.09,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.09,
+            "B": 0.01,
+            "C": 0.9
+          },
+          "p_polo_A": 0.09,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.9,
+          "margem_direcao": 0.08,
+          "nivel_esperado_diagnostico": 0.08,
+          "confianca_nivel": 0.87,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [
+          "relevancia_ambigua"
+        ],
+        "diplomatic": [],
+        "state": [],
+        "society": []
+      },
+      "eixos_encaminhados": [
+        "economic"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.25712750000002416,
+      "latencia_llm_s": 0.3648972999999387,
+      "latencia_total_s": 0.6224023000004308,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 3,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": 50.0
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 3,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 3,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 1,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.3333333333333333,
+      "índice A": 75.0,
+      "índice A entre posicionados": 75.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 25.0,
+      "índice A só JEV": 62.5
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 3,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 1,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.3333333333333333,
+      "índice A": 75.0,
+      "índice A entre posicionados": 75.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 25.0,
+      "índice A só JEV": 62.5
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": null,
+      "wealth": null,
+      "peace": null,
+      "might": null,
+      "liberty": 75.0,
+      "authority": 25.0,
+      "progress": 75.0,
+      "tradition": 25.0
+    },
+    "labels": [
+      "Sem evidência",
+      "Sem evidência",
+      "Liberal",
+      "Progressista"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": null,
+        "polo B": "Mercado",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": null,
+        "polo B": "Nação",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": 75.0,
+        "polo B": "Autoridade",
+        "valor B": 25.0,
+        "rótulo exploratório por faixa": "Liberal",
+        "chunks com nível": 1,
+        "cobertura": 0.3333333333333333,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": 75.0,
+        "polo B": "Tradição",
+        "valor B": 25.0,
+        "rótulo exploratório por faixa": "Progressista",
+        "chunks com nível": 1,
+        "cobertura": 0.3333333333333333,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

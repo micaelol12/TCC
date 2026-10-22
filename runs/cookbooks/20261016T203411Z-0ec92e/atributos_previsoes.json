@@ -1,0 +1,37 @@
+[
+  {
+    "id": 10,
+    "esperado": 0,
+    "maioria": 1,
+    "tfidf_logistica": 1,
+    "jev_atributos_logistica": 0
+  },
+  {
+    "id": 18,
+    "esperado": 0,
+    "maioria": 1,
+    "tfidf_logistica": 1,
+    "jev_atributos_logistica": 1
+  },
+  {
+    "id": 5,
+    "esperado": 1,
+    "maioria": 1,
+    "tfidf_logistica": 1,
+    "jev_atributos_logistica": 1
+  },
+  {
+    "id": 11,
+    "esperado": 1,
+    "maioria": 1,
+    "tfidf_logistica": 1,
+    "jev_atributos_logistica": 1
+  },
+  {
+    "id": 48,
+    "esperado": 1,
+    "maioria": 1,
+    "tfidf_logistica": 1,
+    "jev_atributos_logistica": 0
+  }
+]

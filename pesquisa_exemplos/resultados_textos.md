@@ -1,0 +1,1226 @@
+## Texto pequeno 01
+
+> Privatização de todas as empresas estatais
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_001](resultados_textos_arquivos/textos_pequenos_001/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_001](resultados_textos_arquivos/textos_pequenos_001/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_001/fluxograma.html)
+
+## Texto pequeno 02
+
+> Redução da maioridade penal para 16 anos ou menos
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_002](resultados_textos_arquivos/textos_pequenos_002/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_002](resultados_textos_arquivos/textos_pequenos_002/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_002/fluxograma.html)
+
+## Texto pequeno 03
+
+> Nacionalização e estatização do sistema monetário, financeiro e bancário
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_003](resultados_textos_arquivos/textos_pequenos_003/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_003](resultados_textos_arquivos/textos_pequenos_003/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_003/fluxograma.html)
+
+## Texto pequeno 04
+
+> Legalização do aborto e garantia de atendimento na rede pública de saúde
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_004](resultados_textos_arquivos/textos_pequenos_004/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_004](resultados_textos_arquivos/textos_pequenos_004/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_004/fluxograma.html)
+
+## Texto pequeno 05
+
+> O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_005](resultados_textos_arquivos/textos_pequenos_005/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_005](resultados_textos_arquivos/textos_pequenos_005/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_005/fluxograma.html)
+
+## Texto pequeno 06
+
+> O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_006](resultados_textos_arquivos/textos_pequenos_006/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_006](resultados_textos_arquivos/textos_pequenos_006/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_006/fluxograma.html)
+
+## Texto pequeno 07
+
+> Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_007](resultados_textos_arquivos/textos_pequenos_007/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_007](resultados_textos_arquivos/textos_pequenos_007/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_007/fluxograma.html)
+
+## Texto pequeno 08
+
+> Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_008](resultados_textos_arquivos/textos_pequenos_008/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_008](resultados_textos_arquivos/textos_pequenos_008/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_008/fluxograma.html)
+
+## Texto pequeno 09
+
+> Arcabouço fiscal e responsabilidade fiscal
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_009](resultados_textos_arquivos/textos_pequenos_009/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_009](resultados_textos_arquivos/textos_pequenos_009/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_009/fluxograma.html)
+
+## Texto pequeno 10
+
+> O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_010](resultados_textos_arquivos/textos_pequenos_010/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_010](resultados_textos_arquivos/textos_pequenos_010/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_010/fluxograma.html)
+
+## Texto pequeno 11
+
+> O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_011](resultados_textos_arquivos/textos_pequenos_011/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_011](resultados_textos_arquivos/textos_pequenos_011/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_011/fluxograma.html)
+
+## Texto pequeno 12
+
+> O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_012](resultados_textos_arquivos/textos_pequenos_012/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_012](resultados_textos_arquivos/textos_pequenos_012/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_012/fluxograma.html)
+
+## Texto pequeno 13
+
+> O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_013](resultados_textos_arquivos/textos_pequenos_013/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_013](resultados_textos_arquivos/textos_pequenos_013/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_013/fluxograma.html)
+
+## Texto pequeno 14
+
+> O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_014](resultados_textos_arquivos/textos_pequenos_014/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_014](resultados_textos_arquivos/textos_pequenos_014/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_014/fluxograma.html)
+
+## Texto pequeno 15
+
+> Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_015](resultados_textos_arquivos/textos_pequenos_015/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_015](resultados_textos_arquivos/textos_pequenos_015/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_015/fluxograma.html)
+
+## Texto pequeno 16
+
+> O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_016](resultados_textos_arquivos/textos_pequenos_016/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_016](resultados_textos_arquivos/textos_pequenos_016/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_016/fluxograma.html)
+
+## Texto pequeno 17
+
+> Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_017](resultados_textos_arquivos/textos_pequenos_017/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_017](resultados_textos_arquivos/textos_pequenos_017/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_017/fluxograma.html)
+
+## Texto pequeno 18
+
+> A resolução exige aviso quando a propaganda utiliza conteúdo multimídia gerado por IA. Ajustes de qualidade de som ou imagem e elementos de identidade visual estão dispensados dessa exigência. A violação da regra pode levar à retirada do conteúdo.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_pequenos_018](resultados_textos_arquivos/textos_pequenos_018/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_pequenos_018](resultados_textos_arquivos/textos_pequenos_018/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_pequenos_018/fluxograma.html)
+
+## Texto grande 01
+
+> CCJ aprova criação do Imposto sobre Grandes Fortunas
+>
+> A Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas para taxar todo patrimônio acima de R$ 2 milhões. O projeto ainda precisa ser votado pelo Plenário. Se for aprovado, seguirá para o Senado.
+>
+> Conforme a proposta, a alíquota vai variar de 1% a 5%, dependendo do tamanho da riqueza e não será permitida a dedução, no Imposto de Renda anual, dos valores recolhidos ao novo tributo.
+>
+> Para o patrimônio de R$ 2 milhões a R$ 5 milhões, a taxação será de 1%. Entre R$ 5 milhões e R$ 10 milhões, ela será de 2%. De R$ 10 milhões a R$ 20 milhões, de 3%. De R$ 20 milhões a R$ 50 milhões, de 4%; e de 5% para fortunas superiores a R$ 50 milhões.
+>
+> O relator, deputado Regis de Oliveira (PSC-SP), recomendou a aprovação da proposta. A CCJ analisou apenas os aspectos constitucionais, jurídicos e de técnica legislativa do projeto (não analisou o mérito). “O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais. Assim, o governo teria mais dinheiro em caixa para investir em saúde, educação, moradia e infraestrutura, entre outros serviços básicos”, disse o relator.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_001](resultados_textos_arquivos/textos_grandes_001/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_001](resultados_textos_arquivos/textos_grandes_001/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_001/fluxograma.html)
+
+## Texto grande 02
+
+> MP restringe papel do Estado no controle na fiscalização da atividade econômica
+>
+> A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.
+>
+> A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.
+>
+> Ao assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.
+>
+> Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.
+>
+> Regulamentação
+>
+> Os direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.
+>
+> Conforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado.
+>
+> As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).
+>
+> Nas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.
+>
+> Tramitação
+>
+> A MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_002](resultados_textos_arquivos/textos_grandes_002/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_002](resultados_textos_arquivos/textos_grandes_002/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_002/fluxograma.html)
+
+## Texto grande 03
+
+> Proposta aumenta pena de feminicídio para até 40 anos
+>
+> O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.
+>
+> “Tal medida permitirá uma melhor compreensão e identificação desse delito, facilitando a coleta de dados e auxiliando no desenvolvimento de políticas públicas e estratégias de prevenção mais adequadas”, disse a autora, senadora Margareth Buzetti.
+>
+> Pela legislação em vigor, o feminicídio é definido como crime de homicídio qualificado. Nesse caso, o fato de ser um assassinato cometido em razão da condição feminina da vítima contribui para o aumento da pena.
+>
+> Outras medidas
+>
+> A proposta prevê outras medidas para prevenir e coibir a violência contra a mulher, como por exemplo:
+>
+> - aumenta as penas para os casos de lesão corporal contra a mulher, para os crimes contra a honra ou de ameaça e para o descumprimento de medidas protetivas;
+> - nos “saidões” da prisão, o condenado por crime contra a mulher deve usar tornozeleira eletrônica; e
+> - o condenado perde o direito a visitas conjugais.
+>
+> Depois de proclamada a sentença, o agressor perde o poder familiar, da tutela (proteção de menor) ou da curatela (proteção de adulto incapaz). Também são vedadas a nomeação, a designação ou a diplomação em qualquer cargo, função pública ou mandato eletivo entre o trânsito julgado da condenação e o efetivo cumprimento da pena.
+>
+> O texto prevê ainda o cumprimento mínimo de 55% da pena de feminicídio para a progressão de regime. Atualmente, o percentual é de 50%.
+>
+> Segundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.
+>
+> Transferência
+>
+> A proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.
+>
+> A regra vale para o preso que tenha cometido crime de violência doméstica e familiar contra a mulher. Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.
+>
+> Por fim, o texto determina que processos que apuram crimes contra a mulher tenham tramitação prioritária e sejam isentos de taxas e custas.
+>
+> O projeto altera o Código Penal, a Lei das Contravenções Penais, a Lei de Execução Penal, a Lei de Crimes Hediondos e a Lei Maria da Penha.
+>
+> Margareth Buzetti defendeu a aprovação do conjunto de medidas para coibir a violência praticada contra a mulher, que ela nomeou como pacote antifeminicídio.
+>
+> De acordo com dados publicados pelo Fórum Brasileiro de Segurança Pública (FBSP), 704 casos de feminicídio foram registrados entre janeiro e junho de 2022 - uma média de quatro mulheres mortas por dia.
+>
+> Tramitação
+>
+> A proposta será analisada pelas comissões de Defesa dos Direitos da Mulher; de Segurança Pública e Combate ao Crime Organizado; e de Constituição e Justiça e de Cidadania da Câmara. Caso aprovada, segue para o Plenário.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_003](resultados_textos_arquivos/textos_grandes_003/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_003](resultados_textos_arquivos/textos_grandes_003/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_003/fluxograma.html)
+
+## Texto grande 04
+
+> Comissão discute transição demográfica e envelhecimento da população brasileira
+>
+> A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, no plenário 14, para discutir a transição demográfica e o envelhecimento da população brasileira.
+>
+> O debate foi solicitado pelos deputados Luiz Couto (PT-PB), Alexandre Lindenmeyer (PT-RS) e Geraldo Resende (PSDB-MS).
+>
+> A audiência abordará o acelerado processo de envelhecimento populacional no Brasil. Dados do Censo 2022 indicam que a população idosa cresceu 57,4% desde 2010, somando 32,1 milhões de pessoas, o que representa 15,6% da população total.
+>
+> Essa mudança demográfica impacta diretamente na saúde pública, refletida no aumento da expectativa de vida e na prevalência de doenças crônico-degenerativas. Diante desse cenário, os parlamentares destacam a necessidade de implementar políticas e estratégias específicas para a saúde e bem-estar da população idosa, incluindo cuidados de longo prazo, promoção da autonomia e prevenção de doenças.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_004](resultados_textos_arquivos/textos_grandes_004/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_004](resultados_textos_arquivos/textos_grandes_004/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_004/fluxograma.html)
+
+## Texto grande 05
+
+> Conheça a tramitação de projetos de lei
+>
+> 1
+>
+> APRESENTAÇÃO
+>
+> Um projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,
+> pelo procurador-geral da República, pelo Supremo Tribunal Federal, por tribunais superiores e cidadãos.
+>
+> 2
+>
+> CASA INICIADORA E REVISORA
+>
+> Os projetos começam a tramitar na Câmara, à exceção dos apresentados por senadores, que começam no Senado.
+> O Senado funciona como Casa revisora para os projetos iniciados na Câmara e vice-versa.
+>
+> - Se o projeto da Câmara for alterado no Senado, volta para a Câmara. Da mesma forma, se um projeto do Senado for alterado pelos deputados, volta para o Senado.
+> A Casa onde o projeto se iniciou dá a palavra final sobre seu conteúdo, podendo aceitar ou não as alterações feitas na outra Casa.
+>
+> 3
+>
+> ANÁLISE PELAS COMISSÕES
+>
+> Os projetos são distribuídos às comissões conforme os assuntos de que tratam.
+> Além das comissões de mérito, existem duas que podem analisar mérito e/ou admissibilidade,
+> que são as comissões de Finanças e tributação (análise de adequação financeira e orçamentária) e
+> de Constituição e Justiça (análise de constitucionalidade).
+>
+> - COMISSÃO ESPECIAL
+>
+> Os projetos que tratarem de assuntos relativos a mais de quatro
+> comissões de mérito são enviados para uma comissão especial criada especificamente para analisá-los.
+> Essa comissão substitui todas as outras.
+>
+> - ANÁLISE CONCLUSIVA NAS COMISSÕES
+>
+> A maioria dos projetos tramita em caráter conclusivo, o que significa que,
+> se forem aprovados nas comissões, seguem para o Senado sem precisar passar pelo Plenário. Mas, se 52 deputados recorrerem,
+> o projeto vai para o Plenário.
+>
+> - URGÊNCIA
+>
+> O projeto de lei pode passar a tramitar em regime de urgência se o Plenário aprovar
+> requerimento com esse fim. Geralmente, a aprovação de urgência depende de acordo de líderes.
+>
+> - O projeto em regime de urgência
+>
+> pode ser votado rapidamente no Plenário, sem necessidade de passar pelas comissões.
+> Os relatores da proposta nas comissões dão parecer oral durante a sessão, permitindo a votação imediata.
+>
+> - O presidente da República também pode solicitar urgência para votação de projeto de sua iniciativa. Nesse caso, a
+> proposta tem que ser votada em 45 dias ou passará a bloquear a pauta da Câmara ou do Senado (onde estiver no momento).
+>
+> 4
+>
+> A APROVAÇÃO
+>
+> Os projetos de lei ordinária são aprovados com maioria de votos (maioria simples), desde que esteja
+> presente no Plenário a maioria absoluta dos deputados (257).
+>
+> - A Constituição estabelece que alguns assuntos são tratados por lei complementar. Essa lei tem o mesmo valor da lei ordinária,
+> mas exige maior número de votos para ser aprovada (257 votos favoráveis), o que torna mais difíceis sua aprovação e posterior alteração.
+>
+> 5
+>
+> SANÇÃO E VETO
+>
+> Os projetos de lei aprovados nas duas Casas são enviados ao presidente da República para sanção.
+> O presidente tem 15 dias úteis para sancionar ou vetar. O veto pode ser total ou parcial.
+> Todos os vetos têm de ser votados pelo Congresso. Para rejeitar um veto, é preciso o voto da maioria absoluta de deputados (257) e senadores (41).
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_005](resultados_textos_arquivos/textos_grandes_005/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_005](resultados_textos_arquivos/textos_grandes_005/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_005/fluxograma.html)
+
+## Texto grande 06
+
+> Deputados aprovam projeto que regulamenta telessaúde
+>
+> A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.
+>
+> De autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.
+>
+> Tecnologias
+>
+> Segundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.
+>
+> Essas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.
+>
+> Os atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.
+>
+> Entretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.
+>
+> Um diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.
+>
+> Para Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.
+>
+> O relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.
+>
+> O texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19.
+>
+> Liberdade de decisão
+>
+> O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.
+>
+> Quanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.
+>
+> Em busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.
+>
+> A todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.
+>
+> Normas e fiscalização
+>
+> Sobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.
+>
+> A fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.
+>
+> Princípios
+>
+> Para o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:
+>
+> - autonomia do profissional de saúde;
+> - consentimento livre e informado do paciente;
+> - direito de recusa ao atendimento na modalidade telessaúde;
+> - dignidade e valorização do profissional de saúde;
+> - assistência segura e com qualidade ao paciente;
+> - confidencialidade dos dados;
+> - promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;
+> - observância estrita das atribuições legais de cada profissão; e
+> - responsabilidade digital.
+>
+> Ponto rejeitado
+>
+> Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_006](resultados_textos_arquivos/textos_grandes_006/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_006](resultados_textos_arquivos/textos_grandes_006/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_006/fluxograma.html)
+
+## Texto grande 07
+
+> Câmara aprova texto-base da MP da Liberdade Econômica
+>
+> O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.
+>
+> O texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.
+>
+> A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.
+>
+> O texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.
+>
+> Outros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.
+>
+> Trabalho aos domingos
+>
+> A principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.
+>
+> Pelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.
+>
+> O dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”.
+>
+> “Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.
+>
+> A deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.
+>
+> O líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.
+>
+> Sindicatos
+>
+> O presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.
+>
+> O tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.
+>
+> Para a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_007](resultados_textos_arquivos/textos_grandes_007/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_007](resultados_textos_arquivos/textos_grandes_007/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_007/fluxograma.html)
+
+## Texto grande 08
+
+> Deputados e debatedores divergem sobre a privatização da Eletrobras
+>
+> Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre a terceira tentativa de privatização da Eletrobras, estatal vinculada ao Ministério de Minas e Energia que responde por 30% da energia elétrica gerada no País.
+>
+> A audiência pública na Comissão de Legislação Participativa foi realizada nesta tarde a pedido de sete deputados – quatro do PT e três do Psol – para discutir a Medida Provisória 1031/21, editada em fevereiro último pelo Poder Executivo.
+>
+> Com vigência imediata, a MP já liberou estudos a fim de diluir a fatia da União na Eletrobras. Sem a condição de maior acionista (menos de 50% do capital), o governo deverá manter poder de veto em decisões estratégicas. Convidado, o relator, deputado Elmar Nascimento (DEM-BA), justificou a ausência no debate.
+>
+> A deputada Érika Kokay (PT-DF), coautora do pedido para audiência pública, afirmou que a MP 1031/21 é ilegal, porque antes da eventual privatização da Eletrobras deveria haver autorização do Congresso Nacional. PT, PDT, PCdoB e Psol apresentaram ao Supremo Tribunal Federal (STF) duas ações diretas de inconstitucionalidade.
+>
+> Investimentos
+>
+> O chefe da Assessoria Especial de Assuntos Econômicos do Ministério de Minas e Energia, Hailton Madureira de Almeida, defendeu a MP, já que a Eletrobras perdeu a capacidade de investir – de R$ 10,8 bilhões em 2014 para R$ 3,3 bilhões em 2019. “Uma empresa que não cresce perde importância”, afirmou.
+>
+> O secretário especial adjunto de Desestatização, Desinvestimento e Mercados do Ministério da Economia, Pedro Capeluppi, afirmou que a privatização busca o aperfeiçoamento do setor, a exemplo do que acontece em outras áreas de infraestrutura, como saneamento. “Esse debate não começou agora”, disse.
+>
+> Segundo Almeida e Capeluppi, a privatização deverá fortalecer a Eletrobras, e o governo está aberto a discussões sobre os próximos passos. Para o assessor do Ministério das Minas e Energia, a medida deverá resultar em competição e redução das tarifas, com geração de emprego e renda onde a empresa atua.
+>
+> O deputado Glauber Braga (Psol-RJ), um dos que sugeriram o debate, criticou os argumentos dos representantes do Executivo. “São falas mentirosas”, disse. “Colocaram o assunto em uma medida provisória, que só poderia ser editada em caso de relevância e urgência, porque falta apoio”, analisou o parlamentar.
+>
+> Tarifas
+>
+> A representante do Coletivo Nacional dos Eletricitários Fabíola Antezana disse que há “açodamento” – a MP poderá ser votada pela Câmara neste dia 17. “A Eletrobras não está quebrada, parece que a proposta busca atender os acionistas e não a população”, afirmou, citando a falta de cálculo sobre efeitos nas tarifas.
+>
+> O assessor da diretoria-geral da Agência Nacional de Energia Elétrica (Aneel) Thiago Magalhães informou que o órgão regulador não vê riscos associados à operação do sistema nacional. Após a eventual privatização, continuou, a Aneel realizará consultas públicas para analisar os futuros contratos de concessão.
+>
+> Transição
+>
+> A diretora do Instituto de Desenvolvimento Estratégico do Setor Energético (Ilumina) Clarice Ferraz alertou que a privatização da Eletrobras está sendo discutida antes de definição sobre o marco regulatório do setor diante das mudanças climáticas e das novas formas de energia limpa e renovável.
+>
+> O pesquisador do Grupo de Economia da Energia da Universidade Federal do Rio de Janeiro Ronaldo Bicalho avaliou que a privatização da Eletrobras é uma medida radical e extemporânea e, por fim, ultrapassada. “Ninguém hoje no mundo acredita que a transição energética será feita pelo setor privado”, disse.
+>
+> Para Ferraz e Bicalho, privatizações nos anos 90 não trouxeram os resultados esperados porque o setor privado evita riscos e incertezas. “Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.
+>
+> Presenças
+>
+> Participaram da videoconferência nesta tarde, coordenada pelo deputado João Daniel (PT-SE), os deputados Waldenor Pereira (PT-BA), Joaquim Passarinho (PSD-PA), Alessandro Molon (PSB-RJ), General Peternelli (PSL-SP), Alencar Santana Braga (PT-SP), Paulo Ganime (Novo-RJ) e Rogério Correia (PT-MG), além do dirigente sindical em Sergipe Paulo Roberto Gomes.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_008](resultados_textos_arquivos/textos_grandes_008/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_008](resultados_textos_arquivos/textos_grandes_008/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_008/fluxograma.html)
+
+## Texto grande 09
+
+> Imposto sobre fortunas pode entrar no debate sobre reforma tributária
+>
+> Agência Câmara
+>
+> Parlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.
+>
+> Há propostas na Câmara que buscam alterar as regras de tributação nessa área, mas ainda sem muitos avanços. Criada no final de julho, uma comissão especial vai analisar as propostas relacionadas à reforma tributária que tramitam na Casa. O tema será uma das prioridades dos deputados no segundo semestre, de acordo com o presidente Eduardo Cunha.
+>
+> Uma das propostas trata de tributo previsto na Constituição Federal, mas até hoje não regulamentado, o chamado Imposto sobre Grandes Fortunas. As dificuldades para criação desse imposto começaram na Assembleia Constituinte.
+>
+> Enquanto outros impostos podem ser regulados por lei comum, a exemplo do Imposto de Renda, o Imposto sobre Grandes Fortunas precisa de uma lei complementar, que tem tramitação especial no Congresso.
+>
+> Ajuste fiscal
+>
+> O tema foi defendido pelo líder do governo, deputado José Guimarães (PT-CE), como medida para garantir recursos para o governo em meio ao ajuste fiscal. Segundo ele, não é possível dar perenidade e qualidade nas políticas públicas nas diversas áreas sem garantir o financiamento.
+>
+> A líder do PCdoB, deputada Jandira Feghali (RJ), também já defendeu a taxação como uma saída para o ajuste fiscal. Também do mesmo partido, o governador do Maranhão, Flávio Dino, apresentou ao Supremo Tribunal Federal uma Ação Direta de Inconstitucionalidade por Omissão (ADO) para que o imposto seja regulamentado. O caso está no tribunal desde o meio de março.
+>
+> 11,8 milhões
+>
+> A Câmara tem 14 propostas sobre o tema em tramitação. A mais antiga é de 1989 e está, desde dezembro de 2000, pronta para ser votada em Plenário.
+>
+> O Projeto de Lei Complementar (PLP) 202/89, de autoria do então senador Fernando Henrique Cardoso, estabelece como grande fortuna um patrimônio superior a R$ 11,8 milhões, em valores atualizados.
+>
+> De acordo com o especialista em finanças públicas Amir Khair, o imposto não foi regulamentado até hoje por falta de interesse dos parlamentares: “Ele não passa no Congresso por várias razões que são alegadas. Mas a razão central é que ele atinge o bolso dos parlamentares”.
+>
+> Khair também disse que os argumentos contrários à regulamentação do imposto, como bitributação, fuga de capitais e falta de poder de arrecadação do tributo não se sustentam. Segundo ele, o sistema tributário brasileiro é muito bom para quem tem muito dinheiro, ainda mais em relação à tributação praticada em outros países.
+>
+> Bitributação
+>
+> Para o tributarista Ives Gandra Martins, o imposto é, sim, uma bitributação e acaba afetando a possibilidade de investimento de empresários, o que resultaria em redução da economia. Gandra também critica a burocracia tributária brasileira e a necessidade de o governo sempre buscar meios de ampliar a arrecadação, ao invés de focar mais no corte de gastos públicos.
+>
+> “Alguém que vai fazer uma fortuna, e tem uma empresa, ele pagou ICMS, ISS, IPTU e pagou o Imposto de Renda e a CSLL, e teve um patrimônio que ele vai aplicando. Isso é um patrimônio estático. Tudo que ele vai ganhar, ele tributa”, afirmou.
+>
+> Prática em desuso
+>
+> Essa é a mesma opinião do deputado Luiz Carlos Hauly (PSDB-PR), especialista em tributação. Segundo o parlamentar, o Imposto sobre Grandes Fortunas é uma prática que caiu em desuso na maior parte dos países em que foi adotada.
+>
+> De acordo com levantamento da consultoria EY, antiga Ernst & Young, o imposto é praticado em seis países: Argentina, Espanha, França, Índia, Noruega e Suíça. A Espanha tem a maior das alíquotas entre as existentes: 2,5% para fortunas acima de 700 mil euros.
+>
+> Para Hauly, que apresentou uma proposta de reforma tributária prevendo o fim da regra constitucional sobre o Imposto Sobre Fortunas, o tributo não deveria ser criado, mas a solução seria calibrar o sistema tributário brasileiro.
+>
+> Já para o líder do Psol, deputado Chico Alencar (RJ), a medida é necessária para tentar equilibrar a desigualdade social existente no País.
+>
+> Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.
+>
+> Desigualdade tributária
+>
+> Estudo do Instituto de Pesquisa Econômica Aplicada (Ipea), de 2011, mostra que quanto menor a renda do trabalhador brasileiro, mais tributos ele paga em relação ao total do que ganha.
+>
+> Segundo o instituto, os 10% mais pobres contribuem para o Tesouro com 32% de seus rendimentos; enquanto isso, os 10% mais ricos, contribuem com apenas 21%. A carga tributária brasileira chegou, em 2013, a quase 36% de toda a riqueza produzida no País.
+>
+> Outro estudo, este feito por pesquisadores da Universidade de Brasília, mostrou que a desigualdade entre ricos e pobres é maior do que se imaginava pelos levantamentos oficiais do governo. Pela análise, cerca de 140 mil brasileiros, com renda média de R$ 198 mil por mês, ficaram com 11% dos recursos nacionais. Eles representam um em cada mil residentes no País.
+>
+> Agência Câmara
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_009](resultados_textos_arquivos/textos_grandes_009/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_009](resultados_textos_arquivos/textos_grandes_009/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_009/fluxograma.html)
+
+## Texto grande 10
+
+> RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024
+>
+> Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.
+>
+> O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o inciso IX do art. 23 do Código Eleitoral e os arts. 57-J e 105 da Lei nº 9.504, de 30 de setembro de 1997,
+>
+> RESOLVE:
+>
+> Art. 1º A Res.-TSE nº 23.610/2019 passa a vigorar com as seguintes alterações:
+>
+> “ Art. 1º Esta Resolução dispõe sobre a propaganda eleitoral”. (NR)
+>
+> “ Art. 3º ........................................................................................
+>
+> ......................................................................................................
+>
+> V - a divulgação de posicionamento pessoal sobre questões políticas, inclusive em shows, apresentações e performances artísticas, redes sociais, blogs, sítios eletrônicos pessoais e aplicativos (apps);
+>
+> ......................................................................................................
+>
+> § 5º Exclui-se do disposto no inciso V deste artigo a contratação ou a remuneração de pessoas naturais ou jurídicas com a finalidade específica de divulgar conteúdos político-eleitorais em favor de terceiros.
+>
+> § 6º Os atos mencionados no caput deste artigo e em seus incisos poderão ser realizados em live exclusivamente nos perfis e canais de pré-candidatas, pré-candidatos, partidos políticos e coligações, vedada a transmissão ou retransmissão por emissora de rádio, por emissora de televisão ou em site, perfil ou canal pertencente a pessoa jurídica.
+>
+> ..............................................................................” (NR)
+>
+> “Art. 3º-A. .....................................................................................
+>
+> Parágrafo único. O pedido explícito de voto não se limita ao uso da locução “vote em”, podendo ser inferido de termos e expressões que transmitam o mesmo conteúdo.” (NR)
+>
+> “Art. 3º-B. O impulsionamento pago de conteúdo político-eleitoral relacionado aos atos previstos no caput e nos incisos do art. 3º desta Resolução somente é permitido durante a pré-campanha quando cumpridos cumulativamente os seguintes requisitos:
+>
+> I - o serviço seja contratado por partido político ou pela pessoa natural que pretenda se candidatar diretamente com o provedor de aplicação;
+>
+> II - não haja pedido explícito de voto;
+>
+> III - os gastos sejam moderados, proporcionais e transparentes;
+>
+> IV - sejam observadas as regras aplicáveis ao impulsionamento durante a campanha.” (NR)
+>
+> “Art. 3º-C. A veiculação de conteúdo político-eleitoral em período que não seja o de campanha eleitoral se sujeita às regras de transparência previstas no art. 27-A desta Resolução e de uso de tecnologias digitais previstas nos arts. 9º-B, caput e parágrafos, e 9º-C desta Resolução, que deverão ser cumpridas, no que lhes couber, pelos provedores de aplicação e pelas pessoas e entidades responsáveis pela criação e divulgação do conteúdo.” (NR)
+>
+> “Art. 7º ..........................................................................................
+>
+> ......................................................................................................
+>
+> § 3º O disposto neste artigo se refere ao poder de polícia sobre propaganda eleitoral específica, relacionada às candidaturas e ao contexto da disputa, mantida a competência judicial para a adoção de medidas necessárias para assegurar a eficácia das decisões do Tribunal Superior Eleitoral, na forma do art. 9º-F desta Resolução.” (NR)
+>
+> “Art. 9º ..........................................................................................
+>
+> § 1º A classificação de conteúdos pelas agências de verificação de fatos, que tenham firmado termo de cooperação com o Tribunal Superior Eleitoral, será feita de forma independente e sob responsabilidade daquelas.
+>
+> § 2º As checagens realizadas pelas agências que tenham firmado termo de cooperação serão disponibilizadas no sítio eletrônico da Justiça Eleitoral e outras fontes fidedignas poderão ser utilizadas como parâmetro para aferição de violação ao dever de diligência e presteza atribuído a candidata, candidato, partido político, federação e coligação, nos termos do caput deste artigo.” (NR)
+>
+> “Art. 9º-B. A utilização na propaganda eleitoral, em qualquer modalidade, de conteúdo sintético multimídia gerado por meio de inteligência artificial para criar, substituir, omitir, mesclar ou alterar a velocidade ou sobrepor imagens ou sons impõe ao responsável pela propaganda o dever de informar, de modo explícito, destacado e acessível que o conteúdo foi fabricado ou manipulado e a tecnologia utilizada.
+>
+> § 1º As informações mencionadas no caput deste artigo devem ser feitas em formato compatível com o tipo de veiculação e serem apresentadas:
+>
+> I – no início das peças ou da comunicação feitas por áudio;
+>
+> II – por rótulo (marca d’água) e na audiodescrição, nas peças que consistam em imagens estáticas;
+>
+> III – na forma dos incisos I e II desse parágrafo, nas peças ou comunicações feitas por vídeo ou áudio e vídeo;
+>
+> IV – em cada página ou face de material impresso em que utilizado o conteúdo produzido por inteligência artificial.
+>
+> §2º O disposto no caput e no §1º deste artigo não se aplica:
+>
+> I - aos ajustes destinados a melhorar a qualidade de imagem ou de som;
+>
+> II - à produção de elementos gráficos de identidade visual, vinhetas e logomarcas;
+>
+> III - a recursos de marketing de uso costumeiro em campanhas, como a montagem de imagens em que pessoas candidatas e apoiadoras aparentam figurar em registro fotográfico único utilizado na confecção de material impresso e digital de propaganda.
+>
+> § 3º O uso de chatbots, avatares e conteúdos sintéticos como artifício para intermediar a comunicação de campanha com pessoas naturais submete-se ao disposto no caput deste artigo, vedada qualquer simulação de interlocução com a pessoa candidata ou outra pessoa real.
+>
+> § 4º O descumprimento das regras previstas no caput e no § 3º deste artigo impõe a imediata remoção do conteúdo ou indisponibilidade do serviço de comunicação, por iniciativa do provedor de aplicação ou determinação judicial, sem prejuízo de apuração nos termos do § 2º do art. 9º-C desta Resolução..” (NR)
+>
+> “Art. 9º-C É vedada a utilização, na propaganda eleitoral, qualquer que seja sua forma ou modalidade, de conteúdo fabricado ou manipulado para difundir fatos notoriamente inverídicos ou descontextualizados com potencial para causar danos ao equilíbrio do pleito ou à integridade do processo eleitoral.
+>
+> § 1º É proibido o uso, para prejudicar ou para favorecer candidatura, de conteúdo sintético em formato de áudio, vídeo ou combinação de ambos, que tenha sido gerado ou manipulado digitalmente, ainda que mediante autorização, para criar, substituir ou alterar imagem ou voz de pessoa viva, falecida ou fictícia (deep fake).
+>
+> § 2º O descumprimento do previsto no caput e no § 1º deste artigo configura abuso do poder político e uso indevido dos meios de comunicação social, acarretando a cassação do registro ou do mandato, e impõe apuração das responsabilidades nos termos do § 1º do art. 323 do Código Eleitoral, sem prejuízo de aplicação de outras medidas cabíveis quanto à irregularidade da propaganda e à ilicitude do conteúdo.” (NR)
+>
+> “Art. 9º-D. É dever do provedor de aplicação de internet, que permita a veiculação de conteúdo político-eleitoral, a adoção e a publicização de medidas para impedir ou diminuir a circulação de fatos notoriamente inverídicos ou gravemente descontextualizados que possam atingir a integridade do processo eleitoral, incluindo:
+>
+> I - a elaboração e a aplicação de termos de uso e de políticas de conteúdo compatíveis com esse objetivo;
+>
+> II - a implementação de instrumentos eficazes de notificação e de canais de denúncia, acessíveis às pessoas usuárias e a instituições e entidades públicas e privadas;
+>
+> III – o planejamento e a execução de ações corretivas e preventivas, incluindo o aprimoramento de seus sistemas de recomendação de conteúdo;
+>
+> IV - a transparência dos resultados alcançados pelas ações mencionadas no inciso III do caput deste artigo;
+>
+> V – a elaboração, em ano eleitoral, de avaliação de impacto de seus serviços sobre a integridade do processo eleitoral, a fim de implementar medidas eficazes e proporcionais para mitigar os riscos identificados, incluindo quanto à violência política de gênero, e a implementação das medidas previstas neste artigo.
+>
+> VI – o aprimoramento de suas capacidades tecnológicas e operacionais, com priorização de ferramentas e funcionalidades que contribuam para o alcance do objetivo previsto no caput deste artigo.
+>
+> § 1º É vedado ao provedor de aplicação, que comercialize qualquer modalidade de impulsionamento de conteúdo, inclusive sob a forma de priorização de resultado de busca, disponibilizar esse serviço para veiculação de fato notoriamente inverídico ou gravemente descontextualizado que possa atingir a integridade do processo eleitoral.
+>
+> § 2º O provedor de aplicação, que detectar conteúdo ilícito de que trata o caput deste artigo ou for notificado de sua circulação pelas pessoas usuárias, deverá adotar providências imediatas e eficazes para fazer cessar o impulsionamento, a monetização e o acesso ao conteúdo e promoverá a apuração interna do fato e de perfis e contas envolvidos para impedir nova circulação do conteúdo e inibir comportamentos ilícitos, inclusive pela indisponibilização de serviço de impulsionamento ou monetização.
+>
+> § 3º A Justiça Eleitoral poderá determinar que o provedor de aplicação veicule, por impulsionamento e sem custos, o conteúdo informativo que elucide fato notoriamente inverídico ou gravemente descontextualizado antes impulsionado de forma irregular, nos mesmos moldes e alcance da contratação.
+>
+> § 4º As providências mencionadas no caput e nos § 1º e 2º deste artigo decorrem da função social e do dever de cuidado dos provedores de aplicação, que orientam seus termos de uso e a prevenção para evitar ou minimizar o uso de seus serviços na prática de ilícitos eleitorais, e não dependem de notificação da autoridade judicial.
+>
+> § 5º As ordens para remoção de conteúdo, suspensão de perfis, fornecimento de dados ou outras medidas determinadas pelas autoridades judiciárias, no exercício do poder de polícia ou nas ações eleitorais, observarão o disposto nesta Resolução e na Res.-TSE nº 23.608/2019, cabendo aos provedores de aplicação cumpri-las e, se o integral atendimento da ordem depender de dados complementares, informar, com objetividade, no prazo de cumprimento, quais dados devem ser fornecidos.” (NR)
+>
+> “Art. 9º-E. Os provedores de aplicação serão solidariamente responsáveis, civil e administrativamente, quando não promoverem a indisponibilização imediata de conteúdos e contas, durante o período eleitoral, nos seguintes casos de risco:
+>
+> I – de condutas, informações e atos antidemocráticos caracterizadores de violação aos artigos 296, parágrafo único; 359-L, 359- M, 359-N, 359-P e 359-R do Código Penal;
+>
+> II – de divulgação ou compartilhamento de fatos notoriamente inverídicos ou gravemente descontextualizados que atinjam a integridade do processo eleitoral, inclusive os processos de votação, apuração e totalização de votos;
+>
+> III – de grave ameaça, direta e imediata, de violência ou incitação à violência contra a integridade física de membros e servidores da Justiça eleitoral e Ministério Público eleitoral ou contra a infraestrutura física do Poder Judiciário para restringir ou impedir o exercício dos poderes constitucionais ou a abolição violenta do Estado Democrático de Direito;
+>
+> IV – de comportamento ou discurso de ódio, inclusive promoção de racismo, homofobia, ideologias nazistas, fascistas ou odiosas contra uma pessoa ou grupo por preconceito de origem, raça, sexo, cor, idade, religião e quaisquer outras formas de discriminação;
+>
+> V - de divulgação ou compartilhamento de conteúdo fabricado ou manipulado, parcial ou integralmente, por tecnologias digitais, incluindo inteligência artificial, em desacordo com as formas de rotulagem trazidas na presente Resolução.”
+>
+> “Art. 9º-F. No caso de a propaganda eleitoral na internet veicular fatos notoriamente inverídicos ou gravemente descontextualizados sobre o sistema eletrônico de votação, o processo eleitoral ou a Justiça Eleitoral, as juízas e os juízes mencionados no art. 8º desta Resolução ficarão vinculados, no exercício do poder de polícia e nas representações, às decisões colegiadas do Tribunal Superior Eleitoral sobre a mesma matéria, nas quais tenha sido determinada a remoção ou a manutenção de conteúdos idênticos.
+>
+> § 1º Aplica-se o disposto no caput deste artigo aos casos em que, a despeito de edição, reestruturação, alterações de palavras ou outros artifícios, métodos ou técnicas para burlar sistemas automáticos de detecção de conteúdo duplicado ou para dificultar a verificação humana, haja similitude substancial entre o conteúdo removido por determinação do Tribunal Superior Eleitoral e o veiculado na propaganda regional ou municipal.
+>
+> § 2º Para o cumprimento ao disposto no caput deste artigo, as juízas e os juízes eleitorais deverão consultar repositório de decisões colegiadas, que será disponibilizado pelo Tribunal Superior Eleitoral pelo sistema de que trata o art. 9º-G desta Resolução.
+>
+> § 3º A ordem de remoção de conteúdo expedida nos termos deste artigo poderá estabelecer prazo inferior a 24 (vinte e quatro) horas para cumprimento da decisão, considerando a gravidade da veiculação e as peculiaridades do processo eleitoral e da eleição em curso ou a se realizar, e observará os demais requisitos constantes do § 4º do art. 38 desta Resolução.
+>
+> § 4º O exercício do poder de polícia que contrarie ou exorbite o previsto no § 1º deste artigo permitirá o uso da reclamação administrativa eleitoral, observado o disposto nos arts. 29 e 30 da Res.-TSE n º 23.608/2019.” (NR)
+>
+> “Art. 9º-G. As decisões do Tribunal Superior Eleitoral que determinem a remoção de conteúdos que veiculem fatos notoriamente inverídicos ou gravemente descontextualizados que atinjam a integridade do processo eleitoral serão incluídas em repositório disponibilizado para consulta pública.
+>
+> § 1º O repositório conterá o número do processo e a íntegra da decisão, da qual serão destacados, para inclusão em campo próprio a cargo da Secretaria Judiciária, o endereço eletrônico em que hospedado o conteúdo a ser removido e a descrição de seus elementos essenciais.
+>
+> § 2º As ordens de remoção de que trata este artigo serão dirigidas aos provedores de aplicação, que, no prazo designado para cumprimento, deverão, por meio de acesso identificado no sistema, informar o cumprimento da ordem e, desde que determinado, alimentar o repositório com:
+>
+> I - o arquivo de texto, imagem, áudio ou vídeo objeto da ordem de remoção;
+>
+> II – capturas de tela contendo todos os comentários disponíveis no local de hospedagem do conteúdo, se existentes;
+>
+> III – os metadados relativos ao acesso, como IP, porta, data e horário da publicação;
+>
+> IV – os metadados relativos ao engajamento da publicação no momento de sua remoção.
+>
+> § 3º As informações relativas ao número do processo, ao teor das decisões do Tribunal Superior Eleitoral, à data de remoção, à descrição dos elementos essenciais e aos metadados mencionados no inciso IV do § 2º deste artigo ficarão disponíveis para consulta pública, ressalvadas as hipóteses legais de sigilo.
+>
+> § 4º Os dados mencionados nos incisos I a III do § 2º deste artigo serão mantidos sob sigilo, sendo seu acesso restrito às juízas e aos juízes eleitorais e às servidoras e aos servidores autorizadas(os) e feito mediante registro de atividades.
+>
+> § 5º É dever das juízas e dos juízes eleitorais acompanhar a atualização do repositório de decisões, para assegurar o devido cumprimento do disposto no art. 9º-E desta Resolução.
+>
+> § 6º Os dados sigilosos constantes do repositório poderão ser compartilhados por decisão fundamentada:
+>
+> I - de ofício ou mediante requerimento da autoridade competente, para instaurar ou instruir investigação criminal, administrativa ou eleitoral;
+>
+> II – mediante requerimento da pessoa autora do conteúdo ou por ela atingido, quando necessários ao exercício do direito de defesa ou de ação;
+>
+> III – nas demais hipóteses legais.
+>
+> § 7º O compartilhamento ou a publicização indevida dos dados mencionados nos incisos II e III do § 2º deste artigo sujeita a pessoa responsável às sanções pela divulgação de fatos notoriamente inverídicos ou gravemente descontextualizados sobre o sistema eletrônico de votação, o processo eleitoral ou a atuação da Justiça Eleitoral, sem prejuízo da apuração da conduta criminal correspondente ao vazamento de dados sigilosos ou outras relativas ao caso.
+>
+> § 8º O repositório também conterá as decisões do Tribunal Superior Eleitoral que indefiram a remoção de conteúdos, hipótese na qual caberá à Secretaria Judiciária incluir, em campo próprio, o endereço eletrônico da publicação.” (NR)
+>
+> “Art. 9º-H A remoção de conteúdos que violem o disposto no caput do art. 9º e no caput e no § 1º do art. 9º-C não impede a aplicação da multa prevista no art. 57-D da Lei nº 9.504/1997 por decisão judicial em representação.” (NR)
+>
+> “Art. 10. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 1º-A. A vedação prevista no caput deste artigo incide sobre o uso de ferramentas tecnológicas para adulterar ou fabricar áudios, imagens, vídeos, representações ou outras mídias destinadas a difundir fato falso ou gravemente descontextualizado sobre candidatas, candidatos ou sobre o processo eleitoral.
+>
+> ......................................................................................................
+>
+> § 6º-A. Os partidos políticos, as federações e as coligações poderão centralizar o canal de comunicação e a contratação de encarregado de dados, em porte compatível com as demandas relacionadas às candidaturas atendidas, distribuindo-se os custos, sob a forma de doação estimável, de modo proporcional entre as candidatas e os candidatos que se utilizem dos serviços contratados para cumprir as obrigações definidas nos §§ 5º e 6º deste artigo.
+>
+> § 6º-B. Nas eleições municipais em Municípios com menos de 200.000 eleitores, os partidos políticos, as federações, as coligações, as candidatas, os candidatos serão considerados agentes de tratamento de pequeno porte, aplicando-se, no que couber, o disposto na Resolução CD/ANPD nº 2 de 2022, em especial:
+>
+> I – a dispensa de indicar encarregado pelo tratamento de dados pessoais, mantida a obrigação de disponibilizar canal de comunicação (art. 11, Resolução CD/ANPD nº 2 de 2022);
+>
+> II – a faculdade de estabelecer política simplificada de segurança da informação, que deverá contemplar requisitos essenciais e necessários para o tratamento de dados pessoais, com o objetivo de protegê-los de acessos não autorizados e de situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou qualquer forma de tratamento inadequado ou ilícito (art. 13, Resolução CD/ANPD nº 2 de 2022).
+>
+> ......................................................................................................
+>
+> § 8º O canal de comunicação e o nome do encarregado de tratamento de dados pessoais informados nos termos do § 5º deste artigo serão divulgados pela Justiça Eleitoral junto às informações da candidatura.” (NR)
+>
+> “Art. 13. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 3º As carreatas, os desfiles em veículos automotivos e outros atos de campanha que envolvam custeio de combustível por partido político, federação, coligação, candidata ou candidato deverão ser comunicados à Justiça Eleitoral com, no mínimo, 24 (vinte e quatro) horas de antecedência, para fins de controle dos respectivos gastos eleitorais.” (NR)
+>
+> “Art. 17. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 2º Nos eventos de arrecadação mencionados no inciso II do § 1º deste artigo, é livre a manifestação de opinião política e preferência eleitoral pelas(os) artistas que se apresentarem e a realização de discursos por candidatas, candidatos, apoiadoras e apoiadores.” (NR)
+>
+> “Art. 23-A. A autora ou o autor de obra artística ou audiovisual utilizada sem autorização para a produção de jingle, ainda que sob forma de paródia, ou de outra peça de propaganda eleitoral poderá requerer a cessação da conduta, por petição dirigida às
+>
+> juízas e aos juízes mencionados no art. 8º desta Resolução.
+>
+> § 1º A candidata ou o candidato será imediatamente notificado para se manifestar no prazo de dois dias (Lei nº 9.504/1997, art. 96, § 5º).
+>
+> § 2º Para o deferimento do pedido, é suficiente a ausência de autorização expressa para uso eleitoral da obra artística ou audiovisual, sendo irrelevante a demonstração da ocorrência de dano ou a existência de culpa ou dolo (Código de Processo Civil, art. 497, parágrafo único).
+>
+> § 3º A tutela poderá abranger a proibição de divulgação de material ainda não veiculado, a ordem de remoção de conteúdo já divulgado e a proibição de reiteração do uso desautorizado da obra artística (Código de Processo Civil, art. 497, parágrafo único).
+>
+> § 4º Demonstrada a plausibilidade do direito e o risco de dano, é cabível a antecipação da tutela, podendo a eficácia da decisão ser assegurada por meios coercitivos, inclusive cominação de multa processual.”
+>
+> “Art. 27-A. O provedor de aplicação que preste serviço de impulsionamento de conteúdos político-eleitorais, inclusive sob a forma de priorização de resultado de busca, deverá:
+>
+> I - manter repositório desses anúncios para acompanhamento, em tempo real, do conteúdo, dos valores, dos responsáveis pelo pagamento e das características dos grupos populacionais que compõem a audiência (perfilamento) da publicidade contratada;
+>
+> II – disponibilizar ferramenta de consulta, acessível e de fácil manejo, que permita realizar busca avançada nos dados do repositório que contenha, no mínimo:
+>
+> a) buscas de anúncios a partir de palavras-chave, termos de interesse e nomes de anunciantes;
+>
+> b) acesso a informações precisas sobre os valores despendidos, o período do impulsionamento, a quantidade de pessoas atingidas e os critérios de segmentação definidos pela(o) anunciante no momento da veiculação do anúncio;
+>
+> c) coletas sistemáticas, por meio de interface dedicada (application programming interface – API), de dados de anúncios, incluindo seu conteúdo, gasto, alcance, público atingido e responsáveis pelo pagamento.
+>
+> § 1º Para os fins desse artigo, caracteriza conteúdo político-eleitoral, independente da classificação feita pela plataforma, aquele que versar sobre eleições, partidos políticos, federações e coligações, cargos eletivos, pessoas detentoras de cargos eletivos, pessoas candidatas, propostas de governo, projetos de lei, exercício do direito ao voto e de outros direitos políticos ou matérias relacionadas ao processo eleitoral.
+>
+> § 2º As medidas previstas nos incisos do caput deste artigo deverão ser implementadas:
+>
+> I - em até 60 (sessenta) dias, a contar da entrada em vigor desta norma, no caso de provedor de aplicação que já ofereça serviço de impulsionamento no Brasil;
+>
+> II – a partir do início da prestação do serviço de impulsionamento no Brasil, no caso de provedor de aplicação que passe a oferecê-lo após a entrada em vigor desta norma.
+>
+> § 3º As medidas previstas no caput deste artigo são de cumprimento permanente, inclusive em anos não eleitorais e períodos pré e pós-eleições.
+>
+> § 4º O cumprimento do disposto neste artigo é requisito para o credenciamento, na Justiça Eleitoral, do provedor de aplicação que pretenda, nos termos dos §§ 3º e 9º do art. 29 desta Resolução, prestar serviço de impulsionamento de propaganda eleitoral.” (NR)
+>
+> “Art. 28. .........................................................................................
+>
+> ......................................................................................................
+>
+> IV. .................................................................................................
+>
+> ......................................................................................................
+>
+> b) pessoa natural, vedada:
+>
+> 1\. a contratação de impulsionamento e de disparo em massa de conteúdo nos termos do art. 34 desta Resolução (Lei nº 9.504/1997, art. 57-J);
+>
+> 2\. a remuneração, a monetização ou a concessão de outra vantagem econômica como retribuição à pessoa titular do canal ou perfil, paga pelas(os) beneficiárias(os) da propaganda ou por terceiros.
+>
+> § 1º Os endereços eletrônicos das aplicações de que trata este artigo, incluídos os canais publicamente acessíveis em aplicativos de mensagens, fóruns online e plataformas digitais, salvo aqueles de iniciativa de pessoa natural, deverão ser comunicados à Justiça Eleitoral impreterivelmente:
+>
+> I - no RRC ou no DRAP, se pré-existentes, podendo ser mantidos durante todo o período eleitoral os mesmos endereços eletrônicos em uso antes do início da propaganda eleitoral (Lei nº 9.504/1997, art. 57-B, § 1º);
+>
+> II - no prazo de 24 (vinte e quatro) horas a contar de sua criação, se ocorrer no curso da campanha.
+>
+> § 1º-A. Os provedores de aplicação que utilizarem sistema de recomendação a usuárias e usuários deverão excluir dos resultados os canais e perfis informados à Justiça Eleitoral nos termos do § 1º deste artigo e, com exceção das hipóteses legais de impulsionamento pago, os conteúdos neles postados.
+>
+> ......................................................................................................
+>
+> § 6º-A. Observado o disposto no § 6º e nos itens 1 e 2 da alínea b do inciso IV do caput deste artigo, é lícita a veiculação de propaganda eleitoral em canais e perfis de pessoas naturais que:
+>
+> I - alcancem grande audiência na internet;
+>
+> II - ou participem de atos de mobilização nas redes para ampliar o alcance orgânico da mensagem, como o compartilhamento simultâneo de material distribuído aos participantes, a convocação para eventos virtuais e presenciais e a utilização de hashtags.
+>
+> § 6º-B. Não se aplica o disposto no inciso II do § 6º-A deste artigo para fins ilícitos, sob pena de responsabilização das pessoas organizadoras, das criadoras do conteúdo, das distribuidoras e das participantes, na proporção de suas condutas, pelos ilícitos eleitorais e penais.
+>
+> ......................................................................................................
+>
+> § 7º-A. O impulsionamento de conteúdo em provedor de aplicação de internet somente poderá ser utilizado para promover ou beneficiar candidatura, partido político ou federação que o contrate, sendo vedado o uso do impulsionamento para propaganda negativa.
+>
+> § 7º-B. É vedada a priorização paga de conteúdos em aplicações de busca na internet que:
+>
+> I - promova propaganda negativa;
+>
+> II - utilize como palavra-chave nome, sigla, alcunha ou apelido de partido, federação, coligação, candidata ou candidato adversário, mesmo com a finalidade de promover propaganda positiva do responsável pelo impulsionamento;
+>
+> III – ou difunda dados falsos, notícias fraudulentas ou fatos notoriamente inverídicos ou gravemente descontextualizados, ainda que benéficas à usuária ou a usuário responsável pelo impulsionamento.
+>
+> § 7º-C. Sem prejuízo da aplicação do disposto no § 5º deste artigo, as condutas que violarem os §§ 7º-A e 7º-B poderão ser objeto de ações em que se apure a prática de abuso de poder.
+>
+> ............................................................................................” (NR)
+>
+> “Art. 29. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 11\. É vedada, desde 48 (quarenta e oito) horas antes até 24 (vinte e quatro) horas depois da eleição, a circulação paga ou impulsionada de propaganda eleitoral na internet, mesmo se a contratação tiver sido realizada antes desse prazo, cabendo ao provedor de aplicação, que comercializa o impulsionamento, realizar o desligamento da veiculação de propaganda eleitoral.” (NR)
+>
+> “Art. 29-A. A live eleitoral, entendida como transmissão em meio digital, realizada por candidata ou candidato, com ou sem a participação de terceiros, com o objetivo de promover candidaturas e conquistar a preferência do eleitorado, mesmo sem pedido explícito de voto, constitui ato de campanha eleitoral de natureza pública.
+>
+> § 1º A partir de 16 de agosto do ano das eleições, a utilização de live por pessoa candidata para promoção pessoal ou de atos referentes a exercício de mandato, mesmo sem menção ao pleito, equivale à promoção de candidatura, nos termos do caput deste artigo.
+>
+> § 2º É vedada a transmissão ou retransmissão de live eleitoral:
+>
+> I - em site, perfil ou canal de internet pertencente à pessoa jurídica, à exceção do partido político, da federação ou da coligação a que a candidatura seja vinculada (art. 29, § 1º, I, desta Resolução);
+>
+> II - por emissora de rádio e de televisão (art. 43, II, desta Resolução).
+>
+> § 3º A cobertura jornalística da live eleitoral deve respeitar os limites legais aplicáveis à programação normal de rádio e televisão, cabendo às emissoras zelar para que a exibição de trechos não configure tratamento privilegiado ou exploração econômica de ato de campanha (art. 43, I e § 1º, desta Resolução).” (NR)
+>
+> “Art. 31. ........................................................................................
+>
+> § 1º É proibida às pessoas jurídicas e às pessoas naturais a venda de cadastro de endereços eletrônicos e banco de dados pessoais, nos termos do § 1º do art. 57- E da Lei nº 9.504/1997.
+>
+> ......................................................................................................
+>
+> § 1º-B. O cadastro de dados pessoais de contato, detido de forma legítima por pessoa natural, poderá ser cedido gratuitamente a partido político, federação, coligação, candidata ou candidato, condicionando-se o uso lícito na campanha à obtenção prévia de consentimento expresso e informado das(os) destinatárias(os) no primeiro contato por mensagem ou outro meio.” (NR)
+>
+> “Art. 33. .......................................................................................
+>
+> ......................................................................................................
+>
+> § 3º A mensagem eletrônica mencionada no caput deste artigo deverá conter a informação sobre o canal de comunicação disponibilizado nos termos do § 5º do art. 10 desta Resolução e explicar, em linguagem simples e acessível, a finalidade do canal.
+>
+> “Art. 33-B. Cabe aos provedores de aplicação, aos partidos políticos, às federações, às coligações, às candidatas ou aos candidatos, quando realizarem tratamento de dados pessoais para fins de propaganda eleitoral:
+>
+> I - garantir o acesso facilitado às informações sobre o tratamento de dados, previsto no art. 9º da Lei nº 13.709/2018, em especial quanto aos dados utilizados para realizar perfilamento de usuárias e usuários com vistas ao microdirecionamento da propaganda eleitoral;
+>
+> II - garantir o cumprimento dos direitos previstos nos arts. 17 a 20 da Lei nº 13.709/2018;
+>
+> III - adotar as medidas necessárias para a proteção contra a discriminação ilícita e abusiva, nos termos do inciso IX do art. 6º da Lei nº 13.709/2018;
+>
+> IV - usar os dados exclusivamente para as finalidades explicitadas e consentidas pela pessoa titular, respeitando os princípios da finalidade, da necessidade e da adequação;
+>
+> V - implementar medidas de segurança técnica e administrativa para proteger os dados pessoais de acessos não autorizados e de situações acidentais ou ilícitas que possam levar à destruição, perda, alteração, comunicação ou difusão dos dados, nos termos do art. 46 da Lei nº 13.709/2018;
+>
+> VI - notificar, em caso de incidentes de segurança que possam acarretar riscos ou danos relevantes às(aos) titulares dos dados, a autoridade nacional e às(aos) titulares afetadas(os), nos termos do art. 48 da Lei nº 13.709/2018.
+>
+> § 1º Na propaganda eleitoral, o tratamento de dados pessoais sensíveis ou de dados pessoais que possam revelar dados pessoais sensíveis exige, além do disposto nos incisos do caput deste artigo, o consentimento específico, expresso e destacado do titular.
+>
+> § 2º No caso de dados pessoais sensíveis a que a candidata ou o candidato tenha acesso pessoalmente em decorrência de seu núcleo familiar, de suas relações sociais e de seus vínculos comunitários, como a participação em grupos religiosos, associações e movimentos, o consentimento específico, expresso e destacado de que trata o § 1º deste artigo somente será exigido para a transferência a terceiros, respondendo o cedente por divulgação ou vazamento.
+>
+> § 3º É dever de partidos políticos, federações, coligações, candidatas e candidatos exigir e fiscalizar o cumprimento do disposto neste artigo pelas pessoas e empresas contratadas por suas campanhas.
+>
+> § 4º O descumprimento do disposto neste artigo e no § 1º do art. 31 desta Resolução acarretará a remoção do conteúdo veiculado e a comunicação do fato à Autoridade Nacional da Proteção de Dados, a quem compete avaliar a aplicação das sanções previstas no art. 52 da Lei nº 13.702/2018, sem prejuízo da eventual apuração de ilícitos eleitorais ou crimes.” (NR)
+>
+> “Art. 33-C. Para os fins previstos nesta Resolução, os partidos políticos, as federações, as coligações, as candidatas e os candidatos devem manter o registro das operações de tratamento de dados pessoais, nele contendo, ao menos:
+>
+> I - o tipo do dado e a sua origem;
+>
+> II - as categorias de titulares;
+>
+> III - a descrição do processo e da finalidade;
+>
+> IV - o fundamento legal;
+>
+> V - a duração prevista para o tratamento, nos termos da Lei nº 13.709/2018;
+>
+> VI - o período de armazenamento dos dados pessoais;
+>
+> VII - a descrição do fluxo de compartilhamento de dados pessoais, se couber;
+>
+> VIII - os instrumentos contratuais que especifiquem o papel e as responsabilidades de controladores e operadores;
+>
+> IX - as medidas de segurança utilizadas, incluindo boas práticas e políticas de governança.
+>
+> § 1º A Justiça Eleitoral disponibilizará modelo para o registro de operações simplificado de que trata o caput deste artigo.
+>
+> § 2º O registro de operações deverá ser conservado pelas pessoas mencionadas no caput deste artigo durante o período eleitoral, permanecendo a obrigação em caso de ajuizamento de ação na qual se apure irregularidade ou ilicitude no tratamento de dados pelas campanhas.
+>
+> § 3º Nas ações mencionadas no § 2º deste artigo, a autoridade eleitoral poderá determinar a exibição do registro de operações e de documentos que o corroborem.” (NR)
+>
+> “Art. 33-D. Nas eleições para os cargos de Presidente da República, Governador, Senador e Prefeito das capitais dos Estados, a Justiça Eleitoral poderá determinar a elaboração de relatório de impacto à proteção de dados nos casos em que o tratamento representa alto risco.
+>
+> § 1º Considera-se de alto risco o tratamento de dados pessoais que, cumulativamente:
+>
+> I - seja realizado em larga escala, assim caracterizado quando abranger número de titulares equivalente a, no mínimo, 10% (dez por cento) do eleitorado apto da circunscrição;
+>
+> II - envolva o uso de dados pessoais sensíveis ou de tecnologias inovadoras ou emergentes para perfilamento de eleitoras e eleitores com vistas ao microdirecionamento da propaganda eleitoral e da comunicação da campanha.
+>
+> § 2º A autoridade eleitoral que concluir necessários os relatórios de impacto na circunscrição expedirá, até o dia 16 de agosto do ano das eleições, ofício dirigido a todos os partidos políticos, federações e coligações que registrarem candidaturas para os cargos mencionados no caput deste artigo, informando o prazo em que deverá ser atendida a requisição.
+>
+> § 3º Nas eleições gerais, a análise de necessidade do relatório de impacto e a expedição de ofício caberá à(ao) presidente do Tribunal da circunscrição.
+>
+> § 4º O relatório de impacto será elaborado sob responsabilidade conjunta da candidata ou do candidato e do partido político, da federação ou da coligação pela qual concorre, devendo conter, no mínimo:
+>
+> I - a descrição dos tipos de dados pessoais coletados e tratados;
+>
+> II - os riscos identificados;
+>
+> III - a metodologia usada para o tratamento e para a garantia de segurança das informações;
+>
+> IV - as medidas, salvaguardas e instrumentos adotados para mitigação de riscos.
+>
+> § 5º As campanhas que não realizarem tratamento de alto risco deverão informar, no prazo de resposta ao ofício, o(s) requisito(s) do § 1º deste artigo que não preenchem.
+>
+> § 6º Os relatórios recebidos e as informações prestadas nos termos do § 5º deste artigo serão disponibilizados no site da Justiça Eleitoral para consulta pública.
+>
+> § 7º O disposto neste artigo não exclui o exercício simultâneo da competência da Autoridade Nacional de Proteção de Dados prevista no art. 38 da Lei nº 13.709/2018.” (NR)
+>
+> “Art. 37. .......................................................................................
+>
+> ....................................................................................................
+>
+> XXI - disparo em massa: estratégia coordenada de envio, compartilhamento ou encaminhamento de um mesmo conteúdo, ou de suas variações, para grande número de destinatárias e destinatários, por qualquer meio de comunicação interpessoal;
+>
+> ....................................................................................................
+>
+> XXX - operador: pessoa natural ou jurídica, de direito público ou privado, que realiza o tratamento de dados pessoais em nome do controlador;
+>
+> XXXI - encarregado: pessoa indicada pelo controlador para intermediar a comunicação com a Autoridade Nacional de Proteção de Dados, orientar o pessoal de campanha sobre as práticas a serem adotadas em relação à proteção de dados pessoais e prestar esclarecimentos e tomar providências sobre as reclamações e comunicações formuladas pelos titulares;
+>
+> XXXII - perfilamento: tratamento de múltiplos tipos de dados de pessoa natural, identificada ou identificável, em geral realizado de modo automatizado, com o objetivo de formar perfis baseados em padrões de comportamento, gostos, hábitos e preferências e de classificar esses perfis em grupos e setores, utilizando-os para análises ou previsões de movimentos e tendências de interesse político-eleitoral;
+>
+> XXXIII - microdirecionamento: estratégia de segmentação da propaganda eleitoral ou da comunicação de campanha que consiste em selecionar pessoas, grupos ou setores, classificados por meio de perfilamento, como público-alvo ou audiência de mensagens, ações e conteúdos político-eleitorais desenvolvidos com base nos interesses perfilados, visando ampliar a influência sobre seu comportamento;
+>
+> XXXIV - inteligência artificial (IA): sistema computacional desenvolvido com base em lógica, em representação do conhecimento ou em aprendizagem de máquina, obtendo arquitetura que o habilita a utilizar dados de entrada provenientes de máquinas ou seres humanos para, com maior ou menor grau de autonomia, produzir conteúdos sintéticos, previsões, recomendações ou decisões que atendam a um conjunto de objetivos previamente definidos e sejam aptos a influenciar ambientes virtuais ou reais.
+>
+> XXXV - conteúdo sintético: imagem, vídeo, áudio, texto ou objeto virtual gerado ou significativamente modificado por tecnologia digital, incluída a inteligência artificial.” (NR)
+>
+> “Art. 38. .........................................................................................
+>
+> .....................................................................................................
+>
+> § 7º As ordens judiciais de remoção de conteúdo da internet terão seus efeitos mantidos, mesmo após o período eleitoral, salvo se houver decisão judicial que declare a perda do objeto ou afaste a conclusão de irregularidade.
+>
+> § 8º A perda de objeto das ordens judiciais de remoção de conteúdo da internet relacionadas a candidatas ou candidatos que disputam o segundo turno somente poderá ser declarada após sua realização.
+>
+> § 8º-A. A realização do pleito não acarreta a perda de objeto dos procedimentos em que se apure anonimato ou manifestação abusiva na propaganda eleitoral na internet, inclusive a disseminação de fato notoriamente inverídico ou gravemente descontextualizado tendente a atingir a honra ou a imagem de candidata ou candidato.
+>
+> ............................................................................................” (NR)
+>
+> “Art. 43. ........................................................................................
+>
+> ......................................................................................................
+>
+> III - dar tratamento privilegiado a candidata, candidato, partido político, federação ou coligação, inclusive sob a forma de retransmissão de live eleitoral de que trata o art. 29-A desta Resolução;
+>
+> IV - veicular ou divulgar filmes, novelas, minisséries ou qualquer outro programa com alusão ou crítica voltada especificamente a candidata, candidato, partido político, federação ou coligação, mesmo que dissimuladamente, exceto programas jornalísticos ou debates políticos;
+>
+> ............................................................................................” (NR)
+>
+> “Art. 55. ........................................................................................
+>
+> ....................................................................................................
+>
+> § 1º Para os fins deste artigo, a representação de cada partido na Câmara dos Deputados é a resultante da última eleição, consideradas as novas totalizações do resultado que ocorrerem até:
+>
+> I - 20 de julho do ano da eleição, no caso de eleições ordinárias;
+>
+> II – ou 50 (cinquenta) dias antes da data designada para a eleição, se forem convocadas novas eleições.
+>
+> ............................................................................................” (NR)
+>
+> “Art. 65. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 1º-A Na reunião para elaboração do plano de mídia, as emissoras, os partidos políticos, as federações e as coligações poderão se manifestar sobre as especificações técnicas de cada tipo de mídia, as tecnologias compatíveis com o envio dos arquivos, a forma de entrega do material (se física, eletrônica ou ambas) e outros aspectos que entenderem relevantes para o bom funcionamento do horário eleitoral gratuito, a fim de que a deliberação considere os diferentes pontos de vista.
+>
+> ............................................................................................” (NR)
+>
+> “Art. 68. Os arquivos com as peças de propaganda eleitoral serão entregues às emissoras conforme deliberado na reunião para elaboração do plano de mídia, acompanhados do formulário do Anexo IV desta Resolução, no qual constará campo para que seja informado o percentual do programa destinado a candidatas mulheres, a candidatas negras e a candidatos negros, nos termos do § 1º do art. 77 desta Resolução.
+>
+> §1º Se for eletrônica a entrega, os arquivos mencionados no caput deste artigo deverão estar acompanhados de todas as informações indicadas no formulário do Anexo IV desta Resolução e o procedimento deverá observar:
+>
+> ............................................................................................” (NR)
+>
+> “Art. 77. ........................................................................................
+>
+> ......................................................................................................
+>
+> § 4º Os parâmetros previstos nos incisos do § 1º deste artigo deverão ser observados tanto globalmente quanto se separando o tempo no rádio e na televisão e, em cada um desses meios, nos blocos e nas inserções.
+>
+> § 5º A aferição do disposto no § 4º deste artigo será feita no período total de campanha e em cada ciclo semanal da propaganda.
+>
+> § 6º Comprovado o não atingimento dos percentuais destinados às candidaturas de mulheres e de pessoas negras em um ciclo semanal de propaganda eleitoral gratuita, o tempo faltante deverá ser compensado nas semanas seguintes, pelo período necessário para assegurar o cumprimento da proporcionalidade até o fim da campanha.
+>
+> § 7º As candidatas e os candidatos prejudicadas(os) pelo descumprimento do disposto nos §§ 1º a 6º deste artigo poderão requerer judicialmente a compensação do tempo de propaganda a que têm direito, observado o procedimento previsto no art. 96 da Lei nº 9.504/1997.
+>
+> § 8º Para assegurar a eficácia da decisão judicial que determine a compensação de tempo, poderão ser adotadas medidas coercitivas, incluída a cominação de multa processual até seu efetivo cumprimento.
+>
+> § 9º Para possibilitar o controle das regras previstas neste artigo, os tribunais eleitorais disponibilizarão, em suas páginas na internet, a informação sobre o tempo de propaganda gratuita destinado às candidaturas de mulheres e de pessoas negras, que será extraída dos dados fornecidos pelos partidos políticos, federações e coligações pelos formulários dos Anexos III e IV desta Resolução.” (NR)
+>
+> Art. 2º Revogam-se, na Res.-TSE nº 23.610/2019:
+>
+> I – os §§ 9º e 10 do art. 28;
+>
+> II – o § 2º do art. 33-A;
+>
+> III – o Capítulo IX – Das condutas vedadas a agentes públicos em campanha eleitoral;
+>
+> IV - os arts. 109, 123 e 124.
+>
+> Art. 3º Fica renumerado o parágrafo único do art. 17 da Res.- TSE nº 23.610/2019 como § 1º do mesmo artigo.
+>
+> Art. 4º A ementa da Res.-TSE nº 23.610/2019 passa a vigorar com o teor “Dispõe sobre a propaganda eleitoral”.
+>
+> Art. 5º O Capítulo IV da Res.-TSE nº 23.610/2019 passa a vigorar com o nome “Dos Conteúdos Político-Eleitorais e da Propaganda Eleitoral na Internet”.
+>
+> Art. 6º Esta Resolução entra em vigor na data de sua publicação oficial.
+>
+> Brasília, 27 de fevereiro de 2024.
+>
+> MINISTRA CÁRMEN LÚCIA – RELATORA
+>
+> Este texto não substitui o publicado no DJE-TSE, nº 29, de 4.3.2024, p. 132-145.
+>
+> Fonte: Tribunal Superior Eleitoral. Resolução nº 23.732/2024.
+
+### Gráfico de scores
+
+![Gráfico de scores — textos_grandes_010](resultados_textos_arquivos/textos_grandes_010/grafico_8values.png)
+
+### Fluxograma
+
+![Fluxograma — O caminho da classificação — textos_grandes_010](resultados_textos_arquivos/textos_grandes_010/fluxograma.png)
+
+[Abrir fluxograma interativo completo](resultados_textos_arquivos/textos_grandes_010/fluxograma.html)

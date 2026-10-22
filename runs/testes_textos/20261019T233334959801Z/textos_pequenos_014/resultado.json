@@ -1,0 +1,633 @@
+{
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_pequenos_014",
+    "grupo": "textos_pequenos",
+    "posicao": 14,
+    "complexidade": "dificil",
+    "data": null,
+    "fonte": {
+      "nome": "TSE",
+      "url": "https://www.tse.jus.br/eleicoes/eleicoes-2026-content/propostas-de-governo-dos-candidatos-ao-cargo-de-presidente-da-republica-eleicoes-2026/zema",
+      "tipo_texto": "parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 103,
+      "caracteres_apos_limpeza": 103,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.",
+    "data": null,
+    "fonte": {
+      "nome": "TSE",
+      "url": "https://www.tse.jus.br/eleicoes/eleicoes-2026-content/propostas-de-governo-dos-candidatos-ao-cargo-de-presidente-da-republica-eleicoes-2026/zema",
+      "tipo_texto": "parafrase"
+    },
+    "complexidade": "dificil"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 1,
+      "modelos_evidencias": [
+        "jev-1.13.0"
+      ],
+      "texto": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.16,
+            "B": 0.84
+          },
+          "margem_relevancia": 0.6799999999999999,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.06,
+            "polo_B_moderado": 0.18,
+            "sem_posicao": 0.76,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.24,
+            "C": 0.76
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.24,
+          "p_sem_posicao": 0.76,
+          "margem_direcao": 0.24,
+          "nivel_esperado_diagnostico": -0.3,
+          "confianca_nivel": 0.7,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.21,
+            "polo_B_moderado": 0.02,
+            "sem_posicao": 0.11,
+            "polo_A_moderado": 0.58,
+            "polo_A_forte": 0.08
+          },
+          "probabilities_abc": {
+            "A": 0.6599999999999999,
+            "B": 0.22999999999999998,
+            "C": 0.11
+          },
+          "p_polo_A": 0.6599999999999999,
+          "p_polo_B": 0.22999999999999998,
+          "p_sem_posicao": 0.11,
+          "margem_direcao": 0.42999999999999994,
+          "nivel_esperado_diagnostico": 0.3,
+          "confianca_nivel": 0.47,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.98,
+            "polo_A_moderado": 0.02,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.02,
+            "B": 0.0,
+            "C": 0.98
+          },
+          "p_polo_A": 0.02,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.98,
+          "margem_direcao": 0.02,
+          "nivel_esperado_diagnostico": 0.02,
+          "confianca_nivel": 0.97,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.01,
+            "B": 0.99
+          },
+          "margem_relevancia": 0.98,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.41,
+            "polo_A_moderado": 0.36,
+            "polo_A_forte": 0.23
+          },
+          "probabilities_abc": {
+            "A": 0.59,
+            "B": 0.0,
+            "C": 0.41
+          },
+          "p_polo_A": 0.59,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.41,
+          "margem_direcao": 0.59,
+          "nivel_esperado_diagnostico": 0.8200000000000001,
+          "confianca_nivel": 0.26,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.16,
+            "B": 0.84
+          },
+          "margem_relevancia": 0.6799999999999999,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.06,
+            "polo_B_moderado": 0.18,
+            "sem_posicao": 0.76,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.24,
+            "C": 0.76
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.24,
+          "p_sem_posicao": 0.76,
+          "margem_direcao": 0.24,
+          "nivel_esperado_diagnostico": -0.3,
+          "confianca_nivel": 0.7,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": true,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": -1,
+          "nivel_jev_bruto": null,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "direcional",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "retirar o Brasil do BRICS e buscar ingresso na OCDE",
+          "evidencia_verificada": true,
+          "resposta_llm": {
+            "eixo": "diplomatic",
+            "relevante": true,
+            "nivel": -1,
+            "evidencia": "retirar o Brasil do BRICS e buscar ingresso na OCDE"
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-b28742032bd242d5bc6e4f21",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 1456,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 1403
+              },
+              "output_tokens": 64,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 1520,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": [
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": -1,
+              "quote": "retirar o Brasil do BRICS e buscar ingresso na OCDE",
+              "confidence": 0.53,
+              "probabilities": {
+                "sustenta": 0.69,
+                "contradiz": 0.08,
+                "insuficiente": 0.23
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.98,
+            "polo_A_moderado": 0.02,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.02,
+            "B": 0.0,
+            "C": 0.98
+          },
+          "p_polo_A": 0.02,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.98,
+          "margem_direcao": 0.02,
+          "nivel_esperado_diagnostico": 0.02,
+          "confianca_nivel": 0.97,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.01,
+            "B": 0.99
+          },
+          "margem_relevancia": 0.98,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.41,
+            "polo_A_moderado": 0.36,
+            "polo_A_forte": 0.23
+          },
+          "probabilities_abc": {
+            "A": 0.59,
+            "B": 0.0,
+            "C": 0.41
+          },
+          "p_polo_A": 0.59,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.41,
+          "margem_direcao": 0.59,
+          "nivel_esperado_diagnostico": 0.8200000000000001,
+          "confianca_nivel": 0.26,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [
+          "baixa_confianca_nivel"
+        ],
+        "state": [],
+        "society": []
+      },
+      "eixos_encaminhados": [
+        "diplomatic"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.26712829999996757,
+      "latencia_llm_s": 0.40676340000027267,
+      "latencia_total_s": 0.9132038999996439,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 1,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 1,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 1,
+      "LLM → A": 0,
+      "LLM → B": 1,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 25.0,
+      "índice A entre posicionados": 25.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 75.0,
+      "índice A só JEV": 75.0
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": null,
+      "wealth": null,
+      "peace": 25.0,
+      "might": 75.0,
+      "liberty": null,
+      "authority": null,
+      "progress": null,
+      "tradition": null
+    },
+    "labels": [
+      "Sem evidência",
+      "Patriota",
+      "Sem evidência",
+      "Sem evidência"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": null,
+        "polo B": "Mercado",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": 25.0,
+        "polo B": "Nação",
+        "valor B": 75.0,
+        "rótulo exploratório por faixa": "Patriota",
+        "chunks com nível": 1,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": null,
+        "polo B": "Autoridade",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": null,
+        "polo B": "Tradição",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

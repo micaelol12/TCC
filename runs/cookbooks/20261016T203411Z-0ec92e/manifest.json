@@ -1,0 +1,68 @@
+{
+  "created_utc": "2026-10-16T20:34:11.538222+00:00",
+  "live": true,
+  "max_calls": 180,
+  "models": [
+    "jev-1.13.0",
+    "sabiazinho-4",
+    "sabia-4"
+  ],
+  "decision_config": {
+    "tipo_relevancia": "choice",
+    "primitiva_polaridade": "score",
+    "margem_relevancia_minima": 0.6,
+    "confianca_nivel_minima": 0.5,
+    "margem_direcao_minima": 0.2
+  },
+  "sources": {
+    "citacoes": "https://docs.typesafe.ai/cookbooks/citation_check",
+    "estabilidade": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
+    "busca": "https://docs.typesafe.ai/cookbooks/semantic_find",
+    "estrutura": "https://docs.typesafe.ai/cookbooks/autoformat",
+    "confianca": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
+    "atributos": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+    "lote": "https://docs.typesafe.ai/cookbooks/parallel_questions",
+    "cascata": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+  },
+  "hashes": {
+    "tcc_lib\\jev_cookbooks.py": "18220a871a9c6ac0b62227219c43bb4f9ee3982e5f9f32a75a369c9a289157d1",
+    "app\\api\\app\\pipeline\\domain.py": "d2f1e7da0d857bdb724dfe9cfc713fde3d786b505ee6773d2e9326db7dc94c56",
+    "app\\api\\app\\pipeline\\rubrics.py": "febefb0d754aac2044deedd17f9324078f90004cfd6a645a5be6d62a30eacbf4",
+    "tcc\\questions.json": "0a908fc283dbf7daa5b24712f4614644661cd2430c488a6ed902c00616a21fe8"
+  },
+  "resumes": [
+    {
+      "created_utc": "2026-10-16T20:35:10.563828+00:00",
+      "live": true,
+      "max_calls": 180,
+      "models": [
+        "jev-1.13.0",
+        "sabiazinho-4",
+        "sabia-4"
+      ],
+      "decision_config": {
+        "tipo_relevancia": "choice",
+        "primitiva_polaridade": "score",
+        "margem_relevancia_minima": 0.6,
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2
+      },
+      "sources": {
+        "citacoes": "https://docs.typesafe.ai/cookbooks/citation_check",
+        "estabilidade": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
+        "busca": "https://docs.typesafe.ai/cookbooks/semantic_find",
+        "estrutura": "https://docs.typesafe.ai/cookbooks/autoformat",
+        "confianca": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
+        "atributos": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+        "lote": "https://docs.typesafe.ai/cookbooks/parallel_questions",
+        "cascata": "https://docs.typesafe.ai/cookbooks/sde_cascade"
+      },
+      "hashes": {
+        "tcc_lib\\jev_cookbooks.py": "d239c42602a4c006ec5261942180ef9312733e7179c33cfbcd29a214c0775305",
+        "app\\api\\app\\pipeline\\domain.py": "d2f1e7da0d857bdb724dfe9cfc713fde3d786b505ee6773d2e9326db7dc94c56",
+        "app\\api\\app\\pipeline\\rubrics.py": "febefb0d754aac2044deedd17f9324078f90004cfd6a645a5be6d62a30eacbf4",
+        "tcc\\questions.json": "0a908fc283dbf7daa5b24712f4614644661cd2430c488a6ed902c00616a21fe8"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "caso": "apoio",
+    "esperado_sintetico": "sustenta",
+    "localizada": true,
+    "verdict": "sustenta",
+    "confidence": 0.98,
+    "acerto_sintetico": true,
+    "revisar": false
+  },
+  {
+    "caso": "negacao",
+    "esperado_sintetico": "contradiz",
+    "localizada": true,
+    "verdict": "contradiz",
+    "confidence": 1.0,
+    "acerto_sintetico": true,
+    "revisar": false
+  },
+  {
+    "caso": "citacao_terceiro",
+    "esperado_sintetico": "insuficiente",
+    "localizada": true,
+    "verdict": "insuficiente",
+    "confidence": 0.83,
+    "acerto_sintetico": true,
+    "revisar": false
+  },
+  {
+    "caso": "inventada",
+    "esperado_sintetico": "nao_localizada",
+    "localizada": false,
+    "verdict": "nao_localizada",
+    "confidence": null,
+    "acerto_sintetico": true,
+    "revisar": false
+  }
+]

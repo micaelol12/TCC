@@ -1,0 +1,9 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,-2.0,"A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.",sim,S006,700.0,908.0,0.86,passagem encontrada,sustenta,0.91,jev-1.13.0
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,llm_ordinal,1.0,diminuir a presença do Estado na vida do cidadão,sim,,,,,não executada,sustenta,0.56,jev-1.13.0
+1,society,llm_ordinal,1.0,fim das restrições ao trabalho nos domingos e feriados,sim,,,,,não executada,insuficiente,0.27,jev-1.13.0
+2,economic,jev_ordinal,-1.0,"“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos.",sim,S018,1642.0,1805.0,0.72,passagem encontrada,sustenta,0.56,jev-1.13.0
+2,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,state,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,society,llm_ordinal,-1.0,Domingo é um dia para os religiosos fazerem suas orações,sim,,,,,não executada,insuficiente,0.23,jev-1.13.0

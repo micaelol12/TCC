@@ -1,0 +1,675 @@
+{
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_001",
+    "grupo": "textos_grandes",
+    "posicao": 1,
+    "complexidade": "claro",
+    "data": "2010-06-09",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/141403-ccj-aprova-criacao-do-imposto-sobre-grandes-fortunas",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 1356,
+      "caracteres_apos_limpeza": 1356,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "CCJ aprova criação do Imposto sobre Grandes Fortunas\n\nA Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas para taxar todo patrimônio acima de R$ 2 milhões. O projeto ainda precisa ser votado pelo Plenário. Se for aprovado, seguirá para o Senado.\n\nConforme a proposta, a alíquota vai variar de 1% a 5%, dependendo do tamanho da riqueza e não será permitida a dedução, no Imposto de Renda anual, dos valores recolhidos ao novo tributo.\n\nPara o patrimônio de R$ 2 milhões a R$ 5 milhões, a taxação será de 1%. Entre R$ 5 milhões e R$ 10 milhões, ela será de 2%. De R$ 10 milhões a R$ 20 milhões, de 3%. De R$ 20 milhões a R$ 50 milhões, de 4%; e de 5% para fortunas superiores a R$ 50 milhões.\n\nO relator, deputado Regis de Oliveira (PSC-SP), recomendou a aprovação da proposta. A CCJ analisou apenas os aspectos constitucionais, jurídicos e de técnica legislativa do projeto (não analisou o mérito). “O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais. Assim, o governo teria mais dinheiro em caixa para investir em saúde, educação, moradia e infraestrutura, entre outros serviços básicos”, disse o relator.\n\nAgência Câmara",
+    "data": "2010-06-09",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/141403-ccj-aprova-criacao-do-imposto-sobre-grandes-fortunas",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 2,
+      "modelos_evidencias": [
+        "jev-1.13.0",
+        "jev-1.13.0"
+      ],
+      "texto": "CCJ aprova criação do Imposto sobre Grandes Fortunas\n\nA Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas para taxar todo patrimônio acima de R$ 2 milhões. O projeto ainda precisa ser votado pelo Plenário. Se for aprovado, seguirá para o Senado.\n\nConforme a proposta, a alíquota vai variar de 1% a 5%, dependendo do tamanho da riqueza e não será permitida a dedução, no Imposto de Renda anual, dos valores recolhidos ao novo tributo.\n\nPara o patrimônio de R$ 2 milhões a R$ 5 milhões, a taxação será de 1%. Entre R$ 5 milhões e R$ 10 milhões, ela será de 2%. De R$ 10 milhões a R$ 20 milhões, de 3%. De R$ 20 milhões a R$ 50 milhões, de 4%; e de 5% para fortunas superiores a R$ 50 milhões.\n\nO relator, deputado Regis de Oliveira (PSC-SP), recomendou a aprovação da proposta. A CCJ analisou apenas os aspectos constitucionais, jurídicos e de técnica legislativa do projeto (não analisou o mérito). “O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais. Assim, o governo teria mais dinheiro em caixa para investir em saúde, educação, moradia e infraestrutura, entre outros serviços básicos”, disse o relator.\n\nAgência Câmara",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.0,
+            "polo_A_moderado": 0.98,
+            "polo_A_forte": 0.02
+          },
+          "probabilities_abc": {
+            "A": 1.0,
+            "B": 0.0,
+            "C": 0.0
+          },
+          "p_polo_A": 1.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": 1.02,
+          "confianca_nivel": 0.97,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.34,
+            "B": 0.66
+          },
+          "margem_relevancia": 0.32,
+          "nivel": null,
+          "nivel_jev_bruto": -1,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.55,
+            "sem_posicao": 0.45,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.55,
+            "C": 0.45
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.55,
+          "p_sem_posicao": 0.45,
+          "margem_direcao": 0.55,
+          "nivel_esperado_diagnostico": -0.55,
+          "confianca_nivel": 0.44,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.64,
+            "B": 0.36
+          },
+          "margem_relevancia": 0.28,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.45,
+            "polo_A_moderado": 0.54,
+            "polo_A_forte": 0.01
+          },
+          "probabilities_abc": {
+            "A": 0.55,
+            "B": 0.0,
+            "C": 0.45
+          },
+          "p_polo_A": 0.55,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.45,
+          "margem_direcao": 0.55,
+          "nivel_esperado_diagnostico": 0.56,
+          "confianca_nivel": 0.42,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": 1,
+          "nivel_jev_bruto": 1,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.0,
+            "polo_A_moderado": 0.98,
+            "polo_A_forte": 0.02
+          },
+          "probabilities_abc": {
+            "A": 1.0,
+            "B": 0.0,
+            "C": 0.0
+          },
+          "p_polo_A": 1.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": 1.02,
+          "confianca_nivel": 0.97,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": "“O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais.",
+          "evidencia_verificada": true,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "found",
+              "level": 1,
+              "sentence_id": "S011",
+              "start": 1042,
+              "end": 1185,
+              "quote": "“O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais.",
+              "existence_probability": 0.85,
+              "confidence": 0.79,
+              "probabilities": {
+                "S000": 0.0,
+                "S001": 0.09999999999999999,
+                "S002": 0.0,
+                "S003": 0.0,
+                "S004": 0.04,
+                "S005": 0.01,
+                "S006": 0.0,
+                "S007": 0.0,
+                "S008": 0.01,
+                "S009": 0.0,
+                "S010": 0.0,
+                "S011": 0.8,
+                "S012": 0.03,
+                "S013": 0.0,
+                "NONE": 0.01
+              },
+              "model": "jev-1.13.0"
+            },
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": 1,
+              "quote": "“O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais.",
+              "confidence": 0.71,
+              "probabilities": {
+                "sustenta": 0.8099999999999999,
+                "contradiz": 0.01,
+                "insuficiente": 0.18
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "state",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-979ce7321e66485fba2bc2dd",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 3096,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 2644
+              },
+              "output_tokens": 79,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 3175,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "society",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-979ce7321e66485fba2bc2dd",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 3096,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 2644
+              },
+              "output_tokens": 79,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 3175,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [
+          "relevancia_ambigua"
+        ],
+        "society": [
+          "relevancia_ambigua",
+          "baixa_confianca_nivel"
+        ]
+      },
+      "eixos_encaminhados": [
+        "state",
+        "society"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.2691164999996545,
+      "latencia_llm_s": 0.3758385000000999,
+      "latencia_total_s": 1.1753685000003316,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 1,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 1,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 75.0,
+      "índice A entre posicionados": 75.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 25.0,
+      "índice A só JEV": 75.0
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": 75.0
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": 75.0,
+      "wealth": 25.0,
+      "peace": null,
+      "might": null,
+      "liberty": null,
+      "authority": null,
+      "progress": null,
+      "tradition": null
+    },
+    "labels": [
+      "Social",
+      "Sem evidência",
+      "Sem evidência",
+      "Sem evidência"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": 75.0,
+        "polo B": "Mercado",
+        "valor B": 25.0,
+        "rótulo exploratório por faixa": "Social",
+        "chunks com nível": 1,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": null,
+        "polo B": "Nação",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": null,
+        "polo B": "Autoridade",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": null,
+        "polo B": "Tradição",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

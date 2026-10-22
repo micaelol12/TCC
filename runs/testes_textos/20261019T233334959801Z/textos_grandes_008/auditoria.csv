@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,sentence_id,start,end,existence_probability
+1,economic,semantic,contradiz,-1,privatização da Eletrobras é uma medida radical e extemporânea,0.52,"{'sustenta': 0.19, 'contradiz': 0.68, 'insuficiente': 0.13}",jev-1.13.0,,,,
+2,economic,search,found,1,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.",0.83,"{'S000': 0.07, 'S001': 0.86, 'S002': 0.0, 'S003': 0.0, 'S004': 0.0, 'NONE': 0.07}",jev-1.13.0,S001,137.0,296.0,0.71
+2,economic,semantic,sustenta,1,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.",0.37,"{'sustenta': 0.58, 'contradiz': 0.1, 'insuficiente': 0.32}",jev-1.13.0,,,,

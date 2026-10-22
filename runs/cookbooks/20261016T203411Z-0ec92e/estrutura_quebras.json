@@ -1,0 +1,32 @@
+[
+  {
+    "quebra": 0,
+    "juntar": false,
+    "esperado_sintetico": false,
+    "acerto_sintetico": true
+  },
+  {
+    "quebra": 1,
+    "juntar": true,
+    "esperado_sintetico": true,
+    "acerto_sintetico": true
+  },
+  {
+    "quebra": 2,
+    "juntar": false,
+    "esperado_sintetico": false,
+    "acerto_sintetico": true
+  },
+  {
+    "quebra": 3,
+    "juntar": false,
+    "esperado_sintetico": false,
+    "acerto_sintetico": true
+  },
+  {
+    "quebra": 4,
+    "juntar": true,
+    "esperado_sintetico": true,
+    "acerto_sintetico": true
+  }
+]

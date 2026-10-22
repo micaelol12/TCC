@@ -1,0 +1,75 @@
+{
+  "original": {
+    "texto": "Imposto sobre fortunas pode entrar no debate sobre reforma tributária\n\nAgência Câmara\n\nParlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.\n\nHá propostas na Câmara que buscam alterar as regras de tributação nessa área, mas ainda sem muitos avanços. Criada no final de julho, uma comissão especial vai analisar as propostas relacionadas à reforma tributária que tramitam na Casa. O tema será uma das prioridades dos deputados no segundo semestre, de acordo com o presidente Eduardo Cunha.\n\nUma das propostas trata de tributo previsto na Constituição Federal, mas até hoje não regulamentado, o chamado Imposto sobre Grandes Fortunas. As dificuldades para criação desse imposto começaram na Assembleia Constituinte.\n\nEnquanto outros impostos podem ser regulados por lei comum, a exemplo do Imposto de Renda, o Imposto sobre Grandes Fortunas precisa de uma lei complementar, que tem tramitação especial no Congresso.\n\nAjuste fiscal\n\nO tema foi defendido pelo líder do governo, deputado José Guimarães (PT-CE), como medida para garantir recursos para o governo em meio ao ajuste fiscal. Segundo ele, não é possível dar perenidade e qualidade nas políticas públicas nas diversas áreas sem garantir o financiamento.\n\nA líder do PCdoB, deputada Jandira Feghali (RJ), também já defendeu a taxação como uma saída para o ajuste fiscal. Também do mesmo partido, o governador do Maranhão, Flávio Dino, apresentou ao Supremo Tribunal Federal uma Ação Direta de Inconstitucionalidade por Omissão (ADO) para que o imposto seja regulamentado. O caso está no tribunal desde o meio de março.\n\n11,8 milhões\n\nA Câmara tem 14 propostas sobre o tema em tramitação. A mais antiga é de 1989 e está, desde dezembro de 2000, pronta para ser votada em Plenário.\n\nO Projeto de Lei Complementar (PLP) 202/89, de autoria do então senador Fernando Henrique Cardoso, estabelece como grande fortuna um patrimônio superior a R$ 11,8 milhões, em valores atualizados.\n\nDe acordo com o especialista em finanças públicas Amir Khair, o imposto não foi regulamentado até hoje por falta de interesse dos parlamentares: “Ele não passa no Congresso por várias razões que são alegadas. Mas a razão central é que ele atinge o bolso dos parlamentares”.\n\nKhair também disse que os argumentos contrários à regulamentação do imposto, como bitributação, fuga de capitais e falta de poder de arrecadação do tributo não se sustentam. Segundo ele, o sistema tributário brasileiro é muito bom para quem tem muito dinheiro, ainda mais em relação à tributação praticada em outros países.\n\nBitributação\n\nPara o tributarista Ives Gandra Martins, o imposto é, sim, uma bitributação e acaba afetando a possibilidade de investimento de empresários, o que resultaria em redução da economia. Gandra também critica a burocracia tributária brasileira e a necessidade de o governo sempre buscar meios de ampliar a arrecadação, ao invés de focar mais no corte de gastos públicos.\n\n“Alguém que vai fazer uma fortuna, e tem uma empresa, ele pagou ICMS, ISS, IPTU e pagou o Imposto de Renda e a CSLL, e teve um patrimônio que ele vai aplicando. Isso é um patrimônio estático. Tudo que ele vai ganhar, ele tributa”, afirmou.\n\nPrática em desuso\n\nEssa é a mesma opinião do deputado Luiz Carlos Hauly (PSDB-PR), especialista em tributação. Segundo o parlamentar, o Imposto sobre Grandes Fortunas é uma prática que caiu em desuso na maior parte dos países em que foi adotada.\n\nDe acordo com levantamento da consultoria EY, antiga Ernst & Young, o imposto é praticado em seis países: Argentina, Espanha, França, Índia, Noruega e Suíça. A Espanha tem a maior das alíquotas entre as existentes: 2,5% para fortunas acima de 700 mil euros.\n\nPara Hauly, que apresentou uma proposta de reforma tributária prevendo o fim da regra constitucional sobre o Imposto Sobre Fortunas, o tributo não deveria ser criado, mas a solução seria calibrar o sistema tributário brasileiro.\n\nJá para o líder do Psol, deputado Chico Alencar (RJ), a medida é necessária para tentar equilibrar a desigualdade social existente no País.\n\nEle foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.\n\nDesigualdade tributária\n\nEstudo do Instituto de Pesquisa Econômica Aplicada (Ipea), de 2011, mostra que quanto menor a renda do trabalhador brasileiro, mais tributos ele paga em relação ao total do que ganha.\n\nSegundo o instituto, os 10% mais pobres contribuem para o Tesouro com 32% de seus rendimentos; enquanto isso, os 10% mais ricos, contribuem com apenas 21%. A carga tributária brasileira chegou, em 2013, a quase 36% de toda a riqueza produzida no País.\n\nOutro estudo, este feito por pesquisadores da Universidade de Brasília, mostrou que a desigualdade entre ricos e pobres é maior do que se imaginava pelos levantamentos oficiais do governo. Pela análise, cerca de 140 mil brasileiros, com renda média de R$ 198 mil por mês, ficaram com 11% dos recursos nacionais. Eles representam um em cada mil residentes no País.\n\nAgência Câmara",
+    "data": "2015-07-30",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/465765-imposto-sobre-fortunas-pode-entrar-no-debate-sobre-reforma-tributaria",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "dificil"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_009",
+    "grupo": "textos_grandes",
+    "posicao": 9,
+    "complexidade": "dificil",
+    "data": "2015-07-30",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/465765-imposto-sobre-fortunas-pode-entrar-no-debate-sobre-reforma-tributaria",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 5362,
+      "caracteres_apos_limpeza": 5362,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Imposto sobre fortunas pode entrar no debate sobre reforma tributária\n\nAgência Câmara\n\nParlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.\n\nHá propostas na Câmara que buscam alterar as regras de tributação nessa área, mas ainda sem muitos avanços. Criada no final de julho, uma comissão especial vai analisar as propostas relacionadas à reforma tributária que tramitam na Casa. O tema será uma das prioridades dos deputados no segundo semestre, de acordo com o presidente Eduardo Cunha.\n\nUma das propostas trata de tributo previsto na Constituição Federal, mas até hoje não regulamentado, o chamado Imposto sobre Grandes Fortunas. As dificuldades para criação desse imposto começaram na Assembleia Constituinte.\n\nEnquanto outros impostos podem ser regulados por lei comum, a exemplo do Imposto de Renda, o Imposto sobre Grandes Fortunas precisa de uma lei complementar, que tem tramitação especial no Congresso.\n\nAjuste fiscal\n\nO tema foi defendido pelo líder do governo, deputado José Guimarães (PT-CE), como medida para garantir recursos para o governo em meio ao ajuste fiscal. Segundo ele, não é possível dar perenidade e qualidade nas políticas públicas nas diversas áreas sem garantir o financiamento.\n\nA líder do PCdoB, deputada Jandira Feghali (RJ), também já defendeu a taxação como uma saída para o ajuste fiscal. Também do mesmo partido, o governador do Maranhão, Flávio Dino, apresentou ao Supremo Tribunal Federal uma Ação Direta de Inconstitucionalidade por Omissão (ADO) para que o imposto seja regulamentado. O caso está no tribunal desde o meio de março.\n\n11,8 milhões\n\nA Câmara tem 14 propostas sobre o tema em tramitação. A mais antiga é de 1989 e está, desde dezembro de 2000, pronta para ser votada em Plenário.",
+    "O Projeto de Lei Complementar (PLP) 202/89, de autoria do então senador Fernando Henrique Cardoso, estabelece como grande fortuna um patrimônio superior a R$ 11,8 milhões, em valores atualizados.\n\nDe acordo com o especialista em finanças públicas Amir Khair, o imposto não foi regulamentado até hoje por falta de interesse dos parlamentares: “Ele não passa no Congresso por várias razões que são alegadas. Mas a razão central é que ele atinge o bolso dos parlamentares”.\n\nKhair também disse que os argumentos contrários à regulamentação do imposto, como bitributação, fuga de capitais e falta de poder de arrecadação do tributo não se sustentam. Segundo ele, o sistema tributário brasileiro é muito bom para quem tem muito dinheiro, ainda mais em relação à tributação praticada em outros países.\n\nBitributação\n\nPara o tributarista Ives Gandra Martins, o imposto é, sim, uma bitributação e acaba afetando a possibilidade de investimento de empresários, o que resultaria em redução da economia. Gandra também critica a burocracia tributária brasileira e a necessidade de o governo sempre buscar meios de ampliar a arrecadação, ao invés de focar mais no corte de gastos públicos.\n\n“Alguém que vai fazer uma fortuna, e tem uma empresa, ele pagou ICMS, ISS, IPTU e pagou o Imposto de Renda e a CSLL, e teve um patrimônio que ele vai aplicando. Isso é um patrimônio estático. Tudo que ele vai ganhar, ele tributa”, afirmou.\n\nPrática em desuso\n\nEssa é a mesma opinião do deputado Luiz Carlos Hauly (PSDB-PR), especialista em tributação. Segundo o parlamentar, o Imposto sobre Grandes Fortunas é uma prática que caiu em desuso na maior parte dos países em que foi adotada.\n\nDe acordo com levantamento da consultoria EY, antiga Ernst & Young, o imposto é praticado em seis países: Argentina, Espanha, França, Índia, Noruega e Suíça. A Espanha tem a maior das alíquotas entre as existentes: 2,5% para fortunas acima de 700 mil euros.",
+    "Para Hauly, que apresentou uma proposta de reforma tributária prevendo o fim da regra constitucional sobre o Imposto Sobre Fortunas, o tributo não deveria ser criado, mas a solução seria calibrar o sistema tributário brasileiro.\n\nJá para o líder do Psol, deputado Chico Alencar (RJ), a medida é necessária para tentar equilibrar a desigualdade social existente no País.\n\nEle foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.\n\nDesigualdade tributária\n\nEstudo do Instituto de Pesquisa Econômica Aplicada (Ipea), de 2011, mostra que quanto menor a renda do trabalhador brasileiro, mais tributos ele paga em relação ao total do que ganha.\n\nSegundo o instituto, os 10% mais pobres contribuem para o Tesouro com 32% de seus rendimentos; enquanto isso, os 10% mais ricos, contribuem com apenas 21%. A carga tributária brasileira chegou, em 2013, a quase 36% de toda a riqueza produzida no País.\n\nOutro estudo, este feito por pesquisadores da Universidade de Brasília, mostrou que a desigualdade entre ricos e pobres é maior do que se imaginava pelos levantamentos oficiais do governo. Pela análise, cerca de 140 mil brasileiros, com renda média de R$ 198 mil por mês, ficaram com 11% dos recursos nacionais. Eles representam um em cada mil residentes no País.\n\nAgência Câmara"
+  ]
+}

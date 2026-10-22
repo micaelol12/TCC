@@ -1,0 +1,57 @@
+import type { ReactNode } from 'react'
+import { modeLabels, type AnalysisEntry } from '../api/analysisApi'
+import { AXES, axisOrder } from '../domain/axes'
+import type { Scores } from '../domain/quizScoring'
+import AxisBar from './AxisBar'
+import AnalysisRadar from './AnalysisRadar'
+import IdeologyMatch from './IdeologyMatch'
+import styles from '../styles/Cards.module.css'
+import ReportDialog from './ReportDialog'
+import type { ReportClient, ReportRequest } from '../api/reportApi'
+const warningLabels: Record<string, string> = { falha_autenticacao_jev: 'A API não conseguiu autenticar no TypeSafe. Confira a chave no servidor.', falha_autenticacao_llm: 'A API não conseguiu autenticar no provedor LLM selecionado. Confira sua chave.', evidencia_nao_verificada: 'O modelo retornou uma citação que não confere com o texto. A estimativa correspondente foi descartada.' }
+const auditLabels: Record<string, string> = { found: 'Passagem encontrada', not_selected: 'Nenhuma passagem selecionada pelo critério configurado', not_literal: 'Citação literal inválida', sustenta: 'Sustenta a posição e intensidade', contradiz: 'Contradiz a posição atribuída', insuficiente: 'Evidência insuficiente para a posição ou intensidade', uncertain: 'Parecer empatado', failed: 'Falha ao consultar o verificador', invalid: 'Resposta inválida do verificador' }
+
+export default function AnalysisResult({ entry, reportClient, reportOrigin, compact = false, children }: { entry: AnalysisEntry<number | string>; reportClient: ReportClient; reportOrigin: ReportRequest['client']; compact?: boolean; children?: ReactNode }) {
+  const analysis = entry.analysis
+  const scores = Object.fromEntries(analysis.axes.map(axis => [axis.axis, axis.pole_a])) as Scores
+  const complete = axisOrder.every(axis => Number.isFinite(scores[axis]))
+  return <section className={styles.card} aria-label="Análise selecionada">
+    <div className="cardTop"><span className={styles.chip}>{modeLabels[analysis.processing_level]} · {analysis.models_used.join(', ') || 'Serviço externo'}</span><span className="muted small">{analysis.chunks.length} trechos</span></div>
+    <h2>{entry.title}</h2>{entry.source && <p className="muted small sourceOrigin">Trecho selecionado em {entry.source}</p>}
+    <p className="muted small">O resultado descreve somente o trecho enviado.</p>
+    {analysis.lab_execution_id && <p className="small configHash" role="status">Execução gravada no banco: {analysis.lab_execution_id}</p>}
+    <details className="sourceDetails"><summary>Ver texto analisado</summary><p className="sourceText">{entry.text}</p></details>
+    {analysis.effective_config ? <details className="experimentSnapshot"><summary>Configuração utilizada{analysis.environment === 'lab' ? ' · versão de teste' : ''}</summary>
+      <p className="small muted">Ambiente: {analysis.environment}. Pipeline: {analysis.pipeline_version}. Configuração v{analysis.config_version}.</p>
+      <pre className="reportSnapshot">{JSON.stringify(analysis.effective_config, null, 2)}</pre><p className="small configHash">Identificador: {analysis.config_hash}</p>
+    </details> : <p className="muted small">Configuração não registrada nesta análise.</p>}
+    {analysis.warnings.length > 0 && <p className="notice">Há limitações nesta análise: {analysis.warnings.map(reason => warningLabels[reason] ?? reason).join(' ')}.</p>}
+    {!compact && <AnalysisRadar analysis={analysis} />}
+    <div className="sectionHeading detailHeading"><div><div className="eyebrow">Detalhamento</div><h3>Quatro eixos</h3></div></div>
+    {axisOrder.map(axis => {
+      const result = analysis.axes.find(item => item.axis === axis)
+      return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} />
+        <details><summary>Distribuição e evidências de {AXES[axis].title}</summary>
+          <p className="small muted">Cobertura: {result.valid_chunks} de {result.total_chunks} trechos. {result.sufficient_evidence ? '' : 'Evidência limitada.'} {result.status === 'abstained' ? 'Classificação indeterminada.' : result.status === 'no_evidence' ? 'Sem posição identificada.' : ''}</p>
+          <p className="small">Níveis: −2: {result.level_counts.minus2}, −1: {result.level_counts.minus1}, 0: {result.level_counts.zero}, +1: {result.level_counts.plus1}, +2: {result.level_counts.plus2}.</p>
+          {result.ci95 && <p className="small">Intervalo entre trechos (95%): {result.ci95[0].toFixed(1)}–{result.ci95[1].toFixed(1)}. Não representa probabilidade de acerto.</p>}
+          {result.evidence.length ? <><p className="small muted">Citações localizadas no texto. Presença literal não comprova apoio à classificação.</p><ul>{result.evidence.map((ev, i) => <li key={i}>Trecho {ev.chunk_index + 1}: “{ev.quote}”</li>)}</ul></> : <p className="small muted">Sem citação literal disponível.</p>}
+          {!!result.evidence_audit?.length && <div aria-label={`Auditoria de evidências de ${AXES[axis].title}`}>
+            <h5>Evidências experimentais</h5><p className="small muted">Pareceres do JEV registrados para revisão. A pontuação permanece igual; confiança não representa probabilidade de acerto.</p>
+            <ul>{result.evidence_audit.map((audit, i) => <li key={i}>
+              Trecho {audit.chunk_index + 1} · nível {audit.level > 0 ? '+' : ''}{audit.level} · {audit.kind === 'search' ? 'Busca por ID' : 'Checagem semântica'}: <strong>{auditLabels[audit.status]}</strong>.
+              {audit.sentence_id && ` ID ${audit.sentence_id}, caracteres ${audit.start}–${audit.end}.`}
+              {audit.quote && <blockquote>{audit.quote}</blockquote>}
+              {audit.existence_probability != null && ` Existência: ${audit.existence_probability.toFixed(2)}.`}
+              {audit.confidence != null && ` Confiança: ${audit.confidence.toFixed(2)}.`}
+              {audit.model && ` Modelo: ${audit.model}.`}
+            </li>)}</ul>
+          </div>}
+          {result.reason_codes.length > 0 && <p className="small muted">Motivos: {result.reason_codes.join(', ')}.</p>}
+        </details></div> : <AxisBar key={axis} axis={axis} score={null} headingLevel={4} />
+    })}
+    {compact && <details><summary>Ver radar e detalhes gerais</summary><AnalysisRadar analysis={analysis} /></details>}
+    {complete && <IdeologyMatch scores={scores} source="analysis" />}
+    <ReportDialog key={entry.id} entry={entry} client={reportClient} origin={reportOrigin} />{children}
+  </section>
+}

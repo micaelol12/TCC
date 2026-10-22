@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,economic,semantic,sustenta,-1,privatizações e concessões com transferência permanente de renda,0.31,"{'sustenta': 0.54, 'contradiz': 0.02, 'insuficiente': 0.44}",jev-1.13.0

@@ -1,0 +1,644 @@
+{
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_pequenos_012",
+    "grupo": "textos_pequenos",
+    "posicao": 12,
+    "complexidade": "ambiguo",
+    "data": "2022-08-12",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/conheca-os-planos-de-governo-dos-candidatos-a-presidencia/",
+      "tipo_texto": "parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 133,
+      "caracteres_apos_limpeza": 133,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.",
+    "data": "2022-08-12",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/conheca-os-planos-de-governo-dos-candidatos-a-presidencia/",
+      "tipo_texto": "parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 1,
+      "modelos_evidencias": [
+        "jev-1.13.0"
+      ],
+      "texto": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": -1,
+          "nivel_jev_bruto": -1,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.08,
+            "polo_B_moderado": 0.43,
+            "sem_posicao": 0.28,
+            "polo_A_moderado": 0.18,
+            "polo_A_forte": 0.03
+          },
+          "probabilities_abc": {
+            "A": 0.21,
+            "B": 0.51,
+            "C": 0.28
+          },
+          "p_polo_A": 0.21,
+          "p_polo_B": 0.51,
+          "p_sem_posicao": 0.28,
+          "margem_direcao": 0.30000000000000004,
+          "nivel_esperado_diagnostico": -0.35,
+          "confianca_nivel": 0.29,
+          "status": "direcional",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.26,
+            "B": 0.74
+          },
+          "margem_relevancia": 0.48,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 0.92,
+            "polo_A_moderado": 0.07,
+            "polo_A_forte": 0.01
+          },
+          "probabilities_abc": {
+            "A": 0.08,
+            "B": 0.0,
+            "C": 0.92
+          },
+          "p_polo_A": 0.08,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.92,
+          "margem_direcao": 0.08,
+          "nivel_esperado_diagnostico": 0.09000000000000001,
+          "confianca_nivel": 0.9,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": true,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": -1,
+          "nivel_jev_bruto": null,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "direcional",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "privatizações e concessões com transferência permanente de renda",
+          "evidencia_verificada": true,
+          "resposta_llm": {
+            "eixo": "economic",
+            "relevante": true,
+            "nivel": -1,
+            "evidencia": "privatizações e concessões com transferência permanente de renda"
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-e9d903f969164fcd995e6bb8",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 2642,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 2628
+              },
+              "output_tokens": 96,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 2738,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": [
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": -1,
+              "quote": "privatizações e concessões com transferência permanente de renda",
+              "confidence": 0.31,
+              "probabilities": {
+                "sustenta": 0.54,
+                "contradiz": 0.02,
+                "insuficiente": 0.44
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": false,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": null,
+          "nivel_jev_bruto": null,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "sem_evidencia",
+          "metodo": "llm_ordinal",
+          "modelo": "sabiazinho-4",
+          "evidencia": "",
+          "evidencia_verificada": null,
+          "resposta_llm": {
+            "eixo": "society",
+            "relevante": false,
+            "nivel": null,
+            "evidencia": ""
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-e9d903f969164fcd995e6bb8",
+            "modelo": "sabiazinho-4",
+            "uso": {
+              "input_tokens": 2642,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 2628
+              },
+              "output_tokens": 96,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 2738,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": []
+        }
+      },
+      "motivos_fallback": {
+        "economic": [
+          "baixa_confianca_nivel"
+        ],
+        "diplomatic": [],
+        "state": [],
+        "society": [
+          "relevancia_ambigua"
+        ]
+      },
+      "eixos_encaminhados": [
+        "economic",
+        "society"
+      ],
+      "chamadas_llm": 1,
+      "latencia_jev_s": 0.2550657999991017,
+      "latencia_llm_s": 0.5839417999995931,
+      "latencia_total_s": 1.1226565999995728,
+      "config": {
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      }
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "chunks": 1,
+      "chunks relevantes": 1,
+      "chunks com nível": 1,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 1,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 1,
+      "LLM → A": 0,
+      "LLM → B": 1,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 25.0,
+      "índice A entre posicionados": 25.0,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": true,
+      "base da estimativa": "trecho único",
+      "índice B": 75.0,
+      "índice A só JEV": 25.0
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "chunks": 1,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n sem_posicao": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": 25.0,
+      "wealth": 75.0,
+      "peace": null,
+      "might": null,
+      "liberty": null,
+      "authority": null,
+      "progress": null,
+      "tradition": null
+    },
+    "labels": [
+      "Mercado",
+      "Sem evidência",
+      "Sem evidência",
+      "Sem evidência"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": 25.0,
+        "polo B": "Mercado",
+        "valor B": 75.0,
+        "rótulo exploratório por faixa": "Mercado",
+        "chunks com nível": 1,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "trecho único"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": null,
+        "polo B": "Nação",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": null,
+        "polo B": "Autoridade",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": null,
+        "polo B": "Tradição",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

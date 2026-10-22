@@ -1,0 +1,73 @@
+{
+  "original": {
+    "texto": "Comissão discute transição demográfica e envelhecimento da população brasileira\n\nA Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, no plenário 14, para discutir a transição demográfica e o envelhecimento da população brasileira.\n\nO debate foi solicitado pelos deputados Luiz Couto (PT-PB), Alexandre Lindenmeyer (PT-RS) e Geraldo Resende (PSDB-MS).\n\nA audiência abordará o acelerado processo de envelhecimento populacional no Brasil. Dados do Censo 2022 indicam que a população idosa cresceu 57,4% desde 2010, somando 32,1 milhões de pessoas, o que representa 15,6% da população total.\n\nEssa mudança demográfica impacta diretamente na saúde pública, refletida no aumento da expectativa de vida e na prevalência de doenças crônico-degenerativas. Diante desse cenário, os parlamentares destacam a necessidade de implementar políticas e estratégias específicas para a saúde e bem-estar da população idosa, incluindo cuidados de longo prazo, promoção da autonomia e prevenção de doenças.\n\nAgência Câmara",
+    "data": "2025-07-15",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1178523-comissao-discute-transicao-demografica-e",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "ambiguo"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_004",
+    "grupo": "textos_grandes",
+    "posicao": 4,
+    "complexidade": "ambiguo",
+    "data": "2025-07-15",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1178523-comissao-discute-transicao-demografica-e",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 1088,
+      "caracteres_apos_limpeza": 1088,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Comissão discute transição demográfica e envelhecimento da população brasileira\n\nA Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, no plenário 14, para discutir a transição demográfica e o envelhecimento da população brasileira.\n\nO debate foi solicitado pelos deputados Luiz Couto (PT-PB), Alexandre Lindenmeyer (PT-RS) e Geraldo Resende (PSDB-MS).\n\nA audiência abordará o acelerado processo de envelhecimento populacional no Brasil. Dados do Censo 2022 indicam que a população idosa cresceu 57,4% desde 2010, somando 32,1 milhões de pessoas, o que representa 15,6% da população total.\n\nEssa mudança demográfica impacta diretamente na saúde pública, refletida no aumento da expectativa de vida e na prevalência de doenças crônico-degenerativas. Diante desse cenário, os parlamentares destacam a necessidade de implementar políticas e estratégias específicas para a saúde e bem-estar da população idosa, incluindo cuidados de longo prazo, promoção da autonomia e prevenção de doenças.\n\nAgência Câmara"
+  ]
+}

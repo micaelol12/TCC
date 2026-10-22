@@ -1,0 +1,32 @@
+{
+  "questions": [
+    "O Estado deve garantir salários mínimos definidos por lei para todos os trabalhadores?",
+    "A distribuição de renda deve ser ajustada por meio de políticas como subsídios diretos aos mais pobres?",
+    "As empresas devem operar sem restrições regulatórias impostas pelo governo?",
+    "O lucro gerado por uma empresa deve ser revertido integralmente aos acionistas ou compartilhado com os trabalhadores?",
+    "A propriedade intelectual deve ser limitada para ampliar o acesso a bens e tecnologias?"
+  ],
+  "dev_balanced_accuracy": 0.8333333333333333,
+  "train_feedback": [
+    {
+      "texto": "É necessário que o governo intervenha na economia para proteger os consumidores.",
+      "esperado": 1,
+      "previsto": 0
+    },
+    {
+      "texto": "Os impostos deveriam ser aumentados para os ricos para fornecer aos pobres.",
+      "esperado": 1,
+      "previsto": 0
+    },
+    {
+      "texto": "É melhor manter um orçamento equilibrado do que garantir bem-estar para todos os cidadãos.",
+      "esperado": 0,
+      "previsto": 1
+    },
+    {
+      "texto": "É importante que avancemos os objetivos do meu grupo acima de todos os outros.",
+      "esperado": 0,
+      "previsto": 1
+    }
+  ]
+}
