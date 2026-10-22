@@ -44,6 +44,8 @@ def public_request(payload, settings):
             value = incoming.get(name)
             if name == 'jev_model' and value in settings.allowed_jev_models or name == 'llm_model' and isinstance(value, str) and value in model_catalog(settings):
                 config[name] = value
+            elif name in ('semantic_evidence_check', 'jev_evidence_search') and type(value) is bool:
+                config[name] = value
             elif name not in ('jev_model', 'llm_model') and type(value) in (int, float) and math.isfinite(value):
                 config[name] = value
     return text, mode, config

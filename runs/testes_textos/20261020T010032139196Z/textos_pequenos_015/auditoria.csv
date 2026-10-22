@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,diplomatic,semantic,sustenta,0,"Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos.",0.53,"{'sustenta': 0.69, 'contradiz': 0.03, 'insuficiente': 0.28}",jev-1.13.0

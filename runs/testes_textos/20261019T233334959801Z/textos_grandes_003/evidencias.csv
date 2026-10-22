@@ -1,0 +1,9 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,jev_ordinal,-1.0,"O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",sim,S001,55.0,264.0,0.88,passagem encontrada,sustenta,0.94,jev-1.13.0
+1,society,jev_ordinal,1.0,"Segundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.",sim,S014,1623.0,1776.0,0.78,passagem encontrada,sustenta,0.55,jev-1.13.0
+2,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,state,jev_ordinal,-1.0,"Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",sim,S001,102.0,246.0,0.79,passagem encontrada,sustenta,0.85,jev-1.13.0
+2,society,llm_ordinal,,,sem citação,,,,,não executada,não executada,,

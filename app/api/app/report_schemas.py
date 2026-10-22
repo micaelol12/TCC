@@ -40,6 +40,15 @@ class ReportAnalysis(AnalysisResponse):
                 raise ValueError("Intervalo inválido.")
             if any(ev.chunk_index not in chunks or not _score_evidencia_confere(chunks[ev.chunk_index], ev.quote) for ev in axis.evidence):
                 raise ValueError("Evidência inválida.")
+            for audit in axis.evidence_audit:
+                if audit.chunk_index not in chunks:
+                    raise ValueError("Trecho de auditoria inválido.")
+                text = chunks[audit.chunk_index]
+                if audit.quote and not _score_evidencia_confere(text, audit.quote):
+                    raise ValueError("Citação de auditoria inválida.")
+                if audit.status == 'found' and (audit.start is None or audit.end is None or
+                        not 0 <= audit.start < audit.end <= len(text) or text[audit.start:audit.end] != audit.quote):
+                    raise ValueError("Posição da citação inválida.")
         if self.logical_calls.jev < 0 or self.logical_calls.llm < 0:
             raise ValueError("Contagem de chamadas inválida.")
         return self

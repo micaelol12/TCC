@@ -1,0 +1,74 @@
+{
+  "original": {
+    "texto": "Câmara aprova texto-base da MP da Liberdade Econômica\n\nO Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.\n\nO texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.\n\nA proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.\n\nO texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.\n\nOutros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.\n\nTrabalho aos domingos\n\nA principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.\n\nPelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.\n\nO dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”.\n\n“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.\n\nA deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.\n\nO líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.\n\nSindicatos\n\nO presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.\n\nO tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.\n\nPara a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.\n\nAgência Câmara",
+    "data": "2019-08-13",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/570318-camara-aprova-texto-base-da-mp-da-liberdade-economica/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "dificil"
+  },
+  "contexto": {
+    "id": "20261019T233334959801Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabiazinho-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_007",
+    "grupo": "textos_grandes",
+    "posicao": 7,
+    "complexidade": "dificil",
+    "data": "2019-08-13",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/570318-camara-aprova-texto-base-da-mp-da-liberdade-economica/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3839,
+      "caracteres_apos_limpeza": 3839,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Câmara aprova texto-base da MP da Liberdade Econômica\n\nO Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.\n\nO texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.\n\nA proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.\n\nO texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.\n\nOutros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.\n\nTrabalho aos domingos\n\nA principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.\n\nPelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.\n\nO dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”.",
+    "“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.\n\nA deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.\n\nO líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.\n\nSindicatos\n\nO presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.\n\nO tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.\n\nPara a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.\n\nAgência Câmara"
+  ]
+}

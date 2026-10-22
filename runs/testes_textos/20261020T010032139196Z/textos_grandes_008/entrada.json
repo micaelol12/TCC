@@ -1,0 +1,75 @@
+{
+  "original": {
+    "texto": "Deputados e debatedores divergem sobre a privatização da Eletrobras\n\nParlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre a terceira tentativa de privatização da Eletrobras, estatal vinculada ao Ministério de Minas e Energia que responde por 30% da energia elétrica gerada no País.\n\nA audiência pública na Comissão de Legislação Participativa foi realizada nesta tarde a pedido de sete deputados – quatro do PT e três do Psol – para discutir a Medida Provisória 1031/21, editada em fevereiro último pelo Poder Executivo.\n\nCom vigência imediata, a MP já liberou estudos a fim de diluir a fatia da União na Eletrobras. Sem a condição de maior acionista (menos de 50% do capital), o governo deverá manter poder de veto em decisões estratégicas. Convidado, o relator, deputado Elmar Nascimento (DEM-BA), justificou a ausência no debate.\n\nA deputada Érika Kokay (PT-DF), coautora do pedido para audiência pública, afirmou que a MP 1031/21 é ilegal, porque antes da eventual privatização da Eletrobras deveria haver autorização do Congresso Nacional. PT, PDT, PCdoB e Psol apresentaram ao Supremo Tribunal Federal (STF) duas ações diretas de inconstitucionalidade.\n\nInvestimentos\n\nO chefe da Assessoria Especial de Assuntos Econômicos do Ministério de Minas e Energia, Hailton Madureira de Almeida, defendeu a MP, já que a Eletrobras perdeu a capacidade de investir – de R$ 10,8 bilhões em 2014 para R$ 3,3 bilhões em 2019. “Uma empresa que não cresce perde importância”, afirmou.\n\nO secretário especial adjunto de Desestatização, Desinvestimento e Mercados do Ministério da Economia, Pedro Capeluppi, afirmou que a privatização busca o aperfeiçoamento do setor, a exemplo do que acontece em outras áreas de infraestrutura, como saneamento. “Esse debate não começou agora”, disse.\n\nSegundo Almeida e Capeluppi, a privatização deverá fortalecer a Eletrobras, e o governo está aberto a discussões sobre os próximos passos. Para o assessor do Ministério das Minas e Energia, a medida deverá resultar em competição e redução das tarifas, com geração de emprego e renda onde a empresa atua.\n\nO deputado Glauber Braga (Psol-RJ), um dos que sugeriram o debate, criticou os argumentos dos representantes do Executivo. “São falas mentirosas”, disse. “Colocaram o assunto em uma medida provisória, que só poderia ser editada em caso de relevância e urgência, porque falta apoio”, analisou o parlamentar.\n\nTarifas\n\nA representante do Coletivo Nacional dos Eletricitários Fabíola Antezana disse que há “açodamento” – a MP poderá ser votada pela Câmara neste dia 17. “A Eletrobras não está quebrada, parece que a proposta busca atender os acionistas e não a população”, afirmou, citando a falta de cálculo sobre efeitos nas tarifas.\n\nO assessor da diretoria-geral da Agência Nacional de Energia Elétrica (Aneel) Thiago Magalhães informou que o órgão regulador não vê riscos associados à operação do sistema nacional. Após a eventual privatização, continuou, a Aneel realizará consultas públicas para analisar os futuros contratos de concessão.\n\nTransição\n\nA diretora do Instituto de Desenvolvimento Estratégico do Setor Energético (Ilumina) Clarice Ferraz alertou que a privatização da Eletrobras está sendo discutida antes de definição sobre o marco regulatório do setor diante das mudanças climáticas e das novas formas de energia limpa e renovável.\n\nO pesquisador do Grupo de Economia da Energia da Universidade Federal do Rio de Janeiro Ronaldo Bicalho avaliou que a privatização da Eletrobras é uma medida radical e extemporânea e, por fim, ultrapassada. “Ninguém hoje no mundo acredita que a transição energética será feita pelo setor privado”, disse.\n\nPara Ferraz e Bicalho, privatizações nos anos 90 não trouxeram os resultados esperados porque o setor privado evita riscos e incertezas. “Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.\n\nPresenças\n\nParticiparam da videoconferência nesta tarde, coordenada pelo deputado João Daniel (PT-SE), os deputados Waldenor Pereira (PT-BA), Joaquim Passarinho (PSD-PA), Alessandro Molon (PSB-RJ), General Peternelli (PSL-SP), Alencar Santana Braga (PT-SP), Paulo Ganime (Novo-RJ) e Rogério Correia (PT-MG), além do dirigente sindical em Sergipe Paulo Roberto Gomes.\n\nAgência Câmara",
+    "data": "2021-05-07",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/756558-deputados-e-debatedores-divergem-sobre-a-privatizacao-da-eletrobras",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "dificil"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_008",
+    "grupo": "textos_grandes",
+    "posicao": 8,
+    "complexidade": "dificil",
+    "data": "2021-05-07",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/756558-deputados-e-debatedores-divergem-sobre-a-privatizacao-da-eletrobras",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 4419,
+      "caracteres_apos_limpeza": 4419,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Deputados e debatedores divergem sobre a privatização da Eletrobras\n\nParlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre a terceira tentativa de privatização da Eletrobras, estatal vinculada ao Ministério de Minas e Energia que responde por 30% da energia elétrica gerada no País.\n\nA audiência pública na Comissão de Legislação Participativa foi realizada nesta tarde a pedido de sete deputados – quatro do PT e três do Psol – para discutir a Medida Provisória 1031/21, editada em fevereiro último pelo Poder Executivo.\n\nCom vigência imediata, a MP já liberou estudos a fim de diluir a fatia da União na Eletrobras. Sem a condição de maior acionista (menos de 50% do capital), o governo deverá manter poder de veto em decisões estratégicas. Convidado, o relator, deputado Elmar Nascimento (DEM-BA), justificou a ausência no debate.\n\nA deputada Érika Kokay (PT-DF), coautora do pedido para audiência pública, afirmou que a MP 1031/21 é ilegal, porque antes da eventual privatização da Eletrobras deveria haver autorização do Congresso Nacional. PT, PDT, PCdoB e Psol apresentaram ao Supremo Tribunal Federal (STF) duas ações diretas de inconstitucionalidade.\n\nInvestimentos\n\nO chefe da Assessoria Especial de Assuntos Econômicos do Ministério de Minas e Energia, Hailton Madureira de Almeida, defendeu a MP, já que a Eletrobras perdeu a capacidade de investir – de R$ 10,8 bilhões em 2014 para R$ 3,3 bilhões em 2019. “Uma empresa que não cresce perde importância”, afirmou.\n\nO secretário especial adjunto de Desestatização, Desinvestimento e Mercados do Ministério da Economia, Pedro Capeluppi, afirmou que a privatização busca o aperfeiçoamento do setor, a exemplo do que acontece em outras áreas de infraestrutura, como saneamento. “Esse debate não começou agora”, disse.",
+    "Segundo Almeida e Capeluppi, a privatização deverá fortalecer a Eletrobras, e o governo está aberto a discussões sobre os próximos passos. Para o assessor do Ministério das Minas e Energia, a medida deverá resultar em competição e redução das tarifas, com geração de emprego e renda onde a empresa atua.\n\nO deputado Glauber Braga (Psol-RJ), um dos que sugeriram o debate, criticou os argumentos dos representantes do Executivo. “São falas mentirosas”, disse. “Colocaram o assunto em uma medida provisória, que só poderia ser editada em caso de relevância e urgência, porque falta apoio”, analisou o parlamentar.\n\nTarifas\n\nA representante do Coletivo Nacional dos Eletricitários Fabíola Antezana disse que há “açodamento” – a MP poderá ser votada pela Câmara neste dia 17. “A Eletrobras não está quebrada, parece que a proposta busca atender os acionistas e não a população”, afirmou, citando a falta de cálculo sobre efeitos nas tarifas.\n\nO assessor da diretoria-geral da Agência Nacional de Energia Elétrica (Aneel) Thiago Magalhães informou que o órgão regulador não vê riscos associados à operação do sistema nacional. Após a eventual privatização, continuou, a Aneel realizará consultas públicas para analisar os futuros contratos de concessão.\n\nTransição\n\nA diretora do Instituto de Desenvolvimento Estratégico do Setor Energético (Ilumina) Clarice Ferraz alertou que a privatização da Eletrobras está sendo discutida antes de definição sobre o marco regulatório do setor diante das mudanças climáticas e das novas formas de energia limpa e renovável.\n\nO pesquisador do Grupo de Economia da Energia da Universidade Federal do Rio de Janeiro Ronaldo Bicalho avaliou que a privatização da Eletrobras é uma medida radical e extemporânea e, por fim, ultrapassada. “Ninguém hoje no mundo acredita que a transição energética será feita pelo setor privado”, disse.",
+    "Para Ferraz e Bicalho, privatizações nos anos 90 não trouxeram os resultados esperados porque o setor privado evita riscos e incertezas. “Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.\n\nPresenças\n\nParticiparam da videoconferência nesta tarde, coordenada pelo deputado João Daniel (PT-SE), os deputados Waldenor Pereira (PT-BA), Joaquim Passarinho (PSD-PA), Alessandro Molon (PSB-RJ), General Peternelli (PSL-SP), Alencar Santana Braga (PT-SP), Paulo Ganime (Novo-RJ) e Rogério Correia (PT-MG), além do dirigente sindical em Sergipe Paulo Roberto Gomes.\n\nAgência Câmara"
+  ]
+}

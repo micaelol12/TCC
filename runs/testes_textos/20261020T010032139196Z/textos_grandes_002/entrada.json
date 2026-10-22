@@ -1,0 +1,74 @@
+{
+  "original": {
+    "texto": "MP restringe papel do Estado no controle na fiscalização da atividade econômica\n\nA Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.\n\nA MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.\n\nAo assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.\n\nOntem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.\n\nRegulamentação\n\nOs direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.\n\nConforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado.\n\nAs propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).\n\nNas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.\n\nTramitação\n\nA MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.\n\nAgência Câmara",
+    "data": "2019-05-02",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/556622-mp-restringe-papel-do-estado-no-controle-na-fiscalizacao-da-atividade-economica",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_002",
+    "grupo": "textos_grandes",
+    "posicao": 2,
+    "complexidade": "claro",
+    "data": "2019-05-02",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/556622-mp-restringe-papel-do-estado-no-controle-na-fiscalizacao-da-atividade-economica",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3009,
+      "caracteres_apos_limpeza": 3009,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "MP restringe papel do Estado no controle na fiscalização da atividade econômica\n\nA Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.\n\nA MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.\n\nAo assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.\n\nOntem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.\n\nRegulamentação\n\nOs direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.\n\nConforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado.",
+    "As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).\n\nNas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.\n\nTramitação\n\nA MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.\n\nAgência Câmara"
+  ]
+}

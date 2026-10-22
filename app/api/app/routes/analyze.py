@@ -57,7 +57,8 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     if len(payload.text) > settings.max_chars:
         raise HTTPException(413, "Texto acima do limite de caracteres.")
     provider = model_catalog(settings)[config.llm_model]
-    if (mode in ("low", "medium") and not keys['typesafe']) or (mode in ("medium", "high") and not keys[provider]):
+    needs_jev = mode != "high" or config.semantic_evidence_check
+    if (needs_jev and not keys['typesafe']) or (mode in ("medium", "high") and not keys[provider]):
         if settings.app_env == 'lab':
             raise HTTPException(503, "Cadastre suas chaves na aba API keys para usar este modo e modelo.")
         raise HTTPException(503, "Modo indisponível: configure os provedores necessários.")
@@ -74,13 +75,14 @@ async def analyze(payload: AnalyzeRequest, request: Request):
         raise HTTPException(429, "Limite temporário de análises atingido.")
     if daily["date"] != date.today():
         daily.update(date=date.today(), calls=0)
-    maximum_calls = len(chunks) * (2 if mode == "medium" else 1)
+    extra_calls = int(config.jev_evidence_search and mode != "high") + int(config.semantic_evidence_check)
+    maximum_calls = len(chunks) * ((2 if mode == "medium" else 1) + extra_calls)
     if daily["calls"] + maximum_calls > settings.daily_calls:
         raise HTTPException(429, "Orçamento diário de análises atingido.")
     recent_requests.append(now)
     daily["calls"] += maximum_calls
-    jev = jev_client(keys['typesafe'], config.jev_model) if mode != "high" else None
-    questions = jev_questions() if jev else None
+    jev = jev_client(keys['typesafe'], config.jev_model) if needs_jev else None
+    questions = jev_questions() if mode != "high" else None
     llm = (gemini_client if provider == 'gemini' else llm_client)(keys[provider], settings.timeout_seconds) if mode != "low" else None
     semaphore = asyncio.Semaphore(settings.concurrent_chunks)
 

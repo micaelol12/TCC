@@ -1,0 +1,137 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,True,-2.0,[],True,-2.0,0.0,jev_ordinal,direcional,"A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.","[{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S006', 'start': 700, 'end': 908, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.', 'existence_probability': 0.86, 'confidence': 0.48, 'probabilities': {'S000': 0.01, 'S001': 0.0, 'S002': 0.0, 'S003': 0.01, 'S004': 0.0, 'S005': 0.15, 'S006': 0.51, 'S007': 0.23, 'S008': 0.0, 'S009': 0.0, 'S010': 0.03, 'S011': 0.0, 'S012': 0.0, 'S013': 0.01, 'NONE': 0.05}, 'model': 'jev-1.13.0'}, {'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.', 'confidence': 0.91, 'probabilities': {'sustenta': 0.94, 'contradiz': 0.02, 'insuficiente': 0.04}, 'model': 'jev-1.13.0'}]",1,"Câmara aprova texto-base da MP da Liberdade Econômica
+
+O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.
+
+O texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.
+
+A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.
+
+O texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.
+
+Outros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.
+
+Trabalho aos domingos
+
+A principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.
+
+Pelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.
+
+O dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”."
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,"Câmara aprova texto-base da MP da Liberdade Econômica
+
+O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.
+
+O texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.
+
+A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.
+
+O texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.
+
+Outros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.
+
+Trabalho aos domingos
+
+A principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.
+
+Pelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.
+
+O dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”."
+state,True,1.0,['baixa_confianca_nivel'],True,1.0,75.0,llm_ordinal,direcional,diminuir a presença do Estado na vida do cidadão,"[{'kind': 'semantic', 'status': 'sustenta', 'level': 1, 'quote': 'diminuir a presença do Estado na vida do cidadão', 'confidence': 0.52, 'probabilities': {'sustenta': 0.68, 'contradiz': 0.02, 'insuficiente': 0.3}, 'model': 'jev-1.13.0'}]",1,"Câmara aprova texto-base da MP da Liberdade Econômica
+
+O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.
+
+O texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.
+
+A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.
+
+O texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.
+
+Outros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.
+
+Trabalho aos domingos
+
+A principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.
+
+Pelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.
+
+O dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”."
+society,True,1.0,"['relevancia_ambigua', 'baixa_confianca_nivel']",False,,,llm_ordinal,sem_evidencia,,[],1,"Câmara aprova texto-base da MP da Liberdade Econômica
+
+O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.
+
+O texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.
+
+A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.
+
+O texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.
+
+Outros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.
+
+Trabalho aos domingos
+
+A principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.
+
+Pelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.
+
+O dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”."
+economic,True,-1.0,[],True,-1.0,25.0,jev_ordinal,direcional,"“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos.","[{'kind': 'search', 'status': 'found', 'level': -1, 'sentence_id': 'S018', 'start': 1642, 'end': 1805, 'quote': '“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos.', 'existence_probability': 0.71, 'confidence': 0.22, 'probabilities': {'S000': 0.08, 'S001': 0.02, 'S002': 0.01, 'S003': 0.0, 'S004': 0.03, 'S005': 0.02, 'S006': 0.02, 'S007': 0.01, 'S008': 0.07, 'S009': 0.01, 'S010': 0.01, 'S011': 0.0, 'S012': 0.01, 'S013': 0.01, 'S014': 0.02, 'S015': 0.03, 'S016': 0.12, 'S017': 0.11, 'S018': 0.26, 'S019': 0.01, 'S020': 0.01, 'NONE': 0.14}, 'model': 'jev-1.13.0'}, {'kind': 'semantic', 'status': 'sustenta', 'level': -1, 'quote': '“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos.', 'confidence': 0.55, 'probabilities': {'sustenta': 0.7, 'contradiz': 0.04, 'insuficiente': 0.26}, 'model': 'jev-1.13.0'}]",2,"“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.
+
+A deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.
+
+O líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.
+
+Sindicatos
+
+O presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.
+
+O tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.
+
+Para a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.
+
+Agência Câmara"
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.
+
+A deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.
+
+O líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.
+
+Sindicatos
+
+O presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.
+
+O tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.
+
+Para a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.
+
+Agência Câmara"
+state,True,0.0,['relevancia_ambigua'],True,0.0,50.0,llm_ordinal,sem_posicao,Não é possível essa liberalização geral para o trabalho aos domingos,"[{'kind': 'semantic', 'status': 'sustenta', 'level': 0, 'quote': 'Não é possível essa liberalização geral para o trabalho aos domingos', 'confidence': 0.18, 'probabilities': {'sustenta': 0.45, 'contradiz': 0.26, 'insuficiente': 0.29}, 'model': 'jev-1.13.0'}]",2,"“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.
+
+A deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.
+
+O líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.
+
+Sindicatos
+
+O presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.
+
+O tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.
+
+Para a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.
+
+Agência Câmara"
+society,True,-1.0,['baixa_confianca_nivel'],True,-2.0,0.0,llm_ordinal,direcional,Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações,"[{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações', 'confidence': 0.69, 'probabilities': {'sustenta': 0.79, 'contradiz': 0.04, 'insuficiente': 0.17}, 'model': 'jev-1.13.0'}]",2,"“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.
+
+A deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.
+
+O líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.
+
+Sindicatos
+
+O presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.
+
+O tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.
+
+Para a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.
+
+Agência Câmara"

@@ -4,7 +4,9 @@ export const storagePrefix = isLabBuild ? '8values-lab' : '8values'
 
 export const numericFields = ['chunk_tokens', 'relevance_margin_min', 'level_confidence_min', 'direction_margin_min', 'min_valid_chunks', 'bootstrap_samples', 'bootstrap_seed'] as const
 export type NumericField = typeof numericFields[number]
-export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string }
+export const evidenceDefaults = { semantic_evidence_check: false, jev_evidence_search: false, evidence_existence_min: 0.7 }
+export const evidenceFields = ['semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'] as const
+export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string } & Partial<typeof evidenceDefaults>
 export type ConfigRange = { min: number; max: number; step: number }
 export type ExperimentCapabilities = {
   enabled: true; config_version: '1'; defaults: ExperimentConfig;
@@ -15,6 +17,7 @@ export type ExperimentCapabilities = {
 }
 const fields = [...numericFields, 'jev_model', 'llm_model']
 export const configLabels: Record<keyof ExperimentConfig, string> = {
+  semantic_evidence_check: 'Verificar apoio semântico da citação', jev_evidence_search: 'Buscar citações do JEV por ID', evidence_existence_min: 'Limiar de existência de evidência',
   chunk_tokens: 'Tokens por trecho', relevance_margin_min: 'Margem mínima de relevância',
   level_confidence_min: 'Confiança mínima do nível', direction_margin_min: 'Margem mínima de direção',
   min_valid_chunks: 'Trechos para evidência suficiente', bootstrap_samples: 'Reamostragens do intervalo',
@@ -22,8 +25,10 @@ export const configLabels: Record<keyof ExperimentConfig, string> = {
 }
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
 export function isExperimentConfig(value: unknown): value is ExperimentConfig {
-  if (!object(value) || Object.keys(value).length !== fields.length || fields.some(name => !(name in value))) return false
+  if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields].includes(name)) || fields.some(name => !(name in value))) return false
   if (!numericFields.every(name => typeof value[name] === 'number' && Number.isFinite(value[name]))) return false
+  if (['semantic_evidence_check', 'jev_evidence_search'].some(name => value[name] !== undefined && typeof value[name] !== 'boolean')) return false
+  if (value.evidence_existence_min !== undefined && (typeof value.evidence_existence_min !== 'number' || !Number.isFinite(value.evidence_existence_min) || value.evidence_existence_min < 0 || value.evidence_existence_min > 1)) return false
   const config = value as ExperimentConfig
   return Number.isSafeInteger(config.chunk_tokens) && config.chunk_tokens >= 100 && config.chunk_tokens <= 2000 &&
     ['relevance_margin_min', 'level_confidence_min', 'direction_margin_min'].every(name => Number(value[name]) >= 0 && Number(value[name]) <= 1) &&
@@ -71,5 +76,12 @@ export function importPreset(value: unknown, caps: ExperimentCapabilities): Expe
     value.format !== '8values-lab-preset' || value.format_version !== 1 || value.environment !== 'lab' || value.config_version !== caps.config_version) throw new Error('Arquivo de configuração Lab inválido ou de outra versão.')
   const error = configError(value.config, caps)
   if (error) throw new Error(error)
-  return { ...value.config as ExperimentConfig }
+  return { ...evidenceDefaults, ...value.config as ExperimentConfig }
+}
+
+export function experimentRecipients(mode: 'low' | 'medium' | 'high', config: ExperimentConfig | null, caps: ExperimentCapabilities | null): string {
+  const llm = config && caps && modelProvider(caps, config.llm_model) === 'gemini' ? 'Google Gemini' : 'Maritaca (Sabiá)'
+  if (mode === 'low') return 'TypeSafe (JEV)'
+  if (mode === 'medium') return `TypeSafe (JEV) e, quando necessário, ${llm}`
+  return config?.semantic_evidence_check ? `${llm} e TypeSafe (checagem de evidências)` : llm
 }

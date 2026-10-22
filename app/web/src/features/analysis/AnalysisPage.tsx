@@ -1,3 +1,4 @@
+import { experimentRecipients } from '@8values/shared/domain/experimentConfig'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Profile } from '../../storage/localProfile'
@@ -61,7 +62,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
             <div className="actions"><button className="secondary" onClick={() => { setText(selected.text); setTitle(selected.title); setShowComposer(true) }}>Usar este texto em nova análise</button><button className="secondary" onClick={() => setMobileTab('comparison')}>Comparar comigo</button></div>
           </AnalysisResult>}
           {showComposer && <AnalysisComposer text={text} title={title} mode={mode} caps={caps} busy={busy} seconds={seconds} error={error} capsError={capsError}
-            recipient={experiment.config && experiment.available?.model_providers?.[experiment.config.llm_model] === 'gemini' ? mode === 'medium' ? 'TypeSafe (JEV) e, quando necessário, Google Gemini' : mode === 'high' ? 'Google Gemini' : undefined : undefined}
+            recipient={experimentRecipients(mode, experiment.config, experiment.available)}
             configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={mode} busy={busy} error={experiment.error} storageKey={experiment.storageKey} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
             onText={setText} onTitle={setTitle} onMode={setMode} onSend={() => void send()} onCancel={cancel}
             onRetry={() => { setCapsError(''); setCaps(null); void client.getCapabilities().then(setCaps).catch(() => setCapsError('API indisponível. Inicie o servidor para analisar textos.')) }}

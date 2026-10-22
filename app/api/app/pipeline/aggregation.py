@@ -3,7 +3,7 @@ from statistics import mean
 import random
 from math import ceil
 from ..experiment_config import ExperimentConfig
-from ..schemas import AxisResult, Evidence, LevelCounts
+from ..schemas import AxisResult, Evidence, EvidenceAudit, LevelCounts
 
 AXES = ("economic", "diplomatic", "state", "society")
 COUNT_KEYS = {-2: "minus2", -1: "minus1", 0: "zero", 1: "plus1", 2: "plus2"}
@@ -35,5 +35,6 @@ def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig |
             ci95=ci, methods_used=list(dict.fromkeys(method for d in decisions for method in d.get("methods", [d["method"]] if d["method"] else []))),
             reason_codes=reasons,
             evidence=[Evidence(chunk_index=i, quote=d["quote"]) for i, d in enumerate(decisions) if d["quote"]],
+            evidence_audit=[EvidenceAudit(chunk_index=i, **audit) for i, d in enumerate(decisions) for audit in d.get("evidence_audit", [])],
         ))
     return output

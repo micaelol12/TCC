@@ -1,0 +1,73 @@
+{
+  "original": {
+    "texto": "CCJ aprova criação do Imposto sobre Grandes Fortunas\n\nA Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas para taxar todo patrimônio acima de R$ 2 milhões. O projeto ainda precisa ser votado pelo Plenário. Se for aprovado, seguirá para o Senado.\n\nConforme a proposta, a alíquota vai variar de 1% a 5%, dependendo do tamanho da riqueza e não será permitida a dedução, no Imposto de Renda anual, dos valores recolhidos ao novo tributo.\n\nPara o patrimônio de R$ 2 milhões a R$ 5 milhões, a taxação será de 1%. Entre R$ 5 milhões e R$ 10 milhões, ela será de 2%. De R$ 10 milhões a R$ 20 milhões, de 3%. De R$ 20 milhões a R$ 50 milhões, de 4%; e de 5% para fortunas superiores a R$ 50 milhões.\n\nO relator, deputado Regis de Oliveira (PSC-SP), recomendou a aprovação da proposta. A CCJ analisou apenas os aspectos constitucionais, jurídicos e de técnica legislativa do projeto (não analisou o mérito). “O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais. Assim, o governo teria mais dinheiro em caixa para investir em saúde, educação, moradia e infraestrutura, entre outros serviços básicos”, disse o relator.\n\nAgência Câmara",
+    "data": "2010-06-09",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/141403-ccj-aprova-criacao-do-imposto-sobre-grandes-fortunas",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "contexto": {
+    "id": "20261020T010032139196Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_001",
+    "grupo": "textos_grandes",
+    "posicao": 1,
+    "complexidade": "claro",
+    "data": "2010-06-09",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/141403-ccj-aprova-criacao-do-imposto-sobre-grandes-fortunas",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 1356,
+      "caracteres_apos_limpeza": 1356,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "CCJ aprova criação do Imposto sobre Grandes Fortunas\n\nA Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas para taxar todo patrimônio acima de R$ 2 milhões. O projeto ainda precisa ser votado pelo Plenário. Se for aprovado, seguirá para o Senado.\n\nConforme a proposta, a alíquota vai variar de 1% a 5%, dependendo do tamanho da riqueza e não será permitida a dedução, no Imposto de Renda anual, dos valores recolhidos ao novo tributo.\n\nPara o patrimônio de R$ 2 milhões a R$ 5 milhões, a taxação será de 1%. Entre R$ 5 milhões e R$ 10 milhões, ela será de 2%. De R$ 10 milhões a R$ 20 milhões, de 3%. De R$ 20 milhões a R$ 50 milhões, de 4%; e de 5% para fortunas superiores a R$ 50 milhões.\n\nO relator, deputado Regis de Oliveira (PSC-SP), recomendou a aprovação da proposta. A CCJ analisou apenas os aspectos constitucionais, jurídicos e de técnica legislativa do projeto (não analisou o mérito). “O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais. Assim, o governo teria mais dinheiro em caixa para investir em saúde, educação, moradia e infraestrutura, entre outros serviços básicos”, disse o relator.\n\nAgência Câmara"
+  ]
+}

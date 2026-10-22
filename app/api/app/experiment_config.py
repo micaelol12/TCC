@@ -2,10 +2,10 @@
 import hashlib
 import json
 from typing import Annotated
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 
 CONFIG_VERSION = "1"
-PIPELINE_VERSION = "jev-2-polos-mvp-1"
+PIPELINE_VERSION = "jev-2-polos-evidence-2"
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
 Positive = Annotated[int, Field(strict=True, ge=1)]
@@ -25,6 +25,9 @@ class ExperimentConfig(BaseModel):
     bootstrap_seed: Seed = 42
     jev_model: ModelName = "jev-1.13.0"
     llm_model: ModelName = "sabia-4"
+    semantic_evidence_check: StrictBool = False
+    jev_evidence_search: StrictBool = False
+    evidence_existence_min: Probability = 0.70
 
     def jev_config(self):
         return {"tipo_relevancia": "choice", "primitiva_polaridade": "score",
@@ -44,11 +47,19 @@ class ExperimentOverrides(BaseModel):
     bootstrap_seed: Seed | None = None
     jev_model: ModelName | None = None
     llm_model: ModelName | None = None
+    semantic_evidence_check: StrictBool | None = None
+    jev_evidence_search: StrictBool | None = None
+    evidence_existence_min: Probability | None = None
 
 
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
+    effective = config.model_dump()
+    # Preserve hashes of saved analyses from before the optional evidence fields.
+    if pipeline_version == "jev-2-polos-mvp-1":
+        for name in ("semantic_evidence_check", "jev_evidence_search", "evidence_existence_min"):
+            effective.pop(name)
     public = {"config_version": CONFIG_VERSION, "pipeline_version": pipeline_version,
-              "effective_config": config.model_dump()}
+              "effective_config": effective}
     canonical = json.dumps(public, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 

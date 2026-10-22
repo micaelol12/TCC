@@ -1,0 +1,5 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,sentence_id,start,end,existence_probability
+0,economic,semantic,insuficiente,-2,a privatização da Eletrobras,0.67,"{'sustenta': 0.19, 'contradiz': 0.03, 'insuficiente': 0.78}",jev-1.13.0,,,,
+1,economic,semantic,insuficiente,1,a privatização deverá fortalecer a Eletrobras,0.76,"{'sustenta': 0.14, 'contradiz': 0.02, 'insuficiente': 0.84}",jev-1.13.0,,,,
+2,economic,search,found,1,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.",0.83,"{'S000': 0.08, 'S001': 0.86, 'S002': 0.0, 'S003': 0.0, 'S004': 0.0, 'NONE': 0.06}",jev-1.13.0,S001,137.0,296.0,0.72
+2,economic,semantic,sustenta,1,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”, ressaltou a diretora do Ilumina.",0.28,"{'sustenta': 0.52, 'contradiz': 0.11, 'insuficiente': 0.37}",jev-1.13.0,,,,

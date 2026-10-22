@@ -8,6 +8,11 @@ export const modes: Mode[] = ['low', 'medium', 'high']
 export const modeLabels: Record<Mode, string> = { low: 'Baixo', medium: 'Médio', high: 'Alto' }
 export const modeDescriptions: Record<Mode, string> = { low: 'Análise com JEV', medium: 'JEV com revisão por LLM quando necessária', high: 'Análise diretamente com LLM' }
 export const recipients: Record<Mode, string> = { low: 'TypeSafe (JEV)', medium: 'TypeSafe (JEV) e, quando necessário, Maritaca (Sabiá)', high: 'Maritaca (Sabiá)' }
+export type EvidenceAudit = {
+  chunk_index: number; kind: 'search' | 'semantic'; status: 'found' | 'not_selected' | 'not_literal' | 'sustenta' | 'contradiz' | 'insuficiente' | 'uncertain' | 'failed' | 'invalid';
+  level: number; quote?: string | null; sentence_id?: string | null; start?: number | null; end?: number | null;
+  confidence?: number | null; existence_probability?: number | null; probabilities?: Record<string, number> | null; model?: string | null
+}
 export type AxisResult = {
   axis: Axis; pole_a: number | null; pole_b: number | null;
   status: 'estimated' | 'no_evidence' | 'abstained'; coverage: number;
@@ -15,6 +20,7 @@ export type AxisResult = {
   level_counts: { minus2: number; minus1: number; zero: number; plus1: number; plus2: number };
   ci95: [number, number] | null; methods_used: ('jev' | 'llm')[];
   reason_codes: string[]; evidence: { chunk_index: number; quote: string; verified: true }[]
+  evidence_audit?: EvidenceAudit[]
 }
 export type Analysis = {
   schema_version: string; pipeline_version: string; processing_level: Mode;
@@ -31,6 +37,20 @@ function strings(value: unknown): value is string[] { return Array.isArray(value
 function count(value: unknown): value is number { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 }
 function positive(value: unknown): value is number { return count(value) && value > 0 }
 function score(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100 }
+function isEvidenceAudit(value: unknown, chunks: Analysis['chunks']): value is EvidenceAudit {
+  if (!object(value) || !count(value.chunk_index) || !chunks.some(c => c.index === value.chunk_index) ||
+      !['search', 'semantic'].includes(value.kind as string) || !['found', 'not_selected', 'not_literal', 'sustenta', 'contradiz', 'insuficiente', 'uncertain', 'failed', 'invalid'].includes(value.status as string) ||
+      ![-2, -1, 0, 1, 2].includes(value.level as number)) return false
+  if (!['confidence', 'existence_probability'].every(key => value[key] == null || (typeof value[key] === 'number' && Number.isFinite(value[key]) && value[key] >= 0 && value[key] <= 1))) return false
+  if (!['quote', 'sentence_id', 'model'].every(key => value[key] == null || typeof value[key] === 'string')) return false
+  if (!['start', 'end'].every(key => value[key] == null || count(value[key]))) return false
+  if (value.probabilities != null && (!object(value.probabilities) || !Object.values(value.probabilities).every(p => typeof p === 'number' && Number.isFinite(p) && p >= 0 && p <= 1))) return false
+  if (value.status === 'found') {
+    const text = Array.from(chunks.find(c => c.index === value.chunk_index)!.text)
+    return value.kind === 'search' && typeof value.sentence_id === 'string' && count(value.start) && count(value.end) && value.start < value.end && value.end <= text.length && text.slice(value.start, value.end).join('') === value.quote
+  }
+  return true
+}
 export function isCapabilities(value: unknown): value is Capabilities {
   if (!object(value) || !object(value.modes)) return false
   const available = value.modes
@@ -53,6 +73,7 @@ export function isAnalysis(value: unknown): value is Analysis {
   const chunks = value.chunks
   const axes = value.axes
   return axisOrder.every(axis => axes.filter(item => object(item) && item.axis === axis).length === 1) && axes.every(item => {
+    if (object(item) && item.evidence_audit !== undefined && (!Array.isArray(item.evidence_audit) || !item.evidence_audit.every(audit => isEvidenceAudit(audit, chunks)))) return false
     if (!object(item) || !['estimated', 'no_evidence', 'abstained'].includes(item.status as string) ||
       !count(item.valid_chunks) || !count(item.total_chunks) || item.valid_chunks > item.total_chunks ||
       typeof item.coverage !== 'number' || !Number.isFinite(item.coverage) || item.coverage < 0 || item.coverage > 1 ||
