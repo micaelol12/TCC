@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,state,semantic,sustenta,2,proíbe o uso de reconhecimento facial para vigilância em massa,0.83,"{'sustenta': 0.89, 'contradiz': 0.02, 'insuficiente': 0.09}",jev-1.13.0

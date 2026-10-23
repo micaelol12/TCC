@@ -8,6 +8,7 @@ import IdeologyMatch from './IdeologyMatch'
 import styles from '../styles/Cards.module.css'
 import ReportDialog from './ReportDialog'
 import type { ReportClient, ReportRequest } from '../api/reportApi'
+import { historicalLevels } from '../domain/ordinalScale'
 const warningLabels: Record<string, string> = { falha_autenticacao_jev: 'A API não conseguiu autenticar no TypeSafe. Confira a chave no servidor.', falha_autenticacao_llm: 'A API não conseguiu autenticar no provedor LLM selecionado. Confira sua chave.', evidencia_nao_verificada: 'O modelo retornou uma citação que não confere com o texto. A estimativa correspondente foi descartada.' }
 const auditLabels: Record<string, string> = { found: 'Passagem encontrada', not_selected: 'Nenhuma passagem selecionada pelo critério configurado', not_literal: 'Citação literal inválida', sustenta: 'Sustenta a posição e intensidade', contradiz: 'Contradiz a posição atribuída', insuficiente: 'Evidência insuficiente para a posição ou intensidade', uncertain: 'Parecer empatado', failed: 'Falha ao consultar o verificador', invalid: 'Resposta inválida do verificador' }
 
@@ -19,6 +20,7 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
     <div className="cardTop"><span className={styles.chip}>{modeLabels[analysis.processing_level]} · {analysis.models_used.join(', ') || 'Serviço externo'}</span><span className="muted small">{analysis.chunks.length} trechos</span></div>
     <h2>{entry.title}</h2>{entry.source && <p className="muted small sourceOrigin">Trecho selecionado em {entry.source}</p>}
     <p className="muted small">O resultado descreve somente o trecho enviado.</p>
+    <p className="muted small">Escala: {analysis.escala ? `${analysis.escala.niveis.length} níveis · ${analysis.escala.id} · v${analysis.escala.versao}` : `${analysis.schema_version === '1' ? 5 : 9} níveis · histórica`}.</p>
     {analysis.lab_execution_id && <p className="small configHash" role="status">Execução gravada no banco: {analysis.lab_execution_id}</p>}
     <details className="sourceDetails"><summary>Ver texto analisado</summary><p className="sourceText">{entry.text}</p></details>
     {analysis.effective_config ? <details className="experimentSnapshot"><summary>Configuração utilizada{analysis.environment === 'lab' ? ' · versão de teste' : ''}</summary>
@@ -33,7 +35,7 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
       return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} />
         <details><summary>Distribuição e evidências de {AXES[axis].title}</summary>
           <p className="small muted">Cobertura: {result.valid_chunks} de {result.total_chunks} trechos. {result.sufficient_evidence ? '' : 'Evidência limitada.'} {result.status === 'abstained' ? 'Classificação indeterminada.' : result.status === 'no_evidence' ? 'Sem posição identificada.' : ''}</p>
-          <p className="small">Níveis: −2: {result.level_counts.minus2}, −1: {result.level_counts.minus1}, 0: {result.level_counts.zero}, +1: {result.level_counts.plus1}, +2: {result.level_counts.plus2}.</p>
+          <p className="small">Níveis: {(analysis.escala?.niveis ?? historicalLevels(analysis.schema_version)).map(n => `${n.codigo > 0 ? '+' : ''}${n.codigo} (${n.rotulo}): ${analysis.escala ? result.level_counts_by_key?.[n.chave] ?? 0 : result.level_counts[n.chave as keyof typeof result.level_counts] ?? 0}`).join('; ')}.</p>
           {result.ci95 && <p className="small">Intervalo entre trechos (95%): {result.ci95[0].toFixed(1)}–{result.ci95[1].toFixed(1)}. Não representa probabilidade de acerto.</p>}
           {result.evidence.length ? <><p className="small muted">Citações localizadas no texto. Presença literal não comprova apoio à classificação.</p><ul>{result.evidence.map((ev, i) => <li key={i}>Trecho {ev.chunk_index + 1}: “{ev.quote}”</li>)}</ul></> : <p className="small muted">Sem citação literal disponível.</p>}
           {!!result.evidence_audit?.length && <div aria-label={`Auditoria de evidências de ${AXES[axis].title}`}>

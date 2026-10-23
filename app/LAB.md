@@ -123,6 +123,11 @@ npm run test:lab -- edge
 # Raiz do TCC: compila o notebook e exercita apenas demonstrações simuladas
 .venv/Scripts/python.exe analise_jev_llm/test_evidencias_pipeline.py
 
+# Raiz: escalas de cinco/nove/sete níveis, sem provedores
+.venv/Scripts/python.exe scripts/check_local_notebook_demos.py
+.venv/Scripts/python.exe scripts/check_local_notebook_demos.py --nine
+.venv/Scripts/python.exe scripts/validate_notebook_scales.py
+
 # app/api: verificação explícita com texto sintético e provedores reais
 # Consome até uma análise curta por modo, além das retentativas do pipeline.
 .venv/Scripts/python.exe scripts/validate_lab_providers.py --live

@@ -3,6 +3,7 @@ import { evidenceFields, configLabels, exportPreset, importPreset, numericFields
 import type { Mode } from '../api/analysisApi'
 import type { createAnalysisClient } from '../api/analysisApi'
 import LabApiKeys from './LabApiKeys'
+import { sameContent } from '../domain/ordinalScale'
 
 const help = {
   chunk_tokens: 'Trechos menores podem aumentar as chamadas e ultrapassar o limite de trechos.',
@@ -21,12 +22,12 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
   if (!config) return <p role="status">Carregando a configuração Lab…</p>
-  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model'].filter(name => config[name as keyof ExperimentConfig] !== caps.defaults[name as keyof ExperimentConfig])
+  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
   async function importFile(file?: File) {
     if (!file) return
     setFileError('')
     try {
-      if (file.size > 20000) throw new Error('Arquivo acima do limite de 20 KB.')
+      if (file.size > 200000) throw new Error('Arquivo acima do limite de 200 KB.')
       onChange(importPreset(JSON.parse(await file.text()), caps)); onNotice('Configuração importada para a próxima análise.')
     } catch (err) { setFileError(err instanceof Error ? err.message : 'Não foi possível importar.') }
   }
@@ -46,6 +47,10 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     <div id="lab-parameters" role="tabpanel" aria-labelledby="lab-tab-parameters" hidden={tab !== 'parameters'}>
     <p className="small muted">Suas chaves nesta sessão: TypeSafe {caps.providers.typesafe ? 'configurado' : 'ausente'} · Maritaca {caps.providers.maritaca ? 'configurado' : 'ausente'} · Gemini {caps.providers.gemini ? 'configurado' : 'ausente'}. Cadastre suas chaves na aba API keys para liberar os modos e modelos.</p>
     <fieldset disabled={busy}><legend>Parâmetros da próxima análise</legend><div className="experimentFields">
+      {!!caps.scales?.length && <div><label htmlFor="lab-escala">Escala ordinal</label><select id="lab-escala" value={caps.scales.findIndex(s => sameContent(s, config.escala))} onChange={e => onChange({ ...config, escala: structuredClone(caps.scales![Number(e.target.value)]) })}>
+        {!caps.scales.some(s => sameContent(s, config.escala)) && <option value={-1}>{config.escala?.id ?? 'Selecione uma escala'}</option>}
+        {caps.scales.map((s, i) => <option key={`${s.id}-${i}`} value={i}>{s.niveis.length} níveis · {s.id} · v{s.versao}</option>)}
+      </select><small className="muted">A mesma escala será usada pelo JEV, LLM e cálculo do índice.</small></div>}
       {numericFields.map(name => {
         const inactive = mode === 'high' && ['relevance_margin_min', 'level_confidence_min', 'direction_margin_min'].includes(name)
         return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label>
@@ -73,7 +78,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
       <input id="lab-evidence_existence_min" type="number" min="0" max="1" step="0.01" value={Number.isFinite(config.evidence_existence_min ?? 0.7) ? (config.evidence_existence_min ?? 0.7) : ''} disabled={!config.jev_evidence_search || mode === 'high'} onChange={e => onChange({ ...config, evidence_existence_min: e.target.value === '' ? NaN : Number(e.target.value) })} />
       <p className="small muted">Até duas chamadas JEV adicionais por trecho com as duas opções ativas. Confiança do modelo não é probabilidade de acerto.</p>
     </fieldset>
-    <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
+    <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${name === 'escala' ? config.escala?.id : config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
     {error && <p className="error" role="alert">{error}</p>}
     <div className="actions"><button className="secondary" disabled={busy} onClick={() => { onChange({ ...caps.defaults }); setFileError(''); onNotice('Padrões restaurados para a próxima análise.') }}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={save}>Salvar configuração</button><button className="secondary" disabled={busy || !!error} onClick={download}>Exportar JSON</button></div>
     <label htmlFor="lab-import">Importar configuração JSON</label><input id="lab-import" type="file" accept="application/json,.json" disabled={busy} onChange={e => { void importFile(e.target.files?.[0]); e.target.value = '' }} />

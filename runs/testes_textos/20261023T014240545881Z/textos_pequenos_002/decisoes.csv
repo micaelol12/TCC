@@ -1,0 +1,5 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,Redução da maioridade penal para 16 anos ou menos
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,Redução da maioridade penal para 16 anos ou menos
+state,True,-2.0,[],True,-2.0,25.0,jev_ordinal,direcional,,"[{'kind': 'search', 'status': 'not_selected', 'level': -2, 'existence_probability': 0.69, 'confidence': 0.8, 'probabilities': {'S000': 0.9, 'NONE': 0.1}, 'model': 'jev-1.13.0'}]",1,Redução da maioridade penal para 16 anos ou menos
+society,True,2.0,"['relevancia_ambigua', 'baixa_confianca_nivel']",False,,,llm_ordinal,sem_evidencia,,[],1,Redução da maioridade penal para 16 anos ou menos

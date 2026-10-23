@@ -3,6 +3,26 @@ import { AnalysisTimeoutError, createAnalysisClient, isAnalysis, isCapabilities 
 import { analysisFixture, capabilities } from '../testing/fixtures'
 afterEach(() => vi.useRealTimers())
 
+test('aceita a escala de nove níveis e preserva contratos antigos de cinco níveis', () => {
+  const legacy = analysisFixture()
+  expect(isAnalysis(legacy)).toBe(true)
+  const current = analysisFixture()
+  current.schema_version = '2'
+  for (const axis of current.axes) {
+    axis.level_counts = { ...axis.level_counts, minus4: 0, minus3: 0, plus3: 0, plus4: 0 }
+  }
+  current.axes[0].evidence_audit = [{ chunk_index: 0, kind: 'semantic', status: 'sustenta', level: 4 }]
+  expect(isAnalysis(current)).toBe(true)
+  current.schema_version = '1'
+  expect(isAnalysis(current)).toBe(false)
+  current.schema_version = '2'
+  current.axes[0].evidence_audit[0].level = 5
+  expect(isAnalysis(current)).toBe(false)
+  current.axes[0].evidence_audit[0].level = -4
+  delete current.axes[0].level_counts.minus4
+  expect(isAnalysis(current)).toBe(false)
+})
+
 test('envia apenas texto e modo para a URL configurada, sem credenciais de cookies', async () => {
   const fetcher = vi.fn<typeof fetch>().mockResolvedValue(Response.json(analysisFixture('high')))
   await createAnalysisClient('http://127.0.0.1:8000/', fetcher).analyze('Trecho político com evidência.', 'high', new AbortController().signal)

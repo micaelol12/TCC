@@ -38,6 +38,19 @@ def report_payload():
 
 
 class ReportTests(unittest.TestCase):
+    def test_nine_level_reports_and_legacy_snapshots(self):
+        legacy = report_payload()
+        self.assertEqual(ReportRequest.model_validate(legacy).model_dump(mode='json')['analysis'], legacy['analysis'])
+        current = copy.deepcopy(legacy)
+        current['analysis'].update(schema_version='2', pipeline_version='jev-9-niveis-evidence-3')
+        for axis in current['analysis']['axes']:
+            axis['level_counts'].update(minus4=0, minus3=0, plus3=1, plus4=0, plus1=0)
+            axis.update(pole_a=87.5, pole_b=12.5)
+        self.assertEqual(ReportRequest.model_validate(current).model_dump(mode='json')['analysis'], current['analysis'])
+        current['analysis']['schema_version'] = '1'
+        with self.assertRaises(ValueError):
+            ReportRequest.model_validate(current)
+
     def setUp(self):
         self.temp = TemporaryDirectory()
         self.database = str(Path(self.temp.name) / "data" / "reports.sqlite3")

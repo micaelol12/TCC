@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,society,semantic,insuficiente,1,transferência permanente de renda voltada às famílias mais necessitadas,0.91,"{'sustenta': 0.06, 'contradiz': 0.0, 'insuficiente': 0.94}",jev-1.13.0

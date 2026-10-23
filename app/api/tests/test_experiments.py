@@ -113,7 +113,7 @@ class AlgorithmTests(unittest.IsolatedAsyncioTestCase):
         larger, _ = split_text(text, max_tokens=12000, chunk_tokens=600)
         self.assertGreater(len(smaller), len(larger))
         self.assertEqual(''.join(smaller), text)
-        rows = [{axis: {'relevante': True, 'nivel': level, 'method': 'jev', 'reason': [], 'quote': None} for axis in AXES} for level in (-2, 1, 2)]
+        rows = [{axis: {'relevante': True, 'nivel': level, 'method': 'jev', 'reason': [], 'quote': None} for axis in AXES} for level in (-4, 2, 4)]
         baseline = aggregate(rows, 3)[0]
         rng = random.Random(42)
         samples = sorted(mean(rng.choices([0, 75, 100], k=3)) for _ in range(2000))

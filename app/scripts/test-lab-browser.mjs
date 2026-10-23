@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 import { analysisFixture, capabilities, labCapabilities, experimentCapabilities } from '../shared/src/testing/fixtures.ts'
+import { scaleFixtures } from '../shared/src/testing/scaleFixtures.ts'
 
 const target = process.argv[2] ?? 'chrome'
 const output = resolve('test-results')
@@ -39,6 +40,8 @@ async function checkModelSelectionWithoutKeys(page) {
   await page.locator('input[name="mode"][value="medium"]').check()
 }
 let activeCaps = structuredClone(labCapabilities)
+activeCaps.experimental.scales = structuredClone(scaleFixtures)
+activeCaps.experimental.defaults.escala = structuredClone(scaleFixtures[1])
 try {
   // Both editions use actual built files; providers and report persistence are simulated.
   await context.route(/http:\/\/127\.0\.0\.1:517[34]\//, async route => {
@@ -96,6 +99,16 @@ try {
     requests.push(payload)
     const result = analysisFixture(payload.processing_level, payload.text)
     if (lab) {
+      result.schema_version = '3'
+      result.escala = payload.experiment_config.escala
+      result.escala_hash = createHash('sha256').update(JSON.stringify(canonical(result.escala))).digest('hex')
+      for (const axis of result.axes) {
+        axis.level_counts_by_key = Object.fromEntries(result.escala.niveis.map(n => [n.chave, n.codigo === 1 ? axis.valid_chunks : 0]))
+        if (axis.valid_chunks) {
+          axis.pole_a = 100 * result.escala.niveis.find(n => n.codigo === 1).valor
+          axis.pole_b = 100 - axis.pole_a
+        }
+      }
       result.environment = 'lab'; result.config_version = '1'; result.effective_config = payload.experiment_config
       result.config_hash = createHash('sha256').update(JSON.stringify(canonical({ effective_config: result.effective_config, config_version: '1', pipeline_version: result.pipeline_version }))).digest('hex')
       result.lab_execution_id = crypto.randomUUID()
@@ -135,6 +148,7 @@ try {
   await website.getByRole('tab', { name: 'Parâmetros', exact: true }).click()
   assert(await website.locator('#lab-llm_model option[value="gemini-3.1-flash-lite"]').isEnabled())
   await website.locator('#lab-llm_model').selectOption('gemini-3.1-flash-lite')
+  await website.locator('#lab-escala').selectOption('0')
   assert.equal(await website.locator('#lab-chunk_tokens').inputValue(), '600')
   await website.locator('#text-input').fill(text)
   await website.locator('#local-title').fill('Configuração A')
@@ -154,7 +168,9 @@ try {
   assert.equal(preset.config.semantic_evidence_check, true)
   assert.equal(preset.config.jev_evidence_search, true)
   assert.equal(preset.config.evidence_existence_min, 0.8)
-  assert.deepEqual(Object.keys(preset.config).sort(), Object.keys(experimentCapabilities.defaults).sort())
+  assert.deepEqual(Object.keys(preset.config).sort(), Object.keys(activeCaps.experimental.defaults).sort())
+  assert.equal(preset.format_version, 2)
+  assert.equal(preset.config.escala.id, 'ordinal_5_v1')
   await website.reload()
   await website.locator('#lab-chunk_tokens').waitFor()
   await waitValue(website, '#lab-chunk_tokens', '400')
@@ -164,6 +180,8 @@ try {
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests[0].experiment_config.chunk_tokens, 400)
+  assert.equal(requests[0].experiment_config.escala.id, 'ordinal_5_v1')
+  await website.getByText('Escala: 5 níveis · ordinal_5_v1 · v1.', { exact: true }).waitFor()
   await website.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
   await website.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()
   await website.getByText('Passagem encontrada', { exact: true }).waitFor()
@@ -182,6 +200,7 @@ try {
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   await website.locator('#lab-compare').selectOption('1')
+  await website.getByText('Escala: 9 níveis · ordinal_9_v1 · v1.', { exact: true }).waitFor()
   assert((await website.getByRole('region', { name: 'Comparar experimentos' }).innerText()).includes('400'))
   await website.getByText('Configuração utilizada · versão de teste', { exact: true }).click()
   await website.getByRole('button', { name: 'Reportar classificação', exact: true }).click()
@@ -233,6 +252,8 @@ try {
   await panel.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests.at(-1).experiment_config.llm_model, 'sabiazinho-4')
+  assert.equal(requests.at(-1).experiment_config.escala.id, 'ordinal_5_v1')
+  await panel.getByText('Escala: 5 níveis · ordinal_5_v1 · v1.', { exact: true }).waitFor()
   assert.equal(requests.at(-1).experiment_config.semantic_evidence_check, true)
   await panel.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
   await panel.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()

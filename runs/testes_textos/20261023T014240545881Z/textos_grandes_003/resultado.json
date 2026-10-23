@@ -1,0 +1,2928 @@
+{
+  "contexto": {
+    "id": "20261023T014240545881Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "escala": {
+          "id": "ordinal_9_v1",
+          "versao": 1,
+          "niveis": [
+            {
+              "chave": "polo_B_muito_forte",
+              "codigo": -4,
+              "rotulo": "polo B muito forte",
+              "polo": "B",
+              "valor": 0.0
+            },
+            {
+              "chave": "polo_B_forte",
+              "codigo": -3,
+              "rotulo": "polo B forte",
+              "polo": "B",
+              "valor": 0.125
+            },
+            {
+              "chave": "polo_B_moderado",
+              "codigo": -2,
+              "rotulo": "polo B moderado",
+              "polo": "B",
+              "valor": 0.25
+            },
+            {
+              "chave": "polo_B_leve",
+              "codigo": -1,
+              "rotulo": "polo B leve",
+              "polo": "B",
+              "valor": 0.375
+            },
+            {
+              "chave": "sem_posicao",
+              "codigo": 0,
+              "rotulo": "sem posicao",
+              "polo": null,
+              "valor": 0.5
+            },
+            {
+              "chave": "polo_A_leve",
+              "codigo": 1,
+              "rotulo": "polo A leve",
+              "polo": "A",
+              "valor": 0.625
+            },
+            {
+              "chave": "polo_A_moderado",
+              "codigo": 2,
+              "rotulo": "polo A moderado",
+              "polo": "A",
+              "valor": 0.75
+            },
+            {
+              "chave": "polo_A_forte",
+              "codigo": 3,
+              "rotulo": "polo A forte",
+              "polo": "A",
+              "valor": 0.875
+            },
+            {
+              "chave": "polo_A_muito_forte",
+              "codigo": 4,
+              "rotulo": "polo A muito forte",
+              "polo": "A",
+              "valor": 1.0
+            }
+          ],
+          "rubricas_por_eixo": {
+            "economic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+                "exemplos": [
+                  "privatizar a maior parte das empresas e dos serviços estatais",
+                  "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+                "exemplos": [
+                  "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                  "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+                "exemplos": [
+                  "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                  "simplificar tributos ou conter o crescimento do gasto público"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+                "exemplos": [
+                  "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                  "reduzir uma exigência burocrática específica para pequenos negócios"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                  "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+                "exemplos": [
+                  "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                  "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+                "exemplos": [
+                  "ampliar de forma focalizada um programa social ou serviço público",
+                  "tornar um tributo específico mais progressivo"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+                "exemplos": [
+                  "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                  "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+                "exemplos": [
+                  "estatizar setores inteiros da economia",
+                  "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+                ]
+              }
+            },
+            "diplomatic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+                "exemplos": [
+                  "sair de organismos ou tratados internacionais",
+                  "ampliar fortemente as forças armadas para impor interesses nacionais"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+                "exemplos": [
+                  "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                  "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+                "exemplos": [
+                  "renegociar um acordo considerado desfavorável ao país",
+                  "modernizar a defesa nacional"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+                "exemplos": [
+                  "reservar uma exceção nacional estreita em um acordo internacional",
+                  "condicionar uma recomendação internacional específica à aprovação local"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever relações diplomáticas ou o comércio exterior",
+                  "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+                "exemplos": [
+                  "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                  "apoiar um fórum consultivo internacional sem delegar decisões"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+                "exemplos": [
+                  "aderir a um acordo multilateral",
+                  "priorizar a mediação diplomática em conflitos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+                "exemplos": [
+                  "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                  "delegar competências específicas a um tribunal regional com limites definidos"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+                "exemplos": [
+                  "criar instituições comuns acima dos Estados nacionais",
+                  "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+                ]
+              }
+            },
+            "state": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+                "exemplos": [
+                  "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                  "ampliar de forma geral a vigilância e a censura"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+                "exemplos": [
+                  "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                  "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+                "exemplos": [
+                  "endurecer penas ou ampliar poderes da polícia",
+                  "ampliar a fiscalização estatal sobre condutas individuais numa área"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+                "exemplos": [
+                  "ampliar levemente uma multa administrativa por uma conduta específica",
+                  "exigir uma autorização adicional para uma atividade delimitada"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar estatísticas de segurança ou da administração pública",
+                  "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+                "exemplos": [
+                  "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                  "reduzir pontualmente o prazo de retenção de um dado pessoal"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+                "exemplos": [
+                  "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                  "ampliar a transparência ou a participação em conselhos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+                "exemplos": [
+                  "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                  "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+                "exemplos": [
+                  "descriminalizar amplamente condutas individuais",
+                  "desmontar de forma geral estruturas de vigilância e de polícia"
+                ]
+              }
+            },
+            "society": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+                "exemplos": [
+                  "orientar as políticas públicas por uma moral religiosa",
+                  "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+                "exemplos": [
+                  "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                  "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+                "exemplos": [
+                  "proteger uma tradição cultural ou religiosa específica",
+                  "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+                "exemplos": [
+                  "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                  "manter um costume familiar numa atividade local sem obrigar adesão"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever mudanças demográficas ou culturais",
+                  "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+                "exemplos": [
+                  "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                  "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+                "exemplos": [
+                  "ampliar direitos de um grupo historicamente discriminado",
+                  "atualizar uma norma social específica"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+                "exemplos": [
+                  "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                  "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+                "exemplos": [
+                  "reformar profundamente instituições como família, escola e religião",
+                  "abolir de forma geral costumes e normas morais herdados"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_003",
+    "grupo": "textos_grandes",
+    "posicao": 3,
+    "complexidade": "claro",
+    "data": "2024-02-29",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1037757-proposta-aumenta-pena-de-feminicidio-para-ate-40-anos/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "max_tokens": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      },
+      "caracteres_originais": 3096,
+      "caracteres_apos_limpeza": 3096,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "original": {
+    "texto": "Proposta aumenta pena de feminicídio para até 40 anos\n\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.\n\n“Tal medida permitirá uma melhor compreensão e identificação desse delito, facilitando a coleta de dados e auxiliando no desenvolvimento de políticas públicas e estratégias de prevenção mais adequadas”, disse a autora, senadora Margareth Buzetti.\n\nPela legislação em vigor, o feminicídio é definido como crime de homicídio qualificado. Nesse caso, o fato de ser um assassinato cometido em razão da condição feminina da vítima contribui para o aumento da pena.\n\nOutras medidas\n\nA proposta prevê outras medidas para prevenir e coibir a violência contra a mulher, como por exemplo:\n\n- aumenta as penas para os casos de lesão corporal contra a mulher, para os crimes contra a honra ou de ameaça e para o descumprimento de medidas protetivas;\n- nos “saidões” da prisão, o condenado por crime contra a mulher deve usar tornozeleira eletrônica; e\n- o condenado perde o direito a visitas conjugais.\n\nDepois de proclamada a sentença, o agressor perde o poder familiar, da tutela (proteção de menor) ou da curatela (proteção de adulto incapaz). Também são vedadas a nomeação, a designação ou a diplomação em qualquer cargo, função pública ou mandato eletivo entre o trânsito julgado da condenação e o efetivo cumprimento da pena.\n\nO texto prevê ainda o cumprimento mínimo de 55% da pena de feminicídio para a progressão de regime. Atualmente, o percentual é de 50%.\n\nSegundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.\n\nTransferência\n\nA proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.\n\nA regra vale para o preso que tenha cometido crime de violência doméstica e familiar contra a mulher. Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.\n\nPor fim, o texto determina que processos que apuram crimes contra a mulher tenham tramitação prioritária e sejam isentos de taxas e custas.\n\nO projeto altera o Código Penal, a Lei das Contravenções Penais, a Lei de Execução Penal, a Lei de Crimes Hediondos e a Lei Maria da Penha.\n\nMargareth Buzetti defendeu a aprovação do conjunto de medidas para coibir a violência praticada contra a mulher, que ela nomeou como pacote antifeminicídio.\n\nDe acordo com dados publicados pelo Fórum Brasileiro de Segurança Pública (FBSP), 704 casos de feminicídio foram registrados entre janeiro e junho de 2022 - uma média de quatro mulheres mortas por dia.\n\nTramitação\n\nA proposta será analisada pelas comissões de Defesa dos Direitos da Mulher; de Segurança Pública e Combate ao Crime Organizado; e de Constituição e Justiça e de Cidadania da Câmara. Caso aprovada, segue para o Plenário.\n\nAgência Câmara",
+    "data": "2024-02-29",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/1037757-proposta-aumenta-pena-de-feminicidio-para-ate-40-anos/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "claro"
+  },
+  "registros": [
+    {
+      "chamadas_jev_evidencias": 2,
+      "modelos_evidencias": [
+        "jev-1.13.0",
+        "jev-1.13.0"
+      ],
+      "modelos_configurados": {
+        "jev": "jev-1.13.0",
+        "llm": "sabia-4"
+      },
+      "texto": "Proposta aumenta pena de feminicídio para até 40 anos\n\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.\n\n“Tal medida permitirá uma melhor compreensão e identificação desse delito, facilitando a coleta de dados e auxiliando no desenvolvimento de políticas públicas e estratégias de prevenção mais adequadas”, disse a autora, senadora Margareth Buzetti.\n\nPela legislação em vigor, o feminicídio é definido como crime de homicídio qualificado. Nesse caso, o fato de ser um assassinato cometido em razão da condição feminina da vítima contribui para o aumento da pena.\n\nOutras medidas\n\nA proposta prevê outras medidas para prevenir e coibir a violência contra a mulher, como por exemplo:\n\n- aumenta as penas para os casos de lesão corporal contra a mulher, para os crimes contra a honra ou de ameaça e para o descumprimento de medidas protetivas;\n- nos “saidões” da prisão, o condenado por crime contra a mulher deve usar tornozeleira eletrônica; e\n- o condenado perde o direito a visitas conjugais.\n\nDepois de proclamada a sentença, o agressor perde o poder familiar, da tutela (proteção de menor) ou da curatela (proteção de adulto incapaz). Também são vedadas a nomeação, a designação ou a diplomação em qualquer cargo, função pública ou mandato eletivo entre o trânsito julgado da condenação e o efetivo cumprimento da pena.\n\nO texto prevê ainda o cumprimento mínimo de 55% da pena de feminicídio para a progressão de regime. Atualmente, o percentual é de 50%.\n\nSegundo a senadora, a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário.\n\nTransferência\n\nA proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": -2,
+          "chave_nivel": "polo_B_moderado",
+          "nivel_jev_bruto": -2,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.13,
+            "polo_B_moderado": 0.87,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 1.0,
+            "C": 0.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 1.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": -2.13,
+          "confianca_nivel": 0.85,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.85,
+            "B": 0.15
+          },
+          "margem_relevancia": 0.7,
+          "nivel": 2,
+          "chave_nivel": "polo_A_moderado",
+          "nivel_jev_bruto": 2,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.22,
+            "polo_A_leve": 0.01,
+            "polo_A_moderado": 0.66,
+            "polo_A_forte": 0.1,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.77,
+            "B": 0.01,
+            "C": 0.22
+          },
+          "p_polo_A": 0.77,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.22,
+          "margem_direcao": 0.76,
+          "nivel_esperado_diagnostico": 1.61,
+          "confianca_nivel": 0.62,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 1.0,
+            "B": 0.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": -2,
+          "chave_nivel": "polo_B_moderado",
+          "nivel_jev_bruto": -2,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.13,
+            "polo_B_moderado": 0.87,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 1.0,
+            "C": 0.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 1.0,
+          "p_sem_posicao": 0.0,
+          "margem_direcao": 1.0,
+          "nivel_esperado_diagnostico": -2.13,
+          "confianca_nivel": 0.85,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": "O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",
+          "evidencia_verificada": true,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "found",
+              "level": -2,
+              "sentence_id": "S001",
+              "start": 55,
+              "end": 264,
+              "quote": "O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",
+              "existence_probability": 0.88,
+              "confidence": 0.77,
+              "probabilities": {
+                "S000": 0.02,
+                "S001": 0.78,
+                "S002": 0.0,
+                "S003": 0.0,
+                "S004": 0.0,
+                "S005": 0.0,
+                "S006": 0.01,
+                "S007": 0.03,
+                "S008": 0.05,
+                "S009": 0.01,
+                "S010": 0.01,
+                "S011": 0.04,
+                "S012": 0.01,
+                "S013": 0.0,
+                "S014": 0.0,
+                "S015": 0.0,
+                "S016": 0.0,
+                "NONE": 0.04
+              },
+              "model": "jev-1.13.0"
+            },
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": -2,
+              "quote": "O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",
+              "confidence": 0.95,
+              "probabilities": {
+                "sustenta": 0.97,
+                "contradiz": 0.01,
+                "insuficiente": 0.02
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.85,
+            "B": 0.15
+          },
+          "margem_relevancia": 0.7,
+          "nivel": 2,
+          "chave_nivel": "polo_A_moderado",
+          "nivel_jev_bruto": 2,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.01,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.22,
+            "polo_A_leve": 0.01,
+            "polo_A_moderado": 0.66,
+            "polo_A_forte": 0.1,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.77,
+            "B": 0.01,
+            "C": 0.22
+          },
+          "p_polo_A": 0.77,
+          "p_polo_B": 0.01,
+          "p_sem_posicao": 0.22,
+          "margem_direcao": 0.76,
+          "nivel_esperado_diagnostico": 1.61,
+          "confianca_nivel": 0.62,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "not_selected",
+              "level": 2,
+              "existence_probability": 0.68,
+              "confidence": 0.32,
+              "probabilities": {
+                "S000": 0.01,
+                "S001": 0.04,
+                "S002": 0.04,
+                "S003": 0.0,
+                "S004": 0.03,
+                "S005": 0.0,
+                "S006": 0.15,
+                "S007": 0.02,
+                "S008": 0.0,
+                "S009": 0.01,
+                "S010": 0.07,
+                "S011": 0.04,
+                "S012": 0.01,
+                "S013": 0.01,
+                "S014": 0.36,
+                "S015": 0.01,
+                "S016": 0.01,
+                "NONE": 0.19
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [],
+        "society": []
+      },
+      "eixos_encaminhados": [],
+      "chamadas_llm": 0,
+      "chamadas_llm_efetivas": 0,
+      "latencia_jev_s": 0.2125101999990875,
+      "latencia_llm_s": 0.0,
+      "latencia_total_s": 0.604689599989797,
+      "config": {
+        "escala": {
+          "id": "ordinal_9_v1",
+          "versao": 1,
+          "niveis": [
+            {
+              "chave": "polo_B_muito_forte",
+              "codigo": -4,
+              "rotulo": "polo B muito forte",
+              "polo": "B",
+              "valor": 0.0
+            },
+            {
+              "chave": "polo_B_forte",
+              "codigo": -3,
+              "rotulo": "polo B forte",
+              "polo": "B",
+              "valor": 0.125
+            },
+            {
+              "chave": "polo_B_moderado",
+              "codigo": -2,
+              "rotulo": "polo B moderado",
+              "polo": "B",
+              "valor": 0.25
+            },
+            {
+              "chave": "polo_B_leve",
+              "codigo": -1,
+              "rotulo": "polo B leve",
+              "polo": "B",
+              "valor": 0.375
+            },
+            {
+              "chave": "sem_posicao",
+              "codigo": 0,
+              "rotulo": "sem posicao",
+              "polo": null,
+              "valor": 0.5
+            },
+            {
+              "chave": "polo_A_leve",
+              "codigo": 1,
+              "rotulo": "polo A leve",
+              "polo": "A",
+              "valor": 0.625
+            },
+            {
+              "chave": "polo_A_moderado",
+              "codigo": 2,
+              "rotulo": "polo A moderado",
+              "polo": "A",
+              "valor": 0.75
+            },
+            {
+              "chave": "polo_A_forte",
+              "codigo": 3,
+              "rotulo": "polo A forte",
+              "polo": "A",
+              "valor": 0.875
+            },
+            {
+              "chave": "polo_A_muito_forte",
+              "codigo": 4,
+              "rotulo": "polo A muito forte",
+              "polo": "A",
+              "valor": 1.0
+            }
+          ],
+          "rubricas_por_eixo": {
+            "economic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+                "exemplos": [
+                  "privatizar a maior parte das empresas e dos serviços estatais",
+                  "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+                "exemplos": [
+                  "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                  "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+                "exemplos": [
+                  "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                  "simplificar tributos ou conter o crescimento do gasto público"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+                "exemplos": [
+                  "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                  "reduzir uma exigência burocrática específica para pequenos negócios"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                  "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+                "exemplos": [
+                  "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                  "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+                "exemplos": [
+                  "ampliar de forma focalizada um programa social ou serviço público",
+                  "tornar um tributo específico mais progressivo"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+                "exemplos": [
+                  "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                  "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+                "exemplos": [
+                  "estatizar setores inteiros da economia",
+                  "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+                ]
+              }
+            },
+            "diplomatic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+                "exemplos": [
+                  "sair de organismos ou tratados internacionais",
+                  "ampliar fortemente as forças armadas para impor interesses nacionais"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+                "exemplos": [
+                  "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                  "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+                "exemplos": [
+                  "renegociar um acordo considerado desfavorável ao país",
+                  "modernizar a defesa nacional"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+                "exemplos": [
+                  "reservar uma exceção nacional estreita em um acordo internacional",
+                  "condicionar uma recomendação internacional específica à aprovação local"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever relações diplomáticas ou o comércio exterior",
+                  "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+                "exemplos": [
+                  "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                  "apoiar um fórum consultivo internacional sem delegar decisões"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+                "exemplos": [
+                  "aderir a um acordo multilateral",
+                  "priorizar a mediação diplomática em conflitos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+                "exemplos": [
+                  "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                  "delegar competências específicas a um tribunal regional com limites definidos"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+                "exemplos": [
+                  "criar instituições comuns acima dos Estados nacionais",
+                  "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+                ]
+              }
+            },
+            "state": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+                "exemplos": [
+                  "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                  "ampliar de forma geral a vigilância e a censura"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+                "exemplos": [
+                  "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                  "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+                "exemplos": [
+                  "endurecer penas ou ampliar poderes da polícia",
+                  "ampliar a fiscalização estatal sobre condutas individuais numa área"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+                "exemplos": [
+                  "ampliar levemente uma multa administrativa por uma conduta específica",
+                  "exigir uma autorização adicional para uma atividade delimitada"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar estatísticas de segurança ou da administração pública",
+                  "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+                "exemplos": [
+                  "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                  "reduzir pontualmente o prazo de retenção de um dado pessoal"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+                "exemplos": [
+                  "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                  "ampliar a transparência ou a participação em conselhos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+                "exemplos": [
+                  "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                  "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+                "exemplos": [
+                  "descriminalizar amplamente condutas individuais",
+                  "desmontar de forma geral estruturas de vigilância e de polícia"
+                ]
+              }
+            },
+            "society": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+                "exemplos": [
+                  "orientar as políticas públicas por uma moral religiosa",
+                  "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+                "exemplos": [
+                  "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                  "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+                "exemplos": [
+                  "proteger uma tradição cultural ou religiosa específica",
+                  "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+                "exemplos": [
+                  "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                  "manter um costume familiar numa atividade local sem obrigar adesão"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever mudanças demográficas ou culturais",
+                  "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+                "exemplos": [
+                  "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                  "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+                "exemplos": [
+                  "ampliar direitos de um grupo historicamente discriminado",
+                  "atualizar uma norma social específica"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+                "exemplos": [
+                  "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                  "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+                "exemplos": [
+                  "reformar profundamente instituições como família, escola e religião",
+                  "abolir de forma geral costumes e normas morais herdados"
+                ]
+              }
+            }
+          }
+        },
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      },
+      "escala": {
+        "id": "ordinal_9_v1",
+        "versao": 1,
+        "niveis": [
+          {
+            "chave": "polo_B_muito_forte",
+            "codigo": -4,
+            "rotulo": "polo B muito forte",
+            "polo": "B",
+            "valor": 0.0
+          },
+          {
+            "chave": "polo_B_forte",
+            "codigo": -3,
+            "rotulo": "polo B forte",
+            "polo": "B",
+            "valor": 0.125
+          },
+          {
+            "chave": "polo_B_moderado",
+            "codigo": -2,
+            "rotulo": "polo B moderado",
+            "polo": "B",
+            "valor": 0.25
+          },
+          {
+            "chave": "polo_B_leve",
+            "codigo": -1,
+            "rotulo": "polo B leve",
+            "polo": "B",
+            "valor": 0.375
+          },
+          {
+            "chave": "sem_posicao",
+            "codigo": 0,
+            "rotulo": "sem posicao",
+            "polo": null,
+            "valor": 0.5
+          },
+          {
+            "chave": "polo_A_leve",
+            "codigo": 1,
+            "rotulo": "polo A leve",
+            "polo": "A",
+            "valor": 0.625
+          },
+          {
+            "chave": "polo_A_moderado",
+            "codigo": 2,
+            "rotulo": "polo A moderado",
+            "polo": "A",
+            "valor": 0.75
+          },
+          {
+            "chave": "polo_A_forte",
+            "codigo": 3,
+            "rotulo": "polo A forte",
+            "polo": "A",
+            "valor": 0.875
+          },
+          {
+            "chave": "polo_A_muito_forte",
+            "codigo": 4,
+            "rotulo": "polo A muito forte",
+            "polo": "A",
+            "valor": 1.0
+          }
+        ],
+        "rubricas_por_eixo": {
+          "economic": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+              "exemplos": [
+                "privatizar a maior parte das empresas e dos serviços estatais",
+                "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+              "exemplos": [
+                "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+              "exemplos": [
+                "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                "simplificar tributos ou conter o crescimento do gasto público"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+              "exemplos": [
+                "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                "reduzir uma exigência burocrática específica para pequenos negócios"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+              "exemplos": [
+                "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+              "exemplos": [
+                "ampliar de forma focalizada um programa social ou serviço público",
+                "tornar um tributo específico mais progressivo"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+              "exemplos": [
+                "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+              "exemplos": [
+                "estatizar setores inteiros da economia",
+                "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+              ]
+            }
+          },
+          "diplomatic": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+              "exemplos": [
+                "sair de organismos ou tratados internacionais",
+                "ampliar fortemente as forças armadas para impor interesses nacionais"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+              "exemplos": [
+                "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+              "exemplos": [
+                "renegociar um acordo considerado desfavorável ao país",
+                "modernizar a defesa nacional"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+              "exemplos": [
+                "reservar uma exceção nacional estreita em um acordo internacional",
+                "condicionar uma recomendação internacional específica à aprovação local"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "descrever relações diplomáticas ou o comércio exterior",
+                "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+              "exemplos": [
+                "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                "apoiar um fórum consultivo internacional sem delegar decisões"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+              "exemplos": [
+                "aderir a um acordo multilateral",
+                "priorizar a mediação diplomática em conflitos"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+              "exemplos": [
+                "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                "delegar competências específicas a um tribunal regional com limites definidos"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+              "exemplos": [
+                "criar instituições comuns acima dos Estados nacionais",
+                "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+              ]
+            }
+          },
+          "state": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+              "exemplos": [
+                "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                "ampliar de forma geral a vigilância e a censura"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+              "exemplos": [
+                "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+              "exemplos": [
+                "endurecer penas ou ampliar poderes da polícia",
+                "ampliar a fiscalização estatal sobre condutas individuais numa área"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+              "exemplos": [
+                "ampliar levemente uma multa administrativa por uma conduta específica",
+                "exigir uma autorização adicional para uma atividade delimitada"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "apresentar estatísticas de segurança ou da administração pública",
+                "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+              "exemplos": [
+                "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                "reduzir pontualmente o prazo de retenção de um dado pessoal"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+              "exemplos": [
+                "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                "ampliar a transparência ou a participação em conselhos"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+              "exemplos": [
+                "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+              "exemplos": [
+                "descriminalizar amplamente condutas individuais",
+                "desmontar de forma geral estruturas de vigilância e de polícia"
+              ]
+            }
+          },
+          "society": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+              "exemplos": [
+                "orientar as políticas públicas por uma moral religiosa",
+                "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+              "exemplos": [
+                "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+              "exemplos": [
+                "proteger uma tradição cultural ou religiosa específica",
+                "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+              "exemplos": [
+                "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                "manter um costume familiar numa atividade local sem obrigar adesão"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "descrever mudanças demográficas ou culturais",
+                "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+              "exemplos": [
+                "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+              "exemplos": [
+                "ampliar direitos de um grupo historicamente discriminado",
+                "atualizar uma norma social específica"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+              "exemplos": [
+                "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+              "exemplos": [
+                "reformar profundamente instituições como família, escola e religião",
+                "abolir de forma geral costumes e normas morais herdados"
+              ]
+            }
+          }
+        }
+      },
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chamadas_jev": 1,
+      "tentativas_jev": 1,
+      "latencia_com_tentativas_s": 0.6051788000040688
+    },
+    {
+      "chamadas_jev_evidencias": 2,
+      "modelos_evidencias": [
+        "jev-1.13.0",
+        "jev-1.13.0"
+      ],
+      "modelos_configurados": {
+        "jev": "jev-1.13.0",
+        "llm": "sabia-4"
+      },
+      "texto": "A regra vale para o preso que tenha cometido crime de violência doméstica e familiar contra a mulher. Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.\n\nPor fim, o texto determina que processos que apuram crimes contra a mulher tenham tramitação prioritária e sejam isentos de taxas e custas.\n\nO projeto altera o Código Penal, a Lei das Contravenções Penais, a Lei de Execução Penal, a Lei de Crimes Hediondos e a Lei Maria da Penha.\n\nMargareth Buzetti defendeu a aprovação do conjunto de medidas para coibir a violência praticada contra a mulher, que ela nomeou como pacote antifeminicídio.\n\nDe acordo com dados publicados pelo Fórum Brasileiro de Segurança Pública (FBSP), 704 casos de feminicídio foram registrados entre janeiro e junho de 2022 - uma média de quatro mulheres mortas por dia.\n\nTramitação\n\nA proposta será analisada pelas comissões de Defesa dos Direitos da Mulher; de Segurança Pública e Combate ao Crime Organizado; e de Constituição e Justiça e de Cidadania da Câmara. Caso aprovada, segue para o Plenário.\n\nAgência Câmara",
+      "eixos_jev": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.08,
+            "B": 0.92
+          },
+          "margem_relevancia": 0.8400000000000001,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.97,
+            "polo_A_leve": 0.02,
+            "polo_A_moderado": 0.01,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.03,
+            "B": 0.0,
+            "C": 0.97
+          },
+          "p_polo_A": 0.03,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.97,
+          "margem_direcao": 0.03,
+          "nivel_esperado_diagnostico": 0.04,
+          "confianca_nivel": 0.97,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.99,
+            "B": 0.01
+          },
+          "margem_relevancia": 0.98,
+          "nivel": -2,
+          "chave_nivel": "polo_B_moderado",
+          "nivel_jev_bruto": -2,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.03,
+            "polo_B_moderado": 0.85,
+            "polo_B_leve": 0.04,
+            "sem_posicao": 0.01,
+            "polo_A_leve": 0.02,
+            "polo_A_moderado": 0.05,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.07,
+            "B": 0.9199999999999999,
+            "C": 0.01
+          },
+          "p_polo_A": 0.07,
+          "p_polo_B": 0.9199999999999999,
+          "p_sem_posicao": 0.01,
+          "margem_direcao": 0.8499999999999999,
+          "nivel_esperado_diagnostico": -1.71,
+          "confianca_nivel": 0.83,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.74,
+            "B": 0.26
+          },
+          "margem_relevancia": 0.48,
+          "nivel": 2,
+          "chave_nivel": "polo_A_moderado",
+          "nivel_jev_bruto": 2,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.23,
+            "polo_A_leve": 0.01,
+            "polo_A_moderado": 0.66,
+            "polo_A_forte": 0.1,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.77,
+            "B": 0.0,
+            "C": 0.23
+          },
+          "p_polo_A": 0.77,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.23,
+          "margem_direcao": 0.77,
+          "nivel_esperado_diagnostico": 1.6300000000000001,
+          "confianca_nivel": 0.62,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null
+        }
+      },
+      "eixos": {
+        "economic": {
+          "eixo": "economic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.08,
+            "B": 0.92
+          },
+          "margem_relevancia": 0.8400000000000001,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 0.97,
+            "polo_A_leve": 0.02,
+            "polo_A_moderado": 0.01,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.03,
+            "B": 0.0,
+            "C": 0.97
+          },
+          "p_polo_A": 0.03,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 0.97,
+          "margem_direcao": 0.03,
+          "nivel_esperado_diagnostico": 0.04,
+          "confianca_nivel": 0.97,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "diplomatic": {
+          "eixo": "diplomatic",
+          "relevante": false,
+          "probabilities_relevancia": {
+            "A": 0.0,
+            "B": 1.0
+          },
+          "margem_relevancia": 1.0,
+          "nivel": null,
+          "chave_nivel": null,
+          "nivel_jev_bruto": 0,
+          "valor_0_100": null,
+          "classe": "C",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.0,
+            "polo_B_moderado": 0.0,
+            "polo_B_leve": 0.0,
+            "sem_posicao": 1.0,
+            "polo_A_leve": 0.0,
+            "polo_A_moderado": 0.0,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.0,
+            "C": 1.0
+          },
+          "p_polo_A": 0.0,
+          "p_polo_B": 0.0,
+          "p_sem_posicao": 1.0,
+          "margem_direcao": 0.0,
+          "nivel_esperado_diagnostico": 0.0,
+          "confianca_nivel": 1.0,
+          "status": "sem_evidencia",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": null,
+          "evidencia_verificada": null,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": []
+        },
+        "state": {
+          "eixo": "state",
+          "relevante": true,
+          "probabilities_relevancia": {
+            "A": 0.99,
+            "B": 0.01
+          },
+          "margem_relevancia": 0.98,
+          "nivel": -2,
+          "chave_nivel": "polo_B_moderado",
+          "nivel_jev_bruto": -2,
+          "valor_0_100": 25.0,
+          "classe": "B",
+          "probabilities_nivel": {
+            "polo_B_muito_forte": 0.0,
+            "polo_B_forte": 0.03,
+            "polo_B_moderado": 0.85,
+            "polo_B_leve": 0.04,
+            "sem_posicao": 0.01,
+            "polo_A_leve": 0.02,
+            "polo_A_moderado": 0.05,
+            "polo_A_forte": 0.0,
+            "polo_A_muito_forte": 0.0
+          },
+          "probabilities_abc": {
+            "A": 0.07,
+            "B": 0.9199999999999999,
+            "C": 0.01
+          },
+          "p_polo_A": 0.07,
+          "p_polo_B": 0.9199999999999999,
+          "p_sem_posicao": 0.01,
+          "margem_direcao": 0.8499999999999999,
+          "nivel_esperado_diagnostico": -1.71,
+          "confianca_nivel": 0.83,
+          "status": "direcional",
+          "escala_id": "ordinal_9_v1",
+          "escala_versao": 1,
+          "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+          "metodo": "jev_ordinal",
+          "modelo": "jev-1.13.0",
+          "evidencia": "Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",
+          "evidencia_verificada": true,
+          "resposta_llm": null,
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": null,
+          "evidence_audit": [
+            {
+              "kind": "search",
+              "status": "found",
+              "level": -2,
+              "sentence_id": "S001",
+              "start": 102,
+              "end": 246,
+              "quote": "Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",
+              "existence_probability": 0.82,
+              "confidence": 0.6,
+              "probabilities": {
+                "S000": 0.01,
+                "S001": 0.64,
+                "S002": 0.08,
+                "S003": 0.03,
+                "S004": 0.05,
+                "S005": 0.01,
+                "S006": 0.0,
+                "S007": 0.0,
+                "S008": 0.0,
+                "S009": 0.01,
+                "NONE": 0.17
+              },
+              "model": "jev-1.13.0"
+            },
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": -2,
+              "quote": "Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",
+              "confidence": 0.89,
+              "probabilities": {
+                "sustenta": 0.93,
+                "contradiz": 0.02,
+                "insuficiente": 0.05
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        },
+        "society": {
+          "eixo": "society",
+          "relevante": true,
+          "probabilities_relevancia": null,
+          "margem_relevancia": null,
+          "nivel": 2,
+          "nivel_jev_bruto": null,
+          "valor_0_100": 75.0,
+          "classe": "A",
+          "probabilities_nivel": null,
+          "probabilities_abc": null,
+          "p_polo_A": null,
+          "p_polo_B": null,
+          "p_sem_posicao": null,
+          "margem_direcao": null,
+          "nivel_esperado_diagnostico": null,
+          "confianca_nivel": null,
+          "status": "direcional",
+          "metodo": "llm_ordinal",
+          "modelo": "sabia-4",
+          "evidencia": "coibir a violência praticada contra a mulher",
+          "evidencia_verificada": true,
+          "resposta_llm": {
+            "eixo": "society",
+            "relevante": true,
+            "nivel": 2,
+            "evidencia": "coibir a violência praticada contra a mulher"
+          },
+          "llm_reverteu_relevancia": false,
+          "erro_llm": null,
+          "meta_llm": {
+            "id": "resp-b51eb2c85a5e4e1f83a969e5",
+            "modelo": "sabia-4",
+            "uso": {
+              "input_tokens": 2203,
+              "input_tokens_details": {
+                "cache_write_tokens": null,
+                "cached_tokens": 1852
+              },
+              "output_tokens": 58,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 2261,
+              "tool_execution_details": null
+            }
+          },
+          "evidence_audit": [
+            {
+              "kind": "semantic",
+              "status": "sustenta",
+              "level": 2,
+              "quote": "coibir a violência praticada contra a mulher",
+              "confidence": 0.48,
+              "probabilities": {
+                "sustenta": 0.65,
+                "contradiz": 0.01,
+                "insuficiente": 0.34
+              },
+              "model": "jev-1.13.0"
+            }
+          ]
+        }
+      },
+      "motivos_fallback": {
+        "economic": [],
+        "diplomatic": [],
+        "state": [],
+        "society": [
+          "relevancia_ambigua"
+        ]
+      },
+      "eixos_encaminhados": [
+        "society"
+      ],
+      "chamadas_llm": 1,
+      "chamadas_llm_efetivas": 1,
+      "latencia_jev_s": 0.21089429999119602,
+      "latencia_llm_s": 0.711590700011584,
+      "latencia_total_s": 1.388558299993747,
+      "config": {
+        "escala": {
+          "id": "ordinal_9_v1",
+          "versao": 1,
+          "niveis": [
+            {
+              "chave": "polo_B_muito_forte",
+              "codigo": -4,
+              "rotulo": "polo B muito forte",
+              "polo": "B",
+              "valor": 0.0
+            },
+            {
+              "chave": "polo_B_forte",
+              "codigo": -3,
+              "rotulo": "polo B forte",
+              "polo": "B",
+              "valor": 0.125
+            },
+            {
+              "chave": "polo_B_moderado",
+              "codigo": -2,
+              "rotulo": "polo B moderado",
+              "polo": "B",
+              "valor": 0.25
+            },
+            {
+              "chave": "polo_B_leve",
+              "codigo": -1,
+              "rotulo": "polo B leve",
+              "polo": "B",
+              "valor": 0.375
+            },
+            {
+              "chave": "sem_posicao",
+              "codigo": 0,
+              "rotulo": "sem posicao",
+              "polo": null,
+              "valor": 0.5
+            },
+            {
+              "chave": "polo_A_leve",
+              "codigo": 1,
+              "rotulo": "polo A leve",
+              "polo": "A",
+              "valor": 0.625
+            },
+            {
+              "chave": "polo_A_moderado",
+              "codigo": 2,
+              "rotulo": "polo A moderado",
+              "polo": "A",
+              "valor": 0.75
+            },
+            {
+              "chave": "polo_A_forte",
+              "codigo": 3,
+              "rotulo": "polo A forte",
+              "polo": "A",
+              "valor": 0.875
+            },
+            {
+              "chave": "polo_A_muito_forte",
+              "codigo": 4,
+              "rotulo": "polo A muito forte",
+              "polo": "A",
+              "valor": 1.0
+            }
+          ],
+          "rubricas_por_eixo": {
+            "economic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+                "exemplos": [
+                  "privatizar a maior parte das empresas e dos serviços estatais",
+                  "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+                "exemplos": [
+                  "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                  "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+                "exemplos": [
+                  "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                  "simplificar tributos ou conter o crescimento do gasto público"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+                "exemplos": [
+                  "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                  "reduzir uma exigência burocrática específica para pequenos negócios"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                  "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+                "exemplos": [
+                  "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                  "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+                "exemplos": [
+                  "ampliar de forma focalizada um programa social ou serviço público",
+                  "tornar um tributo específico mais progressivo"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+                "exemplos": [
+                  "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                  "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+                "exemplos": [
+                  "estatizar setores inteiros da economia",
+                  "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+                ]
+              }
+            },
+            "diplomatic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+                "exemplos": [
+                  "sair de organismos ou tratados internacionais",
+                  "ampliar fortemente as forças armadas para impor interesses nacionais"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+                "exemplos": [
+                  "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                  "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+                "exemplos": [
+                  "renegociar um acordo considerado desfavorável ao país",
+                  "modernizar a defesa nacional"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+                "exemplos": [
+                  "reservar uma exceção nacional estreita em um acordo internacional",
+                  "condicionar uma recomendação internacional específica à aprovação local"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever relações diplomáticas ou o comércio exterior",
+                  "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+                "exemplos": [
+                  "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                  "apoiar um fórum consultivo internacional sem delegar decisões"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+                "exemplos": [
+                  "aderir a um acordo multilateral",
+                  "priorizar a mediação diplomática em conflitos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+                "exemplos": [
+                  "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                  "delegar competências específicas a um tribunal regional com limites definidos"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+                "exemplos": [
+                  "criar instituições comuns acima dos Estados nacionais",
+                  "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+                ]
+              }
+            },
+            "state": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+                "exemplos": [
+                  "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                  "ampliar de forma geral a vigilância e a censura"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+                "exemplos": [
+                  "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                  "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+                "exemplos": [
+                  "endurecer penas ou ampliar poderes da polícia",
+                  "ampliar a fiscalização estatal sobre condutas individuais numa área"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+                "exemplos": [
+                  "ampliar levemente uma multa administrativa por uma conduta específica",
+                  "exigir uma autorização adicional para uma atividade delimitada"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar estatísticas de segurança ou da administração pública",
+                  "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+                "exemplos": [
+                  "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                  "reduzir pontualmente o prazo de retenção de um dado pessoal"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+                "exemplos": [
+                  "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                  "ampliar a transparência ou a participação em conselhos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+                "exemplos": [
+                  "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                  "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+                "exemplos": [
+                  "descriminalizar amplamente condutas individuais",
+                  "desmontar de forma geral estruturas de vigilância e de polícia"
+                ]
+              }
+            },
+            "society": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+                "exemplos": [
+                  "orientar as políticas públicas por uma moral religiosa",
+                  "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+                "exemplos": [
+                  "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                  "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+                "exemplos": [
+                  "proteger uma tradição cultural ou religiosa específica",
+                  "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+                "exemplos": [
+                  "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                  "manter um costume familiar numa atividade local sem obrigar adesão"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever mudanças demográficas ou culturais",
+                  "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+                "exemplos": [
+                  "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                  "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+                "exemplos": [
+                  "ampliar direitos de um grupo historicamente discriminado",
+                  "atualizar uma norma social específica"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+                "exemplos": [
+                  "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                  "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+                "exemplos": [
+                  "reformar profundamente instituições como família, escola e religião",
+                  "abolir de forma geral costumes e normas morais herdados"
+                ]
+              }
+            }
+          }
+        },
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true
+      },
+      "escala": {
+        "id": "ordinal_9_v1",
+        "versao": 1,
+        "niveis": [
+          {
+            "chave": "polo_B_muito_forte",
+            "codigo": -4,
+            "rotulo": "polo B muito forte",
+            "polo": "B",
+            "valor": 0.0
+          },
+          {
+            "chave": "polo_B_forte",
+            "codigo": -3,
+            "rotulo": "polo B forte",
+            "polo": "B",
+            "valor": 0.125
+          },
+          {
+            "chave": "polo_B_moderado",
+            "codigo": -2,
+            "rotulo": "polo B moderado",
+            "polo": "B",
+            "valor": 0.25
+          },
+          {
+            "chave": "polo_B_leve",
+            "codigo": -1,
+            "rotulo": "polo B leve",
+            "polo": "B",
+            "valor": 0.375
+          },
+          {
+            "chave": "sem_posicao",
+            "codigo": 0,
+            "rotulo": "sem posicao",
+            "polo": null,
+            "valor": 0.5
+          },
+          {
+            "chave": "polo_A_leve",
+            "codigo": 1,
+            "rotulo": "polo A leve",
+            "polo": "A",
+            "valor": 0.625
+          },
+          {
+            "chave": "polo_A_moderado",
+            "codigo": 2,
+            "rotulo": "polo A moderado",
+            "polo": "A",
+            "valor": 0.75
+          },
+          {
+            "chave": "polo_A_forte",
+            "codigo": 3,
+            "rotulo": "polo A forte",
+            "polo": "A",
+            "valor": 0.875
+          },
+          {
+            "chave": "polo_A_muito_forte",
+            "codigo": 4,
+            "rotulo": "polo A muito forte",
+            "polo": "A",
+            "valor": 1.0
+          }
+        ],
+        "rubricas_por_eixo": {
+          "economic": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+              "exemplos": [
+                "privatizar a maior parte das empresas e dos serviços estatais",
+                "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+              "exemplos": [
+                "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+              "exemplos": [
+                "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                "simplificar tributos ou conter o crescimento do gasto público"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+              "exemplos": [
+                "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                "reduzir uma exigência burocrática específica para pequenos negócios"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+              "exemplos": [
+                "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+              "exemplos": [
+                "ampliar de forma focalizada um programa social ou serviço público",
+                "tornar um tributo específico mais progressivo"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+              "exemplos": [
+                "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+              "exemplos": [
+                "estatizar setores inteiros da economia",
+                "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+              ]
+            }
+          },
+          "diplomatic": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+              "exemplos": [
+                "sair de organismos ou tratados internacionais",
+                "ampliar fortemente as forças armadas para impor interesses nacionais"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+              "exemplos": [
+                "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+              "exemplos": [
+                "renegociar um acordo considerado desfavorável ao país",
+                "modernizar a defesa nacional"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+              "exemplos": [
+                "reservar uma exceção nacional estreita em um acordo internacional",
+                "condicionar uma recomendação internacional específica à aprovação local"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "descrever relações diplomáticas ou o comércio exterior",
+                "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+              "exemplos": [
+                "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                "apoiar um fórum consultivo internacional sem delegar decisões"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+              "exemplos": [
+                "aderir a um acordo multilateral",
+                "priorizar a mediação diplomática em conflitos"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+              "exemplos": [
+                "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                "delegar competências específicas a um tribunal regional com limites definidos"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+              "exemplos": [
+                "criar instituições comuns acima dos Estados nacionais",
+                "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+              ]
+            }
+          },
+          "state": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+              "exemplos": [
+                "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                "ampliar de forma geral a vigilância e a censura"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+              "exemplos": [
+                "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+              "exemplos": [
+                "endurecer penas ou ampliar poderes da polícia",
+                "ampliar a fiscalização estatal sobre condutas individuais numa área"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+              "exemplos": [
+                "ampliar levemente uma multa administrativa por uma conduta específica",
+                "exigir uma autorização adicional para uma atividade delimitada"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "apresentar estatísticas de segurança ou da administração pública",
+                "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+              "exemplos": [
+                "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                "reduzir pontualmente o prazo de retenção de um dado pessoal"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+              "exemplos": [
+                "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                "ampliar a transparência ou a participação em conselhos"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+              "exemplos": [
+                "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+              "exemplos": [
+                "descriminalizar amplamente condutas individuais",
+                "desmontar de forma geral estruturas de vigilância e de polícia"
+              ]
+            }
+          },
+          "society": {
+            "polo_B_muito_forte": {
+              "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+              "exemplos": [
+                "orientar as políticas públicas por uma moral religiosa",
+                "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+              ]
+            },
+            "polo_B_forte": {
+              "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+              "exemplos": [
+                "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+              ]
+            },
+            "polo_B_moderado": {
+              "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+              "exemplos": [
+                "proteger uma tradição cultural ou religiosa específica",
+                "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+              ]
+            },
+            "polo_B_leve": {
+              "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+              "exemplos": [
+                "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                "manter um costume familiar numa atividade local sem obrigar adesão"
+              ]
+            },
+            "sem_posicao": {
+              "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+              "exemplos": [
+                "descrever mudanças demográficas ou culturais",
+                "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+              ]
+            },
+            "polo_A_leve": {
+              "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+              "exemplos": [
+                "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+              ]
+            },
+            "polo_A_moderado": {
+              "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+              "exemplos": [
+                "ampliar direitos de um grupo historicamente discriminado",
+                "atualizar uma norma social específica"
+              ]
+            },
+            "polo_A_forte": {
+              "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+              "exemplos": [
+                "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+              ]
+            },
+            "polo_A_muito_forte": {
+              "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+              "exemplos": [
+                "reformar profundamente instituições como família, escola e religião",
+                "abolir de forma geral costumes e normas morais herdados"
+              ]
+            }
+          }
+        }
+      },
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chamadas_jev": 1,
+      "tentativas_jev": 1,
+      "latencia_com_tentativas_s": 1.3893471000046702
+    }
+  ],
+  "cobertura": [
+    {
+      "eixo": "economic",
+      "polo A": "Igualdade",
+      "polo B": "Mercado",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_muito_forte": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n polo_B_leve": 0,
+      "n sem_posicao": 0,
+      "n polo_A_leve": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "n polo_A_muito_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "diplomatic",
+      "polo A": "Globo",
+      "polo B": "Nação",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chunks": 2,
+      "chunks relevantes": 0,
+      "chunks com nível": 0,
+      "n polo_B_muito_forte": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n polo_B_leve": 0,
+      "n sem_posicao": 0,
+      "n polo_A_leve": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "n polo_A_muito_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 0.0,
+      "índice A": null,
+      "índice A entre posicionados": null,
+      "IC95 inferior": null,
+      "IC95 superior": null,
+      "evidência disponível": false,
+      "base da estimativa": "sem evidência",
+      "índice B": null,
+      "índice A só JEV": null
+    },
+    {
+      "eixo": "state",
+      "polo A": "Liberdade",
+      "polo B": "Autoridade",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chunks": 2,
+      "chunks relevantes": 2,
+      "chunks com nível": 2,
+      "n polo_B_muito_forte": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 2,
+      "n polo_B_leve": 0,
+      "n sem_posicao": 0,
+      "n polo_A_leve": 0,
+      "n polo_A_moderado": 0,
+      "n polo_A_forte": 0,
+      "n polo_A_muito_forte": 0,
+      "níveis do LLM": 0,
+      "LLM → A": 0,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 25.0,
+      "índice A entre posicionados": 25.0,
+      "IC95 inferior": 25.0,
+      "IC95 superior": 25.0,
+      "evidência disponível": true,
+      "base da estimativa": "múltiplos trechos",
+      "índice B": 75.0,
+      "índice A só JEV": 25.0
+    },
+    {
+      "eixo": "society",
+      "polo A": "Progresso",
+      "polo B": "Tradição",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424",
+      "chunks": 2,
+      "chunks relevantes": 2,
+      "chunks com nível": 2,
+      "n polo_B_muito_forte": 0,
+      "n polo_B_forte": 0,
+      "n polo_B_moderado": 0,
+      "n polo_B_leve": 0,
+      "n sem_posicao": 0,
+      "n polo_A_leve": 0,
+      "n polo_A_moderado": 2,
+      "n polo_A_forte": 0,
+      "n polo_A_muito_forte": 0,
+      "níveis do LLM": 1,
+      "LLM → A": 1,
+      "LLM → B": 0,
+      "falhas do LLM": 0,
+      "cobertura": 1.0,
+      "índice A": 75.0,
+      "índice A entre posicionados": 75.0,
+      "IC95 inferior": 75.0,
+      "IC95 superior": 75.0,
+      "evidência disponível": true,
+      "base da estimativa": "múltiplos trechos",
+      "índice B": 25.0,
+      "índice A só JEV": 75.0
+    }
+  ],
+  "resultado_8values": {
+    "scores": {
+      "equality": null,
+      "wealth": null,
+      "peace": null,
+      "might": null,
+      "liberty": 25.0,
+      "authority": 75.0,
+      "progress": 75.0,
+      "tradition": 25.0
+    },
+    "labels": [
+      "Sem evidência",
+      "Sem evidência",
+      "Estatal",
+      "Progressista"
+    ],
+    "eixos": [
+      {
+        "eixo": "economic",
+        "polo A": "Igualdade",
+        "valor A": null,
+        "polo B": "Mercado",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "diplomatic",
+        "polo A": "Globo",
+        "valor A": null,
+        "polo B": "Nação",
+        "valor B": null,
+        "rótulo exploratório por faixa": "Sem evidência",
+        "chunks com nível": 0,
+        "cobertura": 0.0,
+        "evidência disponível": false,
+        "base da estimativa": "sem evidência"
+      },
+      {
+        "eixo": "state",
+        "polo A": "Liberdade",
+        "valor A": 25.0,
+        "polo B": "Autoridade",
+        "valor B": 75.0,
+        "rótulo exploratório por faixa": "Estatal",
+        "chunks com nível": 2,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "múltiplos trechos"
+      },
+      {
+        "eixo": "society",
+        "polo A": "Progresso",
+        "valor A": 75.0,
+        "polo B": "Tradição",
+        "valor B": 25.0,
+        "rótulo exploratório por faixa": "Progressista",
+        "chunks com nível": 2,
+        "cobertura": 1.0,
+        "evidência disponível": true,
+        "base da estimativa": "múltiplos trechos"
+      }
+    ],
+    "closest_ideology": null,
+    "distance_score": null,
+    "interpretacao": "Índices, rótulos por faixa e ideologia mais próxima são exploratórios; a equivalência com o questionário não foi validada."
+  }
+}

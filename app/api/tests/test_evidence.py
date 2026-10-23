@@ -43,6 +43,17 @@ class EvidenceJev:
 
 
 class EvidenceTests(unittest.IsolatedAsyncioTestCase):
+    async def test_search_includes_new_extreme_levels(self):
+        for level in (-4, -3, 3, 4):
+            with self.subTest(level=level):
+                decisions = {'economic': {'relevante': True, 'nivel': level, 'method': 'jev', 'quote': None}}
+                result, calls, _ = await audit_evidence(TEXT, decisions, EvidenceJev(),
+                    {'economic': criar_rubrica_polaridade_ordinal('economic')},
+                    _score_evidencia_confere, quote_search=True)
+                self.assertEqual(calls, 1)
+                self.assertEqual(result['economic']['evidence_audit'][0]['level'], level)
+                self.assertEqual(result['economic']['evidence_audit'][0]['status'], 'found')
+
     async def audit(self, jev, **options):
         decisions = {'economic': {'relevante': True, 'nivel': 1, 'method': 'jev', 'quote': None}}
         snapshot = deepcopy(decisions)
@@ -121,7 +132,7 @@ class EvidenceTests(unittest.IsolatedAsyncioTestCase):
         _, _, saved = public_request({'text': TEXT, 'experiment_config': config.model_dump()}, lab_settings())
         self.assertIs(saved['semantic_evidence_check'], True)
         self.assertNotEqual(config_hash(config), config_hash(ExperimentConfig()))
-        old = ExperimentConfig().model_dump(exclude={'semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'})
+        old = ExperimentConfig().model_dump(exclude={'escala', 'semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'})
         import hashlib
         legacy_hash = hashlib.sha256(json.dumps({'config_version': '1', 'pipeline_version': 'jev-2-polos-mvp-1',
             'effective_config': old}, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()
@@ -157,7 +168,7 @@ class EvidenceHttpTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200, response.text)
         result = AnalysisResponse.model_validate(response.json())
         self.assertEqual(result.logical_calls.jev, 3)
-        self.assertEqual(result.axes[0].pole_a, 75)
+        self.assertEqual(result.axes[0].pole_a, 62.5)
         self.assertEqual(result.axes[0].evidence[0].quote, TEXT)
         self.assertEqual(result.axes[0].evidence_audit[1].status, 'contradiz')
         self.assertEqual(analyze_route.daily['calls'], 3)

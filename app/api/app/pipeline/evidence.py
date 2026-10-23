@@ -60,11 +60,11 @@ async def audit_evidence(text, decisions, jev, rubrics, literal_check, *,
     """Return enriched copies, attempted logical calls, and observed model names.
 
     decisions: {axis: {relevante, nivel, method ('jev'/'llm'), quote, ...}}.
-    rubrics: the same five-level rubric used to classify each axis. Only the
+    rubrics: the same nine-level rubric used to classify each axis. Only the
     verdict is experimental; literal presence alone is never semantic support.
     """
     result, calls, models = deepcopy(decisions), 0, []
-    eligible = {axis: d for axis, d in result.items() if d.get("relevante") is True and d.get("nivel") in (-2, -1, 0, 1, 2)}
+    eligible = {axis: d for axis, d in result.items() if d.get("relevante") is True and (type(d.get("nivel")) is int and (not rubrics.get(axis, {}).get("niveis") or d["nivel"] in {n["valor"] for n in rubrics[axis]["niveis"].values()}))}
     claims = {axis: {"eixo": axis, "nivel": d["nivel"], "rubrica": rubrics[axis]} for axis, d in eligible.items()}
 
     def record(axis, kind, status, **data):

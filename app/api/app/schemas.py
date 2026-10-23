@@ -1,6 +1,7 @@
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator, model_serializer
 from .experiment_config import ExperimentOverrides, ExperimentConfig, CONFIG_VERSION, PIPELINE_VERSION, config_hash
+from .polarity import EscalaOrdinal
 
 Axis = Literal["economic", "diplomatic", "state", "society"]
 Level = Literal["low", "medium", "high"]
@@ -35,11 +36,15 @@ class Evidence(BaseModel):
 
 
 class LevelCounts(BaseModel):
+    minus4: int = 0
+    minus3: int = 0
     minus2: int = 0
     minus1: int = 0
     zero: int = 0
     plus1: int = 0
     plus2: int = 0
+    plus3: int = 0
+    plus4: int = 0
 
 
 class EvidenceAudit(BaseModel):
@@ -47,7 +52,7 @@ class EvidenceAudit(BaseModel):
     chunk_index: int = Field(ge=0)
     kind: Literal["search", "semantic"]
     status: Literal["found", "not_selected", "not_literal", "sustenta", "contradiz", "insuficiente", "uncertain", "failed", "invalid"]
-    level: Literal[-2, -1, 0, 1, 2]
+    level: int = Field(strict=True)
     quote: str | None = None
     sentence_id: str | None = None
     start: int | None = Field(default=None, ge=0)
@@ -68,6 +73,7 @@ class AxisResult(BaseModel):
     total_chunks: int
     sufficient_evidence: bool
     level_counts: LevelCounts
+    level_counts_by_key: dict[str, int] | None = None
     ci95: tuple[float, float] | None
     methods_used: list[Literal["jev", "llm"]]
     reason_codes: list[str]
@@ -79,6 +85,8 @@ class AxisResult(BaseModel):
         result = handler(self)
         if not self.evidence_audit:
             result.pop("evidence_audit", None)
+        if self.level_counts_by_key is None:
+            result.pop("level_counts_by_key", None)
         return result
 
 
@@ -93,7 +101,9 @@ class LogicalCalls(BaseModel):
 
 
 class AnalysisResponse(BaseModel):
-    schema_version: str = "1"
+    schema_version: str = "3"
+    escala: EscalaOrdinal | None = None
+    escala_hash: str | None = None
     pipeline_version: str = PIPELINE_VERSION
     processing_level: Level
     models_used: list[str]
@@ -109,6 +119,25 @@ class AnalysisResponse(BaseModel):
 
     @model_validator(mode="after")
     def config_metadata(self):
+        if self.schema_version not in ("1", "2", "3"):
+            raise ValueError("Versão de resposta desconhecida.")
+        if self.schema_version in ("1", "2"):
+            if self.escala is not None or self.escala_hash is not None:
+                raise ValueError("Resultados históricos usam a escala da versão original.")
+            maximum = 2 if self.schema_version == "1" else 4
+            if any(abs(a.level) > maximum for axis in self.axes for a in axis.evidence_audit):
+                raise ValueError("Auditoria incompatível com a escala histórica.")
+        if self.schema_version == "3":
+            if self.escala is None or self.escala_hash != self.escala.hash:
+                raise ValueError("Snapshot de escala ausente ou hash inválido.")
+            if self.effective_config is not None and self.effective_config.escala.hash != self.escala.hash:
+                raise ValueError("Escala difere da configuração efetiva.")
+            for axis in self.axes:
+                counts = axis.level_counts_by_key
+                if counts is None or set(counts) != set(self.escala.por_chave) or any(type(c) is not int or c < 0 for c in counts.values()) or sum(counts.values()) != axis.valid_chunks:
+                    raise ValueError("Contagens incompatíveis com a escala.")
+                if any(a.level not in self.escala.por_codigo for a in axis.evidence_audit):
+                    raise ValueError("Auditoria incompatível com a escala.")
         metadata = (self.effective_config, self.config_version, self.config_hash, self.environment)
         if any(item is not None for item in metadata):
             if any(item is None for item in metadata) or self.config_version != CONFIG_VERSION:
@@ -120,7 +149,13 @@ class AnalysisResponse(BaseModel):
     @model_serializer(mode="wrap")
     def serialize(self, handler):
         result = handler(self)
-        for name in ("effective_config", "config_version", "config_hash", "environment", "lab_execution_id"):
+        for name in ("effective_config", "config_version", "config_hash", "environment", "lab_execution_id", "escala", "escala_hash"):
             if result.get(name) is None:
                 result.pop(name, None)
+        if self.schema_version in ("1", "2") and self.effective_config is not None and "escala" not in self.effective_config.model_fields_set:
+            result["effective_config"].pop("escala", None)
+        if self.schema_version == "1":
+            for axis in result["axes"]:
+                for key in ("minus4", "minus3", "plus3", "plus4"):
+                    axis["level_counts"].pop(key, None)
         return result

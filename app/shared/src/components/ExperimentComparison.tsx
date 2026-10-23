@@ -17,6 +17,7 @@ export default function ExperimentComparison({ entry, entries }: { entry: Analys
       <div className="experimentTable"><table><caption>Resultado atual e outra análise</caption><thead><tr><th scope="col">Medida</th><th scope="col">Atual</th><th scope="col">Outra</th></tr></thead><tbody>
         <tr><th scope="row">Modo</th><td>{modeLabels[entry.mode]}</td><td>{modeLabels[other.mode]}</td></tr>
         <tr><th scope="row">Modelos retornados</th><td>{entry.analysis.models_used.join(', ')}</td><td>{other.analysis.models_used.join(', ')}</td></tr>
+        <tr><th scope="row">Escala utilizada</th><td>{entry.analysis.escala?.id ?? `Histórica ${entry.analysis.schema_version === '1' ? 5 : 9} níveis`} · {entry.analysis.escala_hash?.slice(0, 12)}</td><td>{other.analysis.escala?.id ?? `Histórica ${other.analysis.schema_version === '1' ? 5 : 9} níveis`} · {other.analysis.escala_hash?.slice(0, 12)}</td></tr>
         <tr><th scope="row">Chamadas lógicas JEV / LLM</th><td>{entry.analysis.logical_calls.jev} / {entry.analysis.logical_calls.llm}</td><td>{other.analysis.logical_calls.jev} / {other.analysis.logical_calls.llm}</td></tr>
         {axisOrder.map(axis => { const a = entry.analysis.axes.find(item => item.axis === axis)!, b = other.analysis.axes.find(item => item.axis === axis)!
           const label = (value: typeof a) => `${value.pole_a === null ? 'Sem estimativa' : value.pole_a.toFixed(1)} · cobertura ${(value.coverage * 100).toFixed(0)}%`

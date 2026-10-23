@@ -1,6 +1,7 @@
 import { axisOrder, type Axis } from '../domain/axes'
 import { isExperimentCapabilities, isExperimentConfig, type ExperimentConfig, type ExperimentCapabilities } from '../domain/experimentConfig'
 import { isLabBuild } from '../domain/experimentConfig'
+import { isOrdinalScale, sameContent, type OrdinalScale } from '../domain/ordinalScale'
 
 export type Mode = 'low' | 'medium' | 'high'
 export type LabProvider = 'typesafe' | 'maritaca' | 'gemini'
@@ -17,16 +18,18 @@ export type AxisResult = {
   axis: Axis; pole_a: number | null; pole_b: number | null;
   status: 'estimated' | 'no_evidence' | 'abstained'; coverage: number;
   valid_chunks: number; total_chunks: number; sufficient_evidence: boolean;
-  level_counts: { minus2: number; minus1: number; zero: number; plus1: number; plus2: number };
+  level_counts: { minus4?: number; minus3?: number; minus2: number; minus1: number; zero: number; plus1: number; plus2: number; plus3?: number; plus4?: number };
   ci95: [number, number] | null; methods_used: ('jev' | 'llm')[];
   reason_codes: string[]; evidence: { chunk_index: number; quote: string; verified: true }[]
   evidence_audit?: EvidenceAudit[]
+  level_counts_by_key?: Record<string, number>
 }
 export type Analysis = {
   schema_version: string; pipeline_version: string; processing_level: Mode;
   models_used: string[]; axes: AxisResult[]; chunks: { index: number; text: string }[];
   logical_calls: { jev: number; llm: number }; warnings: string[];
   effective_config?: ExperimentConfig; config_version?: '1'; config_hash?: string; environment?: 'development' | 'lab' | 'production'; lab_execution_id?: string
+  escala?: OrdinalScale; escala_hash?: string
 }
 export type AnalysisEntry<Id extends number | string = number> = { id: Id; title: string; text: string; analysis: Analysis; mode: Mode; source?: string }
 export type Capabilities = { max_chars: number; max_tokens: number; max_chunks: number; modes: Record<Mode, boolean>; timeout_seconds: number;
@@ -37,10 +40,10 @@ function strings(value: unknown): value is string[] { return Array.isArray(value
 function count(value: unknown): value is number { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 }
 function positive(value: unknown): value is number { return count(value) && value > 0 }
 function score(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100 }
-function isEvidenceAudit(value: unknown, chunks: Analysis['chunks']): value is EvidenceAudit {
+function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersion: string, codes?: number[]): value is EvidenceAudit {
   if (!object(value) || !count(value.chunk_index) || !chunks.some(c => c.index === value.chunk_index) ||
       !['search', 'semantic'].includes(value.kind as string) || !['found', 'not_selected', 'not_literal', 'sustenta', 'contradiz', 'insuficiente', 'uncertain', 'failed', 'invalid'].includes(value.status as string) ||
-      ![-2, -1, 0, 1, 2].includes(value.level as number)) return false
+      !(codes ?? (schemaVersion === '2' ? [-4, -3, -2, -1, 0, 1, 2, 3, 4] : [-2, -1, 0, 1, 2])).includes(value.level as number)) return false
   if (!['confidence', 'existence_probability'].every(key => value[key] == null || (typeof value[key] === 'number' && Number.isFinite(value[key]) && value[key] >= 0 && value[key] <= 1))) return false
   if (!['quote', 'sentence_id', 'model'].every(key => value[key] == null || typeof value[key] === 'string')) return false
   if (!['start', 'end'].every(key => value[key] == null || count(value[key]))) return false
@@ -65,21 +68,29 @@ export function isAnalysis(value: unknown): value is Analysis {
   if (object(value) && value.lab_execution_id !== undefined && (typeof value.lab_execution_id !== 'string' || !/^[a-f0-9-]{36}$/.test(value.lab_execution_id))) return false
   if (object(value) && ['effective_config', 'config_version', 'config_hash', 'environment'].some(name => name in value) &&
     (!isExperimentConfig(value.effective_config) || value.config_version !== '1' || typeof value.config_hash !== 'string' || !/^[a-f0-9]{64}$/.test(value.config_hash) || !['development', 'lab', 'production'].includes(value.environment as string))) return false
-  if (!object(value) || value.schema_version !== '1' || typeof value.pipeline_version !== 'string' ||
+  if (!object(value) || !['1', '2', '3'].includes(value.schema_version as string) || typeof value.pipeline_version !== 'string' ||
     !modes.includes(value.processing_level as Mode) || !strings(value.models_used) || !strings(value.warnings) ||
     !object(value.logical_calls) || !count(value.logical_calls.jev) || !count(value.logical_calls.llm) ||
     !Array.isArray(value.chunks) || !value.chunks.every(chunk => object(chunk) && count(chunk.index) && typeof chunk.text === 'string') ||
     !Array.isArray(value.axes) || value.axes.length !== 4) return false
   const chunks = value.chunks
   const axes = value.axes
+  const scale = isOrdinalScale(value.escala) ? value.escala : undefined
+  if (value.schema_version !== '3' && (value.escala !== undefined || value.escala_hash !== undefined)) return false
+  if (value.schema_version === '3' && (!scale || typeof value.escala_hash !== 'string' || !/^[a-f0-9]{64}$/.test(value.escala_hash) || (isExperimentConfig(value.effective_config) && !sameContent(value.effective_config.escala, scale)))) return false
   return axisOrder.every(axis => axes.filter(item => object(item) && item.axis === axis).length === 1) && axes.every(item => {
-    if (object(item) && item.evidence_audit !== undefined && (!Array.isArray(item.evidence_audit) || !item.evidence_audit.every(audit => isEvidenceAudit(audit, chunks)))) return false
+    if (object(item) && item.evidence_audit !== undefined && (!Array.isArray(item.evidence_audit) || !item.evidence_audit.every(audit => isEvidenceAudit(audit, chunks, value.schema_version as string, scale?.niveis.map(n => n.codigo))))) return false
     if (!object(item) || !['estimated', 'no_evidence', 'abstained'].includes(item.status as string) ||
       !count(item.valid_chunks) || !count(item.total_chunks) || item.valid_chunks > item.total_chunks ||
       typeof item.coverage !== 'number' || !Number.isFinite(item.coverage) || item.coverage < 0 || item.coverage > 1 ||
       typeof item.sufficient_evidence !== 'boolean' || !object(item.level_counts) || !strings(item.reason_codes) ||
       !Array.isArray(item.methods_used) || !item.methods_used.every(method => ['jev', 'llm'].includes(method))) return false
     const levels = item.level_counts
+    if (value.schema_version === '3') {
+      const counts = item.level_counts_by_key
+      if (!object(counts) || Object.keys(counts).length !== scale!.niveis.length || !scale!.niveis.every(n => count(counts[n.chave])) || Object.values(counts).reduce<number>((sum, c) => sum + Number(c), 0) !== item.valid_chunks) return false
+    }
+    if (value.schema_version === '2' && !['minus4', 'minus3', 'plus3', 'plus4'].every(key => count(levels[key]))) return false
     if (!['minus2', 'minus1', 'zero', 'plus1', 'plus2'].every(key => count(levels[key])) ||
       !Array.isArray(item.evidence) || !item.evidence.every(ev => object(ev) && count(ev.chunk_index) &&
         typeof ev.quote === 'string' && ev.quote.trim() && ev.verified === true &&
@@ -161,7 +172,7 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
         }
         const data: unknown = await response.json()
         if (!isAnalysis(data) || data.processing_level !== processingLevel) throw new Error('A API retornou uma análise inválida.')
-        if (experimentConfig && (data.environment !== 'lab' || !data.effective_config || Object.keys(experimentConfig).some(name => data.effective_config![name as keyof ExperimentConfig] !== experimentConfig[name as keyof ExperimentConfig]))) throw new Error('A API não confirmou a configuração experimental utilizada.')
+        if (experimentConfig && (data.environment !== 'lab' || !data.effective_config || Object.keys(experimentConfig).some(name => !sameContent(data.effective_config![name as keyof ExperimentConfig], experimentConfig[name as keyof ExperimentConfig])))) throw new Error('A API não confirmou a configuração experimental utilizada.')
         return data
       } catch (err) {
         if (timedOut) throw new AnalysisTimeoutError()
