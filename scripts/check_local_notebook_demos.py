@@ -1,4 +1,4 @@
-"""Executa as demonstrações didáticas locais até o bloco de APIs, sem ler documentos."""
+"""Executa as demonstrações didáticas locais até o bloco de APIs, sem ler planos de governo."""
 import ast
 import asyncio
 import contextlib
@@ -22,7 +22,7 @@ async def main():
             source = source.replace('ESCALA_ATUAL = ESCALA_5_NIVEIS', 'ESCALA_ATUAL = ESCALA_9_NIVEIS')
         if c['cell_type'] == 'markdown' and source.startswith('## Trocar os dublês'):
             break
-        if c['cell_type'] != 'code' or source.startswith(('QUESTIONS =', 'planos_governo =', 'plano_escolhido =')):
+        if c['cell_type'] != 'code' or source.startswith(('planos_governo =', 'plano_escolhido =')):
             continue
         with contextlib.redirect_stdout(io.StringIO()):
             result = eval(compile(source, f'{path.name}:{c.get("id")}', 'exec', flags=ast.PyCF_ALLOW_TOP_LEVEL_AWAIT), ns)
