@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+1,economic,semantic,insuficiente,-2,a privatização deverá fortalecer a Eletrobras,0.55,"{'sustenta': 0.26, 'contradiz': 0.04, 'insuficiente': 0.7}",jev-1.13.0
+2,economic,semantic,sustenta,2,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”",0.27,"{'sustenta': 0.51, 'contradiz': 0.1, 'insuficiente': 0.39}",jev-1.13.0

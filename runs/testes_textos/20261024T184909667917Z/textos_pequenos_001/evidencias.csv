@@ -1,0 +1,5 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,-4.0,Privatização de todas as empresas estatais,sim,S000,0.0,42.0,0.83,passagem encontrada,sustenta,0.97,jev-1.13.0
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,

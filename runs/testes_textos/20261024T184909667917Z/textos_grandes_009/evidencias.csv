@@ -1,0 +1,13 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,2.0,"Parlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.",sim,S002,87.0,419.0,0.75,passagem encontrada,sustenta,0.76,jev-1.13.0
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,society,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,economic,jev_ordinal,2.0,,sem citação,,,,0.58,nenhuma passagem selecionada,não executada,,jev-1.13.0
+2,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,state,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,economic,jev_ordinal,2.0,"Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.",sim,S002,371.0,578.0,0.77,passagem encontrada,sustenta,0.82,jev-1.13.0
+3,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,state,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,society,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
