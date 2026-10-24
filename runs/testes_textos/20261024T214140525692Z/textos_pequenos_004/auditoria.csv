@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,sentence_id,start,end,existence_probability
+0,state,semantic,sustenta,2,garantia de atendimento na rede pública de saúde,0.27,"{'sustenta': 0.51, 'contradiz': 0.01, 'insuficiente': 0.48}",jev-1.13.0,,,,
+0,society,search,found,2,Legalização do aborto e garantia de atendimento na rede pública de saúde,0.9,"{'S000': 0.95, 'NONE': 0.05}",jev-1.13.0,S000,0.0,72.0,0.72
+0,society,semantic,sustenta,2,Legalização do aborto e garantia de atendimento na rede pública de saúde,0.7,"{'sustenta': 0.8, 'contradiz': 0.01, 'insuficiente': 0.19}",jev-1.13.0,,,,

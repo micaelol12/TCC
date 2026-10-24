@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,existence_probability,confidence,probabilities,model,quote
+0,state,search,not_selected,-1,0.63,0.74,"{'S000': 0.87, 'NONE': 0.13}",jev-1.13.0,
+0,society,semantic,sustenta,-3,,0.31,"{'sustenta': 0.54, 'contradiz': 0.09, 'insuficiente': 0.37}",jev-1.13.0,pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família

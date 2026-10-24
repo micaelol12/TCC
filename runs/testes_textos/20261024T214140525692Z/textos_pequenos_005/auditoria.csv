@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,state,search,found,2,S000,0.0,105.0,O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.,0.76,0.98,"{'S000': 0.99, 'NONE': 0.01}",jev-1.13.0
+0,state,semantic,sustenta,2,,,,O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.,,0.85,"{'sustenta': 0.9, 'contradiz': 0.01, 'insuficiente': 0.09}",jev-1.13.0

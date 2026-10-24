@@ -1,0 +1,427 @@
+{
+  "original": {
+    "texto": "Câmara aprova texto-base da MP da Liberdade Econômica\n\nO Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.\n\nO texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.\n\nA proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.\n\nO texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.\n\nOutros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.\n\nTrabalho aos domingos\n\nA principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.\n\nPelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.\n\nO dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”.\n\n“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.\n\nA deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.\n\nO líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.\n\nSindicatos\n\nO presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.\n\nO tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.\n\nPara a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.\n\nAgência Câmara",
+    "data": "2019-08-13",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/570318-camara-aprova-texto-base-da-mp-da-liberdade-economica/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "complexidade": "dificil"
+  },
+  "contexto": {
+    "id": "20261024T214140525692Z",
+    "arquivo": "C:\\Users\\User\\Desktop\\TCC\\pesquisa_exemplos\\textos_teste.json",
+    "pipeline": {
+      "modelo_jev": "jev-1.13.0",
+      "modelo_llm": "sabia-4",
+      "temperatura_llm": 0.0,
+      "timeout_llm_s": 360.0,
+      "tentativas_llm": 3,
+      "cascata": {
+        "regra_decisao": "polo_primeiro",
+        "tipo_relevancia": "choice",
+        "limiar_noul": 0.5,
+        "margem_relevancia_minima": 0.6,
+        "primitiva_polaridade": "choice",
+        "confianca_nivel_minima": 0.5,
+        "margem_direcao_minima": 0.2,
+        "usar_fallback": true,
+        "semantic_evidence_check": true,
+        "jev_evidence_search": true,
+        "evidence_existence_min": 0.7,
+        "escala": {
+          "id": "ordinal_9_v1",
+          "versao": 1,
+          "niveis": [
+            {
+              "chave": "polo_B_muito_forte",
+              "codigo": -4,
+              "rotulo": "polo B muito forte",
+              "polo": "B",
+              "valor": 0.0
+            },
+            {
+              "chave": "polo_B_forte",
+              "codigo": -3,
+              "rotulo": "polo B forte",
+              "polo": "B",
+              "valor": 0.125
+            },
+            {
+              "chave": "polo_B_moderado",
+              "codigo": -2,
+              "rotulo": "polo B moderado",
+              "polo": "B",
+              "valor": 0.25
+            },
+            {
+              "chave": "polo_B_leve",
+              "codigo": -1,
+              "rotulo": "polo B leve",
+              "polo": "B",
+              "valor": 0.375
+            },
+            {
+              "chave": "sem_posicao",
+              "codigo": 0,
+              "rotulo": "sem posicao",
+              "polo": null,
+              "valor": 0.5
+            },
+            {
+              "chave": "polo_A_leve",
+              "codigo": 1,
+              "rotulo": "polo A leve",
+              "polo": "A",
+              "valor": 0.625
+            },
+            {
+              "chave": "polo_A_moderado",
+              "codigo": 2,
+              "rotulo": "polo A moderado",
+              "polo": "A",
+              "valor": 0.75
+            },
+            {
+              "chave": "polo_A_forte",
+              "codigo": 3,
+              "rotulo": "polo A forte",
+              "polo": "A",
+              "valor": 0.875
+            },
+            {
+              "chave": "polo_A_muito_forte",
+              "codigo": 4,
+              "rotulo": "polo A muito forte",
+              "polo": "A",
+              "valor": 1.0
+            }
+          ],
+          "rubricas_por_eixo": {
+            "economic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+                "exemplos": [
+                  "privatizar a maior parte das empresas e dos serviços estatais",
+                  "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+                "exemplos": [
+                  "privatizar empresas de vários setores mantendo saúde e educação públicas",
+                  "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+                "exemplos": [
+                  "conceder à iniciativa privada a gestão de alguns serviços ou obras",
+                  "simplificar tributos ou conter o crescimento do gasto público"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+                "exemplos": [
+                  "dar preferência a fornecedores privados em um pequeno projeto piloto",
+                  "reduzir uma exigência burocrática específica para pequenos negócios"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
+                  "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+                "exemplos": [
+                  "priorizar famílias de menor renda nas vagas já existentes de um benefício",
+                  "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+                "exemplos": [
+                  "ampliar de forma focalizada um programa social ou serviço público",
+                  "tornar um tributo específico mais progressivo"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+                "exemplos": [
+                  "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
+                  "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+                "exemplos": [
+                  "estatizar setores inteiros da economia",
+                  "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
+                ]
+              }
+            },
+            "diplomatic": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+                "exemplos": [
+                  "sair de organismos ou tratados internacionais",
+                  "ampliar fortemente as forças armadas para impor interesses nacionais"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+                "exemplos": [
+                  "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
+                  "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+                "exemplos": [
+                  "renegociar um acordo considerado desfavorável ao país",
+                  "modernizar a defesa nacional"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+                "exemplos": [
+                  "reservar uma exceção nacional estreita em um acordo internacional",
+                  "condicionar uma recomendação internacional específica à aprovação local"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever relações diplomáticas ou o comércio exterior",
+                  "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+                "exemplos": [
+                  "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
+                  "apoiar um fórum consultivo internacional sem delegar decisões"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+                "exemplos": [
+                  "aderir a um acordo multilateral",
+                  "priorizar a mediação diplomática em conflitos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+                "exemplos": [
+                  "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
+                  "delegar competências específicas a um tribunal regional com limites definidos"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+                "exemplos": [
+                  "criar instituições comuns acima dos Estados nacionais",
+                  "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
+                ]
+              }
+            },
+            "state": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+                "exemplos": [
+                  "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
+                  "ampliar de forma geral a vigilância e a censura"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+                "exemplos": [
+                  "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
+                  "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+                "exemplos": [
+                  "endurecer penas ou ampliar poderes da polícia",
+                  "ampliar a fiscalização estatal sobre condutas individuais numa área"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+                "exemplos": [
+                  "ampliar levemente uma multa administrativa por uma conduta específica",
+                  "exigir uma autorização adicional para uma atividade delimitada"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "apresentar estatísticas de segurança ou da administração pública",
+                  "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+                "exemplos": [
+                  "dispensar autorização prévia para uma atividade individual de alcance restrito",
+                  "reduzir pontualmente o prazo de retenção de um dado pessoal"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+                "exemplos": [
+                  "fortalecer o direito de defesa ou a proteção de dados pessoais",
+                  "ampliar a transparência ou a participação em conselhos"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+                "exemplos": [
+                  "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
+                  "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+                "exemplos": [
+                  "descriminalizar amplamente condutas individuais",
+                  "desmontar de forma geral estruturas de vigilância e de polícia"
+                ]
+              }
+            },
+            "society": {
+              "polo_B_muito_forte": {
+                "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+                "exemplos": [
+                  "orientar as políticas públicas por uma moral religiosa",
+                  "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
+                ]
+              },
+              "polo_B_forte": {
+                "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+                "exemplos": [
+                  "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
+                  "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
+                ]
+              },
+              "polo_B_moderado": {
+                "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+                "exemplos": [
+                  "proteger uma tradição cultural ou religiosa específica",
+                  "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
+                ]
+              },
+              "polo_B_leve": {
+                "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+                "exemplos": [
+                  "preservar uma cerimônia tradicional facultativa de uma comunidade",
+                  "manter um costume familiar numa atividade local sem obrigar adesão"
+                ]
+              },
+              "sem_posicao": {
+                "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+                "exemplos": [
+                  "descrever mudanças demográficas ou culturais",
+                  "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
+                ]
+              },
+              "polo_A_leve": {
+                "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+                "exemplos": [
+                  "permitir uma alternativa facultativa a uma cerimônia tradicional local",
+                  "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
+                ]
+              },
+              "polo_A_moderado": {
+                "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+                "exemplos": [
+                  "ampliar direitos de um grupo historicamente discriminado",
+                  "atualizar uma norma social específica"
+                ]
+              },
+              "polo_A_forte": {
+                "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+                "exemplos": [
+                  "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
+                  "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
+                ]
+              },
+              "polo_A_muito_forte": {
+                "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+                "exemplos": [
+                  "reformar profundamente instituições como família, escola e religião",
+                  "abolir de forma geral costumes e normas morais herdados"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "cliente_llm": "MaritacaClient",
+      "tentativas_lote": 3,
+      "pausa_segundos": 0.2
+    },
+    "indice": {
+      "n_bootstrap": 2000,
+      "semente": 42
+    },
+    "nome": "textos_grandes_007",
+    "grupo": "textos_grandes",
+    "posicao": 7,
+    "complexidade": "dificil",
+    "data": "2019-08-13",
+    "fonte": {
+      "nome": "Agência Câmara",
+      "url": "https://www.camara.leg.br/noticias/570318-camara-aprova-texto-base-da-mp-da-liberdade-economica/",
+      "tipo_texto": "texto_original_extraido_sem_parafrase"
+    },
+    "preparacao": {
+      "limpar_markdown": true,
+      "dividir_em_chunks": true,
+      "chunks": {
+        "estrategia": "sentencas",
+        "tokens_alvo": 600,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base",
+        "limite_tokens_entrada": null
+      },
+      "segmentador_versao": "punkt_pt_v1",
+      "diagnostico_segmentacao": [
+        {
+          "trecho": 1,
+          "caracteres": 1938,
+          "tokens": 543,
+          "sentencas": 12,
+          "acima_alvo": false,
+          "sentencas_longas": 0
+        },
+        {
+          "trecho": 2,
+          "caracteres": 1899,
+          "tokens": 532,
+          "sentencas": 20,
+          "acima_alvo": false,
+          "sentencas_longas": 0
+        }
+      ],
+      "caracteres_originais": 3839,
+      "caracteres_apos_limpeza": 3839,
+      "log_limpeza": {
+        "blocos de imagem removidos": 0,
+        "linhas de sumário removidas": 0,
+        "quebras de página unidas": 0,
+        "marcas de ênfase removidas": 0,
+        "separadores de tabela removidos": 0
+      }
+    }
+  },
+  "chunks": [
+    "Câmara aprova texto-base da MP da Liberdade Econômica\n\nO Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram para esta quarta-feira (14) e serão todos votados pelo sistema eletrônico, fruto de um acordo com a oposição.\n\nO texto aprovado é uma emenda aglutinativa negociada pelo relator, deputado Jerônimo Goergen (PP-RS), que retira pontos aprovados na comissão mista considerados inconstitucionais. “Vamos aprovar uma lei com toda a segurança de que vamos dar um passo importantíssimo para diminuir a presença do Estado na vida do cidadão”, disse o relator.\n\nA proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a atuação do Fisco federal.\n\nO texto libera pessoas físicas e empresas para desenvolver negócios considerados de baixo risco, que poderão contar com dispensa total de atos como licenças, autorizações, inscrições, registros ou alvarás.\n\nOutros temas tratados pela proposta são a instituição da carteira de trabalho digital; agilidade na abertura e fechamento de empresas; substituição dos sistemas de Escrituração Digital de Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) e do banco de dados sobre estoques chamado Bloco K.\n\nTrabalho aos domingos\n\nA principal polêmica é o fim das restrições ao trabalho nos domingos e feriados, dispensando o pagamento em dobro do tempo trabalhado nesses dias se a folga for determinada para outro dia da semana.\n\nPelo texto, o trabalhador poderá trabalhar até quatro domingos seguidos, quando lhe será garantida uma folga neste dia.\n\nO dispositivo foi duramente criticado pela oposição no decorrer da sessão. O deputado Daniel Almeida (PCdoB-BA) disse que a intenção é promover uma “minirreforma trabalhista”.",
+    "“Todos somos a favor de desburocratizar, de ter liberdade econômica. Mas não é possível essa liberalização geral para o trabalho aos domingos. Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações”, afirmou o parlamentar.\n\nA deputada Margarida Salomão (PT-MG) disse que a precarização não pode ser a saída para o crescimento. “Não é necessário precarizar o trabalho para que o desenvolvimento aconteça. Querer abolir a regulação é ameaçar as condições de consistência do desenvolvimento”, declarou.\n\nO líder do PDT, deputado André Figueiredo (CE), disse que o texto amplia em excesso a autorização para o trabalho aos domingos. “No caso de ação consensual entre o sindicado patronal e o laboral, principalmente para o setor de bares, restaurantes e hotelaria, cabe a faculdade de trabalhar ao domingo. A grande questão é que estamos abrindo para todos os setores”, ressaltou.\n\nSindicatos\n\nO presidente da Câmara, Rodrigo Maia, informou que o tema foi negociado com a Central Única dos Trabalhadores (CUT). “Eu estive hoje com o presidente da CUT. A preocupação dele era que não fossem 7 semanas, que fossem 4 semanas. Eu acho que trabalhar aos domingos também, para um país que pretende ser do turismo, não é nenhum problema, contanto que seja respeitada a folga do trabalhador”, afirmou.\n\nO tema foi defendido pelo relator, Jerônimo Goergen. Ele disse que os deputados e o governo perderam a “batalha da mídia” sobre a proposta de trabalho aos domingos por até sete semanas e que o texto atual garante o desenvolvimento econômico.\n\nPara a deputada Soraya Santos (PL-RJ), a medida vai aquecer a economia. “Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos. Para o Brasil, na situação em que está, isso vai ser de grande valia”, disse.\n\nAgência Câmara"
+  ]
+}

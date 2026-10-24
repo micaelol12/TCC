@@ -90,7 +90,12 @@ function init(){
   $('stats').innerHTML=stats.map(([v,l])=>`<div class="stat"><strong>${esc(v)}</strong><span>${esc(l)}</span></div>`).join('');
   const segmentation=context.preparacao?.chunks;
   const preparation=context.preparacao;
-  const overview=[['01 · Entrada',finite(preparation?.caracteres_originais)?fmt(preparation.caracteres_originais,0)+' caracteres originais':'Texto registrado por chunk'],['02 · Segmentação',preparation?.dividir_em_chunks===false?'Texto inteiro':segmentation?`${segmentation.max_tokens} tokens / sobreposição ${segmentation.overlap_tokens}`:records.length+' trechos'],['03 · JEV',`${records.length} chamadas lógicas · 4 eixos por chunk`],['04 · Fallback',`${records.filter(hasLLM).length} chunks com LLM`],['05 · Agregação','Média dos trechos relevantes com nível']];
+  const target=segmentation?.tokens_alvo??segmentation?.max_tokens;
+  const exceptions=(preparation?.diagnostico_segmentacao??[]).filter(d=>d.acima_alvo).length;
+  const segmentationLabel=segmentation?.estrategia==='sentencas'
+    ?`Sentenças completas · alvo ${target} tokens · ${exceptions} trecho(s) acima do alvo`
+    :segmentation?`${target} tokens / sobreposição ${segmentation.overlap_tokens??0}`:records.length+' trechos';
+  const overview=[['01 · Entrada',finite(preparation?.caracteres_originais)?fmt(preparation.caracteres_originais,0)+' caracteres originais':'Texto registrado por chunk'],['02 · Segmentação',preparation?.dividir_em_chunks===false?'Texto inteiro':segmentationLabel],['03 · JEV',`${records.length} chamadas lógicas · 4 eixos por chunk`],['04 · Fallback',`${records.filter(hasLLM).length} chunks com LLM`],['05 · Agregação','Média dos trechos relevantes com nível']];
   $('overview').innerHTML=overview.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('');
   $('parameters').textContent=JSON.stringify({execucao:context,cascata_por_chunk:records.map((r,i)=>({chunk:i+1,config:r.config??null})),nota:'Modelos efetivamente retornados aparecem nas decisões. Chamadas lógicas não contam tentativas internas; latências não incluem pausas entre chunks.'},null,2);
   $('axis').innerHTML=axes.map(e=>`<option value="${e}">${names[e]} · ${poles[e][1]} ↔ ${poles[e][0]}</option>`).join('');
@@ -183,7 +188,9 @@ function render(){
   const r=records[selected],initial=r.eixos_jev[axis],final=r.eixos[axis],cfg=r.config||{};
   const triggers=(r.motivos_fallback||{})[axis]||[],used=final.metodo==='llm_ordinal';
   $('selection-title').textContent=`Chunk ${selected+1} · ${names[axis]}`;
-  $('chunk-size').textContent=`JEV ${fmt(r.latencia_jev_s,1)} s · LLM ${fmt(r.latencia_llm_s,1)} s (chunk inteiro)`;
+  const chunkDiagnostic=context.preparacao?.diagnostico_segmentacao?.find(d=>d.trecho===selected+1);
+  const chunkSummary=chunkDiagnostic?`${fmt(chunkDiagnostic.tokens,0)} tokens · ${fmt(chunkDiagnostic.sentencas,0)} sentença(s)${chunkDiagnostic.acima_alvo?' · acima do alvo':''} · `:'';
+  $('chunk-size').textContent=chunkSummary+`JEV ${fmt(r.latencia_jev_s,1)} s · LLM ${fmt(r.latencia_llm_s,1)} s (chunk inteiro)`;
   drawFlow(r,initial,final);
   const why=triggers.length?triggers.map(m=>reasons[m]||m).join('; '):'Nenhum gatilho de fallback';
   const path=used?(final.status==='falha_llm'?'LLM falhou; abstenção registrada.':`LLM ${changed(initial,final)?'alterou':'manteve'} a classificação inicial.`):triggers.length?(cfg.usar_fallback===false?'Fallback desativado; decisão do JEV mantida.':'Sem reavaliação registrada; decisão do JEV mantida.'):'Decisão do JEV mantida.';
