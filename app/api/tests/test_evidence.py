@@ -132,7 +132,7 @@ class EvidenceTests(unittest.IsolatedAsyncioTestCase):
         _, _, saved = public_request({'text': TEXT, 'experiment_config': config.model_dump()}, lab_settings())
         self.assertIs(saved['semantic_evidence_check'], True)
         self.assertNotEqual(config_hash(config), config_hash(ExperimentConfig()))
-        old = ExperimentConfig().model_dump(exclude={'escala', 'semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'})
+        old = ExperimentConfig().model_dump(exclude={'regra_decisao', 'primitiva_polaridade', 'escala', 'semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'})
         import hashlib
         legacy_hash = hashlib.sha256(json.dumps({'config_version': '1', 'pipeline_version': 'jev-2-polos-mvp-1',
             'effective_config': old}, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()

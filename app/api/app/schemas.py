@@ -1,6 +1,6 @@
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator, model_serializer
-from .experiment_config import ExperimentOverrides, ExperimentConfig, CONFIG_VERSION, PIPELINE_VERSION, config_hash
+from .experiment_config import ExperimentOverrides, ExperimentConfig, CONFIG_VERSION, PIPELINE_VERSION, Probability, config_hash
 from .polarity import EscalaOrdinal
 
 Axis = Literal["economic", "diplomatic", "state", "society"]
@@ -63,6 +63,27 @@ class EvidenceAudit(BaseModel):
     model: str | None = None
 
 
+class JevDiagnostic(BaseModel):
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+    chunk_index: int = Field(ge=0)
+    regra_decisao: Literal["nivel", "polo_primeiro"]
+    relevante: bool
+    nivel_jev_bruto: int | None = Field(strict=True)
+    nivel: int | None = Field(strict=True)
+    grupo_mais_provavel: Literal["A", "B", "C"] | None
+    probabilities_nivel: dict[str, Probability]
+    probabilities_abc: dict[Literal["A", "B", "C"], Probability]
+    margem_grupo: Probability
+    probabilidade_nivel_condicional: Probability | None
+    confianca_nivel: Probability
+
+    @model_validator(mode="after")
+    def distributions(self):
+        if set(self.probabilities_abc) != {"A", "B", "C"} or any(abs(sum(p.values()) - 1) > 1e-6 for p in (self.probabilities_nivel, self.probabilities_abc)):
+            raise ValueError("Distribuição de diagnóstico inválida.")
+        return self
+
+
 class AxisResult(BaseModel):
     axis: Axis
     pole_a: float | None
@@ -79,12 +100,15 @@ class AxisResult(BaseModel):
     reason_codes: list[str]
     evidence: list[Evidence]
     evidence_audit: list[EvidenceAudit] = Field(default_factory=list)
+    jev_diagnostics: list[JevDiagnostic] = Field(default_factory=list)
 
     @model_serializer(mode="wrap")
     def serialize(self, handler):
         result = handler(self)
         if not self.evidence_audit:
             result.pop("evidence_audit", None)
+        if not self.jev_diagnostics:
+            result.pop("jev_diagnostics", None)
         if self.level_counts_by_key is None:
             result.pop("level_counts_by_key", None)
         return result
@@ -138,6 +162,12 @@ class AnalysisResponse(BaseModel):
                     raise ValueError("Contagens incompatíveis com a escala.")
                 if any(a.level not in self.escala.por_codigo for a in axis.evidence_audit):
                     raise ValueError("Auditoria incompatível com a escala.")
+                for d in axis.jev_diagnostics:
+                    if (d.chunk_index not in {c.index for c in self.chunks}
+                            or set(d.probabilities_nivel) != set(self.escala.por_chave)
+                            or any(n is not None and n not in self.escala.por_codigo for n in (d.nivel_jev_bruto, d.nivel))
+                            or self.effective_config is not None and d.regra_decisao != self.effective_config.regra_decisao):
+                        raise ValueError("Diagnóstico JEV incompatível com a execução.")
         metadata = (self.effective_config, self.config_version, self.config_hash, self.environment)
         if any(item is not None for item in metadata):
             if any(item is None for item in metadata) or self.config_version != CONFIG_VERSION:
@@ -154,6 +184,10 @@ class AnalysisResponse(BaseModel):
                 result.pop(name, None)
         if self.schema_version in ("1", "2") and self.effective_config is not None and "escala" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("escala", None)
+        if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "primitiva_polaridade" not in self.effective_config.model_fields_set:
+            result["effective_config"].pop("primitiva_polaridade", None)
+        if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "regra_decisao" not in self.effective_config.model_fields_set:
+            result["effective_config"].pop("regra_decisao", None)
         if self.schema_version == "1":
             for axis in result["axes"]:
                 for key in ("minus4", "minus3", "plus3", "plus4"):

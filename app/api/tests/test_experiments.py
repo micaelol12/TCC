@@ -41,6 +41,7 @@ def lab_settings(**changes):
 class SettingsTests(unittest.TestCase):
     def test_validates_environment_without_leaking_values(self):
         for variable, value in [('CHUNK_TOKENS', 'private-bad-value'), ('JEV_LEVEL_CONFIDENCE_MIN', 'nan'),
+                                ('JEV_POLARITY_PRIMITIVE', 'private-bad-value'), ('JEV_DECISION_RULE', 'private-bad-value'),
                                 ('BOOTSTRAP_SAMPLES', '1'), ('CONCURRENT_REQUESTS', '0'), ('EXPERIMENTAL_CONFIG_ENABLED', 'yes')]:
             with self.subTest(variable=variable), patch.dict(os.environ, {variable: value}, clear=True):
                 with self.assertRaises(ValueError) as raised:
@@ -51,6 +52,8 @@ class SettingsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'APP_ENV=lab'):
                 Settings(app_env='production', experimental_config_enabled=True)
         self.assertNotIn('test-secret', repr(lab_settings()))
+        with patch.dict(os.environ, {'JEV_POLARITY_PRIMITIVE': 'choice'}, clear=True):
+            self.assertEqual(Settings().algorithm_defaults().primitiva_polaridade, 'choice')
 
     def test_lab_file_precedence_and_database_isolation(self):
         with TemporaryDirectory() as directory, patch.dict(os.environ, {'APP_ENV': 'lab', 'CHUNK_TOKENS': '800'}, clear=True):
@@ -156,6 +159,7 @@ class ExperimentHttpTests(unittest.TestCase):
 
     def test_invalid_configs_and_disabled_lab_call_no_providers(self):
         for config in ({'chunk_tokens': True}, {'chunk_tokens': 99}, {'chunk_tokens': None},
+                       {'primitiva_polaridade': 'invalid'}, {'primitiva_polaridade': None}, {'regra_decisao': 'invalid'}, {'regra_decisao': None},
                        {'bootstrap_samples': 10001}, {'relevance_margin_min': 1.01},
                        {'llm_model': 'unknown'}, {'min_valid_chunks': 21}, {'MARITACA_API_KEY': 'private-key'}):
             with self.subTest(config=config):
@@ -168,6 +172,29 @@ class ExperimentHttpTests(unittest.TestCase):
         for factory in self.mocks:
             factory.assert_not_called()
         self.assertEqual(analyze_route.daily['calls'], 0)
+
+    def test_polarity_selection_reaches_provider_snapshot_and_hash_per_request(self):
+        from app.polarity import ESCALA_9_NIVEIS
+        hashes = []
+        for primitive in ('choice', 'score'):
+            raw = answers()
+            if primitive == 'choice':
+                for axis in AXES:
+                    raw[f'{axis}_polaridade']['probabilities'] = {
+                        ESCALA_9_NIVEIS.niveis[int(key)].chave: value
+                        for key, value in raw[f'{axis}_polaridade']['probabilities'].items()}
+            self.jev.response = {'answers': raw, 'model': 'jev-test'}
+            response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'low',
+                'experiment_config': {'primitiva_polaridade': primitive}})
+            self.assertEqual(response.status_code, 200, response.text)
+            result = response.json()
+            self.assertEqual(result['effective_config']['primitiva_polaridade'], primitive)
+            self.assertEqual(result['axes'][0]['pole_a'], 62.5)
+            self.assertEqual(result['logical_calls']['llm'], 0)
+            self.mocks[1].assert_called_with(ESCALA_9_NIVEIS, primitive)
+            hashes.append(result['config_hash'])
+        self.assertNotEqual(*hashes)
+        self.assertEqual(self.client.get('/api/capabilities').json()['experimental']['defaults']['primitiva_polaridade'], 'score')
 
     def test_capabilities_and_results_are_public_snapshots(self):
         caps = self.client.get('/api/capabilities')
@@ -182,6 +209,19 @@ class ExperimentHttpTests(unittest.TestCase):
         self.assertEqual(result['environment'], 'lab')
         self.mocks[0].assert_called_once_with('test-secret-typesafe', 'jev-test')
         self.assertNotIn('test-secret', response.text)
+
+    def test_historical_scale_snapshot_keeps_its_original_config_and_hash(self):
+        from app.schemas import AnalysisResponse
+        response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'low'})
+        self.assertEqual(response.status_code, 200, response.text)
+        historical = response.json()
+        historical['pipeline_version'] = 'jev-escalas-ordinal-4'
+        historical['effective_config'].pop('primitiva_polaridade')
+        historical['effective_config'].pop('regra_decisao')
+        historical['config_hash'] = config_hash(ExperimentConfig.model_validate(historical['effective_config']), historical['pipeline_version'])
+        self.assertEqual(AnalysisResponse.model_validate(historical).model_dump(mode='json'), historical)
+        historical['effective_config']['primitiva_polaridade'] = 'choice'
+        with self.assertRaises(ValidationError): AnalysisResponse.model_validate(historical)
 
     def test_two_http_requests_preserve_their_own_configuration(self):
         configs = [{'chunk_tokens': 100, 'min_valid_chunks': 1}, {'chunk_tokens': 600, 'min_valid_chunks': 16}]

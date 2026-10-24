@@ -22,7 +22,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
   if (!config) return <p role="status">Carregando a configuração Lab…</p>
-  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
+  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala', 'primitiva_polaridade', 'regra_decisao'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
   async function importFile(file?: File) {
     if (!file) return
     setFileError('')
@@ -47,6 +47,16 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     <div id="lab-parameters" role="tabpanel" aria-labelledby="lab-tab-parameters" hidden={tab !== 'parameters'}>
     <p className="small muted">Suas chaves nesta sessão: TypeSafe {caps.providers.typesafe ? 'configurado' : 'ausente'} · Maritaca {caps.providers.maritaca ? 'configurado' : 'ausente'} · Gemini {caps.providers.gemini ? 'configurado' : 'ausente'}. Cadastre suas chaves na aba API keys para liberar os modos e modelos.</p>
     <fieldset disabled={busy}><legend>Parâmetros da próxima análise</legend><div className="experimentFields">
+      <div><label htmlFor="lab-regra_decisao">{configLabels.regra_decisao}</label>
+        <select id="lab-regra_decisao" value={config.regra_decisao ?? 'nivel'} disabled={mode === 'high'} aria-describedby="help-regra_decisao" onChange={e => onChange({ ...config, regra_decisao: e.target.value as 'nivel' | 'polo_primeiro' })}>
+          <option value="nivel">Nível mais provável · atual</option><option value="polo_primeiro">Polo primeiro · experimental</option>
+        </select><small id="help-regra_decisao" className="muted">{mode === 'high' ? 'Não se aplica à classificação com LLM.' : 'Polo primeiro soma os níveis de Globo/Nação (ou os polos do eixo), escolhe o grupo e depois a intensidade. Reaproveita a resposta do JEV; exige avaliação experimental.'}</small>
+      </div>
+      <div><label htmlFor="lab-primitiva_polaridade">{configLabels.primitiva_polaridade}</label>
+        <select id="lab-primitiva_polaridade" value={config.primitiva_polaridade ?? 'score'} disabled={mode === 'high'} aria-describedby="help-primitiva_polaridade" onChange={e => onChange({ ...config, primitiva_polaridade: e.target.value as 'score' | 'choice' })}>
+          <option value="score">Score · níveis ordenados</option><option value="choice">Choice · escolha entre níveis</option>
+        </select><small id="help-primitiva_polaridade" className="muted">{mode === 'high' ? 'Não se aplica ao modo alto, que classifica com LLM.' : 'Escolhe como o JEV classifica a posição na escala. A relevância continua usando Choice.'}</small>
+      </div>
       {!!caps.scales?.length && <div><label htmlFor="lab-escala">Escala ordinal</label><select id="lab-escala" value={caps.scales.findIndex(s => sameContent(s, config.escala))} onChange={e => onChange({ ...config, escala: structuredClone(caps.scales![Number(e.target.value)]) })}>
         {!caps.scales.some(s => sameContent(s, config.escala)) && <option value={-1}>{config.escala?.id ?? 'Selecione uma escala'}</option>}
         {caps.scales.map((s, i) => <option key={`${s.id}-${i}`} value={i}>{s.niveis.length} níveis · {s.id} · v{s.versao}</option>)}
@@ -56,7 +66,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
         return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label>
           <input id={`lab-${name}`} type="number" min={caps.ranges[name].min} max={caps.ranges[name].max} step={caps.ranges[name].step}
             value={Number.isFinite(config[name]) ? config[name] : ''} disabled={inactive} onChange={e => onChange({ ...config, [name]: e.target.value === '' ? NaN : Number(e.target.value) })} aria-describedby={`help-${name}`} />
-          <small id={`help-${name}`} className="muted">{inactive ? 'Não se aplica ao modo alto.' : help[name]}</small></div>
+          <small id={`help-${name}`} className="muted">{inactive ? 'Não se aplica ao modo alto.' : config.regra_decisao === 'polo_primeiro' && name === 'level_confidence_min' ? 'No modo médio, revisa intensidades com suporte condicional abaixo deste limiar. Não é probabilidade de acerto.' : config.regra_decisao === 'polo_primeiro' && name === 'direction_margin_min' ? 'Compara o grupo vencedor com o segundo, incluindo sem posição. No modo médio, margem menor aciona o LLM.' : help[name]}</small></div>
       })}
       {(['jev', 'llm'] as const).map(provider => {
         const name = `${provider}_model` as 'jev_model' | 'llm_model'

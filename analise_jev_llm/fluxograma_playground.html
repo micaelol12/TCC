@@ -61,7 +61,7 @@ const records = data.registros, context = data.contexto;
 const axes = ['economic','diplomatic','state','society'];
 const names = {economic:'Economia',diplomatic:'Diplomacia',state:'Estado',society:'Sociedade'};
 const poles = {economic:['Igualdade','Mercado'],diplomatic:['Globo','Nação'],state:['Liberdade','Autoridade'],society:['Progresso','Tradição']};
-const reasons = {relevancia_ambigua:'Relevância ambígua',empate_nivel:'Empate entre níveis',baixa_confianca_nivel:'Confiança do nível abaixo do mínimo',direcao_ambigua:'Direção ambígua'};
+const reasons = {relevancia_ambigua:'Relevância ambígua',empate_nivel:'Empate entre níveis',baixa_confianca_nivel:'Confiança do nível abaixo do mínimo',direcao_ambigua:'Direção ambígua',intensidade_ambigua:'Intensidade incerta dentro do polo'};
 const statuses = {falha_llm:'Falha no LLM',evidencia_nao_verificada:'Evidência não verificada',relevancia_indeterminada:'Relevância indeterminada',posicao_indeterminada:'Posição indeterminada',sem_evidencia:'Irrelevante',sem_posicao:'Sem posição',direcional:'Direcional'};
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '—').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -130,7 +130,7 @@ function drawFlow(record,initial,final){
     node(532,15,160,'Manter JEV',['Sem reavaliação','neste eixo'],used?'inactive':'active')+
     node(532,183,160,'Reavaliar com LLM',[final.status==='falha_llm'?'Falha registrada':'Resposta + evidência','Apenas eixos enviados'],used?'active llm':'inactive llm')+
     node(731,99,145,'Decisão final',[state(final).label,'Nível: '+fmt(final.nivel,0)])+
-    node(898,99,140,'Índice do eixo',[accepted?`Contribui: ${fmt(final.valor_0_100)}`:'Fora da média','50 + 25 × nível']);
+    node(898,99,140,'Índice do eixo',[accepted?`Contribui: ${fmt(final.valor_0_100)}`:'Fora da média','Valor do nível na escala']);
 }
 function decisionCard(title,d,isInitial,config){
   const s=state(d), model=d.modelo||(isInitial?context.pipeline?.modelo_jev:null);
@@ -140,8 +140,18 @@ function decisionCard(title,d,isInitial,config){
   body+=metric('Status',statuses[d.status]||d.status||'—');
   if(isInitial){
     body+=metric('Margem de relevância',threshold(d.margem_relevancia,config.margem_relevancia_minima));
-    body+=metric('Confiança do nível',threshold(d.confianca_nivel,config.confianca_nivel_minima));
-    body+=metric('Margem de direção',threshold(d.margem_direcao,config.margem_direcao_minima));
+    if(d.regra_decisao==='polo_primeiro'){
+      body+=metric('Regra de decisão','Polo primeiro (experimental)');
+      body+=metric('Nível MAP global / escolhido',`${fmt(d.nivel_jev_bruto,0)} / ${fmt(d.nivel,0)}`);
+      body+=metric('Grupo vencedor',d.grupo_mais_provavel==='C'?'Sem posição':d.grupo_mais_provavel||'Empate');
+      body+=metric('Margem entre grupos',threshold(d.margem_grupo,config.margem_direcao_minima));
+      body+=metric('Suporte condicional da intensidade',finite(d.probabilidade_nivel_condicional)?threshold(d.probabilidade_nivel_condicional,config.confianca_nivel_minima):'Não se aplica / empate');
+      body+=metric('Confiança original do provedor',fmt(d.confianca_nivel,2));
+      body+='<p class="small muted">A pontuação é preliminar quando há direção ou intensidade incerta. Distribuições do modelo não são probabilidades de acerto.</p>';
+    }else{
+      body+=metric('Confiança do nível',threshold(d.confianca_nivel,config.confianca_nivel_minima));
+      body+=metric('Margem de direção',threshold(d.margem_direcao,config.margem_direcao_minima));
+    }
     body+='<details><summary>Probabilidades registradas pelo JEV</summary>';
     const rel=d.probabilities_relevancia||{};
     body+=bar('Relevante (A)',rel.A)+bar('Irrelevante (B)',rel.B);

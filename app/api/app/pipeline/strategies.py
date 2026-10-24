@@ -40,6 +40,10 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
             decisions[axis] = {
                 "relevante": original["relevante"], "nivel": original["nivel"],
                 "method": "jev", "methods": ["jev"], "reason": reasons, "quote": None,
+                "jev_diagnostic": {name: original[name] for name in (
+                    "regra_decisao", "relevante", "nivel_jev_bruto", "nivel", "grupo_mais_provavel",
+                    "probabilities_nivel", "probabilities_abc", "margem_grupo",
+                    "probabilidade_nivel_condicional", "confianca_nivel")},
             }
         except (ValueError, KeyError, TypeError, AttributeError):
             original = None
@@ -109,6 +113,8 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
             reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None)
             models.append(model)
             for axis in requested:
+                if "jev_diagnostic" in decisions[axis]:
+                    reviewed[axis]["jev_diagnostic"] = decisions[axis]["jev_diagnostic"]
                 reviewed[axis]["reason"] = list(dict.fromkeys(decisions[axis]["reason"] + reviewed[axis]["reason"]))
                 reviewed[axis]["methods"] = ["jev", "llm"]
                 decisions[axis] = reviewed[axis]

@@ -49,6 +49,30 @@ def llm_payload(axes=AXES):
 
 
 class DomainTests(unittest.TestCase):
+    def test_polarity_primitive_builds_and_decodes_the_matching_provider_contract(self):
+        from typesafe_sdk import Choice, Score
+        from app.experiment_config import ExperimentConfig
+        from app.polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
+        for scale in (ESCALA_5_NIVEIS, ESCALA_9_NIVEIS):
+            for primitive, question_type in (("score", Score), ("choice", Choice)):
+                with self.subTest(scale=scale.id, primitive=primitive):
+                    config = ExperimentConfig(escala=scale, primitiva_polaridade=primitive)
+                    questions = jev_questions(scale, primitive)
+                    rubric = criar_rubrica_polaridade_ordinal('economic', escala=scale)
+                    self.assertIsInstance(questions['economic_relevancia'], Choice)
+                    polarity = questions['economic_polaridade']
+                    self.assertIsInstance(polarity, question_type)
+                    self.assertEqual(polarity.criteria, list(rubric['niveis'].values()) if primitive == 'score' else rubric['niveis'])
+                    keys = list(map(str, range(len(scale.niveis)))) if primitive == 'score' else list(rubric['niveis'])
+                    raw = {key: value for axis in AXES for key, value in {
+                        f'{axis}_relevancia': {'choice': 'A', 'probabilities': {'A': .99, 'B': .01}},
+                        f'{axis}_polaridade': {'probabilities': {key: int(i == 1) for i, key in enumerate(keys)}, 'confidence': .99},
+                    }.items()}
+                    decisions, _ = jev_decisions({'answers': raw}, config.jev_config())
+                    self.assertEqual(decisions['economic']['nivel'], scale.niveis[1].codigo)
+                    self.assertEqual(decisions['economic']['reason'], [])
+        with self.assertRaises(ValueError): jev_questions(primitiva_polaridade='invalid')
+
     def test_nine_levels_use_the_same_rubric_and_conversion_for_both_providers(self):
         questions = jev_questions()
         for axis in AXES:

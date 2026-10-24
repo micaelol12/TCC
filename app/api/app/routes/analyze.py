@@ -84,7 +84,7 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     recent_requests.append(now)
     daily["calls"] += maximum_calls
     jev = jev_client(keys['typesafe'], config.jev_model) if needs_jev else None
-    questions = jev_questions(config.escala) if mode != "high" else None
+    questions = jev_questions(config.escala, config.primitiva_polaridade) if mode != "high" else None
     llm = (gemini_client if provider == 'gemini' else llm_client)(keys[provider], settings.timeout_seconds) if mode != "low" else None
     semaphore = asyncio.Semaphore(settings.concurrent_chunks)
 

@@ -9,6 +9,7 @@ export default function ExperimentComparison({ entry, entries }: { entry: Analys
   const candidates = entries.filter(other => other.id !== entry.id && other.text === entry.text)
   const other = candidates.find(item => String(item.id) === otherId)
   const config = entry.analysis.effective_config
+  const configValue = (value: typeof config, name: string) => String(value?.[name as keyof NonNullable<typeof config>] ?? (value && name === 'primitiva_polaridade' ? 'score (padrão histórico)' : value && name === 'regra_decisao' ? 'nivel (padrão histórico)' : 'Não registrada'))
   return <section className="experimentComparison" aria-label="Comparar experimentos">
     <h3>Comparar experimentos</h3><p className="small muted">Selecione outra análise do mesmo texto. As respostas dos modelos podem variar entre execuções.</p>
     {candidates.length ? <><label htmlFor="lab-compare">Outra análise</label><select id="lab-compare" value={other?.id ?? ''} onChange={e => setOtherId(e.target.value)}><option value="">Selecione um resultado</option>{candidates.map(item => <option key={item.id} value={item.id}>{item.title} · {modeLabels[item.mode]} · {item.analysis.config_hash?.slice(0, 8) ?? 'configuração não registrada'}</option>)}</select></> : <p className="small">Reanalise este texto com outra configuração para comparar os resultados.</p>}
@@ -23,7 +24,7 @@ export default function ExperimentComparison({ entry, entries }: { entry: Analys
           const label = (value: typeof a) => `${value.pole_a === null ? 'Sem estimativa' : value.pole_a.toFixed(1)} · cobertura ${(value.coverage * 100).toFixed(0)}%`
           return <tr key={axis}><th scope="row">{AXES[axis].title} · polo A</th><td>{label(a)}</td><td>{label(b)}</td></tr>
         })}
-        {[...numericFields, ...evidenceFields, 'jev_model', 'llm_model'].map(name => <tr key={name}><th scope="row">{configLabels[name as keyof typeof configLabels]}</th><td>{String(config?.[name as keyof typeof configLabels] ?? 'Não registrada')}</td><td>{String(other.analysis.effective_config?.[name as keyof typeof configLabels] ?? 'Não registrada')}</td></tr>)}
+        {[...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'primitiva_polaridade', 'regra_decisao'].map(name => <tr key={name}><th scope="row">{configLabels[name as keyof typeof configLabels]}</th><td>{configValue(config, name)}</td><td>{configValue(other.analysis.effective_config, name)}</td></tr>)}
       </tbody></table></div>
     </>}
   </section>

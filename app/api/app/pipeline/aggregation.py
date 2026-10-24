@@ -3,7 +3,7 @@ from statistics import mean
 import random
 from math import ceil
 from ..experiment_config import ExperimentConfig
-from ..schemas import AxisResult, Evidence, EvidenceAudit, LevelCounts
+from ..schemas import AxisResult, Evidence, EvidenceAudit, JevDiagnostic, LevelCounts
 from ..polarity import COUNT_KEYS, level_score
 
 AXES = ("economic", "diplomatic", "state", "society")
@@ -37,5 +37,6 @@ def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig |
             reason_codes=reasons,
             evidence=[Evidence(chunk_index=i, quote=d["quote"]) for i, d in enumerate(decisions) if d["quote"]],
             evidence_audit=[EvidenceAudit(chunk_index=i, **audit) for i, d in enumerate(decisions) for audit in d.get("evidence_audit", [])],
+            jev_diagnostics=[JevDiagnostic(chunk_index=i, **d["jev_diagnostic"]) for i, d in enumerate(decisions) if d.get("jev_diagnostic")],
         ))
     return output

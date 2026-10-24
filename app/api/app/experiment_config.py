@@ -1,12 +1,12 @@
 """Public algorithm configuration; provider secrets are never part of this contract."""
 import hashlib
 import json
-from typing import Annotated
+from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from .polarity import EscalaOrdinal, ESCALA_9_NIVEIS, validar_escala
 
 CONFIG_VERSION = "1"
-PIPELINE_VERSION = "jev-escalas-ordinal-4"
+PIPELINE_VERSION = "jev-escalas-ordinal-6"
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
 Positive = Annotated[int, Field(strict=True, ge=1)]
@@ -18,6 +18,8 @@ ModelName = Annotated[str, Field(strict=True, min_length=1, max_length=100, patt
 class ExperimentConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     escala: EscalaOrdinal = Field(default_factory=lambda: validar_escala(ESCALA_9_NIVEIS))
+    primitiva_polaridade: Literal["score", "choice"] = "score"
+    regra_decisao: Literal["nivel", "polo_primeiro"] = "nivel"
     chunk_tokens: ChunkSize = 600
     relevance_margin_min: Probability = 0.60
     level_confidence_min: Probability = 0.50
@@ -32,7 +34,8 @@ class ExperimentConfig(BaseModel):
     evidence_existence_min: Probability = 0.70
 
     def jev_config(self):
-        return {"escala": self.escala.model_dump(mode="json"), "tipo_relevancia": "choice", "primitiva_polaridade": "score",
+        return {"escala": self.escala.model_dump(mode="json"), "tipo_relevancia": "choice", "primitiva_polaridade": self.primitiva_polaridade,
+                "regra_decisao": self.regra_decisao,
                 "margem_relevancia_minima": self.relevance_margin_min,
                 "confianca_nivel_minima": self.level_confidence_min,
                 "margem_direcao_minima": self.direction_margin_min}
@@ -41,6 +44,8 @@ class ExperimentConfig(BaseModel):
 class ExperimentOverrides(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     escala: EscalaOrdinal | None = None
+    primitiva_polaridade: Literal["score", "choice"] | None = None
+    regra_decisao: Literal["nivel", "polo_primeiro"] | None = None
     chunk_tokens: ChunkSize | None = None
     relevance_margin_min: Probability | None = None
     level_confidence_min: Probability | None = None
@@ -58,6 +63,14 @@ class ExperimentOverrides(BaseModel):
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
     effective = config.model_dump()
     if pipeline_version != PIPELINE_VERSION:
+        if config.regra_decisao != "nivel":
+            raise ValueError("Versão histórica da API não suporta polo_primeiro.")
+        effective.pop("regra_decisao", None)
+    if pipeline_version not in ("jev-escalas-ordinal-5", PIPELINE_VERSION):
+        if config.primitiva_polaridade != "score":
+            raise ValueError("Versão histórica da API não suporta polaridade Choice.")
+        effective.pop("primitiva_polaridade", None)
+    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", PIPELINE_VERSION):
         effective.pop("escala", None)
     # Preserve hashes of saved analyses from before the optional evidence fields.
     if pipeline_version == "jev-2-polos-mvp-1":

@@ -14,6 +14,12 @@ export type EvidenceAudit = {
   level: number; quote?: string | null; sentence_id?: string | null; start?: number | null; end?: number | null;
   confidence?: number | null; existence_probability?: number | null; probabilities?: Record<string, number> | null; model?: string | null
 }
+export type JevDiagnostic = {
+  chunk_index: number; regra_decisao: 'nivel' | 'polo_primeiro'; relevante: boolean;
+  nivel_jev_bruto: number | null; nivel: number | null; grupo_mais_provavel: 'A' | 'B' | 'C' | null;
+  probabilities_nivel: Record<string, number>; probabilities_abc: { A: number; B: number; C: number };
+  margem_grupo: number; probabilidade_nivel_condicional: number | null; confianca_nivel: number
+}
 export type AxisResult = {
   axis: Axis; pole_a: number | null; pole_b: number | null;
   status: 'estimated' | 'no_evidence' | 'abstained'; coverage: number;
@@ -22,6 +28,7 @@ export type AxisResult = {
   ci95: [number, number] | null; methods_used: ('jev' | 'llm')[];
   reason_codes: string[]; evidence: { chunk_index: number; quote: string; verified: true }[]
   evidence_audit?: EvidenceAudit[]
+  jev_diagnostics?: JevDiagnostic[]
   level_counts_by_key?: Record<string, number>
 }
 export type Analysis = {
@@ -40,6 +47,18 @@ function strings(value: unknown): value is string[] { return Array.isArray(value
 function count(value: unknown): value is number { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 }
 function positive(value: unknown): value is number { return count(value) && value > 0 }
 function score(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100 }
+function probability(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1 }
+function distribution(value: unknown, keys: string[]): boolean {
+  return object(value) && Object.keys(value).length === keys.length && keys.every(key => probability(value[key])) && Math.abs(Object.values(value).reduce<number>((sum, p) => sum + Number(p), 0) - 1) < 1e-6
+}
+function isJevDiagnostic(value: unknown, chunks: Analysis['chunks'], scale: OrdinalScale, rule?: string): value is JevDiagnostic {
+  return object(value) && count(value.chunk_index) && chunks.some(c => c.index === value.chunk_index) &&
+    ['nivel', 'polo_primeiro'].includes(value.regra_decisao as string) && (!rule || value.regra_decisao === rule) && typeof value.relevante === 'boolean' &&
+    [value.nivel, value.nivel_jev_bruto].every(n => n === null || scale.niveis.some(level => level.codigo === n)) &&
+    (value.grupo_mais_provavel === null || ['A', 'B', 'C'].includes(value.grupo_mais_provavel as string)) &&
+    distribution(value.probabilities_nivel, scale.niveis.map(n => n.chave)) && distribution(value.probabilities_abc, ['A', 'B', 'C']) &&
+    probability(value.margem_grupo) && probability(value.confianca_nivel) && (value.probabilidade_nivel_condicional === null || probability(value.probabilidade_nivel_condicional))
+}
 function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersion: string, codes?: number[]): value is EvidenceAudit {
   if (!object(value) || !count(value.chunk_index) || !chunks.some(c => c.index === value.chunk_index) ||
       !['search', 'semantic'].includes(value.kind as string) || !['found', 'not_selected', 'not_literal', 'sustenta', 'contradiz', 'insuficiente', 'uncertain', 'failed', 'invalid'].includes(value.status as string) ||
@@ -79,6 +98,7 @@ export function isAnalysis(value: unknown): value is Analysis {
   if (value.schema_version !== '3' && (value.escala !== undefined || value.escala_hash !== undefined)) return false
   if (value.schema_version === '3' && (!scale || typeof value.escala_hash !== 'string' || !/^[a-f0-9]{64}$/.test(value.escala_hash) || (isExperimentConfig(value.effective_config) && !sameContent(value.effective_config.escala, scale)))) return false
   return axisOrder.every(axis => axes.filter(item => object(item) && item.axis === axis).length === 1) && axes.every(item => {
+    if (object(item) && item.jev_diagnostics !== undefined && (!scale || !Array.isArray(item.jev_diagnostics) || !item.jev_diagnostics.every(d => isJevDiagnostic(d, chunks, scale, (value.effective_config as ExperimentConfig | undefined)?.regra_decisao)))) return false
     if (object(item) && item.evidence_audit !== undefined && (!Array.isArray(item.evidence_audit) || !item.evidence_audit.every(audit => isEvidenceAudit(audit, chunks, value.schema_version as string, scale?.niveis.map(n => n.codigo))))) return false
     if (!object(item) || !['estimated', 'no_evidence', 'abstained'].includes(item.status as string) ||
       !count(item.valid_chunks) || !count(item.total_chunks) || item.valid_chunks > item.total_chunks ||

@@ -8,7 +8,7 @@ from .rubrics import AXIS_SPECS
 from ..polarity import ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
 MIN_PALAVRAS_EVIDENCIA = 4
-MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua"}
+MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
 _MARCACAO_MD = re.compile(r"(\*\*|__|<br\s*/?>|^#{1,6}\s+|^>\s?|\|)", re.M)
 _RETICENCIAS = re.compile(r"^(\.\.\.|…)\s*|\s*(\.\.\.|…)$")
 
@@ -79,8 +79,10 @@ def _normalizar_relevancia_noul_2_polos(resposta, limiar=0.5):
         raise ValueError('A probabilidade Noul deve estar entre 0 e 1.')
     return {'choice': 'A' if p >= limiar else 'B', 'probabilities': {'A': p, 'B': 1.0 - p}}
 
-def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escala=None):
-    """Seleciona a alternativa mais provável; índice JEV é posição, nunca código."""
+def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escala=None, regra_decisao='nivel'):
+    """MAP global ou polo primeiro; preserva distribuição e decisão global para auditoria."""
+    if regra_decisao not in {'nivel', 'polo_primeiro'}:
+        raise ValueError('regra_decisao deve ser nivel ou polo_primeiro.')
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
     chaves = tuple(n.chave for n in escala.niveis)
     brutas = dict(_score_campo(resposta, 'probabilities'))
@@ -96,19 +98,34 @@ def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escal
     vencedores = [k for k, v in probabilidades.items() if math.isclose(v, maior, abs_tol=1e-12, rel_tol=0)]
     selecionado = escala.por_chave[vencedores[0]] if len(vencedores) == 1 else None
     nivel_jev = selecionado.codigo if selecionado else None
-    nivel = nivel_jev if relevante else None
     p_a = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'A')
     p_b = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'B')
     p_0 = probabilidades[escala.centro.chave]
+    grupos = {'A': p_a, 'B': p_b, 'C': p_0}
+    maior_grupo = max(grupos.values())
+    vencedores_grupo = [g for g, p in grupos.items() if math.isclose(p, maior_grupo, abs_tol=1e-12, rel_tol=0)]
+    grupo = vencedores_grupo[0] if len(vencedores_grupo) == 1 else None
+    if regra_decisao == 'polo_primeiro':
+        candidatos = [n for n in escala.niveis if (n.polo or 'C') == grupo]
+        maior_no_grupo = max((probabilidades[n.chave] for n in candidatos), default=0)
+        vencedores_no_grupo = [n for n in candidatos if math.isclose(probabilidades[n.chave], maior_no_grupo, abs_tol=1e-12, rel_tol=0)]
+        selecionado = vencedores_no_grupo[0] if len(vencedores_no_grupo) == 1 else None
+    nivel = selecionado.codigo if relevante and selecionado else None
+    suporte_condicional = (probabilidades[selecionado.chave] / grupos[selecionado.polo or 'C']
+                           if selecionado and selecionado.polo is not None else None)
     status = ('sem_evidencia' if not relevante else 'empate' if nivel is None
               else 'sem_posicao' if escala.por_codigo[nivel].polo is None else 'direcional')
     return {
         'nivel': nivel, 'chave_nivel': selecionado.chave if relevante and selecionado else None,
         'nivel_jev_bruto': nivel_jev,
+        'regra_decisao': regra_decisao,
+        'grupo_mais_provavel': grupo,
+        'margem_grupo': _score_margem(grupos),
+        'probabilidade_nivel_condicional': suporte_condicional,
         'valor_0_100': None if nivel is None else valor_nivel(nivel, escala),
         'classe': classe_nivel(nivel, escala),
         'probabilities_nivel': probabilidades,
-        'probabilities_abc': {'A': p_a, 'B': p_b, 'C': p_0},
+        'probabilities_abc': grupos,
         'p_polo_A': p_a, 'p_polo_B': p_b, 'p_sem_posicao': p_0,
         'margem_direcao': abs(p_a - p_b),
         'nivel_esperado_diagnostico': math.fsum(escala.por_chave[k].codigo * p for k, p in probabilidades.items()),
@@ -135,6 +152,7 @@ def decidir_jev(eixo, respostas, config):
     posicao = _normalizar_polaridade_ordinal(
         respostas[f"{eixo}_polaridade"], relevante,
         primitiva=config["primitiva_polaridade"], escala=config.get("escala"),
+        regra_decisao=config.get("regra_decisao", "nivel"),
     )
     return {
         "eixo": eixo, "relevante": relevante,
@@ -153,6 +171,14 @@ def motivos_fallback(decisao, config):
     if decisao["relevante"]:
         if decisao["nivel"] is None:
             motivos.append("empate_nivel")
+        if config.get("regra_decisao", "nivel") == "polo_primeiro":
+            if decisao['margem_grupo'] < config['margem_direcao_minima']:
+                motivos.append('direcao_ambigua')
+            if (decisao['grupo_mais_provavel'] in ('A', 'B')
+                    and (decisao['probabilidade_nivel_condicional'] is None
+                         or decisao['probabilidade_nivel_condicional'] < config['confianca_nivel_minima'])):
+                motivos.append('intensidade_ambigua')
+            return motivos
         if decisao["confianca_nivel"] < config["confianca_nivel_minima"]:
             motivos.append("baixa_confianca_nivel")
         if (decisao["nivel"] is not None and classe_nivel(decisao["nivel"], validar_escala(config.get("escala", ESCALA_ATUAL))) != "C"

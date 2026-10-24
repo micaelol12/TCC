@@ -33,9 +33,21 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
     {axisOrder.map(axis => {
       const result = analysis.axes.find(item => item.axis === axis)
       return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} />
+        {result.reason_codes.includes('intensidade_ambigua') && !result.methods_used.includes('llm') && <p className="notice small">Intensidade incerta no JEV. A pontuação é preliminar; consulte a distribuição por trecho abaixo.</p>}
+        {result.reason_codes.includes('direcao_ambigua') && analysis.effective_config?.regra_decisao === 'polo_primeiro' && !result.methods_used.includes('llm') && <p className="notice small">Direção incerta no JEV. Os grupos estão próximos; a pontuação é preliminar.</p>}
         <details><summary>Distribuição e evidências de {AXES[axis].title}</summary>
           <p className="small muted">Cobertura: {result.valid_chunks} de {result.total_chunks} trechos. {result.sufficient_evidence ? '' : 'Evidência limitada.'} {result.status === 'abstained' ? 'Classificação indeterminada.' : result.status === 'no_evidence' ? 'Sem posição identificada.' : ''}</p>
           <p className="small">Níveis: {(analysis.escala?.niveis ?? historicalLevels(analysis.schema_version)).map(n => `${n.codigo > 0 ? '+' : ''}${n.codigo} (${n.rotulo}): ${analysis.escala ? result.level_counts_by_key?.[n.chave] ?? 0 : result.level_counts[n.chave as keyof typeof result.level_counts] ?? 0}`).join('; ')}.</p>
+          {!!result.jev_diagnostics?.length && <div aria-label={`Decisão JEV de ${AXES[axis].title}`}>
+            <h5>Decisão do JEV por trecho</h5><p className="small muted">Distribuições retornadas pelo modelo, antes de eventual revisão pelo LLM. Os valores abaixo não são percentuais ideológicos nem probabilidades de acerto.</p>
+            <ul>{result.jev_diagnostics.map(d => <li key={d.chunk_index}>
+              Trecho {d.chunk_index + 1} · {d.regra_decisao === 'polo_primeiro' ? 'Polo primeiro (experimental)' : 'Nível mais provável'}{!d.relevante && ' · sem relevância identificada'}.
+              {' '}{AXES[axis].a}: {(d.probabilities_abc.A * 100).toFixed(1)}%; {AXES[axis].b}: {(d.probabilities_abc.B * 100).toFixed(1)}%; sem posição: {(d.probabilities_abc.C * 100).toFixed(1)}%.
+              {' '}Nível mais provável global: {d.nivel_jev_bruto ?? 'empate'}; nível selecionado: {d.nivel ?? 'indeterminado'}.
+              {d.probabilidade_nivel_condicional !== null && ` Suporte do nível dentro do grupo: ${(d.probabilidade_nivel_condicional * 100).toFixed(1)}%.`}
+              <details><summary>Ver distribuição dos níveis</summary><ul>{analysis.escala?.niveis.map(n => <li key={n.chave}>{n.rotulo}: {((d.probabilities_nivel[n.chave] ?? 0) * 100).toFixed(1)}%</li>)}</ul></details>
+            </li>)}</ul>
+          </div>}
           {result.ci95 && <p className="small">Intervalo entre trechos (95%): {result.ci95[0].toFixed(1)}–{result.ci95[1].toFixed(1)}. Não representa probabilidade de acerto.</p>}
           {result.evidence.length ? <><p className="small muted">Citações localizadas no texto. Presença literal não comprova apoio à classificação.</p><ul>{result.evidence.map((ev, i) => <li key={i}>Trecho {ev.chunk_index + 1}: “{ev.quote}”</li>)}</ul></> : <p className="small muted">Sem citação literal disponível.</p>}
           {!!result.evidence_audit?.length && <div aria-label={`Auditoria de evidências de ${AXES[axis].title}`}>

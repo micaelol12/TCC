@@ -50,6 +50,8 @@ O Google informa que `gemini-3.7-flash` é redirecionado para `gemini-3.8-flash`
 | Variável | Padrão | Efeito |
 |---|---|---|
 | `CHUNK_TOKENS` | 600 | Tamanho aproximado dos trechos, de 100 a 2.000 tokens |
+| `JEV_POLARITY_PRIMITIVE` | score | Classificação da polaridade pelo JEV: `score` ou `choice` |
+| `JEV_DECISION_RULE` | nivel | Regra JEV: `nivel` (MAP global) ou `polo_primeiro` (experimental) |
 | `JEV_RELEVANCE_MARGIN_MIN` | 0.60 | Relevância ambígua abaixo da margem |
 | `JEV_LEVEL_CONFIDENCE_MIN` | 0.50 | Nível com confiança insuficiente abaixo do limiar |
 | `JEV_DIRECTION_MARGIN_MIN` | 0.20 | Direção ambígua abaixo da margem |
@@ -61,7 +63,11 @@ Os limiares JEV acionam revisão no modo médio e motivos de incerteza no modo b
 
 O painel substitui os padrões somente para a próxima requisição. A configuração de uma análise em andamento é fixa. Limites totais, concorrência, prazo, orçamento diário e limites horários continuam definidos pelo servidor. Trechos menores podem gerar mais chamadas ou ultrapassar `MAX_CHUNKS`.
 
+Em **Parâmetros → Classificação da polaridade no JEV**, selecione **Score · níveis ordenados** ou **Choice · escolha entre níveis**. A relevância continua usando Choice. O seletor se aplica aos modos baixo e médio; no alto, a classificação é feita pelo LLM. A API Lab aceita `experiment_config.primitiva_polaridade` com `"score"` ou `"choice"`, e registra a opção na configuração efetiva, hash, histórico, comparação, presets e reports. Presets anteriores sem esse campo usam `score`, o comportamento histórico do app. Para mudar o padrão do servidor, defina `JEV_POLARITY_PRIMITIVE` e reinicie a API.
+
 ## Evidências experimentais
+
+Em **Parâmetros → Regra de decisão do JEV**, o experimento **Polo primeiro** soma os níveis por polo A, B e sem posição antes de escolher a intensidade. A regra anterior continua como padrão. O Lab registra a distribuição inicial por trecho em `axes[].jev_diagnostics`, inclusive quando o LLM revisa o resultado. Intensidades incertas são sinalizadas no resultado; a pontuação correspondente é preliminar. Veja o [procedimento, limiares e replay sem chamadas](../docs/experimento-polo-primeiro.md).
 
 Em **Configuração da análise → Parâmetros → Evidências experimentais**, há duas opções independentes, inicialmente desligadas no site e na extensão:
 

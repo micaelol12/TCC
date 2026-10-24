@@ -7,7 +7,7 @@ export const numericFields = ['chunk_tokens', 'relevance_margin_min', 'level_con
 export type NumericField = typeof numericFields[number]
 export const evidenceDefaults = { semantic_evidence_check: false, jev_evidence_search: false, evidence_existence_min: 0.7 }
 export const evidenceFields = ['semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'] as const
-export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string; escala?: OrdinalScale } & Partial<typeof evidenceDefaults>
+export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string; escala?: OrdinalScale; primitiva_polaridade?: 'score' | 'choice'; regra_decisao?: 'nivel' | 'polo_primeiro' } & Partial<typeof evidenceDefaults>
 export type ConfigRange = { min: number; max: number; step: number }
 export type ExperimentCapabilities = {
   enabled: true; config_version: '1'; defaults: ExperimentConfig;
@@ -20,6 +20,8 @@ export type ExperimentCapabilities = {
 const fields = [...numericFields, 'jev_model', 'llm_model']
 export const configLabels: Record<keyof ExperimentConfig, string> = {
   escala: 'Escala ordinal',
+  primitiva_polaridade: 'Classificação da polaridade no JEV',
+  regra_decisao: 'Regra de decisão do JEV',
   semantic_evidence_check: 'Verificar apoio semântico da citação', jev_evidence_search: 'Buscar citações do JEV por ID', evidence_existence_min: 'Limiar de existência de evidência',
   chunk_tokens: 'Tokens por trecho', relevance_margin_min: 'Margem mínima de relevância',
   level_confidence_min: 'Confiança mínima do nível', direction_margin_min: 'Margem mínima de direção',
@@ -28,7 +30,9 @@ export const configLabels: Record<keyof ExperimentConfig, string> = {
 }
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
 export function isExperimentConfig(value: unknown): value is ExperimentConfig {
-  if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields, 'escala'].includes(name)) || fields.some(name => !(name in value))) return false
+  if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields, 'escala', 'primitiva_polaridade', 'regra_decisao'].includes(name)) || fields.some(name => !(name in value))) return false
+  if (value.primitiva_polaridade !== undefined && !['score', 'choice'].includes(value.primitiva_polaridade as string)) return false
+  if (value.regra_decisao !== undefined && !['nivel', 'polo_primeiro'].includes(value.regra_decisao as string)) return false
   if (value.escala !== undefined && !isOrdinalScale(value.escala)) return false
   if (!numericFields.every(name => typeof value[name] === 'number' && Number.isFinite(value[name]))) return false
   if (['semantic_evidence_check', 'jev_evidence_search'].some(name => value[name] !== undefined && typeof value[name] !== 'boolean')) return false
@@ -84,7 +88,7 @@ export function importPreset(value: unknown, caps: ExperimentCapabilities): Expe
   const config = value.config as ExperimentConfig
   if (value.format_version === 2 && !config.escala) throw new Error('Preset sem snapshot da escala.')
   const legacy = caps.scales?.find(s => s.id === 'ordinal_9_v1')
-  return { ...evidenceDefaults, ...config, ...(!config.escala && legacy ? { escala: structuredClone(legacy) } : {}) }
+  return { ...evidenceDefaults, primitiva_polaridade: 'score', regra_decisao: 'nivel', ...config, ...(!config.escala && legacy ? { escala: structuredClone(legacy) } : {}) }
 }
 
 export function experimentRecipients(mode: 'low' | 'medium' | 'high', config: ExperimentConfig | null, caps: ExperimentCapabilities | null): string {

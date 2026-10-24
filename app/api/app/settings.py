@@ -46,6 +46,8 @@ class Settings:
     gemini_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""), repr=False)
     allowed_gemini_models: tuple[str, ...] = field(default_factory=lambda: tuple(value.strip() for value in os.getenv('ALLOWED_GEMINI_MODELS', 'gemini-3.1-flash-lite,gemini-3.7-flash').split(',') if value.strip()))
     jev_model: str = env("JEV_MODEL", "jev-1.13.0")
+    primitiva_polaridade: str = env("JEV_POLARITY_PRIMITIVE", "score")
+    regra_decisao: str = env("JEV_DECISION_RULE", "nivel")
     llm_model: str = env("LLM_MODEL", "sabia-4")
     allowed_jev_models: tuple[str, ...] = models("ALLOWED_JEV_MODELS", "JEV_MODEL", "jev-1.13.0")
     allowed_llm_models: tuple[str, ...] = models("ALLOWED_LLM_MODELS", "LLM_MODEL", "sabia-4")
@@ -89,7 +91,7 @@ class Settings:
         try:
             defaults = self.algorithm_defaults()
         except ValidationError as error:
-            names = {"relevance_margin_min": "JEV_RELEVANCE_MARGIN_MIN", "level_confidence_min": "JEV_LEVEL_CONFIDENCE_MIN", "direction_margin_min": "JEV_DIRECTION_MARGIN_MIN"}
+            names = {"regra_decisao": "JEV_DECISION_RULE", "primitiva_polaridade": "JEV_POLARITY_PRIMITIVE", "relevance_margin_min": "JEV_RELEVANCE_MARGIN_MIN", "level_confidence_min": "JEV_LEVEL_CONFIDENCE_MIN", "direction_margin_min": "JEV_DIRECTION_MARGIN_MIN"}
             invalid = ", ".join(names.get(str(item["loc"][0]), str(item["loc"][0]).upper()) for item in error.errors())
             raise ValueError(f"Variáveis inválidas: {invalid}.") from None
         if defaults.chunk_tokens > self.max_tokens or defaults.min_valid_chunks > self.max_chunks:
