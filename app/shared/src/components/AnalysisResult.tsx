@@ -32,7 +32,7 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
     <div className="sectionHeading detailHeading"><div><div className="eyebrow">Detalhamento</div><h3>Quatro eixos</h3></div></div>
     {axisOrder.map(axis => {
       const result = analysis.axes.find(item => item.axis === axis)
-      return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} />
+      return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} showInterpretation />
         {result.reason_codes.includes('intensidade_ambigua') && !result.methods_used.includes('llm') && <p className="notice small">Intensidade incerta no JEV. A pontuação é preliminar; consulte a distribuição por trecho abaixo.</p>}
         {result.reason_codes.includes('direcao_ambigua') && analysis.effective_config?.regra_decisao === 'polo_primeiro' && !result.methods_used.includes('llm') && <p className="notice small">Direção incerta no JEV. Os grupos estão próximos; a pontuação é preliminar.</p>}
         <details><summary>Distribuição e evidências de {AXES[axis].title}</summary>

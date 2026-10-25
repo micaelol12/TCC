@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from .polarity import EscalaOrdinal, ESCALA_9_NIVEIS, validar_escala
 
 CONFIG_VERSION = "1"
-PIPELINE_VERSION = "jev-escalas-ordinal-6"
+PIPELINE_VERSION = "jev-escalas-ordinal-7"
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
 Positive = Annotated[int, Field(strict=True, ge=1)]
@@ -21,6 +21,7 @@ class ExperimentConfig(BaseModel):
     primitiva_polaridade: Literal["score", "choice"] = "score"
     regra_decisao: Literal["nivel", "polo_primeiro"] = "nivel"
     chunk_tokens: ChunkSize = 600
+    chunk_strategy: Literal["sentencas", "tokens"] = "tokens"
     relevance_margin_min: Probability = 0.60
     level_confidence_min: Probability = 0.50
     direction_margin_min: Probability = 0.20
@@ -47,6 +48,7 @@ class ExperimentOverrides(BaseModel):
     primitiva_polaridade: Literal["score", "choice"] | None = None
     regra_decisao: Literal["nivel", "polo_primeiro"] | None = None
     chunk_tokens: ChunkSize | None = None
+    chunk_strategy: Literal["sentencas", "tokens"] | None = None
     relevance_margin_min: Probability | None = None
     level_confidence_min: Probability | None = None
     direction_margin_min: Probability | None = None
@@ -63,14 +65,18 @@ class ExperimentOverrides(BaseModel):
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
     effective = config.model_dump()
     if pipeline_version != PIPELINE_VERSION:
+        if config.chunk_strategy != "tokens":
+            raise ValueError("Versão histórica da API não suporta segmentação por sentenças.")
+        effective.pop("chunk_strategy", None)
+    if pipeline_version not in ("jev-escalas-ordinal-6", PIPELINE_VERSION):
         if config.regra_decisao != "nivel":
             raise ValueError("Versão histórica da API não suporta polo_primeiro.")
         effective.pop("regra_decisao", None)
-    if pipeline_version not in ("jev-escalas-ordinal-5", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", PIPELINE_VERSION):
         if config.primitiva_polaridade != "score":
             raise ValueError("Versão histórica da API não suporta polaridade Choice.")
         effective.pop("primitiva_polaridade", None)
-    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", PIPELINE_VERSION):
         effective.pop("escala", None)
     # Preserve hashes of saved analyses from before the optional evidence fields.
     if pipeline_version == "jev-2-polos-mvp-1":

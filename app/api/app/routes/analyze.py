@@ -65,7 +65,8 @@ async def analyze(payload: AnalyzeRequest, request: Request):
             raise HTTPException(503, "Cadastre suas chaves na aba API keys para usar este modo e modelo.")
         raise HTTPException(503, "Modo indisponível: configure os provedores necessários.")
     try:
-        chunks, _ = split_text(payload.text, max_tokens=settings.max_tokens, chunk_tokens=config.chunk_tokens)
+        chunks, _ = split_text(payload.text, max_tokens=settings.max_tokens,
+                               chunk_tokens=config.chunk_tokens, strategy=config.chunk_strategy)
     except ValueError:
         raise HTTPException(413, "Texto acima do limite de tokens.") from None
     if len(chunks) > settings.max_chunks:

@@ -1,12 +1,14 @@
 import type { Axis } from '../domain/axes'
 import { AXES, formatScore } from '../domain/axes'
+import { interpretAxisScore } from '../domain/axisInterpretation'
 import styles from '../styles/Cards.module.css'
 
-export default function AxisBar({ axis, score, headingLevel = 3 }: { axis: Axis; score: number | null; headingLevel?: 3 | 4 }) {
+export default function AxisBar({ axis, score, headingLevel = 3, showInterpretation = false }: { axis: Axis; score: number | null; headingLevel?: 3 | 4; showInterpretation?: boolean }) {
   const item = AXES[axis]
   const Heading = headingLevel === 4 ? 'h4' : 'h3'
   const shownA = score === null ? null : Math.round((score + Number.EPSILON) * 10) / 10
   const shownB = shownA === null ? null : 100 - shownA
+  const interpretation = showInterpretation ? interpretAxisScore(axis, shownA) : null
   return <div className={styles.axis}>
     <div className={styles.axisHeader}><Heading>{item.title}</Heading>{shownA === null && <span>Sem estimativa</span>}</div>
     <div className={styles.poles}>
@@ -19,6 +21,8 @@ export default function AxisBar({ axis, score, headingLevel = 3 }: { axis: Axis;
         <div className={styles.fillB} style={{ width: `${shownB}%` }} />
       </>}
     </div>
-    <p className="muted small">{item.explanation}</p>
+    {interpretation
+      ? <p className="muted small"><strong>{interpretation.label}.</strong> {interpretation.description}</p>
+      : <p className="muted small">{item.explanation}</p>}
   </div>
 }

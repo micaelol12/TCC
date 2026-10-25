@@ -124,26 +124,41 @@ export class AnalysisTimeoutError extends Error {
   constructor() { super('A análise excedeu o tempo de espera. O texto foi preservado.'); this.name = 'AnalysisTimeoutError' }
 }
 
-export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args), labClient: 'web' | 'extension' = 'web') {
+export type LabSessionStorage = {
+  getItem: (key: string) => string | null | Promise<string | null>
+  setItem: (key: string, value: string) => void | Promise<void>
+  removeItem: (key: string) => void | Promise<void>
+}
+
+export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args), labClient: 'web' | 'extension' = 'web', sessionStore?: LabSessionStorage) {
   const base = baseUrl.replace(/\/$/, '')
   const sessionKey = `8values-lab-key-session-v1:${base || 'same-origin'}`
   let memoryToken = ''
-  function token() { try { return sessionStorage.getItem(sessionKey) || memoryToken } catch { return memoryToken } }
-  function setToken(value: string) { memoryToken = value; try { if (value) sessionStorage.setItem(sessionKey, value); else sessionStorage.removeItem(sessionKey) } catch { /* keep opaque token in memory */ } }
-  function headers() { const value = token(); return { ...(value ? { 'X-Lab-Session': value } : {}), ...(isLabBuild ? { 'X-Lab-Client': labClient } : {}) } }
+  async function token() { try { return await (sessionStore ?? sessionStorage).getItem(sessionKey) ?? '' } catch { return memoryToken } }
+  async function setToken(value: string) {
+    memoryToken = value
+    try {
+      const storage = sessionStore ?? sessionStorage
+      if (value) await storage.setItem(sessionKey, value)
+      else await storage.removeItem(sessionKey)
+    } catch {
+      if (sessionStore) throw new Error('Não foi possível guardar a sessão de chaves na extensão. Tente novamente antes de fechar o painel.')
+    }
+  }
+  async function headers() { const value = await token(); return { ...(value ? { 'X-Lab-Session': value } : {}), ...(isLabBuild ? { 'X-Lab-Client': labClient } : {}) } }
   async function updateKey(provider: LabProvider, apiKey?: string) {
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 10000)
     try {
       const response = await fetcher(`${base}/api/lab/api-keys${apiKey === undefined ? `/${provider}` : ''}`, {
-        method: apiKey === undefined ? 'DELETE' : 'POST', headers: { ...headers(), 'Content-Type': 'application/json' },
+        method: apiKey === undefined ? 'DELETE' : 'POST', headers: { ...await headers(), 'Content-Type': 'application/json' },
         body: apiKey === undefined ? undefined : JSON.stringify({ provider, api_key: apiKey }), signal: controller.signal, cache: 'no-store', credentials: 'omit',
       })
-      if (response.status === 401) { setToken(''); throw new Error('Sessão expirada. Tente cadastrar a chave novamente.') }
+      if (response.status === 401) { await setToken(''); throw new Error('Sessão expirada. Tente cadastrar a chave novamente.') }
       if (!response.ok) throw new Error('Não foi possível atualizar a chave. Confira o formato e a conexão com a API Lab.')
       const data = await response.json()
       if (typeof data.session_token !== 'string' || !/^[A-Za-z0-9_-]{40,100}$/.test(data.session_token)) throw new Error('Resposta inválida da API Lab.')
-      setToken(data.session_token)
+      await setToken(data.session_token)
     } finally { clearTimeout(timer) }
   }
   return {
@@ -153,9 +168,9 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
       const controller = new AbortController()
       const timer = setTimeout(() => controller.abort(), 10000)
       try {
-        const response = await fetcher(`${base}/api/lab/session`, { method: 'DELETE', headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        const response = await fetcher(`${base}/api/lab/session`, { method: 'DELETE', headers: await headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
         if (!response.ok) throw new Error('Não foi possível encerrar a sessão de chaves.')
-        setToken('')
+        await setToken('')
       } finally { clearTimeout(timer) }
     },
     async getCapabilities(signal?: AbortSignal): Promise<Capabilities> {
@@ -165,8 +180,8 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
       if (signal?.aborted) abort()
       const timer = setTimeout(abort, 10000)
       try {
-        let response = await fetcher(`${base}/api/capabilities`, { headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
-        if (response.status === 401 && token()) { setToken(''); response = await fetcher(`${base}/api/capabilities`, { headers: headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal }) }
+        let response = await fetcher(`${base}/api/capabilities`, { headers: await headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        if (response.status === 401 && await token()) { await setToken(''); response = await fetcher(`${base}/api/capabilities`, { headers: await headers(), cache: 'no-store', credentials: 'omit', signal: controller.signal }) }
         if (!response.ok) throw new Error('Não foi possível consultar a API.')
         const data: unknown = await response.json()
         if (!isCapabilities(data)) throw new Error('A API retornou capacidades inválidas.')
@@ -182,11 +197,11 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
       const timer = setTimeout(() => { timedOut = true; controller.abort() }, (timeoutSeconds + 15) * 1000)
       try {
         const response = await fetcher(`${base}/api/analyze`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json', ...headers() }, credentials: 'omit', cache: 'no-store',
+          method: 'POST', headers: { 'Content-Type': 'application/json', ...await headers() }, credentials: 'omit', cache: 'no-store',
           body: JSON.stringify({ text, processing_level: processingLevel, ...(experimentConfig ? { experiment_config: experimentConfig } : {}) }), signal: controller.signal,
         })
         if (!response.ok) {
-          if (response.status === 401) { setToken(''); throw new Error('Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.') }
+          if (response.status === 401) { await setToken(''); throw new Error('Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.') }
           const messages: Record<number, string> = { 403: 'Configuração experimental indisponível nesta API. Atualize a conexão.', 413: 'Texto acima do limite. No Lab, aumente os tokens por trecho ou reduza o texto.', 422: 'Entrada ou configuração inválida. Atualize a conexão e confira os parâmetros.', 429: 'Limite de uso atingido. Tente mais tarde.', 503: 'Modo indisponível no servidor.', 504: 'A análise excedeu o tempo disponível.' }
           throw new Error(messages[response.status] ?? 'Falha na análise. Tente novamente.')
         }

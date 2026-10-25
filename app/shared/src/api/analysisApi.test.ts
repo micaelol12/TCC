@@ -59,6 +59,7 @@ test('análise pode aguardar mais de 30 segundos no documento do painel', async 
 test('prazo e cancelamento abortam o HTTP sem reenvio', async () => {
   vi.useFakeTimers()
   const fetcher = vi.fn<typeof fetch>().mockImplementation((_url, options) => new Promise((_resolve, reject) => {
+    if (options!.signal!.aborted) { reject(new DOMException('aborted', 'AbortError')); return }
     options!.signal!.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')), { once: true })
   }))
   const first = createAnalysisClient('', fetcher).analyze('texto', 'low', new AbortController().signal, 1)

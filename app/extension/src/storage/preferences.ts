@@ -6,12 +6,21 @@ export const LOCAL_PROFILE_KEY = `${storagePrefix}-profile-local-v1`
 export const TEMP_PROFILE_KEY = `${storagePrefix}-profile-session-v1`
 export type Preferences = { mode: Mode; profile: Profile | null }
 export async function readPreferences(): Promise<Preferences> {
-  const saved = await chrome.storage.local.get([MODE_KEY, LOCAL_PROFILE_KEY])
-  const mode = saved[MODE_KEY]
-  return { mode: modes.includes(mode as Mode) ? mode as Mode : 'medium', profile: validateProfile(saved[LOCAL_PROFILE_KEY]) }
+  return write(async () => {
+    const [saved, session] = await Promise.all([
+      chrome.storage.local.get([MODE_KEY, LOCAL_PROFILE_KEY]),
+      chrome.storage.session.get(TEMP_PROFILE_KEY),
+    ])
+    const mode = saved[MODE_KEY]
+    // Preserve the active profile from versions that supported temporary use.
+    const temporary = validateProfile(session[TEMP_PROFILE_KEY])
+    if (temporary) await chrome.storage.local.set({ [LOCAL_PROFILE_KEY]: temporary })
+    if (TEMP_PROFILE_KEY in session) await chrome.storage.session.remove(TEMP_PROFILE_KEY)
+    return { mode: modes.includes(mode as Mode) ? mode as Mode : 'medium', profile: temporary ?? validateProfile(saved[LOCAL_PROFILE_KEY]) }
+  })
 }
-let queue: Promise<void> = Promise.resolve()
-function write(action: () => Promise<void>) {
+let queue: Promise<unknown> = Promise.resolve()
+function write<T>(action: () => Promise<T>) {
   const current = queue.catch(() => undefined).then(action)
   queue = current
   return current
@@ -21,11 +30,9 @@ export async function saveMode(mode: Mode) {
     await chrome.storage.local.set({ [MODE_KEY]: mode })
   })
 }
-export async function saveProfile(profile: Profile | null, permanent: boolean) {
+export async function saveProfile(profile: Profile | null) {
   return write(async () => {
-    // Delete a previous permanent copy even when switching to temporary use.
-    await chrome.storage.local.set({ [LOCAL_PROFILE_KEY]: permanent ? profile : null })
-    if (profile && !permanent) await chrome.storage.session.set({ [TEMP_PROFILE_KEY]: profile })
-    else await chrome.storage.session.remove(TEMP_PROFILE_KEY)
+    await chrome.storage.local.set({ [LOCAL_PROFILE_KEY]: profile })
+    await chrome.storage.session.remove(TEMP_PROFILE_KEY)
   })
 }

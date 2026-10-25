@@ -14,15 +14,15 @@ const help = {
   bootstrap_samples: 'Mais reamostragens refinam o intervalo entre trechos e exigem mais processamento.',
   bootstrap_seed: 'Reproduz o bootstrap. As respostas dos provedores ainda podem variar.',
 }
-export default function ExperimentPanel({ caps, config, onChange, mode, busy, error, storageKey, notice, onNotice, client, onKeysUpdated }: {
+export default function ExperimentPanel({ caps, config, onChange, mode, busy, error, notice, onNotice, client, onKeysUpdated }: {
   caps: ExperimentCapabilities; config: ExperimentConfig | null; onChange: (config: ExperimentConfig) => void;
-  mode: Mode; busy: boolean; error: string; storageKey: string; notice: string; onNotice: (value: string) => void;
+  mode: Mode; busy: boolean; error: string; notice: string; onNotice: (value: string) => void;
   client: ReturnType<typeof createAnalysisClient>; onKeysUpdated: () => Promise<void>
 }) {
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
   if (!config) return <p role="status">Carregando a configuração Lab…</p>
-  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala', 'primitiva_polaridade', 'regra_decisao'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
+  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
   async function importFile(file?: File) {
     if (!file) return
     setFileError('')
@@ -30,10 +30,6 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
       if (file.size > 200000) throw new Error('Arquivo acima do limite de 200 KB.')
       onChange(importPreset(JSON.parse(await file.text()), caps)); onNotice('Configuração importada para a próxima análise.')
     } catch (err) { setFileError(err instanceof Error ? err.message : 'Não foi possível importar.') }
-  }
-  function save() {
-    try { localStorage.setItem(storageKey, JSON.stringify(exportPreset(config!))); onNotice('Configuração salva neste navegador.') }
-    catch { setFileError('Não foi possível salvar a configuração neste navegador.') }
   }
   function download() {
     const url = URL.createObjectURL(new Blob([JSON.stringify(exportPreset(config!), null, 2)], { type: 'application/json' }))
@@ -47,6 +43,11 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     <div id="lab-parameters" role="tabpanel" aria-labelledby="lab-tab-parameters" hidden={tab !== 'parameters'}>
     <p className="small muted">Suas chaves nesta sessão: TypeSafe {caps.providers.typesafe ? 'configurado' : 'ausente'} · Maritaca {caps.providers.maritaca ? 'configurado' : 'ausente'} · Gemini {caps.providers.gemini ? 'configurado' : 'ausente'}. Cadastre suas chaves na aba API keys para liberar os modos e modelos.</p>
     <fieldset disabled={busy}><legend>Parâmetros da próxima análise</legend><div className="experimentFields">
+      <div><label htmlFor="lab-chunk_strategy">{configLabels.chunk_strategy}</label>
+        <select id="lab-chunk_strategy" value={config.chunk_strategy ?? 'tokens'} aria-describedby="help-chunk_strategy" onChange={e => onChange({ ...config, chunk_strategy: e.target.value as 'sentencas' | 'tokens' })}>
+          <option value="sentencas">Sentenças · preservar frases inteiras</option><option value="tokens">Tokens · corte por tamanho</option>
+        </select><small id="help-chunk_strategy" className="muted">Corresponde a preparacao_e_exibicao.chunks.estrategia no pipeline. Em sentenças, os tokens por trecho são um alvo: uma frase longa pode ultrapassá-lo sem ser cortada.</small>
+      </div>
       <div><label htmlFor="lab-regra_decisao">{configLabels.regra_decisao}</label>
         <select id="lab-regra_decisao" value={config.regra_decisao ?? 'nivel'} disabled={mode === 'high'} aria-describedby="help-regra_decisao" onChange={e => onChange({ ...config, regra_decisao: e.target.value as 'nivel' | 'polo_primeiro' })}>
           <option value="nivel">Nível mais provável · atual</option><option value="polo_primeiro">Polo primeiro · experimental</option>
@@ -90,7 +91,8 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     </fieldset>
     <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${name === 'escala' ? config.escala?.id : config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
     {error && <p className="error" role="alert">{error}</p>}
-    <div className="actions"><button className="secondary" disabled={busy} onClick={() => { onChange({ ...caps.defaults }); setFileError(''); onNotice('Padrões restaurados para a próxima análise.') }}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={save}>Salvar configuração</button><button className="secondary" disabled={busy || !!error} onClick={download}>Exportar JSON</button></div>
+    <p className="small muted">As alterações válidas são salvas automaticamente neste navegador. Ao reabrir, a última configuração salva será restaurada.</p>
+    <div className="actions"><button className="secondary" disabled={busy} onClick={() => { onChange({ ...caps.defaults }); setFileError(''); onNotice('Padrões restaurados para a próxima análise.') }}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={download}>Exportar JSON</button></div>
     <label htmlFor="lab-import">Importar configuração JSON</label><input id="lab-import" type="file" accept="application/json,.json" disabled={busy} onChange={e => { void importFile(e.target.files?.[0]); e.target.value = '' }} />
     {fileError && <p className="error" role="alert">{fileError}</p>}{notice && <p className="small" role="status">{notice}</p>}
     </div>

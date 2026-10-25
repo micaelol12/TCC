@@ -131,6 +131,7 @@ class DecisionHttpTests(unittest.TestCase):
         old = deepcopy(result)
         old['pipeline_version'] = 'jev-escalas-ordinal-5'
         old['effective_config'].pop('regra_decisao')
+        old['effective_config'].pop('chunk_strategy')
         for a in old['axes']: a.pop('jev_diagnostics', None)
         old['config_hash'] = config_hash(ExperimentConfig.model_validate(old['effective_config']), old['pipeline_version'])
         self.assertEqual(AnalysisResponse.model_validate(old).model_dump(mode='json'), old)

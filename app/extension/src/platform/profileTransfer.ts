@@ -10,13 +10,13 @@ export function registerProfileTransfer(webOrigin: string) {
     let allowed = false
     try { allowed = sender.id === chrome.runtime.id && sender.frameId === 0 && sender.tab?.id !== undefined && new URL(sender.url ?? '').origin === webOrigin && sender.origin === webOrigin } catch { /* invalid sender */ }
     if (!allowed) { respond({ ok: false, error: 'Site não autorizado a enviar o perfil.' }); return }
-    const data = message as { profile?: unknown; permanent?: unknown }
+    const data = message as { profile?: unknown }
     const profile = validateProfile(data.profile)
-    if (!profile || typeof data.permanent !== 'boolean') {
+    if (!profile) {
       respond({ ok: false, error: 'Perfil inválido ou de outra versão do questionário. Atualize o site e a extensão.' })
       return
     }
-    void saveProfile(profile, data.permanent).then(
+    void saveProfile(profile).then(
       () => respond({ ok: true }),
       () => respond({ ok: false, error: 'Não foi possível salvar o perfil na extensão. Tente novamente.' }),
     )

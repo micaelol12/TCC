@@ -36,16 +36,13 @@ try {
   await panel.getByRole('button', { name: 'Comparação', exact: true }).click()
   const website = await context.newPage()
   website.on('pageerror', error => errors.push(error.message))
-  await website.addInitScript(profile => localStorage.setItem('values-profile-v1', JSON.stringify(profile)), profile)
+  await website.addInitScript(profile => {
+    if (!localStorage.getItem('values-profile-v1')) localStorage.setItem('values-profile-v1', JSON.stringify(profile))
+  }, profile)
   await website.goto('http://127.0.0.1:5173/resultado')
   const read = () => panel.evaluate(async () => ({ local: await chrome.storage.local.get('8values-profile-local-v1'), session: await chrome.storage.session.get('8values-profile-session-v1') }))
   // Opening the result never transfers it automatically.
   assert.deepEqual(await read(), { local: {}, session: {} })
-  await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).click()
-  await website.getByRole('status').filter({ hasText: 'Resultado enviado para esta sessão' }).waitFor()
-  await panel.getByText('Perfil temporário nesta sessão.', { exact: true }).waitFor()
-  assert.deepEqual((await read()).session['8values-profile-session-v1'], profile)
-  await website.getByLabel('Manter meu resultado salvo na extensão').check()
   await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).click()
   await website.getByRole('status').filter({ hasText: 'Resultado salvo na extensão!' }).waitFor()
   await panel.getByText('Perfil salvo localmente nesta extensão.', { exact: true }).waitFor()
@@ -57,22 +54,24 @@ try {
   await website.screenshot({ path: resolve(output, `${target}-profile-transfer.png`), fullPage: true })
   await website.setViewportSize({ width: 390, height: 844 })
   assert(await website.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Layout deve caber em celular.')
-  // Switching back to session-only clears the older permanent copy.
-  await website.getByLabel('Manter meu resultado salvo na extensão').uncheck()
+  // Replacing the profile also persists without an extra checkbox.
+  const replacement = { ...profile, scores: { ...profile.scores, economic: 80 } }
+  await website.evaluate(profile => localStorage.setItem('values-profile-v1', JSON.stringify(profile)), replacement)
+  await website.reload()
   await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).click()
-  await panel.getByText('Perfil temporário nesta sessão.', { exact: true }).waitFor()
-  assert.equal((await read()).local['8values-profile-local-v1'], null)
+  await website.getByRole('status').filter({ hasText: 'Resultado salvo na extensão!' }).waitFor()
+  assert.deepEqual(await read(), { local: { '8values-profile-local-v1': replacement }, session: {} })
   // Same host, wrong port: no bridge, useful failure message, no writes.
   await website.goto('http://127.0.0.1:5174/resultado')
   await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).click()
   await website.getByRole('alert').filter({ hasText: 'A extensão não respondeu' }).waitFor()
-  assert.deepEqual((await read()).session['8values-profile-session-v1'], profile)
+  assert.deepEqual(await read(), { local: { '8values-profile-local-v1': replacement }, session: {} })
   assert(await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).isEnabled())
   await panel.getByRole('button', { name: 'Apagar perfil', exact: true }).click()
   await panel.getByRole('link', { name: 'Fazer meu teste no site' }).waitFor()
   assert.deepEqual(await read(), { local: { '8values-profile-local-v1': null }, session: {} })
   assert.deepEqual(errors, [])
-  const report = { browser: target, version: context.browser().version(), checks: ['no-automatic-transfer', 'one-click-transfer', 'live-panel-update', 'temporary-profile', 'permanent-profile', 'reload', 'permanent-to-temporary', 'wrong-port-timeout', 'delete-profile', 'mobile-width', 'no-profile-api-request'], pageErrors: errors }
+  const report = { browser: target, version: context.browser().version(), checks: ['no-automatic-transfer', 'one-click-transfer', 'live-panel-update', 'persistent-profile', 'reload', 'replace-profile', 'wrong-port-timeout', 'delete-profile', 'mobile-width', 'no-profile-api-request'], pageErrors: errors }
   writeFileSync(resolve(output, `${target}-profile-transfer-report.json`), JSON.stringify(report, null, 2))
   console.log(JSON.stringify(report, null, 2))
 } finally { await context.close() }

@@ -20,17 +20,19 @@ function setup() {
     return { respond, pending }
   } }
 }
-test('grava só o perfil validado, confirma após salvar e troca entre temporário e permanente', async () => {
+test.each([undefined, false, true])('sempre salva localmente, inclusive com opção antiga %s, e confirma após gravar', async permanent => {
   const { send, local, session } = setup()
-  const first = send({ type: '8values:save-profile', profile: { ...profile, answers: ['private'] }, permanent: false })
+  session[TEMP_PROFILE_KEY] = profile
+  const first = send({ type: '8values:save-profile', profile: { ...profile, answers: ['private'] }, permanent })
   expect(first.pending).toBe(true)
   expect(first.respond).not.toHaveBeenCalled()
   await vi.waitFor(() => expect(first.respond).toHaveBeenCalledWith({ ok: true }))
-  expect(session[TEMP_PROFILE_KEY]).toEqual(profile)
-  expect(local[LOCAL_PROFILE_KEY]).toBeNull()
-  const second = send({ type: '8values:save-profile', profile, permanent: true })
-  await vi.waitFor(() => expect(second.respond).toHaveBeenCalledWith({ ok: true }))
+  expect(session[TEMP_PROFILE_KEY]).toBeUndefined()
   expect(local[LOCAL_PROFILE_KEY]).toEqual(profile)
+  const replacement = { ...profile, scores: { ...profile.scores, economic: 80 } }
+  const second = send({ type: '8values:save-profile', profile: replacement })
+  await vi.waitFor(() => expect(second.respond).toHaveBeenCalledWith({ ok: true }))
+  expect(local[LOCAL_PROFILE_KEY]).toEqual(replacement)
   expect(session[TEMP_PROFILE_KEY]).toBeUndefined()
 })
 test.each([
@@ -43,9 +45,9 @@ test.each([
   expect(respond).toHaveBeenCalledWith(expect.objectContaining({ ok: false }))
   expect(storage.local.set).not.toHaveBeenCalled()
 })
-test('recusa perfil inválido e escolha de persistência ausente', () => {
+test('recusa perfil inválido ou ausente', () => {
   const { send, storage } = setup()
-  for (const data of [{ profile: { ...profile, question_hash: 'old' }, permanent: true }, { profile }]) {
+  for (const data of [{ profile: { ...profile, question_hash: 'old' } }, {}]) {
     expect(send({ type: '8values:save-profile', ...data }).respond).toHaveBeenCalledWith(expect.objectContaining({ ok: false }))
   }
   expect(storage.local.set).not.toHaveBeenCalled()

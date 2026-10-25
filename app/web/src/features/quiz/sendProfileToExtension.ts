@@ -1,7 +1,7 @@
 import type { Profile } from '../../storage/localProfile'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
-export function sendProfileToExtension(profile: Profile, permanent: boolean): Promise<void> {
+export function sendProfileToExtension(profile: Profile): Promise<void> {
   return new Promise((resolve, reject) => {
     const requestId = crypto.randomUUID()
     const origin = window.location.origin
@@ -17,6 +17,7 @@ export function sendProfileToExtension(profile: Profile, permanent: boolean): Pr
       reject(new Error('A extensão não respondeu. Instale ou recarregue a extensão, abra o site pelo link na aba Comparação e tente novamente.'))
     }, 5000)
     window.addEventListener('message', receive)
-    window.postMessage({ type: '8values:save-profile', requestId, profile, permanent, ...(isLabBuild ? { variant: 'lab' } : {}) }, origin)
+    // Keep the persistence flag for compatibility with older installed extensions.
+    window.postMessage({ type: '8values:save-profile', requestId, profile, permanent: true, ...(isLabBuild ? { variant: 'lab' } : {}) }, origin)
   })
 }

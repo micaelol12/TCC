@@ -112,7 +112,8 @@ try {
   const hash = scoring.match(/QUESTION_HASH = '([^']+)'/)[1]
   const profile = { schema_version: 1, question_hash: hash, completed_at: new Date().toISOString(), scores: { economic: 25, diplomatic: 50, state: 75, society: 100 } }
   await page.locator('#profile-file').setInputFiles({ name: 'perfil.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(profile)) })
-  await page.getByText('Perfil temporário nesta sessão.', { exact: true }).waitFor()
+  await page.getByText('Perfil salvo localmente nesta extensão.', { exact: true }).waitFor()
+  assert.deepEqual(await page.evaluate(async () => (await chrome.storage.local.get('8values-profile-local-v1'))['8values-profile-local-v1']), profile)
   await page.getByText('Diferença de 50,0 pontos;', { exact: false }).waitFor()
   await page.getByRole('button', { name: 'Apagar perfil', exact: true }).click()
   await page.getByRole('link', { name: 'Fazer meu teste no site' }).waitFor()

@@ -4,6 +4,14 @@ import { experimentCapabilities, labCapabilities, analysisFixture } from '../tes
 import { createAnalysisClient, isAnalysis, isCapabilities } from '../api/analysisApi'
 
 const defaults = experimentCapabilities.defaults
+test('preserva segmentação por sentenças e importa presets antigos com tokens', () => {
+  const sentences = { ...defaults, chunk_strategy: 'sentencas' as const }
+  expect(importPreset(exportPreset(sentences), experimentCapabilities)).toEqual(sentences)
+  const { chunk_strategy: _s, ...historical } = defaults
+  expect(isExperimentConfig(historical)).toBe(true)
+  expect(importPreset(exportPreset(historical), experimentCapabilities).chunk_strategy).toBe('tokens')
+  for (const invalid of ['other', '', null, true, 1]) expect(isExperimentConfig({ ...defaults, chunk_strategy: invalid })).toBe(false)
+})
 test('preserva Choice nos presets e usa Score para configurações históricas', () => {
   const choice = { ...defaults, primitiva_polaridade: 'choice' as const }
   expect(importPreset(exportPreset(choice), experimentCapabilities)).toEqual(choice)
@@ -49,4 +57,5 @@ test('envia o snapshot do Lab e exige confirmação da configuração utilizada'
   await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, chunk_tokens: 400 })).rejects.toThrow('confirmou')
   await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, primitiva_polaridade: 'choice' })).rejects.toThrow('confirmou')
   await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, regra_decisao: 'polo_primeiro' })).rejects.toThrow('confirmou')
+  await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, chunk_strategy: 'tokens' })).rejects.toThrow('confirmou')
 })

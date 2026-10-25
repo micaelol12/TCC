@@ -36,7 +36,7 @@ export default function LabApiKeys({ client, caps, busy, onUpdated }: {
   }
   return <section className="labApiKeys" aria-label="API keys">
     <h3>API keys</h3><p>O Lab exige suas próprias chaves. Cadastre os provedores necessários para o modo escolhido. Não há chaves pré-cadastradas no servidor.</p>
-    <p className="small muted">As chaves ficam somente na memória da API por até 8 horas ou até seu reinício. O navegador guarda apenas o identificador da sessão. As chaves não são gravadas no banco, histórico ou presets.</p>
+    <p className="small muted">As chaves ficam somente na memória da API por até 8 horas ou até seu reinício. O navegador guarda apenas o identificador da sessão; na extensão, ele é preservado ao fechar e reabrir o painel. As chaves não são gravadas no banco, histórico ou presets.</p>
     <fieldset disabled={busy || saving}><legend>Chaves dos provedores</legend>
       {(['typesafe', 'maritaca', 'gemini'] as const).map(provider => <div className="labKeyProvider" key={provider}>
         <label htmlFor={`lab-key-${provider}`}>{providerNames[provider]} · {caps.providers[provider] ? 'configurado' : 'ausente'}</label>

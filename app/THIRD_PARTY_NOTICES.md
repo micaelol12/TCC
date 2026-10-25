@@ -4,6 +4,8 @@ O questionário e a fórmula de pontuação deste aplicativo se baseiam no proje
 
 O vocabulário `cl100k_base.tiktoken` foi obtido do recurso público do projeto [tiktoken](https://github.com/openai/tiktoken) e é empacotado para evitar acesso à rede durante uma análise. SHA-256: `223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7`.
 
+Os recursos portugueses do Punkt são empacotados em `api/app/pipeline/resources/punkt_portuguese`, a partir da cópia local em `tcc_lib/resources/punkt_portuguese`. Os arquivos `README.md` e `README.original` dessa pasta registram procedência e licença.
+
 ## 8values — MIT License
 
 Copyright (c) 2020 8values. http://8values.github.io.

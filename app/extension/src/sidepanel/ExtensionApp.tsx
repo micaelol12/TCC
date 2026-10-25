@@ -10,7 +10,7 @@ import { API_BASE_URL, WEB_BASE_URL, client, reportClient } from '../config'
 import { captureKey, sessionKey, isCapture, type Capture } from '../platform/selection'
 import { emptySession, hydrateSession, reduceSession, fitSession, type Action, type Session } from '../storage/sessionState'
 import { createSessionStore } from '../storage/sessionStore'
-import { readPreferences, saveMode, saveProfile, TEMP_PROFILE_KEY, LOCAL_PROFILE_KEY } from '../storage/preferences'
+import { readPreferences, saveMode, saveProfile, LOCAL_PROFILE_KEY } from '../storage/preferences'
 import ExperimentPanel from '@8values/shared/components/ExperimentPanel'
 import ExperimentComparison from '@8values/shared/components/ExperimentComparison'
 import { useExperimentConfig } from '@8values/shared/hooks/useExperimentConfig'
@@ -25,8 +25,6 @@ export default function ExtensionApp() {
   const [caps, setCaps] = useState<Capabilities | null>(null)
   const [capsError, setCapsError] = useState('')
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [profileStored, setProfileStored] = useState(false)
-  const [permanent, setPermanent] = useState(false)
   const [profileError, setProfileError] = useState('')
   const [profileBusy, setProfileBusy] = useState(false)
   const [tab, setTab] = useState<'analysis' | 'comparison'>('analysis')
@@ -80,7 +78,7 @@ export default function ExtensionApp() {
         windowId.current = current.id
         store.current = createSessionStore(current.id)
         const preferences = await readPreferences().catch(() => ({ mode: 'medium' as const, profile: null }))
-        const keys = [sessionKey(current.id), captureKey(current.id), TEMP_PROFILE_KEY]
+        const keys = [sessionKey(current.id), captureKey(current.id)]
         const saved = await chrome.storage.session.get(keys)
         if (!mounted.current) return
         let next = hydrateSession(saved[sessionKey(current.id)], preferences.mode)
@@ -88,9 +86,7 @@ export default function ExtensionApp() {
         const captures = [...pendingEvents, ...(isCapture(initial) ? [initial] : [])].sort((a, b) => a.createdAt - b.createdAt)
         for (const capture of captures) next = reduceSession(next, { type: 'capture', capture })
         stateRef.current = next; setState(next)
-        const temporaryProfile = validateProfile(saved[TEMP_PROFILE_KEY])
-        setProfile(temporaryProfile ?? preferences.profile)
-        setProfileStored(!temporaryProfile && !!preferences.profile)
+        setProfile(preferences.profile)
       } catch {
         setStorageError('Armazenamento indisponível. Os dados permanecerão apenas enquanto este painel estiver aberto.')
         let next = stateRef.current
@@ -110,13 +106,12 @@ export default function ExtensionApp() {
   useEffect(() => {
     let generation = 0
     const syncProfile = async (changes: Record<string, chrome.storage.StorageChange>, area: string) => {
-      if (!(area === 'local' && changes[LOCAL_PROFILE_KEY]) && !(area === 'session' && changes[TEMP_PROFILE_KEY])) return
+      if (area !== 'local' || !changes[LOCAL_PROFILE_KEY]) return
       const revision = ++generation
       try {
-        const [preferences, temporary] = await Promise.all([readPreferences(), chrome.storage.session.get(TEMP_PROFILE_KEY)])
+        const preferences = await readPreferences()
         if (!mounted.current || revision !== generation) return
-        const current = validateProfile(temporary[TEMP_PROFILE_KEY])
-        setProfile(current ?? preferences.profile); setProfileStored(!current && !!preferences.profile)
+        setProfile(preferences.profile)
       } catch { /* keep the last usable profile until storage recovers */ }
     }
     chrome.storage.onChanged.addListener(syncProfile)
@@ -162,14 +157,14 @@ export default function ExtensionApp() {
       if (file.size > 10000) throw new Error('Arquivo de perfil acima do limite de 10 KB.')
       const parsed = validateProfile(JSON.parse(await file.text()))
       if (!parsed) throw new Error('Perfil inválido ou de outra versão do questionário. Exporte novamente pelo site.')
-      await saveProfile(parsed, permanent)
-      setProfile(parsed); setProfileStored(permanent)
+      await saveProfile(parsed)
+      setProfile(parsed)
     } catch (err) { setProfileError(err instanceof Error ? err.message : 'Não foi possível importar o perfil.') }
     finally { setProfileBusy(false) }
   }
   async function deleteProfile() {
     setProfileBusy(true); setProfileError('')
-    try { await saveProfile(null, false); setProfile(null); setProfileStored(false) }
+    try { await saveProfile(null); setProfile(null) }
     catch { setProfileError('Não foi possível apagar o perfil guardado. Tente novamente.') }
     finally { setProfileBusy(false) }
   }
@@ -190,7 +185,7 @@ export default function ExtensionApp() {
       {tab === 'analysis' ? <>
         {ready && state.showComposer && <AnalysisComposer text={state.draft.text} title={state.draft.title} source={state.draft.source} mode={state.mode} caps={caps} busy={isBusy} seconds={seconds} error={state.notice || error} capsError={capsError}
           recipient={experimentRecipients(state.mode, experiment.config, experiment.available)}
-          configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} storageKey={experiment.storageKey} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
+          configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}
           onSend={() => void send()} onCancel={() => { cancelRequested.current = true; cancel() }} onRetry={() => void refreshCapabilities()} onClose={selected ? () => update({ type: 'close-composer' }) : undefined} />}
@@ -205,8 +200,8 @@ export default function ExtensionApp() {
         <ComparisonPanel profile={profile} analysis={selected?.analysis ?? null} profileAction={<a className="button secondary" href={`${WEB_BASE_URL}/teste`} target="_blank" rel="noreferrer">Fazer meu teste no site</a>} />
         <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e clique em “Usar resultado na extensão”. A comparação será atualizada aqui automaticamente.</p>
           <a className="button secondary" href={`${WEB_BASE_URL}/resultado`} target="_blank" rel="noreferrer">Abrir meu resultado no site</a>
-          {profile && <><p role="status" className="small">{profileStored ? 'Perfil salvo localmente nesta extensão.' : 'Perfil temporário nesta sessão.'}</p><button className="danger" disabled={profileBusy} onClick={() => void deleteProfile()}>Apagar perfil</button></>}
-          <label className="check"><input type="checkbox" checked={permanent} onChange={e => setPermanent(e.target.checked)} disabled={profileBusy} />Salvar o próximo perfil neste navegador</label>
+          <p className="muted small">O perfil fica salvo nesta extensão até você apagá-lo.</p>
+          {profile && <><p role="status" className="small">Perfil salvo localmente nesta extensão.</p><button className="danger" disabled={profileBusy} onClick={() => void deleteProfile()}>Apagar perfil</button></>}
           <label htmlFor="profile-file">Importar perfil JSON</label><input id="profile-file" type="file" accept="application/json,.json" disabled={profileBusy || !ready} onChange={e => { void importProfile(e.target.files?.[0]); e.target.value = '' }} />
           {profileError && <p className="error" role="alert">{profileError}</p>}
         </section>

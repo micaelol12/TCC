@@ -159,6 +159,7 @@ class ExperimentHttpTests(unittest.TestCase):
 
     def test_invalid_configs_and_disabled_lab_call_no_providers(self):
         for config in ({'chunk_tokens': True}, {'chunk_tokens': 99}, {'chunk_tokens': None},
+                       {'chunk_strategy': 'invalid'}, {'chunk_strategy': None},
                        {'primitiva_polaridade': 'invalid'}, {'primitiva_polaridade': None}, {'regra_decisao': 'invalid'}, {'regra_decisao': None},
                        {'bootstrap_samples': 10001}, {'relevance_margin_min': 1.01},
                        {'llm_model': 'unknown'}, {'min_valid_chunks': 21}, {'MARITACA_API_KEY': 'private-key'}):
@@ -218,10 +219,32 @@ class ExperimentHttpTests(unittest.TestCase):
         historical['pipeline_version'] = 'jev-escalas-ordinal-4'
         historical['effective_config'].pop('primitiva_polaridade')
         historical['effective_config'].pop('regra_decisao')
+        historical['effective_config'].pop('chunk_strategy')
         historical['config_hash'] = config_hash(ExperimentConfig.model_validate(historical['effective_config']), historical['pipeline_version'])
         self.assertEqual(AnalysisResponse.model_validate(historical).model_dump(mode='json'), historical)
         historical['effective_config']['primitiva_polaridade'] = 'choice'
         with self.assertRaises(ValidationError): AnalysisResponse.model_validate(historical)
+
+    def test_segmentation_selection_reaches_chunks_snapshot_hash_and_execution_log(self):
+        from app.execution_store import public_request
+        from app.report_schemas import ReportAnalysis
+        text = ('O Dr. Silva apresentou propostas para a educação pública. ' * 40) + 'Fim.'
+        hashes = []
+        self.assertEqual(self.client.get('/api/capabilities').json()['experimental']['defaults']['chunk_strategy'], 'sentencas')
+        for strategy in ('sentencas', 'tokens'):
+            payload = {'text': text, 'processing_level': 'low',
+                       'experiment_config': {'chunk_strategy': strategy, 'chunk_tokens': 100}}
+            response = self.client.post('/api/analyze', json=payload)
+            self.assertEqual(response.status_code, 200, response.text)
+            result = response.json()
+            chunks, _ = split_text(text, max_tokens=self.settings.max_tokens, chunk_tokens=100, strategy=strategy)
+            self.assertEqual([c['text'] for c in result['chunks']], chunks)
+            self.assertEqual(''.join(chunks), text)
+            self.assertEqual(result['effective_config']['chunk_strategy'], strategy)
+            self.assertEqual(ReportAnalysis.model_validate(result).model_dump(mode='json'), result)
+            self.assertEqual(public_request(payload, self.settings)[2]['chunk_strategy'], strategy)
+            hashes.append(result['config_hash'])
+        self.assertNotEqual(*hashes)
 
     def test_two_http_requests_preserve_their_own_configuration(self):
         configs = [{'chunk_tokens': 100, 'min_valid_chunks': 1}, {'chunk_tokens': 600, 'min_valid_chunks': 16}]
@@ -237,7 +260,7 @@ class ExperimentHttpTests(unittest.TestCase):
     def test_max_chunks_and_budget_still_apply(self):
         settings = replace(self.settings, max_chunks=1, min_valid_chunks=1)
         with patch.object(analyze_route, 'settings', settings):
-            response = self.client.post('/api/analyze', json={'text': TEXT * 50, 'processing_level': 'low', 'experiment_config': {'chunk_tokens': 100}})
+            response = self.client.post('/api/analyze', json={'text': (TEXT + ' ') * 50, 'processing_level': 'low', 'experiment_config': {'chunk_tokens': 100}})
             self.assertEqual(response.status_code, 413)
             self.mocks[0].assert_not_called()
         with patch.object(analyze_route, 'settings', replace(self.settings, daily_calls=1)):
@@ -246,7 +269,7 @@ class ExperimentHttpTests(unittest.TestCase):
 
     def test_report_retains_metadata_and_rejects_tampering_or_wrong_environment(self):
         payload = report_payload()
-        config = self.settings.algorithm_defaults()
+        config = self.settings.algorithm_defaults().model_copy(update={'chunk_strategy': 'tokens'})
         payload['analysis'].update(effective_config=config.model_dump(), config_version='1',
             config_hash=config_hash(config, payload['analysis']['pipeline_version']), environment='lab')
         reports_route.recent_requests.clear()

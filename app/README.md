@@ -45,7 +45,7 @@ npm run package:extension
 
 Carregue `app/extension/dist` como extensão descompactada em `chrome://extensions` ou `edge://extensions`, com o modo de desenvolvedor ativado. O pacote ZIP fica em `app/extension/artifacts`. Inicie a API na porta 8000 antes de analisar. [Instalação, configuração e dados da extensão](extension/README.md).
 
-Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar resultado na extensão**. O painel de **Comparação** recebe o perfil automaticamente, sem exportar arquivos. Marque **Manter meu resultado salvo na extensão** para guardar entre sessões; o padrão é temporário. Após atualizar a extensão, recarregue também o site. A exportação e importação JSON continuam disponíveis. O perfil não é enviado à API.
+Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar resultado na extensão**. O painel de **Comparação** recebe o perfil automaticamente, sem exportar arquivos. O perfil fica salvo localmente entre sessões até você usar **Apagar perfil** na extensão. Após atualizar a extensão, recarregue também o site. A exportação e importação JSON continuam disponíveis. O perfil não é enviado à API.
 
 | Modo | Serviço | Variáveis necessárias |
 |---|---|---|

@@ -17,11 +17,30 @@ def encoder():
     )
 
 
-def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600) -> tuple[list[str], int]:
+def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
+               strategy: str = "tokens") -> tuple[list[str], int]:
+    if strategy not in {"sentencas", "tokens"} or type(chunk_tokens) is not int or chunk_tokens <= 0:
+        raise ValueError("invalid_segmentation")
     tokenizer = encoder()
     tokens = tokenizer.encode(text, disallowed_special=())
     if len(tokens) > max_tokens:
         raise ValueError("token_limit")
+    if strategy == "sentencas":
+        from .sentences import _agrupar_sentencas, _unidades
+        count = lambda value: len(tokenizer.encode(value, disallowed_special=()))
+        grouped = _agrupar_sentencas(text, _unidades(text), chunk_tokens, count)
+        # Preserve the exact submitted text, including whitespace between chunks,
+        # so evidence offsets and report reconstruction continue to work.
+        starts = []
+        offset = 0
+        for chunk in grouped:
+            start = text.index(chunk, offset)
+            starts.append(start)
+            offset = start + len(chunk)
+        if not starts:
+            return ([text] if text else []), len(tokens)
+        boundaries = [0, *starts[1:], len(text)]
+        return [text[a:b] for a, b in zip(boundaries, boundaries[1:])], len(tokens)
     chunks = []
     start = 0
     while start < len(tokens):
