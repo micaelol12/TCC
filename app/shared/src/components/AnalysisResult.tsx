@@ -11,9 +11,11 @@ import type { ReportClient, ReportRequest } from '../api/reportApi'
 import { historicalLevels } from '../domain/ordinalScale'
 const warningLabels: Record<string, string> = { falha_autenticacao_jev: 'A API não conseguiu autenticar no TypeSafe. Confira a chave no servidor.', falha_autenticacao_llm: 'A API não conseguiu autenticar no provedor LLM selecionado. Confira sua chave.', evidencia_nao_verificada: 'O modelo retornou uma citação que não confere com o texto. A estimativa correspondente foi descartada.' }
 const auditLabels: Record<string, string> = { found: 'Passagem encontrada', not_selected: 'Nenhuma passagem selecionada pelo critério configurado', not_literal: 'Citação literal inválida', sustenta: 'Sustenta a posição e intensidade', contradiz: 'Contradiz a posição atribuída', insuficiente: 'Evidência insuficiente para a posição ou intensidade', uncertain: 'Parecer empatado', failed: 'Falha ao consultar o verificador', invalid: 'Resposta inválida do verificador' }
+const percent = (value: number) => `${(value * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
 
 export default function AnalysisResult({ entry, reportClient, reportOrigin, compact = false, children }: { entry: AnalysisEntry<number | string>; reportClient: ReportClient; reportOrigin: ReportRequest['client']; compact?: boolean; children?: ReactNode }) {
   const analysis = entry.analysis
+  const levelConfidenceMin = analysis.effective_config?.level_confidence_min
   const scores = Object.fromEntries(analysis.axes.map(axis => [axis.axis, axis.pole_a])) as Scores
   const complete = axisOrder.every(axis => Number.isFinite(scores[axis]))
   return <section className={styles.card} aria-label="Análise selecionada">
@@ -33,20 +35,34 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
     {axisOrder.map(axis => {
       const result = analysis.axes.find(item => item.axis === axis)
       return result ? <div key={axis}><AxisBar axis={axis} score={result.pole_a} headingLevel={4} showInterpretation />
-        {result.reason_codes.includes('intensidade_ambigua') && !result.methods_used.includes('llm') && <p className="notice small">Intensidade incerta no JEV. A pontuação é preliminar; consulte a distribuição por trecho abaixo.</p>}
+        {result.reason_codes.includes('intensidade_ambigua') && !result.methods_used.includes('llm') && <p className="notice small">Intensidade incerta no JEV. Em pelo menos um trecho, houve empate entre intensidades do polo mais provável ou o suporte do nível ficou abaixo do limiar configurado. Como não houve revisão por LLM, a pontuação é preliminar. Consulte os valores na distribuição dos níveis por trecho abaixo.</p>}
         {result.reason_codes.includes('direcao_ambigua') && analysis.effective_config?.regra_decisao === 'polo_primeiro' && !result.methods_used.includes('llm') && <p className="notice small">Direção incerta no JEV. Os grupos estão próximos; a pontuação é preliminar.</p>}
         <details><summary>Distribuição e evidências de {AXES[axis].title}</summary>
           <p className="small muted">Cobertura: {result.valid_chunks} de {result.total_chunks} trechos. {result.sufficient_evidence ? '' : 'Evidência limitada.'} {result.status === 'abstained' ? 'Classificação indeterminada.' : result.status === 'no_evidence' ? 'Sem posição identificada.' : ''}</p>
           <p className="small">Níveis: {(analysis.escala?.niveis ?? historicalLevels(analysis.schema_version)).map(n => `${n.codigo > 0 ? '+' : ''}${n.codigo} (${n.rotulo}): ${analysis.escala ? result.level_counts_by_key?.[n.chave] ?? 0 : result.level_counts[n.chave as keyof typeof result.level_counts] ?? 0}`).join('; ')}.</p>
           {!!result.jev_diagnostics?.length && <div aria-label={`Decisão JEV de ${AXES[axis].title}`}>
-            <h5>Decisão do JEV por trecho</h5><p className="small muted">Distribuições retornadas pelo modelo, antes de eventual revisão pelo LLM. Os valores abaixo não são percentuais ideológicos nem probabilidades de acerto.</p>
-            <ul>{result.jev_diagnostics.map(d => <li key={d.chunk_index}>
+            <h5>Decisão do JEV por trecho</h5><p className="small muted">Distribuições retornadas pelo modelo, antes de eventual revisão pelo LLM. Os valores abaixo não são percentuais ideológicos nem probabilidades de acerto. A certeza é a confiança do nível informada pelo JEV.</p>
+            <ul>{result.jev_diagnostics.map(d => {
+              const checksIntensity = d.relevante && d.regra_decisao === 'polo_primeiro' && (d.grupo_mais_provavel === 'A' || d.grupo_mais_provavel === 'B')
+              return <li key={d.chunk_index}>
               Trecho {d.chunk_index + 1} · {d.regra_decisao === 'polo_primeiro' ? 'Polo primeiro (experimental)' : 'Nível mais provável'}{!d.relevante && ' · sem relevância identificada'}.
               {' '}{AXES[axis].a}: {(d.probabilities_abc.A * 100).toFixed(1)}%; {AXES[axis].b}: {(d.probabilities_abc.B * 100).toFixed(1)}%; sem posição: {(d.probabilities_abc.C * 100).toFixed(1)}%.
               {' '}Nível mais provável global: {d.nivel_jev_bruto ?? 'empate'}; nível selecionado: {d.nivel ?? 'indeterminado'}.
-              {d.probabilidade_nivel_condicional !== null && ` Suporte do nível dentro do grupo: ${(d.probabilidade_nivel_condicional * 100).toFixed(1)}%.`}
-              <details><summary>Ver distribuição dos níveis</summary><ul>{analysis.escala?.niveis.map(n => <li key={n.chave}>{n.rotulo}: {((d.probabilities_nivel[n.chave] ?? 0) * 100).toFixed(1)}%</li>)}</ul></details>
-            </li>)}</ul>
+              <details><summary>Ver distribuição dos níveis</summary>
+                <p className="small"><strong>Certeza do JEV (confiança do nível): {percent(d.confianca_nivel)}.</strong> Essa medida é diferente do suporte do nível dentro do polo.</p>
+                {d.probabilidade_nivel_condicional !== null && <p className="small">Suporte do nível dentro do polo: {percent(d.probabilidade_nivel_condicional)}. É a probabilidade do nível dividida pela probabilidade total do polo.</p>}
+                {checksIntensity && <p className="small muted">
+                  No modo Polo primeiro, a intensidade é avaliada pelo suporte dentro do polo.
+                  {levelConfidenceMin !== undefined && ` Limiar desta execução: ${percent(levelConfidenceMin)}.`}
+                  {d.probabilidade_nivel_condicional === null
+                    ? ' Intensidade incerta neste trecho: houve empate entre os níveis mais prováveis dentro do polo, sem uma intensidade única selecionada.'
+                    : levelConfidenceMin !== undefined && d.probabilidade_nivel_condicional < levelConfidenceMin
+                      ? ` Intensidade incerta neste trecho: o suporte de ${percent(d.probabilidade_nivel_condicional)} ficou abaixo do limiar de ${percent(levelConfidenceMin)}.`
+                      : levelConfidenceMin !== undefined ? ' O suporte deste trecho atingiu o limiar de intensidade.' : ' O limiar não foi registrado nesta análise.'}
+                </p>}
+                <ul>{analysis.escala?.niveis.map(n => <li key={n.chave}>{n.rotulo}: {percent(d.probabilities_nivel[n.chave] ?? 0)}</li>)}</ul>
+              </details>
+            </li>})}</ul>
           </div>}
           {result.ci95 && <p className="small">Intervalo entre trechos (95%): {result.ci95[0].toFixed(1)}–{result.ci95[1].toFixed(1)}. Não representa probabilidade de acerto.</p>}
           {result.evidence.length ? <><p className="small muted">Citações localizadas no texto. Presença literal não comprova apoio à classificação.</p><ul>{result.evidence.map((ev, i) => <li key={i}>Trecho {ev.chunk_index + 1}: “{ev.quote}”</li>)}</ul></> : <p className="small muted">Sem citação literal disponível.</p>}
