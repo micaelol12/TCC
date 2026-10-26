@@ -61,8 +61,8 @@ explícita, o padrão agora é `sentencas`; o alias sozinho não seleciona o alg
 antigo. O modo por sentenças rejeita sobreposição diferente de zero.
 
 600 é uma convenção experimental, não um tamanho ótimo demonstrado. Compare os
-cortes mantendo 600; depois avalie outros alvos. JEV, fallback, auditoria de
-evidências e agregação não foram alterados. Cada chunk elegível continua com peso
+cortes mantendo 600; depois avalie outros alvos. As regras de decisão JEV, fallback e agregação permanecem iguais. A busca de
+evidências passa a usar as mesmas fronteiras de sentenças dos chunks. Cada chunk elegível continua com peso
 igual; mudar a segmentação pode mudar a classificação, a cobertura e o índice.
 
 Punkt e as regras de estrutura são heurísticos. Revise OCR, abreviações incomuns,
@@ -75,3 +75,23 @@ Referência do algoritmo: https://www.nltk.org/api/nltk.tokenize.punkt.html
 Reinicie o kernel e reexecute as células de configuração e preparação antes de
 classificar. As saídas que dependiam da segmentação anterior foram limpas do
 notebook; arquivos de execuções anteriores em disco foram preservados.
+
+## Referências com pontos e fronteiras compartilhadas
+
+O Punkt identifica as sentenças; fronteiras dentro de referências reconhecidas são reunidas antes do agrupamento em chunks. As regras cobrem artigos entre aspas, referências com quebras de linha, incisos numéricos e romanos, abreviações usuais, identificadores com pontos, números, URLs e e-mails. São regras contextuais, não uma gramática completa de referências jurídicas.
+
+Exemplos preservados: `“Art. 9º-H`, `“Art. 29-A.`, `art. 5º`, `inc. IV`, `Res.-TSE nº 23.732/2024`, `n.º 23.732/2024`, `R$ 2.000,00`, `v1.2.3` e `ABC.123.XYZ`.
+
+O ponto final da frase continua delimitando uma sentença. Uma quebra de linha entre `Art.` e seu número não separa a referência. Marcadores de artigos, parágrafos e listas continuam delimitando unidades estruturais.
+
+As posições são calculadas no texto original. Não há substituição dos pontos, normalização adicional das citações ou reconstrução do texto a partir de placeholders. Sentenças acima do alvo ficam inteiras e são sinalizadas pelo diagnóstico existente.
+
+## Implementação e reprodução
+
+- Fonte das regras: `tcc_lib/segmentacao.py`, função `intervalos_sentencas`.
+- O notebook usa essas mesmas fronteiras em `sentence_spans`, mantendo o limite de passagens e o agrupamento quando necessário.
+- A API independente usa a réplica em `app/api/app/pipeline/sentences.py`, compartilhada pela segmentação e pelas evidências. Atualize-a com `python scripts/replicate_sentence_rules.py`; um teste verifica a igualdade com a fonte.
+- Ao replicar o notebook com `scripts/replicate_notebook_scales.py`, o import de evidências é convertido para o módulo local da API.
+- O protocolo do notebook identifica esta alteração como `punkt_pt_referencias_v2`. A API identifica novas análises como `jev-escalas-ordinal-8` e preserva o cálculo dos hashes das versões anteriores.
+
+O teste de regressão usa o texto do TSE da base de exemplos, com alvo de 600 tokens, e verifica que `“Art. 9º-H` e `“Art. 29-A.` não atravessam os limites de chunks. Outros testes verificam fronteiras reais de sentenças, integridade, posições de citações e compatibilidade com a API. Não são necessárias chamadas a modelos para validar esses cortes.

@@ -53,6 +53,8 @@ for source in sources:
 (root / 'app/api/app/pipeline/domain.py').write_text((header + '\n' + ''.join(get(n) for n in domain_names)).rstrip() + '\n', encoding='utf-8')
 evidence = next(s for s in sources if 'async def audit_evidence(' in s)
 evidence = evidence[:evidence.index('async def enriquecer_evidencias')]
+evidence = evidence.replace('from tcc_lib.segmentacao import intervalos_sentencas',
+                            'from .sentences import intervalos_sentencas')
 (root / 'app/api/app/pipeline/evidence.py').write_text(evidence.rstrip() + '\n', encoding='utf-8')
 
 # Snapshots usados pelos testes do contrato compartilhado; nunca substituem a fonte autoritativa.

@@ -1,8 +1,5 @@
 """Regressões das métricas do notebook; executa somente definições locais, sem APIs."""
 
-import ast
-import json
-import math
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -13,6 +10,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,20 +28,9 @@ def carregar_definicoes():
         "DIPL_SCTY_EXPONENT", "MAPA_8VALUES", "rotulo_8values",
         "converter_documento_8values", "grafico_scores", "plotar_documento",
     }
-    ns = {"np": np, "pd": pd, "math": math, "plt": plt}
-    encontrados = set()
-    for cell in json.loads(NOTEBOOK.read_text(encoding="utf-8"))["cells"]:
-        if cell["cell_type"] != "code":
-            continue
-        for node in ast.parse("".join(cell["source"])).body:
-            nome = getattr(node, "name", None)
-            if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name):
-                nome = node.targets[0].id
-            if nome in nomes:
-                exec(compile(ast.Module(body=[node], type_ignores=[]), str(NOTEBOOK), "exec"), ns)
-                encontrados.add(nome)
-    if nomes != encontrados:
-        raise AssertionError(f"Definições não encontradas: {nomes - encontrados}")
+    ns = carregar_pipeline_notebook(NOTEBOOK)
+    if faltantes := nomes - ns.keys():
+        raise AssertionError(f"Definições não encontradas: {faltantes}")
     return ns
 
 

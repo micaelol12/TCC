@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from .polarity import EscalaOrdinal, ESCALA_9_NIVEIS, validar_escala
 
 CONFIG_VERSION = "1"
-PIPELINE_VERSION = "jev-escalas-ordinal-7"
+PIPELINE_VERSION = "jev-escalas-ordinal-8"
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
 Positive = Annotated[int, Field(strict=True, ge=1)]
@@ -64,19 +64,19 @@ class ExperimentOverrides(BaseModel):
 
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
     effective = config.model_dump()
-    if pipeline_version != PIPELINE_VERSION:
+    if pipeline_version not in ("jev-escalas-ordinal-7", PIPELINE_VERSION):
         if config.chunk_strategy != "tokens":
             raise ValueError("Versão histórica da API não suporta segmentação por sentenças.")
         effective.pop("chunk_strategy", None)
-    if pipeline_version not in ("jev-escalas-ordinal-6", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-6", "jev-escalas-ordinal-7", PIPELINE_VERSION):
         if config.regra_decisao != "nivel":
             raise ValueError("Versão histórica da API não suporta polo_primeiro.")
         effective.pop("regra_decisao", None)
-    if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", PIPELINE_VERSION):
         if config.primitiva_polaridade != "score":
             raise ValueError("Versão histórica da API não suporta polaridade Choice.")
         effective.pop("primitiva_polaridade", None)
-    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", PIPELINE_VERSION):
         effective.pop("escala", None)
     # Preserve hashes of saved analyses from before the optional evidence fields.
     if pipeline_version == "jev-2-polos-mvp-1":

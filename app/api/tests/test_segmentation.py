@@ -6,6 +6,8 @@ import unittest
 
 from app.experiment_config import CONFIG_VERSION, ExperimentConfig, config_hash
 from app.pipeline.segmentation import encoder, split_text
+from app.pipeline.sentences import intervalos_sentencas
+from app.pipeline.evidence import sentence_spans
 from app.settings import Settings
 
 
@@ -47,6 +49,7 @@ class SentenceSegmentationTests(unittest.TestCase):
             'O Sr. Silva apresentou a proposta. A saúde deve melhorar.\n\nOutra proposta será analisada. ' * 15,
             '# EDUCAÇÃO\n\nVamos ampliar os serviços públicos.\n- Melhorar a saúde.\n- Investir nas escolas.\n' * 12,
             'Proposta longa ' * 150 + '. Fim.',
+            '“Art. 9º-H A remoção observa o art. 9º.\n\n“Art.\n29-A. A live eleitoral será permitida.',
         ]
         count = lambda text: len(encoder().encode(text, disallowed_special=()))
         for text in texts:
@@ -54,6 +57,40 @@ class SentenceSegmentationTests(unittest.TestCase):
             actual, _ = split_text(text, max_tokens=12000, chunk_tokens=60, strategy='sentencas')
             self.assertEqual([chunk.strip() for chunk in actual], expected)
             self.assertEqual(''.join(actual), text)
+
+    def test_legal_references_share_evidence_boundaries_and_offsets(self):
+        frases = [
+            'A Res.-TSE nº 23.732/2024 foi publicada.',
+            '“Art.\r\n9º-H A remoção observará o art. 9º desta resolução.”',
+            '“Art. 29-A. A live eleitoral será permitida.”',
+            'Consulte https://exemplo.org/a.b?x=1.2 ou nome.silva@exemplo.org.',
+            'Outra decisão.',
+        ]
+        text = '  ' + '\r\n\r\n'.join(frases) + '  '
+        intervals = intervalos_sentencas(text)
+        self.assertEqual([text[a:b] for a, b in intervals], frases)
+        spans = sentence_spans(text)
+        self.assertEqual([(s['start'], s['end']) for s in spans.values()], intervals)
+        chunks, _ = split_text(text, max_tokens=12000, chunk_tokens=1, strategy='sentencas')
+        self.assertEqual([c.strip() for c in chunks], frases)
+        self.assertEqual(''.join(chunks), text)
+        for span in spans.values():
+            self.assertEqual(text[span['start']:span['end']], span['quote'])
+
+    def test_api_sentence_replica_is_current(self):
+        root = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(root))
+        from scripts.replicate_sentence_rules import sentence_source
+        self.assertEqual((root / 'app/api/app/pipeline/sentences.py').read_text(encoding='utf-8'),
+                         sentence_source())
+
+    def test_previous_sentence_pipeline_hash_remains_readable(self):
+        config = ExperimentConfig(chunk_strategy='sentencas')
+        public = {'config_version': CONFIG_VERSION, 'pipeline_version': 'jev-escalas-ordinal-7',
+                  'effective_config': config.model_dump()}
+        expected = hashlib.sha256(json.dumps(public, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()
+        self.assertEqual(config_hash(config, 'jev-escalas-ordinal-7'), expected)
+        self.assertNotEqual(config_hash(config), expected)
 
     def test_legacy_hashes_and_lab_defaults(self):
         self.assertEqual(Settings(app_env='lab').algorithm_defaults().chunk_strategy, 'sentencas')

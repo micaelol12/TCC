@@ -11,7 +11,7 @@ from unittest.mock import patch
 import tiktoken.registry
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from tcc_lib.segmentacao import normalizar_quebras_texto, preparar_segmentacao
+from tcc_lib.segmentacao import intervalos_sentencas, normalizar_quebras_texto, preparar_segmentacao
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +46,54 @@ class SegmentacaoSentencasTest(unittest.TestCase):
         # Alvo menor que cada frase: a exceção deve preservá-la inteira.
         r = preparar_segmentacao(" ".join(frases), tokens_alvo=1)
         self.assertEqual(r["chunks"], frases)
+
+    def test_referencias_juridicas_entre_aspas_e_com_quebras(self):
+        for referencia in ('“Art. 9º-H', '“Art. 29-A.', '“Art.\n9º-H',
+                           '“Art.\n\n9.504', '“Art.\r\n9.504', '"Art. 29-A.', '“Inc. IV'):
+            frase = referencia + ' A remoção observará o art. 9º desta resolução.”'
+            texto = 'Uma decisão anterior.\n\n' + frase + '\n\nOutra decisão.'
+            with self.subTest(referencia=referencia):
+                r = preparar_segmentacao(texto, tokens_alvo=1)
+                self.assertEqual(r['chunks'], ['Uma decisão anterior.', frase, 'Outra decisão.'])
+                self.assertEqual([texto[a:b] for a, b in intervalos_sentencas(texto)], r['chunks'])
+
+    def test_codigos_numeros_abreviacoes_e_urls_nao_perdem_fim_real_da_frase(self):
+        frases = [
+            'A Res.-TSE nº 23.732/2024 altera a Lei nº 9.504/1997.',
+            'O art. 5º remete aos arts. 17 a 20 e ao inc. IV.',
+            'Consulte a pág. 12 e o Dr. Silva.',
+            'O valor é R$ 2.000,00 e a versão é v1.2.3.',
+            'O identificador é ABC.123.XYZ.',
+            'Na U.S.A. existem normas.',
+            'Consulte https://exemplo.org/a.b?x=1.2 para detalhes.',
+            'Consulte https://exemplo.org/a.b.',
+            'Escreva para nome.sobrenome@exemplo.org.',
+            'Outra frase!',
+        ]
+        texto = ' '.join(frases)
+        self.assertEqual(preparar_segmentacao(texto, tokens_alvo=1)['chunks'], frases)
+        for a, b in intervalos_sentencas(texto):
+            self.assertIn(texto[a:b], frases)
+
+    def test_regressao_cortes_do_relatorio_tse_sem_chamadas_a_modelos(self):
+        from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
+        ns = carregar_pipeline_notebook()
+        dados = json.loads((ROOT / 'pesquisa_exemplos/textos_teste.json').read_text(encoding='utf-8'))
+        original = dados['textos_grandes'][-1]['texto']
+        texto, _ = ns['limpar_markdown'](original.strip())
+        resultado = preparar_segmentacao(texto, tokens_alvo=600)
+        self.assertEqual(' '.join(' '.join(resultado['chunks']).split()), ' '.join(texto.split()))
+        for chunk in resultado['chunks']:
+            self.assertFalse(chunk.rstrip().endswith('Art.'))
+        for referencia in ('“Art. 9º-H', '“Art. 29-A.'):
+            self.assertEqual(sum(referencia in chunk for chunk in resultado['chunks']), 1)
+        intervalos = intervalos_sentencas(texto)
+        tamanho = max(1, (len(intervalos) + 199) // 200)
+        esperado = {}
+        for i in range(0, len(intervalos), tamanho):
+            a, b = intervalos[i][0], intervalos[min(i + tamanho, len(intervalos)) - 1][1]
+            esperado[f'S{i // tamanho:03d}'] = {'start': a, 'end': b, 'quote': texto[a:b]}
+        self.assertEqual(ns['sentence_spans'](texto), esperado)
 
     def test_preserva_paragrafo_que_cabe_sem_completar_chunk_com_metade_dele(self):
         primeiro = "Defendemos direitos."
@@ -144,10 +192,11 @@ class SegmentacaoSentencasTest(unittest.TestCase):
         self.assertEqual(r["segmentador_versao"], "texto_inteiro")
         self.assertEqual(preparar_segmentacao(" \n ")["chunks"], [])
 
-    def test_notebook_exporta_novo_padrao_e_previa_congela_diagnostico(self):
+    def test_notebook_exporta_estrategia_e_previa_congela_diagnostico(self):
         from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
         ns = carregar_pipeline_notebook()
-        self.assertEqual(ns["CONFIG_CHUNKS"]["estrategia"], "sentencas")
+        self.assertIn(ns["CONFIG_CHUNKS"]["estrategia"], ("sentencas", "tokens"))
+        ns["CONFIG_CHUNKS"]["estrategia"] = "sentencas"
         ns.update(TEXTO_PLAYGROUND="Defendemos direitos. Rejeitamos a censura.",
                   CONFIG_PLAYGROUND={"nome": "Teste", "limpar_markdown": True,
                                      "dividir_em_chunks": True,
@@ -159,7 +208,7 @@ class SegmentacaoSentencasTest(unittest.TestCase):
         ns["CONFIG_PLAYGROUND"]["chunks"]["tokens_alvo"] = 999
         self.assertEqual(ns["preparacao_playground"], protocolo)
         self.assertEqual(protocolo["chunks"]["tokens_alvo"], 8)
-        self.assertEqual(protocolo["segmentador_versao"], "punkt_pt_v1")
+        self.assertEqual(protocolo["segmentador_versao"], "punkt_pt_referencias_v2")
         self.assertEqual(len(protocolo["diagnostico_segmentacao"]), len(ns["chunks_playground"]))
         self.assertNotIn("texto", protocolo["diagnostico_segmentacao"][0])
         # Todas as células continuam compiláveis, inclusive await no nível superior.
@@ -171,12 +220,13 @@ class SegmentacaoSentencasTest(unittest.TestCase):
     def test_preparacao_do_documento_e_dos_28_textos_registra_estrategia(self):
         from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
         ns = carregar_pipeline_notebook()
+        ns["CONFIG_CHUNKS"]["estrategia"] = "sentencas"
         ns.update(display=lambda *args: None, DOCUMENTO_NOME="Teste",
                   planos_governo=[{"candidato": "Teste", "md": "# Direitos\n\nDefendemos direitos.\nRejeitamos a censura."}])
         cell = next(c for c in self.nb["cells"] if c["id"] == "7151a035")
         exec("".join(cell["source"]), ns)
         self.assertEqual(ns["preparacao_documento"]["chunks"]["tokens_alvo"], 600)
-        self.assertEqual(ns["preparacao_documento"]["segmentador_versao"], "punkt_pt_v1")
+        self.assertEqual(ns["preparacao_documento"]["segmentador_versao"], "punkt_pt_referencias_v2")
         config = {"arquivo": str(ROOT / "pesquisa_exemplos/textos_teste.json"),
                   "grupos": ["textos_pequenos", "textos_grandes"],
                   "limpar_markdown": True, "dividir_em_chunks": True,

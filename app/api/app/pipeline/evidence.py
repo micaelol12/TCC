@@ -8,6 +8,7 @@ import math
 import re
 from copy import deepcopy
 from typesafe_sdk import Choice, Noul, NoulCriteria
+from .sentences import intervalos_sentencas
 
 RELATIONS = {
     "sustenta": "A citação, no contexto, sustenta a posição e a intensidade atribuídas ao autor.",
@@ -18,15 +19,7 @@ RELATIONS = {
 
 def sentence_spans(text, limit=200):
     """Deterministic IDs with original character offsets; merge if over the cap."""
-    boundaries = [0] + [m.end() for m in re.finditer(r"(?<=[.!?])\s+|\n+", text)] + [len(text)]
-    spans = []
-    for start, end in zip(boundaries, boundaries[1:]):
-        while start < end and text[start].isspace():
-            start += 1
-        while end > start and text[end - 1].isspace():
-            end -= 1
-        if start < end:
-            spans.append((start, end))
+    spans = intervalos_sentencas(text)
     size = max(1, math.ceil(len(spans) / limit))
     return {f"S{i // size:03d}": {"start": spans[i][0], "end": spans[min(i + size, len(spans)) - 1][1],
             "quote": text[spans[i][0]:spans[min(i + size, len(spans)) - 1][1]]}
