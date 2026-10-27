@@ -14,10 +14,10 @@ const help = {
   bootstrap_samples: 'Mais reamostragens refinam o intervalo entre trechos e exigem mais processamento.',
   bootstrap_seed: 'Reproduz o bootstrap. As respostas dos provedores ainda podem variar.',
 }
-export default function ExperimentPanel({ caps, config, onChange, mode, busy, error, notice, onNotice, client, onKeysUpdated }: {
+export default function ExperimentPanel({ caps, config, onChange, mode, busy, error, notice, onNotice, client, onKeysUpdated, collapsible = false }: {
   caps: ExperimentCapabilities; config: ExperimentConfig | null; onChange: (config: ExperimentConfig) => void;
   mode: Mode; busy: boolean; error: string; notice: string; onNotice: (value: string) => void;
-  client: ReturnType<typeof createAnalysisClient>; onKeysUpdated: () => Promise<void>
+  client: ReturnType<typeof createAnalysisClient>; onKeysUpdated: () => Promise<void>; collapsible?: boolean
 }) {
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
@@ -36,8 +36,8 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     const link = document.createElement('a'); link.href = url; link.download = '8values-lab-config.json'; link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <section className="experimentPanel" aria-label="Configuração da análise">
-    <h3>Configuração da análise · Lab</h3>
+  const panel = <section className="experimentPanel" aria-label="Configuração da análise">
+    {!collapsible && <h3>Configuração da análise · Lab</h3>}
     <div role="tablist" aria-label="Configuração Lab"><button id="lab-tab-parameters" role="tab" aria-selected={tab === 'parameters'} aria-controls="lab-parameters" className={tab === 'parameters' ? '' : 'secondary'} disabled={busy} onClick={() => setTab('parameters')}>Parâmetros</button><button id="lab-tab-keys" role="tab" aria-selected={tab === 'keys'} aria-controls="lab-keys" className={tab === 'keys' ? '' : 'secondary'} disabled={busy} onClick={() => setTab('keys')}>API keys</button></div>
     <div id="lab-keys" role="tabpanel" aria-labelledby="lab-tab-keys" hidden={tab !== 'keys'}><LabApiKeys client={client} caps={caps} busy={busy} onUpdated={onKeysUpdated} /></div>
     <div id="lab-parameters" role="tabpanel" aria-labelledby="lab-tab-parameters" hidden={tab !== 'parameters'}>
@@ -97,4 +97,8 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
     {fileError && <p className="error" role="alert">{fileError}</p>}{notice && <p className="small" role="status">{notice}</p>}
     </div>
   </section>
+  return collapsible ? <details className="experimentDisclosure">
+    <summary><span>Configuração da análise <small>Parâmetros e API keys{error ? ' · Verifique a configuração' : changed.length ? ` · ${changed.length} alterações` : ' · Padrões da API'}</small></span><span className="configChevron" aria-hidden="true">⌄</span></summary>
+    {panel}
+  </details> : panel
 }

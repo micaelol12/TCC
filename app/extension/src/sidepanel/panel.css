@@ -7,6 +7,16 @@
 .panelMain h2 { font-size:1.15rem; }
 .panelMain section { min-width:0; }
 .panelMain .modeGroup { grid-template-columns:1fr; }
+.panelMain .experimentDisclosure { margin:1rem 0; padding:0; border:1px solid #dedad2; border-radius:12px; background:#fffefa; }
+.experimentDisclosure > summary { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.85rem; list-style:none; min-height:44px; }
+.experimentDisclosure > summary::-webkit-details-marker { display:none; }
+.experimentDisclosure > summary small { display:block; margin-top:.25rem; color:#6e6962; font-size:.76rem; font-weight:400; }
+.experimentDisclosure > summary:hover { background:#f3f1ec; border-radius:12px; }
+.experimentDisclosure > summary:focus-visible { border-radius:12px; }
+.configChevron { flex:none; font-size:1.3rem; line-height:1; }
+.experimentDisclosure[open] .configChevron { transform:rotate(180deg); }
+.panelMain .experimentDisclosure > .experimentPanel { margin:0; border:0; border-top:1px solid #e7e3dc; border-radius:0 0 12px 12px; }
+.panelMain .experimentPanel input[type="file"] { max-width:100%; font-size:.85rem; }
 .panelTabs { display:flex; gap:.5rem; margin:1rem 0; }
 .panelTabs button { flex:1; }
 .panelMain .radarLayout { grid-template-columns:1fr; gap:.3rem; }
