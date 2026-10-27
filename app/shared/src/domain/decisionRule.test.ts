@@ -20,6 +20,8 @@ function result() {
 
 test('valida o diagnóstico preservado com a escala e regra da execução', () => {
   expect(isAnalysis(result())).toBe(true)
+  const tied = result(); tied.axes[0].jev_diagnostics![0].desempate_intensidade = true
+  expect(isAnalysis(tied)).toBe(true)
   const historical = result(); delete historical.axes[0].jev_diagnostics
   expect(isAnalysis(historical)).toBe(true)
 })
@@ -32,6 +34,7 @@ test('rejeita diagnósticos incompatíveis, distribuições inválidas e regras 
     (d: JevDiagnostic) => { d.probabilities_abc.B = 1 },
     (d: JevDiagnostic) => { d.probabilities_nivel.sem_posicao = NaN },
     (d: JevDiagnostic) => { d.probabilidade_nivel_condicional = 1.1 },
+    (d: JevDiagnostic) => { Object.assign(d, { desempate_intensidade: 'true' }) },
   ]) {
     const a = result(); mutate(a.axes[0].jev_diagnostics![0]); expect(isAnalysis(a)).toBe(false)
   }

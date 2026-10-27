@@ -105,11 +105,14 @@ def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escal
     maior_grupo = max(grupos.values())
     vencedores_grupo = [g for g, p in grupos.items() if math.isclose(p, maior_grupo, abs_tol=1e-12, rel_tol=0)]
     grupo = vencedores_grupo[0] if len(vencedores_grupo) == 1 else None
+    desempate_intensidade = False
     if regra_decisao == 'polo_primeiro':
         candidatos = [n for n in escala.niveis if (n.polo or 'C') == grupo]
         maior_no_grupo = max((probabilidades[n.chave] for n in candidatos), default=0)
         vencedores_no_grupo = [n for n in candidatos if math.isclose(probabilidades[n.chave], maior_no_grupo, abs_tol=1e-12, rel_tol=0)]
-        selecionado = vencedores_no_grupo[0] if len(vencedores_no_grupo) == 1 else None
+        # Os códigos são identificadores; a intensidade segue a posição na escala.
+        selecionado = min(vencedores_no_grupo, key=lambda n: abs(n.valor - .5), default=None)
+        desempate_intensidade = relevante and grupo in ('A', 'B') and len(vencedores_no_grupo) > 1
     nivel = selecionado.codigo if relevante and selecionado else None
     suporte_condicional = (probabilidades[selecionado.chave] / grupos[selecionado.polo or 'C']
                            if selecionado and selecionado.polo is not None else None)
@@ -119,6 +122,7 @@ def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escal
         'nivel': nivel, 'chave_nivel': selecionado.chave if relevante and selecionado else None,
         'nivel_jev_bruto': nivel_jev,
         'regra_decisao': regra_decisao,
+        'desempate_intensidade': desempate_intensidade,
         'grupo_mais_provavel': grupo,
         'margem_grupo': _score_margem(grupos),
         'probabilidade_nivel_condicional': suporte_condicional,
@@ -175,7 +179,8 @@ def motivos_fallback(decisao, config):
             if decisao['margem_grupo'] < config['margem_direcao_minima']:
                 motivos.append('direcao_ambigua')
             if (decisao['grupo_mais_provavel'] in ('A', 'B')
-                    and (decisao['probabilidade_nivel_condicional'] is None
+                    and (decisao.get('desempate_intensidade', False)
+                         or decisao['probabilidade_nivel_condicional'] is None
                          or decisao['probabilidade_nivel_condicional'] < config['confianca_nivel_minima'])):
                 motivos.append('intensidade_ambigua')
             return motivos

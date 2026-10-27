@@ -54,7 +54,7 @@ class DecisionRuleTests(unittest.TestCase):
 
     def test_mirror_ties_absence_and_direction_uncertainty(self):
         for values, expected, group in ((NINE[::-1], 3, 'A'),
-                                       ([0, .34, .34, 0, .32, 0, 0, 0, 0], None, 'B'),
+                                       ([0, .34, .34, 0, .32, 0, 0, 0, 0], -2, 'B'),
                                        ([.5, 0, 0, 0, .5, 0, 0, 0, 0], None, None),
                                        ([.1, 0, 0, 0, .8, 0, 0, 0, .1], 0, 'C'),
                                        ([.3, 0, 0, 0, .4, 0, 0, 0, .3], 0, 'C')):
@@ -67,6 +67,53 @@ class DecisionRuleTests(unittest.TestCase):
         self.assertIsNone(absent['nivel'])
         self.assertIsNone(absent['valor_0_100'])
         self.assertEqual(absent['status'], 'sem_evidencia')
+
+    def test_intensity_ties_select_nearest_center_and_match_notebook(self):
+        for scale, values, expected in (
+            (ESCALA_9_NIVEIS, [.26, .26, .12, .01, .35, 0, 0, 0, 0], -3),
+            (ESCALA_9_NIVEIS, [0, 0, 0, 0, .35, .01, .12, .26, .26], 3),
+            (ESCALA_9_NIVEIS, [.25, .25, .25, .25, 0, 0, 0, 0, 0], -1),
+            (ESCALA_9_NIVEIS, [0, 0, 0, 0, 0, .25, .25, .25, .25], 1),
+            (ESCALA_5_NIVEIS, [.4, .4, .2, 0, 0], -1),
+            (ESCALA_5_NIVEIS, [0, 0, .2, .4, .4], 1),
+        ):
+            for primitive in ('score', 'choice'):
+                with self.subTest(scale=scale.id, expected=expected, primitive=primitive):
+                    response = raw(scale, values, primitive)['diplomatic_polaridade']
+                    d = _normalizar_polaridade_ordinal(response, True, primitive, scale, 'polo_primeiro')
+                    self.assertEqual(d['nivel'], expected)
+                    self.assertTrue(d['desempate_intensidade'])
+                    self.assertEqual(d['status'], 'direcional')
+                    selected = scale.por_codigo[expected]
+                    self.assertAlmostEqual(d['probabilidade_nivel_condicional'], d['probabilities_nivel'][selected.chave] / d['probabilities_abc'][selected.polo])
+                    config = ExperimentConfig(escala=scale, regra_decisao='polo_primeiro', level_confidence_min=0).jev_config()
+                    self.assertEqual(motivos_fallback({'relevante': True, 'margem_relevancia': .98, **d}, config), ['intensidade_ambigua'])
+                    nb = self.notebook['_normalizar_polaridade_ordinal'](response, True, primitive, scale.model_dump(mode='json'), 'polo_primeiro')
+                    self.assertEqual(d, nb)
+                    self.assertEqual(self.notebook['motivos_fallback']({'relevante': True, 'margem_relevancia': .98, **nb}, config), ['intensidade_ambigua'])
+
+    def test_tie_policy_preserves_group_abstention_irrelevance_and_global_rule(self):
+        for values in ([.5, 0, 0, 0, 0, 0, 0, 0, .5], [.5, 0, 0, 0, .5, 0, 0, 0, 0]):
+            d = _normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, values)['diplomatic_polaridade'], True, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+            self.assertIsNone(d['nivel'])
+            self.assertFalse(d['desempate_intensidade'])
+        tied = raw(ESCALA_9_NIVEIS, [.5, .5, 0, 0, 0, 0, 0, 0, 0])['diplomatic_polaridade']
+        original = _normalizar_polaridade_ordinal(tied, True, 'choice', ESCALA_9_NIVEIS, 'nivel')
+        self.assertIsNone(original['nivel'])
+        self.assertFalse(original['desempate_intensidade'])
+        absent = _normalizar_polaridade_ordinal(tied, False, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+        self.assertIsNone(absent['nivel'])
+        self.assertFalse(absent['desempate_intensidade'])
+
+    def test_intensity_uses_scale_positions_instead_of_numeric_codes(self):
+        data = ESCALA_9_NIVEIS.model_dump(mode='json')
+        for n, code in zip(data['niveis'], range(1, 10)):
+            n['codigo'] = code
+        scale = validar_escala(data)
+        response = raw(scale, [.5, .5, 0, 0, 0, 0, 0, 0, 0])['diplomatic_polaridade']
+        api = _normalizar_polaridade_ordinal(response, True, 'choice', scale, 'polo_primeiro')
+        self.assertEqual(api['nivel'], 2)
+        self.assertEqual(api, self.notebook['_normalizar_polaridade_ordinal'](response, True, 'choice', data, 'polo_primeiro'))
 
     def test_notebook_parity_and_arbitrary_codes(self):
         data = ESCALA_9_NIVEIS.model_dump(mode='json')
@@ -108,6 +155,31 @@ class DecisionStrategyTests(unittest.IsolatedAsyncioTestCase):
 class DecisionHttpTests(unittest.TestCase):
     setUp = experiments.ExperimentHttpTests.setUp
     tearDown = experiments.ExperimentHttpTests.tearDown
+
+    def test_recorded_tie_produces_score_and_preserves_diagnostic_and_history(self):
+        self.jev.response = {'answers': raw(ESCALA_9_NIVEIS, [.26, .26, .12, .01, .35, 0, 0, 0, 0]), 'model': 'jev-test'}
+        config = {'primitiva_polaridade': 'choice', 'regra_decisao': 'polo_primeiro'}
+        response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'low', 'experiment_config': config})
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        axis = result['axes'][1]
+        self.assertEqual(axis['pole_a'], 12.5)
+        self.assertEqual(axis['status'], 'estimated')
+        self.assertEqual(axis['valid_chunks'], 1)
+        self.assertNotIn('empate_nivel', axis['reason_codes'])
+        self.assertIn('intensidade_ambigua', axis['reason_codes'])
+        diagnostic = axis['jev_diagnostics'][0]
+        self.assertTrue(diagnostic['desempate_intensidade'])
+        self.assertEqual(diagnostic['nivel'], -3)
+        self.assertEqual(diagnostic['nivel_jev_bruto'], 0)
+        self.assertAlmostEqual(diagnostic['probabilidade_nivel_condicional'], .4)
+        self.assertEqual(ReportAnalysis.model_validate(result).model_dump(mode='json'), result)
+        historical = deepcopy(result)
+        historical['pipeline_version'] = 'jev-escalas-ordinal-8'
+        for a in historical['axes']:
+            a['jev_diagnostics'][0].pop('desempate_intensidade')
+        historical['config_hash'] = config_hash(ExperimentConfig.model_validate(historical['effective_config']), historical['pipeline_version'])
+        self.assertEqual(AnalysisResponse.model_validate(historical).model_dump(mode='json'), historical)
 
     def test_request_snapshot_diagnostic_report_and_rejected_tampering(self):
         self.jev.response = {'answers': raw(ESCALA_9_NIVEIS, NINE), 'model': 'jev-test'}

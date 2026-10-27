@@ -76,6 +76,14 @@ class JevDiagnostic(BaseModel):
     margem_grupo: Probability
     probabilidade_nivel_condicional: Probability | None
     confianca_nivel: Probability
+    desempate_intensidade: bool = Field(default=False, strict=True)
+
+    @model_serializer(mode="wrap")
+    def serialize(self, handler):
+        result = handler(self)
+        if not self.desempate_intensidade:
+            result.pop("desempate_intensidade", None)
+        return result
 
     @model_validator(mode="after")
     def distributions(self):

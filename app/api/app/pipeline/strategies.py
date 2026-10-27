@@ -43,7 +43,7 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
                 "jev_diagnostic": {name: original[name] for name in (
                     "regra_decisao", "relevante", "nivel_jev_bruto", "nivel", "grupo_mais_provavel",
                     "probabilities_nivel", "probabilities_abc", "margem_grupo",
-                    "probabilidade_nivel_condicional", "confianca_nivel")},
+                    "probabilidade_nivel_condicional", "confianca_nivel", "desempate_intensidade")},
             }
         except (ValueError, KeyError, TypeError, AttributeError):
             original = None

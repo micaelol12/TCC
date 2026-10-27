@@ -6,9 +6,9 @@ O objetivo é testar nove níveis sem deixar a divisão das intensidades de um p
 
 1. Some os valores retornados nos níveis do polo A, polo B e sem posição, separadamente. Compare os três grupos, incluindo sem posição.
 2. Escolha o grupo com maior soma. Empate entre grupos produz decisão indeterminada, sem converter o empate em 50.
-3. Dentro de A ou B, escolha o nível mais provável. Empate entre intensidades também permanece indeterminado. Se o grupo sem posição vencer, escolha o centro.
+3. Dentro de A ou B, escolha o nível mais provável. Em empate entre intensidades do mesmo polo, escolha a menor intensidade (o nível mais próximo do centro da escala) e registre `desempate_intensidade=true`. Por exemplo, entre −4 e −3, escolha −3; entre +3 e +4, escolha +3. Se o grupo sem posição vencer, escolha o centro.
 4. A direção é sinalizada como incerta quando a diferença entre o grupo vencedor e o segundo fica abaixo de `margem_direcao_minima` (`direction_margin_min` na API).
-5. A intensidade é sinalizada como incerta quando o suporte condicional `P(nível) / P(polo)` fica abaixo de `confianca_nivel_minima` (`level_confidence_min` na API). Neste modo, esse limiar tem interpretação diferente da confiança original do SDK, que continua preservada para auditoria.
+5. A intensidade é sinalizada como incerta quando houve desempate ou quando o suporte condicional `P(nível) / P(polo)` fica abaixo de `confianca_nivel_minima` (`level_confidence_min` na API). Neste modo, esse limiar tem interpretação diferente da confiança original do SDK, que continua preservada para auditoria.
 
 Os limiares apenas sinalizam incerteza no modo baixo/sem fallback. No modo médio, acionam o LLM. Uma pontuação com incerteza é preliminar. O parecer de evidência continua observacional e não muda a regra. No modo alto, a classificação é feita pelo LLM e o seletor da regra JEV fica inativo.
 

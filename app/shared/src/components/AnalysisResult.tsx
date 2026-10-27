@@ -48,6 +48,7 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
               Trecho {d.chunk_index + 1} · {d.regra_decisao === 'polo_primeiro' ? 'Polo primeiro (experimental)' : 'Nível mais provável'}{!d.relevante && ' · sem relevância identificada'}.
               {' '}{AXES[axis].a}: {(d.probabilities_abc.A * 100).toFixed(1)}%; {AXES[axis].b}: {(d.probabilities_abc.B * 100).toFixed(1)}%; sem posição: {(d.probabilities_abc.C * 100).toFixed(1)}%.
               {' '}Nível mais provável global: {d.nivel_jev_bruto ?? 'empate'}; nível selecionado: {d.nivel ?? 'indeterminado'}.
+              {d.desempate_intensidade && <p className="notice small">Houve empate entre intensidades do mesmo polo; foi selecionada a menor intensidade ({analysis.escala?.niveis.find(n => n.codigo === d.nivel)?.rotulo ?? d.nivel}). A intensidade permanece incerta.</p>}
               <details><summary>Ver distribuição dos níveis</summary>
                 <p className="small"><strong>Certeza do JEV (confiança do nível): {percent(d.confianca_nivel)}.</strong> Essa medida é diferente do suporte do nível dentro do polo.</p>
                 {d.probabilidade_nivel_condicional !== null && <p className="small">Suporte do nível dentro do polo: {percent(d.probabilidade_nivel_condicional)}. É a probabilidade do nível dividida pela probabilidade total do polo.</p>}
@@ -58,7 +59,7 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
                     ? ' Intensidade incerta neste trecho: houve empate entre os níveis mais prováveis dentro do polo, sem uma intensidade única selecionada.'
                     : levelConfidenceMin !== undefined && d.probabilidade_nivel_condicional < levelConfidenceMin
                       ? ` Intensidade incerta neste trecho: o suporte de ${percent(d.probabilidade_nivel_condicional)} ficou abaixo do limiar de ${percent(levelConfidenceMin)}.`
-                      : levelConfidenceMin !== undefined ? ' O suporte deste trecho atingiu o limiar de intensidade.' : ' O limiar não foi registrado nesta análise.'}
+                      : levelConfidenceMin !== undefined ? ` O suporte deste trecho atingiu o limiar de intensidade.${d.desempate_intensidade ? ' A intensidade continua incerta pelo empate.' : ''}` : ' O limiar não foi registrado nesta análise.'}
                 </p>}
                 <ul>{analysis.escala?.niveis.map(n => <li key={n.chave}>{n.rotulo}: {percent(d.probabilities_nivel[n.chave] ?? 0)}</li>)}</ul>
               </details>

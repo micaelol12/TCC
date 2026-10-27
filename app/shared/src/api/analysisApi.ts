@@ -19,6 +19,7 @@ export type JevDiagnostic = {
   nivel_jev_bruto: number | null; nivel: number | null; grupo_mais_provavel: 'A' | 'B' | 'C' | null;
   probabilities_nivel: Record<string, number>; probabilities_abc: { A: number; B: number; C: number };
   margem_grupo: number; probabilidade_nivel_condicional: number | null; confianca_nivel: number
+  desempate_intensidade?: boolean
 }
 export type AxisResult = {
   axis: Axis; pole_a: number | null; pole_b: number | null;
@@ -57,7 +58,8 @@ function isJevDiagnostic(value: unknown, chunks: Analysis['chunks'], scale: Ordi
     [value.nivel, value.nivel_jev_bruto].every(n => n === null || scale.niveis.some(level => level.codigo === n)) &&
     (value.grupo_mais_provavel === null || ['A', 'B', 'C'].includes(value.grupo_mais_provavel as string)) &&
     distribution(value.probabilities_nivel, scale.niveis.map(n => n.chave)) && distribution(value.probabilities_abc, ['A', 'B', 'C']) &&
-    probability(value.margem_grupo) && probability(value.confianca_nivel) && (value.probabilidade_nivel_condicional === null || probability(value.probabilidade_nivel_condicional))
+    probability(value.margem_grupo) && probability(value.confianca_nivel) && (value.probabilidade_nivel_condicional === null || probability(value.probabilidade_nivel_condicional)) &&
+    (value.desempate_intensidade === undefined || typeof value.desempate_intensidade === 'boolean')
 }
 function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersion: string, codes?: number[]): value is EvidenceAudit {
   if (!object(value) || !count(value.chunk_index) || !chunks.some(c => c.index === value.chunk_index) ||
