@@ -4,6 +4,29 @@ import { experimentCapabilities, labCapabilities, analysisFixture } from '../tes
 import { createAnalysisClient, isAnalysis, isCapabilities } from '../api/analysisApi'
 
 const defaults = experimentCapabilities.defaults
+test('preserva segmentação por sentenças e importa presets antigos com tokens', () => {
+  const sentences = { ...defaults, chunk_strategy: 'sentencas' as const }
+  expect(importPreset(exportPreset(sentences), experimentCapabilities)).toEqual(sentences)
+  const { chunk_strategy: _s, ...historical } = defaults
+  expect(isExperimentConfig(historical)).toBe(true)
+  expect(importPreset(exportPreset(historical), experimentCapabilities).chunk_strategy).toBe('tokens')
+  for (const invalid of ['other', '', null, true, 1]) expect(isExperimentConfig({ ...defaults, chunk_strategy: invalid })).toBe(false)
+})
+test('preserva Choice nos presets e usa Score para configurações históricas', () => {
+  const choice = { ...defaults, primitiva_polaridade: 'choice' as const }
+  expect(importPreset(exportPreset(choice), experimentCapabilities)).toEqual(choice)
+  const { primitiva_polaridade: _p, ...historical } = defaults
+  expect(isExperimentConfig(historical)).toBe(true)
+  expect(importPreset(exportPreset(historical), { ...experimentCapabilities, defaults: choice }).primitiva_polaridade).toBe('score')
+  for (const invalid of ['noul', '', null, true, 1]) expect(isExperimentConfig({ ...defaults, primitiva_polaridade: invalid })).toBe(false)
+})
+test('regra experimental acompanha presets e configurações históricas mantêm nível global', () => {
+  const grouped = { ...defaults, regra_decisao: 'polo_primeiro' as const }
+  expect(importPreset(exportPreset(grouped), experimentCapabilities)).toEqual(grouped)
+  const { regra_decisao: _r, ...historical } = defaults
+  expect(importPreset(exportPreset(historical), { ...experimentCapabilities, defaults: grouped }).regra_decisao).toBe('nivel')
+  for (const invalid of ['other', '', null, true, 1]) expect(isExperimentConfig({ ...defaults, regra_decisao: invalid })).toBe(false)
+})
 test('presets são estritos e revalidados contra os modelos e limites atuais', () => {
   const preset = exportPreset(defaults)
   expect(importPreset(JSON.parse(JSON.stringify(preset)), experimentCapabilities)).toEqual(defaults)
@@ -32,4 +55,7 @@ test('envia o snapshot do Lab e exige confirmação da configuração utilizada'
   await client.analyze('texto', 'medium', new AbortController().signal, 120, defaults)
   expect(JSON.parse(body).experiment_config).toEqual(defaults)
   await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, chunk_tokens: 400 })).rejects.toThrow('confirmou')
+  await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, primitiva_polaridade: 'choice' })).rejects.toThrow('confirmou')
+  await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, regra_decisao: 'polo_primeiro' })).rejects.toThrow('confirmou')
+  await expect(client.analyze('texto', 'medium', new AbortController().signal, 120, { ...defaults, chunk_strategy: 'tokens' })).rejects.toThrow('confirmou')
 })

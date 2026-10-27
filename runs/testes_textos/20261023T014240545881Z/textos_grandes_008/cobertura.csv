@@ -1,0 +1,5 @@
+﻿eixo,polo A,polo B,escala_id,escala_versao,escala_hash,chunks,chunks relevantes,chunks com nível,n polo_B_muito_forte,n polo_B_forte,n polo_B_moderado,n polo_B_leve,n sem_posicao,n polo_A_leve,n polo_A_moderado,n polo_A_forte,n polo_A_muito_forte,níveis do LLM,LLM → A,LLM → B,falhas do LLM,cobertura,índice A,índice A entre posicionados,IC95 inferior,IC95 superior,evidência disponível,base da estimativa,índice B,índice A só JEV
+economic,Igualdade,Mercado,ordinal_9_v1,1,8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424,3,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0.3333333333333333,75.0,75.0,,,True,trecho único,25.0,41.666666666666664
+diplomatic,Globo,Nação,ordinal_9_v1,1,8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,False,sem evidência,,
+state,Liberdade,Autoridade,ordinal_9_v1,1,8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,False,sem evidência,,50.0
+society,Progresso,Tradição,ordinal_9_v1,1,8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,False,sem evidência,,50.0

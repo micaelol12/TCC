@@ -99,13 +99,13 @@ class FluxogramaTest(unittest.TestCase):
 
         def pipeline(**kwargs):
             return SimpleNamespace(llm=kwargs['llm'], tentativas_llm=kwargs['tentativas_llm'],
-                                   config={"usar_fallback": True}, rubricas={})
+                                   config={"usar_fallback": kwargs['usar_fallback'], "regra_decisao": kwargs.get('regra_decisao', 'nivel')}, rubricas={})
 
         async def classify(*args):
             return records
 
         config = {"modelo_jev": "jev-teste", "timeout_llm_s": 123,
-                  "tentativas_llm": 2, "cascata": {"usar_fallback": True}}
+                  "tentativas_llm": 2, "cascata": {"usar_fallback": True, "regra_decisao": "polo_primeiro"}}
         ns = dict(Path=Path, os=os, deepcopy=deepcopy, datetime=datetime, timezone=timezone,
                   load_dotenv=lambda *a, **k: None, CONFIG_PIPELINE_PLAYGROUND=config,
                   CONFIG_PLAYGROUND={"nome": "Teste local"}, playground_llm=client,
@@ -118,6 +118,7 @@ class FluxogramaTest(unittest.TestCase):
                   display=lambda *args: None,
                   tabela_auditoria_evidencias=lambda r: pd.DataFrame(),
                   converter_documento_8values=lambda c: {"eixos": []})
+        ns['criar_dados_fluxograma'] = criar_dados_fluxograma
         with patch.dict(os.environ, TYPESAFE_API_KEY='teste', MARITACA_API_KEY='teste'):
             asyncio.run(eval(compile(source, '<playground-analise>', 'exec',
                                      flags=ast.PyCF_ALLOW_TOP_LEVEL_AWAIT), ns))
@@ -126,6 +127,7 @@ class FluxogramaTest(unittest.TestCase):
         ns['CONFIG_INDICE']['semente'] = 99
         self.assertEqual(data['contexto']['pipeline']['modelo_llm'], 'modelo-ativo')
         self.assertEqual(data['contexto']['indice']['semente'], 42)
+        self.assertEqual(data['contexto']['pipeline']['cascata']['regra_decisao'], 'polo_primeiro')
         self.assertNotIn('api_key', json.dumps(data))
 
 

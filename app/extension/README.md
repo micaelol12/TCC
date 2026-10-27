@@ -72,9 +72,9 @@ No site, conclua o questionário, abra **Meu resultado** e clique em **Usar resu
 
 O envio usa a origem exata definida por `VITE_WEB_BASE_URL`, inclusive a porta. O script de conexão só é habilitado no host do site configurado, não lê respostas nem envia perfis automaticamente. O botão transmite somente os resultados agregados, a data e a versão do questionário. A extensão valida origem, versão, hash, data e os quatro valores; campos extras são descartados.
 
-O padrão é uso temporário. Marque **Manter meu resultado salvo na extensão** no site para persistir o envio. Cada envio substitui o perfil anterior. A exportação JSON e a importação de arquivos de até 10 KB continuam disponíveis como alternativa.
+O perfil enviado pelo site ou importado por JSON fica sempre salvo localmente na extensão, inclusive após reiniciar o navegador. Cada envio substitui o perfil anterior. A exportação JSON e a importação de arquivos de até 10 KB continuam disponíveis como alternativa.
 
-O padrão é uso temporário. A opção **Salvar o próximo perfil neste navegador** permite guardar a próxima importação localmente. **Apagar perfil** remove as cópias temporária e permanente da extensão. O site conserva sua própria cópia; as duas origens têm armazenamentos independentes.
+**Apagar perfil** remove o perfil salvo e qualquer cópia temporária de versões anteriores. Perfis temporários de versões anteriores são migrados para armazenamento local ao abrir o painel. O site conserva sua própria cópia; as duas origens têm armazenamentos independentes.
 
 ## Permissões e dados
 

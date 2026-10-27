@@ -66,6 +66,11 @@ def salvar_relatorio_textos(resultados, pasta_rodada):
                   + escape(str(original.get("texto", ""))) + "</pre><pre>"
                   + _json_html({k: v for k, v in original.items() if k != "texto"})
                   + "</pre></details>"]
+        diagnostico = (item.get("preparacao") or {}).get("diagnostico_segmentacao", [])
+        if diagnostico:
+            linha["trechos acima do alvo"] = sum(d["acima_alvo"] for d in diagnostico)
+            partes.append("<details><summary>Segmentação usada: tokens, sentenças e exceções</summary>"
+                          + _tabela_html(diagnostico) + "</details>")
         if erro:
             partes.append(f"<p class='erro'>Avaliação não concluída: {escape(str(erro))}</p>")
         else:

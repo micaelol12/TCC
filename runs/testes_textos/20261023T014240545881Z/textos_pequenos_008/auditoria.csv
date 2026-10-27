@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,existence_probability
+0,diplomatic,semantic,sustenta,-2,"a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação",0.95,"{'sustenta': 0.97, 'contradiz': 0.01, 'insuficiente': 0.02}",jev-1.13.0,
+0,state,search,not_selected,0,,0.1,"{'S000': 0.55, 'NONE': 0.45}",jev-1.13.0,0.3

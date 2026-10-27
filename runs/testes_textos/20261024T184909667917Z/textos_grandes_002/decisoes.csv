@@ -1,0 +1,97 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,True,-3.0,[],True,-3.0,12.5,jev_ordinal,direcional,"A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.","[{'kind': 'search', 'status': 'found', 'level': -3, 'sentence_id': 'S003', 'start': 337, 'end': 708, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.', 'existence_probability': 0.88, 'confidence': 0.35, 'probabilities': {'S000': 0.12, 'S001': 0.02, 'S002': 0.12, 'S003': 0.4, 'S004': 0.01, 'S005': 0.07, 'S006': 0.12, 'S007': 0.1, 'S008': 0.0, 'S009': 0.01, 'S010': 0.01, 'NONE': 0.02}, 'model': 'jev-1.13.0'}, {'kind': 'semantic', 'status': 'sustenta', 'level': -3, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.', 'confidence': 0.95, 'probabilities': {'sustenta': 0.97, 'contradiz': 0.01, 'insuficiente': 0.02}, 'model': 'jev-1.13.0'}]",1,"MP restringe papel do Estado no controle na fiscalização da atividade econômica
+
+A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.
+
+A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.
+
+Ao assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.
+
+Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.
+
+Regulamentação
+
+Os direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.
+
+Conforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado."
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,"MP restringe papel do Estado no controle na fiscalização da atividade econômica
+
+A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.
+
+A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.
+
+Ao assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.
+
+Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.
+
+Regulamentação
+
+Os direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.
+
+Conforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado."
+state,True,3.0,[],True,3.0,87.5,jev_ordinal,direcional,"A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.","[{'kind': 'search', 'status': 'found', 'level': 3, 'sentence_id': 'S003', 'start': 337, 'end': 708, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.', 'existence_probability': 0.7, 'confidence': 0.33, 'probabilities': {'S000': 0.07, 'S001': 0.01, 'S002': 0.04, 'S003': 0.39, 'S004': 0.01, 'S005': 0.09, 'S006': 0.1, 'S007': 0.13, 'S008': 0.0, 'S009': 0.02, 'S010': 0.01, 'NONE': 0.13}, 'model': 'jev-1.13.0'}, {'kind': 'semantic', 'status': 'sustenta', 'level': 3, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.', 'confidence': 0.76, 'probabilities': {'sustenta': 0.84, 'contradiz': 0.05, 'insuficiente': 0.11}, 'model': 'jev-1.13.0'}]",1,"MP restringe papel do Estado no controle na fiscalização da atividade econômica
+
+A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.
+
+A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.
+
+Ao assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.
+
+Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.
+
+Regulamentação
+
+Os direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.
+
+Conforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado."
+society,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,"MP restringe papel do Estado no controle na fiscalização da atividade econômica
+
+A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de atividade econômica e regulamenta a atuação do Estado como agente normativo e regulador.
+
+A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas ao sustento próprio ou da família e diz que é dever da administração pública e de entes vinculados evitar o abuso do poder regulatório – exceto em cumprimento a previsão explícita em lei.
+
+Ao assinar o texto da medida provisória, o governo pretende estimular o empreendedorismo. “Nós buscamos, num linguajar meu, usado há muito tempo, é tirar o Estado do cangote [de quem quer produzir]”, disse Jair Bolsonaro.
+
+Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica. “Esse é o compromisso do meu governo com a plena liberdade econômica, única maneira de proporcionar, por mérito próprio, e sem interferência do Estado, o engrandecimento de cada cidadão”, afirmou.
+
+Regulamentação
+
+Os direitos previstos na medida provisória não se aplicam a situações que envolverem segurança nacional, segurança pública ou sanitária ou saúde pública; quando se tratar de defesa da concorrência, direitos do consumidor e demais disposições protegidas por lei; e em alguns casos relacionados a empresas públicas ou sociedades de economia mista.
+
+Conforme a MP, regulamento federal deverá definir o que serão consideradas atividades de baixo risco, mas poderá haver legislação estadual, distrital ou municipal específica sobre esse tema – nesse caso, o Ministério da Economia deverá ser informado."
+economic,True,0.0,[],True,0.0,50.0,jev_ordinal,sem_posicao,,"[{'kind': 'search', 'status': 'not_selected', 'level': 0, 'existence_probability': 0.19, 'confidence': 0.54, 'probabilities': {'S000': 0.16, 'S001': 0.01, 'S002': 0.04, 'S003': 0.02, 'S004': 0.17, 'S005': 0.01, 'S006': 0.0, 'S007': 0.0, 'S008': 0.0, 'NONE': 0.59}, 'model': 'jev-1.13.0'}]",2,"As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).
+
+Nas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.
+
+Tramitação
+
+A MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.
+
+Agência Câmara"
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).
+
+Nas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.
+
+Tramitação
+
+A MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.
+
+Agência Câmara"
+state,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).
+
+Nas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.
+
+Tramitação
+
+A MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.
+
+Agência Câmara"
+society,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"As propostas de edição e de alteração de normas de interesse geral, editadas pela administração federal, incluídas autarquias e fundações, serão precedidas da realização de Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto para verificar a razoabilidade do seu impacto econômico. No caso das agências reguladoras, ideia semelhante consta da proposta de lei geral atualmente em análise no Senado (PL 6621/16).
+
+Nas disposições finais, a MP promove uma série de alterações em temas diversos de interesse das empresas. As decisões sobre temas tributários no âmbito federal, por exemplo, caberão a um comitê formado por Conselho Administrativo de Recursos Fiscais (Carf), Secretaria Especial da Receita Federal do Brasil e Procuradoria-Geral da Fazenda Nacional. Também extingue o Fundo Soberano do Brasil, medida rejeitada pela Câmara dos Deputados no ano passado.
+
+Tramitação
+
+A MP 881/19 será analisada inicialmente em uma comissão mista. O parecer aprovado segue posteriormente para os plenários da Câmara e do Senado.
+
+Agência Câmara"

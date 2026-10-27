@@ -6,6 +6,8 @@ O Lab possui uma aba **API keys** para chaves Maritaca e Gemini por sessão e re
 
 Aplicativo React + TypeScript e API FastAPI para o questionário 8values e análise de textos políticos em quatro eixos. Implementação do MVP descrito em [`../PLANO_APP_8VALUES.md`](../PLANO_APP_8VALUES.md).
 
+A análise de texto recebe um objeto de escala ordinal, comum ao JEV e ao LLM. O padrão da API permanece nove níveis; o Lab permite selecionar cinco ou nove. A pontuação é `100 × valor` da alternativa e o documento recebe a média dos trechos válidos. Respostas novas usam `schema_version: "3"`, snapshot completo, hash e contagens por chave. Resultados históricos de cinco/nove níveis preservam seus significados e hashes. O notebook passo a passo é a fonte de verdade; a API usa uma réplica validada. Veja [escalas parametrizáveis](../ESCALAS_PARAMETRIZAVEIS.md) para contrato, uso, testes e protocolo de comparação.
+
 O guia dos oito valores na aba do teste adapta as descrições do [8values original](https://8values.github.io/). A ideologia mais próxima usa os 52 perfis de [`../tcc/ideologies.json`](../tcc/ideologies.json) e a distância definida em [`../TCC.ipynb`](../TCC.ipynb): quadrado das diferenças nos eixos econômico e civil, e expoente `1.73856063` nos eixos diplomático e social. É uma correspondência exploratória, menos precisa que os quatro eixos segundo o próprio 8values. Na análise de texto ela só aparece quando os quatro eixos têm estimativa; as classificações feitas por IA podem conter erros.
 
 ## Rodar localmente
@@ -43,7 +45,7 @@ npm run package:extension
 
 Carregue `app/extension/dist` como extensão descompactada em `chrome://extensions` ou `edge://extensions`, com o modo de desenvolvedor ativado. O pacote ZIP fica em `app/extension/artifacts`. Inicie a API na porta 8000 antes de analisar. [Instalação, configuração e dados da extensão](extension/README.md).
 
-Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar resultado na extensão**. O painel de **Comparação** recebe o perfil automaticamente, sem exportar arquivos. Marque **Manter meu resultado salvo na extensão** para guardar entre sessões; o padrão é temporário. Após atualizar a extensão, recarregue também o site. A exportação e importação JSON continuam disponíveis. O perfil não é enviado à API.
+Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar resultado na extensão**. O painel de **Comparação** recebe o perfil automaticamente, sem exportar arquivos. O perfil fica salvo localmente entre sessões até você usar **Apagar perfil** na extensão. Após atualizar a extensão, recarregue também o site. A exportação e importação JSON continuam disponíveis. O perfil não é enviado à API.
 
 | Modo | Serviço | Variáveis necessárias |
 |---|---|---|

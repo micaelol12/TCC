@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 import { analysisFixture, capabilities, labCapabilities, experimentCapabilities } from '../shared/src/testing/fixtures.ts'
+import { scaleFixtures } from '../shared/src/testing/scaleFixtures.ts'
 
 const target = process.argv[2] ?? 'chrome'
 const output = resolve('test-results')
@@ -25,6 +26,18 @@ async function checkModelSelectionWithoutKeys(page) {
   const selector = page.locator('#lab-llm_model')
   for (const mode of ['low', 'medium', 'high']) {
     await page.locator(`input[name="mode"][value="${mode}"]`).check()
+    const primitive = page.locator('#lab-primitiva_polaridade')
+    assert.equal(await primitive.isDisabled(), mode === 'high')
+    const decisionRule = page.locator('#lab-regra_decisao')
+    assert.equal(await decisionRule.isDisabled(), mode === 'high')
+    if (mode !== 'high') {
+      await decisionRule.selectOption('polo_primeiro')
+      assert.equal(await decisionRule.inputValue(), 'polo_primeiro')
+      await decisionRule.selectOption('nivel')
+      await primitive.selectOption('choice')
+      assert.equal(await primitive.inputValue(), 'choice')
+      await primitive.selectOption('score')
+    }
     assert(await selector.isEnabled(), `Seletor LLM deve abrir no modo ${mode}.`)
     await selector.click()
     await selector.press('Escape')
@@ -39,6 +52,9 @@ async function checkModelSelectionWithoutKeys(page) {
   await page.locator('input[name="mode"][value="medium"]').check()
 }
 let activeCaps = structuredClone(labCapabilities)
+activeCaps.experimental.scales = structuredClone(scaleFixtures)
+activeCaps.experimental.defaults.escala = structuredClone(scaleFixtures[1])
+activeCaps.experimental.defaults.chunk_strategy = 'sentencas'
 try {
   // Both editions use actual built files; providers and report persistence are simulated.
   await context.route(/http:\/\/127\.0\.0\.1:517[34]\//, async route => {
@@ -96,6 +112,16 @@ try {
     requests.push(payload)
     const result = analysisFixture(payload.processing_level, payload.text)
     if (lab) {
+      result.schema_version = '3'
+      result.escala = payload.experiment_config.escala
+      result.escala_hash = createHash('sha256').update(JSON.stringify(canonical(result.escala))).digest('hex')
+      for (const axis of result.axes) {
+        axis.level_counts_by_key = Object.fromEntries(result.escala.niveis.map(n => [n.chave, n.codigo === 1 ? axis.valid_chunks : 0]))
+        if (axis.valid_chunks) {
+          axis.pole_a = 100 * result.escala.niveis.find(n => n.codigo === 1).valor
+          axis.pole_b = 100 - axis.pole_a
+        }
+      }
       result.environment = 'lab'; result.config_version = '1'; result.effective_config = payload.experiment_config
       result.config_hash = createHash('sha256').update(JSON.stringify(canonical({ effective_config: result.effective_config, config_version: '1', pipeline_version: result.pipeline_version }))).digest('hex')
       result.lab_execution_id = crypto.randomUUID()
@@ -116,10 +142,75 @@ try {
   const standard = await cdp.send('Extensions.loadUnpacked', { path: resolve('extension/dist') })
   const lab = await cdp.send('Extensions.loadUnpacked', { path: resolve('extension/dist-lab') })
   assert.notEqual(standard.id, lab.id)
+  if (process.argv.includes('--persistence-only')) {
+    const url = `chrome-extension://${lab.id}/sidepanel.html`
+    const openPanel = async () => {
+      const page = await context.newPage()
+      page.on('pageerror', error => errors.push(error.message))
+      await page.goto(url)
+      await page.locator('#lab-chunk_tokens').waitFor()
+      return page
+    }
+    let page = await openPanel()
+    assert.equal(await page.getByRole('button', { name: 'Salvar configuração', exact: true }).count(), 0)
+    // Preferences must persist even while provider keys are missing.
+    await page.locator('#lab-chunk_tokens').fill('400')
+    await page.locator('#lab-chunk_strategy').selectOption('tokens')
+    await page.locator('#lab-regra_decisao').selectOption('polo_primeiro')
+    await page.locator('#lab-llm_model').selectOption('sabiazinho-4')
+    await page.close()
+    page = await openPanel()
+    await waitValue(page, '#lab-chunk_tokens', '400')
+    assert.equal(await page.locator('#lab-chunk_strategy').inputValue(), 'tokens')
+    assert.equal(await page.locator('#lab-regra_decisao').inputValue(), 'polo_primeiro')
+    assert.equal(await page.locator('#lab-llm_model').inputValue(), 'sabiazinho-4')
+    // Incomplete and invalid edits must preserve the latest valid configuration.
+    for (const invalid of ['', '99']) {
+      await page.locator('#lab-chunk_tokens').fill(invalid)
+      await page.reload()
+      await waitValue(page, '#lab-chunk_tokens', '400')
+    }
+    await page.getByRole('tab', { name: 'API keys', exact: true }).click()
+    for (const [provider, label] of [['typesafe', 'TypeSafe'], ['maritaca', 'Maritaca']]) {
+      await page.locator(`#lab-key-${provider}`).fill(`private-key-${provider}`)
+      await page.getByRole('button', { name: `Salvar chave ${label}`, exact: true }).click()
+      await page.getByRole('status').filter({ hasText: 'Chave configurada nesta sessão' }).waitFor()
+    }
+    const stored = await page.evaluate(() => chrome.storage.local.get(null))
+    assert(Object.keys(stored).some(key => key.startsWith('8values-lab-key-session-v1:')))
+    assert(!JSON.stringify(stored).includes('private-key'))
+    await page.close()
+    page = await openPanel()
+    await page.locator('#text-input').fill(text)
+    assert(await page.getByRole('button', { name: 'Analisar texto', exact: true }).isEnabled())
+    assert.equal(await page.locator('#lab-llm_model').inputValue(), 'sabiazinho-4')
+    await page.getByRole('button', { name: 'Restaurar padrões', exact: true }).click()
+    await page.close()
+    page = await openPanel()
+    await waitValue(page, '#lab-chunk_tokens', '600')
+    // Importing also replaces the persisted configuration immediately.
+    const preset = { format: '8values-lab-preset', format_version: 2, environment: 'lab', config_version: '1', config: { ...activeCaps.experimental.defaults, chunk_tokens: 450 } }
+    await page.locator('#lab-import').setInputFiles({ name: 'preset.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(preset)) })
+    await waitValue(page, '#lab-chunk_tokens', '450')
+    await page.close()
+    page = await openPanel()
+    await waitValue(page, '#lab-chunk_tokens', '450')
+    await page.getByRole('tab', { name: 'API keys', exact: true }).click()
+    await page.getByRole('button', { name: 'Limpar chaves da sessão', exact: true }).click()
+    await page.getByRole('status').filter({ hasText: 'Sessão encerrada.' }).waitFor()
+    assert(!Object.keys(await page.evaluate(() => chrome.storage.local.get(null))).some(key => key.startsWith('8values-lab-key-session-v1:')))
+    await page.close()
+    page = await openPanel()
+    await page.locator('#text-input').fill(text)
+    assert(await page.getByRole('button', { name: 'Analisar texto', exact: true }).isDisabled())
+    assert.deepEqual(errors, [])
+    console.log(JSON.stringify({ browser: target, checks: ['autosave-without-keys', 'invalid-edit-preserves-config', 'close-and-reopen-config-and-keys', 'no-raw-keys-in-storage', 'restore-defaults-persists', 'import-persists', 'clear-keys-persists'], pageErrors: errors }, null, 2))
+  } else {
   const website = await context.newPage()
   website.on('pageerror', error => errors.push(error.message))
   await website.goto('http://127.0.0.1:5174/analise')
   await website.locator('#lab-chunk_tokens').waitFor()
+  assert.equal(await website.locator('#lab-chunk_strategy').inputValue(), 'sentencas')
   await website.locator('#text-input').fill(text)
   assert(await website.getByRole('button', { name: 'Analisar texto', exact: true }).isDisabled(), 'Lab começa sem chaves.')
   await checkModelSelectionWithoutKeys(website)
@@ -135,15 +226,19 @@ try {
   await website.getByRole('tab', { name: 'Parâmetros', exact: true }).click()
   assert(await website.locator('#lab-llm_model option[value="gemini-3.1-flash-lite"]').isEnabled())
   await website.locator('#lab-llm_model').selectOption('gemini-3.1-flash-lite')
+  await website.locator('#lab-escala').selectOption('0')
   assert.equal(await website.locator('#lab-chunk_tokens').inputValue(), '600')
   await website.locator('#text-input').fill(text)
   await website.locator('#local-title').fill('Configuração A')
   await website.locator('#lab-chunk_tokens').fill('400')
+  await website.locator('#lab-chunk_strategy').selectOption('tokens')
   await website.locator('#lab-level_confidence_min').fill('0.7')
+  await website.locator('#lab-primitiva_polaridade').selectOption('choice')
+  await website.locator('#lab-regra_decisao').selectOption('polo_primeiro')
   await website.locator('#lab-semantic_evidence_check').check()
   await website.locator('#lab-jev_evidence_search').check()
   await website.locator('#lab-evidence_existence_min').fill('0.8')
-  await website.getByRole('button', { name: 'Salvar configuração', exact: true }).click()
+  assert.equal(await website.getByRole('button', { name: 'Salvar configuração', exact: true }).count(), 0)
   const downloaded = website.waitForEvent('download')
   await website.getByRole('button', { name: 'Exportar JSON', exact: true }).click()
   const download = await downloaded
@@ -151,19 +246,34 @@ try {
   await download.saveAs(presetPath)
   const preset = JSON.parse(readFileSync(presetPath, 'utf8'))
   assert.equal(preset.config.chunk_tokens, 400)
+  assert.equal(preset.config.chunk_strategy, 'tokens')
+  assert.equal(preset.config.primitiva_polaridade, 'choice')
+  assert.equal(preset.config.regra_decisao, 'polo_primeiro')
   assert.equal(preset.config.semantic_evidence_check, true)
   assert.equal(preset.config.jev_evidence_search, true)
   assert.equal(preset.config.evidence_existence_min, 0.8)
-  assert.deepEqual(Object.keys(preset.config).sort(), Object.keys(experimentCapabilities.defaults).sort())
+  assert.deepEqual(Object.keys(preset.config).sort(), Object.keys(activeCaps.experimental.defaults).sort())
+  assert.equal(preset.format_version, 2)
+  assert.equal(preset.config.escala.id, 'ordinal_5_v1')
   await website.reload()
   await website.locator('#lab-chunk_tokens').waitFor()
   await waitValue(website, '#lab-chunk_tokens', '400')
+  assert.equal(await website.locator('#lab-primitiva_polaridade').inputValue(), 'choice')
+  assert.equal(await website.locator('#lab-regra_decisao').inputValue(), 'polo_primeiro')
   assert.equal(await website.locator('#lab-chunk_tokens').inputValue(), '400')
+  await website.locator('#lab-chunk_tokens').fill('99')
+  await website.reload()
+  await waitValue(website, '#lab-chunk_tokens', '400')
   await website.locator('#text-input').fill(text)
   await website.locator('#local-title').fill('Configuração A')
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests[0].experiment_config.chunk_tokens, 400)
+  assert.equal(requests[0].experiment_config.chunk_strategy, 'tokens')
+  assert.equal(requests[0].experiment_config.primitiva_polaridade, 'choice')
+  assert.equal(requests[0].experiment_config.regra_decisao, 'polo_primeiro')
+  assert.equal(requests[0].experiment_config.escala.id, 'ordinal_5_v1')
+  await website.getByText('Escala: 5 níveis · ordinal_5_v1 · v1.', { exact: true }).waitFor()
   await website.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
   await website.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()
   await website.getByText('Passagem encontrada', { exact: true }).waitFor()
@@ -171,6 +281,9 @@ try {
   await website.getByRole('button', { name: 'Usar este texto em nova análise', exact: true }).click()
   await website.locator('#local-title').fill('Configuração B')
   await website.getByRole('button', { name: 'Restaurar padrões', exact: true }).click()
+  assert.equal(await website.locator('#lab-chunk_strategy').inputValue(), 'sentencas')
+  assert.equal(await website.locator('#lab-primitiva_polaridade').inputValue(), 'score')
+  assert.equal(await website.locator('#lab-regra_decisao').inputValue(), 'nivel')
   await website.getByLabel('Alto', { exact: false }).check()
   assert(await website.locator('#lab-level_confidence_min').isDisabled())
   await website.locator('#lab-llm_model').selectOption('gemini-3.7-flash')
@@ -182,6 +295,7 @@ try {
   await website.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await website.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   await website.locator('#lab-compare').selectOption('1')
+  await website.getByText('Escala: 9 níveis · ordinal_9_v1 · v1.', { exact: true }).waitFor()
   assert((await website.getByRole('region', { name: 'Comparar experimentos' }).innerText()).includes('400'))
   await website.getByText('Configuração utilizada · versão de teste', { exact: true }).click()
   await website.getByRole('button', { name: 'Reportar classificação', exact: true }).click()
@@ -208,11 +322,27 @@ try {
   await website.getByRole('button', { name: 'Restaurar padrões', exact: true }).click()
   await website.screenshot({ path: resolve(output, `${target}-lab-web-composer.png`), fullPage: true })
 
-  const panel = await context.newPage()
+  let panel = await context.newPage()
   panel.on('pageerror', error => errors.push(error.message))
   await panel.setViewportSize({ width: 380, height: 900 })
   await panel.goto(`chrome-extension://${lab.id}/sidepanel.html`)
+  const configSummary = panel.locator('.experimentDisclosure > summary')
+  await configSummary.waitFor()
+  assert.equal(await panel.locator('.experimentDisclosure').getAttribute('open'), null)
+  assert.equal(await panel.locator('#lab-chunk_tokens').isVisible(), false)
+  await panel.screenshot({ path: resolve(output, `${target}-lab-config-collapsed.png`), fullPage: true })
+  await configSummary.focus()
+  await configSummary.press('Enter')
   await panel.locator('#lab-chunk_tokens').waitFor()
+  await panel.locator('#lab-chunk_tokens').fill('450')
+  await configSummary.click()
+  assert.equal(await panel.locator('#lab-chunk_tokens').isVisible(), false)
+  await configSummary.focus()
+  await configSummary.press('Space')
+  assert.equal(await panel.locator('#lab-chunk_tokens').inputValue(), '450', 'Recolher preserva os parâmetros.')
+  assert(await panel.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  await panel.screenshot({ path: resolve(output, `${target}-lab-config-expanded.png`), fullPage: true })
+  assert.equal(await panel.locator('#lab-chunk_strategy').inputValue(), 'sentencas')
   await panel.locator('#text-input').fill(text)
   assert(await panel.getByRole('button', { name: 'Analisar texto', exact: true }).isDisabled(), 'Extensão exige suas próprias chaves.')
   await checkModelSelectionWithoutKeys(panel)
@@ -229,10 +359,33 @@ try {
   await panel.locator('#lab-import').setInputFiles(presetPath)
   await waitValue(panel, '#lab-chunk_tokens', '400')
   assert.equal(await panel.locator('#lab-chunk_tokens').inputValue(), '400')
+  assert.equal(await panel.locator('#lab-primitiva_polaridade').inputValue(), 'choice')
+  assert.equal(await panel.locator('#lab-regra_decisao').inputValue(), 'polo_primeiro')
   await panel.locator('#lab-llm_model').selectOption('sabiazinho-4')
+  assert.equal(await panel.getByRole('button', { name: 'Salvar configuração', exact: true }).count(), 0)
+  const panelUrl = panel.url()
+  const storedSession = await panel.evaluate(() => chrome.storage.local.get(null))
+  assert(Object.keys(storedSession).some(key => key.startsWith('8values-lab-key-session-v1:')))
+  assert(!JSON.stringify(storedSession).includes('private-key'))
+  await panel.close()
+  panel = await context.newPage()
+  panel.on('pageerror', error => errors.push(error.message))
+  await panel.setViewportSize({ width: 380, height: 900 })
+  await panel.goto(panelUrl)
+  await waitValue(panel, '#lab-chunk_tokens', '400')
+  assert.equal(await panel.locator('#lab-llm_model').inputValue(), 'sabiazinho-4')
+  assert.equal(await panel.locator('#lab-primitiva_polaridade').inputValue(), 'choice')
+  assert.equal(await panel.locator('#lab-regra_decisao').inputValue(), 'polo_primeiro')
+  await panel.locator('#text-input').fill(text)
+  assert(await panel.getByRole('button', { name: 'Analisar texto', exact: true }).isEnabled(), 'Reabrir o painel preserva as chaves e a última configuração.')
   await panel.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   assert.equal(requests.at(-1).experiment_config.llm_model, 'sabiazinho-4')
+  assert.equal(requests.at(-1).experiment_config.chunk_strategy, 'tokens')
+  assert.equal(requests.at(-1).experiment_config.primitiva_polaridade, 'choice')
+  assert.equal(requests.at(-1).experiment_config.regra_decisao, 'polo_primeiro')
+  assert.equal(requests.at(-1).experiment_config.escala.id, 'ordinal_5_v1')
+  await panel.getByText('Escala: 5 níveis · ordinal_5_v1 · v1.', { exact: true }).waitFor()
   assert.equal(requests.at(-1).experiment_config.semantic_evidence_check, true)
   await panel.getByText('Distribuição e evidências de Econômico', { exact: true }).click()
   await panel.getByText('Contradiz a posição atribuída', { exact: true }).waitFor()
@@ -242,7 +395,12 @@ try {
   await panel.reload()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
   await panel.getByRole('button', { name: 'Editar e reanalisar', exact: true }).click()
+  await panel.locator('.experimentDisclosure > summary').click()
   await panel.getByRole('button', { name: 'Restaurar padrões', exact: true }).click()
+  await panel.reload()
+  await waitValue(panel, '#lab-min_valid_chunks', String(activeCaps.experimental.defaults.min_valid_chunks))
+  await panel.locator('.experimentDisclosure > summary').click()
+  assert.equal(await panel.locator('#lab-chunk_tokens').inputValue(), String(activeCaps.experimental.defaults.chunk_tokens))
   await panel.locator('#lab-min_valid_chunks').fill('1')
   await panel.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await panel.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
@@ -252,6 +410,7 @@ try {
   assert(await panel.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Painel deve caber na largura.')
   await panel.screenshot({ path: resolve(output, `${target}-lab-extension.png`), fullPage: true })
   await panel.getByRole('button', { name: 'Editar e reanalisar', exact: true }).click()
+  await panel.locator('.experimentDisclosure > summary').click()
   await panel.locator('#lab-min_valid_chunks').fill('16')
   activeCaps.experimental.ranges.min_valid_chunks.max = 5
   activeCaps.experimental.defaults.min_valid_chunks = 5
@@ -270,6 +429,10 @@ try {
     await checkModelSelectionWithoutKeys(page)
   }
 
+  if (process.argv.includes('--parameters-only')) {
+    assert.deepEqual(errors, [])
+    console.log(JSON.stringify({ browser: target, checks: ['sentence-default-web-and-extension', 'strategy-in-preset-and-request', 'strategy-autosave', 'strategy-restored-default', 'preset-import', 'effective-config', 'same-text-comparison', 'report-metadata', 'mobile-width'], analyses: requests.length, reports: reports.length, pageErrors: errors }, null, 2))
+  } else {
   // Keep both extensions installed and verify transfer reaches only the matching edition.
   await website.evaluate(profile => localStorage.setItem('values-lab-profile-v1', JSON.stringify(profile)), profile)
   await website.goto('http://127.0.0.1:5174/resultado')
@@ -289,4 +452,6 @@ try {
   const report = { browser: target, version: context.browser().version(), checks: ['evidence-controls-and-results', 'evidence-preset-transfer', 'high-semantic-recipient', 'lab-web', 'lab-extension', 'api-keys-tabs', 'models-gated-by-provider-key', 'no-keys-in-browser-storage', 'key-session-isolation', 'gemini-selection', 'sabiazinho-selection', 'execution-record-receipt', 'edit-config', 'saved-preset', 'preset-export-import', 'invalid-config', 'high-mode-controls', 'effective-config', 'same-text-comparison', 'history-reload', 'report-metadata', 'mobile-width', 'isolated-standard-build', 'profile-transfer-to-matching-edition'], analyses: requests.length, reports: reports.length, pageErrors: errors }
   writeFileSync(resolve(output, `${target}-lab-report.json`), JSON.stringify(report, null, 2))
   console.log(JSON.stringify(report, null, 2))
+  }
+  }
 } finally { await context.close() }

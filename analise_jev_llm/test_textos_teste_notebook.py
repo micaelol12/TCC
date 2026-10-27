@@ -75,6 +75,7 @@ class TextosTesteNotebookTest(unittest.TestCase):
 
         class Pipeline:
             rubricas = {}
+            escala = ns["ESCALA_5_NIVEIS"]
 
             async def classificar(self, texto):
                 if texto == "falhar":

@@ -3,10 +3,10 @@ from statistics import mean
 import random
 from math import ceil
 from ..experiment_config import ExperimentConfig
-from ..schemas import AxisResult, Evidence, EvidenceAudit, LevelCounts
+from ..schemas import AxisResult, Evidence, EvidenceAudit, JevDiagnostic, LevelCounts
+from ..polarity import COUNT_KEYS, level_score
 
 AXES = ("economic", "diplomatic", "state", "society")
-COUNT_KEYS = {-2: "minus2", -1: "minus1", 0: "zero", 1: "plus1", 2: "plus2"}
 
 
 def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig | None = None) -> list[AxisResult]:
@@ -14,7 +14,7 @@ def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig |
     output = []
     for axis in AXES:
         decisions = [chunk[axis] for chunk in results]
-        values = [50 + 25 * d["nivel"] for d in decisions if d["relevante"] is True and d["nivel"] is not None]
+        values = [level_score(d["nivel"], config.escala) for d in decisions if d["relevante"] is True and d["nivel"] is not None]
         count = Counter(d["nivel"] for d in decisions if d["relevante"] is True and d["nivel"] is not None)
         score = mean(values) if values else None
         ci = None
@@ -32,9 +32,11 @@ def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig |
             status=status, coverage=len(values) / total_chunks, valid_chunks=len(values), total_chunks=total_chunks,
             sufficient_evidence=len(values) >= config.min_valid_chunks,
             level_counts=LevelCounts(**{name: count.get(level, 0) for level, name in COUNT_KEYS.items()}),
+            level_counts_by_key={n.chave: count.get(n.codigo, 0) for n in config.escala.niveis},
             ci95=ci, methods_used=list(dict.fromkeys(method for d in decisions for method in d.get("methods", [d["method"]] if d["method"] else []))),
             reason_codes=reasons,
             evidence=[Evidence(chunk_index=i, quote=d["quote"]) for i, d in enumerate(decisions) if d["quote"]],
             evidence_audit=[EvidenceAudit(chunk_index=i, **audit) for i, d in enumerate(decisions) for audit in d.get("evidence_audit", [])],
+            jev_diagnostics=[JevDiagnostic(chunk_index=i, **d["jev_diagnostic"]) for i, d in enumerate(decisions) if d.get("jev_diagnostic")],
         ))
     return output

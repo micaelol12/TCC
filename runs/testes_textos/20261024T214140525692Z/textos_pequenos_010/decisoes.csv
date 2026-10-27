@@ -1,0 +1,5 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.
+state,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.
+society,True,0.0,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],1,O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.

@@ -37,7 +37,7 @@ $env:EXPERIMENTAL_CONFIG_ENABLED='true'
 
 Para configurações que não são credenciais, a prioridade é: variáveis do processo > `app/api/.env.lab` > `app/api/.env` > `.env` da raiz. O arquivo Lab só é carregado quando `APP_ENV=lab` foi selecionado pelo processo ou por um dos arquivos comuns de ambiente. Reinicie a API depois de editar as variáveis e use **Verificar conexão e modos** no painel.
 
-Abra **Configuração da análise → API keys** no site ou na extensão. Cole sua chave TypeSafe, Maritaca ou Gemini e clique em **Salvar chave**. Os modelos do provedor ficam disponíveis imediatamente, sem reiniciar a API. As chaves são enviadas à API local e mantidas somente na memória de uma sessão de até 8 horas. O campo é limpo após salvar; o navegador conserva apenas um token opaco em `sessionStorage`. As chaves não entram no banco, presets, histórico ou pacote. Site e extensão têm sessões independentes: cadastre a chave na interface em que vai analisar.
+Abra **Configuração da análise → API keys** no site ou na extensão. Cole sua chave TypeSafe, Maritaca ou Gemini e clique em **Salvar chave**. Os modelos do provedor ficam disponíveis imediatamente, sem reiniciar a API. As chaves são enviadas à API local e mantidas somente na memória de uma sessão de até 8 horas. O campo é limpo após salvar; o navegador conserva apenas um token opaco: `sessionStorage` no site e `chrome.storage.local` na extensão. Fechar e reabrir o painel preserva a sessão da extensão, inclusive entre janelas; expirar a sessão, reiniciar a API ou limpar as chaves exige novo cadastro. As chaves não entram no banco, presets, histórico ou pacote. Site e extensão têm sessões independentes: cadastre a chave na interface em que vai analisar.
 
 **Desabilitar** remove o acesso ao provedor naquela sessão; **Limpar chaves da sessão** encerra a sessão e bloqueia todos os modos até um novo cadastro. Após reiniciar a API ou expirar a sessão, cadastre novamente. A presença da chave libera a seleção, mas não comprova acesso ao modelo; uma chave inválida produz aviso de autenticação na análise.
 
@@ -50,6 +50,8 @@ O Google informa que `gemini-3.7-flash` é redirecionado para `gemini-3.8-flash`
 | Variável | Padrão | Efeito |
 |---|---|---|
 | `CHUNK_TOKENS` | 600 | Tamanho aproximado dos trechos, de 100 a 2.000 tokens |
+| `JEV_POLARITY_PRIMITIVE` | score | Classificação da polaridade pelo JEV: `score` ou `choice` |
+| `JEV_DECISION_RULE` | nivel | Regra JEV: `nivel` (MAP global) ou `polo_primeiro` (experimental) |
 | `JEV_RELEVANCE_MARGIN_MIN` | 0.60 | Relevância ambígua abaixo da margem |
 | `JEV_LEVEL_CONFIDENCE_MIN` | 0.50 | Nível com confiança insuficiente abaixo do limiar |
 | `JEV_DIRECTION_MARGIN_MIN` | 0.20 | Direção ambígua abaixo da margem |
@@ -61,7 +63,13 @@ Os limiares JEV acionam revisão no modo médio e motivos de incerteza no modo b
 
 O painel substitui os padrões somente para a próxima requisição. A configuração de uma análise em andamento é fixa. Limites totais, concorrência, prazo, orçamento diário e limites horários continuam definidos pelo servidor. Trechos menores podem gerar mais chamadas ou ultrapassar `MAX_CHUNKS`.
 
+Em **Parâmetros → Estratégia de segmentação**, o Lab usa **Sentenças** (`"sentencas"`) por padrão, equivalente a `preparacao_e_exibicao.chunks.estrategia` no notebook. A API recebe `experiment_config.chunk_strategy`. O segmentador português Punkt usa recursos locais e as mesmas regras de sentenças, parágrafos, títulos e listas de `tcc_lib/segmentacao.py`. O tamanho em tokens é um alvo: frases longas permanecem inteiras, mesmo acima dele. O texto original, inclusive espaços e quebras de linha, é preservado nos trechos para conferir evidências e reports. A opção **Tokens** (`"tokens"`) reproduz o corte anterior do app. A escolha acompanha presets, histórico, comparação, hash e registros de execução; presets antigos sem esse campo mantêm `tokens`. A edição comum mantém a segmentação por tokens. Após atualizar, instale `api/requirements.txt` e reinicie a API Lab.
+
+Em **Parâmetros → Classificação da polaridade no JEV**, selecione **Score · níveis ordenados** ou **Choice · escolha entre níveis**. A relevância continua usando Choice. O seletor se aplica aos modos baixo e médio; no alto, a classificação é feita pelo LLM. A API Lab aceita `experiment_config.primitiva_polaridade` com `"score"` ou `"choice"`, e registra a opção na configuração efetiva, hash, histórico, comparação, presets e reports. Presets anteriores sem esse campo usam `score`, o comportamento histórico do app. Para mudar o padrão do servidor, defina `JEV_POLARITY_PRIMITIVE` e reinicie a API.
+
 ## Evidências experimentais
+
+Em **Parâmetros → Regra de decisão do JEV**, o experimento **Polo primeiro** soma os níveis por polo A, B e sem posição antes de escolher a intensidade. A regra anterior continua como padrão. O Lab registra a distribuição inicial por trecho em `axes[].jev_diagnostics`, inclusive quando o LLM revisa o resultado. Intensidades incertas são sinalizadas no resultado; a pontuação correspondente é preliminar. Veja o [procedimento, limiares e replay sem chamadas](../docs/experimento-polo-primeiro.md).
 
 Em **Configuração da análise → Parâmetros → Evidências experimentais**, há duas opções independentes, inicialmente desligadas no site e na extensão:
 
@@ -84,7 +92,7 @@ Para comparar, analise o mesmo texto com as opções desligadas e depois ligadas
 
 ## Presets, histórico e reports
 
-**Salvar configuração** guarda um preset neste navegador, separado por origem da API/site. **Exportar JSON** e **Importar configuração JSON** usam um formato versionado sem credenciais e com limite de 20 KB. Importações e presets salvos são revalidados contra os modelos e faixas da API atual. **Restaurar padrões** muda a próxima análise; salve novamente se quiser substituir seu preset persistente.
+Cada alteração válida guarda automaticamente a última configuração neste navegador, separada por origem da API/site, mesmo sem chaves cadastradas. Ao reabrir, essa configuração é restaurada. Valores inválidos ou incompletos não substituem a última configuração válida. **Exportar JSON** e **Importar configuração JSON** usam um formato versionado sem credenciais e com limite de 200 KB. Importações e presets salvos são revalidados contra os modelos e faixas da API atual. **Restaurar padrões** e importar um preset também atualizam automaticamente a configuração persistente.
 
 Os resultados exibem uma cópia de todos os parâmetros, os modelos retornados e o hash da configuração pública. A comparação entre experimentos permite selecionar outra análise do mesmo texto, com pontuações do polo A, cobertura, chamadas lógicas e parâmetros lado a lado. Use **Usar este texto em nova análise** no site ou **Editar e reanalisar** na extensão. Na extensão, a comparação fica dentro do histórico expandido.
 
@@ -122,6 +130,11 @@ npm run test:lab -- edge
 
 # Raiz do TCC: compila o notebook e exercita apenas demonstrações simuladas
 .venv/Scripts/python.exe analise_jev_llm/test_evidencias_pipeline.py
+
+# Raiz: escalas de cinco/nove/sete níveis, sem provedores
+.venv/Scripts/python.exe scripts/check_local_notebook_demos.py
+.venv/Scripts/python.exe scripts/check_local_notebook_demos.py --nine
+.venv/Scripts/python.exe scripts/validate_notebook_scales.py
 
 # app/api: verificação explícita com texto sintético e provedores reais
 # Consome até uma análise curta por modo, além das retentativas do pipeline.

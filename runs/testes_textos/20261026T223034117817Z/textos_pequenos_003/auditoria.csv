@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,economic,search,found,4,S000,0.0,72.0,"Nacionalização e estatização do sistema monetário, financeiro e bancário",0.77,0.9,"{'S000': 0.95, 'NONE': 0.05}",jev-1.13.0
+0,economic,semantic,sustenta,4,,,,"Nacionalização e estatização do sistema monetário, financeiro e bancário",,0.86,"{'sustenta': 0.91, 'contradiz': 0.01, 'insuficiente': 0.08}",jev-1.13.0

@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,existence_probability
+1,economic,semantic,insuficiente,-2,a privatização deverá fortalecer a Eletrobras,0.48,"{'sustenta': 0.31, 'contradiz': 0.04, 'insuficiente': 0.65}",jev-1.13.0,
+2,economic,search,not_selected,2,,0.76,"{'S000': 0.03, 'S001': 0.8, 'S002': 0.0, 'S003': 0.0, 'S004': 0.0, 'NONE': 0.17}",jev-1.13.0,0.56

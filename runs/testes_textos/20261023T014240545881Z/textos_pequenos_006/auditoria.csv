@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,society,semantic,sustenta,-3,impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família,0.25,"{'sustenta': 0.5, 'contradiz': 0.1, 'insuficiente': 0.4}",jev-1.13.0

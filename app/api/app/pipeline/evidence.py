@@ -8,6 +8,7 @@ import math
 import re
 from copy import deepcopy
 from typesafe_sdk import Choice, Noul, NoulCriteria
+from .sentences import intervalos_sentencas
 
 RELATIONS = {
     "sustenta": "A citação, no contexto, sustenta a posição e a intensidade atribuídas ao autor.",
@@ -18,15 +19,7 @@ RELATIONS = {
 
 def sentence_spans(text, limit=200):
     """Deterministic IDs with original character offsets; merge if over the cap."""
-    boundaries = [0] + [m.end() for m in re.finditer(r"(?<=[.!?])\s+|\n+", text)] + [len(text)]
-    spans = []
-    for start, end in zip(boundaries, boundaries[1:]):
-        while start < end and text[start].isspace():
-            start += 1
-        while end > start and text[end - 1].isspace():
-            end -= 1
-        if start < end:
-            spans.append((start, end))
+    spans = intervalos_sentencas(text)
     size = max(1, math.ceil(len(spans) / limit))
     return {f"S{i // size:03d}": {"start": spans[i][0], "end": spans[min(i + size, len(spans)) - 1][1],
             "quote": text[spans[i][0]:spans[min(i + size, len(spans)) - 1][1]]}
@@ -60,11 +53,11 @@ async def audit_evidence(text, decisions, jev, rubrics, literal_check, *,
     """Return enriched copies, attempted logical calls, and observed model names.
 
     decisions: {axis: {relevante, nivel, method ('jev'/'llm'), quote, ...}}.
-    rubrics: the same five-level rubric used to classify each axis. Only the
+    rubrics: the same nine-level rubric used to classify each axis. Only the
     verdict is experimental; literal presence alone is never semantic support.
     """
     result, calls, models = deepcopy(decisions), 0, []
-    eligible = {axis: d for axis, d in result.items() if d.get("relevante") is True and d.get("nivel") in (-2, -1, 0, 1, 2)}
+    eligible = {axis: d for axis, d in result.items() if d.get("relevante") is True and (type(d.get("nivel")) is int and (not rubrics.get(axis, {}).get("niveis") or d["nivel"] in {n["valor"] for n in rubrics[axis]["niveis"].values()}))}
     claims = {axis: {"eixo": axis, "nivel": d["nivel"], "rubrica": rubrics[axis]} for axis, d in eligible.items()}
 
     def record(axis, kind, status, **data):

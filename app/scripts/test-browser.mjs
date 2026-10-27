@@ -70,11 +70,19 @@ try {
   behavior = 'success'; delay = 35000
   await page.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await page.getByRole('button', { name: 'Cancelar', exact: true }).waitFor()
+  await page.getByRole('status').filter({ hasText: 'Analisando seu texto' }).waitFor()
+  await page.getByRole('timer').filter({ hasText: 'Tempo decorrido:' }).waitFor()
+  assert(await page.getByRole('button', { name: 'Analisando…', exact: true }).isDisabled())
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  assert.equal(await page.locator('[class*="spinner"]').evaluate(element => getComputedStyle(element).animationName), 'none')
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.screenshot({ path: resolve(output, `${target}-analysis-loading.png`), fullPage: true })
   await capture('Próximo trecho, sem substituir a análise.')
   await page.getByRole('button', { name: 'Usar nova seleção', exact: true }).waitFor()
   assert.equal(await input.inputValue(), selection)
   await page.getByRole('button', { name: 'Cancelar', exact: true }).click()
   await page.getByRole('alert').filter({ hasText: 'cancelada' }).waitFor()
+  assert.equal(await page.getByRole('timer').count(), 0)
   await page.getByRole('button', { name: 'Usar nova seleção', exact: true }).click()
   await waitText('Próximo trecho, sem substituir a análise.')
   delay = 0
@@ -112,7 +120,8 @@ try {
   const hash = scoring.match(/QUESTION_HASH = '([^']+)'/)[1]
   const profile = { schema_version: 1, question_hash: hash, completed_at: new Date().toISOString(), scores: { economic: 25, diplomatic: 50, state: 75, society: 100 } }
   await page.locator('#profile-file').setInputFiles({ name: 'perfil.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(profile)) })
-  await page.getByText('Perfil temporário nesta sessão.', { exact: true }).waitFor()
+  await page.getByText('Perfil salvo localmente nesta extensão.', { exact: true }).waitFor()
+  assert.deepEqual(await page.evaluate(async () => (await chrome.storage.local.get('8values-profile-local-v1'))['8values-profile-local-v1']), profile)
   await page.getByText('Diferença de 50,0 pontos;', { exact: false }).waitFor()
   await page.getByRole('button', { name: 'Apagar perfil', exact: true }).click()
   await page.getByRole('link', { name: 'Fazer meu teste no site' }).waitFor()
@@ -126,6 +135,10 @@ try {
   await input.fill('Texto <script>window.evil=true</script> mostrado como texto.')
   delay = target === 'chrome' ? 31000 : 0
   await page.getByRole('button', { name: 'Analisar texto', exact: true }).click()
+  if (delay) {
+    await page.getByRole('status').filter({ hasText: 'A análise continua em andamento.' }).waitFor({ timeout: 35000 })
+    await page.screenshot({ path: resolve(output, `${target}-analysis-long-loading.png`), fullPage: true })
+  }
   await page.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor({ timeout: 45000 })
   assert.equal(await page.evaluate(() => window.evil), undefined)
   assert.equal(errors.length, 0, errors.join('\n'))

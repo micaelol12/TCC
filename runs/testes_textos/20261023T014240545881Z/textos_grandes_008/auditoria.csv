@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+2,economic,semantic,sustenta,2,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”",0.3,"{'sustenta': 0.53, 'contradiz': 0.11, 'insuficiente': 0.36}",jev-1.13.0

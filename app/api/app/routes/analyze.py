@@ -12,6 +12,7 @@ from ..lab_credentials import effective_keys, model_catalog
 from ..pipeline.strategies import classify_chunk
 from ..pipeline.aggregation import aggregate
 from ..experiment_config import resolve_config, config_ranges, config_hash, CONFIG_VERSION
+from ..polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
 
 router = APIRouter(prefix="/api")
 slots = asyncio.Semaphore(settings.concurrent_requests)
@@ -40,7 +41,8 @@ def capabilities(request: Request):
         result["experimental"].update(config_version=CONFIG_VERSION, defaults=defaults,
             ranges=config_ranges(settings.max_tokens, settings.max_chunks),
             allowed_models={"jev": list(settings.allowed_jev_models), "llm": list(catalog)}, model_providers=catalog,
-            providers={provider: bool(key) for provider, key in keys.items()}, execution_storage=True)
+            providers={provider: bool(key) for provider, key in keys.items()}, execution_storage=True,
+            scales=[s.model_dump(mode="json") for s in (ESCALA_5_NIVEIS, ESCALA_9_NIVEIS)])
     return result
 
 
@@ -63,7 +65,8 @@ async def analyze(payload: AnalyzeRequest, request: Request):
             raise HTTPException(503, "Cadastre suas chaves na aba API keys para usar este modo e modelo.")
         raise HTTPException(503, "Modo indisponível: configure os provedores necessários.")
     try:
-        chunks, _ = split_text(payload.text, max_tokens=settings.max_tokens, chunk_tokens=config.chunk_tokens)
+        chunks, _ = split_text(payload.text, max_tokens=settings.max_tokens,
+                               chunk_tokens=config.chunk_tokens, strategy=config.chunk_strategy)
     except ValueError:
         raise HTTPException(413, "Texto acima do limite de tokens.") from None
     if len(chunks) > settings.max_chunks:
@@ -82,7 +85,7 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     recent_requests.append(now)
     daily["calls"] += maximum_calls
     jev = jev_client(keys['typesafe'], config.jev_model) if needs_jev else None
-    questions = jev_questions() if mode != "high" else None
+    questions = jev_questions(config.escala, config.primitiva_polaridade) if mode != "high" else None
     llm = (gemini_client if provider == 'gemini' else llm_client)(keys[provider], settings.timeout_seconds) if mode != "low" else None
     semaphore = asyncio.Semaphore(settings.concurrent_chunks)
 
@@ -122,6 +125,7 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     models = list(dict.fromkeys(model for x in result for model in x[2] if model))
     warnings = list(dict.fromkeys(reason for axis in axes for reason in axis.reason_codes if reason in {"falha_jev", "falha_llm", "falha_autenticacao_jev", "falha_autenticacao_llm", "resposta_jev_invalida", "evidencia_nao_verificada"}))
     return AnalysisResponse(processing_level=mode, models_used=models, axes=axes,
+                            escala=config.escala, escala_hash=config.escala.hash,
                             chunks=[Chunk(index=i, text=text) for i, text in enumerate(chunks)],
                             logical_calls=calls, warnings=warnings, effective_config=config,
                             config_version=CONFIG_VERSION, config_hash=config_hash(config), environment=settings.app_env)

@@ -42,9 +42,19 @@ def public_request(payload, settings):
     if isinstance(incoming, dict):
         for name in ExperimentConfig.model_fields:
             value = incoming.get(name)
-            if name == 'jev_model' and value in settings.allowed_jev_models or name == 'llm_model' and isinstance(value, str) and value in model_catalog(settings):
+            if name == 'escala':
+                from .polarity import validar_escala
+                try:
+                    config[name] = validar_escala(value).model_dump(mode='json')
+                except (ValueError, TypeError):
+                    pass
+            elif name == 'jev_model' and value in settings.allowed_jev_models or name == 'llm_model' and isinstance(value, str) and value in model_catalog(settings):
                 config[name] = value
             elif name in ('semantic_evidence_check', 'jev_evidence_search') and type(value) is bool:
+                config[name] = value
+            elif (name == 'primitiva_polaridade' and value in ('score', 'choice')
+                  or name == 'regra_decisao' and value in ('nivel', 'polo_primeiro')
+                  or name == 'chunk_strategy' and value in ('sentencas', 'tokens')):
                 config[name] = value
             elif name not in ('jev_model', 'llm_model') and type(value) in (int, float) and math.isfinite(value):
                 config[name] = value

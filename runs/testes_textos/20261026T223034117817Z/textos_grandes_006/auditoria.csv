@@ -1,0 +1,8 @@
+﻿trecho,eixo,kind,status,level,existence_probability,confidence,probabilities,model,sentence_id,start,end,quote
+0,society,search,not_selected,0,0.32,0.43,"{'S000': 0.02, 'S001': 0.0, 'S002': 0.02, 'S003': 0.02, 'S004': 0.01, 'S005': 0.05, 'S006': 0.02, 'S007': 0.0, 'S008': 0.0, 'S009': 0.11, 'S010': 0.01, 'S011': 0.25, 'S012': 0.02, 'NONE': 0.47000000000000003}",jev-1.13.0,,,,
+1,state,search,found,2,0.76,0.46,"{'S000': 0.49, 'S001': 0.02, 'S002': 0.1, 'S003': 0.01, 'S004': 0.04, 'S005': 0.0, 'S006': 0.02, 'S007': 0.01, 'S008': 0.04, 'S009': 0.04, 'S010': 0.15, 'S011': 0.0, 'S012': 0.01, 'S013': 0.02, 'S014': 0.0, 'S015': 0.01, 'S016': 0.0, 'NONE': 0.04}",jev-1.13.0,S000,0.0,315.0,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário."
+1,state,semantic,sustenta,2,,0.8,"{'sustenta': 0.87, 'contradiz': 0.01, 'insuficiente': 0.12}",jev-1.13.0,,,,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário."

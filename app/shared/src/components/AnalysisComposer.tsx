@@ -31,7 +31,13 @@ export default function AnalysisComposer(props: Props) {
     {props.experimentPanel}
     {capsError && <p className="error" role="status">{capsError}</p>}{onRetry && <button className="textButton" onClick={onRetry} disabled={busy}>Verificar conexão e modos</button>}
     {error && <p className="error" role="alert">{error}</p>}
-    <div className="actions"><button onClick={onSend} disabled={busy || !text.trim() || tooLong || !enabled}>Analisar texto</button>{busy && <button className="secondary" onClick={onCancel}>Cancelar</button>}</div>
-    <div role="status" aria-live="polite">{busy ? `Analisando o texto há ${seconds} segundos. O tempo varia conforme o tamanho e o modo escolhido.` : !enabled && caps ? (isLabBuild ? 'Confira a configuração e cadastre suas chaves na aba API keys para usar o modo e modelo escolhidos.' : 'Escolha um modo disponível neste servidor.') : !caps && !capsError ? 'Consultando modos disponíveis…' : ''}</div>
+    <div className="actions"><button onClick={onSend} disabled={busy || !text.trim() || tooLong || !enabled}>{busy ? 'Analisando…' : 'Analisar texto'}</button>{busy && <button className="secondary" onClick={onCancel}>Cancelar</button>}</div>
+    <div role="status" aria-live="polite">{busy ? <div className={styles.analysisProgress}>
+      <div className={styles.progressHeading}><span className={styles.spinner} aria-hidden="true" /><strong>Analisando seu texto</strong></div>
+      <p>{seconds >= 30 ? 'A análise continua em andamento. Textos maiores e alguns modos podem levar mais tempo.' : 'Aguardando a análise dos modelos. O tempo varia conforme o tamanho do texto e o modo escolhido.'}</p>
+      <div className={styles.progressTrack} aria-hidden="true"><span /></div>
+      <span className="small muted">Você pode cancelar a qualquer momento. O texto será preservado.</span>
+    </div> : !enabled && caps ? (isLabBuild ? 'Confira a configuração e cadastre suas chaves na aba API keys para usar o modo e modelo escolhidos.' : 'Escolha um modo disponível neste servidor.') : !caps && !capsError ? 'Consultando modos disponíveis…' : ''}</div>
+    {busy && <p className={styles.elapsedTime} role="timer" aria-live="off">Tempo decorrido: {Math.floor(seconds / 60).toString().padStart(2, '0')}:{(seconds % 60).toString().padStart(2, '0')}</p>}
   </section>
 }

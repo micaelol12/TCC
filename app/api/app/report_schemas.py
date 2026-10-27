@@ -11,7 +11,7 @@ MAX_REPORT_BYTES = 2_000_000
 
 class ReportAnalysis(AnalysisResponse):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
-    schema_version: Literal["1"] = "1"
+    schema_version: Literal["1", "2", "3"] = "2"
     pipeline_version: str = Field(min_length=1, max_length=200)
 
     @model_validator(mode="after")
@@ -22,11 +22,15 @@ class ReportAnalysis(AnalysisResponse):
             raise ValueError("Trechos inválidos.")
         chunks = {chunk.index: chunk.text for chunk in self.chunks}
         for axis in self.axes:
+            if self.schema_version == "1" and (
+                    any(getattr(axis.level_counts, key) for key in ("minus4", "minus3", "plus3", "plus4"))
+                    or any(abs(audit.level) > 2 for audit in axis.evidence_audit)):
+                raise ValueError("A escala de nove níveis exige schema_version 2.")
             if not math.isfinite(axis.coverage) or not 0 <= axis.coverage <= 1:
                 raise ValueError("Cobertura inválida.")
             if not 0 <= axis.valid_chunks <= axis.total_chunks == len(self.chunks):
                 raise ValueError("Contagem de trechos inválida.")
-            counts = axis.level_counts.model_dump().values()
+            counts = (axis.level_counts_by_key if self.schema_version == "3" else axis.level_counts.model_dump()).values()
             if any(count < 0 for count in counts) or sum(counts) != axis.valid_chunks:
                 raise ValueError("Distribuição inválida.")
             if axis.status == "estimated":

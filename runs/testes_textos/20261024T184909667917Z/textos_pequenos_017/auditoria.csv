@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,existence_probability
+0,state,semantic,insuficiente,-2,impedir o reconhecimento familiar de uniões homoafetivas,0.27,"{'sustenta': 0.31, 'contradiz': 0.18, 'insuficiente': 0.51}",jev-1.13.0,
+0,society,search,not_selected,-2,,0.51,"{'S000': 0.12, 'S001': 0.67, 'NONE': 0.21}",jev-1.13.0,0.64

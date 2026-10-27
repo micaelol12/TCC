@@ -8,13 +8,19 @@ def jev_client(api_key: str, model: str):
     return AsyncTypeSafeClient(api_key=api_key, model=model)
 
 
-def jev_questions():
+def jev_questions(escala=None, primitiva_polaridade="score"):
     from typesafe_sdk import Choice, Score
+    if primitiva_polaridade not in {"score", "choice"}:
+        raise ValueError("primitiva_polaridade deve ser score ou choice.")
     questions = {}
     for axis in AXIS_SPECS:
         questions[f"{axis}_relevancia"] = Choice(**criar_questoes_eixo(axis))
-        rubric = criar_rubrica_polaridade_ordinal(axis)
-        questions[f"{axis}_polaridade"] = Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
+        rubric = criar_rubrica_polaridade_ordinal(axis, escala=escala)
+        questions[f"{axis}_polaridade"] = (
+            Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
+            if primitiva_polaridade == "score" else
+            Choice(instructions=rubric["instructions"], criteria=dict(rubric["niveis"]))
+        )
     return questions
 
 

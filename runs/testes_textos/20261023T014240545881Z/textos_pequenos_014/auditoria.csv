@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,diplomatic,semantic,sustenta,-3,retirar o Brasil do BRICS e buscar ingresso na OCDE,0.7,"{'sustenta': 0.8, 'contradiz': 0.1, 'insuficiente': 0.1}",jev-1.13.0

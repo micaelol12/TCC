@@ -1,0 +1,81 @@
+{
+  "tipo": "replay-local-sem-inferencia",
+  "chamadas_provedores": 0,
+  "nota": "Compara somente a regra sobre distribuições já salvas. Não comprova correção semântica nem calibração.",
+  "resultados": [
+    {
+      "arquivo": "runs\\playground\\fluxograma-20261023T031042309812Z.html",
+      "chunk": 1,
+      "eixo": "diplomatic",
+      "escala": "ordinal_9_v1",
+      "comparacao": {
+        "nivel": {
+          "nivel": 0,
+          "valor_0_100": 50.0,
+          "nivel_jev_bruto": 0,
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.68,
+            "C": 0.32
+          },
+          "margem_grupo": 0.36000000000000004,
+          "probabilidade_nivel_condicional": null,
+          "motivos_incerteza": [
+            "baixa_confianca_nivel"
+          ]
+        },
+        "polo_primeiro": {
+          "nivel": -3,
+          "valor_0_100": 12.5,
+          "nivel_jev_bruto": 0,
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.68,
+            "C": 0.32
+          },
+          "margem_grupo": 0.36000000000000004,
+          "probabilidade_nivel_condicional": 0.411764705882353,
+          "motivos_incerteza": [
+            "intensidade_ambigua"
+          ]
+        }
+      }
+    },
+    {
+      "arquivo": "runs\\playground\\fluxograma-20261023T031246051077Z.html",
+      "chunk": 1,
+      "eixo": "diplomatic",
+      "escala": "ordinal_5_v1",
+      "comparacao": {
+        "nivel": {
+          "nivel": -2,
+          "valor_0_100": 0.0,
+          "nivel_jev_bruto": -2,
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.8300000000000001,
+            "C": 0.17
+          },
+          "margem_grupo": 0.66,
+          "probabilidade_nivel_condicional": 0.5542168674698795,
+          "motivos_incerteza": [
+            "baixa_confianca_nivel"
+          ]
+        },
+        "polo_primeiro": {
+          "nivel": -2,
+          "valor_0_100": 0.0,
+          "nivel_jev_bruto": -2,
+          "probabilities_abc": {
+            "A": 0.0,
+            "B": 0.8300000000000001,
+            "C": 0.17
+          },
+          "margem_grupo": 0.66,
+          "probabilidade_nivel_condicional": 0.5542168674698795,
+          "motivos_incerteza": []
+        }
+      }
+    }
+  ]
+}
