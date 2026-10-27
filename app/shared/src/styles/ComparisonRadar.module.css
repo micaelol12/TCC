@@ -1,0 +1,17 @@
+.section { margin: 1.2rem 0; }
+.section h3 { margin-bottom: .75rem; }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1rem; list-style: none; padding: 0; margin: 0 0 .5rem; font-size: .8rem; color: #59544c; }
+.legend li { display: flex; align-items: center; gap: .4rem; }
+.profileSwatch, .textSwatch { display: inline-block; width: 1.5rem; height: .7rem; border: 2px solid; }
+.profileSwatch { border-color: #3d3933; border-style: dashed; background: #3d39331a; }
+.textSwatch { border-color: #a67a4d; background: #a67a4d33; }
+.chart { display: block; width: 100%; max-width: 360px; margin: auto; overflow: visible; }
+.grid { fill: none; stroke: #e0dcd4; stroke-width: 1; }
+.spoke { stroke: #d8d3ca; stroke-width: 1; }
+.label { fill: #59544c; font-size: 12px; }
+.tick { fill: #77746f; font-size: 10px; }
+.profileArea { fill: #3d39331a; stroke: #3d3933; stroke-width: 2.5; stroke-dasharray: 6 4; }
+.textArea { fill: #a67a4d33; stroke: #a67a4d; stroke-width: 2.5; }
+.profilePoint { fill: #3d3933; stroke: #fff; stroke-width: 1.5; }
+.textPoint { fill: #a67a4d; stroke: #fff; stroke-width: 1.5; }
+.section p { margin: .6rem 0 0; }

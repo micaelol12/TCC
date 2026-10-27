@@ -3,12 +3,14 @@ import { AXES, axisOrder, formatScore } from '../domain/axes'
 import { compareAxis } from '../domain/compareAxes'
 import type { Profile } from '../domain/profile'
 import type { Analysis } from '../api/analysisApi'
+import ComparisonRadar from './ComparisonRadar'
 import styles from '../styles/Cards.module.css'
 
 export default function ComparisonPanel({ profile, analysis, profileAction }: { profile: Profile | null; analysis: Analysis | null; profileAction?: ReactNode }) {
   return <aside className={styles.card} aria-label="Comparação pessoal"><h2>Comparação</h2>
     {!profile ? <><p className="muted">Adicione seu resultado do teste para comparar os quatro eixos.</p>{profileAction}</> : !analysis ? <p className="muted">Selecione uma análise para comparar os quatro eixos.</p> : <>
       <p className="muted small">Comparação descritiva na mesma escala. As duas medidas têm métodos diferentes; não há porcentagem global de compatibilidade.</p>
+      <ComparisonRadar profile={profile} analysis={analysis} />
       {axisOrder.map(axis => {
         const result = analysis.axes.find(item => item.axis === axis)
         if (!result) return <p key={axis}>{AXES[axis].title}: sem base para comparar este eixo.</p>
