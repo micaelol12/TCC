@@ -1,0 +1,152 @@
+{
+  "data_revisao": "2026-10-29",
+  "escopo": "PDFs da raiz de tcc; leitura dirigida de resumos, métodos, avaliação e limitações; dicionário consultado por verbetes.",
+  "arquivos_pdf": 23,
+  "conteudos_distintos_por_sha256": 22,
+  "copias_identicas": [
+    [
+      "tcc\\analise_discurso_schwartz.pdf",
+      "tcc\\ANÁLISE DO DISCURSO PARLAMENTAR POR MEIO DA TÉCNICA DO PROCESSAMENTO DE LINGUAGEM NATURAL ABORDAGEM ESTATÍSTICA E APRENDIZAGEM DE MÁQUINA.pdf"
+    ]
+  ],
+  "arquivos": [
+    {
+      "arquivo": "tcc\\2023.acl-long.530.pdf",
+      "paginas_pdf": 21,
+      "sha256": "578f7d78fe96ed9b6de6617b1054e4ef1f270eeba0f5931cc07fb0928481653c",
+      "caracteres_extraidos": 86291
+    },
+    {
+      "arquivo": "tcc\\A Bias Aware News Recommendation System.pdf",
+      "paginas_pdf": 11,
+      "sha256": "8c9534b16452f35e8a1d40cacd88cc11becf64c858b7066b1ae3aed78c2b7381",
+      "caracteres_extraidos": 18484
+    },
+    {
+      "arquivo": "tcc\\A natural language measure.pdf",
+      "paginas_pdf": 32,
+      "sha256": "cbd64eefc5a761a234dbc4660ba3d42e4ce6d417e053228ef29f4f2155197823",
+      "caracteres_extraidos": 72123
+    },
+    {
+      "arquivo": "tcc\\A Scaling Model for Estimating Time-Series Party.pdf",
+      "paginas_pdf": 18,
+      "sha256": "2338e2ae4aad792f5cc6f1df4a60f1841c5bcbc5376d845332588602b75d0290",
+      "caracteres_extraidos": 83707
+    },
+    {
+      "arquivo": "tcc\\A scoping review on the use of natural language processing.pdf",
+      "paginas_pdf": 25,
+      "sha256": "8ed9ccc61287ccf0c5f29314c72acedfc08714bb67f1a81a197fd2d353bdb90c",
+      "caracteres_extraidos": 81241
+    },
+    {
+      "arquivo": "tcc\\American J Political Sci - 2026 - Benoit - Using large language models to analyze political texts through natural language.pdf",
+      "paginas_pdf": 17,
+      "sha256": "f6697614c5f3cd04e843aa30c5ec9e7fb5d03b2e576f0de0092f6ed853f119d9",
+      "caracteres_extraidos": 88279
+    },
+    {
+      "arquivo": "tcc\\ANALISE DE DISCURSOS PARLAMENTARES NA C ´ AMARA DOS DEPUTADOS.pdf",
+      "paginas_pdf": 55,
+      "sha256": "347e2f004fe5b7ecf352e8427e0d692f3ae714192c5619922c80fb6a7fbede78",
+      "caracteres_extraidos": 109199
+    },
+    {
+      "arquivo": "tcc\\analise_discurso_schwartz.pdf",
+      "paginas_pdf": 95,
+      "sha256": "4b84ab71727ab37c895e1fd6c59379669de432275ac8a460f9e427d858eea81e",
+      "caracteres_extraidos": 144511
+    },
+    {
+      "arquivo": "tcc\\ANÁLISE DO DISCURSO PARLAMENTAR POR MEIO DA TÉCNICA DO PROCESSAMENTO DE LINGUAGEM NATURAL ABORDAGEM ESTATÍSTICA E APRENDIZAGEM DE MÁQUINA.pdf",
+      "paginas_pdf": 95,
+      "sha256": "4b84ab71727ab37c895e1fd6c59379669de432275ac8a460f9e427d858eea81e",
+      "caracteres_extraidos": 144511
+    },
+    {
+      "arquivo": "tcc\\Assessing the Alignment of Brazilian Local Government Plans.pdf",
+      "paginas_pdf": 27,
+      "sha256": "dca7280aac07ff18e59de659457cad212b73c5658396049e58c32d2c0acfe0bd",
+      "caracteres_extraidos": 124748
+    },
+    {
+      "arquivo": "tcc\\comparacao politica modelos.pdf",
+      "paginas_pdf": 25,
+      "sha256": "69249aaa0f44726cd6c732672baded01a0221a9b0e7d791d9bd623b064669e28",
+      "caracteres_extraidos": 102894
+    },
+    {
+      "arquivo": "tcc\\Computational Measurement of Political Positions.pdf",
+      "paginas_pdf": 46,
+      "sha256": "85ba056fc23cc82c66092d71acf331a392c3bd6d60b45dc49ba3b6f181aa7db3",
+      "caracteres_extraidos": 78257
+    },
+    {
+      "arquivo": "tcc\\constructing-vec-tionaries-to-extract-message-features-from-texts-a-case-study-of-moral-content.pdf",
+      "paginas_pdf": 21,
+      "sha256": "de31b56129d432f760414c86f03f01924aa5c3f2d21d178b183b3e8d50f77111",
+      "caracteres_extraidos": 81270
+    },
+    {
+      "arquivo": "tcc\\Dicionario_de_Politica_Norberto_Bobbio.pdf",
+      "paginas_pdf": 1358,
+      "sha256": "9c5feb3f5e5016cddf318d7634fab196147e0df9506631cc04abb19ae37d02af",
+      "caracteres_extraidos": 6822404
+    },
+    {
+      "arquivo": "tcc\\KOKKAI DOC.pdf",
+      "paginas_pdf": 43,
+      "sha256": "8d00e9dfea36548d7b7ba86a85ea997e12ddc440d4f2edbb48e158ef34c8db41",
+      "caracteres_extraidos": 113496
+    },
+    {
+      "arquivo": "tcc\\LLM Detection of Political Orientation in Newspapers.pdf",
+      "paginas_pdf": 11,
+      "sha256": "e7fdd21b8d8ecf4e79269f37304c110af1fb0a2af06c56a55d4b57dc5e40ec89",
+      "caracteres_extraidos": 55904
+    },
+    {
+      "arquivo": "tcc\\LLM-based Political Ideology Nowcasting.pdf",
+      "paginas_pdf": 10,
+      "sha256": "2306ce11f4792c9304a31fe86e89b89b88668492c4d1fb13b0c0c5eab3bcac31",
+      "caracteres_extraidos": 42364
+    },
+    {
+      "arquivo": "tcc\\PEGC0679-D.pdf",
+      "paginas_pdf": 140,
+      "sha256": "a5aecfc56de6b7bd43383e3f50692875a4febdbc46f5a4a87e77136abb4113ee",
+      "caracteres_extraidos": 259363
+    },
+    {
+      "arquivo": "tcc\\Personality-and-Political-Orientation-in-Germany-A-NLP-based-Analysis-using-Twitter-Data.pdf",
+      "paginas_pdf": 25,
+      "sha256": "10d311d01d800be03617c126a3c3dd3d189c1c145af33d7b39d8798608e49a1a",
+      "caracteres_extraidos": 61822
+    },
+    {
+      "arquivo": "tcc\\Politically-oriented information inference from text.pdf",
+      "paginas_pdf": 27,
+      "sha256": "abf3005c0d28e49e2e29f7f1e726ee9588cba24cacd59b943e8e91caa9b809a6",
+      "caracteres_extraidos": 72332
+    },
+    {
+      "arquivo": "tcc\\Politics on the Web.pdf",
+      "paginas_pdf": 26,
+      "sha256": "a01106ba52728a7f509e5167438d779ec67418fd5873e8eb1940560345a48eb1",
+      "caracteres_extraidos": 62611
+    },
+    {
+      "arquivo": "tcc\\Using_Natural_Language_Processing_to_Analyze_Polit.pdf",
+      "paginas_pdf": 17,
+      "sha256": "09ae54a0665119e2ce3cee3407eef2a52834872a7d6c9532cc68f7bf5c7dc98e",
+      "caracteres_extraidos": 58064
+    },
+    {
+      "arquivo": "tcc\\Whose Side Are You On.pdf",
+      "paginas_pdf": 20,
+      "sha256": "7fbe33bd3817e386ad73485b2cbe4efe03c10944dfd94eac8c59baad56b14650",
+      "caracteres_extraidos": 74772
+    }
+  ]
+}

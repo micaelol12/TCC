@@ -1,0 +1,303 @@
+{
+  "run_id": "20261029T175131246256Z",
+  "scope": "Reavaliação dos registros existentes; não houve nova inferência.",
+  "notebook_sha256": "2fe1f3ef37e3133a63ac48fed18738555bc8aa14b7e81cf05a6c90d3fe7e5be2",
+  "rubric_hash_matches_current_notebook": true,
+  "question_hash_matches": true,
+  "record_configs_match_manifest": true,
+  "config": {
+    "regra_decisao": "polo_primeiro",
+    "tipo_relevancia": "choice",
+    "limiar_noul": 0.5,
+    "margem_relevancia_minima": 0.6,
+    "primitiva_polaridade": "choice",
+    "confianca_nivel_minima": 0.5,
+    "margem_direcao_minima": 0.2,
+    "usar_fallback": true,
+    "semantic_evidence_check": false,
+    "jev_evidence_search": false,
+    "evidence_existence_min": 0.7
+  },
+  "scale": "ordinal_9_v1",
+  "metrics": [
+    {
+      "etapa": "eixos_jev",
+      "eixo": "all",
+      "pares": 280,
+      "acertos_conjuntos": 216,
+      "acertos_direcao": 62,
+      "relevantes_referencia": 116,
+      "relevantes_detectados": 79,
+      "irrelevantes_corretos": 154,
+      "falsos_negativos_relevancia": 37,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.7714285714285715
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "economic",
+      "pares": 70,
+      "acertos_conjuntos": 62,
+      "acertos_direcao": 15,
+      "relevantes_referencia": 22,
+      "relevantes_detectados": 17,
+      "irrelevantes_corretos": 47,
+      "falsos_negativos_relevancia": 5,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.8857142857142857
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "diplomatic",
+      "pares": 70,
+      "acertos_conjuntos": 59,
+      "acertos_direcao": 15,
+      "relevantes_referencia": 24,
+      "relevantes_detectados": 16,
+      "irrelevantes_corretos": 44,
+      "falsos_negativos_relevancia": 8,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.8428571428571429
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "state",
+      "pares": 70,
+      "acertos_conjuntos": 44,
+      "acertos_direcao": 14,
+      "relevantes_referencia": 37,
+      "relevantes_detectados": 20,
+      "irrelevantes_corretos": 30,
+      "falsos_negativos_relevancia": 17,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.6285714285714286
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "society",
+      "pares": 70,
+      "acertos_conjuntos": 51,
+      "acertos_direcao": 18,
+      "relevantes_referencia": 33,
+      "relevantes_detectados": 26,
+      "irrelevantes_corretos": 33,
+      "falsos_negativos_relevancia": 7,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.7285714285714285
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "all",
+      "pares": 280,
+      "acertos_conjuntos": 219,
+      "acertos_direcao": 62,
+      "relevantes_referencia": 116,
+      "relevantes_detectados": 74,
+      "irrelevantes_corretos": 157,
+      "falsos_negativos_relevancia": 41,
+      "abstencoes_relevancia": 1,
+      "taxa_acerto_conjunta": 0.7821428571428571
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "economic",
+      "pares": 70,
+      "acertos_conjuntos": 61,
+      "acertos_direcao": 13,
+      "relevantes_referencia": 22,
+      "relevantes_detectados": 16,
+      "irrelevantes_corretos": 48,
+      "falsos_negativos_relevancia": 6,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.8714285714285714
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "diplomatic",
+      "pares": 70,
+      "acertos_conjuntos": 58,
+      "acertos_direcao": 14,
+      "relevantes_referencia": 24,
+      "relevantes_detectados": 15,
+      "irrelevantes_corretos": 44,
+      "falsos_negativos_relevancia": 8,
+      "abstencoes_relevancia": 1,
+      "taxa_acerto_conjunta": 0.8285714285714286
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "state",
+      "pares": 70,
+      "acertos_conjuntos": 49,
+      "acertos_direcao": 17,
+      "relevantes_referencia": 37,
+      "relevantes_detectados": 19,
+      "irrelevantes_corretos": 32,
+      "falsos_negativos_relevancia": 18,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.7
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "society",
+      "pares": 70,
+      "acertos_conjuntos": 51,
+      "acertos_direcao": 18,
+      "relevantes_referencia": 33,
+      "relevantes_detectados": 24,
+      "irrelevantes_corretos": 33,
+      "falsos_negativos_relevancia": 9,
+      "abstencoes_relevancia": 0,
+      "taxa_acerto_conjunta": 0.7285714285714285
+    }
+  ],
+  "paired_changes": {
+    "erro_para_acerto": 9,
+    "acerto_para_erro": 6
+  },
+  "joint_delta": 0.010714285714285714,
+  "joint_delta_ci95_question_bootstrap": [
+    -0.014285714285714285,
+    0.039285714285714285
+  ],
+  "llm_logical_calls": 43,
+  "llm_observed_attempts": 43,
+  "routed_axis_cases": 63,
+  "routing_reasons": {
+    "relevancia_ambigua": 42,
+    "direcao_ambigua": 12,
+    "intensidade_ambigua": 25
+  },
+  "false_negatives_without_routing": [
+    {
+      "question_id": 6,
+      "axis": "state"
+    },
+    {
+      "question_id": 14,
+      "axis": "economic"
+    },
+    {
+      "question_id": 16,
+      "axis": "state"
+    },
+    {
+      "question_id": 18,
+      "axis": "economic"
+    },
+    {
+      "question_id": 18,
+      "axis": "state"
+    },
+    {
+      "question_id": 18,
+      "axis": "society"
+    },
+    {
+      "question_id": 19,
+      "axis": "state"
+    },
+    {
+      "question_id": 22,
+      "axis": "state"
+    },
+    {
+      "question_id": 23,
+      "axis": "state"
+    },
+    {
+      "question_id": 28,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 29,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 29,
+      "axis": "state"
+    },
+    {
+      "question_id": 30,
+      "axis": "state"
+    },
+    {
+      "question_id": 31,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 32,
+      "axis": "state"
+    },
+    {
+      "question_id": 41,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 43,
+      "axis": "economic"
+    },
+    {
+      "question_id": 45,
+      "axis": "state"
+    },
+    {
+      "question_id": 57,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 57,
+      "axis": "state"
+    },
+    {
+      "question_id": 58,
+      "axis": "state"
+    },
+    {
+      "question_id": 59,
+      "axis": "state"
+    },
+    {
+      "question_id": 69,
+      "axis": "economic"
+    },
+    {
+      "question_id": 69,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 70,
+      "axis": "economic"
+    },
+    {
+      "question_id": 70,
+      "axis": "diplomatic"
+    },
+    {
+      "question_id": 70,
+      "axis": "state"
+    },
+    {
+      "question_id": 70,
+      "axis": "society"
+    }
+  ],
+  "playground_clean_config_check": {
+    "error": "Use tokens_alvo ou o alias antigo max_tokens, não os dois.",
+    "initial_config": {
+      "estrategia": "tokens",
+      "limite_tokens_entrada": null,
+      "overlap_tokens": 0,
+      "encoding_name": "cl100k_base",
+      "max_tokens": 600
+    },
+    "playground_merged_config": {
+      "estrategia": "tokens",
+      "limite_tokens_entrada": null,
+      "overlap_tokens": 0,
+      "encoding_name": "cl100k_base",
+      "max_tokens": 600,
+      "tokens_alvo": 600
+    }
+  }
+}

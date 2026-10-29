@@ -1,0 +1,250 @@
+{
+  "scope": "Entradas sintéticas; verifica comportamento do código, não acurácia semântica.",
+  "source_sha256": {
+    "Pipeline - Passo a Passo.ipynb": "2fe1f3ef37e3133a63ac48fed18738555bc8aa14b7e81cf05a6c90d3fe7e5be2",
+    "app/api/app/pipeline/aggregation.py": "19cff4334e6d954238160a61a7ecfae557c57011a77b95b1345973905cff138a",
+    "app/api/app/pipeline/domain.py": "e2f2d575b17e6beb01215cb570b4b6847ff63828297e3bcd12a4675305fb6217",
+    "app/api/analysis-config.json": "e9b4f2cf565423d66cb6cbd4d063dac9c0a458cfaed0681a795932a5a20d3295"
+  },
+  "api_defaults": {
+    "primitiva_polaridade": "score",
+    "regra_decisao": "nivel",
+    "chunk_tokens": 600,
+    "chunk_strategy": "tokens",
+    "relevance_margin_min": 0.6,
+    "level_confidence_min": 0.5,
+    "direction_margin_min": 0.2,
+    "min_valid_chunks": 16,
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 42,
+    "jev_model": "jev-1.13.0",
+    "llm_model": "sabia-4",
+    "semantic_evidence_check": false,
+    "jev_evidence_search": false,
+    "evidence_existence_min": 0.7
+  },
+  "same_mean_different_content": {
+    "all_center": {
+      "pole_a": 50.0,
+      "coverage": 1.0,
+      "valid_chunks": 2,
+      "sufficient_evidence": false,
+      "level_counts_by_key": {
+        "polo_B_muito_forte": 0,
+        "polo_B_forte": 0,
+        "polo_B_moderado": 0,
+        "polo_B_leve": 0,
+        "sem_posicao": 2,
+        "polo_A_leve": 0,
+        "polo_A_moderado": 0,
+        "polo_A_forte": 0,
+        "polo_A_muito_forte": 0
+      },
+      "ci95": [
+        50.0,
+        50.0
+      ]
+    },
+    "opposed_extremes": {
+      "pole_a": 50.0,
+      "coverage": 1.0,
+      "valid_chunks": 2,
+      "sufficient_evidence": false,
+      "level_counts_by_key": {
+        "polo_B_muito_forte": 1,
+        "polo_B_forte": 0,
+        "polo_B_moderado": 0,
+        "polo_B_leve": 0,
+        "sem_posicao": 0,
+        "polo_A_leve": 0,
+        "polo_A_moderado": 0,
+        "polo_A_forte": 0,
+        "polo_A_muito_forte": 1
+      },
+      "ci95": [
+        0.0,
+        100.0
+      ]
+    },
+    "sixteen_repeated_center": {
+      "pole_a": 50.0,
+      "coverage": 1.0,
+      "valid_chunks": 16,
+      "sufficient_evidence": true,
+      "level_counts_by_key": {
+        "polo_B_muito_forte": 0,
+        "polo_B_forte": 0,
+        "polo_B_moderado": 0,
+        "polo_B_leve": 0,
+        "sem_posicao": 16,
+        "polo_A_leve": 0,
+        "polo_A_moderado": 0,
+        "polo_A_forte": 0,
+        "polo_A_muito_forte": 0
+      },
+      "ci95": [
+        50.0,
+        50.0
+      ]
+    }
+  },
+  "decision_rule_illustration": {
+    "nivel": {
+      "nivel": 0,
+      "chave_nivel": "sem_posicao",
+      "nivel_jev_bruto": 0,
+      "regra_decisao": "nivel",
+      "desempate_intensidade": false,
+      "grupo_mais_provavel": "A",
+      "margem_grupo": 0.32000000000000006,
+      "probabilidade_nivel_condicional": null,
+      "valor_0_100": 50.0,
+      "classe": "C",
+      "probabilities_nivel": {
+        "polo_B_muito_forte": 0.05,
+        "polo_B_forte": 0.05,
+        "polo_B_moderado": 0.05,
+        "polo_B_leve": 0.05,
+        "sem_posicao": 0.24,
+        "polo_A_leve": 0.14,
+        "polo_A_moderado": 0.14,
+        "polo_A_forte": 0.14,
+        "polo_A_muito_forte": 0.14
+      },
+      "probabilities_abc": {
+        "A": 0.56,
+        "B": 0.2,
+        "C": 0.24
+      },
+      "p_polo_A": 0.56,
+      "p_polo_B": 0.2,
+      "p_sem_posicao": 0.24,
+      "margem_direcao": 0.36000000000000004,
+      "nivel_esperado_diagnostico": 0.9000000000000001,
+      "confianca_nivel": 0.2,
+      "status": "sem_posicao",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424"
+    },
+    "polo_primeiro": {
+      "nivel": 1,
+      "chave_nivel": "polo_A_leve",
+      "nivel_jev_bruto": 0,
+      "regra_decisao": "polo_primeiro",
+      "desempate_intensidade": true,
+      "grupo_mais_provavel": "A",
+      "margem_grupo": 0.32000000000000006,
+      "probabilidade_nivel_condicional": 0.25,
+      "valor_0_100": 62.5,
+      "classe": "A",
+      "probabilities_nivel": {
+        "polo_B_muito_forte": 0.05,
+        "polo_B_forte": 0.05,
+        "polo_B_moderado": 0.05,
+        "polo_B_leve": 0.05,
+        "sem_posicao": 0.24,
+        "polo_A_leve": 0.14,
+        "polo_A_moderado": 0.14,
+        "polo_A_forte": 0.14,
+        "polo_A_muito_forte": 0.14
+      },
+      "probabilities_abc": {
+        "A": 0.56,
+        "B": 0.2,
+        "C": 0.24
+      },
+      "p_polo_A": 0.56,
+      "p_polo_B": 0.2,
+      "p_sem_posicao": 0.24,
+      "margem_direcao": 0.36000000000000004,
+      "nivel_esperado_diagnostico": 0.9000000000000001,
+      "confianca_nivel": 0.2,
+      "status": "direcional",
+      "escala_id": "ordinal_9_v1",
+      "escala_versao": 1,
+      "escala_hash": "8aea6c22691591c79e57414d99f63800d36c99a1d9bf2564ab9605603c102424"
+    }
+  },
+  "bootstrap_comparison": {
+    "input_levels": [
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      -4,
+      null,
+      null,
+      null,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "api": {
+      "pole_a": 50.0,
+      "coverage": 0.8695652173913043,
+      "valid_chunks": 20,
+      "sufficient_evidence": true,
+      "level_counts_by_key": {
+        "polo_B_muito_forte": 10,
+        "polo_B_forte": 0,
+        "polo_B_moderado": 0,
+        "polo_B_leve": 0,
+        "sem_posicao": 0,
+        "polo_A_leve": 0,
+        "polo_A_moderado": 0,
+        "polo_A_forte": 0,
+        "polo_A_muito_forte": 10
+      },
+      "ci95": [
+        30.0,
+        70.0
+      ]
+    },
+    "notebook": {
+      "índice A": 50.0,
+      "cobertura": 0.8695652173913043,
+      "chunks com nível": 20,
+      "IC95 inferior": 13.043478260869565,
+      "IC95 superior": 85.71428571428571
+    }
+  },
+  "notebook_chunk_config_assignments": [
+    {
+      "cell_index_zero_based": 2,
+      "value": {
+        "estrategia": "tokens",
+        "limite_tokens_entrada": null,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base",
+        "max_tokens": 600
+      }
+    },
+    {
+      "cell_index_zero_based": 171,
+      "value": {
+        "estrategia": "sentencas",
+        "tokens_alvo": 600,
+        "limite_tokens_entrada": null,
+        "overlap_tokens": 0,
+        "encoding_name": "cl100k_base"
+      }
+    }
+  ],
+  "schwartz_duplicate_sha256": {
+    "analise_discurso_schwartz.pdf": "4b84ab71727ab37c895e1fd6c59379669de432275ac8a460f9e427d858eea81e",
+    "ANÁLISE DO DISCURSO PARLAMENTAR POR MEIO DA TÉCNICA DO PROCESSAMENTO DE LINGUAGEM NATURAL ABORDAGEM ESTATÍSTICA E APRENDIZAGEM DE MÁQUINA.pdf": "4b84ab71727ab37c895e1fd6c59379669de432275ac8a460f9e427d858eea81e"
+  }
+}
