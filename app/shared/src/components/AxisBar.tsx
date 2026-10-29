@@ -1,14 +1,22 @@
 import type { Axis } from '../domain/axes'
+import type { AxisResult } from '../api/analysisApi'
 import { AXES, formatScore } from '../domain/axes'
 import { interpretAxisScore } from '../domain/axisInterpretation'
 import styles from '../styles/Cards.module.css'
 
-export default function AxisBar({ axis, score, headingLevel = 3, showInterpretation = false }: { axis: Axis; score: number | null; headingLevel?: 3 | 4; showInterpretation?: boolean }) {
+export default function AxisBar({ axis, score, status, headingLevel = 3, showInterpretation = false }: { axis: Axis; score: number | null; status?: AxisResult['status']; headingLevel?: 3 | 4; showInterpretation?: boolean }) {
   const item = AXES[axis]
   const Heading = headingLevel === 4 ? 'h4' : 'h3'
   const shownA = score === null ? null : Math.round((score + Number.EPSILON) * 10) / 10
   const shownB = shownA === null ? null : 100 - shownA
   const interpretation = showInterpretation ? interpretAxisScore(axis, shownA) : null
+  if (shownA === null && (status === 'no_evidence' || status === 'abstained')) return <div className={styles.axis}>
+    <div className={styles.axisHeader}><Heading>{item.title}</Heading></div>
+    <div className={styles.unavailable}>
+      <strong>{status === 'no_evidence' ? 'Sem relevância neste eixo' : 'Classificação indeterminada'}</strong>
+      <p>{status === 'no_evidence' ? 'Nenhum trecho foi considerado relevante para este eixo. Por isso, não há pontuação a exibir.' : 'Não foi possível obter uma estimativa válida para este eixo.'}</p>
+    </div>
+  </div>
   return <div className={styles.axis}>
     <div className={styles.axisHeader}><Heading>{item.title}</Heading>{shownA === null && <span>Sem estimativa</span>}</div>
     <div className={styles.poles}>

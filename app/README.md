@@ -1,5 +1,7 @@
 # 8values + textos
 
+A versão oficial do site e da extensão usa [`api/analysis-config.json`](api/analysis-config.json), com todos os parâmetros do algoritmo disponíveis no Lab. Edite o arquivo e reinicie a API para aplicar. [Campos, prioridade das configurações e modelos](CONFIGURACAO.md).
+
 Para experimentar parâmetros do algoritmo, modelos e chaves da API na edição **8values Lab**, consulte [o guia da versão de teste](LAB.md). Inicie com `npm run api:lab` e `npm run dev:lab` em terminais separados; gere o pacote com `npm run build:lab` e `npm run package:lab`.
 
 O Lab possui uma aba **API keys** para chaves Maritaca e Gemini por sessão e registra automaticamente todas as execuções de análise em `lab_executions`, no banco Lab, incluindo texto e resultado. Os parágrafos abaixo sobre armazenamento somente por report descrevem a edição comum. [Chaves, modelos e registros do Lab](LAB.md).
@@ -8,7 +10,7 @@ Aplicativo React + TypeScript e API FastAPI para o questionário 8values e anál
 
 Desde o pipeline `jev-escalas-ordinal-11`, o prompt classifica as posições políticas expressas no trecho selecionado, independentemente de quem as enuncia, incluindo definições impessoais e declarações atribuídas a terceiros. Não é necessário que o autor ou narrador concorde com a fala citada. Uma definição que apresenta soberania e autodeterminação como princípios do nacionalismo deve apontar para Nação; um relato de que um candidato defende a prioridade nacional e a saída de instituições supranacionais também deve apontar para Nação. O formato descritivo ou a atribuição a terceiros, sozinhos, não justificam `sem_posicao`. Negações e críticas são interpretadas pelo sentido, sem transformar rejeição em defesa; posições opostas são avaliadas conforme sua predominância. A premissa vale para JEV e LLM, não define intensidade nem cria evidência nos demais eixos. A mudança requer nova validação com provedores reais; testes locais verificam a integração e a paridade, sem comprovar a classificação semântica.
 
-A análise de texto recebe um objeto de escala ordinal, comum ao JEV e ao LLM. O padrão da API permanece nove níveis; o Lab permite selecionar cinco ou nove. A pontuação é `100 × valor` da alternativa e o documento recebe a média dos trechos válidos. Respostas novas usam `schema_version: "3"`, snapshot completo, hash e contagens por chave. Resultados históricos de cinco/nove níveis preservam seus significados e hashes. O notebook passo a passo é a fonte de verdade; a API usa uma réplica validada. Veja [escalas parametrizáveis](../ESCALAS_PARAMETRIZAVEIS.md) para contrato, uso, testes e protocolo de comparação.
+A análise de texto recebe um objeto de escala ordinal, comum ao JEV e ao LLM. O padrão da API permanece nove níveis; o Lab permite selecionar cinco ou nove, e a versão oficial aceita o objeto de escala pelo arquivo de parâmetros. A pontuação é `100 × valor` da alternativa e o documento recebe a média dos trechos válidos. Respostas novas usam `schema_version: "3"`, snapshot completo, hash e contagens por chave. Resultados históricos de cinco/nove níveis preservam seus significados e hashes. O notebook passo a passo é a fonte de verdade; a API usa uma réplica validada. Veja [escalas parametrizáveis](../ESCALAS_PARAMETRIZAVEIS.md) para contrato, uso, testes e protocolo de comparação.
 
 O guia dos oito valores na aba do teste adapta as descrições do [8values original](https://8values.github.io/). A ideologia mais próxima usa os 52 perfis de [`../tcc/ideologies.json`](../tcc/ideologies.json) e a distância definida em [`../TCC.ipynb`](../TCC.ipynb): quadrado das diferenças nos eixos econômico e civil, e expoente `1.73856063` nos eixos diplomático e social. É uma correspondência exploratória, menos precisa que os quatro eixos segundo o próprio 8values. Na análise de texto ela só aparece quando os quatro eixos têm estimativa; as classificações feitas por IA podem conter erros.
 
@@ -55,7 +57,7 @@ Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar r
 | Médio | JEV e revisão Sabiá quando necessária | `TYPESAFE_API_KEY`, `MARITACA_API_KEY` |
 | Alto | Sabiá | `MARITACA_API_KEY` |
 
-`JEV_MODEL` e `LLM_MODEL` permitem substituir os padrões `jev-1.13.0` e `sabia-4`. Confira a disponibilidade e o contrato das contas antes de usar. A API não contém modo de demonstração com classificações inventadas.
+Os campos `jev_model` e `llm_model` do arquivo de parâmetros (ou as substituições `JEV_MODEL` e `LLM_MODEL` no ambiente) permitem mudar os padrões `jev-1.13.0` e `sabia-4`. Gemini também é aceito com `GEMINI_API_KEY` no servidor; veja o guia de configuração. Confira a disponibilidade e o contrato das contas antes de usar. A API não contém modo de demonstração com classificações inventadas.
 
 ## Limites e dados
 
@@ -82,7 +84,7 @@ python scripts/export_reports.py --output reports.jsonl
 
 A exportação abre o banco somente para leitura e recusa sobrescrever uma saída existente. A equipe consulta os dados localmente; não existe rota pública de listagem. O status inicial é `pending`; um painel e fluxo de revisão ficam para uma etapa posterior. Limpar histórico, dados locais ou desinstalar a extensão não apaga reports já enviados. Configure retenção, acesso restrito e backup do banco e das exportações conforme o ambiente antes da distribuição pública; o limite por processo deve ser acompanhado pela proteção do serviço publicado.
 
-O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente Maritaca no médio, ou Maritaca no alto. A aplicação não controla a retenção feita por esses provedores. Antes da publicação, revise políticas, contratos, transferência internacional, HTTPS, configuração do proxy e logs de infraestrutura. O corte de 16 trechos válidos por eixo para evidência suficiente é uma escolha metodológica do notebook, mantida aqui mesmo em textos curtos.
+O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente o provedor LLM configurado no médio, ou o provedor LLM configurado no alto. Maritaca é o padrão; Gemini pode ser configurado. A checagem semântica de evidências também usa TypeSafe no modo alto quando habilitada. A aplicação não controla a retenção feita por esses provedores. Antes da publicação, revise políticas, contratos, transferência internacional, HTTPS, configuração do proxy e logs de infraestrutura. O corte de 16 trechos válidos por eixo para evidência suficiente é uma escolha metodológica do notebook, mantida aqui mesmo em textos curtos.
 
 ## Testar
 

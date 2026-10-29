@@ -1,6 +1,8 @@
 # 8values Lab — versão de teste
 
-O site e a extensão Lab permitem alterar os parâmetros da próxima análise, escolher modelos permitidos, salvar/importar/exportar configurações e comparar resultados do mesmo texto. O nome **Versão de teste**, a configuração efetiva e seu identificador acompanham os resultados experimentais.
+Todos os parâmetros do algoritmo também podem ser definidos na versão oficial pelo arquivo [`api/analysis-config.json`](api/analysis-config.json). O Lab continua usando configuração por análise e padrões próprios; veja o [guia de configuração oficial](CONFIGURACAO.md) para transferir um preset.
+
+O site e a extensão Lab permitem alterar os parâmetros da próxima análise, escolher modelos permitidos, salvar/importar/exportar configurações e comparar quaisquer análises diferentes do histórico, inclusive de textos distintos. O nome **Versão de teste**, a configuração efetiva e seu identificador acompanham os resultados experimentais.
 
 ## Iniciar
 
@@ -94,7 +96,7 @@ Para comparar, analise o mesmo texto com as opções desligadas e depois ligadas
 
 Cada alteração válida guarda automaticamente a última configuração neste navegador, separada por origem da API/site, mesmo sem chaves cadastradas. Ao reabrir, essa configuração é restaurada. Valores inválidos ou incompletos não substituem a última configuração válida. **Exportar JSON** e **Importar configuração JSON** usam um formato versionado sem credenciais e com limite de 200 KB. Importações e presets salvos são revalidados contra os modelos e faixas da API atual. **Restaurar padrões** e importar um preset também atualizam automaticamente a configuração persistente.
 
-Os resultados exibem uma cópia de todos os parâmetros, os modelos retornados e o hash da configuração pública. A comparação entre experimentos permite selecionar outra análise do mesmo texto, com pontuações do polo A, cobertura, chamadas lógicas e parâmetros lado a lado. Use **Usar este texto em nova análise** no site ou **Editar e reanalisar** na extensão. Na extensão, a comparação fica dentro do histórico expandido.
+Os resultados Lab exibem uma cópia de todos os parâmetros, os modelos retornados e o hash da configuração pública. No site e na extensão, **Comparar análises** permite selecionar qualquer outra análise do histórico, do mesmo texto ou de textos diferentes; a própria análise fica excluída das opções. As duas versões mostram um resumo gráfico dos quatro eixos, com marcadores distintos para as duas análises, pontuações, cobertura e diferenças em pontos. Eixos sem estimativa ficam sem marcador. O Lab também mostra as configurações, os modelos e as chamadas lógicas lado a lado. A versão oficial exibe somente o resumo gráfico comparativo. A comparação fica na aba **Comparação**, em **Entre análises**.
 
 Reports mantêm os metadados da configuração junto do snapshot e continuam exigindo consentimento. O banco Lab padrão é `app/api/data/reports-lab.sqlite3`. Para alterá-lo, use `LAB_REPORTS_DB_PATH`; o Lab não herda `REPORTS_DB_PATH` do ambiente comum. Não configure as duas variáveis para o mesmo banco. Reports Lab são rejeitados pela API comum e vice-versa. O hash detecta inconsistências de configuração, mas não autentica uma classificação enviada pelo cliente.
 

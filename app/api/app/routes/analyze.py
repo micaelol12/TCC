@@ -29,9 +29,13 @@ def health():
 def capabilities(request: Request):
     keys = effective_keys(settings, request)
     jev = bool(keys['typesafe'])
-    llm = bool(keys['maritaca'] or keys['gemini'])
+    defaults = settings.algorithm_defaults()
+    catalog = model_catalog(settings)
+    llm = bool(keys['maritaca'] or keys['gemini']) if settings.app_env == 'lab' else bool(keys[catalog[defaults.llm_model]])
+    high = llm and (jev or not defaults.semantic_evidence_check or settings.app_env == 'lab')
     result = {"max_chars": settings.max_chars, "max_tokens": settings.max_tokens, "max_chunks": settings.max_chunks,
-              "modes": {"low": jev, "medium": jev and llm, "high": llm}, "timeout_seconds": settings.timeout_seconds,
+              "modes": {"low": jev, "medium": jev and llm, "high": high}, "timeout_seconds": settings.timeout_seconds,
+              "analysis_defaults": defaults.model_dump(mode="json"), "model_providers": catalog,
               "environment": settings.app_env, "experimental": {"enabled": settings.experimental_config_enabled}}
     if settings.experimental_config_enabled:
         catalog = model_catalog(settings)

@@ -6,8 +6,9 @@ import type { Analysis } from '../api/analysisApi'
 import ComparisonRadar from './ComparisonRadar'
 import styles from '../styles/Cards.module.css'
 
-export default function ComparisonPanel({ profile, analysis, profileAction }: { profile: Profile | null; analysis: Analysis | null; profileAction?: ReactNode }) {
+export default function ComparisonPanel({ profile, analysis, analysisTitle, profileAction }: { profile: Profile | null; analysis: Analysis | null; analysisTitle?: string; profileAction?: ReactNode }) {
   return <aside className={styles.card} aria-label="Comparação pessoal"><h2>Comparação</h2>
+    {analysisTitle && <p className="small muted">Análise selecionada: <strong>{analysisTitle}</strong></p>}
     {!profile ? <><p className="muted">Adicione seu resultado do teste para comparar os quatro eixos.</p>{profileAction}</> : !analysis ? <p className="muted">Selecione uma análise para comparar os quatro eixos.</p> : <>
       <p className="muted small">Comparação descritiva na mesma escala. As duas medidas têm métodos diferentes; não há porcentagem global de compatibilidade.</p>
       <ComparisonRadar profile={profile} analysis={analysis} />

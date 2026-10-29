@@ -4,6 +4,8 @@ from pathlib import Path
 import os
 from .environment import load_environment
 from .experiment_config import ExperimentConfig
+from .algorithm_file import DEFAULT_CONFIG_PATH, load_algorithm_file
+from .polarity import EscalaOrdinal
 from pydantic import ValidationError
 
 
@@ -32,9 +34,27 @@ def boolean(name):
     return field(default_factory=read)
 
 
-def models(name, default_name, default):
+def models(name):
     return field(default_factory=lambda: tuple(dict.fromkeys(
-        value.strip() for value in os.getenv(name, os.getenv(default_name, default)).split(",") if value.strip())))
+        value.strip() for value in os.environ[name].split(",") if value.strip())) if name in os.environ else None)
+
+
+def algorithm_env(name, convert=str):
+    """An absent environment override leaves the JSON value in effect."""
+    def read():
+        if name not in os.environ:
+            return None
+        try:
+            return convert(os.environ[name])
+        except (ValueError, OverflowError):
+            raise ValueError(f"Variável inválida: {name}.") from None
+    return field(default_factory=read)
+
+
+def parse_bool(value):
+    if value.lower() not in {"true", "false"}:
+        raise ValueError("Booleano inválido.")
+    return value.lower() == "true"
 
 
 @dataclass(frozen=True)
@@ -45,19 +65,27 @@ class Settings:
     maritaca_key: str = field(default_factory=lambda: os.getenv("MARITACA_API_KEY", ""), repr=False)
     gemini_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""), repr=False)
     allowed_gemini_models: tuple[str, ...] = field(default_factory=lambda: tuple(value.strip() for value in os.getenv('ALLOWED_GEMINI_MODELS', 'gemini-3.1-flash-lite,gemini-3.7-flash').split(',') if value.strip()))
-    jev_model: str = env("JEV_MODEL", "jev-1.13.0")
-    primitiva_polaridade: str = env("JEV_POLARITY_PRIMITIVE", "score")
-    regra_decisao: str = env("JEV_DECISION_RULE", "nivel")
-    llm_model: str = env("LLM_MODEL", "sabia-4")
-    allowed_jev_models: tuple[str, ...] = models("ALLOWED_JEV_MODELS", "JEV_MODEL", "jev-1.13.0")
-    allowed_llm_models: tuple[str, ...] = models("ALLOWED_LLM_MODELS", "LLM_MODEL", "sabia-4")
-    chunk_tokens: int = number("CHUNK_TOKENS", 600)
-    relevance_margin_min: float = number("JEV_RELEVANCE_MARGIN_MIN", 0.60, float)
-    level_confidence_min: float = number("JEV_LEVEL_CONFIDENCE_MIN", 0.50, float)
-    direction_margin_min: float = number("JEV_DIRECTION_MARGIN_MIN", 0.20, float)
-    min_valid_chunks: int = number("MIN_VALID_CHUNKS", 16)
-    bootstrap_samples: int = number("BOOTSTRAP_SAMPLES", 2000)
-    bootstrap_seed: int = number("BOOTSTRAP_SEED", 42)
+    algorithm_config_path: str = env("ALGORITHM_CONFIG_PATH")
+    # None means no constructor/environment override. __post_init__ fills every
+    # field from the validated JSON (or the independent Lab defaults).
+    escala: EscalaOrdinal | None = None
+    jev_model: str | None = algorithm_env("JEV_MODEL")
+    primitiva_polaridade: str | None = algorithm_env("JEV_POLARITY_PRIMITIVE")
+    regra_decisao: str | None = algorithm_env("JEV_DECISION_RULE")
+    llm_model: str | None = algorithm_env("LLM_MODEL")
+    allowed_jev_models: tuple[str, ...] | None = models("ALLOWED_JEV_MODELS")
+    allowed_llm_models: tuple[str, ...] | None = models("ALLOWED_LLM_MODELS")
+    chunk_tokens: int | None = algorithm_env("CHUNK_TOKENS", int)
+    chunk_strategy: str | None = algorithm_env("CHUNK_STRATEGY")
+    relevance_margin_min: float | None = algorithm_env("JEV_RELEVANCE_MARGIN_MIN", float)
+    level_confidence_min: float | None = algorithm_env("JEV_LEVEL_CONFIDENCE_MIN", float)
+    direction_margin_min: float | None = algorithm_env("JEV_DIRECTION_MARGIN_MIN", float)
+    min_valid_chunks: int | None = algorithm_env("MIN_VALID_CHUNKS", int)
+    bootstrap_samples: int | None = algorithm_env("BOOTSTRAP_SAMPLES", int)
+    bootstrap_seed: int | None = algorithm_env("BOOTSTRAP_SEED", int)
+    semantic_evidence_check: bool | None = algorithm_env("SEMANTIC_EVIDENCE_CHECK", parse_bool)
+    jev_evidence_search: bool | None = algorithm_env("JEV_EVIDENCE_SEARCH", parse_bool)
+    evidence_existence_min: float | None = algorithm_env("EVIDENCE_EXISTENCE_MIN", float)
     max_chars: int = number("MAX_CHARS", 60000)
     max_tokens: int = number("MAX_TOKENS", 12000)
     max_chunks: int = number("MAX_CHUNKS", 20)
@@ -73,8 +101,7 @@ class Settings:
     reports_hourly_requests: int = number("REPORTS_HOURLY_REQUESTS", 60)
 
     def algorithm_defaults(self):
-        return ExperimentConfig(chunk_strategy="sentencas" if self.app_env == "lab" else "tokens",
-            **{name: getattr(self, name) for name in ExperimentConfig.model_fields if hasattr(self, name)})
+        return ExperimentConfig(**{name: getattr(self, name) for name in ExperimentConfig.model_fields})
 
     def __post_init__(self):
         if self.app_env == "lab":
@@ -84,21 +111,32 @@ class Settings:
             raise ValueError("Variável inválida: APP_ENV.")
         if self.experimental_config_enabled and self.app_env != "lab":
             raise ValueError("EXPERIMENTAL_CONFIG_ENABLED exige APP_ENV=lab.")
+        path = self.algorithm_config_path or (str(DEFAULT_CONFIG_PATH) if self.app_env != "lab" else "")
+        base = load_algorithm_file(path) if path else ExperimentConfig(chunk_strategy="sentencas")
+        values = {**base.model_dump(), **{name: getattr(self, name) for name in ExperimentConfig.model_fields
+                                         if getattr(self, name) is not None}}
         for name in ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",
                      "concurrent_requests", "hourly_requests", "daily_calls", "reports_hourly_requests"):
             if getattr(self, name) <= 0:
                 variable = {"timeout_seconds": "ANALYSIS_TIMEOUT_SECONDS", "daily_calls": "DAILY_PROVIDER_CALLS"}.get(name, name.upper())
                 raise ValueError(f"Limite inválido: {variable}.")
         try:
-            defaults = self.algorithm_defaults()
+            defaults = ExperimentConfig.model_validate(values)
         except ValidationError as error:
             names = {"regra_decisao": "JEV_DECISION_RULE", "primitiva_polaridade": "JEV_POLARITY_PRIMITIVE", "relevance_margin_min": "JEV_RELEVANCE_MARGIN_MIN", "level_confidence_min": "JEV_LEVEL_CONFIDENCE_MIN", "direction_margin_min": "JEV_DIRECTION_MARGIN_MIN"}
             invalid = ", ".join(names.get(str(item["loc"][0]), str(item["loc"][0]).upper()) for item in error.errors())
             raise ValueError(f"Variáveis inválidas: {invalid}.") from None
+        for name in ExperimentConfig.model_fields:
+            object.__setattr__(self, name, getattr(defaults, name))
+        if self.allowed_jev_models is None:
+            object.__setattr__(self, "allowed_jev_models", (self.jev_model,))
+        if self.allowed_llm_models is None:
+            object.__setattr__(self, "allowed_llm_models", ("sabia-4",) if self.llm_model in self.allowed_gemini_models else (self.llm_model,))
         if defaults.chunk_tokens > self.max_tokens or defaults.min_valid_chunks > self.max_chunks:
             raise ValueError("CHUNK_TOKENS/MIN_VALID_CHUNKS excedem MAX_TOKENS/MAX_CHUNKS.")
-        if self.jev_model not in self.allowed_jev_models or self.llm_model not in self.allowed_llm_models:
-            raise ValueError("JEV_MODEL/LLM_MODEL devem constar em ALLOWED_JEV_MODELS/ALLOWED_LLM_MODELS.")
+        from .lab_credentials import model_catalog
+        if self.jev_model not in self.allowed_jev_models or self.llm_model not in model_catalog(self):
+            raise ValueError("JEV_MODEL/LLM_MODEL devem constar nos modelos permitidos da API.")
         if set(self.allowed_gemini_models) & (set(self.allowed_llm_models) | {'sabia-4', 'sabiazinho-4'}):
             raise ValueError('ALLOWED_GEMINI_MODELS conflita com os modelos Maritaca.')
         for name, allowed in (("jev_model", self.allowed_jev_models), ("llm_model", self.allowed_llm_models), ('llm_model', self.allowed_gemini_models)):

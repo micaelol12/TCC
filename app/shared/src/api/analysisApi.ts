@@ -41,7 +41,17 @@ export type Analysis = {
 }
 export type AnalysisEntry<Id extends number | string = number> = { id: Id; title: string; text: string; analysis: Analysis; mode: Mode; source?: string }
 export type Capabilities = { max_chars: number; max_tokens: number; max_chunks: number; modes: Record<Mode, boolean>; timeout_seconds: number;
+  analysis_defaults?: ExperimentConfig; model_providers?: Record<string, 'maritaca' | 'gemini'>;
   environment?: 'development' | 'lab' | 'production'; experimental?: ExperimentCapabilities | { enabled: false } }
+
+export function configuredRecipients(mode: Mode, caps: Capabilities | null): string {
+  const config = caps?.analysis_defaults
+  if (!config) return recipients[mode]
+  const llm = caps?.model_providers?.[config.llm_model] === 'gemini' ? 'Google Gemini' : 'Maritaca (Sabiá)'
+  if (mode === 'low') return recipients.low
+  if (mode === 'medium') return `TypeSafe (JEV) e, quando necessário, ${llm}`
+  return config.semantic_evidence_check ? `${llm} e TypeSafe (checagem de evidências)` : llm
+}
 
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
 function strings(value: unknown): value is string[] { return Array.isArray(value) && value.every(item => typeof item === 'string') }
@@ -78,6 +88,8 @@ function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersi
 export function isCapabilities(value: unknown): value is Capabilities {
   if (!object(value) || !object(value.modes)) return false
   const available = value.modes
+  if (value.analysis_defaults !== undefined && !isExperimentConfig(value.analysis_defaults)) return false
+  if (value.model_providers !== undefined && (!object(value.model_providers) || !Object.values(value.model_providers).every(provider => provider === 'maritaca' || provider === 'gemini'))) return false
   if (value.environment !== undefined && !['development', 'lab', 'production'].includes(value.environment as string)) return false
   if (value.experimental !== undefined && (!object(value.experimental) ||
     (value.experimental.enabled !== false && !(value.environment === 'lab' && isExperimentCapabilities(value.experimental))))) return false

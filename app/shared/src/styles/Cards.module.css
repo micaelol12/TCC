@@ -1,4 +1,7 @@
 .axis { margin: 1.2rem 0 1.6rem; }
+.unavailable { margin-top: .65rem; padding: .8rem 1rem; border-radius: 9px; background: #f3f1ec; color: #514b42; }
+.unavailable strong { display: block; font-size: .85rem; }
+.unavailable p { margin: .3rem 0 0; font-size: .8rem; line-height: 1.55; }
 .axisHeader, .poles { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .axisHeader span { text-align: right; font-size: .94rem; font-variant-numeric: tabular-nums; }
 .bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; background: #d9e0e4; margin: .35rem 0 .25rem; }

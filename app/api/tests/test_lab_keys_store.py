@@ -105,7 +105,7 @@ class LabKeysAndStoreTests(unittest.TestCase):
         for factory in self.mocks:
             factory.assert_not_called()
         server.app_env = 'production'
-        self.assertEqual(effective_keys(server, request), {'typesafe': 'server-typesafe', 'maritaca': 'server-maritaca', 'gemini': ''})
+        self.assertEqual(effective_keys(server, request), {'typesafe': 'server-typesafe', 'maritaca': 'server-maritaca', 'gemini': 'server-gemini'})
 
     def test_typesafe_registration_removal_reset_and_expiry_gate_modes(self):
         def modes(token=None):

@@ -1,4 +1,5 @@
 import { experimentRecipients } from '@8values/shared/domain/experimentConfig'
+import { configuredRecipients } from '@8values/shared/api'
 import { useEffect, useRef, useState } from 'react'
 import AnalysisComposer from '@8values/shared/components/AnalysisComposer'
 import AnalysisResult from '@8values/shared/components/AnalysisResult'
@@ -27,7 +28,7 @@ export default function ExtensionApp() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [profileError, setProfileError] = useState('')
   const [profileBusy, setProfileBusy] = useState(false)
-  const [tab, setTab] = useState<'analysis' | 'comparison'>('analysis')
+  const [tab, setTab] = useState<'analysis' | 'comparison' | 'experiments'>('analysis')
   const windowId = useRef<number | null>(null)
   const store = useRef<ReturnType<typeof createSessionStore> | null>(null)
   const mounted = useRef(true)
@@ -181,23 +182,24 @@ export default function ExtensionApp() {
       {!ready && <p role="status">Carregando os dados desta sessão…</p>}
       {storageError && <p className="notice small" role="status">{storageError}</p>}
       {state.pending && <section className="notice" aria-label="Nova seleção"><strong>Você selecionou outro trecho.</strong><p className="pendingPreview">{state.pending.text.slice(0, 180)}{state.pending.text.length > 180 ? '…' : ''}</p><div className="actions"><button disabled={isBusy} onClick={() => { update({ type: 'use-pending' }); clearError(); setTab('analysis') }}>Usar nova seleção</button><button className="secondary" onClick={() => update({ type: 'ignore-pending' })}>Manter rascunho</button></div>{isBusy && <p className="small">A análise em andamento mantém o trecho anterior.</p>}</section>}
-      <nav className="panelTabs" aria-label="Visualização"><button className={tab === 'analysis' ? '' : 'secondary'} aria-pressed={tab === 'analysis'} onClick={() => setTab('analysis')}>Análise</button><button className={tab === 'comparison' ? '' : 'secondary'} aria-pressed={tab === 'comparison'} onClick={() => setTab('comparison')}>Comparação</button></nav>
+      <nav className="panelTabs" aria-label="Visualização"><button className={tab === 'analysis' ? '' : 'secondary'} aria-pressed={tab === 'analysis'} onClick={() => setTab('analysis')}>Análise</button><button className={tab !== 'analysis' ? '' : 'secondary'} aria-pressed={tab !== 'analysis'} onClick={() => setTab('comparison')}>Comparação</button></nav>
       {tab === 'analysis' ? <>
         {ready && state.showComposer && <AnalysisComposer text={state.draft.text} title={state.draft.title} source={state.draft.source} mode={state.mode} caps={caps} busy={isBusy} seconds={seconds} error={state.notice || error} capsError={capsError}
-          recipient={experimentRecipients(state.mode, experiment.config, experiment.available)}
+          recipient={experiment.available ? experimentRecipients(state.mode, experiment.config, experiment.available) : configuredRecipients(state.mode, caps)}
           configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel collapsible caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}
           onSend={() => void send()} onCancel={() => { cancelRequested.current = true; cancel() }} onRetry={() => void refreshCapabilities()} onClose={selected ? () => update({ type: 'close-composer' }) : undefined} />}
-        {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button></div></AnalysisResult>}
+        {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button><button className="secondary" onClick={() => setTab('experiments')}>Comparar análises</button></div></AnalysisResult>}
         <details className="sessionHistory"><summary>Histórico desta sessão ({state.entries.length})</summary>{state.entries.length ? <ul>{state.entries.map(entry => <li key={entry.id}><button className="secondary historyEntry" aria-pressed={entry.id === state.selectedId && !state.showComposer} disabled={isBusy} onClick={() => { update({ type: 'select', id: entry.id }); clearError() }}>{entry.title}<span>{modeLabels[entry.mode]}</span></button></li>)}</ul> : <p className="muted small">Nenhuma análise nesta sessão.</p>}
-          {isLabBuild && selected && !state.showComposer && <ExperimentComparison key={selected.id} entry={selected} entries={state.entries} />}
           <p className="muted small">Até 10 análises, com limite de espaço. Os dados temporários são removidos ao reiniciar o navegador ou recarregar a extensão.</p>
           <p className="muted small">Limpar este histórico não apaga reports já enviados e armazenados no servidor.</p>
           <button className="danger" disabled={!ready || isBusy} onClick={() => { update({ type: 'clear' }); clearError(); setStorageError(''); if (windowId.current !== null) void chrome.storage.session.remove(captureKey(windowId.current)).catch(() => setStorageError('Não foi possível apagar a seleção temporária.')) }}>Limpar histórico e rascunhos</button>
         </details>
       </> : <>
-        <ComparisonPanel profile={profile} analysis={selected?.analysis ?? null} profileAction={<a className="button secondary" href={`${WEB_BASE_URL}/teste`} target="_blank" rel="noreferrer">Fazer meu teste no site</a>} />
+        <nav className="comparisonModes" aria-label="Tipo de comparação"><button className={tab === 'comparison' ? '' : 'secondary'} aria-pressed={tab === 'comparison'} onClick={() => setTab('comparison')}>Com meu perfil</button><button className={tab === 'experiments' ? '' : 'secondary'} aria-pressed={tab === 'experiments'} disabled={!selected} onClick={() => setTab('experiments')}>Entre análises</button></nav>
+        {tab === 'experiments' && selected ? <ExperimentComparison key={selected.id} entry={selected} entries={state.entries} /> : <>
+        <ComparisonPanel profile={profile} analysis={selected?.analysis ?? null} analysisTitle={selected?.title} profileAction={<a className="button secondary" href={`${WEB_BASE_URL}/teste`} target="_blank" rel="noreferrer">Fazer meu teste no site</a>} />
         <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e clique em “Usar resultado na extensão”. A comparação será atualizada aqui automaticamente.</p>
           <a className="button secondary" href={`${WEB_BASE_URL}/resultado`} target="_blank" rel="noreferrer">Abrir meu resultado no site</a>
           <p className="muted small">O perfil fica salvo nesta extensão até você apagá-lo.</p>
@@ -205,6 +207,7 @@ export default function ExtensionApp() {
           <label htmlFor="profile-file">Importar perfil JSON</label><input id="profile-file" type="file" accept="application/json,.json" disabled={profileBusy || !ready} onChange={e => { void importProfile(e.target.files?.[0]); e.target.value = '' }} />
           {profileError && <p className="error" role="alert">{profileError}</p>}
         </section>
+        </>}
       </>}
     </main><footer className="panelFooter"><span>Projeto acadêmico · baseado no <a href="https://8values.github.io/" target="_blank" rel="noreferrer">8values</a></span><details><summary>Conexão e dados</summary><p>API: {API_BASE_URL}</p><p>Selecionar texto não o envia. A análise envia o trecho revisado aos serviços indicados no modo escolhido. Perfil, domínio de origem e histórico não fazem parte do envio. A retenção dos serviços externos depende de suas políticas.</p><p>Ao confirmar um report, o trecho, a análise e o comentário opcional são armazenados no servidor para posterior avaliação. Limpar os dados locais não apaga os reports enviados.</p></details></footer>
   </>

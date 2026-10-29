@@ -144,6 +144,8 @@ footer a{color:#514a40;text-decoration:underline;text-underline-offset:2px}
 .experimentPanel [role=tablist]{display:flex;gap:.5rem;margin:.8rem 0}
 .experimentPanel [hidden]{display:none}
 .labApiKeys fieldset{border:0;padding:0;min-width:0}
+.comparisonModes{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1rem}
+.comparisonModes button{flex:1;min-width:0;font-size:.85rem}
 .labKeyProvider{margin-bottom:1.2rem}
 .labKeyProvider input{width:100%;box-sizing:border-box}
 @media(max-width:600px){.experimentFields{grid-template-columns:1fr}.experimentPanel,.experimentComparison{padding:.75rem}}

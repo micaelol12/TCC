@@ -62,12 +62,12 @@ def effective_keys(settings, request: Request) -> dict[str, str]:
     if settings.app_env == 'lab':
         return {'typesafe': '', 'maritaca': '', 'gemini': '',
                 **session_keys(request.headers.get('x-lab-session'))}
-    return {'typesafe': settings.typesafe_key, 'maritaca': settings.maritaca_key, 'gemini': ''}
+    return {'typesafe': settings.typesafe_key, 'maritaca': settings.maritaca_key, 'gemini': settings.gemini_key}
 
 
 def model_catalog(settings) -> dict[str, str]:
     models = {model: 'maritaca' for model in settings.allowed_llm_models}
     if settings.app_env == 'lab':
         models.update({model: 'maritaca' for model in ('sabia-4', 'sabiazinho-4')})
-        models.update({model: 'gemini' for model in settings.allowed_gemini_models})
+    models.update({model: 'gemini' for model in settings.allowed_gemini_models})
     return models

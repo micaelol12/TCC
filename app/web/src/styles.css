@@ -1,1 +1,4 @@
 @import '@8values/shared/styles/base.css';
+.analysisGrid.singleAnalysisView { grid-template-columns: minmax(175px, 235px) minmax(0, 1fr); }
+.analysisViewTabs { display: flex; gap: .5rem; margin: 0 0 1rem; }
+.analysisViewTabs button { flex: 1; }

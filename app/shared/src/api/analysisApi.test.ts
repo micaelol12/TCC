@@ -1,7 +1,18 @@
 import { afterEach, expect, test, vi } from 'vitest'
-import { AnalysisTimeoutError, createAnalysisClient, isAnalysis, isCapabilities } from './analysisApi'
-import { analysisFixture, capabilities } from '../testing/fixtures'
+import { AnalysisTimeoutError, configuredRecipients, createAnalysisClient, isAnalysis, isCapabilities } from './analysisApi'
+import { analysisFixture, capabilities, experimentCapabilities } from '../testing/fixtures'
 afterEach(() => vi.useRealTimers())
+
+test('configuração oficial informa Gemini e checagem TypeSafe, validando os parâmetros recebidos', () => {
+  const caps = { ...capabilities, analysis_defaults: { ...experimentCapabilities.defaults, llm_model: 'gemini-test', semantic_evidence_check: true }, model_providers: { 'gemini-test': 'gemini' as const } }
+  expect(isCapabilities(caps)).toBe(true)
+  expect(configuredRecipients('high', caps)).toBe('Google Gemini e TypeSafe (checagem de evidências)')
+  expect(configuredRecipients('medium', caps)).toContain('Google Gemini')
+  expect(configuredRecipients('low', caps)).toBe('TypeSafe (JEV)')
+  expect(configuredRecipients('high', null)).toBe('Maritaca (Sabiá)')
+  expect(isCapabilities({ ...caps, analysis_defaults: { ...caps.analysis_defaults, chunk_tokens: false } })).toBe(false)
+  expect(isCapabilities({ ...caps, model_providers: { 'gemini-test': 'unknown' } })).toBe(false)
+})
 
 test('aceita a escala de nove níveis e preserva contratos antigos de cinco níveis', () => {
   const legacy = analysisFixture()

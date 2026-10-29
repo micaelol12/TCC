@@ -1,5 +1,7 @@
 # Extensão 8values + textos
 
+Os parâmetros da versão oficial ficam em [`../api/analysis-config.json`](../api/analysis-config.json), compartilhados com o site pela API. O arquivo oferece todos os parâmetros do algoritmo do Lab: escala, segmentação, modelos, limiares, bootstrap e evidências. Edite e reinicie a API; não é necessário recompilar para alterar parâmetros. [Guia de configuração](../CONFIGURACAO.md).
+
 A edição **8values Lab** acrescenta parâmetros por análise, presets e comparação de experimentos. Use `npm run package:lab` na pasta `app` e carregue `extension/dist-lab`. [Guia do Lab, chaves e configuração](../LAB.md).
 
 No Lab, a aba **API keys** libera modelos Maritaca e Gemini conforme as chaves cadastradas na sessão. Todas as execuções são gravadas automaticamente no banco da API, incluindo texto, parâmetros e resultado; as regras de armazenamento somente após report descritas abaixo pertencem à edição comum.
@@ -48,7 +50,7 @@ Esses endereços são exemplos e devem ser substituídos. Depois, na pasta `app`
 npm run package:production --workspace=8values-extension
 ```
 
-O build de produção recusa configuração ausente, HTTP, localhost, caminho, parâmetros e credenciais embutidas. URL base, permissão de host e política de conexão são geradas juntas. Chaves TypeSafe e Maritaca ficam exclusivamente no servidor.
+O build de produção recusa configuração ausente, HTTP, localhost, caminho, parâmetros e credenciais embutidas. URL base, permissão de host e política de conexão são geradas juntas. Chaves TypeSafe, Maritaca e Gemini ficam exclusivamente no servidor.
 
 O build local usa o modo de configuração `development`, mas produz um bundle compilado para instalação, sem depender do servidor Vite. A configuração de produção é uma preparação para distribuição: o projeto não publica uma API nem envia o pacote às lojas automaticamente.
 
@@ -90,7 +92,7 @@ Há um script de conexão somente no host do site configurado para receber o res
 
 O rascunho, a seleção e o histórico usam `chrome.storage.session`, apagado em reinício do navegador, recarga, atualização ou desativação da extensão. **Limpar histórico e rascunhos** limpa os dados da janela atual. O modo preferido e o perfil salvo por escolha explícita ficam em `chrome.storage.local`. Desinstalar a extensão remove esses dados.
 
-Somente o texto vai para os serviços indicados antes da análise: TypeSafe no baixo; TypeSafe e eventualmente Maritaca no médio; Maritaca no alto. Domínio de origem, perfil, título e histórico não integram esse POST. O aplicativo não controla a retenção dos provedores. A análise comum não é gravada no banco. Ao confirmar um report, o texto, a análise e o comentário opcional são armazenados no servidor para posterior avaliação, juntamente com a confirmação do aviso e a origem `extension`.
+Somente o texto vai para os serviços indicados antes da análise: TypeSafe no baixo; TypeSafe e eventualmente o provedor LLM configurado no médio; o provedor LLM configurado no alto. O arquivo de parâmetros permite Maritaca ou Gemini e, com a checagem semântica habilitada, TypeSafe também no alto. Domínio de origem, perfil, título e histórico não integram esse POST. O aplicativo não controla a retenção dos provedores. A análise comum não é gravada no banco. Ao confirmar um report, o texto, a análise e o comentário opcional são armazenados no servidor para posterior avaliação, juntamente com a confirmação do aviso e a origem `extension`.
 
 ## Verificar e empacotar
 
