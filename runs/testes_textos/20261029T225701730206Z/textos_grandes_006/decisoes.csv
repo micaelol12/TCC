@@ -1,0 +1,231 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,False,,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],1,"Deputados aprovam projeto que regulamenta telessaúde
+
+A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.
+
+De autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.
+
+Tecnologias
+
+Segundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.
+
+Essas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.
+
+Os atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.
+
+Entretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.
+
+Um diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.
+
+Para Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.
+
+O relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.
+
+O texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19."
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,"Deputados aprovam projeto que regulamenta telessaúde
+
+A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.
+
+De autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.
+
+Tecnologias
+
+Segundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.
+
+Essas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.
+
+Os atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.
+
+Entretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.
+
+Um diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.
+
+Para Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.
+
+O relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.
+
+O texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19."
+state,True,-1.0,"['relevancia_ambigua', 'direcao_ambigua']",True,1.0,62.5,llm_ordinal,direcional,"garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso","[{'kind': 'semantic', 'status': 'insuficiente', 'level': 1, 'quote': 'garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso', 'confidence': 0.7, 'probabilities': {'sustenta': 0.18, 'contradiz': 0.02, 'insuficiente': 0.8}, 'model': 'jev-1.13.0'}]",1,"Deputados aprovam projeto que regulamenta telessaúde
+
+A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.
+
+De autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.
+
+Tecnologias
+
+Segundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.
+
+Essas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.
+
+Os atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.
+
+Entretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.
+
+Um diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.
+
+Para Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.
+
+O relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.
+
+O texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19."
+society,True,0.0,[],True,0.0,50.0,jev_ordinal,sem_posicao,,"[{'kind': 'search', 'status': 'not_selected', 'level': 0, 'existence_probability': 0.36, 'confidence': 0.35, 'probabilities': {'S000': 0.02, 'S001': 0.0, 'S002': 0.02, 'S003': 0.01, 'S004': 0.01, 'S005': 0.03, 'S006': 0.01, 'S007': 0.0, 'S008': 0.0, 'S009': 0.14, 'S010': 0.01, 'S011': 0.34, 'S012': 0.01, 'NONE': 0.4}, 'model': 'jev-1.13.0'}]",1,"Deputados aprovam projeto que regulamenta telessaúde
+
+A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da saúde regulamentadas. A proposta (PL 1998/20) será enviada ao Senado.
+
+De autoria da deputada Adriana Ventura (Novo-SP) e outros 14 deputados, o projeto foi aprovado na forma de um substitutivo do relator, deputado Pedro Vilela (PSDB-AL), que ampliou o texto original, antes restrito aos médicos.
+
+Tecnologias
+
+Segundo o texto, será considerada telessaúde a modalidade de prestação de serviços de saúde a distância por meio da utilização das tecnologias da informação e da comunicação.
+
+Essas tecnologias envolvem, entre outros aspectos, a transmissão segura de dados e informações de saúde por meio de textos, sons, imagens e outras formas consideradas adequadas.
+
+Os atos do profissional de saúde praticados dessa forma terão validade em todo o território nacional e aquele que exercer a profissão em outra jurisdição exclusivamente por meio dessa modalidade não precisará de outra inscrição secundária ou complementar àquela do conselho de seu estado.
+
+Entretanto, será obrigatório o registro, nos conselhos regionais de medicina (CRMs) dos estados em que estão sediadas, das empresas intermediadoras de serviços médicos. Essas empresas são consideradas como aquelas que contratam, de forma direta ou indireta, profissionais da área médica para o exercício da telemedicina.
+
+Um diretor técnico médico dessas empresas também deverá estar inscrito no CRM da localidade da empresa, sob pena de cometer infração sanitária.
+
+Para Adriana Ventura, “a pandemia ensinou muito a todos, mostrando que o Brasil precisava regulamentar a prática da telessaúde”.
+
+O relator do projeto também defendeu a aprovação. “Nosso principal objetivo foi garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso”, afirmou Pedro Vilela.
+
+O texto revoga a Lei 13.989/20, que permitiu a telemedicina durante a pandemia de Covid-19."
+economic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.
+
+Quanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.
+
+Em busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.
+
+A todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.
+
+Normas e fiscalização
+
+Sobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.
+
+A fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.
+
+Princípios
+
+Para o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:
+
+- autonomia do profissional de saúde;
+- consentimento livre e informado do paciente;
+- direito de recusa ao atendimento na modalidade telessaúde;
+- dignidade e valorização do profissional de saúde;
+- assistência segura e com qualidade ao paciente;
+- confidencialidade dos dados;
+- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;
+- observância estrita das atribuições legais de cada profissão; e
+- responsabilidade digital."
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.
+
+Quanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.
+
+Em busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.
+
+A todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.
+
+Normas e fiscalização
+
+Sobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.
+
+A fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.
+
+Princípios
+
+Para o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:
+
+- autonomia do profissional de saúde;
+- consentimento livre e informado do paciente;
+- direito de recusa ao atendimento na modalidade telessaúde;
+- dignidade e valorização do profissional de saúde;
+- assistência segura e com qualidade ao paciente;
+- confidencialidade dos dados;
+- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;
+- observância estrita das atribuições legais de cada profissão; e
+- responsabilidade digital."
+state,True,2.0,[],True,2.0,75.0,jev_ordinal,direcional,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.","[{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 315, 'quote': 'Liberdade de decisão\n\nO substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.', 'existence_probability': 0.81, 'confidence': 0.51, 'probabilities': {'S000': 0.54, 'S001': 0.02, 'S002': 0.09, 'S003': 0.01, 'S004': 0.04, 'S005': 0.0, 'S006': 0.02, 'S007': 0.01, 'S008': 0.06, 'S009': 0.04, 'S010': 0.1, 'S011': 0.01, 'S012': 0.01, 'S013': 0.02, 'S014': 0.0, 'S015': 0.0, 'S016': 0.0, 'NONE': 0.03}, 'model': 'jev-1.13.0'}, {'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Liberdade de decisão\n\nO substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.', 'confidence': 0.77, 'probabilities': {'sustenta': 0.85, 'contradiz': 0.03, 'insuficiente': 0.12}, 'model': 'jev-1.13.0'}]",2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.
+
+Quanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.
+
+Em busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.
+
+A todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.
+
+Normas e fiscalização
+
+Sobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.
+
+A fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.
+
+Princípios
+
+Para o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:
+
+- autonomia do profissional de saúde;
+- consentimento livre e informado do paciente;
+- direito de recusa ao atendimento na modalidade telessaúde;
+- dignidade e valorização do profissional de saúde;
+- assistência segura e com qualidade ao paciente;
+- confidencialidade dos dados;
+- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;
+- observância estrita das atribuições legais de cada profissão; e
+- responsabilidade digital."
+society,True,0.0,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.
+
+Quanto ao paciente, a prática da telessaúde também deve ser realizada com seu consentimento livre e esclarecido ou de seu representante legal.
+
+Em busca de um acordo na votação em Plenário, Vilela incorporou trecho de emenda do deputado Reginaldo Lopes (PT-MG) para especificar que o paciente terá a garantia do atendimento presencial sempre que solicitar.
+
+A todo caso, a prática da telessaúde estará sob responsabilidade do profissional de saúde, que deverá seguir os ditames do marco civil da internet, da Lei do Ato Médico, da Lei Geral de Proteção de Dados, do Código de Defesa do Consumidor e, quando for o caso, da Lei do Prontuário Eletrônico.
+
+Normas e fiscalização
+
+Sobre as regras da prática, o texto determina que o ato normativo no qual haja alguma restrição à telessaúde deve contar com demonstração da necessidade da medida para evitar danos à saúde dos pacientes. No caso do Sistema Único de Saúde (SUS), deverão ser observadas as normas para seu funcionamento expedidas pelo órgão de direção.
+
+A fiscalização das normas éticas no exercício profissional da telessaúde será de competência dos conselhos federais das profissões envolvidas, aplicando-se os padrões adotados para as modalidades de atendimento presencial naquilo que não contrariarem as regras do projeto.
+
+Princípios
+
+Para o uso da telessaúde, o projeto estipula princípios a serem seguidos na prestação remota de serviços:
+
+- autonomia do profissional de saúde;
+- consentimento livre e informado do paciente;
+- direito de recusa ao atendimento na modalidade telessaúde;
+- dignidade e valorização do profissional de saúde;
+- assistência segura e com qualidade ao paciente;
+- confidencialidade dos dados;
+- promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;
+- observância estrita das atribuições legais de cada profissão; e
+- responsabilidade digital."
+economic,True,0.0,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],3,"Ponto rejeitado
+
+Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.
+
+Agência Câmara"
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],3,"Ponto rejeitado
+
+Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.
+
+Agência Câmara"
+state,False,,[],False,,,jev_ordinal,sem_evidencia,,[],3,"Ponto rejeitado
+
+Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.
+
+Agência Câmara"
+society,False,,[],False,,,jev_ordinal,sem_evidencia,,[],3,"Ponto rejeitado
+
+Na votação em Plenário, foi rejeitado destaque do PT que pretendia incluir dispositivo para resguardar a aplicação das normas que regem as contratações dos profissionais no regime de teletrabalho ou trabalho remoto.
+
+Agência Câmara"

@@ -1,0 +1,11 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,state,search,found,-2,S000,0.0,264.0,"Proposta aumenta pena de feminicídio para até 40 anos
+
+O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",0.9,0.72,"{'S000': 0.74, 'S001': 0.0, 'S002': 0.0, 'S003': 0.0, 'S004': 0.0, 'S005': 0.03, 'S006': 0.04, 'S007': 0.01, 'S008': 0.01, 'S009': 0.05, 'S010': 0.03, 'S011': 0.0, 'S012': 0.02, 'S013': 0.01, 'NONE': 0.06}",jev-1.13.0
+0,state,semantic,sustenta,-2,,,,"Proposta aumenta pena de feminicídio para até 40 anos
+
+O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",,0.96,"{'sustenta': 0.97, 'contradiz': 0.02, 'insuficiente': 0.01}",jev-1.13.0
+0,society,semantic,sustenta,2,,,,"a punição adequada é essencial para desencorajar os agressores e promover a justiça, proporcionando um ambiente seguro e igualitário",,0.67,"{'sustenta': 0.78, 'contradiz': 0.02, 'insuficiente': 0.2}",jev-1.13.0
+1,state,search,found,-2,S001,102.0,246.0,"Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",0.86,0.71,"{'S000': 0.01, 'S001': 0.74, 'S002': 0.05, 'S003': 0.02, 'S004': 0.04, 'S005': 0.01, 'S006': 0.0, 'S007': 0.0, 'S008': 0.0, 'NONE': 0.13}",jev-1.13.0
+1,state,semantic,sustenta,-2,,,,"Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.",,0.91,"{'sustenta': 0.94, 'contradiz': 0.03, 'insuficiente': 0.03}",jev-1.13.0
+1,society,semantic,sustenta,2,,,,coibir a violência praticada contra a mulher,,0.6,"{'sustenta': 0.73, 'contradiz': 0.01, 'insuficiente': 0.26}",jev-1.13.0

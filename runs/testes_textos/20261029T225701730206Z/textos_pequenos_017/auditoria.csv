@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,society,search,found,-2,S001,157.0,208.0,O relator recomenda o primeiro e rejeita o segundo.,0.8,0.42,"{'S000': 0.33, 'S001': 0.61, 'NONE': 0.06}",jev-1.13.0
+0,society,semantic,sustenta,-2,,,,O relator recomenda o primeiro e rejeita o segundo.,,0.83,"{'sustenta': 0.89, 'contradiz': 0.08, 'insuficiente': 0.03}",jev-1.13.0

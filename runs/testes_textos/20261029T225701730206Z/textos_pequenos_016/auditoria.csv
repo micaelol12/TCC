@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,state,search,found,-2,S000,0.0,177.0,"O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição.",0.76,0.88,"{'S000': 0.94, 'NONE': 0.06}",jev-1.13.0
+0,state,semantic,sustenta,-2,,,,"O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição.",,0.91,"{'sustenta': 0.94, 'contradiz': 0.05, 'insuficiente': 0.01}",jev-1.13.0

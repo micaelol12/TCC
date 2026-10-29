@@ -1,0 +1,5 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,llm_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,society,jev_ordinal,-2.0,O relator recomenda o primeiro e rejeita o segundo.,sim,S001,157.0,208.0,0.8,passagem encontrada,sustenta,0.83,jev-1.13.0

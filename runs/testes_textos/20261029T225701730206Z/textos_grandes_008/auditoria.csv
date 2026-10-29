@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+1,economic,semantic,sustenta,-2,a privatização deverá fortalecer a Eletrobras,0.52,"{'sustenta': 0.68, 'contradiz': 0.17, 'insuficiente': 0.15}",jev-1.13.0
+1,society,semantic,insuficiente,2,a privatização da Eletrobras está sendo discutida antes de definição sobre o marco regulatório do setor diante das mudanças climáticas e das novas formas de energia limpa e renovável,0.62,"{'sustenta': 0.14, 'contradiz': 0.11, 'insuficiente': 0.75}",jev-1.13.0
+2,economic,semantic,sustenta,2,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”",0.76,"{'sustenta': 0.84, 'contradiz': 0.05, 'insuficiente': 0.11}",jev-1.13.0

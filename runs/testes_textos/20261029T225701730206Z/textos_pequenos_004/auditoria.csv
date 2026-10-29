@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,existence_probability
+0,state,semantic,insuficiente,2,garantia de atendimento na rede pública de saúde,0.31,"{'sustenta': 0.43, 'contradiz': 0.03, 'insuficiente': 0.54}",jev-1.13.0,
+0,society,search,not_selected,2,,0.92,"{'S000': 0.96, 'NONE': 0.04}",jev-1.13.0,0.69

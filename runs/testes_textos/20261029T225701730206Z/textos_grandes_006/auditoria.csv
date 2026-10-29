@@ -1,0 +1,9 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,existence_probability,sentence_id,start,end
+0,state,semantic,insuficiente,1,"garantir a universalização do atendimento à saúde em todo o Brasil, e a tecnologia é uma aliada para isso",0.7,"{'sustenta': 0.18, 'contradiz': 0.02, 'insuficiente': 0.8}",jev-1.13.0,,,,
+0,society,search,not_selected,0,,0.35,"{'S000': 0.02, 'S001': 0.0, 'S002': 0.02, 'S003': 0.01, 'S004': 0.01, 'S005': 0.03, 'S006': 0.01, 'S007': 0.0, 'S008': 0.0, 'S009': 0.14, 'S010': 0.01, 'S011': 0.34, 'S012': 0.01, 'NONE': 0.4}",jev-1.13.0,0.36,,,
+1,state,search,found,2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.",0.51,"{'S000': 0.54, 'S001': 0.02, 'S002': 0.09, 'S003': 0.01, 'S004': 0.04, 'S005': 0.0, 'S006': 0.02, 'S007': 0.01, 'S008': 0.06, 'S009': 0.04, 'S010': 0.1, 'S011': 0.01, 'S012': 0.01, 'S013': 0.02, 'S014': 0.0, 'S015': 0.0, 'S016': 0.0, 'NONE': 0.03}",jev-1.13.0,0.81,S000,0.0,315.0
+1,state,semantic,sustenta,2,"Liberdade de decisão
+
+O substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira consulta, ao atendimento ou ao procedimento, podendo optar pela utilização de atendimento presencial sempre que entender necessário.",0.77,"{'sustenta': 0.85, 'contradiz': 0.03, 'insuficiente': 0.12}",jev-1.13.0,,,,

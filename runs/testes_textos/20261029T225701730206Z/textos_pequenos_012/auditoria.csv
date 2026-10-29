@@ -1,0 +1,3 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,economic,search,found,-3,S000,0.0,133.0,O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.,0.78,0.9,"{'S000': 0.95, 'NONE': 0.05}",jev-1.13.0
+0,economic,semantic,sustenta,-3,,,,O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.,,0.66,"{'sustenta': 0.77, 'contradiz': 0.05, 'insuficiente': 0.18}",jev-1.13.0

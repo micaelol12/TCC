@@ -1,0 +1,5 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,-3.0,O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.,sim,S000,0.0,133.0,0.78,passagem encontrada,sustenta,0.66,jev-1.13.0
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
