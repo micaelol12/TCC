@@ -3,6 +3,7 @@ import type { Analysis, AxisResult, EvidenceAudit, JevDiagnostic } from '../api/
 import { AXES, axisOrder, type Axis } from '../domain/axes'
 import { historicalLevels, type ScaleLevel } from '../domain/ordinalScale'
 import styles from '../styles/Evidence.module.css'
+import { describeAnalysisReason } from '../domain/analysisMessages'
 
 const percent = (value: number) => `${(value * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
 const code = (value: number) => `${value > 0 ? '+' : ''}${value}`
@@ -151,7 +152,9 @@ export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
           <ModelDiagnostic diagnostic={diagnostic} analysis={analysis} axis={axis} levels={levels} />
         </>}
       </div>
-      {result.reason_codes.length > 0 && <details className={styles.reasons}><summary>Motivos registrados na análise</summary><ul>{result.reason_codes.map(reason => <li key={reason}>{reason}</li>)}</ul></details>}
+      {result.reason_codes.length > 0 && <details className={styles.reasons}><summary>Motivos registrados na análise</summary><ul>{[...new Set(result.reason_codes.map(describeAnalysisReason))].map(message => <li key={message}>{message}</li>)}</ul>
+        <details><summary>Códigos para suporte técnico</summary><ul>{result.reason_codes.map(reason => <li key={reason}><code>{reason}</code></li>)}</ul></details>
+      </details>}
     </> : <p className={styles.empty}>Sem dados registrados para este eixo.</p>}
   </section>
 }

@@ -18,7 +18,9 @@ export function saveProfile(profile: Profile): boolean {
   try { localStorage.setItem(PROFILE_KEY, JSON.stringify(profile)); return true } catch { return false }
 }
 
-export function removeLocalData() {
-  try { localStorage.removeItem(PROFILE_KEY) } catch { /* storage unavailable */ }
-  try { sessionStorage.removeItem(DRAFT_KEY) } catch { /* storage unavailable */ }
+export function removeLocalData(strict = false) {
+  let failed = false
+  try { localStorage.removeItem(PROFILE_KEY) } catch { failed = true }
+  try { sessionStorage.removeItem(DRAFT_KEY) } catch { failed = true }
+  if (strict && failed) throw new Error('Não foi possível apagar os dados salvos no navegador.')
 }

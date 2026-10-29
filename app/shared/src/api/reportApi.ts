@@ -33,23 +33,23 @@ export function createReportClient(baseUrl = '', fetcher: typeof fetch = (...arg
         })
         if (!response.ok) {
           const messages: Record<number, string> = {
-            409: 'O identificador deste report já foi utilizado com outros dados.',
-            413: 'O report está acima do limite de tamanho.',
-            422: 'Os dados do report são inválidos. Confira a análise e a confirmação de armazenamento.',
-            429: 'Limite de reports atingido. Tente mais tarde.',
-            503: 'Não foi possível armazenar o report. Tente novamente.',
+            409: 'O identificador deste relato já foi utilizado com outros dados.',
+            413: 'O relato está acima do limite de tamanho.',
+            422: 'Os dados do relato são inválidos. Confira a análise e a confirmação de armazenamento.',
+            429: 'Limite de relatos atingido. Tente mais tarde.',
+            503: 'Não foi possível armazenar o relato. Tente novamente.',
           }
-          throw new Error(messages[response.status] ?? 'Não foi possível confirmar o armazenamento do report. Tente novamente.')
+          throw new Error(messages[response.status] ?? 'Não foi possível confirmar o armazenamento do relato. Tente novamente.')
         }
         const data: unknown = await response.json()
         if (!data || typeof data !== 'object' || !('report_id' in data) || typeof data.report_id !== 'string' ||
           !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(data.report_id) ||
           !('received_at' in data) || typeof data.received_at !== 'string' || !Number.isFinite(Date.parse(data.received_at)) ||
-          !('status' in data) || data.status !== 'pending') throw new Error('Não foi possível confirmar o armazenamento do report. Tente novamente.')
+          !('status' in data) || data.status !== 'pending') throw new Error('Não foi possível confirmar o armazenamento do relato. Tente novamente.')
         return data as ReportResponse
       } catch (err) {
         if (timedOut) throw new Error('O prazo de envio terminou sem confirmação. Tente novamente para verificar o armazenamento.')
-        if (err instanceof TypeError) throw new Error('Falha de conexão. Tente novamente para verificar o armazenamento do report.')
+        if (err instanceof TypeError) throw new Error('Falha de conexão. Tente novamente para verificar o armazenamento do relato.')
         throw err
       } finally { clearTimeout(timer); signal?.removeEventListener('abort', abort) }
     },

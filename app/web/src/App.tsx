@@ -6,6 +6,7 @@ import AnalysisPage from './features/analysis/AnalysisPage'
 import type { Profile } from './storage/localProfile'
 import { PROFILE_KEY, readProfile, removeLocalData } from './storage/localProfile'
 import { clearAnalysisHistory } from './features/analysis/analysisHistory'
+import { clearAnalysisDraft } from './features/analysis/analysisDraft'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
 export default function App() {
@@ -28,7 +29,11 @@ export default function App() {
     window.scrollTo(0, 0)
     contentRef.current?.focus({ preventScroll: true })
   }, [location.pathname])
-  function clear() { removeLocalData(); clearAnalysisHistory(); setProfile(null); setStored(false); navigate('/') }
+  function clear() {
+    try { clearAnalysisDraft(); clearAnalysisHistory(); removeLocalData(true) }
+    catch { throw new Error('Não foi possível apagar todos os dados do site. Verifique as permissões de armazenamento do navegador e tente novamente.') }
+    setProfile(null); setStored(false); navigate('/')
+  }
   return <>
     <a className="skipLink" href="#main-content">Pular para o conteúdo</a>
     <header className="siteHeader"><Link to="/" className="brand"><span className="brandMark">8</span><span>valores<span className="brandPlus">+ textos</span></span></Link><nav aria-label="Navegação principal"><NavLink to="/teste">Teste</NavLink><NavLink to="/resultado">Meu resultado</NavLink><NavLink to="/analise">Analisar texto</NavLink></nav></header>

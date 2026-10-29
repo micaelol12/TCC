@@ -16,6 +16,8 @@ import ExperimentPanel from '@8values/shared/components/ExperimentPanel'
 import ExperimentComparison from '@8values/shared/components/ExperimentComparison'
 import { useExperimentConfig } from '@8values/shared/hooks/useExperimentConfig'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
+import ConfirmAction from '@8values/shared/components/ConfirmAction'
+import { CONNECTION_ERROR } from '@8values/shared/domain/analysisMessages'
 
 export default function ExtensionApp() {
   const [state, setState] = useState<Session>(emptySession)
@@ -125,7 +127,7 @@ export default function ExtensionApp() {
     const controller = new AbortController(); capsController.current = controller
     setCaps(null); setCapsError('')
     try { const available = await client.getCapabilities(controller.signal); if (mounted.current && !controller.signal.aborted) setCaps(available) }
-    catch { if (mounted.current && !controller.signal.aborted) setCapsError('API indisponível. Inicie o servidor e verifique a conexão.') }
+    catch { if (mounted.current && !controller.signal.aborted) setCapsError(CONNECTION_ERROR) }
   }
   useEffect(() => { void refreshCapabilities(); return () => capsController.current?.abort() }, [])
 
@@ -156,8 +158,11 @@ export default function ExtensionApp() {
     setProfileError(''); setProfileBusy(true)
     try {
       if (file.size > 10000) throw new Error('Arquivo de perfil acima do limite de 10 KB.')
-      const parsed = validateProfile(JSON.parse(await file.text()))
-      if (!parsed) throw new Error('Perfil inválido ou de outra versão do questionário. Exporte novamente pelo site.')
+      let contents: unknown
+      try { contents = JSON.parse(await file.text()) }
+      catch { throw new Error('Não foi possível ler este arquivo de resultado. No site, abra “Meu resultado”, use “Baixar resultado” e selecione o arquivo baixado.') }
+      const parsed = validateProfile(contents)
+      if (!parsed) throw new Error('Resultado inválido ou de outra versão do questionário. Baixe o resultado novamente pelo site.')
       await saveProfile(parsed)
       setProfile(parsed)
     } catch (err) { setProfileError(err instanceof Error ? err.message : 'Não foi possível importar o perfil.') }
@@ -166,11 +171,25 @@ export default function ExtensionApp() {
   async function deleteProfile() {
     setProfileBusy(true); setProfileError('')
     try { await saveProfile(null); setProfile(null) }
-    catch { setProfileError('Não foi possível apagar o perfil guardado. Tente novamente.') }
+    catch { throw new Error('Não foi possível apagar o perfil guardado. Tente novamente.') }
     finally { setProfileBusy(false) }
+  }
+  async function clearSession() {
+    if (!readyRef.current || stateRef.current.request) throw new Error('Aguarde ou cancele a análise antes de limpar o histórico.')
+    const next = reduceSession(stateRef.current, { type: 'clear' })
+    // Wait for earlier saves and confirm the deletion before changing the screen.
+    try {
+      if (store.current) await store.current.save(next)
+      if (windowId.current !== null) await chrome.storage.session.remove(captureKey(windowId.current))
+    } catch { throw new Error('Não foi possível limpar todos os dados desta janela. Verifique o armazenamento do navegador e tente novamente.') }
+    update({ type: 'clear' }); clearError(); setStorageError('')
   }
   const selected = state.entries.find(entry => entry.id === state.selectedId) ?? null
   const isBusy = busy || !!state.request
+  const replacesDraft = !!selected && !!(state.draft.text || state.draft.title) && (state.draft.text !== selected.text || state.draft.title !== selected.title)
+  function reuseSelected() {
+    if (selected) { update({ type: 'reuse', entry: selected }); clearError() }
+  }
   return <>
     <a className="skipLink" href="#panel-content">Pular para o conteúdo</a>
     <header className="panelHeader"><div className="brand"><span className="brandMark">8</span><span>valores <span className="brandPlus">+ textos</span></span></div><button className="secondary" disabled={!ready || isBusy} onClick={() => { update({ type: 'compose' }); clearError(); setTab('analysis') }}>+ Nova</button></header>
@@ -188,13 +207,15 @@ export default function ExtensionApp() {
           recipient={experiment.available ? experimentRecipients(state.mode, experiment.config, experiment.available) : configuredRecipients(state.mode, caps)}
           configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel collapsible caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={state.mode} busy={isBusy} error={experiment.error} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCaps(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
           onText={text => update({ type: 'edit', draft: { text } })} onTitle={title => update({ type: 'edit', draft: { title } })}
+          onDiscard={() => { update({ type: 'edit', draft: { text: '', title: '', source: undefined } }); clearError() }}
           onMode={mode => { update({ type: 'mode', mode }); void saveMode(mode).catch(() => setStorageError('Não foi possível guardar o modo preferido.')) }}
           onSend={() => void send()} onCancel={() => { cancelRequested.current = true; cancel() }} onRetry={() => void refreshCapabilities()} onClose={selected ? () => update({ type: 'close-composer' }) : undefined} />}
-        {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions"><button className="secondary" onClick={() => { update({ type: 'reuse', entry: selected }); clearError() }}>Editar e reanalisar</button><button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button><button className="secondary" onClick={() => setTab('experiments')}>Comparar análises</button></div></AnalysisResult>}
+        {!state.showComposer && selected && <AnalysisResult entry={selected} reportClient={reportClient} reportOrigin="extension" compact><div className="actions">{replacesDraft ? <ConfirmAction label="Editar e reanalisar" className="secondary" title="Substituir o rascunho atual?" description="O rascunho ainda não enviado será substituído pelo texto desta análise. Cancele para manter seu rascunho." confirmLabel="Sim, substituir rascunho" onConfirm={reuseSelected} /> : <button className="secondary" onClick={reuseSelected}>Editar e reanalisar</button>}<button className="secondary" onClick={() => setTab('comparison')}>Comparar comigo</button><button className="secondary" onClick={() => setTab('experiments')}>Comparar análises</button></div></AnalysisResult>}
         <details className="sessionHistory"><summary>Histórico desta sessão ({state.entries.length})</summary>{state.entries.length ? <ul>{state.entries.map(entry => <li key={entry.id}><button className="secondary historyEntry" aria-pressed={entry.id === state.selectedId && !state.showComposer} disabled={isBusy} onClick={() => { update({ type: 'select', id: entry.id }); clearError() }}>{entry.title}<span>{modeLabels[entry.mode]}</span></button></li>)}</ul> : <p className="muted small">Nenhuma análise nesta sessão.</p>}
           <p className="muted small">Até 10 análises, com limite de espaço. Os dados temporários são removidos ao reiniciar o navegador ou recarregar a extensão.</p>
-          <p className="muted small">Limpar este histórico não apaga reports já enviados e armazenados no servidor.</p>
-          <button className="danger" disabled={!ready || isBusy} onClick={() => { update({ type: 'clear' }); clearError(); setStorageError(''); if (windowId.current !== null) void chrome.storage.session.remove(captureKey(windowId.current)).catch(() => setStorageError('Não foi possível apagar a seleção temporária.')) }}>Limpar histórico e rascunhos</button>
+          <p className="muted small">Limpar este histórico não apaga relatos já enviados e armazenados no servidor.</p>
+          <ConfirmAction label="Limpar histórico e rascunhos" title="Apagar o histórico desta janela?" description="Todas as análises, o rascunho e as seleções pendentes desta janela serão apagados. Seu perfil e os relatos já enviados serão mantidos. Esta ação não pode ser desfeita."
+            confirmLabel="Sim, limpar histórico e rascunhos" disabled={!ready || isBusy} onConfirm={clearSession} />
         </details>
       </> : <>
         <nav className="comparisonModes" aria-label="Tipo de comparação"><button className={tab === 'comparison' ? '' : 'secondary'} aria-pressed={tab === 'comparison'} onClick={() => setTab('comparison')}>Com meu perfil</button><button className={tab === 'experiments' ? '' : 'secondary'} aria-pressed={tab === 'experiments'} disabled={!selected} onClick={() => setTab('experiments')}>Entre análises</button></nav>
@@ -203,12 +224,14 @@ export default function ExtensionApp() {
         <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e clique em “Usar resultado na extensão”. A comparação será atualizada aqui automaticamente.</p>
           <a className="button secondary" href={`${WEB_BASE_URL}/resultado`} target="_blank" rel="noreferrer">Abrir meu resultado no site</a>
           <p className="muted small">O perfil fica salvo nesta extensão até você apagá-lo.</p>
-          {profile && <><p role="status" className="small">Perfil salvo localmente nesta extensão.</p><button className="danger" disabled={profileBusy} onClick={() => void deleteProfile()}>Apagar perfil</button></>}
-          <label htmlFor="profile-file">Importar perfil JSON</label><input id="profile-file" type="file" accept="application/json,.json" disabled={profileBusy || !ready} onChange={e => { void importProfile(e.target.files?.[0]); e.target.value = '' }} />
+          {profile && <><p role="status" className="small">Perfil salvo localmente nesta extensão.</p><ConfirmAction label="Apagar perfil" title="Apagar o perfil desta extensão?" description="Seu resultado do teste será removido desta extensão. As análises e o resultado salvo no site serão mantidos. Para comparar novamente, envie ou importe seu resultado do teste."
+            confirmLabel="Sim, apagar perfil" disabled={profileBusy} onConfirm={deleteProfile} /></>}
+          <label htmlFor="profile-file">Importar resultado do teste</label><input id="profile-file" type="file" accept="application/json,.json" disabled={profileBusy || !ready} onChange={e => { void importProfile(e.target.files?.[0]); e.target.value = '' }} />
+          <p className="muted small">Selecione o arquivo obtido em “Baixar resultado”, na página “Meu resultado” do site.</p>
           {profileError && <p className="error" role="alert">{profileError}</p>}
         </section>
         </>}
       </>}
-    </main><footer className="panelFooter"><span>Projeto acadêmico · baseado no <a href="https://8values.github.io/" target="_blank" rel="noreferrer">8values</a></span><details><summary>Conexão e dados</summary><p>API: {API_BASE_URL}</p><p>Selecionar texto não o envia. A análise envia o trecho revisado aos serviços indicados no modo escolhido. Perfil, domínio de origem e histórico não fazem parte do envio. A retenção dos serviços externos depende de suas políticas.</p><p>Ao confirmar um report, o trecho, a análise e o comentário opcional são armazenados no servidor para posterior avaliação. Limpar os dados locais não apaga os reports enviados.</p></details></footer>
+    </main><footer className="panelFooter"><span>Projeto acadêmico · baseado no <a href="https://8values.github.io/" target="_blank" rel="noreferrer">8values</a></span><details><summary>Conexão e dados</summary><p>Selecionar texto não o envia. A análise envia o trecho revisado aos serviços indicados no modo escolhido. Perfil, domínio de origem e histórico não fazem parte do envio. A retenção dos serviços externos depende de suas políticas.</p><p>Ao confirmar um relato, o trecho, a análise e o comentário opcional são armazenados no servidor para posterior avaliação. Limpar os dados locais não apaga os relatos enviados.</p><details><summary>Endereço técnico do serviço</summary><p>{API_BASE_URL}</p></details></details></footer>
   </>
 }

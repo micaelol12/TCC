@@ -6,8 +6,10 @@ export type Entry = AnalysisEntry
 
 const HISTORY_KEY = `${storagePrefix}-analysis-history-v1`
 let memoryEntries: Entry[] = []
+let memoryOnly = false
 
 export function readAnalysisHistory(): Entry[] {
+  if (memoryOnly) return memoryEntries
   try {
     const raw = sessionStorage.getItem(HISTORY_KEY)
     if (!raw) return memoryEntries
@@ -24,12 +26,14 @@ export function readAnalysisHistory(): Entry[] {
   } catch { return memoryEntries }
 }
 
-export function saveAnalysisHistory(entries: Entry[]): void {
+export function saveAnalysisHistory(entries: Entry[]): boolean {
   memoryEntries = entries
-  try { sessionStorage.setItem(HISTORY_KEY, JSON.stringify(entries)) } catch { /* keep this page's memory copy */ }
+  try { sessionStorage.setItem(HISTORY_KEY, JSON.stringify(entries)); memoryOnly = false; return true }
+  catch { memoryOnly = true; return false }
 }
 
 export function clearAnalysisHistory(): void {
+  sessionStorage.removeItem(HISTORY_KEY)
   memoryEntries = []
-  try { sessionStorage.removeItem(HISTORY_KEY) } catch { /* storage unavailable */ }
+  memoryOnly = false
 }

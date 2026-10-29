@@ -57,6 +57,17 @@ test.each([413, 422, 429, 503, 504])('não repete POST com erro HTTP %s', async 
   await expect(createAnalysisClient('', fetcher).analyze('texto', 'low', new AbortController().signal)).rejects.toThrow()
   expect(fetcher).toHaveBeenCalledTimes(1)
 })
+
+test('erro de tamanho na versão comum orienta reduzir o texto sem instruções do Lab', async () => {
+  const fetcher = vi.fn<typeof fetch>().mockResolvedValue(new Response('{}', { status: 413 }))
+  await expect(createAnalysisClient('', fetcher).analyze('texto', 'low', new AbortController().signal)).rejects.toThrow('Reduza o texto')
+  await expect(createAnalysisClient('', fetcher).analyze('texto', 'low', new AbortController().signal)).rejects.not.toThrow('Lab')
+})
+
+test('falha de rede na análise oferece recuperação em português', async () => {
+  const fetcher = vi.fn<typeof fetch>().mockRejectedValue(new TypeError('Failed to fetch'))
+  await expect(createAnalysisClient('', fetcher).analyze('texto', 'low', new AbortController().signal)).rejects.toThrow('Falha de conexão')
+})
 test('rejeita resposta de outro modo', async () => {
   await expect(createAnalysisClient('', vi.fn().mockResolvedValue(Response.json(analysisFixture('high')))).analyze('texto', 'low', new AbortController().signal)).rejects.toThrow('inválida')
 })

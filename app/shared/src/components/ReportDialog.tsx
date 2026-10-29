@@ -53,11 +53,11 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
   }
 
   return <div className="reportAction">
-    <button className="secondary" disabled={!!receipt} onClick={() => setOpen(true)} aria-haspopup="dialog">{receipt ? 'Report enviado' : 'Reportar classificação'}</button>
-    {receipt && <p role="status" className="small reportReceipt">Report enviado. O trecho e a análise foram armazenados para avaliação. <span>Identificador: {receipt.report_id}</span></p>}
+    <button className="secondary" disabled={!!receipt} onClick={() => setOpen(true)} aria-haspopup="dialog">{receipt ? 'Relato enviado' : 'Relatar problema na classificação'}</button>
+    {receipt && <p role="status" className="small reportReceipt">Relato enviado. O trecho e a análise foram armazenados para avaliação. <span>Identificador: {receipt.report_id}</span></p>}
     {open && createPortal(<dialog ref={dialog} className="reportDialog analysisContent" aria-labelledby={`${id}-title`} aria-describedby={`${id}-notice`}
       onKeyDown={keepFocus} onCancel={event => { event.preventDefault(); close() }} onClose={() => { setOpen(false); setConsent(false) }}>
-      <h2 id={`${id}-title`} ref={heading} tabIndex={-1}>Reportar classificação</h2>
+      <h2 id={`${id}-title`} ref={heading} tabIndex={-1}>Relatar problema na classificação</h2>
       <p className="muted small">Envie sua discordância para posterior avaliação pela equipe responsável.</p>
       <p id={`${id}-notice`} className="privacyNote"><strong>{REPORT_NOTICE}</strong></p>
       <details className="sourceDetails"><summary>Ver trecho que será armazenado</summary><p className="sourceText">{entry.text}</p></details>
@@ -71,8 +71,8 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
       <p id={`${id}-limit`} className={Array.from(comment).length > REPORT_COMMENT_LIMIT ? 'error small' : 'muted small'}>{Array.from(comment).length} de {REPORT_COMMENT_LIMIT} caracteres.</p>
       <label className="check reportConsent"><input type="checkbox" checked={consent} disabled={busy} onChange={event => setConsent(event.target.checked)} /><span>Estou ciente e concordo com o envio e o armazenamento desses dados.</span></label>
       {error && <p className="error" role="alert">{error}</p>}
-      <div className="actions"><button className="secondary" disabled={busy} onClick={close}>Cancelar</button><button disabled={busy || !consent || Array.from(comment).length > REPORT_COMMENT_LIMIT} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar report'}</button></div>
-      <p className="small muted" role="status" aria-live="polite">{busy ? 'Enviando o report e aguardando confirmação de armazenamento…' : ''}</p>
+      <div className="actions"><button className="secondary" disabled={busy} onClick={close}>Cancelar</button><button disabled={busy || !consent || Array.from(comment).length > REPORT_COMMENT_LIMIT} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar relato'}</button></div>
+      <p className="small muted" role="status" aria-live="polite">{busy ? 'Enviando o relato e aguardando confirmação de armazenamento…' : ''}</p>
     </dialog>, document.body)}
   </div>
 }

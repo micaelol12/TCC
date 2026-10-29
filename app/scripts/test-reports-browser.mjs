@@ -29,14 +29,14 @@ let reportBehavior = 'success'
 const receipt = { report_id: 'ee7f21b4-65a0-4628-9a19-20cf22e953d9', received_at: '2026-10-13T12:00:00Z', status: 'pending' }
 
 async function exerciseReport(page, text, origin) {
-  const reportButton = page.getByRole('button', { name: 'Reportar classificação', exact: true })
+  const reportButton = page.getByRole('button', { name: 'Relatar problema na classificação', exact: true })
   const initialReports = reports.length
   await reportButton.click()
-  let dialog = page.getByRole('dialog', { name: 'Reportar classificação' })
+  let dialog = page.getByRole('dialog', { name: 'Relatar problema na classificação' })
   await dialog.waitFor()
   assert((await dialog.innerText()).includes('armazenados em nosso banco de dados'))
   assert.equal(await dialog.getByRole('checkbox').isChecked(), false)
-  assert(await dialog.getByRole('button', { name: 'Enviar report', exact: true }).isDisabled())
+  assert(await dialog.getByRole('button', { name: 'Enviar relato', exact: true }).isDisabled())
   assert.equal(reports.length, initialReports)
   await dialog.getByText('Ver trecho que será armazenado', { exact: true }).click()
   assert.equal(await dialog.locator('.sourceText').innerText(), text)
@@ -51,7 +51,7 @@ async function exerciseReport(page, text, origin) {
   assert(await reportButton.evaluate(button => document.activeElement === button))
   assert.equal(reports.length, initialReports)
   await reportButton.click()
-  dialog = page.getByRole('dialog', { name: 'Reportar classificação' })
+  dialog = page.getByRole('dialog', { name: 'Relatar problema na classificação' })
   // Keyboard focus stays inside the native modal.
   for (let i = 0; i < 12; i++) {
     await page.keyboard.press('Tab')
@@ -59,32 +59,32 @@ async function exerciseReport(page, text, origin) {
   }
   await dialog.getByRole('textbox').fill('x'.repeat(2001))
   await dialog.getByRole('checkbox').check()
-  assert(await dialog.getByRole('button', { name: 'Enviar report', exact: true }).isDisabled())
+  assert(await dialog.getByRole('button', { name: 'Enviar relato', exact: true }).isDisabled())
   const comment = 'Discordo da classificação do eixo econômico. <script>window.reportEvil=true</script>'
   await dialog.getByRole('textbox').fill(comment)
   await page.screenshot({ path: resolve(output, `${target}-${origin}-report-dialog.png`), fullPage: true })
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
   // Simulate a lost response after acceptance; the retry must be identical.
   reportBehavior = 'uncertain'
-  await dialog.getByRole('button', { name: 'Enviar report', exact: true }).click()
+  await dialog.getByRole('button', { name: 'Enviar relato', exact: true }).click()
   await dialog.getByRole('alert').waitFor()
   assert.equal(await dialog.getByRole('textbox').inputValue(), comment)
-  assert.equal(await page.getByRole('button', { name: 'Report enviado', exact: true }).count(), 0)
+  assert.equal(await page.getByRole('button', { name: 'Relato enviado', exact: true }).count(), 0)
   assert.equal(reports.length, initialReports + 1)
   await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click()
   await reportButton.click()
-  dialog = page.getByRole('dialog', { name: 'Reportar classificação' })
+  dialog = page.getByRole('dialog', { name: 'Relatar problema na classificação' })
   assert.equal(await dialog.getByRole('checkbox').isChecked(), false)
   assert.equal(await dialog.getByRole('textbox').inputValue(), comment)
   await dialog.getByRole('checkbox').check()
   reportBehavior = 'success'
-  await dialog.getByRole('button', { name: 'Enviar report', exact: true }).click()
+  await dialog.getByRole('button', { name: 'Enviar relato', exact: true }).click()
   await page.getByRole('button', { name: 'Enviando…', exact: true }).waitFor()
   assert(await dialog.getByRole('button', { name: 'Cancelar', exact: true }).isDisabled())
   assert(await dialog.getByRole('textbox').isDisabled())
   await page.keyboard.press('Escape')
   assert(await dialog.isVisible(), 'Escape não deve ocultar um envio em andamento')
-  await page.getByRole('button', { name: 'Report enviado', exact: true }).waitFor()
+  await page.getByRole('button', { name: 'Relato enviado', exact: true }).waitFor()
   assert.equal(reports.length, initialReports + 2)
   assert.deepEqual(reports[initialReports], reports[initialReports + 1])
   const payload = reports[initialReports]
@@ -96,7 +96,7 @@ async function exerciseReport(page, text, origin) {
   assert.equal(payload.notice_version, '1')
   assert.match(payload.submission_id, /^[0-9a-f-]{36}$/i)
   assert.deepEqual(payload.analysis, analysisFixture('medium', text))
-  assert(await page.getByRole('button', { name: 'Report enviado', exact: true }).isDisabled())
+  assert(await page.getByRole('button', { name: 'Relato enviado', exact: true }).isDisabled())
   assert.equal(await page.evaluate(() => window.reportEvil), undefined)
   assert.equal(await page.getByRole('dialog').count(), 0)
 }
@@ -141,7 +141,7 @@ try {
   await web.locator('#text-input').fill(originalText)
   await web.getByRole('button', { name: 'Analisar texto', exact: true }).click()
   await web.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
-  await web.getByRole('button', { name: 'Usar este texto em nova análise', exact: true }).click()
+  await web.getByRole('button', { name: 'Editar e reanalisar', exact: true }).click()
   await web.locator('#text-input').fill('Novo rascunho que não deve ser reportado.')
   await web.getByRole('button', { name: 'Fechar', exact: true }).click()
   await exerciseReport(web, originalText, 'web')
@@ -149,8 +149,9 @@ try {
   // A desktop layout uses the same flow and restores history too.
   await web.setViewportSize({ width: 1440, height: 1000 })
   await web.reload()
+  await web.getByRole('button', { name: 'Fechar', exact: true }).click()
   await web.getByRole('heading', { name: 'Quatro eixos', exact: true }).waitFor()
-  await web.getByRole('button', { name: 'Reportar classificação', exact: true }).click()
+  await web.getByRole('button', { name: 'Relatar problema na classificação', exact: true }).click()
   await web.getByRole('dialog').waitFor()
   await web.screenshot({ path: resolve(output, `${target}-web-report-desktop.png`), fullPage: true })
   await web.keyboard.press('Escape')

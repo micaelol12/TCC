@@ -6,8 +6,12 @@ import { isOrdinalScale, sameContent, type OrdinalScale } from '../domain/ordina
 export type Mode = 'low' | 'medium' | 'high'
 export type LabProvider = 'typesafe' | 'maritaca' | 'gemini'
 export const modes: Mode[] = ['low', 'medium', 'high']
-export const modeLabels: Record<Mode, string> = { low: 'Baixo', medium: 'Médio', high: 'Alto' }
-export const modeDescriptions: Record<Mode, string> = { low: 'Análise com JEV', medium: 'JEV com revisão por LLM quando necessária', high: 'Análise diretamente com LLM' }
+export const modeLabels: Record<Mode, string> = { low: 'Classificação direta', medium: 'Classificação com revisão', high: 'Modelo de linguagem' }
+export const modeDescriptions: Record<Mode, string> = {
+  low: 'Um classificador identifica as posições políticas de cada trecho.',
+  medium: 'O classificador faz a primeira avaliação; um modelo de linguagem revisa os trechos quando necessário.',
+  high: 'Um modelo de linguagem avalia diretamente as posições políticas de cada trecho.',
+}
 export const recipients: Record<Mode, string> = { low: 'TypeSafe (JEV)', medium: 'TypeSafe (JEV) e, quando necessário, Maritaca (Sabiá)', high: 'Maritaca (Sabiá)' }
 export type EvidenceAudit = {
   chunk_index: number; kind: 'search' | 'semantic'; status: 'found' | 'not_selected' | 'not_literal' | 'sustenta' | 'contradiz' | 'insuficiente' | 'uncertain' | 'failed' | 'invalid';
@@ -215,8 +219,15 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
           body: JSON.stringify({ text, processing_level: processingLevel, ...(experimentConfig ? { experiment_config: experimentConfig } : {}) }), signal: controller.signal,
         })
         if (!response.ok) {
-          if (response.status === 401) { await setToken(''); throw new Error('Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.') }
-          const messages: Record<number, string> = { 403: 'Configuração experimental indisponível nesta API. Atualize a conexão.', 413: 'Texto acima do limite. No Lab, aumente os tokens por trecho ou reduza o texto.', 422: 'Entrada ou configuração inválida. Atualize a conexão e confira os parâmetros.', 429: 'Limite de uso atingido. Tente mais tarde.', 503: 'Modo indisponível no servidor.', 504: 'A análise excedeu o tempo disponível.' }
+          if (response.status === 401) { await setToken(''); throw new Error(isLabBuild ? 'Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.' : 'O serviço de análise está com um problema de acesso. Verifique a conexão ou avise a equipe responsável.') }
+          const messages: Record<number, string> = {
+            403: isLabBuild ? 'Configuração experimental indisponível nesta API. Atualize a conexão.' : 'Este serviço não permite a análise solicitada. Verifique a conexão ou avise a equipe responsável.',
+            413: isLabBuild ? 'Texto acima do limite. No Lab, aumente os tokens por trecho ou reduza o texto.' : 'O texto excede a capacidade de uma análise. Reduza o texto e tente novamente, mesmo que ele esteja dentro do limite de caracteres.',
+            422: isLabBuild ? 'Entrada ou configuração inválida. Atualize a conexão e confira os parâmetros.' : 'Não foi possível analisar o conteúdo enviado. Confira o texto, verifique os modos disponíveis e tente novamente.',
+            429: 'Limite de uso atingido. Tente mais tarde.',
+            503: 'Este modo está indisponível. Verifique a conexão e escolha outro modo disponível ou tente mais tarde.',
+            504: 'A análise excedeu o tempo disponível. Tente novamente com um texto menor.',
+          }
           throw new Error(messages[response.status] ?? 'Falha na análise. Tente novamente.')
         }
         const data: unknown = await response.json()
@@ -225,6 +236,7 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
         return data
       } catch (err) {
         if (timedOut) throw new AnalysisTimeoutError()
+        if (err instanceof TypeError) throw new Error('Falha de conexão com o serviço de análise. Verifique sua conexão e tente novamente. O texto foi preservado.')
         throw err
       } finally { clearTimeout(timer); signal.removeEventListener('abort', abort) }
     },

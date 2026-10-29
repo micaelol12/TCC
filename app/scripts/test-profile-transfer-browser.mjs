@@ -68,6 +68,7 @@ try {
   assert.deepEqual(await read(), { local: { '8values-profile-local-v1': replacement }, session: {} })
   assert(await website.getByRole('button', { name: 'Usar resultado na extensão', exact: true }).isEnabled())
   await panel.getByRole('button', { name: 'Apagar perfil', exact: true }).click()
+  await panel.getByRole('dialog').getByRole('button', { name: 'Sim, apagar perfil', exact: true }).click()
   await panel.getByRole('link', { name: 'Fazer meu teste no site' }).waitFor()
   assert.deepEqual(await read(), { local: { '8values-profile-local-v1': null }, session: {} })
   assert.deepEqual(errors, [])

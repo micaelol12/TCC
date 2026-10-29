@@ -120,6 +120,18 @@ footer a{color:#514a40;text-decoration:underline;text-underline-offset:2px}
 .reportAction{margin-top:1.2rem;border-top:1px solid #e7e3dc;padding-top:1rem}
 .reportDialog{width:min(620px,calc(100vw - 1.5rem));max-height:calc(100dvh - 1.5rem);overflow:auto;border:1px solid #dedad2;border-radius:16px;background:#fffefa;color:#242424;padding:1.3rem;box-shadow:0 20px 70px #25201830}
 .reportDialog::backdrop{background:#211d19a8}
+.confirmDialog{width:min(520px,calc(100vw - 2rem));max-height:calc(100dvh - 2rem);overflow:auto;box-sizing:border-box;border:1px solid #dedad2;border-radius:16px;background:#fffefa;color:#242424;padding:1.3rem;box-shadow:0 20px 70px #25201830}
+.confirmDialog::backdrop{background:#211d19a8}
+.confirmDialog h2{font-size:1.3rem}
+.confirmDialog p{line-height:1.6;overflow-wrap:anywhere}
+.confirmDialog .actions{flex-wrap:wrap}
+.reviewList{list-style:none;margin:1rem 0;padding:0;max-height:55vh;overflow:auto;scrollbar-gutter:stable}
+.reviewList li{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem .3rem;border-bottom:1px solid #e7e3dc}
+.reviewList li>div{min-width:0}
+.reviewList p{margin:.3rem 0;overflow-wrap:anywhere}
+.reviewList button{flex:none}
+@media(max-width:760px){.siteHeader{height:auto;min-height:70px;flex-shrink:0}.historyButton{white-space:normal;overflow-wrap:anywhere}.historyButton span{white-space:normal}}
+@media(max-width:450px){.reviewList li{align-items:flex-start;gap:.5rem}.reviewList button{padding:.5rem}.confirmDialog .actions button{flex:1 1 100%}}
 .reportDialog p,.reportDialog li{overflow-wrap:anywhere}
 .reportDialog .privacyNote{margin-top:1rem;font-size:.9rem}
 .reportDialog .sourceText{max-height:160px}

@@ -125,7 +125,7 @@ try {
     await explorer.getByLabel('Examinar trecho', { exact: true }).selectOption('0')
     await explorer.getByRole('list').last().screenshot({ path: resolve(output, `evidence-${name}-model-levels.png`) })
     minimum = 1
-    const reuse = page.getByRole('button', { name: name === 'extension' ? 'Editar e reanalisar' : 'Usar este texto em nova análise', exact: true })
+    const reuse = page.getByRole('button', { name: name === 'extension' ? 'Editar e reanalisar' : 'Editar e reanalisar', exact: true })
     await reuse.click()
     await page.locator('#local-title').fill('Caso 2')
     await page.getByRole('button', { name: 'Analisar texto', exact: true }).click()

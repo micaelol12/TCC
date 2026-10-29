@@ -6,6 +6,7 @@ import styles from '@8values/shared/styles/Cards.module.css'
 import IdeologyMatch from '../../components/IdeologyMatch'
 import { downloadProfile } from '@8values/shared/profile'
 import ExtensionTransfer from './ExtensionTransfer'
+import ConfirmAction from '@8values/shared/components/ConfirmAction'
 
 export default function ResultPage({ profile, stored, onDelete }: { profile: Profile | null; stored: boolean; onDelete: () => void }) {
   if (!profile) return <main className="narrow flow"><h1>Meu resultado</h1><p>Você ainda não concluiu o teste neste navegador.</p><Link className="button" to="/teste">Fazer meu teste</Link></main>
@@ -15,10 +16,12 @@ export default function ResultPage({ profile, stored, onDelete }: { profile: Pro
     <section className={styles.card} aria-labelledby="result-axes-heading"><h2 id="result-axes-heading" className="srOnly">Pontuação por eixo</h2>{axisOrder.map(axis => <AxisBar key={axis} axis={axis} score={profile.scores[axis]} />)}</section>
     <IdeologyMatch scores={profile.scores} source="test" />
     <ExtensionTransfer key={JSON.stringify(profile)} profile={profile} />
-    <button className="secondary" onClick={() => downloadProfile(profile)}>Exportar perfil JSON</button>
-    <p className="muted small">O arquivo contém apenas os quatro resultados agregados e a versão do questionário.</p>
-    <div className="actions"><Link className="button" to="/analise">Analisar um texto</Link><Link className="button secondary" to="/teste">Refazer teste</Link><button className="danger" onClick={onDelete}>Apagar meus dados locais</button></div>
-    <p className="muted small">Apagar os dados locais não remove reports já enviados e armazenados no servidor.</p>
+    <button className="secondary" onClick={() => downloadProfile(profile)}>Baixar resultado</button>
+    <p className="muted small">O arquivo em formato JSON contém apenas os quatro resultados agregados e a versão do questionário. Você pode importá-lo na extensão.</p>
+    <div className="actions"><Link className="button" to="/analise">Analisar um texto</Link><Link className="button secondary" to="/teste">Refazer teste</Link><ConfirmAction label="Apagar meus dados locais" title="Apagar os dados deste site?"
+      description="Seu resultado, as respostas do teste, o rascunho de texto e o histórico de análises deste site serão apagados. Arquivos baixados, o perfil da extensão e relatos já enviados serão mantidos. Esta ação não pode ser desfeita."
+      confirmLabel="Sim, apagar dados do site" onConfirm={onDelete} /></div>
+    <p className="muted small">Apagar os dados locais não remove relatos já enviados e armazenados no servidor.</p>
     <p className="muted small">Os percentuais descrevem suas respostas ao questionário e não são um diagnóstico político.</p>
   </main>
 }

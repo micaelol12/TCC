@@ -1,5 +1,15 @@
 # 8values + textos
 
+## Usabilidade
+
+O rascunho de análise (título, texto e modo) e o histórico permanecem na sessão da aba, inclusive ao navegar ou recarregar. Se o navegador bloquear a gravação, a interface avisa e mantém uma cópia em memória durante a navegação; recarregar pode perder essa cópia. Fechar a aba encerra a sessão. Descartar rascunhos, apagar dados e substituir um rascunho existente exigem confirmação com descrição do alcance da ação.
+
+A revisão do teste mostra enunciados e respostas e permite editar e voltar diretamente ao resumo. A ajuda “Como escolher o processamento?” explica os métodos; os nomes não indicam uma escala de precisão. `npm run test:usability` verifica esses fluxos no Chrome com perfil temporário e API simulada, sem chamadas a provedores.
+
+O [roteiro com 16 casos de teste](CASOS_TESTE_USABILIDADE.md) inclui pré-condições, passos, resultados esperados e evidências da execução. `npm run test:usability` atualiza esse roteiro e gera o painel visual em `test-results/usability/index.html`. Use `npm run preview:usability` para abrir o painel em `http://127.0.0.1:5188/`, ou `npm run test:usability:visual` para acompanhar os casos no navegador.
+
+## Sobre o aplicativo
+
 A versão oficial do site e da extensão usa [`api/analysis-config.json`](api/analysis-config.json), com todos os parâmetros do algoritmo disponíveis no Lab. Edite o arquivo e reinicie a API para aplicar. [Campos, prioridade das configurações e modelos](CONFIGURACAO.md).
 
 Para experimentar parâmetros do algoritmo, modelos e chaves da API na edição **8values Lab**, consulte [o guia da versão de teste](LAB.md). Inicie com `npm run api:lab` e `npm run dev:lab` em terminais separados; gere o pacote com `npm run build:lab` e `npm run package:lab`.
@@ -53,9 +63,9 @@ Para comparar com seu teste, abra **Meu resultado** no site e clique em **Usar r
 
 | Modo | Serviço | Variáveis necessárias |
 |---|---|---|
-| Baixo | JEV | `TYPESAFE_API_KEY` |
-| Médio | JEV e revisão Sabiá quando necessária | `TYPESAFE_API_KEY`, `MARITACA_API_KEY` |
-| Alto | Sabiá | `MARITACA_API_KEY` |
+| Classificação direta (`low`) | JEV | `TYPESAFE_API_KEY` |
+| Classificação com revisão (`medium`) | JEV e revisão Sabiá quando necessária | `TYPESAFE_API_KEY`, `MARITACA_API_KEY` |
+| Modelo de linguagem (`high`) | Sabiá | `MARITACA_API_KEY` |
 
 Os campos `jev_model` e `llm_model` do arquivo de parâmetros (ou as substituições `JEV_MODEL` e `LLM_MODEL` no ambiente) permitem mudar os padrões `jev-1.13.0` e `sabia-4`. Gemini também é aceito com `GEMINI_API_KEY` no servidor; veja o guia de configuração. Confira a disponibilidade e o contrato das contas antes de usar. A API não contém modo de demonstração com classificações inventadas.
 
@@ -67,7 +77,7 @@ As respostas individuais do teste ficam apenas em `sessionStorage` durante o pre
 
 ## Reports de classificação
 
-No site e na extensão, **Reportar classificação** abre uma confirmação com prévia do texto, análise completa e comentário opcional de até 2.000 caracteres. O aviso declara que o trecho, a análise e o comentário serão armazenados no banco para posterior avaliação pela equipe responsável. A caixa **Estou ciente e concordo com o envio e o armazenamento desses dados** começa desmarcada; somente **Enviar report** faz o envio. Cancelar não envia dados.
+No site e na extensão, **Relatar problema na classificação** abre uma confirmação com prévia do texto, análise completa e comentário opcional de até 2.000 caracteres. O aviso declara que o trecho, a análise e o comentário serão armazenados no banco para posterior avaliação pela equipe responsável. A caixa **Estou ciente e concordo com o envio e o armazenamento desses dados** começa desmarcada; somente **Enviar relato** faz o envio. Cancelar não envia dados.
 
 `POST /api/reports` recebe `submission_id` (UUID), `text`, `analysis`, `comment`, `client` (`web` ou `extension`), `storage_consent: true` e `notice_version: "1"`. Usa o texto original associado ao resultado selecionado e não chama provedores novamente. Perfil, respostas do questionário, comparação, título e domínio/URL de origem não entram no report. O resultado é um snapshot enviado pelo cliente, sem garantia de autenticidade da classificação.
 
