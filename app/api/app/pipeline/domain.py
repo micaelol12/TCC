@@ -5,7 +5,7 @@ import unicodedata
 from collections.abc import Mapping
 from copy import deepcopy
 from .rubrics import AXIS_SPECS
-from ..polarity import ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
+from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
 MIN_PALAVRAS_EVIDENCIA = 4
 MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
@@ -16,7 +16,7 @@ def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS):
     """Cria a pergunta de relevância; a polaridade é definida pela rubrica ordinal."""
     spec = axis_specs[axis]
     return {
-        "instructions": f"O trecho contém uma proposta ou posição sobre {spec['name']}?",
+        "instructions": CONTEXTO_POSICAO_POLITICA + f"O trecho contém uma proposta ou posição sobre {spec['name']}?",
         "criteria": {
             "A": f"Sim. Há evidência substantiva sobre {spec['topic']}.",
             "B": f"Não. Não há evidência substantiva sobre {spec['topic']}.",
@@ -27,11 +27,11 @@ def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None):
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
     spec = axis_specs[axis]
     polos = spec["poles"]
-    instructions = (
-        f"Qual situação descreve a posição defendida pelo texto sobre {spec['name']}? "
+    instructions = (CONTEXTO_POSICAO_POLITICA +
+        f"Qual situação descreve a posição expressa no trecho sobre {spec['name']}? "
         f"Polo B ({polos['B']['label']}): {polos['B']['description']} "
         f"Polo A ({polos['A']['label']}): {polos['A']['description']} "
-        "Considere somente posições defendidas, não as citadas, negadas ou criticadas. "
+        "Considere as posições expressas conforme o contexto da análise, incluindo falas de terceiros e respeitando o sentido de negações e críticas. "
         "Intensidade depende do alcance e da profundidade da mudança proposta, não da retórica "
         "nem da confiança. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
     niveis = {n.chave: {"valor": n.codigo, "nivel": n.rotulo,

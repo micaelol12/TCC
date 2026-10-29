@@ -41,7 +41,7 @@ import unicodedata
 from collections.abc import Mapping
 from copy import deepcopy
 from .rubrics import AXIS_SPECS
-from ..polarity import ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
+from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
 MIN_PALAVRAS_EVIDENCIA = 4
 MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua"}

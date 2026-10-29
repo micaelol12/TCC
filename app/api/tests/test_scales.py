@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from app.polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS, validar_escala, valor_nivel
+from app.polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_5_NIVEIS, ESCALA_9_NIVEIS, instrucoes_escala, validar_escala, valor_nivel
 from app.experiment_config import ExperimentConfig, config_hash
 from app.pipeline import domain
 from app.pipeline.aggregation import aggregate
@@ -150,6 +150,11 @@ class ScaleTests(unittest.TestCase):
                 self.assertEqual(domain.criar_rubrica_polaridade_ordinal('economic', escala=escala), self.ns['criar_rubrica_polaridade_ordinal']('economic', escala=notebook_scale))
             questions = jev_questions(escala)
             self.assertEqual(len(questions['economic_polaridade'].criteria), len(escala.niveis))
+            self.assertEqual(instrucoes_escala(escala), self.ns['instrucoes_escala'](notebook_scale))
+            for axis in AXES:
+                self.assertEqual(domain.criar_questoes_eixo(axis), self.ns['criar_questoes_eixo'](axis))
+                self.assertTrue(questions[f'{axis}_relevancia'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
+                self.assertTrue(questions[f'{axis}_polaridade'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
 
     def test_center_absence_tie_and_masses_are_distinct(self):
         scale = sete()
@@ -220,6 +225,8 @@ class ConcurrentScaleTests(unittest.IsolatedAsyncioTestCase):
             config = ExperimentConfig(escala=scale)
             decisions, calls, _ = await classify_chunk(TEXT, mode, Jev(), jev_questions(scale), llm, SimpleNamespace(), config)
             self.assertIn(f'{scale.niveis[-1].codigo}={scale.niveis[-1].chave}', llm.prompt['instructions'])
+            self.assertTrue(llm.prompt['instructions'].startswith(CONTEXTO_POSICAO_POLITICA))
+            self.assertEqual(json.loads(llm.prompt['input'])['texto'], TEXT)
             return aggregate([decisions], 1, config)[0].pole_a, calls
         results = await asyncio.gather(run(ESCALA_5_NIVEIS, 'medium'), run(ESCALA_9_NIVEIS, 'medium'), run(ESCALA_5_NIVEIS, 'high'))
         self.assertEqual([r[0] for r in results], [75., 62.5, 75.])
