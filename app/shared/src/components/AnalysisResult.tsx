@@ -37,9 +37,9 @@ export default function AnalysisResult({ entry, reportClient, reportOrigin, comp
         {result && !result.methods_used.includes('llm') && (result.reason_codes.includes('intensidade_ambigua') || result.reason_codes.includes('direcao_ambigua')) && <p className="notice small">Pontuação preliminar: o classificador teve incerteza sobre a direção ou intensidade da posição. Consulte este eixo em Distribuição e evidências.</p>}
       </div>
     })}
-    <AnalysisEvidence key={entry.id} analysis={analysis} />
+    <AnalysisEvidence key={`evidence-${entry.id}`} analysis={analysis} />
     {compact && <details><summary>Ver radar e detalhes gerais</summary><AnalysisRadar analysis={analysis} /></details>}
     {complete && <IdeologyMatch scores={scores} source="analysis" />}
-    <ReportDialog key={entry.id} entry={entry} client={reportClient} origin={reportOrigin} />{children}
+    <ReportDialog key={`report-${entry.id}`} entry={entry} client={reportClient} origin={reportOrigin} />{children}
   </section>
 }

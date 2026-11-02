@@ -19,6 +19,7 @@
     "build": "npm run build --workspace=8values-textos && npm run build --workspace=8values-extension",
     "test": "vitest run",
     "test:browser": "node scripts/test-browser.mjs",
+    "test:history": "node scripts/test-history-browser.mjs",
     "test:usability": "node scripts/test-usability-browser.mjs",
     "test:usability:visual": "node scripts/test-usability-browser.mjs --headed",
     "preview:usability": "node scripts/preview-usability.mjs",
