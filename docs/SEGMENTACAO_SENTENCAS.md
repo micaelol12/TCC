@@ -1,6 +1,6 @@
 # Segmentação do notebook passo a passo
 
-O padrão em `Pipeline - Passo a Passo.ipynb` é identificar sentenças completas em
+O padrão em `Pipeline.ipynb` é identificar sentenças completas em
 português e agrupá-las com referência de 600 tokens `cl100k_base`, sem sobreposição.
 A implementação fica em `tcc_lib/segmentacao.py`, usada pelas funções exportadas
 do notebook. As entradas de documento, PDFs, playground e JSON usam o mesmo caminho.

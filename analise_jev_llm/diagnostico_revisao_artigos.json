@@ -1,7 +1,7 @@
 {
   "scope": "Entradas sintéticas; verifica comportamento do código, não acurácia semântica.",
   "source_sha256": {
-    "Pipeline - Passo a Passo.ipynb": "2fe1f3ef37e3133a63ac48fed18738555bc8aa14b7e81cf05a6c90d3fe7e5be2",
+    "Pipeline.ipynb": "2fe1f3ef37e3133a63ac48fed18738555bc8aa14b7e81cf05a6c90d3fe7e5be2",
     "app/api/app/pipeline/aggregation.py": "19cff4334e6d954238160a61a7ecfae557c57011a77b95b1345973905cff138a",
     "app/api/app/pipeline/domain.py": "e2f2d575b17e6beb01215cb570b4b6847ff63828297e3bcd12a4675305fb6217",
     "app/api/analysis-config.json": "e9b4f2cf565423d66cb6cbd4d063dac9c0a458cfaed0681a795932a5a20d3295"

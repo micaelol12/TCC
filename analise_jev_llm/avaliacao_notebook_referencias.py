@@ -70,7 +70,7 @@ def main():
         for effect, axis in ns["EFFECT_TO_AXIS"].items():
             if getattr(q.effect, effect) and r["eixos_jev"][axis]["relevante"] is False and axis not in r["eixos_encaminhados"]:
                 false_negative_without_route.append({"question_id": q.id, "axis": axis})
-    notebook = json.loads((ROOT / "Pipeline - Passo a Passo.ipynb").read_text(encoding="utf-8"))
+    notebook = json.loads((ROOT / "Pipeline.ipynb").read_text(encoding="utf-8"))
     config_node = next(node for node in ast.parse("".join(notebook["cells"][2]["source"])).body
                        if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "CONFIG_CHUNKS" for t in node.targets))
     initial_chunks = ast.literal_eval(config_node.value)
@@ -82,7 +82,7 @@ def main():
         segmentation = {"error": str(exc), "initial_config": initial_chunks,
                         "playground_merged_config": playground_chunks}
     output = {"run_id": manifest["run_id"], "scope": "Reavaliação dos registros existentes; não houve nova inferência.",
-              "notebook_sha256": hashlib.sha256((ROOT / "Pipeline - Passo a Passo.ipynb").read_bytes()).hexdigest(),
+              "notebook_sha256": hashlib.sha256((ROOT / "Pipeline.ipynb").read_bytes()).hexdigest(),
               "rubric_hash_matches_current_notebook": True, "question_hash_matches": True,
               "record_configs_match_manifest": True,
               "config": {k: v for k, v in saved_config.items() if k != "escala"},

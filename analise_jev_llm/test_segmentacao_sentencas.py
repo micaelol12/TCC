@@ -25,7 +25,7 @@ class SegmentacaoSentencasTest(unittest.TestCase):
         cls.cache = patch.dict(tiktoken.registry.ENCODINGS, {"cl100k_base": cls.encoder})
         cls.cache.start()
         cls.addClassCleanup(cls.cache.stop)
-        cls.nb = json.loads((ROOT / "Pipeline - Passo a Passo.ipynb").read_text(encoding="utf-8"))
+        cls.nb = json.loads((ROOT / "Pipeline.ipynb").read_text(encoding="utf-8"))
 
     def contar(self, texto):
         return len(self.encoder.encode(texto, disallowed_special=()))

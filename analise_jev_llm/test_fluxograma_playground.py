@@ -92,7 +92,7 @@ class FluxogramaTest(unittest.TestCase):
             self.assertIn('srcdoc="', iframe)
 
     def test_celula_analise_congela_config_e_modelo_do_cliente_ativo(self):
-        nb = json.loads((ROOT / 'Pipeline - Passo a Passo.ipynb').read_text(encoding='utf-8'))
+        nb = json.loads((ROOT / 'Pipeline.ipynb').read_text(encoding='utf-8'))
         source = ''.join(next(c for c in nb['cells'] if c['id'] == 'playground-analise')['source'])
         records, coverage = exemplo()
         client = SimpleNamespace(model='modelo-ativo', temperature=0.25)

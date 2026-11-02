@@ -26,7 +26,7 @@ PDFs, importação por URL, contas, sincronização entre dispositivos, comparti
 
 Foram inspecionados os arquivos locais:
 
-- [Pipeline - Passo a Passo.ipynb](<C:/Users/User/Desktop/TCC/Pipeline - Passo a Passo.ipynb>): classificação por eixo, cascata, validação de evidências, segmentação e agregação.
+- [Pipeline.ipynb](<C:/Users/User/Desktop/TCC/Pipeline.ipynb>): classificação por eixo, cascata, validação de evidências, segmentação e agregação.
 - [TCC.ipynb](C:/Users/User/Desktop/TCC/TCC.ipynb): `Quiz8Values` e cálculo do questionário.
 - [questions.json](C:/Users/User/Desktop/TCC/tcc/questions.json): 70 perguntas em português e seus efeitos nos quatro eixos.
 - [requirements-pipeline.txt](C:/Users/User/Desktop/TCC/requirements-pipeline.txt): referência de dependências do experimento, a reduzir para a API.

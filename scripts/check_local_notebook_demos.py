@@ -12,7 +12,7 @@ matplotlib.use('Agg')
 
 
 async def main():
-    path = Path(__file__).resolve().parents[1] / 'Pipeline - Passo a Passo.ipynb'
+    path = Path(__file__).resolve().parents[1] / 'Pipeline.ipynb'
     nb = json.loads(path.read_text(encoding='utf-8'))
     ns = {'__name__': 'local_notebook_demos'}
     count = 0

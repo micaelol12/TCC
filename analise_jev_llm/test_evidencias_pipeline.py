@@ -14,7 +14,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-NOTEBOOK = ROOT / 'Pipeline - Passo a Passo.ipynb'
+NOTEBOOK = ROOT / 'Pipeline.ipynb'
 
 
 async def check(save_demo=False):

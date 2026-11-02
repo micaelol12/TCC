@@ -19,7 +19,7 @@ from analise_jev_llm.fluxograma_playground import criar_dados_fluxograma, render
 
 
 ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOK = ROOT / "Pipeline - Passo a Passo.ipynb"
+NOTEBOOK = ROOT / "Pipeline.ipynb"
 
 
 def carregar_testes():

@@ -1,6 +1,6 @@
-# Parecer centrado no notebook Pipeline - Passo a Passo
+# Parecer centrado no notebook Pipeline
 
-Data: 29/10/2026. Referência principal: [Pipeline - Passo a Passo.ipynb](<../Pipeline - Passo a Passo.ipynb>). Este documento refina o [parecer bibliográfico](REVISAO_ARTIGOS_E_AJUSTES_PIPELINE.md), distinguindo a pipeline de pesquisa das diferenças de sua réplica no aplicativo.
+Data: 29/10/2026. Referência principal: [Pipeline.ipynb](<../Pipeline.ipynb>). Este documento refina o [parecer bibliográfico](REVISAO_ARTIGOS_E_AJUSTES_PIPELINE.md), distinguindo a pipeline de pesquisa das diferenças de sua réplica no aplicativo.
 
 **Conclusão ajustada:** o notebook já incorpora boa parte das práticas recomendadas nas referências. A prioridade é avaliar melhor suas decisões e resolver uma inconsistência de configuração reproduzível. Não há fundamento para reconstruir a arquitetura, acrescentar outro bootstrap ou tratar o corte de 16 trechos da API como deficiência deste notebook.
 

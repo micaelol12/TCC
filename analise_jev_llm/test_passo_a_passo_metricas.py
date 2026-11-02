@@ -15,7 +15,7 @@ from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
 
 
 ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOK = ROOT / "Pipeline - Passo a Passo.ipynb"
+NOTEBOOK = ROOT / "Pipeline.ipynb"
 
 
 def carregar_definicoes():

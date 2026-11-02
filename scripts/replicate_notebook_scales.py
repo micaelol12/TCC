@@ -3,7 +3,7 @@ import ast
 import json
 from pathlib import Path
 root = Path(__file__).resolve().parents[1]
-nb = json.loads((root / 'Pipeline - Passo a Passo.ipynb').read_text(encoding='utf-8'))
+nb = json.loads((root / 'Pipeline.ipynb').read_text(encoding='utf-8'))
 sources = [''.join(c['source']) for c in nb['cells'] if c['cell_type'] == 'code']
 def get(name):
     for source in sources:

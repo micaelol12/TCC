@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 def carregar_pipeline_notebook(caminho=None, *, namespace=None):
-    caminho = Path(caminho) if caminho else Path(__file__).resolve().parents[1] / "Pipeline - Passo a Passo.ipynb"
+    caminho = Path(caminho) if caminho else Path(__file__).resolve().parents[1] / "Pipeline.ipynb"
     notebook = json.loads(caminho.read_text(encoding="utf-8"))
     ns = {"__name__": "pipeline_notebook", "__file__": str(caminho)} if namespace is None else namespace
     for cell in notebook["cells"]:

@@ -1,6 +1,6 @@
 # Revisão dos artigos de referência e ajustes da pipeline
 
-**Atualização de foco:** para avaliar a pipeline de pesquisa, use primeiro o [parecer centrado em Pipeline - Passo a Passo.ipynb](REVISAO_PIPELINE_PASSO_A_PASSO.md). Ele detalha os recursos já implementados, reavalia a rodada salva de 70 perguntas e identifica uma inconsistência de preparação reproduzível. As diferenças da API discutidas neste documento são questões de integração; não são limitações internas do notebook.
+**Atualização de foco:** para avaliar a pipeline de pesquisa, use primeiro o [parecer centrado em Pipeline.ipynb](REVISAO_PIPELINE_PASSO_A_PASSO.md). Ele detalha os recursos já implementados, reavalia a rodada salva de 70 perguntas e identifica uma inconsistência de preparação reproduzível. As diferenças da API discutidas neste documento são questões de integração; não são limitações internas do notebook.
 
 Data: 29/10/2026. Escopo: referências locais em `tcc`, notebook passo a passo, integração com `TCC.ipynb` e réplica da API.
 

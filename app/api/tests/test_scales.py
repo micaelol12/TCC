@@ -56,7 +56,7 @@ class ScaleTests(unittest.TestCase):
         cls.ns = carregar_pipeline_notebook()
 
     def test_initial_notebook_cell_initializes_helpers_in_the_kernel_namespace(self):
-        notebook = json.loads((ROOT / 'Pipeline - Passo a Passo.ipynb').read_text(encoding='utf-8'))
+        notebook = json.loads((ROOT / 'Pipeline.ipynb').read_text(encoding='utf-8'))
         kernel = {'__name__': '__main__'}
         exec(''.join(notebook['cells'][0]['source']), kernel)
         self.assertIn('_score_campo', kernel)
@@ -69,7 +69,7 @@ class ScaleTests(unittest.TestCase):
         self.assertNotIn('registros_playground', kernel)
 
     def test_reported_decision_example_runs_without_the_intermediate_helper_cells(self):
-        notebook = json.loads((ROOT / 'Pipeline - Passo a Passo.ipynb').read_text(encoding='utf-8'))
+        notebook = json.loads((ROOT / 'Pipeline.ipynb').read_text(encoding='utf-8'))
         sources = [''.join(c['source']) for c in notebook['cells'] if c['cell_type'] == 'code']
         example = next(s for s in sources if 'def distribuicao_simulada(' in s)
         decision = next(s for s in sources if s.startswith('decisao_exemplo = decidir_jev('))

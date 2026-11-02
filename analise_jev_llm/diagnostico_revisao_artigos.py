@@ -38,7 +38,7 @@ def main():
     output = {
         "scope": "Entradas sintéticas; verifica comportamento do código, não acurácia semântica.",
         "source_sha256": {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in (
-            "Pipeline - Passo a Passo.ipynb", "app/api/app/pipeline/aggregation.py",
+            "Pipeline.ipynb", "app/api/app/pipeline/aggregation.py",
             "app/api/app/pipeline/domain.py", "app/api/analysis-config.json")},
         "api_defaults": config.model_dump(mode="json", exclude={"escala"}),
     }
@@ -68,7 +68,7 @@ def main():
         "notebook": {k: notebook[k] for k in ("índice A", "cobertura", "chunks com nível",
                                              "IC95 inferior", "IC95 superior")},
     }
-    nb = json.loads((ROOT / "Pipeline - Passo a Passo.ipynb").read_text(encoding="utf-8"))
+    nb = json.loads((ROOT / "Pipeline.ipynb").read_text(encoding="utf-8"))
     configs = []
     for index, cell in enumerate(nb["cells"]):
         if cell["cell_type"] != "code":

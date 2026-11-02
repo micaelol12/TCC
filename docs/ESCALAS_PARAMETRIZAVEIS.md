@@ -1,6 +1,6 @@
 # Escalas ordinais parametrizáveis
 
-Implementação validada localmente em 22/10/2026. A fonte de verdade é `Pipeline - Passo a Passo.ipynb`: contrato, rubricas completas, classificação, evidências, agregação, comparação e apresentação estão no próprio notebook. Não há importação de regras da API. Saídas afetadas pela alteração foram limpas; demonstrações são identificadas como simulações.
+Implementação validada localmente em 22/10/2026. A fonte de verdade é `Pipeline.ipynb`: contrato, rubricas completas, classificação, evidências, agregação, comparação e apresentação estão no próprio notebook. Não há importação de regras da API. Saídas afetadas pela alteração foram limpas; demonstrações são identificadas como simulações.
 
 ## Uso no notebook
 

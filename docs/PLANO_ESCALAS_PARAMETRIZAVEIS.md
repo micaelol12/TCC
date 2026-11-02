@@ -6,7 +6,7 @@ Data: 22/10/2026. Estado: implementado e validado localmente com provedores simu
 
 Permitir que o pipeline receba um objeto de escala, inicialmente com configurações de cinco e nove níveis, e que outras escalas possam ser experimentadas sem duplicar o algoritmo.
 
-O [Pipeline - Passo a Passo.ipynb](<C:/Users/User/Desktop/TCC/Pipeline - Passo a Passo.ipynb>) será a fonte de verdade. Todas as definições próprias necessárias à execução do pipeline e à avaliação das escalas estarão nele: contrato, validação, escalas, rubricas, normalização, integração JEV/LLM, agregação, evidências e apresentação dos resultados. Bibliotecas externas e arquivos de dados continuam sendo dependências normais.
+O [Pipeline.ipynb](<C:/Users/User/Desktop/TCC/Pipeline.ipynb>) será a fonte de verdade. Todas as definições próprias necessárias à execução do pipeline e à avaliação das escalas estarão nele: contrato, validação, escalas, rubricas, normalização, integração JEV/LLM, agregação, evidências e apresentação dos resultados. Bibliotecas externas e arquivos de dados continuam sendo dependências normais.
 
 A ordem de implementação será **notebook → experimentos no TCC → API → app**. O notebook não importará regras, rubricas ou funções de domínio da API. A aplicação receberá posteriormente uma réplica da implementação validada; seu runtime não executará notebooks.
 
