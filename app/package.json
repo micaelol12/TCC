@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "npm run dev --workspace=8values-textos",
     "dev:lab": "npm run dev:lab --workspace=8values-textos",
+    "api": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-api.ps1",
     "build:lab": "npm run build:lab --workspace=8values-textos && npm run build:lab --workspace=8values-extension",
     "package:lab": "npm run package:lab --workspace=8values-extension",
     "api:lab": "powershell -NoProfile -File scripts/start-api-lab.ps1",

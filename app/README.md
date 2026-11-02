@@ -42,6 +42,8 @@ python -m pip install -r requirements.txt
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
+Com o ambiente Python preparado, você também pode iniciar a API normal na pasta `app` com `npm run api`. O script usa o Python de `api/.venv` quando disponível, desativa os controles Lab e inicia na porta 8000.
+
 A API carrega automaticamente o `.env` na raiz do projeto TCC e, se existir, `app/api/.env`. Configure `TYPESAFE_API_KEY` e `MARITACA_API_KEY` nesses arquivos. A prioridade é: variáveis já definidas no processo, depois `app/api/.env`, depois o `.env` da raiz. Não é necessário exportar as chaves no terminal. Reinicie a API depois de alterar o arquivo; no painel da extensão, use **Verificar conexão e modos**.
 
 O Vite abre o frontend e encaminha `/api` à porta 8000. O workspace reúne `web`, `shared` e `extension`; instale as dependências na pasta `app`. Para servir um único pacote web, execute `npm run build --workspace=8values-textos` em `app` e inicie a API; ela servirá `web/dist` quando a pasta existir. `GET /api/capabilities` indica quais modos estão disponíveis conforme as chaves configuradas. Sem chaves, o questionário funciona e a análise fica indisponível.
