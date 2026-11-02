@@ -1,6 +1,6 @@
 # 8values Lab — versão de teste
 
-Todos os parâmetros do algoritmo também podem ser definidos na versão oficial pelo arquivo [`api/analysis-config.json`](api/analysis-config.json). O Lab continua usando configuração por análise e padrões próprios; veja o [guia de configuração oficial](CONFIGURACAO.md) para transferir um preset.
+O Lab e a versão oficial usam o mesmo arquivo [`api/analysis-config.json`](api/analysis-config.json) como fonte das definições e configuração inicial. O Lab permite experimentar alterações por análise e salvar presets; veja o [guia de configuração](CONFIGURACAO.md). Não há rubricas ou descrições dos polos independentes no Python.
 
 O site e a extensão Lab permitem alterar os parâmetros da próxima análise, escolher modelos permitidos, salvar/importar/exportar configurações e comparar quaisquer análises diferentes do histórico, inclusive de textos distintos. O nome **Versão de teste**, a configuração efetiva e seu identificador acompanham os resultados experimentais.
 
@@ -49,17 +49,19 @@ O Lab inicia sem nenhuma chave pré-cadastrada e ignora `TYPESAFE_API_KEY`, `MAR
 
 O Google informa que `gemini-3.7-flash` é redirecionado para `gemini-3.8-flash`. A escolha solicitada e o modelo efetivamente retornado ficam registrados separadamente. [Gemini 3.7 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash), [modelos Maritaca](https://docs.maritaca.ai/pt/modelos). O adaptador Gemini usa o endpoint REST de geração com JSON Schema e valida a saída com o mesmo contrato de eixos e evidências do Sabiá. [Referência de geração Gemini](https://ai.google.dev/api/generate-content).
 
-| Variável | Padrão | Efeito |
+Os valores iniciais vêm do JSON. Estas variáveis fazem substituições opcionais na execução do Lab:
+
+| Variável | Campo no JSON | Efeito |
 |---|---|---|
-| `CHUNK_TOKENS` | 600 | Tamanho aproximado dos trechos, de 100 a 2.000 tokens |
-| `JEV_POLARITY_PRIMITIVE` | score | Classificação da polaridade pelo JEV: `score` ou `choice` |
-| `JEV_DECISION_RULE` | nivel | Regra JEV: `nivel` (MAP global) ou `polo_primeiro` (experimental) |
-| `JEV_RELEVANCE_MARGIN_MIN` | 0.60 | Relevância ambígua abaixo da margem |
-| `JEV_LEVEL_CONFIDENCE_MIN` | 0.50 | Nível com confiança insuficiente abaixo do limiar |
-| `JEV_DIRECTION_MARGIN_MIN` | 0.20 | Direção ambígua abaixo da margem |
-| `MIN_VALID_CHUNKS` | 16 | Corte para indicar evidência suficiente |
-| `BOOTSTRAP_SAMPLES` | 2000 | Reamostragens do intervalo entre trechos, de 200 a 10.000 |
-| `BOOTSTRAP_SEED` | 42 | Semente do bootstrap, de 0 a 2³² − 1 |
+| `CHUNK_TOKENS` | `chunk_tokens` | Tamanho aproximado dos trechos, de 100 a 2.000 tokens |
+| `JEV_POLARITY_PRIMITIVE` | `primitiva_polaridade` | Classificação da polaridade pelo JEV: `score` ou `choice` |
+| `JEV_DECISION_RULE` | `regra_decisao` | Regra JEV: `nivel` (MAP global) ou `polo_primeiro` (experimental) |
+| `JEV_RELEVANCE_MARGIN_MIN` | `relevance_margin_min` | Relevância ambígua abaixo da margem |
+| `JEV_LEVEL_CONFIDENCE_MIN` | `level_confidence_min` | Nível com confiança insuficiente abaixo do limiar |
+| `JEV_DIRECTION_MARGIN_MIN` | `direction_margin_min` | Direção ambígua abaixo da margem |
+| `MIN_VALID_CHUNKS` | `min_valid_chunks` | Corte para indicar evidência suficiente |
+| `BOOTSTRAP_SAMPLES` | `bootstrap_samples` | Reamostragens do intervalo entre trechos, de 200 a 10.000 |
+| `BOOTSTRAP_SEED` | `bootstrap_seed` | Semente do bootstrap, de 0 a 2³² − 1 |
 
 Os limiares JEV acionam revisão no modo médio e motivos de incerteza no modo baixo. No modo alto, eles não se aplicam. O corte de evidência suficiente não muda a média. A semente reproduz o bootstrap, mas não garante respostas idênticas dos provedores. As faixas permitidas são limites de engenharia; mudar valores não equivale a validar cientificamente um novo método.
 

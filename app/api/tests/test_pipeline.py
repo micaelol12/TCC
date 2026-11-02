@@ -52,7 +52,7 @@ class DomainTests(unittest.TestCase):
     def test_polarity_primitive_builds_and_decodes_the_matching_provider_contract(self):
         from typesafe_sdk import Choice, Score
         from app.experiment_config import ExperimentConfig
-        from app.polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
+        from app.analysis_defaults import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
         for scale in (ESCALA_5_NIVEIS, ESCALA_9_NIVEIS):
             for primitive, question_type in (("score", Score), ("choice", Choice)):
                 with self.subTest(scale=scale.id, primitive=primitive):

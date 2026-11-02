@@ -5,9 +5,14 @@ export const storagePrefix = isLabBuild ? '8values-lab' : '8values'
 
 export const numericFields = ['chunk_tokens', 'relevance_margin_min', 'level_confidence_min', 'direction_margin_min', 'min_valid_chunks', 'bootstrap_samples', 'bootstrap_seed'] as const
 export type NumericField = typeof numericFields[number]
+export type AxisDefinition = {
+  effect: string; name: string; topic: string; note: string;
+  poles: Record<'A' | 'B', { id: string; label: string; description: string }>
+}
+export type AxisDefinitions = Record<'economic' | 'diplomatic' | 'state' | 'society', AxisDefinition>
 export const evidenceDefaults = { semantic_evidence_check: false, jev_evidence_search: false, evidence_existence_min: 0.7 }
 export const evidenceFields = ['semantic_evidence_check', 'jev_evidence_search', 'evidence_existence_min'] as const
-export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string; contexto_posicao_politica?: string; escala?: OrdinalScale; primitiva_polaridade?: 'score' | 'choice'; regra_decisao?: 'nivel' | 'polo_primeiro'; chunk_strategy?: 'sentencas' | 'tokens' } & Partial<typeof evidenceDefaults>
+export type ExperimentConfig = Record<NumericField, number> & { jev_model: string; llm_model: string; contexto_posicao_politica?: string; axis_specs?: AxisDefinitions; escala?: OrdinalScale; primitiva_polaridade?: 'score' | 'choice'; regra_decisao?: 'nivel' | 'polo_primeiro'; chunk_strategy?: 'sentencas' | 'tokens' } & Partial<typeof evidenceDefaults>
 export type ConfigRange = { min: number; max: number; step: number }
 export type ExperimentCapabilities = {
   enabled: true; config_version: '1'; defaults: ExperimentConfig;
@@ -20,6 +25,7 @@ export type ExperimentCapabilities = {
 const fields = [...numericFields, 'jev_model', 'llm_model']
 export const configLabels: Record<keyof ExperimentConfig, string> = {
   contexto_posicao_politica: 'Contexto da classificação política',
+  axis_specs: 'Definições dos eixos e polos',
   chunk_strategy: 'Estratégia de segmentação',
   escala: 'Escala ordinal',
   primitiva_polaridade: 'Classificação da polaridade no JEV',
@@ -31,8 +37,22 @@ export const configLabels: Record<keyof ExperimentConfig, string> = {
   bootstrap_seed: 'Semente da reamostragem', jev_model: 'Modelo JEV', llm_model: 'Modelo LLM',
 }
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
+export function isAxisDefinitions(value: unknown): value is AxisDefinitions {
+  const axes = ['economic', 'diplomatic', 'state', 'society']
+  const text = (item: unknown) => typeof item === 'string' && !!item.trim()
+  return object(value) && Object.keys(value).sort().join(',') === axes.sort().join(',') && axes.every(axis => {
+    const spec = value[axis]
+    if (!object(spec) || Object.keys(spec).sort().join(',') !== 'effect,name,note,poles,topic' || !['effect', 'name', 'topic', 'note'].every(key => text(spec[key])) || !object(spec.poles)) return false
+    const poles = spec.poles
+    return Object.keys(poles).sort().join(',') === 'A,B' && ['A', 'B'].every(key => {
+      const pole = poles[key]
+      return object(pole) && Object.keys(pole).sort().join(',') === 'description,id,label' && ['id', 'label', 'description'].every(field => text(pole[field]))
+    })
+  })
+}
 export function isExperimentConfig(value: unknown): value is ExperimentConfig {
-  if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields, 'contexto_posicao_politica', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].includes(name)) || fields.some(name => !(name in value))) return false
+  if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields, 'contexto_posicao_politica', 'axis_specs', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].includes(name)) || fields.some(name => !(name in value))) return false
+  if (value.axis_specs !== undefined && !isAxisDefinitions(value.axis_specs)) return false
   if (value.contexto_posicao_politica !== undefined && (typeof value.contexto_posicao_politica !== 'string' || !value.contexto_posicao_politica.trim() || Array.from(value.contexto_posicao_politica).length > 20000)) return false
   if (value.chunk_strategy !== undefined && !['sentencas', 'tokens'].includes(value.chunk_strategy as string)) return false
   if (value.primitiva_polaridade !== undefined && !['score', 'choice'].includes(value.primitiva_polaridade as string)) return false
@@ -93,6 +113,7 @@ export function importPreset(value: unknown, caps: ExperimentCapabilities): Expe
   if (value.format_version === 2 && !config.escala) throw new Error('Preset sem snapshot da escala.')
   const legacy = caps.scales?.find(s => s.id === 'ordinal_9_v1')
   return { ...evidenceDefaults, primitiva_polaridade: 'score', regra_decisao: 'nivel', chunk_strategy: 'tokens',
+    ...(caps.defaults.axis_specs ? { axis_specs: structuredClone(caps.defaults.axis_specs) } : {}),
     ...(caps.defaults.contexto_posicao_politica !== undefined ? { contexto_posicao_politica: caps.defaults.contexto_posicao_politica } : {}),
     ...config, ...(!config.escala && legacy ? { escala: structuredClone(legacy) } : {}) }
 }

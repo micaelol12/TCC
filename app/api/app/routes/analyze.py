@@ -12,7 +12,7 @@ from ..lab_credentials import effective_keys, model_catalog
 from ..pipeline.strategies import classify_chunk
 from ..pipeline.aggregation import aggregate
 from ..experiment_config import resolve_config, config_ranges, config_hash, CONFIG_VERSION
-from ..polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
+from ..analysis_defaults import configured_scales
 
 router = APIRouter(prefix="/api")
 slots = asyncio.Semaphore(settings.concurrent_requests)
@@ -46,7 +46,7 @@ def capabilities(request: Request):
             ranges=config_ranges(settings.max_tokens, settings.max_chunks),
             allowed_models={"jev": list(settings.allowed_jev_models), "llm": list(catalog)}, model_providers=catalog,
             providers={provider: bool(key) for provider, key in keys.items()}, execution_storage=True,
-            scales=[s.model_dump(mode="json") for s in (ESCALA_5_NIVEIS, ESCALA_9_NIVEIS)])
+            scales=[s.model_dump(mode="json") for s in configured_scales(settings.escala)])
     return result
 
 
@@ -89,7 +89,7 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     recent_requests.append(now)
     daily["calls"] += maximum_calls
     jev = jev_client(keys['typesafe'], config.jev_model) if needs_jev else None
-    questions = jev_questions(config.escala, config.primitiva_polaridade, config.contexto_posicao_politica) if mode != "high" else None
+    questions = jev_questions(config.escala, config.primitiva_polaridade, config.contexto_posicao_politica, config.axis_specs) if mode != "high" else None
     llm = (gemini_client if provider == 'gemini' else llm_client)(keys[provider], settings.timeout_seconds) if mode != "low" else None
     semaphore = asyncio.Semaphore(settings.concurrent_chunks)
 

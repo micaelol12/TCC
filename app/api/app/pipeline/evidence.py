@@ -10,7 +10,7 @@ from copy import deepcopy
 from typesafe_sdk import Choice, Noul, NoulCriteria
 from .sentences import intervalos_sentencas
 
-from ..polarity import CONTEXTO_POSICAO_POLITICA
+from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA
 
 RELATIONS = {
     "sustenta": "A citação, no contexto da análise, sustenta a posição e a intensidade classificadas.",

@@ -7,7 +7,8 @@ from .validation import validate_answer
 from .clients import jev_client, jev_questions, llm_client
 from .evidence import audit_evidence
 from .domain import _score_evidencia_confere
-from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, instrucoes_escala
+from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL
+from ..prompting import instrucoes_escala
 from .validation import schema_for
 
 JEV_CONFIG = {
@@ -52,10 +53,10 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
     return decisions, model
 
 
-async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
+async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
     escala = ESCALA_ATUAL if escala is None else escala
-    rubrics = {axis: {"relevancia": criar_questoes_eixo(axis, contexto_posicao_politica=contexto_posicao_politica),
-                      "polaridade": criar_rubrica_polaridade_ordinal(axis, escala=escala, contexto_posicao_politica=contexto_posicao_politica)} for axis in axes}
+    rubrics = {axis: {"relevancia": criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica),
+                      "polaridade": criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)} for axis in axes}
     prompt = json.dumps({"rubricas": rubrics, "texto": text}, ensure_ascii=False)
     schema = schema_for(axes, escala)
     for attempt in range(2):
@@ -78,7 +79,7 @@ async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, co
     decisions, calls, models = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
     if config and (config.semantic_evidence_check or config.jev_evidence_search):
         decisions, extra_calls, extra_models = await audit_evidence(
-            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, escala=config.escala, contexto_posicao_politica=config.contexto_posicao_politica) for axis in AXIS_SPECS},
+            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, axis_specs=config.axis_specs, escala=config.escala, contexto_posicao_politica=config.contexto_posicao_politica) for axis in AXIS_SPECS},
             _score_evidencia_confere, semantic_check=config.semantic_evidence_check,
             quote_search=config.jev_evidence_search, existence_min=config.evidence_existence_min,
             contexto_posicao_politica=config.contexto_posicao_politica)
@@ -91,9 +92,10 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
     calls = {"jev": 0, "llm": 0}
     models = []
     contexto = config.contexto_posicao_politica if config else CONTEXTO_POSICAO_POLITICA
+    axis_specs = config.axis_specs if config else AXIS_SPECS
     if mode == "high":
         calls["llm"] = 1
-        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None, contexto)
+        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None, contexto, axis_specs)
         for decision in result.values():
             decision["methods"] = ["llm"]
         models.append(model)
@@ -113,7 +115,7 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
         requested = [axis for axis, d in decisions.items() if d["reason"]]
         if requested:
             calls["llm"] = 1
-            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None, contexto)
+            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None, contexto, axis_specs)
             models.append(model)
             for axis in requested:
                 if "jev_diagnostic" in decisions[axis]:

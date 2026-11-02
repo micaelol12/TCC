@@ -50,6 +50,11 @@ def public_request(payload, settings):
                     pass
             elif name == 'contexto_posicao_politica' and isinstance(value, str) and 0 < len(value) <= 20000 and value.strip():
                 config[name] = value
+            elif name == 'axis_specs' and isinstance(value, dict):
+                try:
+                    config[name] = ExperimentConfig(axis_specs=value).model_dump(mode='json')[name]
+                except ValueError:
+                    pass
             elif name == 'jev_model' and value in settings.allowed_jev_models or name == 'llm_model' and isinstance(value, str) and value in model_catalog(settings):
                 config[name] = value
             elif name in ('semantic_evidence_check', 'jev_evidence_search') and type(value) is bool:

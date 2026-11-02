@@ -2,11 +2,15 @@
 import hashlib
 import json
 from typing import Annotated, Literal
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from .polarity import CONTEXTO_POSICAO_POLITICA, EscalaOrdinal, ESCALA_9_NIVEIS, validar_escala
+from types import MappingProxyType
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_serializer, model_validator
+from .analysis_defaults import default_value
+from .polarity import DefinicaoEixo, EIXOS_ESCALA
+from .analysis_defaults import CONTEXTO_POSICAO_POLITICA
+from .polarity import EscalaOrdinal, validar_escala
 
 CONFIG_VERSION = "1"
-PIPELINE_VERSION = "jev-escalas-ordinal-12"
+PIPELINE_VERSION = "jev-escalas-ordinal-13"
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
 Positive = Annotated[int, Field(strict=True, ge=1)]
@@ -18,8 +22,9 @@ PoliticalContext = Annotated[str, Field(strict=True, min_length=1, max_length=20
 
 class ExperimentConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
-    escala: EscalaOrdinal = Field(default_factory=lambda: validar_escala(ESCALA_9_NIVEIS))
-    contexto_posicao_politica: PoliticalContext = CONTEXTO_POSICAO_POLITICA
+    escala: EscalaOrdinal = Field(default_factory=lambda: validar_escala(default_value('escala')))
+    contexto_posicao_politica: PoliticalContext = Field(default_factory=lambda: default_value('contexto_posicao_politica'), validate_default=True)
+    axis_specs: dict[str, DefinicaoEixo] = Field(default_factory=lambda: default_value('axis_specs'), validate_default=True)
     primitiva_polaridade: Literal["score", "choice"] = "score"
     regra_decisao: Literal["nivel", "polo_primeiro"] = "nivel"
     chunk_tokens: ChunkSize = 600
@@ -36,6 +41,17 @@ class ExperimentConfig(BaseModel):
     jev_evidence_search: StrictBool = False
     evidence_existence_min: Probability = 0.70
 
+    @model_validator(mode='after')
+    def complete_axes(self):
+        if set(self.axis_specs) != set(EIXOS_ESCALA):
+            raise ValueError('As definições devem cobrir exatamente os quatro eixos.')
+        object.__setattr__(self, 'axis_specs', MappingProxyType(dict(self.axis_specs)))
+        return self
+
+    @field_serializer('axis_specs')
+    def serialize_axes(self, value):
+        return {axis: spec.model_dump(mode='json') for axis, spec in value.items()}
+
     def jev_config(self):
         return {"escala": self.escala.model_dump(mode="json"), "tipo_relevancia": "choice", "primitiva_polaridade": self.primitiva_polaridade,
                 "regra_decisao": self.regra_decisao,
@@ -48,6 +64,7 @@ class ExperimentOverrides(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     escala: EscalaOrdinal | None = None
     contexto_posicao_politica: PoliticalContext | None = None
+    axis_specs: dict[str, DefinicaoEixo] | None = None
     primitiva_polaridade: Literal["score", "choice"] | None = None
     regra_decisao: Literal["nivel", "polo_primeiro"] | None = None
     chunk_tokens: ChunkSize | None = None
@@ -68,22 +85,24 @@ class ExperimentOverrides(BaseModel):
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
     effective = config.model_dump()
     if pipeline_version != PIPELINE_VERSION:
+        effective.pop('axis_specs', None)
+    if pipeline_version not in ('jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.contexto_posicao_politica != CONTEXTO_POSICAO_POLITICA:
             raise ValueError("Versão histórica da API não suporta contexto configurável.")
         effective.pop("contexto_posicao_politica", None)
-    if pipeline_version not in ("jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.chunk_strategy != "tokens":
             raise ValueError("Versão histórica da API não suporta segmentação por sentenças.")
         effective.pop("chunk_strategy", None)
-    if pipeline_version not in ("jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.regra_decisao != "nivel":
             raise ValueError("Versão histórica da API não suporta polo_primeiro.")
         effective.pop("regra_decisao", None)
-    if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.primitiva_polaridade != "score":
             raise ValueError("Versão histórica da API não suporta polaridade Choice.")
         effective.pop("primitiva_polaridade", None)
-    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", PIPELINE_VERSION):
+    if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         effective.pop("escala", None)
     # Preserve hashes of saved analyses from before the optional evidence fields.
     if pipeline_version == "jev-2-polos-mvp-1":

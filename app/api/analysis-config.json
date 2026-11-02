@@ -1,5 +1,5 @@
 {
-  "contexto_posicao_politica": "Contexto da análise: os textos fornecidos apresentam sempre posições políticas de alguém. Classifique as posições políticas expressas no trecho, independentemente de quem as enuncia, incluindo falas citadas ou atribuídas a terceiros, sem exigir adesão do autor ou narrador. Interprete as ideias apresentadas como posições expressas, mesmo quando o texto usa linguagem impessoal, descritiva ou de definição de uma ideologia, sem exigir declaração explícita de apoio. Não classifique como sem posição apenas por esse formato. Interprete negações e críticas pelo seu sentido, sem transformar rejeição em defesa. Quando houver posições opostas, avalie sua predominância conforme as rubricas. Avalie cada eixo separadamente, sem inventar posições sobre temas ausentes nem intensidade não sustentada pelo conteúdo. ",
+  "contexto_posicao_politica": "Contexto da análise: os textos fornecidos apresentam sempre posições políticas de alguém. Classifique as posições políticas expressas no trecho, independentemente de quem as enuncia, incluindo falas citadas ou atribuídas a terceiros, sem exigir adesão do autor ou narrador. Interprete as ideias apresentadas como posições expressas, mesmo quando o texto usa linguagem impessoal, descritiva ou de definição de uma ideologia, sem exigir declaração explícita de apoio. Não classifique como sem posição apenas por esse formato. Interprete negações e críticas pelo seu sentido, sem transformar rejeição em defesa. Quando houver posições opostas, avalie sua predominância conforme as rubricas. Avalie cada eixo separadamente, sem inventar posições sobre temas ausentes nem intensidade não sustentada pelo conteúdo.Preserve a distinção entre defender e rejeitar uma posição. Não atribua ao enunciador a posição rejeitada nem converta automaticamente essa rejeição em defesa do polo oposto. Só atribua direção e intensidade quando sustentadas pelo sentido do trecho e pelas rubricas.",
   "primitiva_polaridade": "score",
   "regra_decisao": "polo_primeiro",
   "chunk_tokens": 500,
@@ -86,63 +86,63 @@
     "rubricas_por_eixo": {
       "economic": {
         "polo_B_muito_forte": {
-          "situacao": "Propõe reduzir de forma ampla e estrutural o papel do Estado na economia, transferindo-o ao mercado.",
+          "situacao": "Propõe ou caracteriza a redução ampla e estrutural do papel do Estado na economia em favor do mercado.",
           "exemplos": [
             "privatizar a maior parte das empresas e dos serviços estatais",
             "cortar amplamente tributos e gastos públicos e desregulamentar a economia em geral"
           ]
         },
         "polo_B_forte": {
-          "situacao": "Propõe um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
+          "situacao": "Propõe ou caracteriza um conjunto abrangente de reformas de mercado em vários setores, preservando serviços públicos e funções regulatórias essenciais.",
           "exemplos": [
             "privatizar empresas de vários setores mantendo saúde e educação públicas",
             "reduzir de modo coordenado barreiras de entrada e regulações em diversos mercados"
           ]
         },
         "polo_B_moderado": {
-          "situacao": "Propõe medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
+          "situacao": "Propõe ou caracteriza medidas pontuais ou graduais na direção do mercado, mantendo a estrutura existente.",
           "exemplos": [
             "conceder à iniciativa privada a gestão de alguns serviços ou obras",
             "simplificar tributos ou conter o crescimento do gasto público"
           ]
         },
         "polo_B_leve": {
-          "situacao": "Defende uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
+          "situacao": "Expressa ou caracteriza uma preferência limitada por soluções de mercado, com ajuste de alcance mínimo e sem reforma de um setor.",
           "exemplos": [
             "dar preferência a fornecedores privados em um pequeno projeto piloto",
             "reduzir uma exigência burocrática específica para pequenos negócios"
           ]
         },
         "sem_posicao": {
-          "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+          "situacao": "O trecho trata do tema, mas não apresenta proposta, ideia, modelo ou arranjo com características direcionais de um polo, ou combina os dois sem predominância. Dados, diagnósticos e menções temáticas só entram aqui quando não caracterizam direção. A forma descritiva ou de definição, por si só, não indica ausência de posição.",
           "exemplos": [
             "apresentar dados ou diagnóstico sobre emprego, renda ou contas públicas",
             "prometer crescimento ou eficiência sem dizer se o meio é o Estado ou o mercado"
           ]
         },
         "polo_A_leve": {
-          "situacao": "Defende uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
+          "situacao": "Expressa ou caracteriza uma preferência limitada pela redistribuição, com ajuste de alcance mínimo e sem ampliar substancialmente programas ou tributos.",
           "exemplos": [
             "priorizar famílias de menor renda nas vagas já existentes de um benefício",
             "corrigir pontualmente o cadastro de um programa para incluir famílias pobres excluídas"
           ]
         },
         "polo_A_moderado": {
-          "situacao": "Propõe medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
+          "situacao": "Propõe ou caracteriza medidas pontuais ou graduais na direção da igualdade econômica, mantendo a estrutura existente.",
           "exemplos": [
             "ampliar de forma focalizada um programa social ou serviço público",
             "tornar um tributo específico mais progressivo"
           ]
         },
         "polo_A_forte": {
-          "situacao": "Propõe reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
+          "situacao": "Propõe ou caracteriza reformas redistributivas abrangentes em vários instrumentos, preservando a economia mista e a propriedade privada.",
           "exemplos": [
             "combinar reforma tributária progressiva, ampliação de serviços universais e proteção trabalhista",
             "ampliar de forma coordenada a redistribuição de renda e a provisão pública em vários setores"
           ]
         },
         "polo_A_muito_forte": {
-          "situacao": "Propõe ampliar de forma ampla e estrutural o papel do Estado para redistribuir renda, riqueza ou propriedade.",
+          "situacao": "Propõe ou caracteriza a ampliação ampla e estrutural do papel do Estado para redistribuir renda, riqueza ou propriedade.",
           "exemplos": [
             "estatizar setores inteiros da economia",
             "redistribuir amplamente renda, riqueza ou propriedade, ou planejar centralmente a economia"
@@ -151,63 +151,63 @@
       },
       "diplomatic": {
         "polo_B_muito_forte": {
-          "situacao": "Propõe subordinar amplamente compromissos e instituições internacionais ao interesse nacional, ou ampliar fortemente o poder militar e a disposição de usar a força.",
+          "situacao": "Propõe ou caracteriza a subordinação ampla de compromissos e instituições internacionais ao interesse nacional, ou forte expansão do poder militar e da disposição de usar a força.",
           "exemplos": [
             "sair de organismos ou tratados internacionais",
             "ampliar fortemente as forças armadas para impor interesses nacionais"
           ]
         },
         "polo_B_forte": {
-          "situacao": "Propõe recuperar autonomia em várias áreas de política externa ou ampliar substancialmente a defesa, mantendo participação em instituições internacionais.",
+          "situacao": "Propõe ou caracteriza a recuperação de autonomia em várias áreas de política externa ou a ampliação substancial da defesa, mantendo participação em instituições internacionais.",
           "exemplos": [
             "renegociar vários tratados para recuperar competências nacionais sem abandonar os organismos",
             "expandir significativamente capacidades militares mantendo compromissos diplomáticos"
           ]
         },
         "polo_B_moderado": {
-          "situacao": "Propõe priorizar a autonomia nacional ou a defesa em questões específicas, mantendo os compromissos internacionais existentes.",
+          "situacao": "Propõe ou caracteriza a prioridade da autonomia nacional ou da defesa em questões específicas, mantendo os compromissos internacionais existentes.",
           "exemplos": [
             "renegociar um acordo considerado desfavorável ao país",
             "modernizar a defesa nacional"
           ]
         },
         "polo_B_leve": {
-          "situacao": "Defende prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
+          "situacao": "Expressa ou caracteriza prioridade nacional em um ponto restrito de um compromisso internacional, com alcance mínimo e sem alterar a orientação externa.",
           "exemplos": [
             "reservar uma exceção nacional estreita em um acordo internacional",
             "condicionar uma recomendação internacional específica à aprovação local"
           ]
         },
         "sem_posicao": {
-          "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+          "situacao": "O trecho trata do tema, mas não apresenta proposta, ideia, modelo ou arranjo com características direcionais de um polo, ou combina os dois sem predominância. Dados, diagnósticos e menções temáticas só entram aqui quando não caracterizam direção. A forma descritiva ou de definição, por si só, não indica ausência de posição.",
           "exemplos": [
             "descrever relações diplomáticas ou o comércio exterior",
             "mencionar soberania setorial (alimentar, energética, digital) sem conflito entre autonomia nacional e compromissos internacionais"
           ]
         },
         "polo_A_leve": {
-          "situacao": "Defende compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
+          "situacao": "Expressa ou caracteriza compromisso internacional de alcance mínimo, consultivo ou voluntário, com preferência explícita pela cooperação.",
           "exemplos": [
             "aderir voluntariamente a uma recomendação multilateral em um tema restrito",
             "apoiar um fórum consultivo internacional sem delegar decisões"
           ]
         },
         "polo_A_moderado": {
-          "situacao": "Propõe ampliar a cooperação internacional ou a solução negociada de conflitos em questões específicas.",
+          "situacao": "Propõe ou caracteriza a ampliação da cooperação internacional ou a solução negociada de conflitos em questões específicas.",
           "exemplos": [
             "aderir a um acordo multilateral",
             "priorizar a mediação diplomática em conflitos"
           ]
         },
         "polo_A_forte": {
-          "situacao": "Propõe integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
+          "situacao": "Propõe ou caracteriza integração vinculante em várias áreas ou delegação delimitada de competências a órgãos comuns, preservando a soberania nacional em áreas centrais.",
           "exemplos": [
             "estabelecer regras regionais vinculantes em comércio, migração e meio ambiente",
             "delegar competências específicas a um tribunal regional com limites definidos"
           ]
         },
         "polo_A_muito_forte": {
-          "situacao": "Propõe transferir amplamente competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
+          "situacao": "Propõe ou caracteriza a transferência ampla de competências a instituições supranacionais, integração política profunda entre países ou renúncia ao uso da força.",
           "exemplos": [
             "criar instituições comuns acima dos Estados nacionais",
             "reduzir amplamente as forças armadas em favor de mecanismos internacionais"
@@ -216,134 +216,210 @@
       },
       "state": {
         "polo_B_muito_forte": {
-          "situacao": "Propõe concentrar o poder político ou restringir amplamente liberdades civis e políticas.",
+          "situacao": "Propõe ou caracteriza concentração ampla ou absoluta do poder político ou restrição generalizada das liberdades civis e políticas, inclusive em regimes mantidos pela coerção.",
           "exemplos": [
             "permitir que o governo restrinja a oposição, a imprensa ou manifestações",
-            "ampliar de forma geral a vigilância e a censura"
+            "ampliar de forma geral a vigilância e a censura",
+            "descrever um regime com concentração absoluta do poder, mantido pela violência e imposição à sociedade"
           ]
         },
         "polo_B_forte": {
-          "situacao": "Propõe ampliar de modo abrangente poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
+          "situacao": "Propõe ou caracteriza a ampliação abrangente de poderes coercitivos em várias áreas, mantendo eleições, oposição e controle judicial.",
           "exemplos": [
             "ampliar poderes policiais, penas e vigilância em diversos âmbitos sob supervisão judicial",
             "expandir restrições de ordem pública em várias áreas mantendo garantias democráticas centrais"
           ]
         },
         "polo_B_moderado": {
-          "situacao": "Propõe ampliar poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
+          "situacao": "Propõe ou caracteriza a ampliação de poderes coercitivos, de fiscalização ou de punição do Estado em áreas específicas, mantendo as liberdades civis.",
           "exemplos": [
             "endurecer penas ou ampliar poderes da polícia",
             "ampliar a fiscalização estatal sobre condutas individuais numa área"
           ]
         },
         "polo_B_leve": {
-          "situacao": "Defende pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
+          "situacao": "Expressa ou caracteriza pequeno acréscimo explícito de autoridade ou controle sobre condutas em uma situação estritamente delimitada.",
           "exemplos": [
             "ampliar levemente uma multa administrativa por uma conduta específica",
             "exigir uma autorização adicional para uma atividade delimitada"
           ]
         },
         "sem_posicao": {
-          "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+          "situacao": "O trecho trata do tema, mas não apresenta proposta, ideia, modelo ou arranjo com características direcionais de um polo, ou combina os dois sem predominância. Dados, diagnósticos e menções temáticas só entram aqui quando não caracterizam direção. A forma descritiva ou de definição, por si só, não indica ausência de posição.",
           "exemplos": [
             "apresentar estatísticas de segurança ou da administração pública",
             "melhorar a gestão de serviços, inclusive de segurança, sem ampliar nem limitar poderes coercitivos ou liberdades"
           ]
         },
         "polo_A_leve": {
-          "situacao": "Defende ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
+          "situacao": "Expressa ou caracteriza ampliação mínima e delimitada de uma liberdade ou garantia individual, sem reforma institucional.",
           "exemplos": [
             "dispensar autorização prévia para uma atividade individual de alcance restrito",
             "reduzir pontualmente o prazo de retenção de um dado pessoal"
           ]
         },
         "polo_A_moderado": {
-          "situacao": "Propõe ampliar garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
+          "situacao": "Propõe ou caracteriza a ampliação de garantias individuais, transparência ou participação em áreas específicas, mantendo os poderes do Estado.",
           "exemplos": [
             "fortalecer o direito de defesa ou a proteção de dados pessoais",
             "ampliar a transparência ou a participação em conselhos"
           ]
         },
         "polo_A_forte": {
-          "situacao": "Propõe ampliar liberdades e limitar coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
+          "situacao": "Propõe ou caracteriza a ampliação de liberdades e a limitação da coerção de forma abrangente em várias áreas, preservando instituições de segurança e governo representativo.",
           "exemplos": [
             "reformar conjuntamente leis de vigilância, reunião e expressão para ampliar garantias",
             "reduzir vários poderes policiais e reforçar controle civil sem extinguir as instituições"
           ]
         },
         "polo_A_muito_forte": {
-          "situacao": "Propõe reduzir amplamente os poderes coercitivos do Estado ou descentralizar radicalmente o poder político.",
+          "situacao": "Propõe ou caracteriza a redução ampla dos poderes coercitivos do Estado ou a descentralização radical do poder político.",
           "exemplos": [
             "descriminalizar amplamente condutas individuais",
-            "desmontar de forma geral estruturas de vigilância e de polícia"
+            "desmontar de forma geral estruturas de vigilância e de polícia",
+            "descrever um modelo de poder político radicalmente descentralizado, com coerção estatal amplamente reduzida"
           ]
         }
       },
       "society": {
         "polo_B_muito_forte": {
-          "situacao": "Propõe que o Estado restaure ou imponha amplamente normas morais, religiosas ou familiares tradicionais.",
+          "situacao": "Propõe ou caracteriza a restauração ou imposição ampla pelo Estado de normas morais, religiosas ou familiares tradicionais.",
           "exemplos": [
             "orientar as políticas públicas por uma moral religiosa",
             "reverter amplamente, por meio da lei, mudanças recentes nos costumes"
           ]
         },
         "polo_B_forte": {
-          "situacao": "Propõe preservar ou restaurar valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
+          "situacao": "Propõe ou caracteriza a preservação ou restauração de valores tradicionais em várias instituições e políticas, mantendo pluralismo e direitos civis básicos.",
           "exemplos": [
             "combinar políticas de família, educação e cultura orientadas por valores tradicionais sem impor religião",
             "restringir várias mudanças nos costumes preservando liberdade de crença e organização"
           ]
         },
         "polo_B_moderado": {
-          "situacao": "Propõe preservar instituições, costumes ou valores tradicionais em temas específicos, ou só admitir mudanças graduais.",
+          "situacao": "Propõe ou caracteriza a preservação de instituições, costumes ou valores tradicionais em temas específicos, ou a aceitação apenas de mudanças graduais.",
           "exemplos": [
             "proteger uma tradição cultural ou religiosa específica",
             "exigir consulta às famílias antes de mudar conteúdos escolares sobre valores"
           ]
         },
         "polo_B_leve": {
-          "situacao": "Defende continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
+          "situacao": "Expressa ou caracteriza continuidade de um costume tradicional em situação restrita, sem impor normas gerais nem alterar direitos.",
           "exemplos": [
             "preservar uma cerimônia tradicional facultativa de uma comunidade",
             "manter um costume familiar numa atividade local sem obrigar adesão"
           ]
         },
         "sem_posicao": {
-          "situacao": "O trecho trata do tema, mas não defende nenhum dos polos: descreve, diagnostica, lista ações sem escolher entre os polos ou combina os dois sem predominância.",
+          "situacao": "O trecho trata do tema, mas não apresenta proposta, ideia, modelo ou arranjo com características direcionais de um polo, ou combina os dois sem predominância. Dados, diagnósticos e menções temáticas só entram aqui quando não caracterizam direção. A forma descritiva ou de definição, por si só, não indica ausência de posição.",
           "exemplos": [
             "descrever mudanças demográficas ou culturais",
             "propor investimentos em ciência, tecnologia, educação ou meio ambiente sem posição sobre valores e costumes"
           ]
         },
         "polo_A_leve": {
-          "situacao": "Defende pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
+          "situacao": "Expressa ou caracteriza pequena flexibilização de um costume ou papel social em situação restrita, sem reforma institucional ampla.",
           "exemplos": [
             "permitir uma alternativa facultativa a uma cerimônia tradicional local",
             "flexibilizar uma regra de vestuário associada a papéis de gênero numa instituição"
           ]
         },
         "polo_A_moderado": {
-          "situacao": "Propõe revisar normas, costumes ou papéis sociais em temas específicos.",
+          "situacao": "Propõe ou caracteriza a revisão de normas, costumes ou papéis sociais em temas específicos.",
           "exemplos": [
             "ampliar direitos de um grupo historicamente discriminado",
             "atualizar uma norma social específica"
           ]
         },
         "polo_A_forte": {
-          "situacao": "Propõe revisar de modo abrangente normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
+          "situacao": "Propõe ou caracteriza a revisão abrangente de normas de várias instituições sociais, preservando liberdade de adesão a tradições.",
           "exemplos": [
             "reformar conjuntamente direitos familiares, currículos e políticas culturais para superar papéis tradicionais",
             "ampliar secularização e igualdade de gênero em várias instituições com liberdade religiosa"
           ]
         },
         "polo_A_muito_forte": {
-          "situacao": "Propõe transformar amplamente instituições sociais, costumes ou papéis tradicionais.",
+          "situacao": "Propõe ou caracteriza a transformação ampla de instituições sociais, costumes ou papéis tradicionais.",
           "exemplos": [
             "reformar profundamente instituições como família, escola e religião",
             "abolir de forma geral costumes e normas morais herdados"
           ]
         }
       }
+    }
+  },
+  "axis_specs": {
+    "economic": {
+      "effect": "econ",
+      "name": "economia",
+      "topic": "distribuição de renda e riqueza, desigualdade econômica, tributação, políticas sociais, serviços públicos, propriedade dos meios de produção, regulação econômica, intervenção estatal, privatização, livre mercado, concorrência, relações de trabalho ou política fiscal",
+      "poles": {
+        "A": {
+          "id": "equality",
+          "label": "Igualdade",
+          "description": "Redução das desigualdades econômicas e sociais.\nDistribuição mais equilibrada de renda, riqueza, recursos e oportunidades.\nTributação progressiva e políticas de redistribuição de renda.\nAção do Estado para reduzir desigualdades econômicas e remover obstáculos sociais.\nProteção econômica aos grupos socialmente e economicamente menos favorecidos.\nLimitação da concentração de riqueza e de poder econômico.\nMaior participação pública, coletiva ou social na propriedade e na organização da economia.\nPriorização da igualdade econômica mesmo quando isso exige maior intervenção estatal."
+        },
+        "B": {
+          "id": "wealth",
+          "label": "Mercado",
+          "description": "Livre iniciativa econômica e propriedade privada.\nAutonomia dos indivíduos e das empresas para tomar decisões econômicas.\nConcorrência como mecanismo de organização da economia.\nLiberdade de produção, investimento, contratação e consumo.\nOrganização descentralizada da atividade econômica por mecanismos de mercado.\nRedução da intervenção direta e do planejamento estatal da economia.\nDefesa da propriedade particular e da iniciativa econômica individual.\nPrivatização, desregulamentação e maior liberdade para o funcionamento dos mercados.\nIntervenção estatal limitada à garantia de direitos, contratos e regras de concorrência."
+        }
+      },
+      "note": "Mencionar um serviço público, um programa social ou a responsabilidade fiscal, sem escolher entre os polos, não indica posição."
+    },
+    "diplomatic": {
+      "effect": "dipl",
+      "name": "relações internacionais e soberania",
+      "topic": "política externa, diplomacia, relações entre países, cooperação internacional, organizações internacionais, integração regional ou global, soberania nacional, nacionalismo, fronteiras, imigração, defesa nacional, forças armadas, conflitos, guerra, intervenção militar ou projeção de poder",
+      "poles": {
+        "A": {
+          "id": "peace",
+          "label": "Globo",
+          "description": "Cooperação política entre diferentes povos e Estados.\nSolidariedade e interdependência internacional.\nSoluções multilaterais para problemas que ultrapassam as fronteiras nacionais.\nIntegração econômica, jurídica e política entre países.\nFortalecimento de instituições internacionais e supranacionais.\nCompartilhamento de parcelas da soberania para solucionar problemas comuns.\nConstrução de estruturas federativas ou supranacionais acima dos Estados.\nValorização de interesses e direitos universais para além da pertença nacional.\nMaior integração política da humanidade."
+        },
+        "B": {
+          "id": "might",
+          "label": "Nação",
+          "description": "Soberania e independência do Estado nacional.\nAutodeterminação política dos povos.\nPrioridade das decisões tomadas pela própria comunidade nacional.\nValorização da identidade, história, cultura e instituições nacionais.\nPreservação da autonomia nacional diante de interferências externas.\nPrioridade dos interesses nacionais quando entram em conflito com interesses internacionais.\nManutenção da soberania estatal sobre decisões políticas fundamentais.\nValorização da coesão e da unidade nacional."
+        }
+      },
+      "note": "Mencionar soberania setorial (alimentar, energética, digital, sanitária) ou cooperação técnica, sem conflito entre autonomia nacional e compromissos internacionais ou entre força e diplomacia, não indica posição."
+    },
+    "state": {
+      "effect": "govt",
+      "name": "liberdade civil e autoridade estatal",
+      "topic": "liberdades civis, direitos individuais, democracia, participação política, liberdade de expressão, privacidade, vigilância, censura, segurança interna, ordem pública, lei e ordem, polícia, punição, coerção estatal, hierarquia, obediência e disciplina, autoridade e força da liderança política, intervenção do Estado na vida privada, concentração de poder ou limites ao poder governamental",
+      "poles": {
+        "A": {
+          "id": "liberty",
+          "label": "Liberdade",
+          "description": "Proteção da autonomia individual diante do poder político.\nGarantia das liberdades civis e políticas.\nLiberdade de expressão, imprensa, reunião, associação e participação política.\nPluralismo político, social e ideológico.\nLimitação jurídica do poder do Estado.\nExistência de diferentes grupos, organizações e centros de poder autônomos.\nProteção dos direitos individuais contra interferências e restrições estatais.\nControle dos governantes por instituições representativas e pela participação dos cidadãos.\nResistência à censura, vigilância excessiva e concentração do poder político."
+        },
+        "B": {
+          "id": "authority",
+          "label": "Autoridade",
+          "description": "Concentração e centralização do poder político.\nHierarquia, disciplina e obediência como princípios de organização social.\nPrioridade da ordem e da estabilidade sobre a autonomia individual.\nFortalecimento da autoridade do Estado e do poder executivo.\nRedução da autonomia de grupos e instituições diante do governo.\nRestrição do pluralismo e da oposição política.\nLimitação da participação política quando considerada incompatível com a ordem.\nUso de mecanismos coercitivos para assegurar o cumprimento das decisões políticas.\nSubordinação dos indivíduos e grupos à autoridade política central."
+        }
+      },
+      "note": "Melhorias de gestão ou de eficiência em serviços públicos, inclusive de segurança, sem ampliar ou limitar poderes coercitivos do Estado ou liberdades individuais, não indicam posição."
+    },
+    "society": {
+      "effect": "scty",
+      "name": "progresso e tradição social",
+      "topic": "valores sociais e culturais, costumes, religião, secularismo, família, sexualidade, papéis sociais, moralidade, mudança social, tradição, ciência, tecnologia, educação, meio ambiente ou transformação cultural",
+      "poles": {
+        "A": {
+          "id": "progress",
+          "label": "Progresso",
+          "description": "Transformação consciente das instituições sociais e políticas.\nConfiança na capacidade humana de melhorar a sociedade.\nUso da razão, da ciência, do conhecimento e da crítica para avaliar instituições existentes.\nQuestionamento de tradições consideradas injustas, irracionais ou ultrapassadas.\nMudança social como possibilidade de aperfeiçoamento das condições humanas.\nReforma de instituições diante de novos conhecimentos e necessidades sociais.\nParticipação ativa dos indivíduos na transformação histórica da sociedade.\nSuperação de estruturas sociais consideradas inadequadas.\nValorização do aperfeiçoamento futuro em relação às condições existentes."
+        },
+        "B": {
+          "id": "tradition",
+          "label": "Tradição",
+          "description": "Preservação de instituições, costumes e valores desenvolvidos historicamente.\nValorização da continuidade e da estabilidade social.\nPreferência por mudanças graduais em vez de transformações profundas ou abruptas.\nConfiança na experiência histórica acumulada pelas instituições sociais.\nCautela diante de projetos de reorganização racional e radical da sociedade.\nPreservação de estruturas sociais consideradas fundamentais para a ordem.\nValorização da tradição, da família, da religião, da autoridade e da moral histórica.\nResistência à ruptura com práticas e instituições consolidadas.\nMudança social condicionada à preservação de elementos essenciais da ordem existente."
+        }
+      },
+      "note": "Mencionar ciência, tecnologia, educação ou meio ambiente, sem posição sobre valores, costumes, religião, família ou mudança social, não indica posição."
     }
   }
 }

@@ -2,8 +2,23 @@ import { expect, test } from 'vitest'
 import { configError, exportPreset, importPreset, isExperimentCapabilities, isExperimentConfig } from './experimentConfig'
 import { experimentCapabilities, labCapabilities, analysisFixture } from '../testing/fixtures'
 import { createAnalysisClient, isAnalysis, isCapabilities } from '../api/analysisApi'
+import algorithm from '../../../api/analysis-config.json'
 
 const defaults = experimentCapabilities.defaults
+
+test('definições do JSON acompanham presets e metadados incompletos são recusados', () => {
+  const config = { ...defaults, axis_specs: structuredClone(algorithm.axis_specs) }
+  expect(isExperimentConfig(config)).toBe(true)
+  expect(importPreset(exportPreset(config), experimentCapabilities)).toEqual(config)
+  const { axis_specs: _axes, ...historical } = config
+  expect(importPreset(exportPreset(historical), { ...experimentCapabilities, defaults: config }).axis_specs).toEqual(config.axis_specs)
+  const missing = structuredClone(config)
+  delete (missing.axis_specs.state.poles as Partial<typeof missing.axis_specs.state.poles>).B
+  expect(isExperimentConfig(missing)).toBe(false)
+  const blank = structuredClone(config)
+  blank.axis_specs.state.poles.B.description = ' '
+  expect(isExperimentConfig(blank)).toBe(false)
+})
 
 test('contexto acompanha presets e configurações antigas recebem o padrão da API', () => {
   const contexto_posicao_politica = 'Classifique somente posições defendidas pelo autor.\nRespeite críticas.'

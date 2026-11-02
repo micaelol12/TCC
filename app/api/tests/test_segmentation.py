@@ -88,7 +88,7 @@ class SentenceSegmentationTests(unittest.TestCase):
         config = ExperimentConfig(chunk_strategy='sentencas')
         for version in ('jev-escalas-ordinal-7', 'jev-escalas-ordinal-8', 'jev-escalas-ordinal-9', 'jev-escalas-ordinal-10', 'jev-escalas-ordinal-11'):
             public = {'config_version': CONFIG_VERSION, 'pipeline_version': version,
-                      'effective_config': config.model_dump(exclude={'contexto_posicao_politica'})}
+                      'effective_config': config.model_dump(exclude={'axis_specs', 'contexto_posicao_politica'})}
             expected = hashlib.sha256(json.dumps(public, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()
             self.assertEqual(config_hash(config, version), expected)
             self.assertNotEqual(config_hash(config), expected)
@@ -98,7 +98,7 @@ class SentenceSegmentationTests(unittest.TestCase):
         self.assertEqual(Settings(app_env='development').algorithm_defaults().chunk_strategy,
                          json.loads((Path(__file__).resolve().parents[1] / 'analysis-config.json').read_text(encoding='utf-8'))['chunk_strategy'])
         config = ExperimentConfig(regra_decisao='polo_primeiro', primitiva_polaridade='choice')
-        effective = config.model_dump(exclude={'contexto_posicao_politica', 'chunk_strategy'})
+        effective = config.model_dump(exclude={'axis_specs', 'contexto_posicao_politica', 'chunk_strategy'})
         public = {'config_version': CONFIG_VERSION, 'pipeline_version': 'jev-escalas-ordinal-6', 'effective_config': effective}
         expected = hashlib.sha256(json.dumps(public, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()
         self.assertEqual(config_hash(config, 'jev-escalas-ordinal-6'), expected)

@@ -5,7 +5,7 @@ import os
 from .environment import load_environment
 from .experiment_config import ExperimentConfig
 from .algorithm_file import DEFAULT_CONFIG_PATH, load_algorithm_file
-from .polarity import EscalaOrdinal
+from .polarity import EscalaOrdinal, DefinicaoEixo
 from pydantic import ValidationError
 
 
@@ -67,9 +67,10 @@ class Settings:
     allowed_gemini_models: tuple[str, ...] = field(default_factory=lambda: tuple(value.strip() for value in os.getenv('ALLOWED_GEMINI_MODELS', 'gemini-3.1-flash-lite,gemini-3.7-flash').split(',') if value.strip()))
     algorithm_config_path: str = env("ALGORITHM_CONFIG_PATH")
     # None means no constructor/environment override. __post_init__ fills every
-    # field from the validated JSON (or the independent Lab defaults).
+    # field from the same validated JSON in both editions.
     escala: EscalaOrdinal | None = None
     contexto_posicao_politica: str | None = algorithm_env("CONTEXTO_POSICAO_POLITICA")
+    axis_specs: dict[str, DefinicaoEixo] | None = None
     jev_model: str | None = algorithm_env("JEV_MODEL")
     primitiva_polaridade: str | None = algorithm_env("JEV_POLARITY_PRIMITIVE")
     regra_decisao: str | None = algorithm_env("JEV_DECISION_RULE")
@@ -112,8 +113,8 @@ class Settings:
             raise ValueError("Variável inválida: APP_ENV.")
         if self.experimental_config_enabled and self.app_env != "lab":
             raise ValueError("EXPERIMENTAL_CONFIG_ENABLED exige APP_ENV=lab.")
-        path = self.algorithm_config_path or (str(DEFAULT_CONFIG_PATH) if self.app_env != "lab" else "")
-        base = load_algorithm_file(path) if path else ExperimentConfig(chunk_strategy="sentencas")
+        path = self.algorithm_config_path or str(DEFAULT_CONFIG_PATH)
+        base = load_algorithm_file(path)
         values = {**base.model_dump(), **{name: getattr(self, name) for name in ExperimentConfig.model_fields
                                          if getattr(self, name) is not None}}
         for name in ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",

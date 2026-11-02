@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,existence_probability,confidence,probabilities,model,sentence_id,start,end,quote
+0,state,search,not_selected,-1,0.63,0.25,"{'S000': 0.28, 'S001': 0.5, 'NONE': 0.22}",jev-1.13.0,,,,
+0,society,search,found,-2,0.77,0.24,"{'S000': 0.49, 'S001': 0.41, 'NONE': 0.1}",jev-1.13.0,S000,0.0,156.0,"Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo."
+0,society,semantic,sustenta,-2,,0.44,"{'sustenta': 0.63, 'contradiz': 0.23, 'insuficiente': 0.14}",jev-1.13.0,,,,"Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo."

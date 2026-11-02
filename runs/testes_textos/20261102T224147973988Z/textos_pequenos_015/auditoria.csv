@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,diplomatic,semantic,sustenta,-1,rejeita que o país se subordine a pressões estrangeiras,0.55,"{'sustenta': 0.7, 'contradiz': 0.23, 'insuficiente': 0.07}",jev-1.13.0

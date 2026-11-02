@@ -34,8 +34,11 @@ reports_route = importlib.import_module('app.routes.reports')
 
 def lab_settings(**changes):
     with patch.dict(os.environ, {}, clear=True):
+        # Isolated algorithm fixtures; production/Lab defaults come from the JSON.
+        fixture = ExperimentConfig(chunk_strategy='sentencas').model_dump()
+        fixture.update(changes)
         return Settings(app_env='lab', experimental_config_enabled=True, typesafe_key='test-secret-typesafe',
-                        maritaca_key='test-secret-maritaca', **changes)
+                        maritaca_key='test-secret-maritaca', **fixture)
 
 
 class SettingsTests(unittest.TestCase):
@@ -175,7 +178,7 @@ class ExperimentHttpTests(unittest.TestCase):
         self.assertEqual(analyze_route.daily['calls'], 0)
 
     def test_polarity_selection_reaches_provider_snapshot_and_hash_per_request(self):
-        from app.polarity import ESCALA_9_NIVEIS
+        from app.analysis_defaults import ESCALA_9_NIVEIS
         hashes = []
         for primitive in ('choice', 'score'):
             raw = answers()
@@ -192,7 +195,7 @@ class ExperimentHttpTests(unittest.TestCase):
             self.assertEqual(result['effective_config']['primitiva_polaridade'], primitive)
             self.assertEqual(result['axes'][0]['pole_a'], 62.5)
             self.assertEqual(result['logical_calls']['llm'], 0)
-            self.mocks[1].assert_called_with(ESCALA_9_NIVEIS, primitive, self.settings.contexto_posicao_politica)
+            self.mocks[1].assert_called_with(ESCALA_9_NIVEIS, primitive, self.settings.contexto_posicao_politica, self.settings.axis_specs)
             hashes.append(result['config_hash'])
         self.assertNotEqual(*hashes)
         self.assertEqual(self.client.get('/api/capabilities').json()['experimental']['defaults']['primitiva_polaridade'], 'score')

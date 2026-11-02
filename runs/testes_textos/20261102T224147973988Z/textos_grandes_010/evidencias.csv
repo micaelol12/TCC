@@ -1,0 +1,85 @@
+﻿trecho,eixo,origem,nível final,citação,presença literal,ID da passagem,início,fim,p_existe,busca,parecer semântico,confiança semântica,modelo verificador
+1,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+1,state,llm_ordinal,1.0,"a divulgação de posicionamento pessoal sobre questões políticas, inclusive em shows, apresentações e performances artísticas, redes sociais, blogs, sítios eletrônicos pessoais e aplicativos (apps)",sim,,,,,não executada,insuficiente,0.43,jev-1.13.0
+1,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+2,state,jev_ordinal,-2.0,"§ 3º O disposto neste artigo se refere ao poder de polícia sobre propaganda eleitoral específica, relacionada às candidaturas e ao contexto da disputa, mantida a competência judicial para a adoção de medidas necessárias para assegurar a eficácia das decisões do Tribunal Superior Eleitoral, na forma do art. 9º-F desta Resolução.”",sim,S006,807.0,1137.0,0.76,passagem encontrada,sustenta,0.83,jev-1.13.0
+2,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+3,state,llm_ordinal,-2.0,"impõe a imediata remoção do conteúdo ou indisponibilidade do serviço de comunicação, por iniciativa do provedor de aplicação ou determinação judicial",sim,,,,,não executada,sustenta,0.8,jev-1.13.0
+3,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+4,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+4,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+4,state,jev_ordinal,-2.0,"§ 2º O descumprimento do previsto no caput e no § 1º deste artigo configura abuso do poder político e uso indevido dos meios de comunicação social, acarretando a cassação do registro ou do mandato, e impõe apuração das responsabilidades nos termos do § 1º do art. 323 do Código Eleitoral, sem prejuízo de aplicação de outras medidas cabíveis quanto à irregularidade da propaganda e à ilicitude do conteúdo.”",sim,S000,0.0,407.0,0.8,passagem encontrada,sustenta,0.8,jev-1.13.0
+4,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+5,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+5,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+5,state,jev_ordinal,-2.0,"“Art. 9º-E. Os provedores de aplicação serão solidariamente responsáveis, civil e administrativamente, quando não promoverem a indisponibilização imediata de conteúdos e contas, durante o período eleitoral, nos seguintes casos de risco:",sim,S005,1615.0,1851.0,0.83,passagem encontrada,sustenta,0.86,jev-1.13.0
+5,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+6,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+6,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+6,state,jev_ordinal,-2.0,"“Art. 9º-F. No caso de a propaganda eleitoral na internet veicular fatos notoriamente inverídicos ou gravemente descontextualizados sobre o sistema eletrônico de votação, o processo eleitoral ou a Justiça Eleitoral, as juízas e os juízes mencionados no art. 8º desta Resolução ficarão vinculados, no exercício do poder de polícia e nas representações, às decisões colegiadas do Tribunal Superior Eleitoral sobre a mesma matéria, nas quais tenha sido determinada a remoção ou a manutenção de conteúdos idênticos.",sim,S004,1083.0,1594.0,0.84,passagem encontrada,sustenta,0.88,jev-1.13.0
+6,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+7,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+7,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+7,state,jev_ordinal,-2.0,"§ 3º A ordem de remoção de conteúdo expedida nos termos deste artigo poderá estabelecer prazo inferior a 24 (vinte e quatro) horas para cumprimento da decisão, considerando a gravidade da veiculação e as peculiaridades do processo eleitoral e da eleição em curso ou a se realizar, e observará os demais requisitos constantes do § 4º do art. 38 desta Resolução.",sim,S001,260.0,620.0,0.8,passagem encontrada,sustenta,0.82,jev-1.13.0
+7,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+8,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+8,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+8,state,llm_ordinal,,"Os dados mencionados nos incisos I a III ... serão mantidos sob sigilo, sendo seu acesso restrito ... e feito mediante registro de atividades.",não,,,,,não executada,não executada,,
+8,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+9,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+9,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+9,state,jev_ordinal,-2.0,“Art. 9º-H A remoção de conteúdos que violem o disposto no caput do art. 9º e no caput e no § 1º do art. 9º-C não impede a aplicação da multa prevista no art. 57-D da Lei nº 9.504/1997 por decisão judicial em representação.”,sim,S000,0.0,224.0,0.77,passagem encontrada,sustenta,0.76,jev-1.13.0
+9,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+10,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+10,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+10,state,llm_ordinal,2.0,é livre a manifestação de opinião política e preferência eleitoral,sim,,,,,não executada,sustenta,0.83,jev-1.13.0
+10,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+11,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+11,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+11,state,jev_ordinal,2.0,"I - manter repositório desses anúncios para acompanhamento, em tempo real, do conteúdo, dos valores, dos responsáveis pelo pagamento e das características dos grupos populacionais que compõem a audiência (perfilamento) da publicidade contratada;",sim,S002,387.0,632.0,0.78,passagem encontrada,sustenta,0.64,jev-1.13.0
+11,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+12,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+12,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+12,state,jev_ordinal,-2.0,"Os provedores de aplicação que utilizarem sistema de recomendação a usuárias e usuários deverão excluir dos resultados os canais e perfis informados à Justiça Eleitoral nos termos do § 1º deste artigo e, com exceção das hipóteses legais de impulsionamento pago, os conteúdos neles postados.",sim,S012,1800.0,2090.0,0.79,passagem encontrada,sustenta,0.86,jev-1.13.0
+12,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+13,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+13,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+13,state,jev_ordinal,-2.0,,sem citação,,,,0.77,nenhuma passagem selecionada,não executada,,jev-1.13.0
+13,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+14,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+14,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+14,state,jev_ordinal,-2.0,,sem citação,,,,0.75,nenhuma passagem selecionada,não executada,,jev-1.13.0
+14,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+15,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+15,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+15,state,jev_ordinal,2.0,"I - garantir o acesso facilitado às informações sobre o tratamento de dados, previsto no art. 9º da Lei nº 13.709/2018, em especial quanto aos dados utilizados para realizar perfilamento de usuárias e usuários com vistas ao microdirecionamento da propaganda eleitoral;",sim,S002,464.0,732.0,0.82,passagem encontrada,sustenta,0.82,jev-1.13.0
+15,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+16,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+16,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+16,state,jev_ordinal,2.0,"§ 2º No caso de dados pessoais sensíveis a que a candidata ou o candidato tenha acesso pessoalmente em decorrência de seu núcleo familiar, de suas relações sociais e de seus vínculos comunitários, como a participação em grupos religiosos, associações e movimentos, o consentimento específico, expresso e destacado de que trata o § 1º deste artigo somente será exigido para a transferência a terceiros, respondendo o cedente por divulgação ou vazamento.",sim,S000,0.0,452.0,0.82,passagem encontrada,sustenta,0.66,jev-1.13.0
+16,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+17,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+17,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+17,state,llm_ordinal,2.0,a Justiça Eleitoral poderá determinar a elaboração de relatório de impacto à proteção de dados nos casos em que o tratamento representa alto risco,sim,,,,,não executada,sustenta,0.77,jev-1.13.0
+17,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+18,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+18,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+18,state,jev_ordinal,2.0,§ 6º Os relatórios recebidos e as informações prestadas nos termos do § 5º deste artigo serão disponibilizados no site da Justiça Eleitoral para consulta pública.,sim,S001,171.0,333.0,0.76,passagem encontrada,sustenta,0.64,jev-1.13.0
+18,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+19,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+19,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+19,state,jev_ordinal,-2.0,"§ 7º As ordens judiciais de remoção de conteúdo da internet terão seus efeitos mantidos, mesmo após o período eleitoral, salvo se houver decisão judicial que declare a perda do objeto ou afaste a conclusão de irregularidade.",sim,S004,877.0,1101.0,0.75,passagem encontrada,sustenta,0.83,jev-1.13.0
+19,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+20,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+20,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+20,state,llm_ordinal,,"as emissoras, os partidos políticos, as federações e as coligações poderão se manifestar sobre as especificações técnicas ... para o bom funcionamento do horário eleitoral gratuito",não,,,,,não executada,não executada,,
+20,society,llm_ordinal,2.0,"o tempo faltante deverá ser compensado nas semanas seguintes, pelo período necessário para assegurar o cumprimento da proporcionalidade até o fim da campanha",sim,,,,,não executada,sustenta,0.31,jev-1.13.0
+21,economic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+21,diplomatic,jev_ordinal,,,sem citação,,,,,não executada,não executada,,
+21,state,llm_ordinal,0.0,"o controle das regras previstas neste artigo, os tribunais eleitorais disponibilizarão",sim,,,,,não executada,sustenta,0.31,jev-1.13.0
+21,society,jev_ordinal,,,sem citação,,,,,não executada,não executada,,

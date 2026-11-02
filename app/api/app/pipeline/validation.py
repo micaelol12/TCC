@@ -3,7 +3,8 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, model_validator, create_model, field_validator
 from .domain import _score_evidencia_confere
 from ..polarity import PolarityLevel
-from ..polarity import ESCALA_ATUAL, validar_escala
+from ..analysis_defaults import ESCALA_ATUAL
+from ..polarity import validar_escala
 
 
 class LlmAxis(BaseModel):

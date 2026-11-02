@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 from app.algorithm_file import DEFAULT_CONFIG_PATH, load_algorithm_file
 from app.experiment_config import ExperimentConfig, config_hash
 from app.main import app
-from app.polarity import ESCALA_5_NIVEIS
+from app.analysis_defaults import ESCALA_5_NIVEIS
 from app.settings import Settings
 from test_pipeline import FakeLlm, TEXT, llm_payload
 
@@ -37,9 +37,8 @@ class AlgorithmFileTests(unittest.TestCase):
         data = json.loads(DEFAULT_CONFIG_PATH.read_text(encoding='utf-8'))
         self.assertEqual(set(data), set(ExperimentConfig.model_fields))
         self.assertEqual(Settings().algorithm_defaults(), load_algorithm_file('analysis-config.json'))
-        # A separate Lab launch retains its defaults rather than reading the official file.
-        with patch('app.settings.load_algorithm_file', side_effect=AssertionError('official file read')):
-            self.assertEqual(Settings(app_env='lab').chunk_strategy, 'sentencas')
+        # Both editions read the same authoritative algorithm file.
+        self.assertEqual(Settings(app_env='lab').algorithm_defaults(), load_algorithm_file('analysis-config.json'))
 
     def test_all_file_parameters_and_environment_precedence(self):
         data = self.write(escala=ESCALA_5_NIVEIS.model_dump(mode='json'), chunk_strategy='sentencas',

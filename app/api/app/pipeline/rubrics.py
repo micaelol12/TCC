@@ -1,2 +1,2 @@
-"""Metadados dos eixos, replicados do notebook autoritativo em polarity.py."""
-from ..polarity import AXIS_SPECS_9 as AXIS_SPECS, SITUACAO_SEM_POSICAO
+"""Default axis metadata loaded from the single algorithm configuration."""
+from ..analysis_defaults import AXIS_SPECS

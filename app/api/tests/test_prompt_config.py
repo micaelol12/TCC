@@ -14,7 +14,8 @@ from app.pipeline.aggregation import aggregate
 from app.pipeline.clients import jev_questions
 from app.pipeline.domain import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from app.pipeline.strategies import classify_chunk
-from app.polarity import CONTEXTO_POSICAO_POLITICA, instrucoes_escala
+from app.analysis_defaults import CONTEXTO_POSICAO_POLITICA
+from app.prompting import instrucoes_escala
 from app.report_schemas import ReportAnalysis
 from app.schemas import AnalysisResponse, Chunk, LogicalCalls
 from test_pipeline import AXES, TEXT, answers, llm_payload
@@ -34,7 +35,7 @@ class PromptConfigTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotEqual(config_hash(default), config_hash(custom))
         with self.assertRaises(ValueError):
             config_hash(custom, 'jev-escalas-ordinal-11')
-        effective = default.model_dump(mode='json', exclude={'contexto_posicao_politica'})
+        effective = default.model_dump(mode='json', exclude={'contexto_posicao_politica', 'axis_specs'})
         public = {'config_version': '1', 'pipeline_version': 'jev-escalas-ordinal-11', 'effective_config': effective}
         original_hash = hashlib.sha256(json.dumps(public, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()
         self.assertEqual(config_hash(default, public['pipeline_version']), original_hash)

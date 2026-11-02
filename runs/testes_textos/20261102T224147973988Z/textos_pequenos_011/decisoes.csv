@@ -1,0 +1,5 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.
+state,True,0.0,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],1,O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.
+society,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.

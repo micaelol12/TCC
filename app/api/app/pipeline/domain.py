@@ -5,7 +5,8 @@ import unicodedata
 from collections.abc import Mapping
 from copy import deepcopy
 from .rubrics import AXIS_SPECS
-from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
+from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, NIVEIS_POLARIDADE
+from ..polarity import DefinicaoEixo, validar_escala, valor_nivel, classe_nivel
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
 MIN_PALAVRAS_EVIDENCIA = 4
 MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
@@ -15,8 +16,10 @@ _RETICENCIAS = re.compile(r"^(\.\.\.|…)\s*|\s*(\.\.\.|…)$")
 def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     """Cria a pergunta de relevância; a polaridade é definida pela rubrica ordinal."""
     spec = axis_specs[axis]
+    if isinstance(spec, DefinicaoEixo):
+        spec = spec.model_dump(mode='json')
     return {
-        "instructions": contexto_posicao_politica.rstrip() + " " + f"O trecho contém uma proposta ou posição sobre {spec['name']}?",
+        "instructions": contexto_posicao_politica.rstrip() + " " + f"O trecho contém conteúdo substantivo sobre {spec['name']}, incluindo propostas, ideias, definições ou modelos políticos?",
         "criteria": {
             "A": f"Sim. Há evidência substantiva sobre {spec['topic']}.",
             "B": f"Não. Não há evidência substantiva sobre {spec['topic']}.",
@@ -26,13 +29,15 @@ def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=C
 def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
     spec = axis_specs[axis]
+    if isinstance(spec, DefinicaoEixo):
+        spec = spec.model_dump(mode='json')
     polos = spec["poles"]
     instructions = (contexto_posicao_politica.rstrip() + " " +
-        f"Qual situação descreve a posição expressa no trecho sobre {spec['name']}? "
+        f"Qual situação caracteriza a proposta, ideia, modelo ou arranjo apresentado no trecho sobre {spec['name']}? "
         f"Polo B ({polos['B']['label']}): {polos['B']['description']} "
         f"Polo A ({polos['A']['label']}): {polos['A']['description']} "
-        "Intensidade depende do alcance e da profundidade da mudança proposta, não da retórica "
-        "nem da confiança. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
+        "Intensidade depende do alcance e da profundidade da proposta, ideia, modelo ou arranjo caracterizado, não da retórica "
+        "nem da confiança. Diferencie as características do objeto descrito da adesão do enunciador. Uma definição com características direcionais não é mera menção temática. Não atribua como defendida uma posição explicitamente rejeitada nem converta automaticamente sua rejeição em defesa do polo oposto. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
     niveis = {n.chave: {"valor": n.codigo, "nivel": n.rotulo,
         **escala.rubricas_por_eixo[axis][n.chave].model_dump(mode="json")} for n in escala.niveis}
     return {"instructions": instructions, "niveis": niveis}

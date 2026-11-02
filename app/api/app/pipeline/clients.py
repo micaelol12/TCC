@@ -1,7 +1,7 @@
 """Provider clients are created only for the selected mode."""
 from .domain import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from .rubrics import AXIS_SPECS
-from ..polarity import CONTEXTO_POSICAO_POLITICA
+from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA
 
 
 def jev_client(api_key: str, model: str):
@@ -9,14 +9,14 @@ def jev_client(api_key: str, model: str):
     return AsyncTypeSafeClient(api_key=api_key, model=model)
 
 
-def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
+def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
     from typesafe_sdk import Choice, Score
     if primitiva_polaridade not in {"score", "choice"}:
         raise ValueError("primitiva_polaridade deve ser score ou choice.")
     questions = {}
     for axis in AXIS_SPECS:
-        questions[f"{axis}_relevancia"] = Choice(**criar_questoes_eixo(axis, contexto_posicao_politica=contexto_posicao_politica))
-        rubric = criar_rubrica_polaridade_ordinal(axis, escala=escala, contexto_posicao_politica=contexto_posicao_politica)
+        questions[f"{axis}_relevancia"] = Choice(**criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica))
+        rubric = criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)
         questions[f"{axis}_polaridade"] = (
             Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
             if primitiva_polaridade == "score" else

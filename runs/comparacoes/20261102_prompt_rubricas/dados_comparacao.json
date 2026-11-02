@@ -1,0 +1,1986 @@
+{
+  "current": {
+    "run": "20261102T224147973988Z",
+    "texts": 28,
+    "errors": 0,
+    "chunks": 58,
+    "scored_document_axes": 32,
+    "llm_calls": 33,
+    "llm_effective_calls": 33,
+    "routed_axes": 45,
+    "jev_classification_calls": 58,
+    "jev_evidence_calls": 82,
+    "mean_chunk_latency_s": 1.225411703448305,
+    "sum_chunk_latency_s": 71.0738788000017,
+    "initial_statuses": {
+      "direcional": 56,
+      "sem_evidencia": 161,
+      "sem_posicao": 14,
+      "empate": 1
+    },
+    "final_statuses": {
+      "direcional": 54,
+      "sem_evidencia": 171,
+      "sem_posicao": 5,
+      "evidencia_nao_verificada": 2
+    },
+    "final_levels": {
+      "-4": 3,
+      "-2": 21,
+      "4": 1,
+      "2": 19,
+      "-1": 3,
+      "3": 3,
+      "-3": 3,
+      "0": 5,
+      "1": 1
+    },
+    "fallback_reasons": {
+      "relevancia_ambigua": 32,
+      "intensidade_ambigua": 5,
+      "direcao_ambigua": 8,
+      "empate_nivel": 1
+    },
+    "audits": {
+      "search/found": 36,
+      "semantic/sustenta": 50,
+      "search/not_selected": 5,
+      "semantic/insuficiente": 4
+    }
+  },
+  "previous": [
+    {
+      "run": "20261029T225701730206Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 58,
+      "scored_document_axes": 30,
+      "llm_calls": 35,
+      "llm_effective_calls": 35,
+      "routed_axes": 46,
+      "jev_classification_calls": 58,
+      "jev_evidence_calls": 84,
+      "mean_chunk_latency_s": 1.127154584482798,
+      "sum_chunk_latency_s": 65.37496590000228,
+      "initial_statuses": {
+        "direcional": 57,
+        "sem_evidencia": 159,
+        "sem_posicao": 16
+      },
+      "final_statuses": {
+        "direcional": 55,
+        "sem_evidencia": 173,
+        "sem_posicao": 2,
+        "evidencia_nao_verificada": 2
+      },
+      "final_levels": {
+        "-4": 1,
+        "-2": 22,
+        "4": 1,
+        "2": 21,
+        "-3": 4,
+        "3": 4,
+        "0": 2,
+        "1": 1,
+        "-1": 1
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 33,
+        "direcao_ambigua": 6,
+        "intensidade_ambigua": 9
+      },
+      "audits": {
+        "search/found": 36,
+        "semantic/sustenta": 47,
+        "semantic/insuficiente": 4,
+        "search/not_selected": 6
+      }
+    },
+    {
+      "run": "20261026T223034117817Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 58,
+      "scored_document_axes": 30,
+      "llm_calls": 35,
+      "llm_effective_calls": 35,
+      "routed_axes": 46,
+      "jev_classification_calls": 58,
+      "jev_evidence_calls": 80,
+      "mean_chunk_latency_s": 1.1846138655172707,
+      "sum_chunk_latency_s": 68.7076042000017,
+      "initial_statuses": {
+        "direcional": 59,
+        "sem_evidencia": 154,
+        "sem_posicao": 18,
+        "empate": 1
+      },
+      "final_statuses": {
+        "direcional": 50,
+        "sem_evidencia": 173,
+        "sem_posicao": 5,
+        "evidencia_nao_verificada": 4
+      },
+      "final_levels": {
+        "-4": 1,
+        "-2": 17,
+        "4": 1,
+        "2": 22,
+        "-3": 4,
+        "0": 5,
+        "3": 3,
+        "-1": 2
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 33,
+        "intensidade_ambigua": 8,
+        "direcao_ambigua": 10,
+        "empate_nivel": 1
+      },
+      "audits": {
+        "search/found": 32,
+        "semantic/sustenta": 39,
+        "search/not_selected": 13,
+        "semantic/insuficiente": 3
+      }
+    },
+    {
+      "run": "20261024T214140525692Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 58,
+      "scored_document_axes": 33,
+      "llm_calls": 35,
+      "llm_effective_calls": 35,
+      "routed_axes": 46,
+      "jev_classification_calls": 58,
+      "jev_evidence_calls": 85,
+      "mean_chunk_latency_s": 1.0414135724136502,
+      "sum_chunk_latency_s": 60.40198719999171,
+      "initial_statuses": {
+        "direcional": 60,
+        "sem_evidencia": 153,
+        "sem_posicao": 19
+      },
+      "final_statuses": {
+        "direcional": 54,
+        "sem_evidencia": 171,
+        "sem_posicao": 5,
+        "evidencia_nao_verificada": 2
+      },
+      "final_levels": {
+        "-4": 1,
+        "-2": 18,
+        "4": 1,
+        "2": 22,
+        "-1": 3,
+        "-3": 4,
+        "0": 5,
+        "1": 2,
+        "3": 3
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 35,
+        "intensidade_ambigua": 7,
+        "direcao_ambigua": 11
+      },
+      "audits": {
+        "search/found": 34,
+        "semantic/sustenta": 41,
+        "search/not_selected": 13,
+        "semantic/insuficiente": 5
+      }
+    },
+    {
+      "run": "20261024T184909667917Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 59,
+      "scored_document_axes": 31,
+      "llm_calls": 37,
+      "llm_effective_calls": 37,
+      "routed_axes": 48,
+      "jev_classification_calls": 59,
+      "jev_evidence_calls": 81,
+      "mean_chunk_latency_s": 1.0554626338979056,
+      "sum_chunk_latency_s": 62.27229539997643,
+      "initial_statuses": {
+        "direcional": 60,
+        "sem_evidencia": 155,
+        "sem_posicao": 20,
+        "empate": 1
+      },
+      "final_statuses": {
+        "direcional": 54,
+        "sem_evidencia": 176,
+        "sem_posicao": 4,
+        "evidencia_nao_verificada": 2
+      },
+      "final_levels": {
+        "-4": 1,
+        "-2": 19,
+        "4": 1,
+        "2": 21,
+        "-3": 4,
+        "3": 3,
+        "0": 4,
+        "1": 2,
+        "-1": 3
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 33,
+        "intensidade_ambigua": 12,
+        "direcao_ambigua": 7,
+        "empate_nivel": 1
+      },
+      "audits": {
+        "search/found": 31,
+        "semantic/sustenta": 42,
+        "search/not_selected": 12,
+        "semantic/insuficiente": 4
+      }
+    },
+    {
+      "run": "20261023T014240545881Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 59,
+      "scored_document_axes": 32,
+      "llm_calls": 45,
+      "llm_effective_calls": 45,
+      "routed_axes": 59,
+      "jev_classification_calls": 59,
+      "jev_evidence_calls": 72,
+      "mean_chunk_latency_s": 1.1892352186447261,
+      "sum_chunk_latency_s": 70.16487790003885,
+      "initial_statuses": {
+        "direcional": 57,
+        "sem_evidencia": 157,
+        "sem_posicao": 22
+      },
+      "final_statuses": {
+        "direcional": 47,
+        "sem_evidencia": 176,
+        "sem_posicao": 7,
+        "evidencia_nao_verificada": 6
+      },
+      "final_levels": {
+        "-4": 1,
+        "-2": 14,
+        "4": 1,
+        "2": 21,
+        "-3": 5,
+        "3": 3,
+        "0": 7,
+        "1": 2
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 33,
+        "baixa_confianca_nivel": 31,
+        "direcao_ambigua": 3
+      },
+      "audits": {
+        "search/found": 25,
+        "semantic/sustenta": 39,
+        "search/not_selected": 8,
+        "semantic/insuficiente": 7
+      }
+    },
+    {
+      "run": "20261020T010032139196Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 59,
+      "scored_document_axes": 33,
+      "llm_calls": 38,
+      "llm_effective_calls": 0,
+      "routed_axes": 48,
+      "jev_classification_calls": 59,
+      "jev_evidence_calls": 80,
+      "mean_chunk_latency_s": null,
+      "sum_chunk_latency_s": 0,
+      "initial_statuses": {
+        "direcional": 62,
+        "sem_evidencia": 156,
+        "sem_posicao": 18
+      },
+      "final_statuses": {
+        "direcional": 56,
+        "sem_evidencia": 174,
+        "sem_posicao": 6
+      },
+      "final_levels": {
+        "-2": 7,
+        "-1": 18,
+        "1": 30,
+        "2": 1,
+        "0": 6
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 35,
+        "baixa_confianca_nivel": 20,
+        "direcao_ambigua": 2
+      },
+      "audits": {
+        "search/found": 29,
+        "semantic/sustenta": 34,
+        "search/not_selected": 17,
+        "semantic/insuficiente": 11
+      }
+    },
+    {
+      "run": "20261019T233334959801Z",
+      "texts": 28,
+      "errors": 0,
+      "chunks": 59,
+      "scored_document_axes": 33,
+      "llm_calls": 37,
+      "llm_effective_calls": 0,
+      "routed_axes": 48,
+      "jev_classification_calls": 59,
+      "jev_evidence_calls": 76,
+      "mean_chunk_latency_s": null,
+      "sum_chunk_latency_s": 0,
+      "initial_statuses": {
+        "direcional": 63,
+        "sem_evidencia": 154,
+        "sem_posicao": 19
+      },
+      "final_statuses": {
+        "direcional": 55,
+        "sem_evidencia": 174,
+        "sem_posicao": 4,
+        "evidencia_nao_verificada": 3
+      },
+      "final_levels": {
+        "-2": 5,
+        "1": 26,
+        "-1": 23,
+        "2": 1,
+        "0": 4
+      },
+      "fallback_reasons": {
+        "relevancia_ambigua": 35,
+        "baixa_confianca_nivel": 20,
+        "direcao_ambigua": 2
+      },
+      "audits": {
+        "search/found": 29,
+        "semantic/sustenta": 38,
+        "semantic/insuficiente": 3,
+        "search/not_selected": 17,
+        "semantic/contradiz": 1
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "baseline": "20261029T225701730206Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [],
+      "changed_texts": 10,
+      "changed_document_axes": 13,
+      "per_axis": {
+        "economic": {
+          "unchanged": 26,
+          "changed": 2,
+          "B -> B": 1,
+          "centro -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 7.291666666666668
+        },
+        "diplomatic": {
+          "unchanged": 26,
+          "changed": 2,
+          "A -> B": 2,
+          "mean_abs_delta_on_changed_numeric": 56.25
+        },
+        "state": {
+          "unchanged": 24,
+          "changed": 4,
+          "A -> A": 1,
+          "B -> B": 1,
+          "ausente -> B": 2,
+          "mean_abs_delta_on_changed_numeric": 4.851973684210527
+        },
+        "society": {
+          "unchanged": 23,
+          "changed": 5,
+          "ausente -> centro": 2,
+          "centro -> ausente": 1,
+          "A -> ausente": 1,
+          "B -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_002",
+          "axis": "economic",
+          "old": 31.25,
+          "new": 25.0,
+          "delta": -6.25,
+          "transition": "B -> B",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 41.666666666666664,
+          "delta": -8.333333333333336,
+          "transition": "centro -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_014",
+          "axis": "diplomatic",
+          "old": 87.5,
+          "new": 12.5,
+          "delta": -75.0,
+          "transition": "A -> B",
+          "excerpt": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 37.5,
+          "delta": -37.5,
+          "transition": "A -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 68.75,
+          "new": 62.5,
+          "delta": -6.25,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 40.625,
+          "new": 44.078947368421055,
+          "delta": 3.453947368421055,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "society",
+          "old": 75.0,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "society",
+          "old": 12.5,
+          "new": 0.0,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 23,
+        "ausente -> ausente": 169,
+        "B -> B": 25,
+        "centro -> centro": 1,
+        "ausente -> centro": 2,
+        "A -> centro": 1,
+        "centro -> ausente": 1,
+        "indeterminado -> B": 1,
+        "A -> ausente": 1,
+        "B -> A": 1,
+        "B -> indeterminado": 1,
+        "indeterminado -> indeterminado": 1,
+        "B -> centro": 1,
+        "ausente -> B": 2,
+        "A -> B": 2
+      }
+    },
+    {
+      "baseline": "20261026T223034117817Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [],
+      "changed_texts": 15,
+      "changed_document_axes": 20,
+      "per_axis": {
+        "economic": {
+          "unchanged": 24,
+          "changed": 4,
+          "B -> B": 1,
+          "A -> B": 1,
+          "centro -> ausente": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 19.791666666666668
+        },
+        "diplomatic": {
+          "unchanged": 25,
+          "changed": 3,
+          "A -> A": 1,
+          "A -> B": 2,
+          "mean_abs_delta_on_changed_numeric": 41.666666666666664
+        },
+        "state": {
+          "unchanged": 22,
+          "changed": 6,
+          "A -> A": 1,
+          "B -> B": 1,
+          "ausente -> B": 2,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 20.942982456140353
+        },
+        "society": {
+          "unchanged": 21,
+          "changed": 7,
+          "ausente -> centro": 2,
+          "centro -> ausente": 2,
+          "ausente -> A": 1,
+          "B -> B": 2,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_002",
+          "axis": "economic",
+          "old": 31.25,
+          "new": 25.0,
+          "delta": -6.25,
+          "transition": "B -> B",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 75.0,
+          "new": 41.666666666666664,
+          "delta": -33.333333333333336,
+          "transition": "A -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_009",
+          "axis": "economic",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Arcabouço fiscal e responsabilidade fiscal"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": null,
+          "new": 12.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_007",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras."
+        },
+        {
+          "id": "textos_pequenos_014",
+          "axis": "diplomatic",
+          "old": 87.5,
+          "new": 12.5,
+          "delta": -75.0,
+          "transition": "A -> B",
+          "excerpt": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 37.5,
+          "delta": -37.5,
+          "transition": "A -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 43.75,
+          "new": 44.078947368421055,
+          "delta": 0.3289473684210549,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "society",
+          "old": null,
+          "new": 75.0,
+          "delta": null,
+          "transition": "ausente -> A",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "society",
+          "old": 12.5,
+          "new": 0.0,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "society",
+          "old": 12.5,
+          "new": 25.0,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 21,
+        "ausente -> ausente": 167,
+        "B -> B": 22,
+        "centro -> centro": 1,
+        "ausente -> centro": 3,
+        "centro -> ausente": 4,
+        "indeterminado -> B": 3,
+        "B -> A": 2,
+        "A -> indeterminado": 1,
+        "ausente -> indeterminado": 1,
+        "indeterminado -> A": 1,
+        "A -> centro": 1,
+        "ausente -> B": 2,
+        "A -> B": 3
+      }
+    },
+    {
+      "baseline": "20261024T214140525692Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [
+        "textos_grandes_005",
+        "textos_grandes_010"
+      ],
+      "changed_texts": 15,
+      "changed_document_axes": 19,
+      "per_axis": {
+        "economic": {
+          "unchanged": 24,
+          "changed": 4,
+          "B -> B": 1,
+          "centro -> B": 1,
+          "centro -> ausente": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 7.291666666666668
+        },
+        "diplomatic": {
+          "unchanged": 25,
+          "changed": 3,
+          "A -> A": 1,
+          "A -> B": 2,
+          "mean_abs_delta_on_changed_numeric": 41.666666666666664
+        },
+        "state": {
+          "unchanged": 23,
+          "changed": 5,
+          "A -> A": 1,
+          "B -> B": 1,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 21.151315789473685
+        },
+        "society": {
+          "unchanged": 21,
+          "changed": 7,
+          "ausente -> centro": 2,
+          "centro -> ausente": 2,
+          "B -> B": 2,
+          "A -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_002",
+          "axis": "economic",
+          "old": 31.25,
+          "new": 25.0,
+          "delta": -6.25,
+          "transition": "B -> B",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 41.666666666666664,
+          "delta": -8.333333333333336,
+          "transition": "centro -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_009",
+          "axis": "economic",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Arcabouço fiscal e responsabilidade fiscal"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": null,
+          "new": 12.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_007",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras."
+        },
+        {
+          "id": "textos_pequenos_014",
+          "axis": "diplomatic",
+          "old": 87.5,
+          "new": 12.5,
+          "delta": -75.0,
+          "transition": "A -> B",
+          "excerpt": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 37.5,
+          "delta": -37.5,
+          "transition": "A -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 43.125,
+          "new": 44.078947368421055,
+          "delta": 0.9539473684210549,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "society",
+          "old": 12.5,
+          "new": 0.0,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "society",
+          "old": 62.5,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "society",
+          "old": 12.5,
+          "new": 25.0,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 16,
+        "ausente -> ausente": 96,
+        "B -> B": 13,
+        "centro -> centro": 1,
+        "ausente -> centro": 3,
+        "centro -> ausente": 4,
+        "indeterminado -> B": 2,
+        "A -> ausente": 1,
+        "A -> B": 3,
+        "ausente -> B": 1
+      }
+    },
+    {
+      "baseline": "20261024T184909667917Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [
+        "textos_grandes_005",
+        "textos_grandes_006",
+        "textos_grandes_010"
+      ],
+      "changed_texts": 13,
+      "changed_document_axes": 17,
+      "per_axis": {
+        "economic": {
+          "unchanged": 24,
+          "changed": 4,
+          "B -> B": 1,
+          "centro -> B": 1,
+          "centro -> ausente": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 7.291666666666668
+        },
+        "diplomatic": {
+          "unchanged": 27,
+          "changed": 1,
+          "A -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 37.5
+        },
+        "state": {
+          "unchanged": 22,
+          "changed": 6,
+          "A -> A": 1,
+          "B -> B": 2,
+          "ausente -> B": 1,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 19.039786967418546
+        },
+        "society": {
+          "unchanged": 22,
+          "changed": 6,
+          "ausente -> centro": 2,
+          "centro -> ausente": 1,
+          "ausente -> A": 1,
+          "B -> B": 1,
+          "A -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_002",
+          "axis": "economic",
+          "old": 31.25,
+          "new": 25.0,
+          "delta": -6.25,
+          "transition": "B -> B",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 41.666666666666664,
+          "delta": -8.333333333333336,
+          "transition": "centro -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_009",
+          "axis": "economic",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Arcabouço fiscal e responsabilidade fiscal"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": null,
+          "new": 12.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 37.5,
+          "delta": -37.5,
+          "transition": "A -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 45.23809523809524,
+          "new": 44.078947368421055,
+          "delta": -1.159147869674186,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": 25.0,
+          "new": 37.5,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "society",
+          "old": null,
+          "new": 75.0,
+          "delta": null,
+          "transition": "ausente -> A",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "society",
+          "old": 12.5,
+          "new": 0.0,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "society",
+          "old": 62.5,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 15,
+        "ausente -> ausente": 88,
+        "B -> B": 14,
+        "centro -> centro": 1,
+        "ausente -> centro": 2,
+        "indeterminado -> B": 2,
+        "ausente -> B": 1,
+        "centro -> ausente": 2,
+        "A -> ausente": 1,
+        "A -> B": 2
+      }
+    },
+    {
+      "baseline": "20261023T014240545881Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [
+        "textos_grandes_005",
+        "textos_grandes_006",
+        "textos_grandes_010"
+      ],
+      "changed_texts": 13,
+      "changed_document_axes": 18,
+      "per_axis": {
+        "economic": {
+          "unchanged": 24,
+          "changed": 4,
+          "B -> B": 1,
+          "A -> B": 1,
+          "centro -> ausente": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 19.791666666666668
+        },
+        "diplomatic": {
+          "unchanged": 27,
+          "changed": 1,
+          "centro -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        },
+        "state": {
+          "unchanged": 22,
+          "changed": 6,
+          "A -> A": 1,
+          "B -> B": 1,
+          "ausente -> B": 2,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 22.561919504643964
+        },
+        "society": {
+          "unchanged": 21,
+          "changed": 7,
+          "ausente -> centro": 2,
+          "centro -> ausente": 2,
+          "B -> B": 2,
+          "A -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_002",
+          "axis": "economic",
+          "old": 31.25,
+          "new": 25.0,
+          "delta": -6.25,
+          "transition": "B -> B",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 75.0,
+          "new": 41.666666666666664,
+          "delta": -33.333333333333336,
+          "transition": "A -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_009",
+          "axis": "economic",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Arcabouço fiscal e responsabilidade fiscal"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": null,
+          "new": 12.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 50.0,
+          "new": 37.5,
+          "delta": -12.5,
+          "transition": "centro -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 49.26470588235294,
+          "new": 44.078947368421055,
+          "delta": -5.185758513931887,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "society",
+          "old": 12.5,
+          "new": 0.0,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "society",
+          "old": 62.5,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "society",
+          "old": 12.5,
+          "new": 25.0,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 15,
+        "ausente -> ausente": 87,
+        "B -> B": 12,
+        "centro -> centro": 1,
+        "ausente -> centro": 2,
+        "indeterminado -> B": 3,
+        "ausente -> B": 2,
+        "centro -> ausente": 3,
+        "A -> ausente": 1,
+        "centro -> B": 1,
+        "A -> B": 1
+      }
+    },
+    {
+      "baseline": "20261020T010032139196Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [
+        "textos_grandes_005",
+        "textos_grandes_006",
+        "textos_grandes_010"
+      ],
+      "changed_texts": 18,
+      "changed_document_axes": 23,
+      "per_axis": {
+        "economic": {
+          "unchanged": 24,
+          "changed": 4,
+          "B -> B": 1,
+          "centro -> B": 2,
+          "centro -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 17.36111111111111
+        },
+        "diplomatic": {
+          "unchanged": 25,
+          "changed": 3,
+          "A -> A": 1,
+          "A -> B": 1,
+          "centro -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 29.166666666666668
+        },
+        "state": {
+          "unchanged": 19,
+          "changed": 9,
+          "A -> A": 3,
+          "B -> B": 1,
+          "ausente -> B": 2,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "A -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 17.969924812030076
+        },
+        "society": {
+          "unchanged": 21,
+          "changed": 7,
+          "ausente -> centro": 2,
+          "centro -> B": 1,
+          "B -> A": 1,
+          "A -> ausente": 1,
+          "centro -> ausente": 1,
+          "B -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 41.666666666666664
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_007",
+          "axis": "economic",
+          "old": 12.5,
+          "new": 18.75,
+          "delta": 6.25,
+          "transition": "B -> B",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 41.666666666666664,
+          "delta": -8.333333333333336,
+          "transition": "centro -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_009",
+          "axis": "economic",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Arcabouço fiscal e responsabilidade fiscal"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 12.5,
+          "delta": -37.5,
+          "transition": "centro -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_007",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras."
+        },
+        {
+          "id": "textos_pequenos_014",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 12.5,
+          "delta": -62.5,
+          "transition": "A -> B",
+          "excerpt": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": 50.0,
+          "new": 37.5,
+          "delta": -12.5,
+          "transition": "centro -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_002",
+          "axis": "state",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_007",
+          "axis": "state",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 46.42857142857143,
+          "new": 44.078947368421055,
+          "delta": -2.3496240601503757,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_pequenos_018",
+          "axis": "state",
+          "old": 75.0,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "A resolução exige aviso quando a propaganda utiliza conteúdo multimídia gerado por IA. Ajustes de qualidade de som ou imagem e elementos de identidade visual estão dispensados dessa exigência. A violação da regra pode le"
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_007",
+          "axis": "society",
+          "old": 50.0,
+          "new": 25.0,
+          "delta": -25.0,
+          "transition": "centro -> B",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "society",
+          "old": 0.0,
+          "new": 75.0,
+          "delta": 75.0,
+          "transition": "B -> A",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_002",
+          "axis": "society",
+          "old": 75.0,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "Redução da maioridade penal para 16 anos ou menos"
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "society",
+          "old": 0.0,
+          "new": 25.0,
+          "delta": 25.0,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 15,
+        "ausente -> ausente": 85,
+        "B -> B": 12,
+        "centro -> centro": 1,
+        "ausente -> centro": 2,
+        "A -> ausente": 3,
+        "A -> B": 3,
+        "ausente -> B": 2,
+        "centro -> ausente": 3,
+        "centro -> B": 2
+      }
+    },
+    {
+      "baseline": "20261019T233334959801Z",
+      "shared_texts": 28,
+      "different_texts": [],
+      "different_chunks": [
+        "textos_grandes_005",
+        "textos_grandes_006",
+        "textos_grandes_010"
+      ],
+      "changed_texts": 16,
+      "changed_document_axes": 20,
+      "per_axis": {
+        "economic": {
+          "unchanged": 25,
+          "changed": 3,
+          "B -> B": 2,
+          "centro -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 9.027777777777779
+        },
+        "diplomatic": {
+          "unchanged": 25,
+          "changed": 3,
+          "A -> A": 1,
+          "B -> B": 1,
+          "ausente -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 12.5
+        },
+        "state": {
+          "unchanged": 19,
+          "changed": 9,
+          "A -> A": 3,
+          "B -> B": 3,
+          "A -> ausente": 1,
+          "centro -> ausente": 1,
+          "A -> B": 1,
+          "mean_abs_delta_on_changed_numeric": 17.98872180451128
+        },
+        "society": {
+          "unchanged": 23,
+          "changed": 5,
+          "ausente -> centro": 2,
+          "A -> ausente": 1,
+          "B -> B": 1,
+          "centro -> ausente": 1,
+          "mean_abs_delta_on_changed_numeric": 25.0
+        }
+      },
+      "changes": [
+        {
+          "id": "textos_grandes_007",
+          "axis": "economic",
+          "old": 12.5,
+          "new": 18.75,
+          "delta": 6.25,
+          "transition": "B -> B",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_grandes_008",
+          "axis": "economic",
+          "old": 50.0,
+          "new": 41.666666666666664,
+          "delta": -8.333333333333336,
+          "transition": "centro -> B",
+          "excerpt": "Deputados e debatedores divergem sobre a privatização da Eletrobras  Parlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre"
+        },
+        {
+          "id": "textos_pequenos_012",
+          "axis": "economic",
+          "old": 25.0,
+          "new": 12.5,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas."
+        },
+        {
+          "id": "textos_pequenos_007",
+          "axis": "diplomatic",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras."
+        },
+        {
+          "id": "textos_pequenos_014",
+          "axis": "diplomatic",
+          "old": 25.0,
+          "new": 12.5,
+          "delta": -12.5,
+          "transition": "B -> B",
+          "excerpt": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+        },
+        {
+          "id": "textos_pequenos_015",
+          "axis": "diplomatic",
+          "old": null,
+          "new": 37.5,
+          "delta": null,
+          "transition": "ausente -> B",
+          "excerpt": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos."
+        },
+        {
+          "id": "textos_grandes_002",
+          "axis": "state",
+          "old": 75.0,
+          "new": 87.5,
+          "delta": 12.5,
+          "transition": "A -> A",
+          "excerpt": "MP restringe papel do Estado no controle na fiscalização da atividade econômica  A Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciati"
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "state",
+          "old": 75.0,
+          "new": 62.5,
+          "delta": -12.5,
+          "transition": "A -> A",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_007",
+          "axis": "state",
+          "old": 62.5,
+          "new": 87.5,
+          "delta": 25.0,
+          "transition": "A -> A",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_grandes_010",
+          "axis": "state",
+          "old": 45.0,
+          "new": 44.078947368421055,
+          "delta": -0.9210526315789451,
+          "transition": "B -> B",
+          "excerpt": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024  Altera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.  O TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o in"
+        },
+        {
+          "id": "textos_pequenos_001",
+          "axis": "state",
+          "old": 75.0,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "Privatização de todas as empresas estatais"
+        },
+        {
+          "id": "textos_pequenos_006",
+          "axis": "state",
+          "old": 25.0,
+          "new": 37.5,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+        },
+        {
+          "id": "textos_pequenos_008",
+          "axis": "state",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "state",
+          "old": 75.0,
+          "new": 25.0,
+          "delta": -50.0,
+          "transition": "A -> B",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        },
+        {
+          "id": "textos_pequenos_017",
+          "axis": "state",
+          "old": 25.0,
+          "new": 37.5,
+          "delta": 12.5,
+          "transition": "B -> B",
+          "excerpt": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo."
+        },
+        {
+          "id": "textos_grandes_004",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "Comissão discute transição demográfica e envelhecimento da população brasileira  A Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, "
+        },
+        {
+          "id": "textos_grandes_006",
+          "axis": "society",
+          "old": 75.0,
+          "new": null,
+          "delta": null,
+          "transition": "A -> ausente",
+          "excerpt": "Deputados aprovam projeto que regulamenta telessaúde  A Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo tod"
+        },
+        {
+          "id": "textos_grandes_007",
+          "axis": "society",
+          "old": 0.0,
+          "new": 25.0,
+          "delta": 25.0,
+          "transition": "B -> B",
+          "excerpt": "Câmara aprova texto-base da MP da Liberdade Econômica  O Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 "
+        },
+        {
+          "id": "textos_pequenos_013",
+          "axis": "society",
+          "old": null,
+          "new": 50.0,
+          "delta": null,
+          "transition": "ausente -> centro",
+          "excerpt": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes."
+        },
+        {
+          "id": "textos_pequenos_016",
+          "axis": "society",
+          "old": 50.0,
+          "new": null,
+          "delta": null,
+          "transition": "centro -> ausente",
+          "excerpt": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição."
+        }
+      ],
+      "chunk_axis_transitions": {
+        "A -> A": 14,
+        "ausente -> ausente": 87,
+        "B -> B": 16,
+        "centro -> centro": 1,
+        "ausente -> A": 1,
+        "ausente -> centro": 2,
+        "centro -> ausente": 3,
+        "indeterminado -> B": 2,
+        "A -> ausente": 1,
+        "A -> B": 1
+      }
+    }
+  ]
+}

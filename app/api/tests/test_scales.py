@@ -9,7 +9,11 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from app.polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_5_NIVEIS, ESCALA_9_NIVEIS, instrucoes_escala, validar_escala, valor_nivel
+from app.analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
+
+from app.prompting import instrucoes_escala
+
+from app.polarity import validar_escala, valor_nivel
 from app.experiment_config import ExperimentConfig, config_hash
 from app.pipeline import domain
 from app.pipeline.aggregation import aggregate
@@ -147,12 +151,12 @@ class ScaleTests(unittest.TestCase):
                 self.assertEqual(api.pole_a, nb['índice A'])
                 self.assertEqual(api.level_counts_by_key[n.chave], nb[f'n {n.chave}'])
                 self.assertEqual(api.pole_a, 100 * n.valor)
-                self.assertEqual(domain.criar_rubrica_polaridade_ordinal('economic', escala=escala), self.ns['criar_rubrica_polaridade_ordinal']('economic', escala=notebook_scale))
+                self.assertEqual(domain.criar_rubrica_polaridade_ordinal('economic', escala=escala), self.ns['criar_rubrica_polaridade_ordinal']('economic', escala=notebook_scale, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
             questions = jev_questions(escala)
             self.assertEqual(len(questions['economic_polaridade'].criteria), len(escala.niveis))
-            self.assertEqual(instrucoes_escala(escala), self.ns['instrucoes_escala'](notebook_scale))
+            self.assertEqual(instrucoes_escala(escala), self.ns['instrucoes_escala'](notebook_scale, CONTEXTO_POSICAO_POLITICA))
             for axis in AXES:
-                self.assertEqual(domain.criar_questoes_eixo(axis), self.ns['criar_questoes_eixo'](axis))
+                self.assertEqual(domain.criar_questoes_eixo(axis), self.ns['criar_questoes_eixo'](axis, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
                 self.assertTrue(questions[f'{axis}_relevancia'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
                 self.assertTrue(questions[f'{axis}_polaridade'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
 
@@ -199,7 +203,7 @@ class ScaleTests(unittest.TestCase):
 
     def test_historical_config_hashes_do_not_gain_a_scale_field(self):
         for version in ('jev-2-polos-mvp-1', 'jev-2-polos-evidence-2', 'jev-9-niveis-evidence-3', 'jev-escalas-ordinal-4', 'jev-escalas-ordinal-5'):
-            data = ExperimentConfig().model_dump(mode='json', exclude={'contexto_posicao_politica', 'chunk_strategy', 'regra_decisao'} | (set() if version == 'jev-escalas-ordinal-5' else {'primitiva_polaridade'}) | (set() if version in ('jev-escalas-ordinal-4', 'jev-escalas-ordinal-5') else {'escala'}))
+            data = ExperimentConfig().model_dump(mode='json', exclude={'axis_specs', 'contexto_posicao_politica', 'chunk_strategy', 'regra_decisao'} | (set() if version == 'jev-escalas-ordinal-5' else {'primitiva_polaridade'}) | (set() if version in ('jev-escalas-ordinal-4', 'jev-escalas-ordinal-5') else {'escala'}))
             if version == 'jev-2-polos-mvp-1':
                 for key in ('semantic_evidence_check','jev_evidence_search','evidence_existence_min'): data.pop(key)
             expected = hashlib.sha256(json.dumps({'config_version': '1', 'pipeline_version': version, 'effective_config': data}, sort_keys=True, separators=(',', ':'), ensure_ascii=True).encode()).hexdigest()

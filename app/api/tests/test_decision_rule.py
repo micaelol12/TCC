@@ -8,7 +8,8 @@ from app.experiment_config import ExperimentConfig, config_hash
 from app.execution_store import public_request
 from app.pipeline.domain import _normalizar_polaridade_ordinal, motivos_fallback
 from app.pipeline.strategies import classify_chunk
-from app.polarity import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS, validar_escala
+from app.analysis_defaults import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
+from app.polarity import validar_escala
 from app.report_schemas import ReportAnalysis
 from app.schemas import AnalysisResponse
 import test_experiments as experiments

@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,economic,search,found,2,S000,0.0,167.0,O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes.,0.73,0.72,"{'S000': 0.86, 'NONE': 0.14}",jev-1.13.0
+0,economic,semantic,sustenta,2,,,,O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes.,,0.66,"{'sustenta': 0.77, 'contradiz': 0.02, 'insuficiente': 0.21}",jev-1.13.0
+0,society,search,not_selected,0,,,,,0.12,0.84,"{'S000': 0.08, 'NONE': 0.92}",jev-1.13.0

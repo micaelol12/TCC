@@ -1,10 +1,10 @@
 # Parâmetros da versão oficial
 
-O site e a extensão oficiais usam **`api/analysis-config.json`**, lido pela API ao iniciar. O arquivo contém todos os campos de `ExperimentConfig` usados no Lab, incluindo o contexto do prompt, a escala completa e suas rubricas. Edite o JSON e reinicie a API para aplicar aos dois clientes, sem recompilar. Recarregue o site/painel ou use **Verificar conexão e modos** para atualizar as capacidades exibidas.
+O site e a extensão, nas edições comum e Lab, usam **`api/analysis-config.json`**, lido pela API ao iniciar. Esse é o único arquivo de definições do app: contém todos os campos de `ExperimentConfig`, incluindo temas, descrições dos polos, contexto do prompt, escala completa e rubricas. `polarity.py` mantém apenas modelos, validação e operações da escala. Edite o JSON e reinicie a API para aplicar aos clientes, sem recompilar. Recarregue o site/painel ou use **Verificar conexão e modos** para atualizar as capacidades exibidas.
 
 Para usar outro arquivo, defina `ALGORITHM_CONFIG_PATH` no ambiente da API. Caminhos relativos partem de `app/api`, independentemente da pasta de inicialização. Use JSON UTF-8 (com ou sem BOM), sem comentários. Arquivos ausentes, JSON inválido, campos desconhecidos e valores fora do contrato impedem a inicialização.
 
-Os valores padrão abaixo correspondem ao conteúdo atual de [`api/analysis-config.json`](api/analysis-config.json). Os padrões internos do contrato e os do Lab podem ser diferentes; substituições por variáveis de ambiente seguem a prioridade descrita adiante.
+Os valores padrão abaixo correspondem ao conteúdo atual de [`api/analysis-config.json`](api/analysis-config.json). O Lab usa essa mesma base; substituições por variáveis de ambiente e experimentos seguem a prioridade descrita adiante. O arquivo deve conter todos os campos; definições ausentes ou inválidas impedem a inicialização.
 
 | Campo | Valor padrão no JSON atual | Explicação | Opções / limites |
 |---|---|---|---|
@@ -30,6 +30,8 @@ Os três limiares de classificação do JEV (`relevance_margin_min`, `level_conf
 
 O objeto `escala` contém os seguintes campos. As listas completas de níveis, situações e exemplos permanecem no JSON, que é a referência para os valores textuais.
 
+`axis_specs` define exatamente os quatro eixos (`economic`, `diplomatic`, `state`, `society`). Cada eixo contém `effect`, `name`, `topic`, `note` e `poles`; cada polo `A`/`B` contém `id`, `label` e `description`. Não copie rubricas para esse objeto: elas ficam somente em `escala.rubricas_por_eixo`. As definições efetivas acompanham resultados, presets e hashes desde `jev-escalas-ordinal-13`. A opção de cinco níveis do Lab deriva os extremos, os níveis moderados e o centro da escala configurada de nove níveis, sem outro conjunto de rubricas.
+
 | Campo dentro de `escala` | Valor padrão no JSON atual | Explicação |
 |---|---|---|
 | `id` | `ordinal_9_v1` | Identificador da escala registrada na configuração e nos resultados. |
@@ -50,8 +52,8 @@ Desde `jev-escalas-ordinal-12`, altere `contexto_posicao_politica` para experime
 
 As chaves ficam no ambiente do servidor: `TYPESAFE_API_KEY`, `MARITACA_API_KEY` e `GEMINI_API_KEY`. Nunca entram no JSON público nem no pacote da extensão. `ALLOWED_JEV_MODELS` e `ALLOWED_LLM_MODELS` restringem os modelos JEV e Maritaca; quando ausentes, incluem o modelo padrão configurado. `ALLOWED_GEMINI_MODELS` controla o catálogo Gemini. A edição oficial usa o provedor do modelo escolhido no arquivo; a interface informa esse destino antes do envio.
 
-A prioridade dos parâmetros é: **processo > `api/.env` > `.env` da raiz > JSON > padrões do contrato**. Para concentrar os parâmetros no JSON, remova as substituições correspondentes dos arquivos de ambiente. São elas `CONTEXTO_POSICAO_POLITICA`, `JEV_MODEL`, `LLM_MODEL`, `JEV_POLARITY_PRIMITIVE`, `JEV_DECISION_RULE`, `CHUNK_TOKENS`, `CHUNK_STRATEGY`, `JEV_RELEVANCE_MARGIN_MIN`, `JEV_LEVEL_CONFIDENCE_MIN`, `JEV_DIRECTION_MARGIN_MIN`, `MIN_VALID_CHUNKS`, `BOOTSTRAP_SAMPLES`, `BOOTSTRAP_SEED`, `SEMANTIC_EVIDENCE_CHECK`, `JEV_EVIDENCE_SEARCH` e `EVIDENCE_EXISTENCE_MIN`. A escala é definida pelo objeto `escala` no JSON.
+A prioridade dos parâmetros é: **processo > `api/.env` > `.env` da raiz > JSON**. Para concentrar os parâmetros no JSON, remova as substituições correspondentes dos arquivos de ambiente. São elas `CONTEXTO_POSICAO_POLITICA`, `JEV_MODEL`, `LLM_MODEL`, `JEV_POLARITY_PRIMITIVE`, `JEV_DECISION_RULE`, `CHUNK_TOKENS`, `CHUNK_STRATEGY`, `JEV_RELEVANCE_MARGIN_MIN`, `JEV_LEVEL_CONFIDENCE_MIN`, `JEV_DIRECTION_MARGIN_MIN`, `MIN_VALID_CHUNKS`, `BOOTSTRAP_SAMPLES`, `BOOTSTRAP_SEED`, `SEMANTIC_EVIDENCE_CHECK`, `JEV_EVIDENCE_SEARCH` e `EVIDENCE_EXISTENCE_MIN`. A escala é definida pelo objeto `escala` e as descrições dos eixos e polos por `axis_specs` no JSON.
 
 Limites operacionais continuam no ambiente: `MAX_CHARS`, `MAX_TOKENS`, `MAX_CHUNKS`, `ANALYSIS_TIMEOUT_SECONDS`, `CONCURRENT_CHUNKS`, `CONCURRENT_REQUESTS`, `HOURLY_REQUESTS`, `DAILY_PROVIDER_CALLS` e `REPORTS_HOURLY_REQUESTS`. Eles restringem o arquivo e não são parâmetros de experimento do Lab.
 
-A API publica os parâmetros em `GET /api/capabilities` (`analysis_defaults`) e inclui o snapshot efetivamente utilizado e seu hash em cada resultado e report. O arquivo é lido na inicialização; alterações exigem reiniciar a API. A edição oficial mantém os parâmetros por servidor e recusa `experiment_config` enviado pelo cliente. O Lab conserva seus presets e parâmetros por análise; só lê um JSON de servidor se `ALGORITHM_CONFIG_PATH` for definido explicitamente para ele.
+A API publica os parâmetros em `GET /api/capabilities` (`analysis_defaults`) e inclui o snapshot efetivamente utilizado e seu hash em cada resultado e report. O arquivo é lido na inicialização; alterações exigem reiniciar a API. A edição oficial mantém os parâmetros por servidor e recusa `experiment_config` enviado pelo cliente. O Lab lê o mesmo JSON e conserva seus presets e parâmetros por análise. `ALGORITHM_CONFIG_PATH` seleciona outro arquivo completo em ambas as edições. Resultados anteriores continuam usando seus snapshots, sem receber definições novas retroativamente.
