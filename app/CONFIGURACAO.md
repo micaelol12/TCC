@@ -1,6 +1,6 @@
 # Parâmetros da versão oficial
 
-O site e a extensão oficiais usam **`api/analysis-config.json`**, lido pela API ao iniciar. O arquivo contém os mesmos 16 campos de `ExperimentConfig` usados no Lab, incluindo a escala completa e suas rubricas. Edite o JSON e reinicie a API para aplicar aos dois clientes, sem recompilar. Recarregue o site/painel ou use **Verificar conexão e modos** para atualizar as capacidades exibidas.
+O site e a extensão oficiais usam **`api/analysis-config.json`**, lido pela API ao iniciar. O arquivo contém todos os campos de `ExperimentConfig` usados no Lab, incluindo o contexto do prompt, a escala completa e suas rubricas. Edite o JSON e reinicie a API para aplicar aos dois clientes, sem recompilar. Recarregue o site/painel ou use **Verificar conexão e modos** para atualizar as capacidades exibidas.
 
 Para usar outro arquivo, defina `ALGORITHM_CONFIG_PATH` no ambiente da API. Caminhos relativos partem de `app/api`, independentemente da pasta de inicialização. Use JSON UTF-8 (com ou sem BOM), sem comentários. Arquivos ausentes, JSON inválido, campos desconhecidos e valores fora do contrato impedem a inicialização.
 
@@ -8,6 +8,7 @@ Os valores padrão abaixo correspondem ao conteúdo atual de [`api/analysis-conf
 
 | Campo | Valor padrão no JSON atual | Explicação | Opções / limites |
 |---|---|---|---|
+| `contexto_posicao_politica` | Texto atual sobre posições expressas, definições, citações e críticas | Contexto do prompt compartilhado pelo JEV, pelo LLM e pela auditoria de evidências. Editável também no Lab; registrado em `effective_config`, no hash e nos presets. | Texto não vazio, até 20.000 caracteres |
 | `escala` | `ordinal_9_v1`, versão `1`, com nove níveis e rubricas completas | Define os níveis de posição e intensidade, sua conversão em pontuação e as situações e exemplos usados na classificação de cada eixo. | Objeto validado com níveis e rubricas; aceita cinco níveis e outras escalas válidas do contrato |
 | `primitiva_polaridade` | `score` | Escolhe como o JEV classifica a polaridade: `score` usa níveis ordenados; `choice` escolhe entre alternativas de nível. A relevância continua usando Choice. Aplica-se aos modos baixo e médio. | `score`, `choice` |
 | `regra_decisao` | `nivel` | Define como converter a distribuição do JEV em um nível: `nivel` escolhe o nível individual mais provável; `polo_primeiro` soma as probabilidades por polo A, B e sem posição, escolhe o grupo mais provável e depois a intensidade dentro dele. | `nivel`, `polo_primeiro` |
@@ -45,9 +46,11 @@ O objeto `escala` contém os seguintes campos. As listas completas de níveis, s
 
 Para levar parâmetros do Lab à versão oficial, use o objeto **`config`** de um preset exportado, ou **`effective_config`** de uma análise, como conteúdo do arquivo. Não copie o envelope do preset (`format`, `environment` etc.). O arquivo oficial já contém todos os campos como referência. Veja o comportamento das opções de evidência no [guia do Lab](LAB.md#evidências-experimentais).
 
+Desde `jev-escalas-ordinal-12`, altere `contexto_posicao_politica` para experimentar outra interpretação sem editar Python. O campo substitui o contexto geral; as instruções de saída e as rubricas específicas continuam compondo o prompt. Para alterar o significado de `sem_posicao` ou dos níveis, ajuste também `escala.rubricas_por_eixo` para manter as regras coerentes. Configurações sem esse campo usam o contexto padrão do contrato; presets antigos importados no Lab recebem o padrão publicado pela API. Resultados anteriores preservam seus hashes e não recebem um contexto retroativamente no JSON.
+
 As chaves ficam no ambiente do servidor: `TYPESAFE_API_KEY`, `MARITACA_API_KEY` e `GEMINI_API_KEY`. Nunca entram no JSON público nem no pacote da extensão. `ALLOWED_JEV_MODELS` e `ALLOWED_LLM_MODELS` restringem os modelos JEV e Maritaca; quando ausentes, incluem o modelo padrão configurado. `ALLOWED_GEMINI_MODELS` controla o catálogo Gemini. A edição oficial usa o provedor do modelo escolhido no arquivo; a interface informa esse destino antes do envio.
 
-A prioridade dos parâmetros é: **processo > `api/.env` > `.env` da raiz > JSON > padrões do contrato**. Para concentrar os parâmetros no JSON, remova as substituições correspondentes dos arquivos de ambiente. São elas `JEV_MODEL`, `LLM_MODEL`, `JEV_POLARITY_PRIMITIVE`, `JEV_DECISION_RULE`, `CHUNK_TOKENS`, `CHUNK_STRATEGY`, `JEV_RELEVANCE_MARGIN_MIN`, `JEV_LEVEL_CONFIDENCE_MIN`, `JEV_DIRECTION_MARGIN_MIN`, `MIN_VALID_CHUNKS`, `BOOTSTRAP_SAMPLES`, `BOOTSTRAP_SEED`, `SEMANTIC_EVIDENCE_CHECK`, `JEV_EVIDENCE_SEARCH` e `EVIDENCE_EXISTENCE_MIN`. A escala é definida pelo objeto `escala` no JSON.
+A prioridade dos parâmetros é: **processo > `api/.env` > `.env` da raiz > JSON > padrões do contrato**. Para concentrar os parâmetros no JSON, remova as substituições correspondentes dos arquivos de ambiente. São elas `CONTEXTO_POSICAO_POLITICA`, `JEV_MODEL`, `LLM_MODEL`, `JEV_POLARITY_PRIMITIVE`, `JEV_DECISION_RULE`, `CHUNK_TOKENS`, `CHUNK_STRATEGY`, `JEV_RELEVANCE_MARGIN_MIN`, `JEV_LEVEL_CONFIDENCE_MIN`, `JEV_DIRECTION_MARGIN_MIN`, `MIN_VALID_CHUNKS`, `BOOTSTRAP_SAMPLES`, `BOOTSTRAP_SEED`, `SEMANTIC_EVIDENCE_CHECK`, `JEV_EVIDENCE_SEARCH` e `EVIDENCE_EXISTENCE_MIN`. A escala é definida pelo objeto `escala` no JSON.
 
 Limites operacionais continuam no ambiente: `MAX_CHARS`, `MAX_TOKENS`, `MAX_CHUNKS`, `ANALYSIS_TIMEOUT_SECONDS`, `CONCURRENT_CHUNKS`, `CONCURRENT_REQUESTS`, `HOURLY_REQUESTS`, `DAILY_PROVIDER_CALLS` e `REPORTS_HOURLY_REQUESTS`. Eles restringem o arquivo e não são parâmetros de experimento do Lab.
 

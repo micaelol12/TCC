@@ -4,6 +4,14 @@ import { experimentCapabilities, labCapabilities, analysisFixture } from '../tes
 import { createAnalysisClient, isAnalysis, isCapabilities } from '../api/analysisApi'
 
 const defaults = experimentCapabilities.defaults
+
+test('contexto acompanha presets e configurações antigas recebem o padrão da API', () => {
+  const contexto_posicao_politica = 'Classifique somente posições defendidas pelo autor.\nRespeite críticas.'
+  const config = { ...defaults, contexto_posicao_politica }
+  expect(importPreset(exportPreset(config), experimentCapabilities)).toEqual(config)
+  expect(importPreset(exportPreset(defaults), { ...experimentCapabilities, defaults: config }).contexto_posicao_politica).toBe(contexto_posicao_politica)
+  for (const invalid of ['', ' \n\t', null, true, 1, 'a'.repeat(20001)]) expect(isExperimentConfig({ ...defaults, contexto_posicao_politica: invalid })).toBe(false)
+})
 test('preserva segmentação por sentenças e importa presets antigos com tokens', () => {
   const sentences = { ...defaults, chunk_strategy: 'sentencas' as const }
   expect(importPreset(exportPreset(sentences), experimentCapabilities)).toEqual(sentences)

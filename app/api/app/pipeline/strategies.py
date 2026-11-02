@@ -7,7 +7,7 @@ from .validation import validate_answer
 from .clients import jev_client, jev_questions, llm_client
 from .evidence import audit_evidence
 from .domain import _score_evidencia_confere
-from ..polarity import ESCALA_ATUAL, instrucoes_escala
+from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, instrucoes_escala
 from .validation import schema_for
 
 JEV_CONFIG = {
@@ -52,14 +52,15 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
     return decisions, model
 
 
-async def ask_llm(client, model: str, text: str, axes: list[str], escala=None):
+async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     escala = ESCALA_ATUAL if escala is None else escala
-    rubrics = {axis: {"relevancia": criar_questoes_eixo(axis), "polaridade": criar_rubrica_polaridade_ordinal(axis, escala=escala)} for axis in axes}
+    rubrics = {axis: {"relevancia": criar_questoes_eixo(axis, contexto_posicao_politica=contexto_posicao_politica),
+                      "polaridade": criar_rubrica_polaridade_ordinal(axis, escala=escala, contexto_posicao_politica=contexto_posicao_politica)} for axis in axes}
     prompt = json.dumps({"rubricas": rubrics, "texto": text}, ensure_ascii=False)
     schema = schema_for(axes, escala)
     for attempt in range(2):
         try:
-            response = await client.responses.parse(model=model, input=prompt, instructions=instrucoes_escala(escala), text_format=schema)
+            response = await client.responses.parse(model=model, input=prompt, instructions=instrucoes_escala(escala, contexto_posicao_politica), text_format=schema)
             if response.output_parsed is None:
                 raise ValueError("Saída estruturada ausente")
             return validate_answer(response.output_parsed, axes, text, escala), getattr(response, "model", model)
@@ -77,9 +78,10 @@ async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, co
     decisions, calls, models = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
     if config and (config.semantic_evidence_check or config.jev_evidence_search):
         decisions, extra_calls, extra_models = await audit_evidence(
-            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, escala=config.escala) for axis in AXIS_SPECS},
+            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, escala=config.escala, contexto_posicao_politica=config.contexto_posicao_politica) for axis in AXIS_SPECS},
             _score_evidencia_confere, semantic_check=config.semantic_evidence_check,
-            quote_search=config.jev_evidence_search, existence_min=config.evidence_existence_min)
+            quote_search=config.jev_evidence_search, existence_min=config.evidence_existence_min,
+            contexto_posicao_politica=config.contexto_posicao_politica)
         calls["jev"] += extra_calls
         models.extend(extra_models)
     return decisions, calls, models
@@ -88,9 +90,10 @@ async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, co
 async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
     calls = {"jev": 0, "llm": 0}
     models = []
+    contexto = config.contexto_posicao_politica if config else CONTEXTO_POSICAO_POLITICA
     if mode == "high":
         calls["llm"] = 1
-        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None)
+        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None, contexto)
         for decision in result.values():
             decision["methods"] = ["llm"]
         models.append(model)
@@ -110,7 +113,7 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
         requested = [axis for axis, d in decisions.items() if d["reason"]]
         if requested:
             calls["llm"] = 1
-            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None)
+            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None, contexto)
             models.append(model)
             for axis in requested:
                 if "jev_diagnostic" in decisions[axis]:

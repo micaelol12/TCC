@@ -12,26 +12,25 @@ MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua"
 _MARCACAO_MD = re.compile(r"(\*\*|__|<br\s*/?>|^#{1,6}\s+|^>\s?|\|)", re.M)
 _RETICENCIAS = re.compile(r"^(\.\.\.|…)\s*|\s*(\.\.\.|…)$")
 
-def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS):
+def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     """Cria a pergunta de relevância; a polaridade é definida pela rubrica ordinal."""
     spec = axis_specs[axis]
     return {
-        "instructions": CONTEXTO_POSICAO_POLITICA + f"O trecho contém uma proposta ou posição sobre {spec['name']}?",
+        "instructions": contexto_posicao_politica.rstrip() + " " + f"O trecho contém uma proposta ou posição sobre {spec['name']}?",
         "criteria": {
             "A": f"Sim. Há evidência substantiva sobre {spec['topic']}.",
             "B": f"Não. Não há evidência substantiva sobre {spec['topic']}.",
         },
     }
 
-def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None):
+def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
     spec = axis_specs[axis]
     polos = spec["poles"]
-    instructions = (CONTEXTO_POSICAO_POLITICA +
+    instructions = (contexto_posicao_politica.rstrip() + " " +
         f"Qual situação descreve a posição expressa no trecho sobre {spec['name']}? "
         f"Polo B ({polos['B']['label']}): {polos['B']['description']} "
         f"Polo A ({polos['A']['label']}): {polos['A']['description']} "
-        "Considere as posições expressas conforme o contexto da análise, incluindo falas de terceiros e respeitando o sentido de negações e críticas. "
         "Intensidade depende do alcance e da profundidade da mudança proposta, não da retórica "
         "nem da confiança. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
     niveis = {n.chave: {"valor": n.codigo, "nivel": n.rotulo,

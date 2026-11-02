@@ -22,7 +22,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
   const [fileError, setFileError] = useState('')
   const [tab, setTab] = useState<'parameters' | 'keys'>('parameters')
   if (!config) return <p role="status">Carregando a configuração Lab…</p>
-  const changed = [...numericFields, ...evidenceFields, 'jev_model', 'llm_model', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
+  const changed = [...numericFields, ...evidenceFields, 'contexto_posicao_politica', 'jev_model', 'llm_model', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].filter(name => !sameContent(config[name as keyof ExperimentConfig], caps.defaults[name as keyof ExperimentConfig]))
   async function importFile(file?: File) {
     if (!file) return
     setFileError('')
@@ -80,6 +80,11 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
             : mode === 'high' && !config.semantic_evidence_check ? 'Não se aplica ao modo alto sem checagem semântica.' : 'Modelo JEV usado para classificação e checagem de evidências.'}</small></div>
       })}
     </div></fieldset>
+    <fieldset disabled={busy}><legend>{configLabels.contexto_posicao_politica}</legend>
+      <label htmlFor="lab-contexto_posicao_politica">Instruções de contexto</label>
+      <textarea id="lab-contexto_posicao_politica" rows={8} value={config.contexto_posicao_politica ?? caps.defaults.contexto_posicao_politica ?? ''} aria-describedby="help-contexto_posicao_politica" onChange={e => onChange({ ...config, contexto_posicao_politica: e.target.value })} />
+      <p id="help-contexto_posicao_politica" className="small muted">Define como interpretar posições, descrições, citações e críticas. Usado pelo JEV, pelo LLM e na checagem de evidências, junto às rubricas da escala. Aceita até 20.000 caracteres e acompanha o JSON exportado.</p>
+    </fieldset>
     <fieldset disabled={busy}><legend>Evidências experimentais</legend>
       <label><input id="lab-semantic_evidence_check" type="checkbox" checked={config.semantic_evidence_check ?? false} onChange={e => onChange({ ...config, semantic_evidence_check: e.target.checked })} /> Verificar apoio semântico da citação</label>
       <p className="small muted">O JEV avalia se a citação sustenta, contradiz ou não comprova a posição e sua intensidade. O parecer fica registrado e não altera a pontuação. Exige TypeSafe também no modo alto.</p>
@@ -89,7 +94,7 @@ export default function ExperimentPanel({ caps, config, onChange, mode, busy, er
       <input id="lab-evidence_existence_min" type="number" min="0" max="1" step="0.01" value={Number.isFinite(config.evidence_existence_min ?? 0.7) ? (config.evidence_existence_min ?? 0.7) : ''} disabled={!config.jev_evidence_search || mode === 'high'} onChange={e => onChange({ ...config, evidence_existence_min: e.target.value === '' ? NaN : Number(e.target.value) })} />
       <p className="small muted">Até duas chamadas JEV adicionais por trecho com as duas opções ativas. Confiança do modelo não é probabilidade de acerto.</p>
     </fieldset>
-    <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${name === 'escala' ? config.escala?.id : config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
+    <p className="small">{changed.length ? `Alterações: ${changed.map(name => `${configLabels[name as keyof ExperimentConfig]} = ${name === 'contexto_posicao_politica' ? 'alterado' : name === 'escala' ? config.escala?.id : config[name as keyof ExperimentConfig]}`).join('; ')}.` : 'Usando os padrões desta API.'}</p>
     {error && <p className="error" role="alert">{error}</p>}
     <p className="small muted">As alterações válidas são salvas automaticamente neste navegador. Ao reabrir, a última configuração salva será restaurada.</p>
     <div className="actions"><button className="secondary" disabled={busy} onClick={() => { onChange({ ...caps.defaults }); setFileError(''); onNotice('Padrões restaurados para a próxima análise.') }}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={download}>Exportar JSON</button></div>

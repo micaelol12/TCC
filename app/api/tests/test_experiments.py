@@ -192,7 +192,7 @@ class ExperimentHttpTests(unittest.TestCase):
             self.assertEqual(result['effective_config']['primitiva_polaridade'], primitive)
             self.assertEqual(result['axes'][0]['pole_a'], 62.5)
             self.assertEqual(result['logical_calls']['llm'], 0)
-            self.mocks[1].assert_called_with(ESCALA_9_NIVEIS, primitive)
+            self.mocks[1].assert_called_with(ESCALA_9_NIVEIS, primitive, self.settings.contexto_posicao_politica)
             hashes.append(result['config_hash'])
         self.assertNotEqual(*hashes)
         self.assertEqual(self.client.get('/api/capabilities').json()['experimental']['defaults']['primitiva_polaridade'], 'score')
@@ -220,6 +220,7 @@ class ExperimentHttpTests(unittest.TestCase):
         historical['effective_config'].pop('primitiva_polaridade')
         historical['effective_config'].pop('regra_decisao')
         historical['effective_config'].pop('chunk_strategy')
+        historical['effective_config'].pop('contexto_posicao_politica')
         historical['config_hash'] = config_hash(ExperimentConfig.model_validate(historical['effective_config']), historical['pipeline_version'])
         self.assertEqual(AnalysisResponse.model_validate(historical).model_dump(mode='json'), historical)
         historical['effective_config']['primitiva_polaridade'] = 'choice'

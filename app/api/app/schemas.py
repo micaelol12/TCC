@@ -198,6 +198,8 @@ class AnalysisResponse(BaseModel):
             result["effective_config"].pop("regra_decisao", None)
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "chunk_strategy" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("chunk_strategy", None)
+        if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "contexto_posicao_politica" not in self.effective_config.model_fields_set:
+            result["effective_config"].pop("contexto_posicao_politica", None)
         if self.schema_version == "1":
             for axis in result["axes"]:
                 for key in ("minus4", "minus3", "plus3", "plus4"):

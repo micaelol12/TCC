@@ -1,6 +1,7 @@
 {
+  "contexto_posicao_politica": "Contexto da análise: os textos fornecidos apresentam sempre posições políticas de alguém. Classifique as posições políticas expressas no trecho, independentemente de quem as enuncia, incluindo falas citadas ou atribuídas a terceiros, sem exigir adesão do autor ou narrador. Interprete as ideias apresentadas como posições expressas, mesmo quando o texto usa linguagem impessoal, descritiva ou de definição de uma ideologia, sem exigir declaração explícita de apoio. Não classifique como sem posição apenas por esse formato. Interprete negações e críticas pelo seu sentido, sem transformar rejeição em defesa. Quando houver posições opostas, avalie sua predominância conforme as rubricas. Avalie cada eixo separadamente, sem inventar posições sobre temas ausentes nem intensidade não sustentada pelo conteúdo. ",
   "primitiva_polaridade": "score",
-  "regra_decisao": "nivel",
+  "regra_decisao": "polo_primeiro",
   "chunk_tokens": 500,
   "chunk_strategy": "sentencas",
   "relevance_margin_min": 0.6,

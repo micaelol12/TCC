@@ -69,6 +69,7 @@ class Settings:
     # None means no constructor/environment override. __post_init__ fills every
     # field from the validated JSON (or the independent Lab defaults).
     escala: EscalaOrdinal | None = None
+    contexto_posicao_politica: str | None = algorithm_env("CONTEXTO_POSICAO_POLITICA")
     jev_model: str | None = algorithm_env("JEV_MODEL")
     primitiva_polaridade: str | None = algorithm_env("JEV_POLARITY_PRIMITIVE")
     regra_decisao: str | None = algorithm_env("JEV_DECISION_RULE")

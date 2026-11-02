@@ -44,7 +44,7 @@ from .rubrics import AXIS_SPECS
 from ..polarity import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, validar_escala, valor_nivel, classe_nivel, NIVEIS_POLARIDADE
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
 MIN_PALAVRAS_EVIDENCIA = 4
-MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua"}
+MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
 '''
 for source in sources:
     for node in ast.parse(source).body:
@@ -55,6 +55,7 @@ evidence = next(s for s in sources if 'async def audit_evidence(' in s)
 evidence = evidence[:evidence.index('async def enriquecer_evidencias')]
 evidence = evidence.replace('from tcc_lib.segmentacao import intervalos_sentencas',
                             'from .sentences import intervalos_sentencas')
+evidence = evidence.replace('RELATIONS = {', 'from ..polarity import CONTEXTO_POSICAO_POLITICA\n\nRELATIONS = {', 1)
 (root / 'app/api/app/pipeline/evidence.py').write_text(evidence.rstrip() + '\n', encoding='utf-8')
 
 # Snapshots usados pelos testes do contrato compartilhado; nunca substituem a fonte autoritativa.

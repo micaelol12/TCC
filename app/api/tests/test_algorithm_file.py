@@ -43,6 +43,7 @@ class AlgorithmFileTests(unittest.TestCase):
 
     def test_all_file_parameters_and_environment_precedence(self):
         data = self.write(escala=ESCALA_5_NIVEIS.model_dump(mode='json'), chunk_strategy='sentencas',
+            contexto_posicao_politica='Classifique somente posições defendidas pelo autor.',
             primitiva_polaridade='choice', regra_decisao='polo_primeiro', chunk_tokens=350,
             relevance_margin_min=.7, level_confidence_min=.65, direction_margin_min=.3,
             min_valid_chunks=2, bootstrap_samples=300, bootstrap_seed=71,
@@ -81,10 +82,12 @@ class AlgorithmFileTests(unittest.TestCase):
 
     def test_official_http_uses_file_model_scale_and_hash_without_client_overrides(self):
         data = self.write(escala=ESCALA_5_NIVEIS.model_dump(mode='json'), chunk_strategy='sentencas',
+            contexto_posicao_politica='Contexto personalizado no arquivo oficial.',
             llm_model='gemini-3.1-flash-lite', chunk_tokens=300, min_valid_chunks=1,
             bootstrap_samples=200, bootstrap_seed=17)
         settings = Settings(app_env='production', algorithm_config_path=str(self.path), gemini_key='test-key')
         llm = FakeLlm(llm_payload())
+        llm.parse = AsyncMock(wraps=llm.parse)
         llm.close = AsyncMock()
         route.recent_requests.clear()
         route.daily['calls'] = 0
@@ -99,6 +102,11 @@ class AlgorithmFileTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200, response.text)
             result = response.json()
             self.assertEqual(result['effective_config'], data)
+            prompt = llm.parse.call_args.kwargs
+            self.assertTrue(prompt['instructions'].startswith(data['contexto_posicao_politica'] + ' '))
+            for rubric in json.loads(prompt['input'])['rubricas'].values():
+                for question in rubric.values():
+                    self.assertTrue(question['instructions'].startswith(data['contexto_posicao_politica'] + ' '))
             self.assertEqual(result['config_hash'], config_hash(settings.algorithm_defaults()))
             self.assertEqual(result['escala_hash'], settings.escala.hash)
             self.assertNotIn('lab_execution_id', result)
