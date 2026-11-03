@@ -1,5 +1,20 @@
 # 8values + textos
 
+## Atualização automática no FastAPI Cloud
+
+O workflow [Publicar site e API](../.github/workflows/deploy-fastapi-cloud.yml) compila somente o site comum e publica o pacote `app` no FastAPI Cloud a cada push na branch `main`. Também pode ser iniciado em **Actions > Publicar site e API > Run workflow** no GitHub. O deploy só começa se a compilação terminar com sucesso.
+
+Na aplicação já criada no FastAPI Cloud, abra **Tokens > Create Token** e crie um token para o GitHub Actions. Copie também o UUID da aplicação, mostrado ao lado do nome no cabeçalho do painel. No repositório GitHub, abra **Settings > Secrets and variables > Actions > New repository secret** e cadastre:
+
+| Secret | Valor |
+|---|---|
+| `FASTAPI_CLOUD_TOKEN` | Token de deploy da aplicação |
+| `FASTAPI_CLOUD_APP_ID` | UUID completo da aplicação, não o nome ou a URL |
+
+As chaves dos provedores continuam configuradas como secrets no FastAPI Cloud. O workflow usa `app/pyproject.toml` para localizar a API e `app/.fastapicloudignore` para incluir `web/dist` no envio. Renove o secret do token quando ele expirar. Se a aplicação tiver o deploy automático pela integração direta com o GitHub ativado, desative esse fluxo para evitar duas publicações concorrentes; a integração direta ainda não executa o build do frontend.
+
+Referências: [deploy do frontend](https://fastapicloud.com/docs/builds-and-deployments/frontend/) e [tokens de deploy](https://fastapicloud.com/docs/advanced-features/deploy-tokens/).
+
 ## Usabilidade
 
 O rascunho de análise (título, texto e modo) e o histórico permanecem na sessão da aba, inclusive ao navegar ou recarregar. Se o navegador bloquear a gravação, a interface avisa e mantém uma cópia em memória durante a navegação; recarregar pode perder essa cópia. Fechar a aba encerra a sessão. Descartar rascunhos, apagar dados e substituir um rascunho existente exigem confirmação com descrição do alcance da ação.
