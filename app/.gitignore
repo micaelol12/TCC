@@ -12,6 +12,8 @@ extension/*.tsbuildinfo
 extension/.env.local
 extension/.env.production.local
 test-results/
+build/
+*.egg-info/
 api/.venv/
 api/.deps/
 api/.runtime/

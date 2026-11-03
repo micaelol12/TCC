@@ -22,9 +22,10 @@ dependencies = [
 entrypoint = "api.app.main:app"
 
 [tool.setuptools.packages.find]
-include = ["api", "api.app", "api.app.*"]
+include = ["api", "api.app", "api.app.*", "web"]
 exclude = ["*.__pycache__*", "api.app.pipeline.resources*"]
 
 [tool.setuptools.package-data]
 api = ["analysis-config.json"]
 "api.app.pipeline" = ["*.tiktoken", "resources/punkt_portuguese/*"]
+web = ["dist/**/*"]

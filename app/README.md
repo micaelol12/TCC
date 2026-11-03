@@ -2,7 +2,7 @@
 
 ## Atualização automática no FastAPI Cloud
 
-O workflow [Publicar site e API](../.github/workflows/deploy-fastapi-cloud.yml) compila somente o site comum e publica o pacote `app` no FastAPI Cloud a cada push na branch `main`. Também pode ser iniciado em **Actions > Publicar site e API > Run workflow** no GitHub. O deploy só começa se a compilação terminar com sucesso.
+O workflow [Publicar site e API](../.github/workflows/deploy-fastapi-cloud.yml) compila somente o site comum e publica o pacote `app` no FastAPI Cloud a cada push na branch `main`. Também pode ser iniciado em **Actions > Publicar site e API > Run workflow** no GitHub. Antes de publicar, gera o pacote Python e testa a página inicial, a navegação, os arquivos JavaScript/CSS e a API em uma instalação isolada.
 
 Na aplicação já criada no FastAPI Cloud, abra **Tokens > Create Token** e crie um token para o GitHub Actions. Copie também o UUID da aplicação, mostrado ao lado do nome no cabeçalho do painel. No repositório GitHub, abra **Settings > Secrets and variables > Actions > New repository secret** e cadastre:
 
@@ -12,6 +12,8 @@ Na aplicação já criada no FastAPI Cloud, abra **Tokens > Create Token** e cri
 | `FASTAPI_CLOUD_APP_ID` | UUID completo da aplicação, não o nome ou a URL |
 
 As chaves dos provedores continuam configuradas como secrets no FastAPI Cloud. O workflow usa `app/pyproject.toml` para localizar a API e `app/.fastapicloudignore` para incluir `web/dist` no envio. Renove o secret do token quando ele expirar. Se a aplicação tiver o deploy automático pela integração direta com o GitHub ativado, desative esse fluxo para evitar duas publicações concorrentes; a integração direta ainda não executa o build do frontend.
+
+O `pyproject.toml` também inclui `web/dist` como dados do pacote Python `web`. Isso mantém o site ao lado de `api` quando a aplicação é instalada: enviar a pasta no arquivo de deploy, sozinho, não garante que o build Python a preserve. Sem esses dados, a API pode responder em `/api/health` enquanto `/` retorna `{"detail":"Not Found"}`. Para corrigir uma publicação antiga, envie a correção para `main` e execute o workflow acima; um redeploy direto pela integração GitHub não recompila o site.
 
 Referências: [deploy do frontend](https://fastapicloud.com/docs/builds-and-deployments/frontend/) e [tokens de deploy](https://fastapicloud.com/docs/advanced-features/deploy-tokens/).
 
