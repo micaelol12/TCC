@@ -1,0 +1,1239 @@
+=== PAGINA 1 ===
+Modelos de decisão de baixa latência: Jev, OpenAI
+Decisions API e a literatura emergente de “System
+One Models”
+Resumo executivo
+A literatura sobre modelos gerais de decisão — sistemas que recebem um estado/contexto e uma
+pergunta tipada e retornam diretamente probabilidades sobre um espaço de respostas delimitado —
+surgiu de forma muito rápida em 2026. Jev, da TypeSafe, foi lançado em setembro de 2026 como um
+“System One Model”; a OpenAI tornou a Decisions API geralmente disponível em 22 de outubro de 2026,
+baseada no GPT‑6 Luna. A maior parte da literatura científica diretamente dedicada a esses sistemas ainda
+consiste em preprints de setembro e outubro de 2026; entre os trabalhos localizados, a publicação formal
+em proceedings revisados por pares ainda é rara, embora já existam aplicações como o estudo de
+enquadramento climático publicado no workshop ClimateNLP 2026 da ACL. 
+A ideia técnica central é simples, mas importante. Em vez de gerar uma sequência textual autoregressiva,
+um modelo de decisão recebe algo como 
+, onde  é o estado/contexto,  a pergunta ou
+critério e 
+ o conjunto de alternativas, e devolve diretamente 
+. A decisão operacional pode
+então ser 
+, uma decisão sujeita a limiar de confiança, ou uma política baseada em utilidade
+esperada. Esse formato reduz a necessidade de decodificação token a token e torna as probabilidades de
+saída imediatamente utilizáveis para classificação, roteamento, avaliação, escalonamento e seleção de
+ações. 
+Para a OpenAI Decisions API, a documentação oficial atual descreve três tipos fundamentais de pergunta: 
+predicate , que devolve a probabilidade de uma proposição ser verdadeira; choice , que produz uma
+distribuição sobre alternativas fornecidas; e score , que avalia níveis ordenados de uma rubrica. A API
+suporta texto, JSON, imagens, histórico de mensagens e chamadas de ferramentas, até 400 perguntas por
+requisição, e atualmente usa exclusivamente gpt-6-luna . A documentação recomenda explicitamente
+que limiares sejam escolhidos com exemplos rotulados da aplicação e levando em conta os custos relativos
+de falsos positivos e falsos negativos. 
+Para Jev, a TypeSafe afirma utilizar uma nova arquitetura, um “parallel sampler” e um procedimento
+chamado Reinforcement Learning for Calibrated Decisions — RLCD, cujo objetivo declarado é produzir
+decisões calibradas com probabilidades epistemicamente honestas. Contudo, o material oficial público
+consultado não especifica número de parâmetros, arquitetura de camadas, corpus de treinamento nem
+uma função de perda/recompensa formal para RLCD. Os pesos e a receita de treinamento também não são
+públicos, fato destacado por estudos independentes. Portanto, convém distinguir cuidadosamente a
+descrição de produto da caracterização científica reproduzível. 
+Os resultados científicos convergem para uma conclusão relativamente consistente. Modelos de decisão
+são particularmente competitivos quando a tarefa é local, bem definida e resolvível a partir da
+1
+x = (s, q, O)
+s
+q
+O
+p (o ∣
+θ
+s, q, O)
+arg max p (o)
+o
+θ
+2
+3
+4
+1
+
+=== PAGINA 2 ===
+evidência já presente na entrada — classificação, roteamento, seleção, verificação, julgamento por
+rubrica e algumas formas de tool selection. Em System1-Arena, Jev alcançou 72,6% de acurácia em decisões
+não agentivas, e os melhores modelos System‑1 aproximaram ou superaram LLMs rápidos nessa classe de
+tarefas, com menor latência e probabilidades geralmente mais bem calibradas. Em contrapartida, raciocínio
+multietapa, atualização de estado, conhecimento especializado, planejamento de longo horizonte e
+validação do próprio estado de entrada permanecem fragilidades sistemáticas. 
+Há também um resultado metodológico importante: “probabilidade” não deve ser interpretada
+ingenuamente como uma propriedade absoluta de uma alternativa. Um experimento pré-registrado
+com 299.463 chamadas ao Jev mostrou que adicionar alternativas irrelevantes altera sistematicamente as
+odds entre alternativas preexistentes; a distorção chegou a aproximadamente 1 nat com 255 opções.
+Consequentemente, 
+ deve ser interpretado como 
+, isto é, condicionado ao conjunto completo
+e à formulação das alternativas. 
+A literatura também mostra que calibração média não garante confiabilidade local ou segurança. Jev
+pode apresentar alta confiança em erros herdados de um estado incorreto, ser sensível à ordem e
+formulação das alternativas, e exibir mudanças substanciais nas probabilidades sem mudança da resposta 
+argmax . Em tarefas médicas, por exemplo, alta calibração em questões de exame não se transferiu
+automaticamente para vinhetas diagnósticas. 
+A aplicação prática mais defensável hoje é, portanto, uma arquitetura híbrida System‑1/System‑2: o
+modelo de decisão executa avaliações atômicas e frequentes; casos incertos, fora de distribuição,
+multietapa ou de alto impacto são encaminhados a um modelo de raciocínio ou a revisão humana.
+Experimentos de anotação em ciência social mostram que essa política de cascata pode conservar grande
+parte da qualidade de LLMs mais caros por uma fração do custo, embora a vantagem dependa de os erros
+dos dois modelos não serem fortemente correlacionados. 
+Definição operacional e funcionamento dos sistemas
+O paradigma pode ser formalizado por
+em que  representa evidência ou estado,  contém a instrução/critério e 
+ é o conjunto de
+resultados admissíveis. Para uma decisão categórica,
+Para uma escala ordinal com níveis 
+, pode-se retornar uma esperança
+enquanto uma política operacional pode usar um limiar ,
+5
+p(o)
+p(o ∣O)
+6
+7
+8
+x = (s, i, C),
+p (y ∣
+θ
+x) = p (y ∣
+θ
+s, i, C),
+s
+i
+C = {c , … , c }
+1
+K
+=
+y^
+arg
+p (c ∣
+c ∈C
+kmax
+θ
+k
+x).
+vk
+=
+s^
+v p (v ∣
+k
+∑
+k
+θ
+k
+x),
+τ
+2
+
+=== PAGINA 3 ===
+Esse é, em essência, o formato estudado em JEVal, System1-Arena, Jev e implementações abertas como
+InnerJev e Jeff. 
+OpenAI Decisions API
+A OpenAI descreve a Decisions API como uma interface de decisão construída sobre GPT‑6 Luna, e não
+publica uma arquitetura neural específica separada para esse endpoint. A documentação pública tampouco
+apresenta um corpus de treinamento ou uma função de perda específica da Decisions API; portanto, esses
+elementos devem ser considerados não especificados publicamente. A interface permite predicate , 
+choice e score , compartilha a mesma evidência entre várias perguntas e aceita entre 1 e 400
+perguntas por requisição. 
+O mecanismo observável é uma inferência delimitada: o usuário especifica previamente o espaço
+admissível de resposta e a API retorna probabilidades/valores tipados em vez de produzir uma resposta
+discursiva. Segundo a OpenAI, a API pode ser até 10 vezes mais rápida que o uso do GPT‑6 Luna via
+Responses API para esse tipo de workload. A empresa documenta aplicações de roteamento de
+atendimento, classificação documental, seleção de faixa de direção, comparação de imagens e controle por
+voz, além de casos de clientes envolvendo avaliação de risco de comandos, atribuição de custos de IA e
+escolha de próximas ações em conversações. Esses números de produção são relatos de fornecedor/
+clientes, não ensaios acadêmicos controlados, e devem ser interpretados dessa forma. 
+A disponibilidade geral foi anunciada em 22 de outubro de 2026. O preço oficial naquele momento é US$
+0,10 por milhão de tokens de entrada não armazenados em cache, sem cobrança de tokens de saída; há
+suporte declarado a ZDR e HIPAA para clientes elegíveis e residência regional de dados/inferência segundo
+as condições oficiais. 
+Jev
+O material oficial da TypeSafe descreve Jev como um modelo que transforma “estado não estruturado” em 
+decisões probabilísticas tipadas, sem geração livre de texto. A TypeSafe atribui a eficiência a uma
+arquitetura específica, um sampler paralelo e RLCD. Entretanto, esses termos permanecem em nível de
+descrição de produto: o documento não publica equações da recompensa RLCD, tamanho do modelo,
+composição do dataset ou pesos. 
+Isso tem uma consequência epistemológica importante. A alegação comercial de que Jev “não alucina” deve
+ser entendida, no máximo, como impossibilidade de produzir uma saída fora do tipo/espaço
+agir = { ,
+y^
+deferir,
+p
+≥τ
+max
+p
+< τ.
+max
+9
+confiança alta e tarefa
+local
+incerteza, OOD ou
+raciocínio necessário
+Estado / evidência
+texto, JSON, imagem,
+histórico
+Instrução e critérios
+Modelo de decisão
+Predicate / Noul
+P verdadeiro
+Choice
+P sobre alternativas
+Score
+P sobre níveis
+Política de decisão
+Ação / rota / rótulo
+LLM System-2 / humano
+Logs, calibração e
+monitoramento
+10
+11
+12
+13
+3
+
+=== PAGINA 4 ===
+especificado, e não como impossibilidade de erro factual ou decisório. Estudos independentes mostram
+respostas incorretas, sobreconfiança, dependência do conjunto de opções e vieses de formulação. 
+A versão 1.14 foi anunciada em outubro de 2026 com melhorias multilíngues e recursos experimentais
+como imagens, box e contexto mais longo; a própria TypeSafe adverte que o desempenho multimodal é
+inferior ao texto puro e classifica alguns desses recursos como experimentais. A maior parte dos estudos
+abaixo avalia Jev 1.13.0, portanto seus resultados não devem ser automaticamente extrapolados para
+versões futuras. 
+Estudos científicos e preprints centrais
+Chen et al. — System1-Arena: Which Decisions Can Be Left to System 1?
+Citação completa. Chen, T.; Liu, X.; An, R.; Wang, Z.; Zhou, M. System1-Arena: Which Decisions Can Be Left to
+System 1? arXiv:2610.21244, 2026. Status: preprint arXiv, submetido em 15 de outubro de 2026. Link: arXiv. 
+Resumo e desenho. É atualmente um dos benchmarks mais abrangentes para a classe: 92.125 perguntas,
+105 tarefas, 268 fontes públicas, 16 domínios e 138 ambientes fechados, incluindo web shopping,
+programação, robótica, jogos e direção. Compara sete LLMs fechados, 13 LLMs abertos e dez modelos
+System‑1, incluindo Jev e OpenAI Decisions API. 
+Arquitetura e mecanismo. O artigo não revela as arquiteturas proprietárias de Jev ou OpenAI. Ele
+padroniza a interface como distribuições 
+. Para LLMs abertos, extrai logits dos tokens que
+representam A/B/C etc. em um único forward pass; para Jev e Decisions API, utiliza as probabilidades
+retornadas diretamente pelas respectivas APIs. 
+Treinamento. Não treina Jev nem o GPT‑6 Luna. Os dados de treinamento desses modelos não são
+especificados; o benchmark usa fontes públicas e rótulos provenientes das fontes originais, incluindo
+anotações humanas, execução de testes, solvers e eventos resolvidos. 
+Métricas e resultados. As métricas principais são acurácia e Brier score, além de ECE e medidas específicas
+de tarefa. Jev atingiu 72,6% de acurácia nas tarefas não agentivas; Decision‑2.0‑Vega‑27B, 73,0%; GPT‑6
+Luna generativo, 71,2%. Um modelo de raciocínio, Claude Opus 5.5, alcançou 81,1%, mas a
+aproximadamente 70 vezes o custo de um LLM rápido. Em tarefas agentivas de longo horizonte, o melhor
+modelo aberto atingiu 32,9% de sucesso, enquanto pequenos modelos System‑1 raramente tiveram bom
+desempenho. 
+Casos de uso. Filtragem, classificação, phishing, retrieval, routing, LLM-as-judge, segurança, diálogo,
+avaliação de código e escolha de ações em agentes. O gap para LLMs foi menor em filtragem,
+agrupamento, ranking, retrieval e diálogo e maior em conhecimento e forecasting. 
+Limitações e ética. A principal limitação estrutural é o acúmulo de erros em sequências de ações. Uma
+decisão local correta em aproximadamente 70%–80% dos estados não implica elevada probabilidade de
+sucesso após dezenas de etapas. O artigo também mostra por que latência deve ser avaliada dentro do
+ambiente: em robótica/jogos, uma decisão correta mas atrasada pode ser operacionalmente inferior. 
+14
+15
+16
+17
+p(o ∣
+k
+s, q)
+18
+18
+17
+18
+18
+4
+
+=== PAGINA 5 ===
+Reprodutibilidade. Os autores liberam código, dataset e leaderboard diretamente na página do trabalho. 
+Duan et al. — General Decision Models: Benchmarking and Insights Beyond Jev
+Citação completa. Duan, F.; Lin, J.; Wang, J.; Xiang, J.; Wu, J.; Zhang, X.; Yan, H.; Wang, S.; Wei, Z. General
+Decision Models: Benchmarking and Insights Beyond Jev. arXiv:2610.03935, 2026. Status: preprint arXiv, 2 de
+outubro de 2026. 
+Resumo. O trabalho introduz JEVal, benchmark bilíngue com 11.257 instâncias, 36 datasets e dez domínios,
+e propõe os modelos abertos InnerJev‑4B e InnerJev‑27B. É particularmente importante porque não
+apenas avalia Jev, mas fornece uma receita reproduzível para aproximar o paradigma decisório com LLMs
+open-weight. 
+Arquitetura. O mecanismo denominado First-Token Decision Readout serializa estado, instrução e
+opções com rótulos A/B/C/... e lê a distribuição do próximo token apenas entre os rótulos válidos. Não há
+decodificação de cadeia textual durante inferência. Para choice usa-se argmax ; para booleanos, 
+; para score , a esperança dos níveis. 
+Treinamento e objetivo. O método Reasoning-to-Readout Self-Distillation faz o próprio backbone gerar
+duas cadeias de raciocínio; as distribuições finais são promediadas e utilizadas como teacher. O estudante
+recebe a pergunta sem raciocínio e aprende a reproduzir essa distribuição no primeiro token. A loss inclui
+entropia cruzada entre teacher e estudante, um termo quadrático para preservar a esperança em tarefas
+de score com peso 
+, e KL contra o readout congelado do modelo original, com 
+ ou 0,2 para
+certos exemplos noul . Embeddings e output head ficam congelados; a receita principal atualiza projeções
+de attention e MLP, enquanto a alternativa usa LoRA. 
+O InnerJev‑27B foi treinado em 39.279 perguntas envolvendo linguagem, conhecimento, commonsense,
+lógica, medicina, regras/computação, segurança, ciência, raciocínio quantitativo e direito. Os targets
+adicionais são produzidos pelo próprio modelo, sem gold labels. 
+Resultados. No subconjunto choice/noul de JEVal, InnerJev‑27B obteve 79,24% de acurácia, ECE 0,0149 e
+Brier 0,279; GPT‑6 Luna generativo alcançou 80,93%, ECE 0,1159 e Brier 0,297. A latência mediana do
+InnerJev‑27B foi 112,2 ms em uma H100; a do 4B, 58,7 ms. 
+Use cases. Além de classificação e conhecimento, os autores testam agentes, τ-bench e simulação social.
+Modelos de decisão aproximaram LLMs fortes na previsão individual de respostas, mas produziram maiores
+erros agregados e vieses sistemáticos em algumas simulações. 
+Limitações. O próprio artigo reconhece cobertura agentiva limitada e que a receita de self-distillation é
+apenas uma entre diversas arquiteturas possíveis. A expansão do dataset apresentou ganhos decrescentes
+porque o modelo tem dificuldade em gerar para si próprio questões simultaneamente difíceis e corretas. 
+Reprodutibilidade. Dataset JEVal, código InnerJev, modelos e dados de treinamento são disponibilizados
+em Hugging Face/GitHub a partir do artigo. 
+17
+19
+20
+p(true)
+21
+λ = 0,5
+κ = 0,05
+22
+23
+24
+19
+21
+20
+5
+
+=== PAGINA 6 ===
+Geuter, Cheng e Alvarez-Melis — Releasing the Inner Jev
+Citação completa. Geuter, J.; Cheng, A.; Alvarez-Melis, D. Releasing the Inner Jev: A Simple Recipe for Open
+Decision Models. arXiv:2610.17205, 2026. Status: preprint arXiv, 12 de outubro de 2026. 
+Resumo. O artigo demonstra que modelos instruction-tuned convencionais já contêm grande parte da
+capacidade necessária para decisões “System One”. Sem treinamento adicional, a probabilidade dos tokens
+A/B/C/... no último estado oculto fornece um classificador competitivo. 
+Arquitetura. Seja  o estado oculto na última posição. O head é inicializado a partir das linhas da LM head
+correspondentes aos tokens das alternativas. O sistema aplica softmax somente sobre as alternativas
+válidas. Durante fine-tuning, adapta-se o backbone com LoRA e adiciona-se uma correção aprendida ao
+decision head; a inferência continua sendo um único forward pass. 
+Dados e função objetivo. São utilizados 417.825 exemplos públicos e rotulados por modelos. O
+treinamento usa cross-entropy supervisionada; não utiliza reinforcement learning. O treino principal
+relatado dura 400 passos, aproximadamente cinco GPU-horas por run para Gemma 4 31B. 
+Resultados. Gemma 4 31B sem fine-tuning obteve 79,6 no novo índice Capability em OpenDecisions, contra
+80,1 de Jev; após fine-tuning chegou a 84,4. Em JevBench v1.7, o modelo ajustado atingiu 81,5 em
+Capability, aproximadamente 4,4 pontos acima de Jev no protocolo relatado. 
+Use cases. Roteamento de tickets, verificação de políticas, escolha de ferramentas e outras decisões de
+espaço fechado são os casos exemplificados. 
+Limitações. OpenDecisions foi criado pelos próprios autores para refletir a composição de JevBench e
+também orienta seleção da receita, aumentando o risco de adaptação indireta ao benchmark. Além disso,
+resultados fortes em classificação não eliminam lacunas em conhecimento especializado. 
+Reprodutibilidade. Os autores disponibilizam modelos Jeff 1.0, servidor jeff-serve e dataset
+OpenDecisions. 
+Yang et al. — What Can’t Jev Decide?
+Citação completa. Yang, W.; Li, X.; Zhang, Y.; Ma, C.; Wang, S.; Wei, J.; Ye, L.; Cai, X.; Hariri, M.; Chaudhary, V.;
+Han, X. What Can’t Jev Decide? Probing the Limits of One-Pass Decision Models. arXiv:2610.24929, 2026. Status:
+preprint arXiv, 18 de outubro de 2026. 
+Resumo. É o estudo mais direto sobre o limite computacional do paradigma one-pass. Jev encontra
+registros e seleciona respostas sem erro em condições testadas até 20 mil tokens e 64 alternativas, mas a
+acurácia degrada quando a resposta precisa ser obtida por integração de múltiplas atualizações do estado. 
+Arquitetura e treinamento. O trabalho trata Jev 1.13 como caixa-preta; pesos e dados de treinamento são
+explicitamente descritos como não públicos. Para distinguir efeitos específicos de Jev de efeitos do
+paradigma, os autores incluem 23 configurações open-weight com a mesma interface. 
+25
+26
+h
+26
+26
+26
+26
+26
+26
+27
+28
+28
+6
+
+=== PAGINA 7 ===
+Resultados. Com 16 atualizações, Jev cai para 53%–80% dependendo da condição. Em 738 tarefas reais com
+dificuldade de raciocínio validada, obtém 97,5% nos itens resolvíveis por um único forward pass do modelo
+de referência e 74% naqueles que requerem raciocínio adicional; acima de 4 mil thinking tokens, a acurácia
+chega a aproximadamente 50%. Sua confiança distingue razoavelmente seus próprios erros, AUROC 0,83,
+mas quase não distingue erros herdados de um estado desatualizado, AUROC 0,53. 
+Use cases e interpretação. O resultado sugere tratar o modelo como seletor sobre um estado
+previamente computado, não como mecanismo confiável para construir ou verificar esse estado. Agentes
+podem utilizá-lo para escolher ações locais, mas o state summarization e a verificação das premissas devem
+ser atribuídos a um componente capaz de raciocínio. 
+Limitações/ética. Confiança elevada não garante detecção de premissas incorretas; isso é especialmente
+crítico em automação de alto impacto. Um mecanismo explícito de “handoff” também não resolveu os erros
+herdados. 
+Reprodutibilidade. O artigo descreve o benchmark controlado e as 23 configurações abertas; os
+repositórios de vários modelos comparados são indicados no manuscrito. O repositório específico do
+benchmark não está identificado de forma inequívoca na página primária que consultei e, portanto, não o
+atribuo aqui. 
+Rajput, Chauhan e Kosaraju — independência de alternativas irrelevantes
+Citação completa. Rajput, D.; Chauhan, N.; Kosaraju, S. Does a Hosted Decision Model Respect Irrelevant
+Alternatives? A Pre-Registered Test of Option-Set Dependence in Jev. arXiv:2610.16655, 2026. Status: preprint
+arXiv; estudo pré-registrado. 
+Resumo e mecanismo testado. Os autores perguntam se as probabilidades produzidas por Jev obedecem
+à propriedade de independência de alternativas irrelevantes (IIA). Se obedecessem, adicionar uma
+opção irrelevante 
+ não deveria alterar a razão
+Foram feitas 299.463 chamadas sobre BANKING77, CLINC150 e AG News com Jev 1.13.0. 
+Resultados. A inclusão de alternativas modificou sistematicamente as log-odds entre o rótulo correto e seu
+principal concorrente; o RMS do deslocamento foi 0,20–0,52 nat, mesmo quando a alternativa nova recebia
+no máximo 0,1% da massa de probabilidade. A distorção cresce aproximadamente com o logaritmo da
+quantidade de opções e chega a cerca de 1 nat com 255 opções. 
+Caso de uso e consequência prática. Em classificação de intenções, routing e seleção de ferramentas,
+alterar a lista de ferramentas ou categorias pode mudar não somente qual alternativa vence, mas a
+probabilidade das alternativas antigas. Portanto, scores não devem ser armazenados ou comparados entre
+diferentes option sets como se fossem grandezas invariantes. 
+Limitações e reprodutibilidade. O estudo é específico a Jev 1.13.0 e três datasets, embora o pré-registro
+fortaleça a validade confirmatória. Uma alternativa de avaliar cada opção com uma pergunta binária
+28
+28
+28
+28
+6
+C
+log
+.
+p(B)
+p(A)
+6
+6
+6
+7
+
+=== PAGINA 8 ===
+independente removeu a dependência de option set, mas reduziu a taxa de escolha correta em 8,7 pontos
+percentuais, ilustrando um trade-off estrutural. 
+Imperatrice et al. — Are AI Decision Models Biased?
+Citação completa. Imperatrice, I.; Kameneva, T.; Greenberg, A. E.; Romano, A. Are AI Decision Models Biased?
+A Case Study of Jev. arXiv:2610.19619, 2026. Status: preprint arXiv, 14 de outubro de 2026. 
+Resumo. O estudo coleta 41.500 respostas em tarefas de reflexão cognitiva, cinco paradigmas clássicos de
+viés — anchoring, conjunction, framing, sunk cost e zero-risk — e um experimento de pricing com atributos
+demográficos, seguido por mais 15.000 respostas em 30 problemas de conjunção. 
+Arquitetura e treinamento. Jev é tratado externamente; arquitetura, dataset e função objetivo
+proprietários não são inferidos pelo artigo. Essa ausência é relevante para auditoria: sem acesso aos pesos
+e dados de treino, não é possível atribuir causalmente os vieses observados a um componente específico. 
+Resultados. As decisões finais foram relativamente robustas em vários paradigmas e mostraram pequenas
+diferenças demográficas no experimento de pricing, mas as probabilidades foram sensíveis a números
+irrelevantes e à ordem das alternativas. Em problemas de conjunção adaptados, Jev violou a regra em 54%
+das respostas; alterações de formulação e ordenação produziram grande variação. 
+Implicação ética. Avaliar somente argmax pode esconder mudanças relevantes na distribuição
+probabilística. Isso importa quando probabilidades alimentam thresholds, pricing, triagem ou ordenação
+de prioridades. 
+Reprodutibilidade. O resumo arXiv consultado descreve amostras e paradigmas, mas não fornece de
+forma explícita um repositório público de código/dados; esse recurso deve ser tratado como não
+especificado na fonte primária consultada. 
+Li e Wang — Jeva: System One Models from First Principles
+Citação completa. Li, Q.; Wang, X. Jeva: System One Models from First Principles. arXiv:2610.18773v2, 2026. 
+Status: preprint arXiv; v1 em 13 e v2 em 18 de outubro de 2026. 
+Resumo. Jeva tenta construir uma arquitetura “decision-native” em vez de adaptar diretamente um LM
+head. O desenho visa quatro propriedades: detecção explícita de ausência de resposta, invariância à
+permutação, escalabilidade a conjuntos variáveis de alternativas e cacheabilidade. 
+Arquitetura. Um encoder compartilhado representa requisição e opções separadamente; um decision
+stack compacto atualiza o estado da requisição contra uma memória imutável das opções. A agregação
+simétrica gera probabilidades equivariantes à permutação; um score compartilhado suporta 
+ variável; e
+um mecanismo de coverage separado tenta distinguir “nenhuma alternativa adequada” de incerteza entre
+alternativas existentes. Representações de opções podem ser reutilizadas entre chamadas. 
+6
+29
+29
+30
+29
+29
+29
+31
+31
+K
+32
+8
+
+=== PAGINA 9 ===
+Treinamento. A descrição pública do trabalho indica adaptação sobre um backbone open-weight; detalhes
+completos da receita encontram-se no manuscrito e repositório. O aspecto estrutural central é que o
+espaço de alternativas não é implementado como um vocabulário fixo de labels. 
+Resultados. O artigo relata detecção de null próxima do teto, ausência de flips de decisão nas permutações
+testadas e capacidade de trabalhar com milhares de candidatos, com ganhos de latência quando opções
+recorrentes podem ser pré-computadas. 
+Use cases. Tool registries, seleção de documentos, routing e qualquer domínio em que conjuntos de
+candidatos mudam entre chamadas são particularmente compatíveis com a arquitetura. 
+Limitações. “Zero flips nas permutações testadas” é uma propriedade empírica dentro dos testes do artigo,
+e não prova matemática de invariância fora da implementação avaliada. Além disso, cacheabilidade só gera
+ganhos quando há alternativas recorrentes. 
+Reprodutibilidade. Há repositório público do Jeva no GitHub. 
+Dai et al. — Koa-decision
+Citação completa. Dai, S.; Pentyala, S. K.; Liu, Y.; Mehrotra, S.; Banerjee, S.; Zhu, J.; Bi, B.; Asur, S.; Mui, P. 
+Koa-decision: Fast and Consistent Structured Decision Making with Generative LLMs. arXiv:2609.36115v2, 2026. 
+Status: preprint arXiv; v2 de 10 de outubro de 2026. 
+Resumo e arquitetura. Koa-decision formula classificação, endpointing semântico, predicates e scoring
+como constrained generation de um único token. Introduz tokens atômicos de labels, aplica supervised
+fine-tuning e faz uma única etapa determinística de decoding. Diferentemente de uma API estritamente de
+classificação, mantém compatibilidade com entradas multimodais e multi-label. 
+Treinamento e objetivo. O artigo utiliza supervised fine-tuning sobre os labels atômicos; o objetivo é a
+probabilidade correta do token/label de decisão. Não há evidência no resumo primário de uso de RLCD. 
+Resultados. Em um benchmark de production intent routing, obtém 85,5% de acurácia, aproximadamente
+0,5 s por decisão e até cerca de 7,5× menor latência mediana do que modelos frontier sob as condições de
+serving descritas pelos autores; os autores também relatam desempenho competitivo com Jev. 
+Casos de uso. Intent routing, semantic endpointing, Boolean checks, scoring, classificação multimodal e
+classificação multi-label. 
+Limitações e reproducibilidade. Parte do benchmark de produção não pode ser liberada publicamente,
+reduzindo a reprodutibilidade do resultado industrial; a existência de código foi reportada em índices
+públicos, mas deve-se distinguir isso de reprodutibilidade integral do dataset proprietário. 
+Madrid-García et al. — modelos de decisão em reumatologia
+Citação completa. Madrid-García, A.; Benavent, D.; Lechner, F.; Kremer, P.; Knitza, J.; Merino-Barbancho, B. 
+Decision and System One models in rheumatology: accuracy and calibration on specialty-training examination
+32
+31
+33
+32
+33
+34
+34
+34
+34
+34
+35
+9
+
+=== PAGINA 10 ===
+questions and diagnostic case vignettes. arXiv:2610.40318, 2026. Status: preprint arXiv, 29 de outubro de
+2026. 
+Resumo. Avalia Jev 1.13, Clef, Microsoft‑Decision‑1, Laya e GPT‑6 Luna via OpenAI Decisions API contra
+modelos generativos em 172 questões de formação em reumatologia e 70 vinhetas diagnósticas. É um dos
+primeiros estudos externos diretamente focados na Decisions API em domínio especializado. 
+Arquitetura/treino. Os modelos comerciais são avaliados como serviços externos; arquitetura, dados de
+treino e objetivo do GPT‑6 Luna e Jev não são fornecidos pelo estudo. O mecanismo experimental é seleção
+probabilística entre respostas/diagnósticos delimitados. 
+Resultados. Em RheumaMIR, Jev alcançou 93,0% em espanhol e 91,9% em inglês; GPT‑6 Luna via Decisions
+API chegou a 97,7%, enquanto GPT‑6 Sol generativo obteve 99,4%. Em RheumBench, mais próximo de
+diagnóstico clínico diferencial, GPT‑6 Sol obteve 76,9%, GPT‑6 Luna Decisions 63,5% e Jev 50,0%. Para Jev,
+confiança média de 0,659 correspondeu a sobreconfiança de +0,159 nesse benchmark; entre respostas Jev
+com probabilidade ≥0,90, a acurácia foi 84,6%, contra 95,5% para GPT‑6 Luna Decisions. 
+Conclusão aplicada. O desempenho em provas não deve ser usado como proxy para desempenho em
+decisão diagnóstica. A diferença também ilustra por que a calibração precisa ser medida por contexto de
+implantação, não apenas globalmente. 
+Ética. Em medicina, uma probabilidade elevada de um sistema desse tipo não constitui validação clínica. O
+próprio padrão de resultados do estudo favorece uso como apoio/triagem e não como substituto
+autônomo da avaliação médica. Essa é uma inferência operacional a partir da queda de desempenho e
+sobreconfiança reportadas. 
+Reprodutibilidade. RheumaMIR e RheumBench são identificados no artigo como benchmarks; detalhes de
+disponibilização de código específico do experimento não estão explicitados no resumo arXiv consultado. 
+Ibrahim e Zaki — anotação em ciência social computacional
+Citação completa. Ibrahim, H.; Zaki, Y. Evaluating Decision Models for Text Annotation in Computational Social
+Science. arXiv:2609.24574, 2026. Status: preprint arXiv, 21 de setembro de 2026. 
+Resumo. Avalia modelos de decisão em 18 tarefas de classificação usadas em ciência social computacional,
+totalizando 7.977 itens, contra 19 LLMs frontier/open-weight sob o mesmo protocolo zero-shot. 
+Arquitetura e mecanismo. Os modelos retornam classe, distribuição probabilística e confiança sem
+geração livre. O estudo é de avaliação, não de treinamento, e por isso não fornece uma nova função
+objetivo. 
+Resultados. O modelo de decisão comercial fica atrás do melhor LLM por tarefa em 14 das 15 tarefas
+avaliadas, com déficit mediano de 11,6 pontos de macro-F1, mas custo mediano 44 vezes menor. Sua
+calibração supera a confiança verbalizada de 16 dos 19 LLMs; contudo, três modelos frontier apresentam
+36
+36
+36
+36
+36
+36
+36
+37
+37
+37
+10
+
+=== PAGINA 11 ===
+erro de calibração mediano menor, 0,066 contra 0,157. Em observações com confiança >0,9, a acurácia
+mediana é 0,815, mas uma tarefa de empatia fica próxima do acaso apesar da alta confiança. 
+Use case mais interessante. Uma cascata que envia apenas exemplos de baixa confiança ao LLM igualou
+ou superou o uso isolado do LLM por entre um quarto e metade do custo, mostrando um caso
+empiricamente forte para um pipeline híbrido. 
+Limitações e ética. Constructs de ciência social são frequentemente subjetivos e culturalmente
+dependentes; a ocorrência de alta confiança em um construct com desempenho próximo do acaso mostra
+que thresholds globais são inadequados. 
+Reprodutibilidade. Os 18 tasks e o protocolo inspirado em benchmarks anteriores são descritos no estudo;
+a disponibilidade de um repositório próprio não está explicitada no resumo primário consultado. 
+Rao e Callison-Burch — Jev como rubric judge
+Citação completa. Rao, D.; Callison-Burch, C. JEV vs. LLMs as Rubric Judges: Cheaper, Faster, and Wrong in the
+Same Places. arXiv:2609.29769, 2026. Status: preprint arXiv, 24 de setembro de 2026. 
+Resumo. O estudo compara Jev com três LLM judges de classe “flash” em nove painéis derivados de sete
+benchmarks. Cada sistema recebe exatamente o mesmo critério de avaliação. 
+Resultados. A acurácia de Jev difere significativamente da de um LLM em apenas 8 de 27 comparações
+pareadas. Somados os painéis, os LLM judges custaram 29–325 vezes mais e levaram 30–220 vezes mais
+tempo. Entretanto, os erros de Jev e dos LLMs são fortemente correlacionados; por isso, encaminhar erros
+de alta incerteza para um LLM melhora a melhor solução única em apenas até 1,5 ponto com thresholds
+cross-fitted e até 2,0 pontos com thresholds oraculares. 
+Casos de uso. Avaliação automatizada de respostas, rubric grading, quality assurance e critic/judge loops. 
+Limitação central. Cascatas só ajudam substancialmente quando o segundo estágio possui erros
+suficientemente diferentes dos erros do primeiro. “LLM mais caro” não é automaticamente um bom fallback
+se ambos compartilham a mesma falha semântica. 
+Gershon et al. — julgamento de IA clínica
+Citação completa. Gershon, R. et al. Decision language models as affordable and rapid alternatives to LLM
+judges of clinical generative AI. arXiv:2610.28826, 2026. Status: preprint arXiv, 20 de outubro de 2026. 
+Resumo. Compara Jev e LLM judges em quatro cenários de avaliação clínica de sistemas generativos,
+incluindo respostas pediátricas, HealthBench, MedHELM e HealthBench Professional. 
+Resultados. Em 118 respostas pediátricas, Jev obteve Gwet’s AC2 de 0,50 e score esperado 0,53, igualando
+ou superando sete dos 12 LLM judges. Em HealthBench Professional, concordou com o judge de referência
+37
+37
+37
+37
+38
+38
+38
+38
+38
+39
+39
+11
+
+=== PAGINA 12 ===
+em 91% dos critérios, enquanto outros judges ficaram entre 91% e 93%. Os LLMs frontier foram 73–294
+vezes mais caros e 7–57 vezes mais lentos. 
+Interpretação. O estudo apoia o uso de modelos de decisão como judges de alto volume quando a rubrica
+é bem definida, mas isso é diferente de recomendar seu uso como decisores clínicos sobre pacientes: neste
+experimento, Jev julga saídas de IA, não substitui o diagnóstico médico. 
+Adam, Kogler e Maier — aplicação peer-reviewed em framing climático
+Citação completa. Adam, R.; Kogler, M. L.; Maier, D. Fine-Tuned Encoders versus Zero-Shot Prompting for
+Detecting Threat and Solution Framing in German Climate News. In: Proceedings of the 3rd Workshop on Natural
+Language Processing Meets Climate Change (ClimateNLP 2026), ACL, pp. 158–169, 2026. Status: artigo de
+workshop em proceedings da ACL. 
+Resumo. O estudo usa 440 artigos de jornais austríacos anotados manualmente para classificar framing de
+ameaça e solução, comparando três encoders alemães fine-tuned, modelos generativos open-weight e Jev.
+A avaliação usa validação cruzada de cinco folds agrupada por artigo. 
+Resultados. O melhor GBERT-large obteve weighted F1 de 0,805 para ameaça e 0,802 para solução;
+MiMo‑V2.6‑Flash obteve 0,807 e 0,798 sem treinamento específico. O resumo publicado confirma a inclusão
+de Jev, mas não reporta separadamente seus números de F1; portanto, não é metodologicamente correto
+inferi-los. 
+Use case. É evidência especialmente relevante para ciência social e comunicação porque mostra que a
+interface de decisão pode ser integrada diretamente a tarefas de content analysis com labels definidos a
+priori. 
+Reprodutibilidade. O paper completo e sua referência bibliográfica estão disponíveis no ACL Anthology; a
+página consultada não especifica um repositório independente para Jev. 
+Comparação sintética dos trabalhos selecionados
+Título
+Ano
+Tipo/status
+Modelo
+principal
+Paradigma
+decisório
+Casos de
+uso
+Métricas/
+resultados-
+chave
+Link
+System1-
+Arena: Which
+Decisions Can
+Be Left to
+System 1?
+2026
+Preprint
+Jev,
+OpenAI
+Decisions,
+vários
+Distribuição
+tipada em 1
+pass
+classificação,
+routing,
+agentes,
+safety, judge
+Jev 72,6%
+não-agentic;
+melhores
+System‑1
+com menor
+latência; forte
+queda em
+long horizon
+arXiv 
+39
+39
+40
+40
+40
+40
+40
+16
+12
+
+=== PAGINA 13 ===
+Título
+Ano
+Tipo/status
+Modelo
+principal
+Paradigma
+decisório
+Casos de
+uso
+Métricas/
+resultados-
+chave
+Link
+General
+Decision
+Models:
+Benchmarking
+and Insights
+Beyond Jev
+2026
+Preprint
+Jev,
+InnerJev
+first-token
+readout +
+self-
+distillation
+decisão
+geral,
+agentes,
+simulação
+social
+InnerJev‑27B:
+79,24% acc.;
+ECE .0149;
+~112 ms
+arXiv 
+Releasing the
+Inner Jev
+2026
+Preprint
+Jeff /
+Gemma /
+Qwen
+LM-head
+readout +
+LoRA
+routing,
+policy
+checks, tool
+selection
+Gemma 31B:
+Capability
+79,6 → 84,4;
+Jev 80,1
+arXiv 
+What Can’t Jev
+Decide?
+2026
+Preprint
+Jev 1.13 +
+open
+replicas
+one-pass
+probabilistic
+selection
+agentes e
+state
+selection
+97,5% em
+one-pass-
+solvable vs
+74% em itens
+que
+requerem
+reasoning;
+stale-state
+AUROC .53
+arXiv 
+Does a Hosted
+Decision
+Model Respect
+Irrelevant
+Alternatives?
+2026
+Preprint,
+pré-
+registrado
+Jev
+option-set
+conditional
+choice
+intent/topic
+classification
+shift 0,20–
+0,52 nat; ~1
+nat com 255
+opções
+arXiv 
+Are AI
+Decision
+Models
+Biased?
+2026
+Preprint
+Jev
+probabilistic
+choice
+cognitive
+bias, pricing
+41,5k + 15k
+respostas;
+54% de
+violações em
+conjunction
+tasks
+arXiv 
+Jeva: System
+One Models
+from First
+Principles
+2026
+Preprint
+Jeva
+set-native,
+permutation-
+equivariant
+retrieval,
+routing, tool
+sets
+quase
+perfeita null
+detection;
+zero flips nas
+permutações
+testadas;
+milhares de
+candidatos
+arXiv 
+24
+26
+28
+6
+29
+31
+13
+
+=== PAGINA 14 ===
+Título
+Ano
+Tipo/status
+Modelo
+principal
+Paradigma
+decisório
+Casos de
+uso
+Métricas/
+resultados-
+chave
+Link
+Koa-decision
+2026
+Preprint
+Koa-
+decision
+single-token
+constrained
+generation
+intent
+routing,
+endpointing,
+multimodal
+classification
+85,5%
+production
+routing; ~0,5
+s; até ~7,5×
+mais rápido
+que frontier
+LLMs no
+protocolo
+arXiv 
+Decision and
+System One
+models in
+rheumatology
+2026
+Preprint
+Jev,
+OpenAI
+Decisions
+bounded
+probabilistic
+diagnosis/
+QA
+provas e
+diagnóstico
+diferencial
+Decisions
+97,7%
+RheumaMIR
+e 63,5%
+RheumBench;
+Jev 93/91,9%
+e 50%
+arXiv 
+Evaluating
+Decision
+Models for
+Text
+Annotation in
+CSS
+2026
+Preprint
+comercial
++ open-
+weight
+DMs
+zero-shot
+categorical
+annotation
+anotação
+em ciência
+social
+-11,6 macro-
+F1 vs melhor
+LLM por
+tarefa; 44×
+menor custo
+mediano
+arXiv 
+JEV vs. LLMs
+as Rubric
+Judges
+2026
+Preprint
+Jev
+probabilistic
+rubric
+judging
+avaliação
+automática
+LLMs 29–
+325× mais
+caros, 30–
+220× mais
+lentos;
+ganhos de
+cascata
+pequenos
+arXiv 
+Decision
+language
+models as
+affordable…
+clinical AI
+2026
+Preprint
+Jev
+judge/rubric
+avaliação
+clínica de
+GenAI
+AC2 .50 em
+pediatria;
+91%
+concordância
+HealthBench
+Pro; 73–294×
+menor custo
+que frontier
+judges
+arXiv 
+34
+36
+37
+38
+39
+14
+
+=== PAGINA 15 ===
+Título
+Ano
+Tipo/status
+Modelo
+principal
+Paradigma
+decisório
+Casos de
+uso
+Métricas/
+resultados-
+chave
+Link
+Fine-Tuned
+Encoders
+versus Zero-
+Shot
+Prompting…
+2026
+Proceedings
+ACL
+workshop
+Jev +
+encoders
++ LLMs
+binary
+framing
+classification
+análise de
+framing
+climático
+best GBERT .
+805/.802 F1;
+Jev incluído,
+resultado
+individual
+não
+informado no
+abstract
+ACL
+Anthology
+A comparação exige cautela: “latência”, “custo” e até “acurácia” não são diretamente intercambiáveis entre
+os trabalhos. Alguns medem API hospedada incluindo rede, outros GPU local; datasets e número de
+alternativas variam; e diferentes estudos usam accuracy, macro-F1, Brier, ECE, Gwet’s AC2 ou scores
+compostos. Portanto, não é cientificamente correto produzir um ranking único a partir desses valores. 
+Síntese analítica: onde os modelos funcionam e onde falham
+A evidência disponível favorece uma interpretação de modelos de decisão como amortizadores de
+raciocínio. Conhecimento e representações adquiridos durante pré-treinamento/post-training são
+comprimidos em uma inferência direta que mapeia a entrada para um pequeno espaço de ações. Os
+resultados de InnerJev e Jeff tornam essa interpretação particularmente plausível: boa parte da capacidade
+Jev-like emerge simplesmente lendo logits de um LLM já treinado, e o desempenho melhora quando se
+destila para o primeiro token a distribuição que o próprio modelo alcançaria depois de raciocinar. 
+Isso ajuda a explicar simultaneamente sua força e sua limitação. Quando a solução exige recognition ou
+comparação direta entre a evidência presente e alternativas já definidas, a inferência em um passo é
+eficiente. Quando a tarefa exige criar estados intermediários não presentes na entrada — atualizar
+sequencialmente variáveis, efetuar cálculo composto, revisar uma premissa, construir um plano ou testar
+hipóteses — não existe mecanismo explícito para materializar esses estados intermediários, e a vantagem
+de latência transforma-se em limite de capacidade. 
+A vantagem de probabilidades estruturadas também deve ser qualificada. Brier score e ECE respondem a
+questões diferentes: um modelo pode estar bem calibrado globalmente e ainda apresentar erros graves em
+subgrupos ou sob distribuição diferente. Os resultados de reumatologia e ciência social mostram
+exatamente essa transferência imperfeita; o experimento de IIA acrescenta que a própria probabilidade
+muda quando o option set muda. 
+Há ainda uma distinção importante entre type safety e semantic safety. Restringir a saída a {billing, 
+technical, other} elimina JSON inválido e texto inesperado, mas não garante que billing seja a
+escolha correta. Quanto mais a saída é automaticamente consumida por software, mais grave pode ser um
+erro silencioso e estruturalmente válido. Os estudos de bias, stale state e option-set dependence
+constituem evidência empírica dessa diferença. 
+Uma arquitetura de implantação empiricamente mais justificável é, portanto:
+40
+41
+42
+43
+44
+45
+15
+
+=== PAGINA 16 ===
+Esse desenho é consistente com os resultados positivos de cascatas em anotação social, mas deve
+incorporar a advertência do estudo de rubric judges: se os erros dos estágios são correlacionados, a
+cascata produz pouca melhora. 
+Lacunas na literatura e questões abertas
+A primeira lacuna é transparência arquitetural dos sistemas proprietários. Para Jev, RLCD, arquitetura e
+sampler são nomeados, mas a receita formal não foi publicada; para a OpenAI Decisions API, a
+documentação especifica claramente a interface e que ela usa GPT‑6 Luna, mas não apresenta uma
+arquitetura ou objetivo de treinamento específico do endpoint. Isso limita análises causais de por que
+determinada variante é calibrada, rápida ou suscetível a certos erros. 
+A segunda é maturidade editorial. Os trabalhos diretamente dedicados a Jev, Decisions API e modelos
+System‑1 generalistas localizados nesta revisão são predominantemente preprints de setembro–outubro de
+2026. Há aplicações já presentes em proceedings acadêmicos, como ClimateNLP, mas a base de evidência
+ainda não passou pelo volume de replicação e revisão acumulada típico de paradigmas maduros de ML. 
+A terceira é calibração condicional e fora de distribuição. ECE global é insuficiente para responder se 
+ é confiável em cada domínio, subgrupo, formulação, posição de opção e regime de cardinalidade.
+IIA, vieses de ordem e queda em RheumBench mostram que essa questão é central. Pesquisas futuras
+Sim
+Não
+Sim
+Não
+Evento / documento /
+estado
+Modelo System-1
+Jev / Decisions / open DM
+Tarefa local?
+confiança validada?
+estado confiável?
+Executar decisão
+Modelo de raciocínio
+System-2
+Alto impacto?
+Revisão humana / regra
+determinística
+Outcome observado
+Calibração por domínio
+drift + fairness + selective
+risk
+8
+46
+47
+p = 0,9
+16
+
+=== PAGINA 17 ===
+deveriam estudar calibração hierárquica, conformal prediction, selective risk e detecção explícita de OOD
+para decision models. 
+A quarta é o problema de composição temporal. Métricas por decisão tratam erros como independentes,
+mas agentes transformam pequenos erros em mudanças permanentes de estado. Falta uma teoria e uma
+prática de avaliação que conectem calibration/accuracy por passo à probabilidade de sucesso de uma
+política inteira sob dependência temporal. System1-Arena e JEVal já mostram empiricamente esse
+problema, mas não o resolvem. 
+A quinta envolve decision-native architecture versus readout de LLM. InnerJev e Jeff sugerem que uma
+arquitetura especializada não é necessária para alto desempenho em muitos benchmarks; Jeva argumenta
+que propriedades estruturais como invariância a permutação, null-awareness e caching justificam uma
+arquitetura própria. Esse é um debate empírico aberto: ganhos de benchmark devem ser confrontados com
+generalização, robustez estrutural e custo total de serving. 
+A sexta é fairness em sistemas de decisão diretamente acionáveis. Um viés de 1–3 pontos percentuais
+no argmax pode ter consequências maiores do que a mesma tendência em texto não acionável, porque o
+output é imediatamente consumido por uma política. Estudos recentes já encontram sensibilidade
+demográfica e a formulação, mas faltam audits longitudinais e em deployments reais. 
+Recomendações práticas para pesquisa e aplicação
+Para aplicações reais, eu trataria um modelo de decisão como um componente probabilístico
+especializado, não como um substituto universal de LLMs. A unidade correta de validação é a decisão
+concreta: mesma distribuição de entradas, mesmo conjunto de alternativas, mesma formulação, mesmo
+downstream cost. Benchmarks genéricos servem para triagem de modelos, mas não estabelecem
+confiabilidade de deployment. 
+Uma prática experimental robusta deveria incluir, no mínimo: conjunto hold-out representativo da
+produção; accuracy ou macro-F1; Brier score; ECE/calibration curves; selective risk em função de coverage;
+matriz de confusão e custos assimétricos; latência p50/p95/p99; custo por mil decisões; testes de
+permutação e reformulação das alternativas; testes com opções adicionais/ausentes; subgrupos de
+fairness; e avaliação fechada do workflow quando as decisões alimentam um agente. Essa combinação
+segue diretamente as fragilidades identificadas em System1-Arena, IIA, bias e estudos aplicados. 
+Os thresholds não devem ser escolhidos com valores intuitivos como “0,9 parece seguro”. A própria
+documentação da OpenAI recomenda ajustá-los em exemplos rotulados de acordo com os custos relativos
+dos erros. Em termos de teoria de decisão, a regra correta é comparar a utilidade esperada das ações. Se
+um falso negativo custa dez vezes mais que um falso positivo, o threshold ótimo pode estar muito distante
+de 0,5 ou 0,9. 
+Também convém congelar a especificação do option set. Alterar nomes, descriptions, ordem ou
+cardinalidade deve ser tratado como alteração de modelo do ponto de vista de validação, porque as
+probabilidades podem mudar mesmo para alternativas semanticamente inalteradas. Quando option sets
+são dinâmicos — por exemplo, um registro variável de ferramentas — testes de invariância e regressão
+devem fazer parte do CI. 
+48
+49
+50
+51
+52
+53
+54
+55
+17
+
+=== PAGINA 18 ===
+Em workflows de múltiplas etapas, o decision model deve preferencialmente receber um estado já
+verificado. Não lhe atribuiria simultaneamente a responsabilidade de sintetizar dezenas de eventos,
+verificar a consistência desse resumo e escolher a ação: o trabalho sobre limites de one-pass mostra
+precisamente que confiança não identifica bem um estado incorreto herdado. 
+Para pesquisa científica, modelos abertos como InnerJev, Jeff e Jeva são especialmente valiosos porque
+permitem ablação do backbone, do decision head, da loss e da calibração. Jev e OpenAI Decisions são
+relevantes como baselines comerciais de alta eficiência, mas o caráter proprietário impede reprodução do
+treinamento e análise mecanística completa. 
+Por fim, para domínios de alto impacto — saúde, crédito, emprego, segurança ou decisões que afetam
+direitos — eu recomendaria que o argmax nunca fosse a política completa. O output probabilístico deve
+alimentar mecanismos explícitos de abstention/deferência, regras determinísticas quando disponíveis,
+auditoria por subgrupos e revisão humana proporcional ao dano potencial. Os resultados atuais mostram
+que esses sistemas podem ser extraordinariamente eficientes, mas não sustentam a hipótese de que
+“decisão tipada + alta confiança” equivale a decisão confiável fora do domínio especificamente validado. 
+Crie apps mais responsivos com a API Decisions | OpenAI
+https://openai.com/pt-BR/index/decisions-api/?utm_source=chatgpt.com
+What Can't Jev Decide? Probing the Limits of One-Pass Decision Models
+https://arxiv.org/abs/2610.24929
+Decisions | OpenAI API
+https://developers.openai.com/api/docs/guides/decisions?trk=public_post_comment-text&utm_source=chatgpt.com
+Introducing System One Models & Jev - TypeSafe AI Blog
+https://typesafe.ai/blog/introducing-system-one-models-and-jev?utm_source=chatgpt.com
+System1-Arena: Which Decisions Can Be Left to System 1?
+https://arxiv.org/abs/2610.21244
+Does a Hosted Decision Model Respect Irrelevant Alternatives? A Pre-Registered Test of Option-
+Set Dependence in Jev
+https://arxiv.org/abs/2610.16655?utm_source=chatgpt.com
+Evaluating Decision Models for Text Annotation in Computational Social Science
+https://arxiv.org/abs/2609.24574?utm_source=chatgpt.com
+General Decision Models: Benchmarking and Insights Beyond Jev
+https://arxiv.org/abs/2610.03935
+Decisions | OpenAI API
+https://developers.openai.com/api/docs/guides/decisions?utm_source=chatgpt.com
+Jev: For the builders AND dreamers - TypeSafe AI Blog
+https://typesafe.ai/blog/jev-1-14?trk=article-ssr-frontend-pulse_little-text-block&utm_source=chatgpt.com
+System1-Arena: Which Decisions Can Be Left to System 1?
+https://arxiv.org/abs/2610.21244?utm_source=chatgpt.com
+28
+56
+57
+1
+2
+7
+28
+43
+3
+10
+12
+4
+13
+14
+46
+5
+17
+18
+41
+49
+53
+6
+48
+55
+8
+37
+9
+20
+21
+22
+23
+24
+56
+11
+54
+15
+16
+47
+18
+
+=== PAGINA 19 ===
+General Decision Models: Benchmarking and Insights Beyond Jev
+https://arxiv.org/abs/2610.03935?utm_source=chatgpt.com
+Releasing the Inner Jev: A Simple Recipe for Open Decision Models
+https://arxiv.org/abs/2610.17205?utm_source=chatgpt.com
+Releasing the Inner Jev: A Simple Recipe for Open Decision Models
+https://arxiv.org/abs/2610.17205
+What Can't Jev Decide? Probing the Limits of One-Pass Decision Models
+https://arxiv.org/abs/2610.24929?utm_source=chatgpt.com
+Are AI Decision Models Biased? A Case Study of Jev
+https://arxiv.org/abs/2610.19619?utm_source=chatgpt.com
+[2610.18773] Jeva: System One Models from First Principles
+https://borowiecki.dev/abs/2610.18773?utm_source=chatgpt.com
+GitHub - LiQiiiii/Jeva at jev.aitools.fyi · GitHub
+https://github.com/LiQiiiii/Jeva?ref=jev.aitools.fyi&utm_source=chatgpt.com
+[2609.36115] Koa-decision: Fast and Consistent Structured Decision Making with Generative LLMs
+https://borowiecki.dev/abs/2609.36115?utm_source=chatgpt.com
+Awesome Jev — System One Models & Research
+https://awesomejev.github.io/?utm_source=chatgpt.com
+Decision and System One models in rheumatology: accuracy and calibration on specialty-
+training examination questions and diagnostic case vignettes
+https://arxiv.org/abs/2610.40318?utm_source=chatgpt.com
+JEV vs. LLMs as Rubric Judges: Cheaper, Faster, and Wrong in the Same Places
+https://arxiv.org/abs/2609.29769?utm_source=chatgpt.com
+Decision language models as affordable and rapid alternatives to LLM judges of clinical generative AI
+https://arxiv.org/abs/2610.28826?utm_source=chatgpt.com
+Fine-Tuned Encoders versus Zero-Shot Prompting for Detecting Threat and Solution Framing in German
+Climate News - ACL Anthology
+https://aclanthology.org/2026.climatenlp-1.12/?utm_source=chatgpt.com
+19
+25
+26
+42
+50
+27
+29
+30
+45
+51
+31
+32
+33
+34
+35
+36
+44
+52
+57
+38
+39
+40
+19

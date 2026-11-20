@@ -1,0 +1,5 @@
+﻿eixo,relevância JEV,nível JEV,motivos,relevância final,nível final,valor,origem,status,evidência,auditoria,trecho,texto
+economic,True,0.0,['relevancia_ambigua'],False,,,llm_ordinal,sem_evidencia,,[],1,Arcabouço fiscal e responsabilidade fiscal
+diplomatic,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,Arcabouço fiscal e responsabilidade fiscal
+state,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,Arcabouço fiscal e responsabilidade fiscal
+society,False,,[],False,,,jev_ordinal,sem_evidencia,,[],1,Arcabouço fiscal e responsabilidade fiscal

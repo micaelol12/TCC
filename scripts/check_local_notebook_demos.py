@@ -20,7 +20,7 @@ async def main():
         source = ''.join(c['source'])
         if '--nine' in sys.argv:
             source = source.replace('ESCALA_ATUAL = ESCALA_5_NIVEIS', 'ESCALA_ATUAL = ESCALA_9_NIVEIS')
-        if c['cell_type'] == 'markdown' and source.startswith('## Trocar os dublês'):
+        if c['cell_type'] == 'markdown' and source.startswith(('## Trocar os dublês', '## Benchmark 8values:')):
             break
         if c['cell_type'] != 'code' or source.startswith(('planos_governo =', 'plano_escolhido =')):
             continue

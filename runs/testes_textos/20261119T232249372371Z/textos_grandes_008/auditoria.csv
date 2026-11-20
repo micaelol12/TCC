@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,economic,semantic,sustenta,-2,terceira tentativa de privatização da Eletrobras,0.5,"{'sustenta': 0.67, 'contradiz': 0.16, 'insuficiente': 0.17}",jev-1.13.0
+1,economic,semantic,sustenta,-2,a privatização deverá fortalecer a Eletrobras,0.49,"{'sustenta': 0.66, 'contradiz': 0.17, 'insuficiente': 0.17}",jev-1.13.0
+2,economic,semantic,sustenta,2,"“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”",0.82,"{'sustenta': 0.88, 'contradiz': 0.04, 'insuficiente': 0.08}",jev-1.13.0

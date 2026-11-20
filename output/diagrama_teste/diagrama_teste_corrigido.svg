@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="1790" viewBox="0 0 1520 1790">
+<title>Diagrama de atividades: análise híbrida de textos e comparação com o teste 8values</title>
+<rect width="100%" height="100%" fill="white"/>
+<text x="760" y="35.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#363636">Análise híbrida de textos e comparação com o teste 8values</text>
+<text x="760" y="75.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#363636">Modo com revisão (medium) — fluxo funcional do código atual</text>
+<rect x="30" y="355" width="1450" height="560" rx="12" fill="none" stroke="#aaaaaa"/>
+<text x="1195" y="380.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#363636">Para cada trecho (em paralelo)</text>
+<polyline points="650,141 650,165" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,165 655.0,153.0 645.0,153.0" fill="#363636"/>
+<polyline points="650,241 650,275" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,275 655.0,263.0 645.0,263.0" fill="#363636"/>
+<polyline points="650,351 650,430" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,430 655.0,418.0 645.0,418.0" fill="#363636"/>
+<polyline points="650,530 650,595" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,595 655.0,583.0 645.0,583.0" fill="#363636"/>
+<polyline points="670,615 1010,615" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="1010,615 998.0,610.0 998.0,620.0" fill="#363636"/>
+<polyline points="650,635 650,805" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,805 655.0,793.0 645.0,793.0" fill="#363636"/>
+<polyline points="1215,665 1215,845 850,845" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="850,845 862.0,850.0 862.0,840.0" fill="#363636"/>
+<polyline points="650,885 650,975" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,975 655.0,963.0 645.0,963.0" fill="#363636"/>
+<polyline points="650,1069 650,1120" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,1120 655.0,1108.0 645.0,1108.0" fill="#363636"/>
+<polyline points="650,1200 650,1260" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,1260 655.0,1248.0 645.0,1248.0" fill="#363636"/>
+<polyline points="670,1280 1010,1280" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="1010,1280 998.0,1275.0 998.0,1285.0" fill="#363636"/>
+<polyline points="1420,1280 1448,1280" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="1448,1280 1436.0,1275.0 1436.0,1285.0" fill="#363636"/>
+<polyline points="650,1300 650,1380" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,1380 655.0,1368.0 645.0,1368.0" fill="#363636"/>
+<polyline points="650,1474 650,1550" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,1550 655.0,1538.0 645.0,1538.0" fill="#363636"/>
+<polyline points="650,1634 650,1708" fill="none" stroke="#363636" stroke-width="2"/>
+<polygon points="650,1708 655.0,1696.0 645.0,1696.0" fill="#363636"/>
+<circle cx="650" cy="125" r="16" fill="#363636"/>
+<text x="585" y="125.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Início</text>
+<rect x="450" y="165" width="400" height="76" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="203.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Recebe o texto do usuário</text>
+<rect x="450" y="275" width="400" height="76" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="313.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Divide o texto em trechos</text>
+<rect x="450" y="430" width="400" height="100" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="465.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Avalia relevância e polaridade</text>
+<text x="650.0" y="494.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">dos quatro eixos com JEV</text>
+<line x1="395" y1="475.0" x2="450" y2="480" stroke="#777777" stroke-dasharray="4 6"/>
+<polygon points="65,410 378,410 395,427 395,540 65,540" fill="#fff4ad"/>
+<polyline points="378,410 378,427 395,427" fill="none" stroke="#d6c668"/>
+<text x="230.0" y="436.255" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">TypeSafe · jev-1.13.0</text>
+<text x="230.0" y="462.085" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Uma chamada por trecho,</text>
+<text x="230.0" y="487.91499999999996" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">com as duas perguntas</text>
+<text x="230.0" y="513.745" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">para cada eixo.</text>
+<polygon points="650,595 670,615 650,635 630,615" fill="#363636"/>
+<text x="305" y="600.855" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Há eixos com baixa</text>
+<text x="305" y="629.145" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">confiança ou falha?</text>
+<text x="825" y="592.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Sim</text>
+<text x="690" y="675.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Não</text>
+<rect x="1010" y="565" width="410" height="100" rx="18" fill="#ffdb43"/>
+<text x="1215.0" y="600.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Revisa relevância e polaridade</text>
+<text x="1215.0" y="629.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">dos eixos sinalizados com LLM</text>
+<line x1="1220.0" y1="530" x2="1215" y2="565" stroke="#777777" stroke-dasharray="4 6"/>
+<polygon points="1020,410 1403,410 1420,427 1420,530 1020,530" fill="#fff4ad"/>
+<polyline points="1403,410 1403,427 1420,427" fill="none" stroke="#d6c668"/>
+<text x="1220.0" y="444.17" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Maritaca · Sabiá 4 (padrão)</text>
+<text x="1220.0" y="470.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Substitui as duas decisões;</text>
+<text x="1220.0" y="495.83000000000004" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">os demais eixos mantêm JEV.</text>
+<rect x="450" y="805" width="400" height="80" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="830.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Busca e verifica evidências</text>
+<text x="650.0" y="859.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">conforme a configuração</text>
+<line x1="395" y1="845.0" x2="450" y2="845" stroke="#777777" stroke-dasharray="4 6"/>
+<polygon points="65,795 378,795 395,812 395,895 65,895" fill="#fff4ad"/>
+<polyline points="378,795 378,812 395,812" fill="none" stroke="#d6c668"/>
+<text x="230.0" y="819.17" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Auditoria com JEV,</text>
+<text x="230.0" y="845.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">quando habilitada.</text>
+<text x="230.0" y="870.8299999999999" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Não altera as pontuações.</text>
+<text x="900" y="940.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#363636">Após concluir todos os trechos</text>
+<rect x="450" y="975" width="400" height="94" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="1007.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Agrega as pontuações válidas</text>
+<text x="650.0" y="1036.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">pela média de cada eixo</text>
+<line x1="395" y1="1035.0" x2="450" y2="1022" stroke="#777777" stroke-dasharray="4 6"/>
+<polygon points="45,975 378,975 395,992 395,1095 45,1095" fill="#fff4ad"/>
+<polyline points="378,975 378,992 395,992" fill="none" stroke="#d6c668"/>
+<text x="220.0" y="1009.17" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Somente relevância confirmada</text>
+<text x="220.0" y="1035.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">e nível válido (escala 0–100).</text>
+<text x="220.0" y="1060.83" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Sem valores: sem estimativa.</text>
+<rect x="450" y="1120" width="400" height="80" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="1160.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Apresenta a análise por eixo</text>
+<polygon points="650,1260 670,1280 650,1300 630,1280" fill="#363636"/>
+<text x="300" y="1265.855" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Resultado do teste</text>
+<text x="300" y="1294.145" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">8values disponível?</text>
+<text x="825" y="1257.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Não</text>
+<text x="690" y="1340.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Sim</text>
+<rect x="1010" y="1233" width="410" height="94" rx="18" fill="#ffdb43"/>
+<text x="1215.0" y="1265.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Oferece adicionar o resultado</text>
+<text x="1215.0" y="1294.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">do teste 8values</text>
+<circle cx="1470" cy="1280" r="22" fill="white" stroke="#363636" stroke-width="2"/>
+<circle cx="1470" cy="1280" r="16" fill="#363636"/>
+<text x="1470" y="1328.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Fim</text>
+<rect x="450" y="1380" width="400" height="94" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="1412.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Compara o texto e o teste</text>
+<text x="650.0" y="1441.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">nos eixos com estimativa</text>
+<line x1="395" y1="1430.0" x2="450" y2="1427" stroke="#777777" stroke-dasharray="4 6"/>
+<polygon points="40,1370 378,1370 395,1387 395,1490 40,1490" fill="#fff4ad"/>
+<polyline points="378,1370 378,1387 395,1387" fill="none" stroke="#d6c668"/>
+<text x="217.5" y="1391.255" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Diferença de pontuação</text>
+<text x="217.5" y="1417.085" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">por eixo, na escala 0–100.</text>
+<text x="217.5" y="1442.9150000000002" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">Demais eixos: sem base</text>
+<text x="217.5" y="1468.7450000000001" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#363636">para comparar.</text>
+<rect x="450" y="1550" width="400" height="84" rx="18" fill="#ffdb43"/>
+<text x="650.0" y="1577.24" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">Apresenta o resultado</text>
+<text x="650.0" y="1606.76" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#363636">da comparação ao usuário</text>
+<circle cx="650" cy="1730" r="22" fill="white" stroke="#363636" stroke-width="2"/>
+<circle cx="650" cy="1730" r="16" fill="#363636"/>
+<text x="710" y="1730.0" dominant-baseline="central" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#363636">Fim</text>
+</svg>

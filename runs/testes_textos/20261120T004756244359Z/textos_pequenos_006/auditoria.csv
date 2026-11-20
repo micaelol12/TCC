@@ -1,0 +1,4 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model,sentence_id,start,end,existence_probability
+0,state,semantic,sustenta,-2,impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família,0.91,"{'sustenta': 0.94, 'contradiz': 0.04, 'insuficiente': 0.02}",jev-1.13.0,,,,
+0,society,search,found,-4,O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.,0.96,"{'S000': 0.98, 'NONE': 0.02}",jev-1.13.0,S000,0.0,115.0,0.87
+0,society,semantic,sustenta,-4,O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.,0.96,"{'sustenta': 0.97, 'contradiz': 0.02, 'insuficiente': 0.01}",jev-1.13.0,,,,

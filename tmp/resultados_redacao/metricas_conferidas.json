@@ -1,0 +1,841 @@
+{
+  "benchmark": {
+    "trechos": 70,
+    "latencia_jev_s": {
+      "n": 70,
+      "media": 0.29248937571412953,
+      "mediana": 0.28787799999918207,
+      "min": 0.2357440999985556,
+      "max": 0.4614798000002338
+    },
+    "latencia_llm_s": {
+      "n": 70,
+      "media": 0.7014076714288032,
+      "mediana": 0.8567211499976111,
+      "min": 0.0,
+      "max": 1.5750103000027593
+    },
+    "latencia_total_s": {
+      "n": 70,
+      "media": 0.9962251085714732,
+      "mediana": 1.1619505000016943,
+      "min": 0.2375008999988495,
+      "max": 2.038473900000099
+    },
+    "chamadas_llm": 49,
+    "chamadas_llm_efetivas": 49,
+    "chamadas_jev": 70,
+    "tentativas_jev": 70,
+    "chamadas_jev_evidencias": 0,
+    "trechos_com_llm": 49,
+    "eixos_encaminhados": 65,
+    "eixos_jev": {
+      "estados": {
+        "irrelevante": 194,
+        "sem_posicao": 15,
+        "direcional": 71
+      },
+      "por_eixo": {
+        "economic": {
+          "irrelevante": 53,
+          "direcional": 14,
+          "sem_posicao": 3
+        },
+        "diplomatic": {
+          "irrelevante": 53,
+          "direcional": 16,
+          "sem_posicao": 1
+        },
+        "state": {
+          "sem_posicao": 3,
+          "direcional": 20,
+          "irrelevante": 47
+        },
+        "society": {
+          "irrelevante": 41,
+          "sem_posicao": 8,
+          "direcional": 21
+        }
+      },
+      "erros_llm": [],
+      "citacoes_decisoes_relevantes": {
+        "None": 86
+      },
+      "alteracoes": {}
+    },
+    "eixos": {
+      "estados": {
+        "irrelevante": 207,
+        "direcional": 66,
+        "sem_posicao": 6,
+        "abstencao": 1
+      },
+      "por_eixo": {
+        "economic": {
+          "irrelevante": 55,
+          "direcional": 15
+        },
+        "diplomatic": {
+          "irrelevante": 54,
+          "direcional": 14,
+          "sem_posicao": 1,
+          "abstencao": 1
+        },
+        "state": {
+          "direcional": 17,
+          "irrelevante": 52,
+          "sem_posicao": 1
+        },
+        "society": {
+          "irrelevante": 46,
+          "direcional": 20,
+          "sem_posicao": 4
+        }
+      },
+      "erros_llm": [],
+      "citacoes_decisoes_relevantes": {
+        "True": 28,
+        "None": 44
+      },
+      "alteracoes": {
+        "state": 9,
+        "society": 12,
+        "economic": 5,
+        "diplomatic": 7
+      }
+    },
+    "erros_lote": []
+  },
+  "metricas_benchmark": {
+    "eixos_jev": {
+      "pares": 280,
+      "relevantes": 116,
+      "relevancia_acertos": 232,
+      "direcao_acertos": 63,
+      "conjunto_acertos": 218,
+      "baseline_acertos": 164,
+      "matriz_relevancia": {
+        "R_I": 39,
+        "I_I": 155,
+        "R_R": 77,
+        "I_R": 9
+      }
+    },
+    "eixos": {
+      "pares": 280,
+      "relevantes": 116,
+      "relevancia_acertos": 228,
+      "direcao_acertos": 60,
+      "conjunto_acertos": 220,
+      "baseline_acertos": 164,
+      "matriz_relevancia": {
+        "R_I": 47,
+        "I_I": 160,
+        "R_R": 68,
+        "I_R": 4,
+        "R_A": 1
+      }
+    }
+  },
+  "benchmark_por_eixo": [
+    {
+      "etapa": "eixos",
+      "eixo": "diplomatic",
+      "pares": "70",
+      "relevantes_esperados": "24",
+      "acuracia_relevancia": "0.8428571428571429",
+      "acuracia_direcao_relevantes": "0.5416666666666666",
+      "acuracia_conjunta": "0.8285714285714286",
+      "direcionais": "14",
+      "sem_posicao": "1",
+      "irrelevantes": "54",
+      "abstencoes": "1",
+      "referencia_tudo_irrelevante": "0.6571428571428571"
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "economic",
+      "pares": "70",
+      "relevantes_esperados": "22",
+      "acuracia_relevancia": "0.9",
+      "acuracia_direcao_relevantes": "0.6363636363636364",
+      "acuracia_conjunta": "0.8857142857142857",
+      "direcionais": "15",
+      "sem_posicao": "0",
+      "irrelevantes": "55",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.6857142857142857"
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "society",
+      "pares": "70",
+      "relevantes_esperados": "33",
+      "acuracia_relevancia": "0.7857142857142857",
+      "acuracia_direcao_relevantes": "0.5151515151515151",
+      "acuracia_conjunta": "0.7285714285714285",
+      "direcionais": "20",
+      "sem_posicao": "4",
+      "irrelevantes": "46",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.5285714285714286"
+    },
+    {
+      "etapa": "eixos",
+      "eixo": "state",
+      "pares": "70",
+      "relevantes_esperados": "37",
+      "acuracia_relevancia": "0.7285714285714285",
+      "acuracia_direcao_relevantes": "0.43243243243243246",
+      "acuracia_conjunta": "0.7",
+      "direcionais": "17",
+      "sem_posicao": "1",
+      "irrelevantes": "52",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.4714285714285714"
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "diplomatic",
+      "pares": "70",
+      "relevantes_esperados": "24",
+      "acuracia_relevancia": "0.8428571428571429",
+      "acuracia_direcao_relevantes": "0.5833333333333334",
+      "acuracia_conjunta": "0.8285714285714286",
+      "direcionais": "16",
+      "sem_posicao": "1",
+      "irrelevantes": "53",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.6571428571428571"
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "economic",
+      "pares": "70",
+      "relevantes_esperados": "22",
+      "acuracia_relevancia": "0.9",
+      "acuracia_direcao_relevantes": "0.6363636363636364",
+      "acuracia_conjunta": "0.8714285714285714",
+      "direcionais": "14",
+      "sem_posicao": "3",
+      "irrelevantes": "53",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.6857142857142857"
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "society",
+      "pares": "70",
+      "relevantes_esperados": "33",
+      "acuracia_relevancia": "0.8571428571428571",
+      "acuracia_direcao_relevantes": "0.5757575757575758",
+      "acuracia_conjunta": "0.7571428571428571",
+      "direcionais": "21",
+      "sem_posicao": "8",
+      "irrelevantes": "41",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.5285714285714286"
+    },
+    {
+      "etapa": "eixos_jev",
+      "eixo": "state",
+      "pares": "70",
+      "relevantes_esperados": "37",
+      "acuracia_relevancia": "0.7142857142857143",
+      "acuracia_direcao_relevantes": "0.43243243243243246",
+      "acuracia_conjunta": "0.6571428571428571",
+      "direcionais": "20",
+      "sem_posicao": "3",
+      "irrelevantes": "47",
+      "abstencoes": "0",
+      "referencia_tudo_irrelevante": "0.4714285714285714"
+    }
+  ],
+  "textos": {
+    "trechos": 58,
+    "latencia_jev_s": {
+      "n": 58,
+      "media": 0.24832825344793522,
+      "mediana": 0.24068205000003218,
+      "min": 0.22309089999907883,
+      "max": 0.4219719999964582
+    },
+    "latencia_llm_s": {
+      "n": 58,
+      "media": 0.5930533396546299,
+      "mediana": 0.8504549999961455,
+      "min": 0.0,
+      "max": 1.6622560000032536
+    },
+    "latencia_total_s": {
+      "n": 58,
+      "media": 1.1508011603449444,
+      "mediana": 1.1409367499982181,
+      "min": 0.22460109999519773,
+      "max": 2.342732500001148
+    },
+    "chamadas_llm": 32,
+    "chamadas_llm_efetivas": 32,
+    "chamadas_jev": 58,
+    "tentativas_jev": 58,
+    "chamadas_jev_evidencias": 84,
+    "trechos_com_llm": 32,
+    "eixos_encaminhados": 44,
+    "eixos_jev": {
+      "estados": {
+        "direcional": 56,
+        "irrelevante": 161,
+        "sem_posicao": 15
+      },
+      "por_eixo": {
+        "economic": {
+          "direcional": 14,
+          "sem_posicao": 3,
+          "irrelevante": 41
+        },
+        "diplomatic": {
+          "irrelevante": 54,
+          "direcional": 4
+        },
+        "state": {
+          "irrelevante": 24,
+          "direcional": 31,
+          "sem_posicao": 3
+        },
+        "society": {
+          "irrelevante": 42,
+          "direcional": 7,
+          "sem_posicao": 9
+        }
+      },
+      "erros_llm": [],
+      "citacoes_decisoes_relevantes": {
+        "None": 71
+      },
+      "alteracoes": {}
+    },
+    "eixos": {
+      "estados": {
+        "direcional": 56,
+        "irrelevante": 170,
+        "sem_posicao": 6
+      },
+      "por_eixo": {
+        "economic": {
+          "direcional": 14,
+          "sem_posicao": 1,
+          "irrelevante": 43
+        },
+        "diplomatic": {
+          "irrelevante": 54,
+          "direcional": 4
+        },
+        "state": {
+          "irrelevante": 25,
+          "direcional": 31,
+          "sem_posicao": 2
+        },
+        "society": {
+          "irrelevante": 48,
+          "direcional": 7,
+          "sem_posicao": 3
+        }
+      },
+      "erros_llm": [],
+      "citacoes_decisoes_relevantes": {
+        "True": 57,
+        "None": 5
+      },
+      "alteracoes": {
+        "state": 9,
+        "society": 8,
+        "economic": 3,
+        "diplomatic": 2
+      }
+    },
+    "documentos": 28,
+    "status": {
+      "True": 28
+    },
+    "indice_documentos": {
+      "economic": 9,
+      "state": 11,
+      "society": 9,
+      "diplomatic": 4
+    },
+    "grupos": {
+      "textos_pequenos": {
+        "documentos": 18,
+        "trechos": 18
+      },
+      "textos_grandes": {
+        "documentos": 10,
+        "trechos": 40
+      }
+    }
+  },
+  "casos_textos": [
+    {
+      "id": "textos_grandes_001",
+      "texto": "CCJ aprova criação do Imposto sobre Grandes Fortunas\n\nA Comissão de Constituição e Justiça e de Cidadania aprovou há pouco o Projeto de Lei Complementar (PLP) 277/08, da deputada Luciana Genro (Psol-RS), que institui o Imposto sobre Grandes Fortunas ",
+      "trechos": 1,
+      "indices": {
+        "economic": 75.0,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_002",
+      "texto": "MP restringe papel do Estado no controle na fiscalização da atividade econômica\n\nA Medida Provisória 881/19 institui a Declaração de Direitos de Liberdade Econômica. O texto estabelece normas de proteção à livre iniciativa e ao livre exercício de ati",
+      "trechos": 2,
+      "indices": {
+        "economic": 25.0,
+        "diplomatic": null,
+        "state": 87.5,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_003",
+      "texto": "Proposta aumenta pena de feminicídio para até 40 anos\n\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas m",
+      "trechos": 2,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 25.0,
+        "society": 75.0
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_004",
+      "texto": "Comissão discute transição demográfica e envelhecimento da população brasileira\n\nA Comissão de Defesa dos Direitos da Pessoa Idosa da Câmara dos Deputados realizará audiência pública nesta terça-feira (15), às 16 horas, no plenário 14, para discutir ",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": 50.0
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_005",
+      "texto": "Conheça a tramitação de projetos de lei\n\n1\n\nAPRESENTAÇÃO\n\nUm projeto de lei pode ser apresentado por qualquer deputado ou senador, comissão da Câmara, do Senado ou do Congresso, pelo presidente da República,\npelo procurador-geral da República, pelo S",
+      "trechos": 2,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_006",
+      "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da sa",
+      "trechos": 3,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 62.5,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_007",
+      "texto": "Câmara aprova texto-base da MP da Liberdade Econômica\n\nO Plenário da Câmara dos Deputados aprovou nesta terça-feira (13) o texto-base da MP da Liberdade Econômica (Medida Provisória 881/19). Foram 345 votos a favor e 76 contra. Os destaques ficaram p",
+      "trechos": 2,
+      "indices": {
+        "economic": 18.75,
+        "diplomatic": null,
+        "state": 87.5,
+        "society": 25.0
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_008",
+      "texto": "Deputados e debatedores divergem sobre a privatização da Eletrobras\n\nParlamentares, representantes do governo, especialistas e dirigentes sindicais divergiram nesta sexta-feira (7) em debate na Câmara dos Deputados sobre a terceira tentativa de priva",
+      "trechos": 3,
+      "indices": {
+        "economic": 41.666666666666664,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_grandes_009",
+      "texto": "Imposto sobre fortunas pode entrar no debate sobre reforma tributária\n\nAgência Câmara\n\nParlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos a",
+      "trechos": 3,
+      "indices": {
+        "economic": 75.0,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": [
+        [
+          1,
+          "economic"
+        ]
+      ]
+    },
+    {
+      "id": "textos_grandes_010",
+      "texto": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024\n\nAltera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.\n\nO TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o inciso IX do art. 23 do Código E",
+      "trechos": 21,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 44.04761904761905,
+        "society": 75.0
+      },
+      "sem_citacao": [
+        [
+          13,
+          "state"
+        ]
+      ]
+    },
+    {
+      "id": "textos_pequenos_001",
+      "texto": "Privatização de todas as empresas estatais",
+      "trechos": 1,
+      "indices": {
+        "economic": 0.0,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_002",
+      "texto": "Redução da maioridade penal para 16 anos ou menos",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 25.0,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_003",
+      "texto": "Nacionalização e estatização do sistema monetário, financeiro e bancário",
+      "trechos": 1,
+      "indices": {
+        "economic": 100.0,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_004",
+      "texto": "Legalização do aborto e garantia de atendimento na rede pública de saúde",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 75.0,
+        "society": 75.0
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_005",
+      "texto": "O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 75.0,
+        "society": 50.0
+      },
+      "sem_citacao": [
+        [
+          0,
+          "society"
+        ]
+      ]
+    },
+    {
+      "id": "textos_pequenos_006",
+      "texto": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 37.5,
+        "society": 0.0
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_007",
+      "texto": "Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": 87.5,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_008",
+      "texto": "Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": 25.0,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_009",
+      "texto": "Arcabouço fiscal e responsabilidade fiscal",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_010",
+      "texto": "O programa prevê consultas a distância e integração digital dos registros de atendimento em saúde.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_011",
+      "texto": "O plano de Lula propõe coordenar os órgãos de segurança e modernizar sua gestão para melhorar a eficiência.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_012",
+      "texto": "O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.",
+      "trechos": 1,
+      "indices": {
+        "economic": 12.5,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_013",
+      "texto": "O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes.",
+      "trechos": 1,
+      "indices": {
+        "economic": 75.0,
+        "diplomatic": null,
+        "state": null,
+        "society": 50.0
+      },
+      "sem_citacao": [
+        [
+          0,
+          "society"
+        ]
+      ]
+    },
+    {
+      "id": "textos_pequenos_014",
+      "texto": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": 12.5,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_015",
+      "texto": "Lula rejeita que o país se subordine a pressões estrangeiras, mas defende negociar em condições de igualdade e fortalecer organismos multilaterais para enfrentar conflitos.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": 75.0,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_016",
+      "texto": "O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 25.0,
+        "society": null
+      },
+      "sem_citacao": []
+    },
+    {
+      "id": "textos_pequenos_017",
+      "texto": "Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo. O relator recomenda o primeiro e rejeita o segundo.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": 37.5,
+        "society": 25.0
+      },
+      "sem_citacao": [
+        [
+          0,
+          "state"
+        ]
+      ]
+    },
+    {
+      "id": "textos_pequenos_018",
+      "texto": "A resolução exige aviso quando a propaganda utiliza conteúdo multimídia gerado por IA. Ajustes de qualidade de som ou imagem e elementos de identidade visual estão dispensados dessa exigência. A violação da regra pode levar à retirada do conteúdo.",
+      "trechos": 1,
+      "indices": {
+        "economic": null,
+        "diplomatic": null,
+        "state": null,
+        "society": null
+      },
+      "sem_citacao": []
+    }
+  ],
+  "auditoria": {
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S010', 'start': 1042, 'end': 1185, 'quote': '“O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades soci": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': '“O imposto sobre grandes fortunas funcionaria como um imposto complementar ao Imposto de Renda, para apoio ao combate às desigualdades sociais.', 'confidence': 0.96, 'probabilities': {'": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -4, 'sentence_id': 'S005', 'start': 933, 'end': 1098, 'quote': 'Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalizaç": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -4, 'quote': 'Ontem, em pronunciamento na TV e no rádio, o presidente reiterou que a MP pretende restringir o papel do Estado no controle e na fiscalização da atividade econômica.', 'confidence': 0.": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 3, 'sentence_id': 'S002', 'start': 337, 'end': 708, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 3, 'quote': 'A MP define direitos essenciais de pessoa natural ou jurídica para o desenvolvimento e o crescimento econômico do País, dispensa autorizações para atividades de baixo risco destinadas a": 1,
+    "{'kind': 'semantic', 'status': 'insuficiente', 'level': 0, 'quote': 'Análise de Impacto Regulatório (AIR), que conterá informações e dados sobre os possíveis efeitos do ato proposto', 'confidence': 0.86, 'probabilities': {'sustenta': 0.08, 'contradiz": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 264, 'quote': 'Proposta aumenta pena de feminicídio para até 40 anos\\n\\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a p": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Proposta aumenta pena de feminicídio para até 40 anos\\n\\nO Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 a": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'aumenta pena de feminicídio para até 40 anos', 'confidence': 0.24, 'probabilities': {'sustenta': 0.49, 'contradiz': 0.03, 'insuficiente': 0.48}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S001', 'start': 102, 'end': 246, 'quote': 'Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro est": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Nesse caso, ele deve ser transferido para estabelecimento penal distante do local de residência da vítima, ainda que localizado em outro estado.', 'confidence': 0.94, 'probabilities': ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'conjunto de medidas para coibir a violência praticada contra a mulher', 'confidence': 0.76, 'probabilities': {'sustenta': 0.84, 'contradiz': 0.01, 'insuficiente': 0.15}, 'model': 'jev-1": 1,
+    "{'kind': 'semantic', 'status': 'insuficiente', 'level': 0, 'quote': 'discutir a transição demográfica e o envelhecimento da população brasileira', 'confidence': 0.79, 'probabilities': {'sustenta': 0.14, 'contradiz': 0.0, 'insuficiente': 0.86}, 'model": 1,
+    "{'kind': 'semantic', 'status': 'insuficiente', 'level': 0, 'quote': 'autoriza e conceitua a prática da telessaúde em todo o território nacional', 'confidence': 0.4, 'probabilities': {'sustenta': 0.39, 'contradiz': 0.01, 'insuficiente': 0.6}, 'model':": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 315, 'quote': 'Liberdade de decisão\\n\\nO substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da tel": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Liberdade de decisão\\n\\nO substitutivo garante ao profissional “liberdade e completa independência” de decidir sobre a utilização ou não da telessaúde, inclusive com relação à primeira ": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -3, 'sentence_id': 'S005', 'start': 700, 'end': 908, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -3, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a a": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 3, 'sentence_id': 'S005', 'start': 700, 'end': 908, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria d": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 3, 'quote': 'A proposta aprovada estabelece garantias para a atividade econômica de livre mercado, impõe restrições ao poder regulatório do Estado, cria direitos de liberdade econômica e regula a at": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S017', 'start': 1642, 'end': 1805, 'quote': '“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai ger": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '“Devemos levar em consideração que a liberação do trabalho aos domingos vai impactar em 4% os empregos no Brasil e, a longo prazo, vai gerar 3 milhões de empregos.', 'confidence': 0.85": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Domingo é um dia para o descanso. Domingo é um dia para os religiosos fazerem suas orações', 'confidence': 0.83, 'probabilities': {'sustenta': 0.89, 'contradiz': 0.07, 'insuficiente': ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'terceira tentativa de privatização da Eletrobras', 'confidence': 0.48, 'probabilities': {'sustenta': 0.65, 'contradiz': 0.15, 'insuficiente': 0.2}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'a privatização deverá fortalecer a Eletrobras', 'confidence': 0.49, 'probabilities': {'sustenta': 0.66, 'contradiz': 0.16, 'insuficiente': 0.18}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': '“Neste momento de pandemia e mudanças climáticas, não existirão investimentos em eficiência energética na ausência do Estado”', 'confidence': 0.83, 'probabilities': {'sustenta': 0.89, '": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 419, 'quote': 'Imposto sobre fortunas pode entrar no debate sobre reforma tributária\\n\\nAgência Câmara\\n\\nParlamentares da base do governo defendem uma reform": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Imposto sobre fortunas pode entrar no debate sobre reforma tributária\\n\\nAgência Câmara\\n\\nParlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara ne": 1,
+    "{'kind': 'search', 'status': 'not_selected', 'level': 2, 'existence_probability': 0.77, 'confidence': 0.14, 'probabilities': {'S000': 0.03, 'S001': 0.02, 'S002': 0.02, 'S003': 0.16, 'S004': 0.2, 'S005': 0.2, 'S006': 0.04, 'S007': 0.02, 'S008': 0.01, ": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S002', 'start': 371, 'end': 578, 'quote': 'Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chega": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios a": 1,
+    "{'kind': 'semantic', 'status': 'insuficiente', 'level': 1, 'quote': 'a divulgação de posicionamento pessoal sobre questões políticas, inclusive em shows, apresentações e performances artísticas, redes sociais, blogs, sítios eletrônicos pessoais e apl": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S006', 'start': 807, 'end': 1137, 'quote': '§ 3º O disposto neste artigo se refere ao poder de polícia sobre propaganda eleitoral específica, relacionada às candidaturas e ao contexto": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '§ 3º O disposto neste artigo se refere ao poder de polícia sobre propaganda eleitoral específica, relacionada às candidaturas e ao contexto da disputa, mantida a competência judicial p": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'impõe a imediata remoção do conteúdo ou indisponibilidade do serviço de comunicação, por iniciativa do provedor de aplicação ou determinação judicial', 'confidence': 0.8, 'probabilitie": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 407, 'quote': '§ 2º O descumprimento do previsto no caput e no § 1º deste artigo configura abuso do poder político e uso indevido dos meios de comunicação so": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '§ 2º O descumprimento do previsto no caput e no § 1º deste artigo configura abuso do poder político e uso indevido dos meios de comunicação social, acarretando a cassação do registro o": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S005', 'start': 1615, 'end': 1851, 'quote': '“Art. 9º-E. Os provedores de aplicação serão solidariamente responsáveis, civil e administrativamente, quando não promoverem a indisponibi": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '“Art. 9º-E. Os provedores de aplicação serão solidariamente responsáveis, civil e administrativamente, quando não promoverem a indisponibilização imediata de conteúdos e contas, durant": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S004', 'start': 1083, 'end': 1594, 'quote': '“Art. 9º-F. No caso de a propaganda eleitoral na internet veicular fatos notoriamente inverídicos ou gravemente descontextualizados sobre ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '“Art. 9º-F. No caso de a propaganda eleitoral na internet veicular fatos notoriamente inverídicos ou gravemente descontextualizados sobre o sistema eletrônico de votação, o processo el": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S001', 'start': 260, 'end': 620, 'quote': '§ 3º A ordem de remoção de conteúdo expedida nos termos deste artigo poderá estabelecer prazo inferior a 24 (vinte e quatro) horas para cump": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '§ 3º A ordem de remoção de conteúdo expedida nos termos deste artigo poderá estabelecer prazo inferior a 24 (vinte e quatro) horas para cumprimento da decisão, considerando a gravidade": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Os dados mencionados nos incisos I a III do § 2º deste artigo serão mantidos sob sigilo, sendo seu acesso restrito às juízas e aos juízes eleitorais e às servidoras e aos servidores au": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 224, 'quote': '“Art. 9º-H A remoção de conteúdos que violem o disposto no caput do art. 9º e no caput e no § 1º do art. 9º-C não impede a aplicação da multa ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '“Art. 9º-H A remoção de conteúdos que violem o disposto no caput do art. 9º e no caput e no § 1º do art. 9º-C não impede a aplicação da multa prevista no art. 57-D da Lei nº 9.504/1997": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 1, 'quote': 'é livre a manifestação de opinião política', 'confidence': 0.8, 'probabilities': {'sustenta': 0.87, 'contradiz': 0.02, 'insuficiente': 0.11}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S002', 'start': 387, 'end': 632, 'quote': 'I - manter repositório desses anúncios para acompanhamento, em tempo real, do conteúdo, dos valores, dos responsáveis pelo pagamento e das ca": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'I - manter repositório desses anúncios para acompanhamento, em tempo real, do conteúdo, dos valores, dos responsáveis pelo pagamento e das características dos grupos populacionais que c": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S012', 'start': 1800, 'end': 2090, 'quote': 'Os provedores de aplicação que utilizarem sistema de recomendação a usuárias e usuários deverão excluir dos resultados os canais e perfis ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Os provedores de aplicação que utilizarem sistema de recomendação a usuárias e usuários deverão excluir dos resultados os canais e perfis informados à Justiça Eleitoral nos termos do §": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S016', 'start': 1940, 'end': 2305, 'quote': 'É vedada, desde 48 (quarenta e oito) horas antes até 24 (vinte e quatro) horas depois da eleição, a circulação paga ou impulsionada de pro": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'É vedada, desde 48 (quarenta e oito) horas antes até 24 (vinte e quatro) horas depois da eleição, a circulação paga ou impulsionada de propaganda eleitoral na internet, mesmo se a cont": 1,
+    "{'kind': 'search', 'status': 'not_selected', 'level': -2, 'existence_probability': 0.76, 'confidence': 0.25, 'probabilities': {'S000': 0.02, 'S001': 0.08, 'S002': 0.14, 'S003': 0.06, 'S004': 0.03, 'S005': 0.03, 'S006': 0.0, 'S007': 0.01, 'S008': 0.13": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S002', 'start': 464, 'end': 732, 'quote': 'I - garantir o acesso facilitado às informações sobre o tratamento de dados, previsto no art. 9º da Lei nº 13.709/2018, em especial quanto ao": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'I - garantir o acesso facilitado às informações sobre o tratamento de dados, previsto no art. 9º da Lei nº 13.709/2018, em especial quanto aos dados utilizados para realizar perfilament": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 452, 'quote': '§ 2º No caso de dados pessoais sensíveis a que a candidata ou o candidato tenha acesso pessoalmente em decorrência de seu núcleo familiar, de s": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': '§ 2º No caso de dados pessoais sensíveis a que a candidata ou o candidato tenha acesso pessoalmente em decorrência de seu núcleo familiar, de suas relações sociais e de seus vínculos co": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'a Justiça Eleitoral poderá determinar a elaboração de relatório de impacto à proteção de dados', 'confidence': 0.76, 'probabilities': {'sustenta': 0.84, 'contradiz': 0.02, 'insuficiente": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S001', 'start': 171, 'end': 333, 'quote': '§ 6º Os relatórios recebidos e as informações prestadas nos termos do § 5º deste artigo serão disponibilizados no site da Justiça Eleitoral p": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': '§ 6º Os relatórios recebidos e as informações prestadas nos termos do § 5º deste artigo serão disponibilizados no site da Justiça Eleitoral para consulta pública.', 'confidence': 0.67, ": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S004', 'start': 877, 'end': 1101, 'quote': '§ 7º As ordens judiciais de remoção de conteúdo da internet terão seus efeitos mantidos, mesmo após o período eleitoral, salvo se houver de": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': '§ 7º As ordens judiciais de remoção de conteúdo da internet terão seus efeitos mantidos, mesmo após o período eleitoral, salvo se houver decisão judicial que declare a perda do objeto ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'assegurar o cumprimento da proporcionalidade até o fim da campanha', 'confidence': 0.42, 'probabilities': {'sustenta': 0.61, 'contradiz': 0.01, 'insuficiente': 0.38}, 'model': 'jev-1.13": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'percentual do programa destinado a candidatas mulheres, a candidatas negras e a candidatos negros', 'confidence': 0.77, 'probabilities': {'sustenta': 0.85, 'contradiz': 0.0, 'insuficien": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 0, 'quote': '§ 8º Para assegurar a eficácia da decisão judicial que determine a compensação de tempo, poderão ser adotadas medidas coercitivas, incluída a cominação de multa processual até seu efeti": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -4, 'sentence_id': 'S000', 'start': 0, 'end': 42, 'quote': 'Privatização de todas as empresas estatais', 'existence_probability': 0.92, 'confidence': 0.98, 'probabilities': {'S000': 0.99, 'NONE': 0.01}, ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -4, 'quote': 'Privatização de todas as empresas estatais', 'confidence': 1.0, 'probabilities': {'sustenta': 1.0, 'contradiz': 0.0, 'insuficiente': 0.0}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 49, 'quote': 'Redução da maioridade penal para 16 anos ou menos', 'existence_probability': 0.8, 'confidence': 0.9, 'probabilities': {'S000': 0.95, 'NONE': 0.": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Redução da maioridade penal para 16 anos ou menos', 'confidence': 0.88, 'probabilities': {'sustenta': 0.92, 'contradiz': 0.04, 'insuficiente': 0.04}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 4, 'sentence_id': 'S000', 'start': 0, 'end': 72, 'quote': 'Nacionalização e estatização do sistema monetário, financeiro e bancário', 'existence_probability': 0.89, 'confidence': 0.96, 'probabilities': {": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 4, 'quote': 'Nacionalização e estatização do sistema monetário, financeiro e bancário', 'confidence': 0.97, 'probabilities': {'sustenta': 0.98, 'contradiz': 0.0, 'insuficiente': 0.02}, 'model': 'jev": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 72, 'quote': 'Legalização do aborto e garantia de atendimento na rede pública de saúde', 'existence_probability': 0.75, 'confidence': 0.62, 'probabilities': {": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Legalização do aborto e garantia de atendimento na rede pública de saúde', 'confidence': 0.72, 'probabilities': {'sustenta': 0.81, 'contradiz': 0.01, 'insuficiente': 0.18}, 'model': 'je": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 72, 'quote': 'Legalização do aborto e garantia de atendimento na rede pública de saúde', 'existence_probability': 0.78, 'confidence': 0.7, 'probabilities': {'": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'Legalização do aborto e garantia de atendimento na rede pública de saúde', 'confidence': 0.67, 'probabilities': {'sustenta': 0.78, 'contradiz': 0.01, 'insuficiente': 0.21}, 'model': 'je": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 105, 'quote': 'O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.', 'existence_probability': 0.84, 'con": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'O projeto proíbe o uso de reconhecimento facial para vigilância em massa ou monitoramento indiscriminado.', 'confidence': 0.91, 'probabilities': {'sustenta': 0.94, 'contradiz': 0.02, 'i": 1,
+    "{'kind': 'search', 'status': 'not_selected', 'level': 0, 'existence_probability': 0.09, 'confidence': 0.96, 'probabilities': {'S000': 0.02, 'NONE': 0.98}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -1, 'sentence_id': 'S000', 'start': 0, 'end': 115, 'quote': 'O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.', 'existence_probability':": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -1, 'quote': 'O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.', 'confidence': 0.83, 'probabilities': {'sustenta': 0.89, 'contradiz": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -4, 'sentence_id': 'S000', 'start': 0, 'end': 115, 'quote': 'O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.', 'existence_probability':": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -4, 'quote': 'O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família.', 'confidence': 0.92, 'probabilities': {'sustenta': 0.95, 'contradiz": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 3, 'sentence_id': 'S000', 'start': 0, 'end': 133, 'quote': 'Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras.', 'existe": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 3, 'quote': 'Lula defendeu reformar e fortalecer a ONU, ampliando a participação no Conselho de Segurança e sua capacidade de interromper guerras.', 'confidence': 0.97, 'probabilities': {'sustenta':": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando subordinação', 'confidence': 0.98, 'probabilities': {'sustenta': 0.99, 'contradiz': 0.01,": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -3, 'sentence_id': 'S000', 'start': 0, 'end': 133, 'quote': 'O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.', 'exist": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -3, 'quote': 'O plano de Simone Tebet reúne privatizações e concessões com transferência permanente de renda voltada às famílias mais necessitadas.', 'confidence': 0.8, 'probabilities': {'sustenta':": 1,
+    "{'kind': 'search', 'status': 'found', 'level': 2, 'sentence_id': 'S000', 'start': 0, 'end': 167, 'quote': 'O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'O plano de Leonardo Péricles apresenta um programa de soberania alimentar escolar com cestas de produtos da agricultura familiar destinadas às famílias dos estudantes.', 'confidence': 0": 1,
+    "{'kind': 'search', 'status': 'not_selected', 'level': 0, 'existence_probability': 0.13, 'confidence': 0.84, 'probabilities': {'S000': 0.08, 'NONE': 0.92}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -3, 'quote': 'retirar o Brasil do BRICS e buscar ingresso na OCDE', 'confidence': 0.73, 'probabilities': {'sustenta': 0.82, 'contradiz': 0.14, 'insuficiente': 0.04}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': 2, 'quote': 'fortalecer organismos multilaterais para enfrentar conflitos', 'confidence': 0.89, 'probabilities': {'sustenta': 0.93, 'contradiz': 0.03, 'insuficiente': 0.04}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 177, 'quote': 'O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisã": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'O projeto permite identificação facial em locais públicos para segurança e investigação, mas impede rastreamento indiscriminado e exige revisão humana antes de qualquer punição.', 'con": 1,
+    "{'kind': 'search', 'status': 'not_selected', 'level': -1, 'existence_probability': 0.6, 'confidence': 0.28, 'probabilities': {'S000': 0.26, 'S001': 0.52, 'NONE': 0.22}, 'model': 'jev-1.13.0'}": 1,
+    "{'kind': 'search', 'status': 'found', 'level': -2, 'sentence_id': 'S000', 'start': 0, 'end': 156, 'quote': 'Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas ": 1,
+    "{'kind': 'semantic', 'status': 'sustenta', 'level': -2, 'quote': 'Enquanto o PL 5167/09 procura impedir o reconhecimento familiar de uniões homoafetivas, o PL 580/07 admite um contrato de união entre pessoas do mesmo sexo.', 'confidence': 0.37, 'prob": 1
+  }
+}

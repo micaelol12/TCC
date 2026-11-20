@@ -1,0 +1,17 @@
+{
+  "model": "jev-preview",
+  "state": {
+    "state": "Defendemos a tributação progressiva."
+  },
+  "questions": {
+    "posicao_tributacao": {
+      "type": "choice",
+      "instructions": "Qual posição o trecho expressa em relação à tributação progressiva?",
+      "criteria": {
+        "apoia": "Defende a medida",
+        "rejeita": "Rejeita a medida",
+        "sem_posicao": "Não expressa posição"
+      }
+    }
+  }
+}

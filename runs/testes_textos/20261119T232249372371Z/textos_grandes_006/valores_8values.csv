@@ -1,0 +1,5 @@
+﻿eixo,polo A,valor A,polo B,valor B,rótulo exploratório por faixa,chunks com nível,cobertura,evidência disponível,base da estimativa
+economic,Igualdade,,Mercado,,Sem evidência,0,0.0,False,sem evidência
+diplomatic,Globo,,Nação,,Sem evidência,0,0.0,False,sem evidência
+state,Liberdade,68.75,Autoridade,31.25,Liberal,2,0.6666666666666666,True,múltiplos trechos
+society,Progresso,50.0,Tradição,50.0,Neutro,1,0.3333333333333333,True,trecho único

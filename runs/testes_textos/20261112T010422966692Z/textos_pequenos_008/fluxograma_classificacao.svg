@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2480" height="2620" viewBox="0 0 2480 2620">
+<rect width="100%" height="100%" fill="white"/>
+<text x="100" y="122" text-anchor="start" font-family="Segoe UI, sans-serif" font-size="64" font-weight="700" fill="#172b40">Caminho da classificação</text>
+<text x="100" y="169" text-anchor="start" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">textos_pequenos_008  •  execução 20261112T010422966692Z</text>
+<rect x="100" y="202" width="2280" height="180" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="1240" y="247" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#265c96">TEXTO DE ENTRADA</text>
+<text x="1240" y="304" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#172b40">“Diante da pressão norte-americana, Lula afirmou que a atuação estrangeira no Brasil deve respeitar a Constituição e as leis brasileiras, recusando</text>
+<text x="1240" y="348" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#172b40">subordinação.”</text>
+<polyline points="1240,382 1240,430" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1240,430 1232.6115331913363,415.80808123553146 1247.3884668086637,415.80808123553146" fill="#9aaebf"/>
+<rect x="680.0" y="430" width="1120" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="1240" y="472.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">Segmentação</text>
+<text x="1240" y="526.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">1 trecho • 160 caracteres • 46 tokens</text>
+<polyline points="1240,540 1240,585" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1240,585 1232.6115331913363,570.8080812355314 1247.3884668086637,570.8080812355314" fill="#9aaebf"/>
+<rect x="530.0" y="585" width="1420" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="1240" y="627.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">Classificação inicial pelo JEV</text>
+<text x="1240" y="681.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">jev-1.13.0 • quatro eixos • regra: polo_primeiro</text>
+<polyline points="1240,695 1240,740" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="355,740 2125,740" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="355,740 355,785" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="355,785 347.61153319133626,770.8080812355314 362.38846680866374,770.8080812355314" fill="#9aaebf"/>
+<rect x="90.0" y="785" width="530" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="355" y="827.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">ECONÔMICO</text>
+<text x="355" y="880.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Igualdade ↔ Mercado</text>
+<polyline points="355,895 355,935" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="355,935 347.61153319133626,920.8080812355314 362.38846680866374,920.8080812355314" fill="#9aaebf"/>
+<rect x="90.0" y="935" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="355" y="1013.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">JEV: irrelevante</text>
+<text x="355" y="1066.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Sem evidência no eixo.</text>
+<text x="355" y="1104.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Margem de relevância: 1,00.</text>
+<polyline points="355,1155 355,1190" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="355,1190 347.61153319133626,1175.8080812355315 362.38846680866374,1175.8080812355315" fill="#9aaebf"/>
+<polygon points="355,1190 580.0,1285.0 355,1380 130.0,1285.0" fill="#fff7e8" stroke="#986019" stroke-width="3"/>
+<text x="355" y="1271" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">Há gatilho de</text>
+<text x="355" y="1314" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">reavaliação?</text>
+<polyline points="355,1380 355,1465" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="355,1465 347.61153319133626,1450.8080812355315 362.38846680866374,1450.8080812355315" fill="#9aaebf"/>
+<text x="400" y="1429" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#52687b">NÃO</text>
+<rect x="90.0" y="1465" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="355" y="1542.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">Manter decisão do JEV</text>
+<text x="355" y="1596.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Nenhum gatilho registrado.</text>
+<text x="355" y="1635.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Sem reavaliação pelo LLM.</text>
+<polyline points="355,1685 355,2070" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="355,2070 347.61153319133626,2055.8080812355315 362.38846680866374,2055.8080812355315" fill="#9aaebf"/>
+<rect x="90.0" y="2070" width="530" height="145" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="355" y="2130.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">Sem evidência</text>
+<text x="355" y="2183.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Sem nível e sem pontuação</text>
+<polyline points="355,2215 355,2260" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="945,740 945,785" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,785 937.6115331913363,770.8080812355314 952.3884668086637,770.8080812355314" fill="#9aaebf"/>
+<rect x="680.0" y="785" width="530" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="945" y="827.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">DIPLOMÁTICO</text>
+<text x="945" y="880.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Globo ↔ Nação</text>
+<polyline points="945,895 945,935" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,935 937.6115331913363,920.8080812355314 952.3884668086637,920.8080812355314" fill="#9aaebf"/>
+<rect x="680.0" y="935" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="945" y="994.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">JEV: Nação moderado</text>
+<text x="945" y="1047.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Relevante • nível −2</text>
+<text x="945" y="1085.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Polo B: 0,99</text>
+<text x="945" y="1123.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Suporte da intensidade: 0,404.</text>
+<polyline points="945,1155 945,1190" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,1190 937.6115331913363,1175.8080812355315 952.3884668086637,1175.8080812355315" fill="#9aaebf"/>
+<polygon points="945,1190 1170.0,1285.0 945,1380 720.0,1285.0" fill="#fff7e8" stroke="#986019" stroke-width="3"/>
+<text x="945" y="1271" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">Há gatilho de</text>
+<text x="945" y="1314" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">reavaliação?</text>
+<polyline points="945,1380 945,1465" fill="none" stroke="#986019" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,1465 937.6115331913363,1450.8080812355315 952.3884668086637,1450.8080812355315" fill="#986019"/>
+<text x="990" y="1429" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#986019">SIM</text>
+<rect x="680.0" y="1465" width="530" height="220" rx="22" fill="#fff7e8" stroke="#986019" stroke-width="2"/>
+<text x="945" y="1523.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#986019">LLM: confirma nível −2</text>
+<text x="945" y="1577.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">sabia-4</text>
+<text x="945" y="1616.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Intensidade ambígua:</text>
+<text x="945" y="1655.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">0,404 &lt; limiar 0,50.</text>
+<polyline points="945,1685 945,1740" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,1740 937.6115331913363,1725.8080812355315 952.3884668086637,1725.8080812355315" fill="#9aaebf"/>
+<rect x="680.0" y="1740" width="530" height="275" rx="22" fill="#eaf7f2" stroke="#16705e" stroke-width="2"/>
+<text x="945" y="1808.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#16705e">Verificar evidência</text>
+<text x="945" y="1861.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Citação presente no texto.</text>
+<text x="945" y="1899.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Parecer JEV: sustenta.</text>
+<text x="945" y="1937.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Confiança semântica: 0,98.</text>
+<text x="945" y="1975.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">“...recusando subordinação”</text>
+<polyline points="945,2015 945,2070" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,2070 937.6115331913363,2055.8080812355315 952.3884668086637,2055.8080812355315" fill="#9aaebf"/>
+<rect x="680.0" y="2070" width="530" height="145" rx="22" fill="#eaf7f2" stroke="#16705e" stroke-width="2"/>
+<text x="945" y="2130.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#16705e">Nação — moderado</text>
+<text x="945" y="2183.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Nível −2 • origem: LLM</text>
+<polyline points="945,2215 945,2260" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="1535,740 1535,785" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1535,785 1527.6115331913363,770.8080812355314 1542.3884668086637,770.8080812355314" fill="#9aaebf"/>
+<rect x="1270.0" y="785" width="530" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="1535" y="827.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">ESTATAL</text>
+<text x="1535" y="880.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Liberdade ↔ Autoridade</text>
+<polyline points="1535,895 1535,935" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1535,935 1527.6115331913363,920.8080812355314 1542.3884668086637,920.8080812355314" fill="#9aaebf"/>
+<rect x="1270.0" y="935" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="1535" y="994.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">JEV: sem posição</text>
+<text x="1535" y="1047.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Relevante • nível 0</text>
+<text x="1535" y="1085.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Margem de relevância: 0,40</text>
+<text x="1535" y="1123.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Margem entre grupos: 0,17.</text>
+<polyline points="1535,1155 1535,1190" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1535,1190 1527.6115331913363,1175.8080812355315 1542.3884668086637,1175.8080812355315" fill="#9aaebf"/>
+<polygon points="1535,1190 1760.0,1285.0 1535,1380 1310.0,1285.0" fill="#fff7e8" stroke="#986019" stroke-width="3"/>
+<text x="1535" y="1271" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">Há gatilho de</text>
+<text x="1535" y="1314" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">reavaliação?</text>
+<polyline points="1535,1380 1535,1465" fill="none" stroke="#986019" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1535,1465 1527.6115331913363,1450.8080812355315 1542.3884668086637,1450.8080812355315" fill="#986019"/>
+<text x="1580" y="1429" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#986019">SIM</text>
+<rect x="1270.0" y="1465" width="530" height="220" rx="22" fill="#fff7e8" stroke="#986019" stroke-width="2"/>
+<text x="1535" y="1523.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#986019">LLM: irrelevante</text>
+<text x="1535" y="1577.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">sabia-4</text>
+<text x="1535" y="1616.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Relevância: 0,40 &lt; 0,60.</text>
+<text x="1535" y="1655.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Direção: 0,17 &lt; 0,20.</text>
+<polyline points="1535,1685 1535,2070" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1535,2070 1527.6115331913363,2055.8080812355315 1542.3884668086637,2055.8080812355315" fill="#9aaebf"/>
+<rect x="1270.0" y="2070" width="530" height="145" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="1535" y="2130.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">Sem evidência</text>
+<text x="1535" y="2183.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Sem nível e sem pontuação</text>
+<polyline points="1535,2215 1535,2260" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="2125,740 2125,785" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2125,785 2117.611533191336,770.8080812355314 2132.388466808664,770.8080812355314" fill="#9aaebf"/>
+<rect x="1860.0" y="785" width="530" height="110" rx="22" fill="#eef5fc" stroke="#c7d9eb" stroke-width="2"/>
+<text x="2125" y="827.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#265c96">SOCIAL</text>
+<text x="2125" y="880.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Progresso ↔ Tradição</text>
+<polyline points="2125,895 2125,935" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2125,935 2117.611533191336,920.8080812355314 2132.388466808664,920.8080812355314" fill="#9aaebf"/>
+<rect x="1860.0" y="935" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="2125" y="1013.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">JEV: irrelevante</text>
+<text x="2125" y="1066.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Sem evidência no eixo.</text>
+<text x="2125" y="1104.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Margem de relevância: 1,00.</text>
+<polyline points="2125,1155 2125,1190" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2125,1190 2117.611533191336,1175.8080812355315 2132.388466808664,1175.8080812355315" fill="#9aaebf"/>
+<polygon points="2125,1190 2350.0,1285.0 2125,1380 1900.0,1285.0" fill="#fff7e8" stroke="#986019" stroke-width="3"/>
+<text x="2125" y="1271" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">Há gatilho de</text>
+<text x="2125" y="1314" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#986019">reavaliação?</text>
+<polyline points="2125,1380 2125,1465" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2125,1465 2117.611533191336,1450.8080812355315 2132.388466808664,1450.8080812355315" fill="#9aaebf"/>
+<text x="2170" y="1429" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#52687b">NÃO</text>
+<rect x="1860.0" y="1465" width="530" height="220" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="2125" y="1542.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">Manter decisão do JEV</text>
+<text x="2125" y="1596.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Nenhum gatilho registrado.</text>
+<text x="2125" y="1635.5" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="400" fill="#52687b">Sem reavaliação pelo LLM.</text>
+<polyline points="2125,1685 2125,2070" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2125,2070 2117.611533191336,2055.8080812355315 2132.388466808664,2055.8080812355315" fill="#9aaebf"/>
+<rect x="1860.0" y="2070" width="530" height="145" rx="22" fill="#f3f6f8" stroke="#9aaebf" stroke-width="2"/>
+<text x="2125" y="2130.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#172b40">Sem evidência</text>
+<text x="2125" y="2183.0" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" font-weight="400" fill="#52687b">Sem nível e sem pontuação</text>
+<polyline points="2125,2215 2125,2260" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="355,2260 2125,2260" fill="none" stroke="#9aaebf" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="1240,2260 1240,2305" fill="none" stroke="#16705e" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1240,2305 1232.6115331913363,2290.8080812355315 1247.3884668086637,2290.8080812355315" fill="#16705e"/>
+<rect x="100" y="2305" width="2280" height="180" rx="22" fill="#eaf7f2" stroke="#16705e" stroke-width="2"/>
+<text x="1240" y="2355" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="29" font-weight="700" fill="#16705e">RESULTADO FINAL EXPLORATÓRIO</text>
+<text x="1240" y="2412" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="37" font-weight="700" fill="#16705e">Diplomático: Globo 25%  /  Nação 75%  •  Rótulo por faixa: “Patriota”</text>
+<text x="1240" y="2461" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="30" font-weight="400" fill="#52687b">Econômico, estatal e social: sem evidência disponível.</text>
+<text x="100" y="2540" text-anchor="start" font-family="Segoe UI, sans-serif" font-size="27" font-weight="400" fill="#52687b">Base: um único trecho. Percentuais representam a escala ordinal; não são probabilidades.</text>
+<text x="100" y="2581" text-anchor="start" font-family="Segoe UI, sans-serif" font-size="25" font-weight="400" fill="#52687b">Fonte: resultado.json, decisoes.csv e evidencias.csv da execução indicada.</text>
+</svg>

@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,society,semantic,insuficiente,0,necessidade de implementar políticas e estratégias específicas para a saúde e bem-estar da população idosa,0.44,"{'sustenta': 0.37, 'contradiz': 0.0, 'insuficiente': 0.63}",jev-1.13.0

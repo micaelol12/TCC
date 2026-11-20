@@ -1,0 +1,1114 @@
+=== PAGINA PDF 1 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 1 
+PROTÓTIPO PARA DETECÇÃO E RECONHECIMENTO 
+FACIAL AUTOMÁTICO DE BUGIOS-RUIVOS EM APLICAÇÕES 
+MÓVEIS UTILIZANDO REDES NEURAIS PROFUNDAS – BCC 
+Hiago Campregher, Andreza Sartori – Orientador, Júlio Cesar de Souza Junior - Coorientador 
+Curso de Bacharel em Ciência da Computação 
+Departamento de Sistemas e Computação 
+Universidade Regional de Blumenau (FURB) – Blumenau, SC – Brasil 
+hcampregher@furb.br, asartori@furb.br, juliosouza@furb.br 
+Resumo: O Alouatta guariba  é um primata endêmic o da Mata Atlântica e ameaçad o de extinção. Embora 
+existam estudos sobre sua ecologia e comportamento no Brasil, ainda são escassas as soluções tecnológicas 
+para identificação individual dos animais. Este trabalho propõe um protótipo para detecção e reconhecimento 
+facial dos bugios-ruivos em dispositivos móveis, utilizando redes neurais convolucionais. Para a detecção 
+foram avaliados modelos YOLO, destacando-se o YOLOv12n por seu tamanho reduzido em cerca de 90% e 
+inferência até três vezes mais rápid a. Para o reconhecimento facial, a MobileNetV3 obteve acurácia de 
+0,9908, perda de 0,1211 e bom desempenho em dispositivos com recursos limitados. A fim de evitar o 
+retreinamento constante, utilizou -se a extração de embeddings fac iais, possibilitando a adaptação 
+incremental a novos indivíduos. O protótipo foi integrado a um aplicativo móvel que permite a identificação 
+não invasiva dos indivíduos, oferecendo suporte ao monitoramento da espécie em seu habitat. 
+Palavras-chave: Bugio-ruivo. YOLOv12. CNN. MobileNetV3. Face embedding. Reconhecimento facial em 
+dispositivos móveis. Detecção Facial. 
+1 INTRODUÇÃO 
+A conservação da biodiversidade no Brasil enfrenta desafios significativos, e o bugio-ruivo (Alouatta guariba), 
+destaca-se como uma espécie de grande importância para a preservação da fauna da Mata Atlântica e para a saúde pública. 
+Além de seu papel ecológico, esses primatas atuam como sentinelas na detecção de surtos de Febre Amarela, auxiliando 
+na orientação de programas de vacinação em áreas fora d a recomendação (Silveira, 2018).  A avaliação do risco de 
+extinção do Alouatta guariba , coordenada pelo Centro Nacional de Pesquisa e Conservação de Primatas Brasileiros 
+(CPB), unidade do Instituo Chico Mendes de Conservação da Biodiversidade (ICMBio), foi atualizada em 2022 e indica 
+que a espécie atualmente encontra-se classificada como “Em Perigo” (EN) na Lista Nacional Oficial de Espécies da Fauna 
+Ameaçadas de Extinção (ICMBio, 2022). 
+Diversos fatores ameaçam a espécie , sendo o principal a febre amarela. Os bugios são altamente sensíveis ao 
+vírus, e os surtos recorrentes da doença resultam em alta mortalidade que muitas vezes dizimam populações locais inteiras. 
+Além disso, a  fragmentação e a redução do habitat causadas pelo desmatamento, expansão urbana  e atividades 
+agropecuárias, representam ameaças expondo os animais a diversos riscos associados à urbanização, choques elétricos, 
+ataques de cães e atropelamentos. A caça e a captura ilegal seguem como ameaças complementares. Embora a população 
+total seja desconhecida, estima-se que existam mais de 10.000 indivíduos maduros deste táxon (ICMBio, 2022). 
+Como forma de enfrentar os crescentes riscos de extinção enfrentados pelo bugio -ruivo, o ICMBio instituiu um 
+Programa Nacional de Manejo Populacional de Bugios -Ruivos, voltado à proteção e recuperação das populações dessa 
+espécie, especialmente nas regiões da Mata Atlântica. Como desdobramento desse esforço nacional, e compondo essa 
+estratégia de conservação, destaca-se o Projeto Bugio, desenvolvido por meio da parceria entre a Fundação Universidade 
+Regional de Blumenau (FURB) e o Centro de Pesquisas Biológ icas de Indaial (CEPESBI). Criado em 1991, o Projeto 
+Bugio realiza atividades de pesquisa e educação ambiental, conectando a comunidade local com estudantes e 
+pesquisadores, além de promover a preservação do bugio-ruivo em seu ambiente natural e em cativeiro (FURB, 2021). 
+De acordo com Crouse et al. (2017), a trajetória de conservação de espécies tem sido fortalecida por pesquisas e 
+pelo uso de tecnologias como o reconhecimento facial para a identificação individual de animais. Essa abordagem oferece 
+uma solução não invasiva e eficiente, otimizando o monitoramento populacional ao facilitar o rastreamento de indivíduos 
+em campo e permitindo a coleta ágil de dados. Métodos convencionais frequentemente exigem a captura e a marcação 
+dos animais com identificadores exclusivos, como coleiras ou etiquetas, o u dependem da variação fenotípica, como 
+cicatrizes e padrões de pelagem. Além disso, essa dependência exige que os pesquisadores possuam um conhecimento 
+aprofundado dessas características para diferenciar os indivíduos.  O reconhecimento facial, por sua vez, elimina a 
+necessidade de capturas repetidas, proporcionando uma alternativa eficaz para estudos longitudinais de primatas. 
+Neste contexto, este trabalho d á continuidade ao estudo de Krause (2019) e Maschio (2023), os quais  
+desenvolveram protótipos iniciais para o reconhecimento individual de bugios-ruivos. A partir desses estudos, o objetivo 
+foi desenvolver um modelo de detecção e aprimorar o modelo de reconhecimento facial tornando-o mais rápid o, mais 
+preciso e menos dependente de dispositivos de alta capacidade computacional . Para isso, foram testadas e avaliadas as 
+
+=== PAGINA PDF 2 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 2 
+arquiteturas MobileNetV3, EfficientNetV2, InceptionV3 e NasNetMobile, considerando critérios como acurácia, 
+velocidade e eficiência computacional.  A MobileNetV3 apresentou o melhor desempenho , com acurácia de 0,9908  e 
+perda de 0,1211 durante o treinamento. Para a detecção facial, foram utilizados os modelos YOLOv8m, YOLOv11m e 
+YOLOv12n.  A escolha considerou o desempenho na tarefa, o tamanho dos arquivos gerados e a o tempo de inferência, 
+fatores importantes para aplicações em dispositivos móveis e uso em c ampo. O YOLOv12n obteve os melhores 
+resultados, com mAP50 de 0.995 e mAP50-95 de 0.772, além de sua quantidade de parâmetros reduzida em até 90% e 
+eficiência de inferência três vezes mais rápida que os demais modelos. 
+Além disso , foi realizada  a integração dos processos em dispositivos móveis , viabilizando sua utilização em 
+campo por meio da captura de imagens, detecção automática da face e identificação do indivíduo. Os objetivos específicos 
+contemplaram: (i) identificar e validar o modelo computacional para a detecção e reconhecimento facial individual dos 
+bugios-ruivos, compatível com dispositivos móveis; (ii) validar a precisão e eficácia do modelo de rede neural profunda 
+selecionado; (iii) definir e implementar uma estratégia para evitar o retreinamento constante do modelo; (iv) validar a 
+funcionalidade e usabilidade do protótipo integrado ao aplicativo desenvolvido pelos bolsistas da FURB.  Com a 
+implementação dessas melhorias, espera -se contribuir para a conservação da espécie e para o avanço do conhecimento 
+científico sobre o bugio -ruivo. Além disso, o aprimoramento visa re duzir o tempo necessário em campo, minimizar os 
+erros de amostragem e otimizar a coleta de dados. 
+2 FUNDAMENTAÇÃO TEÓRICA 
+Esta seção descreve os conceitos que fundamentam este trabalho, estruturados da seguinte forma. A subseção 2.1 
+discorre sobre o bugio -ruivo. A  subseção 2.2 aborda as Redes Neurais Convolucionais para dispositivos móveis  e a 
+subseção 2.3 trata da detecção de objetos . A subseção 2.4 descreve a da extração de face embeddings e a subseção 2.5 
+apresenta os protótipos atuais. Por fim, a subseção 2.6 discute os trabalhos correlatos. 
+2.1 BUGIO-RUIVO (ALOUATTA GUARIBA) 
+Auricchio (1995) descreve os primatas do gênero Alouatta, conhecidos no Brasil como guaribas, barbados ou 
+gritadores, como animais arbóreos, com um corpo robusto e uma pelagem densa, destacando a presença de uma barba 
+espessa sob a face nua, que possui pele negra. Entre os membros dessa espécie, encontra-se o bugio-ruivo que se destaca 
+pelo desenvolvido do osso hióide, uma estrutura que pode ser de até 50% maior nos machos em comparação às fêmeas 
+(Gregorin, 2006). De acordo com Sartore (2022), os bugios possuem uma cauda preênsil, que atua como um “braço extra” 
+para se pendurar em galhos, visto que esses primatas raramente descem ao solo, preferindo permanecer no alto das árvores, 
+onde se alimentam de folhas. 
+Além disso, os machos e as fêmeas apresentam dicromatismo sexual na pelagem, conforme pode ser observado 
+na Figura 1, em que a coloração dos machos adultos (Figura 1 (a)) varia entre avermelhada, castanho-avermelhada e ruiva 
+(Gregorin, 2006). A pigmentação rufa é atribuída a secreções de glândulas produtoras de pigmentos, distribuídas em 
+várias regiões do corpo. Hirano et al. (2003) sugerem que o grau de rufosidade pode estar relacionado à idade e à posição 
+hierárquica dentro do grupo. Por sua vez, fêmeas adultas ( Figura 1 (b)) e jovens de ambos os sexos ( Figura 1 (c)) 
+apresentam uma pelagem enegrecida (Gregorin, 2006). 
+Figura 1– Imagem de bugios-ruivos: da esquerda para a direita – Macho, Fêmea e Bebê 
+ 
+Fonte: elaborado por Maschio (2023). 
+Com base nos dados morfométricos coletados e analisados por MARIOTTO et al. (2024) de 85 bugios-ruivos ao 
+longo de 20 anos pelo CEPESBI, identificou-se a presença de dimorfismo sexual nas medidas corporais. Machos adultos 
+apresentaram comprimento cabeça -tronco médio de aproximadamente 54,9 cm (variação entre 42,0 cm e 64,0 cm), 
+enquanto fêmeas adultas apresentaram média de 48,6 cm (variação entre 41,0 cm  e 55,0 cm).  Além do comprimento 
+corporal, outras variáveis reforçam esse dimorfismo, como o comprimento do osso hióide, com  média de 4,73 cm nos 
+machos adultos e 3,79 cm nas fêmeas adultas. Os dados também indicam que o dimorfismo sexual se manifesta de forma 
+mais evidente na fase adulta.  Visto que durante as fases infantil e juvenil, as diferenças entre os sexos são reduzidas , 
+
+
+=== PAGINA PDF 3 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 3 
+machos jovens apresentaram comprimento cabeça -tronco médio de 40, 2 cm, enquanto as fêmeas jovens apresentaram 
+média de 39,8 cm (MARIOTTO et al., 2024). 
+2.2 REDES NEURAIS CONVOLUCIONAIS PARA DISPOSITIVOS MÓVEIS: MOBILENET, NASNETMOBILE E 
+EFFICIENTNET 
+De acordo com Goldbarg (2024), as técnicas de aprendizado profundo têm sido eficazes na solução de diversos 
+problemas. Guo et al. (2020) enfatizam que as redes neurais são aptas a lidar com problemas reais, que não apresentam 
+uma relação direta, devido à sua capacidade de extrair e aprender as características dos dados de entrada. No entanto, elas 
+exigem um esforço computacional significativo devido à quantidade de operações e parâmetros envolvidos. Isso pode ser 
+um desafio, especialmente em aplicações com recursos computacionais limitados (Guo et al., 2020). 
+Com o objetivo de contornar as limitações computacionais, desenvolveram-se diversas arquiteturas otimizadas. 
+A EfficientNetV2, por exemplo,  aprimora o aprendizado progressivo  treinando a rede inicialmente com tamanho de 
+imagem pequenos e regularização fraca e em seguida, aumenta o tamanho e a regularização gradualmente (Tan e Le, 
+2021). No mesmo contexto, existe a NASNetMobile que utiliza a busca neural otimizada NAS ( Neural Architecture 
+Search), um processo automatizado para encontrar automaticamente as melhores combinações de camadas e filtros para 
+uma tarefa (Zoph et al., 2018). Já a arquitetura MobileNet, introduziu o uso de convoluções separáveis em profundidade 
+para reduzir o custo computacional,  e ao contrário do treinamento de  modelos grandes, usa menos técnicas de 
+regularização e aumento de dados (Howard et al., 2017).  
+Conforme Howard et al. (2019), a versão mais recente da família MobileNet , a MobileNetV3 tem sido uma 
+solução promissora para os dispositivos com recursos limitados. Projetada especificamente para maximizar a eficiência 
+computacional, sem sacrificar o desempenho (Howard et al., 2019), combina eficiência da MobileNetV2 com a busca 
+neural otimizada e a técnica squeeze-and-excitation que permite à rede ajustar dinamicamente a importância dos canais 
+de informação, ativando e desativando, resultando em um melhor desempenho com menor latência (Howard et al., 2019). 
+Além disso, segundo Hao et al. (2024), a arquitetura MobileNetV3 utiliza módulos gargalo invertidos, chamados 
+de bneck, que foram inspirados na estrutura de blocos residuais da arquitetura ResNet. No entanto, esses módulos foram 
+adaptados para reduzir a complexidade computacional e manter a precisão. Enquanto na ResNet o bloco residual primeiro 
+reduz a dimensionalidade das entradas e depois expande, o módulo bneck faz o oposto, primeiro expande os dados e 
+depois reduz . Este comportamento pode ser observado na Figura 2, em que apresenta a arquitetura da MobileNetV3 
+tamanho large. É possível observar que, a cada block bneck existe um parâmetro denominado exp_size, responsável 
+por expandir a entrada para um número maior de canais. Na saída, esse número é então reduzido para o total final de 
+canais, representado por #out. 
+Figura 2 – Especificação da arquitetura MobileNetV3 (Large) 
+ 
+Fonte: Howard et al. (2019). 
+Conforme Vilela et al.  (2022), a avaliação dos resultados das Redes Neurais A rtificiais (RNAs) e outros 
+algoritmos de inteligência artificial dependem de métricas apropriadas para assegurar sua eficiência e confiabilidade.  
+Entre as métricas fundamentais estão a acurácia, que indica a proporção de previsões corretas, a precisão, que relaciona 
+os verdadeiros positivos e os casos classificados como positivos, e a sensibilidade, que mede a capacidade de identificar 
+corretamente os casos positivos. Além disso, há métricas como o F1 -Score que visa equilibrar precisão e sensibilidade. 
+Vilela et al. (2022) enfatiza que o uso de múltiplas métricas auxilia na captura de diferentes perspectivas do desempenho 
+do modelo e evitar interpretações limitadas. 
+
+
+=== PAGINA PDF 4 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 4 
+2.3 DETECÇÃO DE OBJETOS COM O FRAMEWORK YOLO 
+A detecção de objetos é um problema de visão computacional que tem como objetivo localizar e classificar 
+objetos em imagens, delimitando uma caixa retangular denominada bounding box que demonstra a confiança da existência 
+de um objeto (Zhao et al., 2019). Segundo Wu et al. (2019), existem dois paradigmas principais de detecção de objetos, 
+detectores de dois estágios e de um estágio. O de dois estágios usa janelas deslizantes seguidas por um classificador que 
+é executado inúmeras vezes por imagem, visto que primeiro detectava -se possíveis regiões e a segunda etapa executa o 
+classificador em cima dessas regiões. Já o de um estágio, tem como objetivo detectar com uma única passagem pela rede. 
+Entre os diferentes algoritmos de detecção de objetos, o framework YOLO ( You Only Look Once ) se destacou 
+por seu notável equilíbrio entre velocidade e precisão devido ao fato de executar a tarefa de detecção em um único estágio, 
+permitindo a identificação rápida e confiável de objetos em imagens. Desde o seu início, a família YOLO evoluiu por 
+meio de múltiplas iterações, cada uma delas baseada nas versões anteriores para abordar limitações e aprimorar o 
+desempenho (Terven et al., 2023). A arquitetura do YOLO é composta por dois elementos centrais, backbone (estrutura 
+principal) e a cabeça. A estrutura principal tem a função de extrair características, processando a imagem por meio das 
+camadas convolucionais que geram mapas hierárquicos de características em diferentes escalas. A cabeça é responsável 
+por ref inar essas informações, realizando a fusão em múltiplas escalas e gerando as previsões finais. Esse processo 
+envolve combinação de técnicas como upsampling (aumentar a resolução do mapa de características) , concatenação e 
+novas convoluções, aprimorando as representações de características e melhorando a detecção de objetos em diferentes 
+tamanhos, como pequenos, médios e grandes (Khanam, 2024). 
+Khanam (2025), enfatiza que o YOLOv12, apresenta uma nova abordagem ao incluir um mecanismo de atenção 
+para a detecção de objetos em tempo real . Essa estratégia  busca reduzir a lacuna de desempenho entre as redes 
+convolucionais tradicionais e as arquiteturas baseadas em atenção. Nas versões anteriores, O YOLO priorizava eficiência 
+usando CNNs convencionais , visto que a introdução de atenção explícita comprometia a velocidade de inferência. 
+Entretanto, no YOLOv12 foi possível agregar a atenção explicita, que destaca com maior ou menor relevância certas 
+características usadas durante o processo de detecção, sem que fosse afetada a eficácia do modelo (Khanam, 2025). 
+Essa eficiência é possibilitada por três avanços arquitetônicos principais: o módulo A2 (melhor entendimento de 
+contexto e foco), o R-ELAN (mais eficiente na inferência) e a reestruturação do modelo, que inclui a introdução da técnica 
+de FlashAttention. Esta última reduz o acesso à memória ao reorganizar os cálculos de atenção para explorar de forma 
+otimizada a memória de alta velocidade da GPU, permitindo que o modelo mantenha desempenho comparável às CNNs, 
+mas com a capacidade superior  (Tian et al., 2025). Conforme Tian et al. (2025), o novo modelo do YOLO, avançou na 
+detecção na precisão, velocidade e eficiência, principalmente de objetos pequenos, resultado da fusão com a técnica de 
+atenção, que aprimora a sensibilidade ao contexto e preserva os detalhes em múltiplas escalas. 
+2.4 EXTRAÇÃO DE FACE EMBEDDINGS 
+Segundo Schroff et al. (2015), um dos avanços na área de reconhecimento facial consiste no mapeamento de 
+imagens em um espaço euclidiano (como no plano 3D). Esse mapeamento permite representar características de imagens 
+por meio de vetores numéricos extraídos por redes neurais convolucionais. Durante o treinamento, as CNNs aprendem a 
+identificar padrões como bordas e texturas. Através da aplicação dos filtros as características são coletadas e, em seguida, 
+convertidas em um vetor de incorporação, dentre essas características estão os elementos faciais mais importantes olhos, 
+boca e nariz. Além disso, conforme destaca Santos (2022), um aspecto importante das CNNs nessa tarefa, é a invariância 
+a variações de escalas e transformações, o que contribui para uma identificação mais precisa e eficiente. 
+Schroff et al. (2015) também apontam que a vetorização facilita a tarefa de verificação facial, transformando o 
+problema em uma tarefa de classificação. Após a extração do espaço de características pelas CNNs, é possível aplicar 
+técnicas como k-means, svm ou outros algoritmos classificadores para realizar o agrupamento. Na mesma linha, Schroff 
+et al. (2015), explicam que após a extração do embedding, a comparação entre dois rostos é realizada no espaço vetorial 
+utilizando a distância euclidiana ao quadrado (L²). Essa distância é calculada subtraindo -se os componentes 
+correspondentes de cada vetor, elevando as diferenças ao quadrado e somando os resultados. Quanto menor essa distância, 
+maior é a probabilidade de que os dois embeddings correspondam ao mesmo indivíduo. 
+2.5 PROTÓTIPOS ATUAIS 
+Este projeto propõe a extensão do trabalho de conclusão de curso desenvolvido por Krause (2019) e Maschio 
+(2023). Krause (2019) propôs inicialmente o uso de três arquiteturas de redes neurais convolucionais Inception-ResNet 
+v2, ResNet50 e Xception. Conforme Figura 3, o objetivo foi treinar uma RNA para extrair as características faciais (face 
+embeddings) e treinar um algoritmo de classificação . Para possibilitar a previsão no modo  One-Shot Learning , ou 
+seja, reconhecer indivíduos apenas com uma imagem de referência.  O treinamento foi feito a partir de um conjunto de 
+dados que continha 179 imagens de 20 classes de bugios-ruivos diferentes. Tendo isso em vista, Krause (2019) aplicou a 
+estratégia de data augmentation fixo, totalizando 1.790 imagens. Além d isso, balanceou o conjunto para garantir que 
+houvesse ao menos uma imagem por conjunto de teste quando fosse submetido a função de Triplet Loss. 
+
+=== PAGINA PDF 5 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 5 
+Figura 3 – Diagrama de fluxo do processo de inferência 
+ 
+Fonte: elaborado por Krause (2019). 
+Segundo Krause  (2019), a rede Inception -RestNet v2 atingiu a melhor acurácia 99,78%, porém seu custo 
+computacional é maior para treinamento e previsão. Sendo assim, elencou que a rede Xception com acurácia de 99,94% 
+seria a mais adequada junto aos algoritmos de classificação k-NN e SVM. Além disso, ao visualizar os embeddings gerados 
+em um espaço bidimensional, foi possível perceber que a Xception demonstrou um agrupamento mais consistente, 
+aproximando mais as imagens dos mesmos indivíduos. 
+Também, foi desenvolvido um aplicativo desktop com uma interface gráfica simples, com o propósito de 
+demonstrar o protótipo. A aplicação permite carregar uma imagem, prever a identidade do bugio-ruivo e adicionar novos 
+indivíduos na base de dados  (Figura 4). Contudo, para que a previsão funcione corretamente, a imagem precisa estar 
+recortada contendo apenas a face do animal, o que representa uma limitação operacional. Como proposta de melhorias, 
+Krause (2019) propôs implementar um modelo responsável por detectar automaticamente a face e fazer o recorte. Além 
+disso, sugeriu reconhecimento de múltiplas imagens simultaneamente e a criação de uma versão para dispositivos móveis 
+para uso direto na mata. 
+Figura 4 – Telas do aplicativo de Krause (2019) 
+  
+Fonte: elaborado por Krause (2019). 
+Maschio (202 3) por sua vez, desenvolveu um protótipo para reconhecimento facial de bugios -ruivos, 
+conseguindo identificar cada bugio individualmente e destacando -se pela eficiência da rede Inception -v3. O banco de 
+dados utilizado contém 513 imagens de 44 bugios diferentes, sendo 25 machos e 19 fêmeas. A rede Inception-v3 obteve 
+uma precisão de 99,70% nos testes, beneficiada pelo uso das técnicas de aprendizado por transferência e fine-tuning, que 
+foram importantes para alcançar esses resultados, mesmo com um número relativamente pequeno de imagens. A aplicação 
+de modelos pré-treinados mostrou-se útil, pois permitiu economizar tempo e recursos ao aproveitar o conhecimento prévio 
+dos modelos em tarefas semelhantes. 
+O protótipo desenvolvido por Maschio (2023) é um sistema que aplica o modelo treinado para o reconhecimento 
+facial em novas imagens de bugios -ruivos. Este sistema pode funcionar como um aplicativo ou como um sistema 
+integrado em dispositivos móveis, sendo capaz de processar e identificar imagens em tempo real ou a partir de arquivos. 
+A Figura 5 (a), apresenta a tela principal da aplicação, que inclui uma interface para o upload de imagens, a exibição dos 
+resultados de reconhecimento e, a  possibilidade de adição de novas imagens ao banco de dados. Ao clicar no botão de 
+Prever Classe , o sistema realiza a previsão e exibe o nome do bugio reconhecido junto com a porcentagem de 
+confiança daquele resultado (Figura 5 (b)). 
+
+
+=== PAGINA PDF 6 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 6 
+Figura 5– Tela do aplicativo de Maschio (2023) 
+ 
+Fonte: elaborado por Maschio (2023). 
+Como trabalhos futuros, Maschio (202 3) sugere a integração do modelo na nuvem, permitindo atualizações 
+contínuas e a adição de novas classes, como novos bugios, sem a necessidade de novas versões do aplicativo. Maschio 
+(2023) relata ainda que o protótipo enfrenta algumas limitações no reconhecimento facial, especialmente com imagens 
+de faces inclinadas ou com variações na iluminação. Para melhorar a precisão, seria necessário fornecer imagens 
+recortadas que contenham apenas a  face do bugio. Uma solução para essas limitações é o uso de outra CNN dedicada à 
+detecção de faces, o que poderia oferecer maior flexibilidade na captura das imagens. 
+2.6 TRABALHOS CORRELATOS 
+Nesta subseção, são apresentados os trabalhos com maior correlação ao estudo proposto. O Quadro 1 apresenta 
+o trabalho de Paulet et al. (2024), que desenvolveu um pipeline automático para detectar, reconhecer macacos japoneses. 
+No Quadro 2, detalha o estudo de Deb et al. (2018), no qual é avaliado um método de reconhecimento facial para primatas 
+ameaçados, integrado a um aplicativo Android para apoiar pesquisadores em campo. Ao final, no Quadro 3, é descrito o 
+trabalho de Li et al. (2024), que propõem um algoritmo para reconhecimento facial de ovelhas utilizando MobileNet para 
+redução de recursos computacionais. 
+No Quadro 1 é resumido o trabalho de Paulet et al. (2024), no qual o foco é a criação de um pipeline automatizado 
+composto por três etapas principais: detecção facial, reconhecimento dos indivíduos e análise da rede social. O processo 
+abrange desde extrair os quadros de vídeo até o reconhecimento individu al, além de analisar a rede social dos macacos 
+buscando inferir conexões e posições hierárquicas. O pipeline é compartilhado através do Google Colab, permitindo que 
+possa ser ajustado o modelo com novos conjuntos de dados. 
+Quadro 1 – Trabalho Correlato 1: Deep learning for automatic facial detection and recognition in Japanese macaques: 
+illuminating social networks 
+Referência Paulet et al. (2024) 
+Objetivos Detecção e identificação individual de macacos japoneses em vídeos. 
+Principais 
+funcionalidades 
+Aplicar um modelo de rede neural convolucional, chamado Faster -RCNN para detectar a face de 
+macacos japoneses, junto a um modelo de reconhecimento YOLOv8 para reconhecer individualmente 
+esses primatas. O conjunto de dados utilizado para a detecção facial é composto por 17.722 imagens, 
+das quais 92% foram destinadas ao treinamento e o restante para validação. O conjunto de dados para o 
+classificador é com posto por 5.956 imagens, sendo 87% usadas para treinamento e o restante para 
+validação. 
+Ferramentas de 
+desenvolvimento 
+Rede Neural Convolucional (CNN), Arquitetura Faster R-CNN e Backbone ResNet-50, Métricas IoU e 
+AP50, Detectron 2, YOLOv8 e Google Colab 
+Resultados e 
+conclusões 
+O modelo de detecção facial atingiu uma precisão de 82,2% e reduziu a taxa de falsos negativos para 
+13,65%. De maneira similar, o classificador para identificação individual alcançou uma precisão de 
+Top1 de 83% e de Top5 de 92,92%  (essa métrica representa a proporção de vezes que a classe mais 
+provável corresponde à classe correta). 
+Fonte: elaborado pelo autor (2025). 
+No Quadro 2 é feita uma síntese referente ao trabalho de Deb et al. (2018), que destaca uma arquitetura RNA 
+desenvolvida para a identificação de primatas, particularmente em condições com conjuntos de dados reduzidos e em 
+tempo real. No entanto, o modelo exige a anotação manual de pontos de referência, como olhos e boca, nas imagens, o 
+que pode ser um desafio em ambientes não controlados. Portanto, soluções que utilizam técnicas de detecção de objetos, 
+semelhantes às utilizadas no trabalho do Quadro 1, podem ser complementares. 
+
+
+=== PAGINA PDF 7 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 7 
+Quadro 2 – Trabalho Correlato 2: Face Recognition: Primates in the Wild 
+Referência Deb et al. (2018) 
+Objetivos Identificação individual de primatas usando reconhecimento facial automático. 
+Principais 
+funcionalidades 
+Aplicar um modelo de rede neural convolucional, denominada PrimNet, para o reconhecimento 
+individual de espécies de primatas em um aplicativo móvel Android. O desempenho do modelo foi 
+avaliado utilizando três conjuntos de dados de primatas: LemurFace, GoldenMonkeyFace e 
+ChimFace, em três diferentes tarefas: verificação, identificação em um conj unto de dados que não é 
+garantido que haja uma correspondência ao individuo sendo identificado, identificação em um 
+conjunto de dados com garantia de correspondência ao individuo sendo identificado. 
+Ferramentas de 
+desenvolvimento 
+Rede Neural Convolucional (CNN) e PrimNet 
+Resultados e 
+conclusões 
+Os resultados obtidos demonstram a eficácia do modelo em diferentes cenários, com uma taxa de 
+aceitação na verificação de 83,11%, a precisão na identificação de um primata é de 93,76% quando se 
+sabe que ele está no banco de dados. No entanto, essa precisão diminui para 81,73% ao tentar 
+identificar um primata cuja presença no banco de dados não é garantida, o que pode resultar em sua 
+não identificação. Além disso, o PrimNet apresentou um tamanho de armazenamen to de apenas 3.9 
+MB e uma velocidade de inferência de 24ms por imagem, tornando -o uma solução adequada para 
+sistemas embarcados. 
+Fonte: elaborado pelo autor (2025). 
+No Quadro 3 é apresentado o trabalho de Li et al. (2023), que introduz o SheepFaceNet, um modelo desenvolvido 
+para o reconhecimento e deteção de faces de ovelhas com alta precisão e velocidade, enquanto mantém um baixo consumo 
+de recursos computacionais. Isso torna o modelo adequado para aplicações em tempo real e dispositivos móveis, além de 
+ser adaptável para outras espécies, como primatas, ampliando sua aplicabilidade. 
+Quadro 3 – Trabalho Correlato 3: SheepFaceNet: A Speed-Accuracy Balanced Model for Sheep Face Recognition 
+Referência Li et al. (2023) 
+Objetivos Detecção e reconhecimento facial de ovelhas. 
+Principais 
+funcionalidades 
+Aplicar um modelo leve de reconhecimento facial de ovelhas chamado SheepFaceNet, que é composto 
+por dois módulos, SheepFaceNetDet para detecção e SheepFaceNetRec para reconhecimento. O 
+conjunto de dados é composto de 7.328 imagens, distribuídas nas seguintes proporções: 60% 
+treinamento, 30% para validação e 10% para teste. 
+Ferramentas de 
+desenvolvimento 
+Rede Neural Convolucional, MobileNet, Labelme, Biblioteca PIL do Python 
+Resultados e 
+conclusões 
+O modelo denominado SheepFaceNet obteve uma precisão de 97,75% no reconhecimento de faces de 
+ovelhas. Além disso, o modelo demonstrou um bom desempenho ao reconhecer 387 imagens de faces 
+por segundo, equilibrando precisão e velocidade no processamento.  
+Fonte: elaborado pelo autor (2025). 
+3 DESCRIÇÃO DO PROTÓTIPO 
+Nesta seção , são descritos os aspectos mais relevantes de especificação e à implementação do protótipo para 
+reconhecimento facial de bugios -ruivo. A subseção 3.1 aborda as especificações do protótipo, enquanto a subseção 3.2 
+descreve a implementação dos modelos de redes neurais profundas utilizados tanto para a detecção quanto para o 
+reconhecimento individual dos primatas. 
+3.1 ESPECIFICAÇÃO 
+Esta seção apresenta os Requisitos Funcionais (RF) e Requisitos Não Funcionais (RNF)  estabelecidos para o 
+protótipo desenvolvido.  O Quadro 4 apresenta os Requisitos Funcionais  e o Quadro 5 apresenta os Requisitos Não 
+Funcionais. Por fim, é apresentado o diagrama de atividades, que demonstra os processos do protótipo para a detecção e 
+reconhecimento dos bugios-ruivos. 
+Quadro 4 - Requisitos Funcionais 
+RF01 Permitir o reconhecimento individual dos bugios-ruivos a partir de imagens fornecidas. 
+RF02 Detectar e delimitar automaticamente a região da face dos bugios em imagens ou vídeos, utilizando técnicas 
+de detecção de objetos. 
+RF03 Extrair vetores de características (embeddings) das faces detectadas, empregando modelos de redes neurais 
+profundas. 
+RF04 Exibir ao usuário o grau de confiança referente ao resultado do reconhecimento realizado. 
+RF05 Utilizar modelos leves e precisos, que possibilitem o reconhecimento eficiente e com baixo tempo de 
+resposta. 
+Fonte: elaborado pelo autor (2025). 
+Quadro 5 - Requisitos não funcionais 
+RNF01 O protótipo deve ser implementado na linguagem de programação Python. 
+
+=== PAGINA PDF 8 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 8 
+RNF02 Utilizar apenas o conjunto de dados fornecido e previamente autorizado pelo comitê de ética para o 
+desenvolvimento do sistema. 
+RNF03 Empregar as bibliotecas TensorFlow e Keras para a implementação e treinamento dos modelos pré-
+treinados. 
+RNF04 Priorizar o uso de modelos leves e otimizados quanto ao consumo de recursos computacionais. 
+RNF05 Buscar e demonstrar níveis satisfatórios de acurácia, precisão e desempenho nos testes realizados. 
+Fonte: elaborado pelo autor (2025). 
+A Figura 6 apresenta o diagrama de atividades  que ilustra o fluxo dos processos de detecção e reconhecimento 
+facial de bugios-ruivos. O processo tem início com o carregamento do modelo YOLOv12n, responsável pela detecção e 
+delimitação das regiões da imagem que contêm faces de bugios. Caso nenhuma face seja detectada, a aplicação apresenta 
+que não houve detecção e encerra o processo.  Se a detecção for bem -sucedida, a imagem é recortada na região 
+correspondente à face e encaminhada para a etapa de reconhecimento. Nessa fase, utiliza -se o modelo MobileNetV3-
+Large previamente treinado para realizar a identificação individual.  
+Caso o modelo reconheça o bugio com nível de confiança igual ou superior a 90%, a aplicação considera o bugio 
+como reconhecido, e exibe o nome do indivíduo junto ao nível de confiança da predição, finalizando o  processo. Caso 
+contrário, se o modelo não reconhecer o indivíduo, inicia-se a etapa do reconhecimento baseado em embeddings da face 
+com a mesma arquitetura , p orém sem a camada  final Dense. Essa configuração  permite a extração d e vetores 
+característicos da face detectada. Em seguida, verifica-se se já existem embeddings previamente salvos. Caso não existam, 
+a aplicação indica que é um novo indivíduo, sendo possível realizar o cadastro. 
+Caso existam embeddings previamente armazenados, o sistema calcula a similaridade entre o vetor da nova face 
+e os vetores existentes na base de dados. Se a similaridade for igual ou superior a 90%, o bugio é considerado reconhecido, 
+e a aplicação exibe o nome correspondente  e a confiança da predição. Caso não atinja  o limiar definido, o bugio é 
+classificado como não reconhecido, encerrando o fluxo com a opção de cadastrar um novo indivíduo. 
+Figura 6 – Diagrama de atividades do fluxo dos processos de detecção e reconhecimento facial de bugios-ruivos 
+ 
+Fonte: elaborado pelo autor (2025). 
+3.2 IMPLEMENTAÇÃO 
+Esta seção descreve a implementação do trabalho desenvolvido, abordando a preparação dos dados, os algoritmos 
+empregados e a interface utilizada. Todo o desenvolvimento foi realizado na linguagem Python, com o uso dos 
+frameworks TensorFlow e Keras, amplamente utilizados em projetos de aprendizado profundo. 
+3.2.1 Bases de Dados para Reconhecimento Facial Individual e Detecção de Faces 
+Neste trabalho, foram utilizadas duas bases de dados distintas, cada uma com um propósito específico no processo 
+de desenvolvimento do protótipo. A primeira, chamada de Base de Reconhecimento Facial, foi destinada ao treinamento 
+
+
+=== PAGINA PDF 9 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 9 
+do modelo de reconhecimento facial individual dos bugios -ruivos. A segunda base, chamada de Base de Detecção, foi 
+utilizada no treinamento do modelo de detecção de faces para localizar automaticamente as regiões da face dos bugios. 
+A Base de Reconhecimento Facial foi inicialmente composta por imagens previamente utilizadas no trabalho de 
+Maschio (2023), abrangendo 44 classes distintas de bugios e totalizando 513 imagens. Dessas, 25 correspondem a bugios 
+machos e 19 a bugios fêmeas, que serviram como ponto de partida  para a construção da base de dados utilizada para o 
+treinamento. Posteriormente, novas imagens disponibilizadas pelo Projeto Bugio foram incorporadas à esta base de dados, 
+ampliando seu volume e diversidade. Em seguida, foi  realizado um balanceamento manual das imagens , limitando-se a 
+no máximo 20 imagens por indivíduo. Nessa etapa, priorizou-se a exclusão de imagens repetidas ou muito semelhantes, 
+com o objetivo de reduzir o desbalanceamento entre as classes e garantir maior variedade de ângulos, expressões e 
+condições de iluminação entre as imagens mantidas. 
+Após esse processo , o conjunto de dados passou a conter 619 imagens de 50 indivíduos diferentes, sendo 30 
+machos e 20 fêmeas. Por fim, para melhorar a generalização do modelo em relação as características faciais dos bugios -
+ruivos, as imagens foram processadas por um modelo YOLOv12n previamente treinado, permitindo que apenas as regiões 
+faciais fossem recortadas com base nas caixas delimitadoras detectadas, conforme evidenciado na Figura 7. 
+Figura 7 – Ilustração do processo de corte das imagens: antes e depois da detecção 
+Imagem 
+original 
+      
+Face 
+recortada 
+após 
+detecção 
+      
+Fonte: elaborado pelo autor (2025). 
+Para a construção da Base de Detecção, foi utilizado um conjunto de 3.609 imagens de bugios-ruivos fornecido 
+por Maschio (2023). As imagens foram capturadas com diferentes enquadramentos e distâncias , o que contribui para a 
+diversidade do conjunto de dados . Embora esse conjunto não esteja rotulado por classe de bugio, já possuía marcações 
+estáticas (bounding boxes) das faces, compatíveis com o formato exigido pelo modelo YOLO, conforme ilustrado na  
+Figura 8. Com isso, para utilizá-lo no treinamento, foi necessário verificar as marcações utilizando a ferramenta LabelImg. 
+Figura 8 – Ilustração das bounding boxes demarcadas 
+Imagem 
+original 
+  
+Face 
+detectada 
+  
+Fonte: elaborado pelo autor (2025). 
+Durante a etapa de coleta de imagens e vídeos, prioriza -se o foco na região facial dos animais, assegurando boa 
+iluminação, além de buscar captura dos ângulos frontais e laterais dos primatas. A utilização do zoom óptico é indicada 
+em casos que o ambiente possui muita variação, especialmente considerando o comportamento arbóreo da espécie, que 
+frequentemente está nas áreas suspensas. Imagens como as apresentadas na Figura 8 exemplificam capturas com 
+
+
+=== PAGINA PDF 10 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 10 
+qualidade adequada para os processos de detecção e reconhecimento.  Também, com o objetivo de garantir uma boa 
+resolução da região facial, recomenda-se que as imagens sejam capturadas a uma distância de entre 3 e 10 metros, variando 
+conforme a qualidade da câmera e as condições do ambiente. 
+3.2.2 Arquiteturas de Redes Neurais para Detecção Facial de Bugios-ruivos 
+Para implementar a detecção das faces dos bugios -ruivos, foram testadas diferentes versões do modelo YOLO, 
+incluindo YOLOv8, YOLOv11 e YOLOv12. A etapa inicial consistiu na reavaliação d as anotações feitas na base de 
+dados existente, com o objetivo de garantir a qualidade das marcações. Após a avaliação, o conjunto de dados foi divido 
+em dois subconjuntos, sendo 80% dos dados destinado ao treinamento e 20% à validação. O processo de treinamento dos 
+modelos foi realizado no ambiente do Google Colab , utilizando a biblioteca Ultralytics que fornece os modelos 
+previamente treinados. Esses modelos serviram como base para o processo de  fine-tuning responsável por adaptar o 
+modelo ao contexto específico da detecção de faces de bugios-ruivos. 
+O Quadro 6 apresenta a execução do treinamento dos modelos, configurado com o parâmetro task=detect 
+responsável por definir a tarefa de detecção de objetos, e o modo de treinamento mode=train (Linha 1). O modelo 
+escolhido para essa tarefa foi o YOLO v12 na sua versão nano, devido a leveza e eficiência  (Linha 1). O parâmetro 
+bugio_ruivo.yaml refere-se ao arquivo de configuração do base de dados usado, com os caminhos dos conjuntos e as 
+classes existentes, que nesse caso é apenas a classe de bugio -ruivo (Linha 1). O modelo foi treinado por 30 épocas , 
+conforme especificado pelo parâmetro epochs, com imagens d e entradas sendo redimensionadas para o tamanho de 
+896x896 pixels. Esse redimensionamento foi necessário devido aos recursos limitados de memória do Google Colab. Por 
+fim, definida a taxa de aprendizado inicial, representada pelo parâmetro lr=0.001 (Linha 2), responsável por controlar 
+a intensidade das atualizações dos pesos da rede a cada iteração do processo de treinamento. 
+Quadro 6 – Código fonte usado para treinamento dos modelos YOLO 
+1 !yolo task=detect mode=train model=yolov12n.pt data=bugio_ruivo.yaml epochs=30  
+2 imgsz=896 lr0=0.001 
+Fonte: elaborado pelo autor (2025). 
+Após o treinamento, os modelos foram testados diretamente no conjunto destinado ao reconhecimento individual, 
+permitindo verificar sua precisão em um cenário prático. Conforme o Quadro 7,  o modelo treinado foi avaliado utilizando 
+parâmetros de predição ajustados para melhorar a qualidade das detecções, sendo eles conf=0.7 que estabelece o limiar 
+mínimo de confiança para que uma predição seja válida (Linha 3), enquanto iou=0.3 define o valor da Intersection 
+Over Union utilizado para evitar sobreposições das caixas delimitadoras (duas faces de bugios encontradas muito 
+próximas) (Linha 4). 
+Quadro 7 – Código fonte para predição das faces 
+1 model.predict( 
+2         image_path, 
+3         conf=0.7, 
+4         iou=0.3, 
+5  ) 
+Fonte: elaborado pelo autor (2025). 
+Durante os testes, identificou -se problema em relação a detectar faces orientadas em outros ângulos como por 
+exemplo: de cabeça para baixo , na horizontal . Para contornar esse problema, foram aplicadas técnicas de data 
+augmentation para gerar duas variações de rotações aleatórias entre -180 e 180 graus, com o objetivo de  aumentar a 
+diversidade dos dados de treinamento utilizados pelo modelo. 
+3.2.3 Arquiteturas das Redes Neurais Convolucionais utilizadas para reconhecimento de bugios-ruivos 
+Para o desenvolvimento deste trabalho, foram testadas diversas arquiteturas de redes neurais convolucionais, 
+incluindo MobileNetV3 (nas variantes Small e Large), NasNetMobile, EfficientNetV2B0, InceptionV3 e ShuffleNet . O 
+objetivo foi identificar quais modelos apresentam os melhores resultados, considerando critérios como acurácia, 
+generalização e eficiência computacional. Todos os modelos foram treinados, validados e testados utilizando o mesmo 
+conjunto de dados, garantindo uniformidade na comparação entre as abordagens. 
+Apesar do balanceamento inicial da base dados, com a limitação de 20 imagens  por indivíduo, o conjunto de 
+dados ainda apresentava uma distribuição desigual entre as classes. Diante disso, foi necessário realizar um processo de 
+balanceamento complementar, buscando assegurar um número mínimo de amostras para cada classe. O qual foi realizado 
+em duas etapas, conforme a quantidade de imagens por classe. 
+Inicialmente, para as classes que continham menos de cinco imagens, aplicou -se data augmentation físico, 
+gerando novas imagens sintéticas a partir de transformações como rotação, deslocamento, zoom, cisalhamento, variação 
+de brilho e inversão de sentido. As imagens geradas foram salvas em disco, estabelecendo um limite mínimo de exemplos 
+por classe. Na etapa seguinte, p ara as classes com quantidade de imagens entre cinco e dez, foi aplicada a técnica de  
+oversampling, utilizando o método resample, que seleciona aleatoriamente imagens do conjunto e as duplica até atingir 
+
+=== PAGINA PDF 11 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 11 
+o total de 10 imagens. As classes que já apresentavam o número mínimo de 10 imagens não passaram por modificação. 
+Dessa forma, garantiu-se que o conjunto de dados estava balanceado de forma consistente, proporcionando uma base mais 
+adequada para o treinamento do modelo . Ao final do processo  de preparação , a base de dados foi dívida em três  
+subconjuntos: treinamento, validação e teste, nas proporções de 70%, 20% e 10%, respectivamente. 
+O passo anterior concentrou-se em uniformizar a quantidade de imagens entre as classes garantindo uma base de 
+dados equilibrada. Com essa etapa concluída, o objetivo atual é ampliar a capacidade de generalização d o modelo , 
+possibilitando que ele aprendesse diferentes características e variabilidade dos dados . Para isso, foi aplicada uma nova 
+fase de data augmentation dinâmica (apenas no momento do treinamento, sem alterar permanentemente a base de dados). 
+Essa estratégia, apresentada no Quadro 11 do APÊNDICE A, é aplicada exclusivamente no subconjunto de treinamento, 
+evitando enviesar o desempenho com a contaminação dos demais subconjuntos com imagens muito semelhantes. 
+Todas as arquiteturas citadas anteriormente são pré-treinadas e disponibilizadas pela biblioteca Keras . Dessa 
+forma, conforme apresentado no Quadro 8, na Linha 1 é instanciada a classe do modelo e inicializados o s pesos a partir 
+do conjunto de dados do ImageNet (Linha 3), permitindo acelerar o processo de convergência e aproveitar características 
+extraídas previamente de grandes conjuntos de imagens. Além das camadas padrão  da arquitetura, foram adicionadas 
+camadas como Global Average Pooling  (Linha 10), Dropout (Linha 11) e Batch Normalization  (Linha 12), 
+com o objetivo de regularizar o modelo e reduzir o risco de overfitting. Por fim, a camada Dense de saída foi configurada 
+com 50 neurônios, correspondente a quantidade de classes de bugios na base de dados, juntamente com a função de 
+ativação softmax, para fornecer a probabilidade de cada classe (Linhas 14 e 15). 
+O treinamento do modelo foi realizado em etapas progressivas, combinando técnicas de transfer learning e fine-
+tuning. Conforme o Quadro 12 do APÊNDICE B, inicialmente apenas as camadas superiores foram treinadas, mantendo 
+as camadas convolucionais do modelo base congeladas, o que evita a alteração dos pesos já ajustados para extração de 
+características gerais. Utilizou -se o otimizador Adam devido sua capacidade convergência eficiente, com uma taxa de 
+aprendizado inicial de 0,001, escolhida para equilibrar a velocidade e a estabilidade do modelo. A função de perda adotada 
+foi a sparse categorical crossentropy , utilizada para classificação multiclasse, e a acurácia foi utilizada como 
+métrica principal para avaliar o desempenho do modelo (Linha 1 e 2). 
+Quadro 8 - Código fonte da construção do modelo MobileNetV3-Large 
+1 base_model = tf.keras.applications. MobileNetV3Large( 
+2     include_top=False, 
+3     weights='imagenet', 
+4     input_shape=(224, 224, 3) 
+5 ) 
+6 base_model.trainable = False 
+7  
+8 inputs = tf.keras.Input(shape=(224, 224, 3)) 
+9 x = base_model(x, training=False) 
+10 x = layers.GlobalAveragePooling2D()(x) 
+11 x = layers.Dropout(0.4)(x) 
+12 x = layers.BatchNormalization()(x) 
+13  
+14 outputs = layers.Dense(50, activation='softmax', 
+15 kernel_regularizer=regularizers.l2(1e-4))(x)  
+16 model = models.Model(inputs, outputs) 
+Fonte: elaborado pelo autor (2025). 
+Após o treinamento inicial das camadas superiores (Linhas 1 a 10), foi realizada a etapa de fine-tuning 
+progressivo. Primeiramente, foram liberadas para treinamento as 15 últimas camadas do modelo, mantendo as demais 
+congeladas (Linhas 1 2 a 14).  Na sequência, aplicou-se a regularização L2 nas camadas, com o objetivo de penalizar 
+grandes valores para os pesos e melhorar a generalização (Linhas 1 6 a 18). Em seguida, o modelo foi recompilado com 
+uma taxa de aprendizado de 1e-4 (linha 20) e treinado novamente com os dados de validação (Linha 2 3 e 24 ).  
+Posteriormente, o fine-tuning foi aprofundado para as 30 últimas camadas do modelo (linha 27 a 28). Novamente, aplicou-
+se a regularização (Linha 31 a 32), recompilou-se o modelo e iniciou-se o treinamento final (Linhas 34 a 44). 
+Durante todas as etapas de treinamento, foram utilizados os callbacks como early stopping  e 
+RedeLROnPlateau (Linhas 5 a 6) para evitar o overfitting e permitir o ajuste dinâmico da taxa de aprendizado durante 
+
+=== PAGINA PDF 12 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 12 
+as etapas de treinamento, sem a necessidade de configuração manual e se adequando às características dos dados. Ao 
+final, o modelo treinado foi salvo no formato Keras, possibilitando ser carregado posteriormente (Linha 47). 
+3.2.4 Geração de embeddings para evitar retreinamento do modelo 
+Como solução para o problema do retreinamento do modelo , conforme relatado por Maschio (2023), adotou-se 
+a estratégia de geração de embeddings faciais dos indivíduos não reconhecidos pelo modelo de reconhecimento. Essa 
+abordagem permite representar cada imagem por meio de um vetor numérico , denominado embedding, que codifica as 
+características distintivas da face.  Esse vetor é  extraído a partir do modelo previamente treinado para reconhecimento 
+facial, sem a necessidade de realizar um novo treinamento a cada inclusão de um novo indivíduo. 
+No Quadro 9, observa-se que o modelo utilizado é o mesmo empregado anteriormente para reconhecimento  
+facial. Porém, sua arquitetura foi modificada com a remoção da camada Dense final (Linha 2 a 4). Com essa alteração, a 
+RNA deixa de classificar os indivíduos, e fica responsável apenas por gerar os vetores de embedding, que representam 
+numericamente as características faciais dos bugios-ruivos. 
+Quadro 9 - Código fonte da configuração do modelo que extrai embeddings 
+1 modelo_reconhecimento = keras.models.load_model(“modelo_mobilenetv3”) 
+2 embedding_model = Model( 
+3     inputs= modelo_reconhecimento.input, 
+4     outputs= modelo_reconhecimento.layers[-2].output 
+5 ) 
+Fonte: elaborado pelo autor (2025). 
+De acordo com o  Quadro 10 ao receber uma imagem de um indivíduo não reconhecido pelo modelo inicial, o 
+modelo modificado extrai o vetor de embedding (Linha 1), que é normalizado (Linha 2) e armazenado temporariamente. 
+Neste exemplo, ele é salvo num repositório local , dividido especificamente por indiv íduo, com o objetivo de  facilitar a 
+gestão e a visualização dos dados  (Linha 28 e 29). Posteriormente, o embedding gerado é comparado com os vetores já 
+salvos, utilizando a similaridade do cosseno (Linhas 11 e 12), que mede o grau de semelhança entre vetores.  
+Para determinar se o indivíduo está presente na base de dados temporária, utiliza -se um limiar de decisão 
+emb_threshold. Caso o valor da similaridade seja maior ou igual a 0.9, considera-se que se trata de indivíduo conhecido 
+(Linha 22). Caso contrário, o embedding é armazenado em um novo diretório correspondente e passa a ser considerado 
+um novo indivíduo na base temporária (Linhas 25 a 29). Dessa forma, o protótipo elimina a necessidade de retreinar toda 
+a RNA sempre que uma nova classe é adicionada. Além de diminuir o c usto computacional, essa abordagem torna o 
+modelo capaz de se adaptar a novas informações de forma incremental e autônoma. 
+
+=== PAGINA PDF 13 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 13 
+Quadro 10 – Código fonte do reconhecimento usando os embeddings no pipeline 
+1 embedding = embedding_model.predict(img_array, verbose=0)[0] 
+2 embedding = normalize(embedding.reshape(1, -1))[0] 
+3  
+4 melhores_resultados = [] 
+5 for individuo in os.listdir(salvar_em): 
+6     caminho = os.path.join(salvar_em, individuo) 
+7     if not os.path.isdir(caminho): 
+8         continue 
+9  
+10     scores = [ 
+11         cosine_similarity(embedding.reshape(1, -1),  
+12 normalize(np.load(arq).reshape(1, -1)))[0][0] 
+13         for arq in glob(os.path.join(caminho, "*.npy")) 
+14     ] 
+15  
+16     if scores: 
+17         melhor = max(scores) 
+18         melhores_resultados.append((individuo, melhor)) 
+19  
+20 if melhores_resultados: 
+21     melhor_nome, melhor_score = max(melhores_resultados, key=lambda x: x[1]) 
+22     if melhor_score >= emb_threshold: 
+23         return melhor_nome, melhor_score 
+24  
+25 novo_nome = os.path.basename(image_path).split("_")[0] 
+26 pasta_novo = os.path.join(salvar_em, novo_nome) 
+27 os.makedirs(pasta_novo, exist_ok=True) 
+28 np.save(os.path.join(pasta_novo, f"{len(glob(os.path.join(pasta_novo,  
+29 '*.npy')))+1}.npy"), embedding) 
+30  
+31 return novo_nome, melhor_score 
+Fonte: elabora pelo autor (2025). 
+3.3 APLICATIVO BUGIO FACE ID E INTEGRAÇÃO DO PROTÓTIPO COM SUA ESTRUTURA FUNCIONAL 
+Com o objetivo de integrar os protótipos desenvolvidos acerca do reconhecimento dos bugios -ruivos, os alunos 
+bolsistas Marlon Sbardelatti, Sofia Sousa Lindner e Caio Abraão Manarim, sob orientação da professora Andreza Sartori, 
+em parceria com o Projeto Bugio, reformularam a identidade visual do aplicativo e suas funcionalidades. Essa 
+reformulação visou aprimorar a usabilidade, eficiência e segurança da aplicação. A Figura 9(a) apresentada a tela principal 
+do aplicativo. A Figura 9(b) exibe a funcionalidade de reconhecimento com os seus respectivos recursos. Por fim, a Figura 
+9(c) mostra a visualização das informações de localização e histórico específicas de um indivíduo. 
+Com isso, novas funcionalidades específicas voltada à  gestão e o monitoramento dos bugios -ruivos foram 
+implementadas no aplicativo. Uma das principais mudanças é a possibilidade de qualquer usuário  utilizar o aplicativo, 
+sendo classificado como usuário regular. Esses usuários podem realizar registros de novos indivíduos, que permanecem 
+pendentes até a  validação. Para esse processo , existem os usuários moderadores, responsáveis por revisar os dados 
+enviados por terceiros, validar os reconhecimentos e aprovar ou rejeitar a inclusão de bugios na base oficial do sistema. 
+Além disso, operações sensíveis relacionadas aos dados de um bugio  como cadastro definitivo, atualização ou 
+remoção, só podem ser realizadas por um usuário administrador, garantindo maior controle sobre a integridade das 
+informações. Também foi implementado um sistema de histórico, que registra todas as localizações distintas onde um 
+mesmo bugio foi identificado, permitindo o acompanhamento de seus deslocamentos ao longo do tempo. 
+A integração do protótipo com o aplicativo foi realizada por meio da implementação dos algoritmos no backend 
+da aplicação. Trata-se de uma API REST desenvolvida em Python que possui as camadas necessárias de controle de dados 
+e segurança. Seus endpoints refletem diretamente nas funcionalidades do aplicativo. Um dos endpoints é responsável pela 
+detecção das faces dos bugios -ruivos, para isso o conjunto de imagens é enviado na requisição, o modelo YOLO 
+previamente treinado é carregado utilizando as bibliotecas do tensorflow e keras, como resultado são retornadas as faces 
+encontradas. Outro endpoint é responsável por receber essas faces e realizar o reconhecimento facial individual utilizando 
+o modelo MobileNetV3 previamente treinado, caso o reconhecimento dire to não seja bem-sucedido, a aplicação realiza 
+a extração embeddings e compara com os vetores armazenados na base de dados MongoDB existente. 
+O fluxo tem início quando o usuário envia uma requisição contendo um grupo de imagens. O sistema, realiza a 
+etapa de detecção de faces.  Caso nenhuma face de bugio -ruivo seja detectada, a aplicação notifica o usuário sobre a 
+ausência de identificação, informando que a imagem provavelmente não contém um bugio-ruivo. Ainda assim, é oferecida 
+a opção de prosseguir com a submissão, ciente de qu e, nessas condições, o processo de reconhecimento poderá não ser 
+bem-sucedido. 
+
+=== PAGINA PDF 14 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 14 
+Figura 9 – Aplicativo BUGIO FACE ID 
+ 
+Fonte: elaborado pelo autor (2025). 
+Se uma ou mais faces forem detectadas  ou o usuário desejar prosseguir , as imagens são recortadas e 
+encaminhadas para a etapa de reconhecimento individual. Nessa fase, o sistema tenta identificar o bugio utilizando o 
+modelo de reconhecimento previamente treinado. Caso o indivíduo não seja reconhecido por esse modelo, os vetores de 
+embedding faciais extraídos das imagens são comparados com os embeddings já armazenados na base de dados.  Se a 
+similaridade for alta o suficiente, o sistema informa que o bugio foi reconhecido, apresentando o nome do indivíduo e a 
+porcentagem de confiança da predição. Do contrário, o aplicativo alerta que se trata de um novo indivíduo e oferece ao 
+usuário a possibilidade de realizar o cadastro, preenchendo as informações de identificação. 
+É importante destacar que o modelo de detecção e o de reconhecimento são pré -treinados e apenas carregados 
+no momento da inferência. Dessa forma, ao cadastrar um novo indivíduo, não há necessidade de retreinar o modelo. Basta 
+extrair e salvar o embedding correspondente, o que permite ampliar a base de reconhecimento de forma dinâmica. 
+4 RESULTADOS  
+Esta seção apresenta os testes realizados e os resultados  dos modelos. A subseção 4.1 descreve a avaliação dos 
+modelos de detecção de objetos. A subseção 4.2 trata do desempenho dos modelos de reconhecimento facial otimizados 
+para dispositivos móveis. Por fim, a subseção 4.3 aborda a geração e análise dos embeddings faciais produzidos pela 
+MobileNetV3. 
+4.1 TESTES E RESULTADOS OBTIDOS COM OS MODELOS DE DETECÇÃO 
+Para avaliação do modelo, foram consideradas diferentes métricas para analisar o desempenho e eficiência. A 
+Precisão (P) das caixas delimitadoras é medida pel a proporção de detecções corretas em relação ao total de detecções 
+feitas. O Recall (R), por sua vez, avalia a capacidade do modelo em identificar todos os objetos presentes na imagem. A 
+métrica mAP50 é uma das mais utilizadas  na avaliação de modelos de detecção de faces , a qual representa a média da 
+precisão das detecções considerando uma sobreposição da caixa delimitadora de 50% entre a predição e a anotação real. 
+Já o mAP50-95 calcula a média da precisão em dez diferentes limiares de sobreposição, variando de 0.50 até 0.95 com 
+incremento de 0.05 , avaliando o quão bem o modelo consegue localizar os objetos com precisão crescente. Por fim, 
+também foram considerados o tamanho do modelo e o tempo total de treinamento, a fim de avaliar sua eficiência prática. 
+Além disso, é importante destacar que não foram realizados testes com a versão YOLOv12m (versão “medium”), devido 
+às limitações de recursos no ambiente do Google Colab, que inviabilizaram o treinamento de modelos maiores. Dessa 
+forma, optou-se por avaliar apenas as versões compatíveis com a infraestrutura disponível. 
+Tabela 1, é possível observar que o modelo com maior precisão foi o YOLOv8, alcançando valores máximos de 
+Precisão = 1 e Recall = 0.999, o que indica um alto desempenho na tarefa de detecção . No entanto, ao avaliar outras 
+métricas, percebe-se que o modelo apresentou um mAP50 -95 de 0.759, inferior ao YOLOv12n, cujo valor foi 0.772. 
+Além disso, o YOLOv12n, apresentou um arquivo de pesos treinados menor, com tamanho total de apenas 5.5 MB, 
+consideravelmente inferior aos 52 MB do YOLOv8m e 40.5 MB do YOLOv11m . Essa diferença está diretamente 
+
+
+=== PAGINA PDF 15 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 15 
+relacionada a quantidade de parâmetros: enquanto o YOLOv8m possui 25,8 milhões de parâmetros e o YOLOv11m 20,0 
+milhões, o YOLOv12n possui apenas 2,56 milhões, representando uma redução de aproximadamente 90%. Essa economia 
+de recursos computacionais resultou em um tempo de treinamento mais curto, que foi de 1.17h para o YOLOv12nm, em 
+comparação com 1.62h e 1.74h para os modelos YOLOv8m e YOLOv11m, respectivamente. Essa eficiência se deve ao 
+fato de o YOLOv12n ser uma versão “nano”, projetada especificamente para oferecer bom desempenho com baixo custo 
+computacional, tornando-o especialmente adequado para aplicações com recursos limitados. 
+Além disso, é importante destacar que não  foram realizados testes com a versão YOLOv12m (versão “medium”), 
+devido às limitações de recursos no ambiente do Google Colab, que inviabilizaram o treinamento de modelos maiores. 
+Dessa forma, optou-se por avaliar apenas as versões compatíveis com a infraestrutura disponível. 
+Tabela 1 - Comparativo das Métricas de Treinamento YOLO (30 épocas) 
+Modelo 
+(YOLO) Parâmetros Tamanho do Modelo Tempo de Treino Precisão (P) Recall (R) mAP50 mAP50-95 
+YOLOv8m 25.8 M 52 MB 1.62 h 1.000 0.999 0.995 0.759 
+YOLOv11m 20.0 M 40.5 MB 1.74 h 0.993 0.996 0.995 0.759 
+YOLOv12n 2.56 M 5.5 MB 1.17 h 0.999 0.996 0.995 0.772 
+Fonte: elaborado pelo autor (2025). 
+Durante as predições de teste, ilustradas na Figura 10, observa-se que as três arquiteturas foram capazes de 
+detectar corretamente a face do bugio-ruivo, com altos níveis de confiança de 0.81 para o YOLOv8, 0.78 para o YOLOv11 
+e 0.81 para YOLOv12. Esse resultado, demonstra que até mesmo modelos mais leves, como o YOLOv12, são capazes de 
+manter boa precisão. Além da acurácia, outro fator relevante é o tempo de inferência de cada modelo, sendo de 312,2ms 
+para o YOLOv8, 335.1ms para o YOLOv11 e 90,3ms para o YOLOv12. Esse resultado evidencia a vantagem do modelo 
+YOLOv12 em termos de velocidade , sendo até três vezes m ais rápido, o que o torna mais adequado para aplicações em 
+tempo real. Esse aspecto é importante neste trabalho, visto que o objetivo é viabilizar a detecção das faces em dispositivos 
+móveis, em que a agilidade impacta na usabilidade e na eficácia em campo. 
+Figura 10 – Resultado comparativo da detecção com diferentes modelos  
+ 
+Fonte: elaborado pelo autor (2025). 
+Para os testes do modelo, aplicou -se a previsão no conjunto de dados usado para o reconhecimento facial, 
+composto por 619 imagens , que  precisavam ser recortadas para o treinamento da MobileNetV3. Para isso, f oi 
+desenvolvido um script que faz a previsão d a detecção das bounding boxes e executa automaticamente o recorte das 
+regiões de interesse. Posteriormente, a avaliação dos cortes foi realizada manualmente, e constatou-se que, entre as 619 
+imagens, nenhuma apresentou cortes incorretos. 
+Além disso, considerando que um dos principais desafios do reconhecimento facial está na limitação da 
+quantidade de imagens por indivíduo, foi avaliada a alternativa de utilizar o modelo YOLO para detectar automaticamente 
+as faces em frames extraídos de vídeos. Com esse objetivo, realizaram-se testes do modelo sobre vídeos disponibilizados 
+pelo acervo do Projeto Bugio, com o objetivo de validar a eficácia . Foram utilizados sete vídeos longos, com duração 
+média de 30 minutos e nove vídeos curtos com cerca de 30 segundos. Dos vídeos longos, extraíram -se 60 frames por 
+vídeo a cada 30 segundos, já nos vídeos curtos, 1 frame por segundo. O modelo YOLOv12n apresentou melhor  
+desempenho nos vídeos curtos, com confiança média de 0.8 nas detecções, favorecido pelo bom enquadramento, 
+iluminação e proximidade dos animais. Nos vídeos longos, a confiança caiu para cerca de 0.6 e poucas faces foram 
+detectadas, devido à ausência dos bugios por longos períodos, à iluminação inadequada e à distância da câmera. 
+Na Figura 11 são apresentados exemplos em que a detecção falhou em identificar as faces presentes nas imagens. 
+Esses casos estão associados a  falta de foco na região facial, capturas sem aplicação de zoom fotográfico e  casos de 
+
+
+=== PAGINA PDF 16 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 16 
+condições inadequadas de iluminação. Esses elementos comprometem a extração de características necessárias para o 
+processo de detecção e reconhecimento. 
+Figura 11 - Casos em que a detecção não obteve sucesso 
+ 
+Fonte: elaborado pelo autor (2025). 
+4.2 TESTES E RESULTADOS OBTIDOS COM OS MODELOS DE RECONHECIMENTO 
+O processo de treinamento  das arquiteturas MobileNetV3, EfficientNetV2, InceptionV3 e NasNetMobile  foi 
+estruturado em três estágios. No primeiro, nenhuma camada foi congelada buscando ajustar todos os pesos . No segundo 
+estágio, foram descongeladas as 15 últimas camadas da base . Por fim, no terceiro estágio,  foram descongeladas as 30 
+últimas camadas. Cada modelo foi treinado por aproximadamente 90 épocas, sendo 30 por estágio. Alguns treinamentos, 
+no entanto, foram finalizados antecipadamente em função dos critérios estabelecidos no callback de early stopping.  
+Em relação ao comparativo realizado entre os modelos, foi considerado apenas o estágio final de treinamento, 
+ou seja, as 30 últimas épocas, por representar o momento em que os modelos estão mais refinados aos dados. Essa escolha 
+simplifica a análise, proporcionando um comparativo mais consistente. Nesse cenário, os resultados demonstraram que o 
+modelo MobileNetV3 apresentou a maior acurácia 0.9908 e perda de 0.1211, seguido pela EfficientNetV2, que atingiu a 
+acurácia de 0.9815, mas com menor perd a 0.1010, indicando melhor capacidade de generalização. O modelo Inception 
+obteve acurácia de 0.9607 e a perda de 0.1759. Já o modelo NasNetMobile obteve o pior resultado em termos de acurácia 
+0.7598 e perda de 0.8187, indicando dificuldade em se adequar aos dados. Esses resultados estão ilustrados na Figura 12, 
+em que compara a acurácia e perda em função das épocas. 
+Figura 12 - Comparação entre os modelos aplicados no treinamento 
+ 
+Fonte: elaborado pelo autor (2025). 
+Com relação ao desempenho dos modelos no conjunto de validação, os resultados demostraram que os modelos 
+MobileNetV3 e InceptionV3 apresentaram as melhores acurácias, ambos atingindo 0.7967. No entanto, o MobileNetV3 
+obteve uma perda menor de 0.9161 em comparação ao InceptionV3 com uma perda de 0.9762. Já, o  modelo 
+EfficientNetV2 apresentou uma acurácia semelhante, de 0.7805 e a menor perda entre os modelos 0.9022, destacando-se 
+pelo equilíbrio entre precisão e estabilidade. Da mesma forma, o modelo NasNetMobile obteve os menores valores entre 
+as arquiteturas avaliadas, com acurácia de apenas 0.5285 e perda significativamente mais alta, ultrapassando 1.3 durante 
+boa parte do processo de validação.  Esses resultados estão ilustrados na Figura 13, em que compara a acurácia e perda 
+em função das épocas. 
+
+
+=== PAGINA PDF 17 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 17 
+Apesar da aplicação de técnicas reguladoras como dropout, batch normalization  e early stopping , 
+adotadas justamente para diminuir overfitting e estabilizar o aprendizado , observou-se uma limitação no processo de 
+treinamento. Essa limitação pode ser atribuída, à distribuição desigual de imagens por indivíduo no conjunto de dados. A 
+presença de classes com menos amostras compromete a capacidade de generalização  do modelo , dificultando a 
+aprendizagem de representações consistentes para essas classes menos representadas, o que impacta diretamente nos altos 
+valores de perda observados durante o treinamento. 
+Figura 13 - Comparação entre os modelos aplicados na validação 
+ 
+Fonte: elaborado pelo autor (2025). 
+Além da acurácia e da perda, fo ram avaliados o tempo médio de inferência por imagem  e o tamanho final dos 
+arquivos de modelo “.keras” , conforme apresentado na  Tabela 2. O modelo MobileNetV3 teve o menor tempo 0.8237 
+segundos, seguido do InceptionV3 1.0436 segundos e do EfficientNetV2 1.2815 segundos. A NasNetMobile mostrou-se 
+a menos eficiente neste aspecto, com um tempo médio de 3.2215 segundos, caracterizando limitações quanto ao uso em 
+aplicações em tempo real. No que diz respeito ao tamanho do arquivo, o modelo InceptionV3, por sua arquitetura robusta, 
+produziu o maior arquivo  com 127.281 KB. Já os modelos MobileNetV3 e NasNetMobile apresentaram os menores 
+tamanhos, com 20.150 KB e 20.012 KB, respectivamente, enquanto o EfficientNetV2 gerou um arquivo de 33.517 KB.  
+Tabela 2 - Comparativo de tempo de inferência e tamanho do arquivo “.keras” 
+Modelo Tempo de inferência (segundos) Tamanho (KB) 
+EfficientNetV2 1.2815 33.517 
+InceptionV3 1.0436 127.281 
+MobileNetV3 0.8237 20.150 
+NasNetMobile 3.2215 20.012 
+Fonte: elaborado pelo autor (2025). 
+Com base nos resultados obtidos , observa-se que a  arquitetura NasNetMobile, apesar do menor tamanho de 
+arquivo, não se mostrou adequada  aos objetivos do protótipo. O modelo  apresentou baixo desempenho em relação a 
+acurácia e perda , além de um  tempo de inferência elevado, representando um obstáculo para uma aplicação funcional. 
+Por outro lado, a InceptionV3 apresentou bons resultados em relação a acurácia. Porém, esse desempenho está associado 
+a um maior custo computacional e de armazenamento, sendo um limitador para a aplicação em dispositivos móveis.  
+No comparativo final, as arquiteturas EfficientNetV2 e MobileNetV3 apresentaram resultados semelhantes e 
+consistentes, alinhados à de operar com eficiência em dispositivos com recursos computacionais limitados. Ainda que a 
+diferença entre elas tenha sido pequena, a MobileNetV3 destacou -se por oferecer a melhor relação entre desempenho, 
+eficiência e tamanho do modelo, atendendo de forma mais adequada aos objetivos definidos neste trabalho. 
+4.3 TESTES E RESULTADOS DA GERAÇÃO DOS EMBEDDINGS PELA MOBILENETV3 
+Para avaliar a capacidade do modelo MobileNetV3 em gerar embeddings faciais para os indivíduos, cinco classes 
+de bugios-ruivos foram removidas e reservadas exclusivamente para a fase de teste. Em seguida, o modelo foi retreinado 
+com a exclusão dessas classes, a fim de analisar sua capacidade de generalização. Após a extração dos embeddings dessas 
+amostras, os vetores foram projetados em um gráfico de dispersão, conforme apresentado na Figura 14. 
+Cada ponto no gráfico corresponde a uma imagem, representada utilizando o algoritmo t -SNE que reduz a alta 
+dimensionalidade dos embeddings gerados pela rede neural em um espaço bidimensional, preservando a relação de 
+proximidade do espaço original . Algumas classes com Ebel e Kalvim são bem distinguidas, apresentam agrupamentos 
+densos e bem definidos. Em contrapartida, a classe Barbie, embora afastada das demais, apresenta dispersão interna, por 
+se tratar do mesmo individuo é esperado maior agrupamento. Já as classes Zel e Gasper aparecem com maior proximidade 
+de outras classes, sugerindo sobreposição parcial  no espaço de características . Esses padrões sugerem que o modelo é 
+eficaz para algumas identidades, mas precisa de ajustes como aumento de amostras ou melhor refinamento da rede para 
+melhorar a separação de classes. 
+
+
+=== PAGINA PDF 18 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 18 
+Figura 14 - Distribuição 2D dos Embeddings com t-SNE 
+ 
+Fonte: elaborado pelo autor (2025). 
+Além disso, foi realizada uma análise das distâncias euclidianas entre os centroides das classes no espaço de 
+embeddings. A Figura 15 mostra a matriz de confusão resultante dessa comparação. Observa -se que algumas classes, 
+como Gasper e Kalvim (0.73) e Barbie e Kalvim (0.80), apresentam centroides bastante próximos, o que pode indicar 
+uma certa sobreposição no espaço de características aprendido. Por outro lado, pares como Ebel e Gasper (2.52) 
+demonstram alta separação, reforçando a capacidade do modelo em discriminar classes distintas. 
+Figura 15 - Matriz de distâncias euclidianas entre os centroides das classes no espaço de embeddings 
+ 
+Fonte: elaborado pelo autor (2025). 
+Posteriormente, foi feita uma análise do espaço de embeddings utilizando métricas de proximidade. O  valor de 
+Recall@5 alcançou valor 1.000, indicando que todos os embeddings testados possuíam pelo menos um vizinho entre os 
+cinco mais próximos pertencente à mesma classe. Já a métrica Precision@5 apresentou valor de 0.716, evidenciando que, 
+em média, mais de 70% dos cinco vizinhos mais próximos de cada embedding correspondiam ao mesmo indivíduo. Esses 
+resultados indicam que o modelo foi capaz de aprender representações com um grau de coerência relevante e apresentar 
+separabilidade consistente entre as diferentes classes, mesmo para os indivíduos não incluídos durante o treinamento. 
+5 CONCLUSÕES 
+O presente trabalho consistiu no desenvolvido de um protótipo para detecção automática de faces e 
+reconhecimento facial de bugios -ruivos aplicado em dispositivos móveis. Dentre os modelos testados p ara a tarefa de 
+detecção, o modelo YOLOv12n mostrou -se o mais adequado a  aplicação em dispositivos móveis , oferecendo um bom 
+equilíbrio entre precisão e desempenho , com tempo de inferência até três vezes menor e tamanho reduzido em 
+aproximadamente 90% em comparação aos demais. Em paralelo, entre os modelos testados para o reconhecimento facial, 
+o MobileNetV3 apresentou os melhores resultados, com acurácia de 0.9908 e perda de 0.1211. 
+
+
+=== PAGINA PDF 19 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 19 
+Diferentemente dos resultados obtidos por Maschio (2023), o modelo InceptionV3 não apresentou desempenho 
+satisfatório nos testes deste trabalho, devida a falta de capacidade de generalização. A discrepância nos resultados indica 
+sinais de overfitting, ocasionados pela contaminação entre os conjuntos de treinamento, validação e teste. Essa 
+contaminação ocorreu porque as técnicas de aumento de dados (data augmentation) foram aplicadas antes da divisão do 
+conjunto de dados . Isso  resultou na distribuição de variações da mesma imagem entre diferentes subconjuntos, 
+comprometendo a avaliação real do desempenho. 
+Uma das limitações citadas anteriormente por Maschio (2023), consiste na necessidade de retreinamento do 
+modelo sempre que um novo bugio-ruivo é adicionado à base de dados. Para contornar esse problema, foi utilizada a 
+estratégia de extração de embeddings, que possibilita realizar a classificação sem que seja necessário reconfigurar a rede 
+neural. No entanto, verificou-se que após atingir um determinado número de novos indivíduos, é recomendável retreinar 
+completamente o modelo para evitar perda de desempenho e manter a capacidade de generalização. 
+ As limitações do projeto estão associadas principalmente à base de dados , que é  relativamente pequena e 
+apresenta desbalanceamento entre as  classes. Esse fator compromete a capacidade  de generalização do modelo , 
+especialmente para classes com poucas amostras. Outra limitação é a necessidade de retreinamento periódico. Embora 
+essa condição tenha sido parcialmente resolvida com o uso de embeddings, ela ainda persiste em cenários  com número 
+elevado de classes  novas não presentes no treinamento do modelo origi nal, o que dificulta a distinção entre indivíduos 
+visualmente semelhantes no espaço de embeddings. 
+Em comparação com os trabalhos anteriores e correlatos, o trabalho proposto apresenta alguns diferenciais. Um 
+dos avanços é a inclusão da etapa de detecção automática das faces, que elimina a necessidade de recortar as imagens 
+manualmente e facilita o reconhecimento facial.  Além disso, a integração completa da detecção e reconhecimento facial 
+em um aplicativo móvel, permitindo a utilização prática em campo difere dos demais trabalhos. Outro avanço importante, 
+é a estratégia de geração dos vetores de característica para evitar o retreinamento do modelo completamente, foi uma 
+solução para o problema citado por Maschio (2023) em que sempre era necessário retreinar o modelo e disponibilizar 
+uma nova versão do aplicativo. Por fim, diferente dos correlatos o protótipo foi desenvolvido exclusivamente para a 
+espécie Aloutta guariba, contribuindo diretamente para ações de conservação voltadas a esse primata. 
+Como trabalhos futuros, sugere-se a implementação de um processo automatizado de atualização do modelo na 
+nuvem. Esse processo envolve o monitoramento da inclusão de novos dados na base de dados com o uso de uma API, ao 
+identificar que houve inclusão, a API aciona automaticamente o retreinamento e substitui o modelo atual, possibilitando 
+a incorporação de novos bugios , sem que houvesse intervenção manual. Essa abordagem proporcionaria  maior 
+flexibilidade e eficiência da aplicação. Além disso, a base de dados de detecção de faces pode ser continuamente ampliada 
+com novas imagens, obtidas durante o uso do aplicativo pelos usuários. Dessa forma, é possível garantir uma 
+representação mais robusta das variações de ângulos, poses e condições de iluminação dos indivíduos, além de aprimorar 
+a capacidade de lidar com a diversidade dos ambientes. Por fim, para melhorar a classificação dos embeddings, ao invés 
+de utilizar apenas uma comparação direta de similaridade, pode-se treinar um modelo de classificação, como por exemplo 
+o Support Vector Machine (SVM) . Essa estratégia permit iria ajustar melhor os dados ao  espaço de embeddings, 
+especialmente em cenários com múltiplas cla sses e variações sutis entre indivíduos, aumentando a precisão na 
+identificação e reduzindo os riscos de sobreposição entre classes semelhantes. 
+Diante do atual cenário de risco de extinção do bugio-ruivo, intensificado pela perda de habitat e fragmentação 
+florestal, torna-se relevante o desenvolvimento de estratégias eficazes para o seu monitoramento e conservação . Nesse 
+contexto, este trabalho demonstra a viabilidade do uso de recursos de visão computacional nos desafios relacionados à 
+conservação da espécie Alouatta guariba. O método proposto, não invasivo, contribui diretamente para o monitoramento 
+tanto em cativeiro quanto no habitat natural.  Os resultados obtidos apresentam novos avanços em relação ao 
+reconhecimento, detecção e atualização do recurso. Além disso, abrem espaço para novas melhorias das funcionalidades 
+atuais com o objetivo em aprimorar a eficiência e a precisão do modelo. 
+REFERÊNCIAS 
+AURICCHIO, Paulo. Primatas do Brasil. São Paulo: Terra Brasilis, 1995. 
+CROUSE, David et al. LemurFaceID: a face recognition system to facilitate individual identification of lêmures. BMC 
+Zoology, [s.l.], v. 2, n. 1, p. 1-14, fev. 2017. Disponível em: https://link.springer.com/article/10.1186/s40850-016-0011-
+9#citeas. Acesso em: 5 set. 2024. 
+DEB, Debayan et al.  Face Recognition: Primates in the wild. In: 2018 IEEE 9th International Conference on 
+Biometrics: Theory, Applications and Systems (BTAS), Redondo Beach, v. 9, n. 1, p. 1-10, abr. 2018. Disponível em: 
+https://ieeexplore.ieee.org/abstract/document/8698538. Acesso em: 6 set. 2024. 
+FURB. Projeto Bugio. [2001?]. Disponível em: https://www.furb.br/web/1704/noticias/arquivo/2021/03/projeto-bugio-
+comemora-30-anos-reconhecido-como-referencia/8600. Acesso em: 16 set. 2024. 
+GOLDBARG, Mateus Arnaud Santos de Sousa. Compressão Consciente de Modelos de Redes Neurais Profundas 
+Baseada em Poda Seguida de Quantização. 2024.  62 f. Dissertação (Mestrado em Engenharia Elétrica de Computação) 
+
+=== PAGINA PDF 20 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 20 
+– Curso de Pós-Gradução em Engenharia Elétrica e de Computação, Universidade Federal do Rio Grande do Norte, Natal. 
+Disponível em: https://repositorio.ufrn.br/server/api/core/bitstreams/7603cea4 -cdeb-4e4c-be9d-938028a93bda/content. 
+Acesso em: 22 set. 2024. 
+GREGORIN, Renato. Taxonomia e variação geográfica das espécies do gênero Alouatta Lacépède (Primates, Atelidade) 
+no Brasil. Revista brasileira de zoologia , [s.l.], v. 23, 15 mai. 2006. Disponível em: 
+https://www.scielo.br/j/rbzool/a/TMzTcKJS6rFYnqNjKrsFNRz/?lang=pt. Acesso em: 20 set. 2024. 
+GUO, Songtao et al. Automatic Identification of Individual Primates with Deep Learning Techniques. iScience, [s.1], v. 
+23, n. 8, p. 1-32, ago. 2020. Disponível em: https://www.cell.com/iscience/fulltext/S2589-0042(20)30602-7. Acesso em: 
+6 set. 2024. 
+HAO, Min et al . Lightweight Small-Tailed Han Sheep Facial Recognition Based on Improved SSD Algorithm . 
+Agriculture, v. 14, n. 3, p. 468, 13 mar. 2024. Disponível em: https://www.mdpi.com/2077 -0472/14/3/468. Acesso em: 
+29 mai. 2025. 
+HIRANO, Z. M. B. et al. Morphology of epidermal glands responsible for release of colored secretions in Alouatta guariba 
+clamitans. Laboratory Primates Newsletter , [s.l.], v. 42, n. 2, p. 4 -6, 2003. Disponível em: 
+https://www.brown.edu/Research/Primate/lpn42-2.html. Acesso em: 16 set. 2024. 
+HOWARD, Andrew. G. et al. MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications, 
+v. 1, 17 abr. 2017. Disponível em: https://arxiv.org/pdf/1704.04861. Acesso em: 2 jun. 2025.  
+HOWARD, Andrew. G. et al . Searching for MobileNetV3 , v. 5, 20 nov. 2019. Disponível em: 
+https://arxiv.org/pdf/1905.02244. Acesso em: 29 mai. 2025. 
+INSTITUTO Chico Mendes de Conservação da Biodiversidade – ICMBio. Avaliação do Risco de Extinção de Alouatta 
+guariba clamitans (Cabrera, 1940) no Brasil. 2012. Disponível em: https://www.gov.br/icmbio/pt-br/assuntos/centros-
+de-pesquisa/primatas-brasileiros/arquivos/fichas_primatas/ATELIDAE/ficha_alouatta_guariba_clamitans.pdf. Acesso 
+em: 17 set. 2024. 
+INSTITUTO Chico Mendes de Conservação da Biodiversidade – ICMBio. Programa de Manejo Populacional de 
+Alouatta guariba. 2023. Disponível em: https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/programa-de-manejo-
+populacional/pmp-do-bugio-
+ruivo/Programa_Manejo_Alouatta_guariba_com_anexo_publicacao_final_corrigido_especialistas.pdf. Acesso em: 12 
+jul. 2025. 
+KHANAM, Rahima; HUSSAIN, Muhammad. A Review of YOLOv12: Attention-Based Enhancements vs. Previous 
+Versions, Queensgate, v. 1, 16 abr. 2025. Disponível em: https://arxiv.org/html/2504.11995v1. Acesso em: 19 mai. 2025.  
+KHANAM, Rahima; HUSSAIN, Muhammad. What is YOLOv5: A deep look into the internal features of the popular 
+object detector, Queensgate, v. 1, 31 jul. 2024. Disponível em: https://arxiv.org/html/2407.20892v1. Acesso em: 19 mai. 
+2025.  
+KRAUSE Jr, Orlando. Reconhecimento Facial de Bugios-Ruivo Através de Redes Neurais Convolucionais. 2019. 18 
+f. Trabalho de Conclusão de Curso (Bacharelado em Ciência da Computação) - Centro de Ciências Exatas e Naturais, 
+Universidade Regional de Blumenau, Blumenau. Disponível em: https://bu.furb.br/docs/AC/2019/367330_1_1.pdf. 
+Acesso em: 22 jun. 2025. 
+LI, Xiaopeng et al. SheepFaceNet: A Speed-Accuracy Balanced Model for Sheep Face Recognition, Xianyang, v. 13, 
+n. 12, 9 jun. 2023. Disponível em: https://www.mdpi.com/2076-2615/13/12/1930. Acesso em: 5 set. 2024. 
+MARIOTTO, Lucas F. et al. Growth and allometric curves of southern brown howler monkey (Alouatta guariba): 
+Insights on its ontogeny and conservation . Am J Primatol, v. 86, n. 10, out 2024. Disponível em: 
+https://pubmed.ncbi.nlm.nih.gov/39104042/. Acesso em: 16 jul. 2025.  
+MASCHIO, Minéia. Reconhecimento facial de bugios -ruivos por meio de modelos de aprendizado de máquina . 
+2023. 21 f. Trabalho de Conclusão de Curso (Bacharelado em Ciência da Computação) – Departamento de Sistemas e 
+Computação, Universidade Regional de Blumenau, Blumenau. 
+PAULET et al. Deep learning for automatic facial detection and recognition in Japanese macaques: illuminating social 
+networks. Primates, [s.l.], v. 65, p. 265 –279, 17 mai. 2024. Disponível em: 
+https://link.springer.com/article/10.1007/s10329-024-01137-5. Acesso em: 7 set. 2024. 
+SANTOS, Vagner Vieira dos. Sistema de reconhecimento facial com base em técnicas de aprendizado de máquina. 
+2022. [12] f. Trabalho de Curso (Bacharelado em Engenharia da Computação) – Faculdade de Engenharia da 
+Computação, Campus Universitário de Tucuruí, Universidade Federal do Pará, Tucuruí, 2022. Disponível em: 
+https://bdm.ufpa.br:8443/jspui/handle/prefix/3983. Acesso em: 1 jun. 2025. 
+SARTORE, Joel. Bugios. [2022]. Disponível em: https://www.nationalgeographicbrasil.com/animais/bugios. Acesso em: 
+29 set. 2024. 
+
+=== PAGINA PDF 21 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 21 
+SCHROFF, F et al.  FaceNet: A Unified Embedding for Face Recognition and Clustering.  Disponível em: 
+https://doi.org/10.1109/CVPR.2015.7298682. Acesso em: 2 jun. 2025. 
+SILVEIRA, Filipe F. Fauna Digital do Rio Grande do Sul, 2018. Bird and Mammal Evolution, Systematics and Ecology 
+Lab – UFRGS. Disponível em:  https://www.ufrgs.br/faunadigitalrs/mamiferos/ordem -primates/familia-atelidae/bugio-
+ruivo-alouatta-guariba-clamitans. Acesso em: 22 set. 2024. 
+TAN, Mingxing; LE, Quoc V. EfficientNetV2: smaller models and faster training. arXiv, v. 3, 23 jun. 2021. Disponível 
+em: https://arxiv.org/abs/2104.00298. Acesso em: 20 mai. 2025. 
+TERVEN, Juan et al.  A comprehensive review of YOLO architectures in computer vision: from YOLOv1 to 
+YOLOv8 and YOLO-NAS, Queretaro, v. 5, n. 4, p. 1680-1716, 20 nov. 2023. Machine learning & knowledge extraction. 
+Disponível em: https://www.mdpi.com/2504-4990/5/4/83. Acesso em: 19 mai. 2025. 
+TIAN, Yunjie et al . YOLOv12: attention -centric real -time object detector s, v. 1, 18 fev. 2025. Disponível em: 
+https://arxiv.org/pdf/2502.12524. Acesso em: 2 jun. c. 
+VILELA Jr, Guanis B. et al. Métricas utilizadas para avaliar a eficiência de classificadores em algoritmos 
+inteligentes. Revista de Inteligência Artificial , v. 14, n. 2, 2022.   Disponível em: 
+https://www.researchgate.net/publication/359541310_METRICAS_UTILIZADAS_PARA_AVALIAR_A_EFICIENCI
+A_DE_CLASSIFICADORES_EM_ALGORITMOS_INTELIGENTES. Acesso em: 21 jun. 2025. 
+WU, Xiongwei et al.  Recent advances in deep learning for object detection , Singapore, v. 1, 10 ago. 2019. 
+Neurocomputing. Disponível em: https://arxiv.org/abs/1908.03673. Acesso em: 4 jun. 2025.  
+ZHAO, Zhong-Qiu et al. Object Detection with Deep Learning: A Review, Hefei, v. 2, 16 abr. 2019. IEEE Transactions 
+on Neural Networks and Learning Systems. Disponível em: https://arxiv.org/pdf/1807.05511. Acesso em: 19 mai. 2025.  
+ZOPH, Barret et al.  Learning Transferable Architectures for Scalable Image Recognition, v. 4, 11 abr. 2018. 
+Disponível em: https://arxiv.org/pdf/1707.07012. Acesso em: 8 jun. 2025. 
+  
+
+=== PAGINA PDF 22 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 22 
+APÊNDICE A – CÓDIGO DO DATA AUGMENTATION APLICADO NO TREINAMENTO 
+O Quadro 11 apresenta o código fonte da técnica de data augmentation utilizada. Para isso, foi utilizada a classe 
+ImageDataGenerator (Linha 1), configurada com a função de pré-processamento da MobileNetV3 para normalizar os 
+dados de entrada conforme a arquitetura (Linha 2). As transformações aplicadas pelo método, incluíram rotações 
+aleatórias de até 30 graus (Linha 3), deslocamentos h orizontais e verticais de até 20% do tamanho da imagem (Linhas 4 
+e 5), zoom aleatório de até 20% (Linha 6), cisalhamento de até 10 graus (Linha 7), variação de brilho entre 70% e 130% 
+(Linha 8) e espelhamento horizontal aleatório (Linha 9 ). Por fim, o preenchimento dos espaços vazios gerados pelas 
+transformações foi feito com o modo 'nearest' (Linha 10), garantindo a integridade da imagem. 
+Quadro 11 – Código fonte da técnica de data augmentation utilizada 
+1 train_datagen = ImageDataGenerator( 
+2     preprocessing_function=tf.keras.applications.mobilenet_v3.preprocess_input, 
+3     rotation_range=30, 
+4     width_shift_range=0.2, 
+5     height_shift_range=0.2, 
+6     zoom_range=0.2, 
+7     shear_range=10, 
+8     brightness_range=(0.7, 1.3), 
+9     horizontal_flip=True, 
+10     fill_mode='nearest' 
+11 ) 
+Fonte: elaborado pelo autor (2025). 
+  
+
+=== PAGINA PDF 23 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 23 
+APÊNDICE B – CÓDIGO DO TREINAMENTO DO MODELO PARA RECONHECIMENTO FACIAL 
+O Quadro 12 apresenta o c ódigo fonte aplicado aos modelos testados, contendo os parâmetros, técnicas e a 
+sequência de treinamento. 
+Quadro 12 - Código fonte do treinamento do modelo 
+1 model.compile(optimizer=tf.keras.optimizers.Adam(1e-3),  
+2 loss='sparse_categorical_crossentropy', metrics=['accuracy']) 
+3  
+4 callbacks = [ 
+5     tf.keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True), 
+6     tf.keras.callbacks.ReduceLROnPlateau(patience=4, factor=0.5) 
+7 ] 
+8  
+9 history = model.fit(train_gen, validation_data=val_gen, epochs=EPOCHS,  
+10 callbacks=callbacks) 
+11  
+12 base_model.trainable = True 
+13 for layer in base_model.layers[:-15]: 
+14     layer.trainable = False 
+15      
+16 for layer in base_model.layers: 
+17     if isinstance(layer, tf.keras.layers.Conv2D): 
+18         layer.kernel_regularizer = tf.keras.regularizers.l2(1e-4) 
+19  
+20 model.compile(optimizer=tf.keras.optimizers.Adam(1e-4),  
+21 loss='sparse_categorical_crossentropy', metrics=['accuracy']) 
+22  
+23 history = model.fit(train_gen, validation_data=val_gen, epochs=EPOCHS,  
+24 callbacks=callbacks) 
+25  
+26 base_model.trainable = True 
+27 for layer in base_model.layers[:-30]: 
+28     layer.trainable = False 
+29      
+30 for layer in base_model.layers: 
+31     if isinstance(layer, tf.keras.layers.Conv2D): 
+32         layer.kernel_regularizer = tf.keras.regularizers.l2(1e-4) 
+33  
+34 model.compile( 
+35     optimizer=tf.keras.optimizers.Adam(1e-4), 
+36     loss='sparse_categorical_crossentropy', 
+37     metrics=['accuracy'] 
+38 ) 
+39  
+40 history = model.fit( 
+41     train_gen, 
+42     validation_data=val_gen, 
+43     epochs=EPOCHS, 
+44     callbacks=callbacks 
+45 ) 
+46  
+47 model.save("modelo_mobilenetv3_finetuned.keras") 
+Fonte: elaborado pelo autor (2025). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGINA PDF 24 ===
+Trabalho de Conclusão de Curso - Ano/Semestre: 2025/1 24 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

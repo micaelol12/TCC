@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1238.4pt" height="626.4pt" viewBox="0 0 1238.4 626.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-05T16:58:33.646230</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 626.4 
+L 1238.4 626.4 
+L 1238.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 53.712 526.788 
+L 591.048 526.788 
+Q 605.736 526.788 605.736 519.444 
+L 605.736 119.196 
+Q 605.736 111.852 591.048 111.852 
+L 53.712 111.852 
+Q 39.024 111.852 39.024 119.196 
+L 39.024 519.444 
+Q 39.024 526.788 53.712 526.788 
+z
+" clip-path="url(#p3520aba80f)" style="fill: #f7f9fb; stroke: #cbd4db; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 745.272 526.788 
+L 1184.688 526.788 
+Q 1199.376 526.788 1199.376 519.444 
+L 1199.376 119.196 
+Q 1199.376 111.852 1184.688 111.852 
+L 745.272 111.852 
+Q 730.584 111.852 730.584 119.196 
+L 730.584 519.444 
+Q 730.584 526.788 745.272 526.788 
+z
+" clip-path="url(#p3520aba80f)" style="fill: #f7f9fb; stroke: #cbd4db; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 611.405479 313.2 
+Q 666.321048 313.2 719.224156 313.2 
+" clip-path="url(#p3520aba80f)" style="fill: none; stroke: #185b73; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 711.224156 309.2 
+L 719.224156 313.2 
+L 711.224156 317.2 
+z
+" clip-path="url(#p3520aba80f)" style="fill: #185b73; stroke: #185b73; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b3a" x="50.04" y="54.465687" transform="rotate(-0 50.04 54.465687)">Exemplo de requisição e resposta do JEV</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526371" x="50.04" y="79.723375" transform="rotate(-0 50.04 79.723375)">Classificação da posição expressa em um trecho por meio de uma pergunta Choice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #185b73" x="70.848" y="150.910406" transform="rotate(-0 70.848 150.910406)">REQUISIÇÃO</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526371" x="70.848" y="168.177539" transform="rotate(-0 70.848 168.177539)">Corpo JSON · POST /v1/systemone</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 198.252281)">{</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 212.618812)">  "model": "jev-1.13.0",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 227.224969)">  "state": "Defendemos a tributação progressiva.",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 241.739156)">  "questions": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 256.330125)">    "posicao": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 270.910125)">      "type": "choice",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 285.582094)">      "instructions": "Qual a posição sobre essa tributação?",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 300.312281)">      "criteria": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 314.650125)">        "apoia": "Defende a medida.",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 329.230125)">        "rejeita": "Rejeita a medida.",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 343.751906)">        "sem_posicao": "Não expressa posição."</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 358.632281)">      }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 373.212281)">    }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 387.792281)">  }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(70.848 402.372281)">}</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #185b73" x="762.408" y="148.340484" transform="rotate(-0 762.408 148.340484)">RESPOSTA</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526371" x="762.408" y="168.598359" transform="rotate(-0 762.408 168.598359)">Campos selecionados · valores fictícios</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 198.252281)">{</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 212.618812)">  "model": "jev-1.13.0",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 227.412281)">  "answers": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 241.750125)">    "posicao": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 256.330125)">      "type": "choice",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 270.910125)">      "choice": "apoia",</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 285.856313)">      "confidence": 0.85,</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 300.098813)">      "probabilities": {</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 314.650125)">        "apoia": 0.9,</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 329.230125)">        "rejeita": 0.06,</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 343.659938)">        "sem_posicao": 0.04</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 358.632281)">      }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 373.212281)">    }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 387.792281)">  }</text>
+    <text style="font-size: 10.8px; font-family: 'DejaVu Sans Mono'; fill: #172b3a" transform="translate(762.408 402.372281)">}</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #185b73" x="665.712" y="284.660484" transform="rotate(-0 665.712 284.660484)">JEV</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #526371" x="665.712" y="349.543203" transform="rotate(-0 665.712 349.543203)">avaliação</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b3a" x="50.04" y="566.798281" transform="rotate(-0 50.04 566.798281)">Fonte: elaboração própria, com base na documentação da TypeSafe (Choice).</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526371" x="50.04" y="587.818359" transform="rotate(-0 50.04 587.818359)">Exemplo didático: a resposta foi construída para ilustrar a interface; não representa uma chamada executada à API.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3520aba80f">
+   <rect x="7.2" y="7.2" width="1224" height="612"/>
+  </clipPath>
+ </defs>
+</svg>

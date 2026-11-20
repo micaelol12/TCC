@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3300" height="4350" viewBox="0 0 1100 1450">
+<rect width="100%" height="100%" fill="white"/>
+<text x="550" y="33.58" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#383838">Caminho da classificação — textos_pequenos_008</text>
+<text x="550" y="61.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#666666">Execução 20261112T010422966692Z</text>
+<circle cx="520" cy="89" r="7" fill="#383838" stroke="none"/>
+<text x="482" y="94.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#383838">Início</text>
+<polyline points="520,96 520,120" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,120 517.663489946148,114.47363403598268 522.336510053852,114.47363403598268" fill="#777777" stroke="none"/>
+<rect x="390" y="120" width="260" height="60" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="520.0" y="156.24" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Recebe o texto de entrada</text>
+<polygon points="20,110 331,110 340,119 340,265 20,265" fill="#fff4a8" stroke="none"/>
+<polygon points="331,110 331,119 340,119" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="158.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">TEXTO COMPLETO</text>
+<text x="180.0" y="175.88" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">“Diante da pressão norte-americana, Lula</text>
+<text x="180.0" y="192.96" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">afirmou que a atuação estrangeira no Brasil deve</text>
+<text x="180.0" y="210.04000000000002" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">respeitar a Constituição e as leis brasileiras,</text>
+<text x="180.0" y="227.12" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">recusando subordinação.”</text>
+<polyline points="340,150 390,150" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polyline points="520,180 520,230" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,230 517.663489946148,224.47363403598268 522.336510053852,224.47363403598268" fill="#777777" stroke="none"/>
+<rect x="390" y="230" width="260" height="60" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="520.0" y="256.48" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Segmenta o texto</text>
+<text x="520.0" y="276.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Resultado: um único trecho</text>
+<polygon points="20,280 331,280 340,289 340,335 20,335" fill="#fff4a8" stroke="none"/>
+<polygon points="331,280 331,289 340,289" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="312.96" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">1 trecho · 160 caracteres · 46 tokens</text>
+<polyline points="340,307 365,307 365,260 390,260" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<rect x="10" y="350" width="1080" height="705" rx="6" fill="white" stroke="#d4d4d4" stroke-width="1.3"/>
+<text x="920" y="371.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#383838">Classificação por eixo no trecho</text>
+<polyline points="520,290 520,390" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,390 517.663489946148,384.4736340359827 522.336510053852,384.4736340359827" fill="#777777" stroke="none"/>
+<rect x="390" y="390" width="260" height="85" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="520.0" y="420.05" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#383838">Avalia os quatro eixos</text>
+<text x="520.0" y="438.35" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#383838">JEV: jev-1.13.0</text>
+<text x="520.0" y="456.65000000000003" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#383838">Regra: polo_primeiro</text>
+<polygon points="20,390 331,390 340,399 340,580 20,580" fill="#fff4a8" stroke="none"/>
+<polygon points="331,390 331,399 340,399" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="439.22" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">ECONÔMICO · Igualdade ↔ Mercado</text>
+<text x="180.0" y="456.3" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">JEV: irrelevante; sem evidência.</text>
+<text x="180.0" y="473.38" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Margem de relevância: 1,00.</text>
+<text x="180.0" y="490.46000000000004" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838"></text>
+<text x="180.0" y="507.54" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">SOCIAL · Progresso ↔ Tradição</text>
+<text x="180.0" y="524.62" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">JEV: irrelevante; sem evidência.</text>
+<text x="180.0" y="541.7" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Margem de relevância: 1,00.</text>
+<polyline points="340,432 390,432" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polygon points="740,390 1051,390 1060,399 1060,605 740,605" fill="#fff4a8" stroke="none"/>
+<polygon points="1051,390 1051,399 1060,399" fill="#eee4a0" stroke="none"/>
+<text x="900.0" y="434.64" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">DIPLOMÁTICO · Globo ↔ Nação</text>
+<text x="900.0" y="451.71999999999997" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">JEV: relevante; Nação moderado.</text>
+<text x="900.0" y="468.79999999999995" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Nível −2; polo B: 0,99.</text>
+<text x="900.0" y="485.88" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Suporte da intensidade: 0,404.</text>
+<text x="900.0" y="502.96" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838"></text>
+<text x="900.0" y="520.04" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">ESTATAL · Liberdade ↔ Autoridade</text>
+<text x="900.0" y="537.12" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">JEV: relevante; sem posição; nível 0.</text>
+<text x="900.0" y="554.1999999999999" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Margem de relevância: 0,40.</text>
+<text x="900.0" y="571.28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Margem entre grupos: 0,17.</text>
+<polyline points="650,432 740,432" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polyline points="520,475 520,641" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,641 517.663489946148,635.4736340359827 522.336510053852,635.4736340359827" fill="#777777" stroke="none"/>
+<polygon points="520,641 529,650 520,659 511,650" fill="#383838" stroke="none"/>
+<text x="294" y="655.85" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#383838">Há gatilho de reavaliação?</text>
+<polyline points="529,650 740,650" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="740,650 734.4736340359827,652.336510053852 734.4736340359827,647.663489946148" fill="#777777" stroke="none"/>
+<text x="634" y="638.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#383838">Sim</text>
+<rect x="740" y="620" width="320" height="65" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="900.0" y="648.98" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Reavalia os eixos sinalizados</text>
+<text x="900.0" y="668.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">LLM: sabia-4</text>
+<polygon points="740,727 1051,727 1060,736 1060,932 740,932" fill="#fff4a8" stroke="none"/>
+<polygon points="1051,727 1051,736 1060,736" fill="#eee4a0" stroke="none"/>
+<text x="900.0" y="766.64" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">DIPLOMÁTICO</text>
+<text x="900.0" y="783.72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Intensidade ambígua:</text>
+<text x="900.0" y="800.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">0,404 &lt; limiar 0,50.</text>
+<text x="900.0" y="817.88" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">LLM confirma o nível −2.</text>
+<text x="900.0" y="834.96" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838"></text>
+<text x="900.0" y="852.04" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">ESTATAL</text>
+<text x="900.0" y="869.12" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Relevância ambígua: 0,40 &lt; 0,60.</text>
+<text x="900.0" y="886.1999999999999" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Direção ambígua: 0,17 &lt; 0,20.</text>
+<text x="900.0" y="903.28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">LLM considera irrelevante.</text>
+<polyline points="900,685 900,727" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polyline points="1060,652 1075,652 1075,987 650,987" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="650,987 655.5263659640173,984.663489946148 655.5263659640173,989.336510053852" fill="#777777" stroke="none"/>
+<polyline points="520,659 520,955" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,955 517.663489946148,949.4736340359827 522.336510053852,949.4736340359827" fill="#777777" stroke="none"/>
+<text x="549" y="692.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#383838">Não</text>
+<polygon points="20,730 331,730 340,739 340,845 20,845" fill="#fff4a8" stroke="none"/>
+<polygon points="331,730 331,739 340,739" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="767.34" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">ECONÔMICO E SOCIAL</text>
+<text x="180.0" y="784.4200000000001" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Nenhum gatilho registrado.</text>
+<text x="180.0" y="801.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Manter decisão do JEV.</text>
+<text x="180.0" y="818.58" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Sem reavaliação pelo LLM.</text>
+<polyline points="340,787 520,787" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<rect x="390" y="955" width="260" height="65" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="520.0" y="983.98" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Verifica a evidência</text>
+<text x="520.0" y="1003.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">do eixo diplomático</text>
+<polygon points="20,925 331,925 340,934 340,1040 20,1040" fill="#fff4a8" stroke="none"/>
+<polygon points="331,925 331,934 340,934" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="962.34" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Citação presente no texto.</text>
+<text x="180.0" y="979.4200000000001" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Parecer JEV: sustenta.</text>
+<text x="180.0" y="996.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Confiança semântica: 0,98.</text>
+<text x="180.0" y="1013.58" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">“...recusando subordinação”</text>
+<polyline points="340,987 390,987" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polyline points="520,1020 520,1130" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,1130 517.663489946148,1124.4736340359827 522.336510053852,1124.4736340359827" fill="#777777" stroke="none"/>
+<rect x="390" y="1130" width="260" height="75" rx="10" fill="#ffde3b" stroke="none" stroke-width="1.3"/>
+<text x="520.0" y="1163.98" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">Consolida a classificação</text>
+<text x="520.0" y="1183.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#383838">final dos quatro eixos</text>
+<polygon points="20,1100 331,1100 340,1109 340,1250 20,1250" fill="#fff4a8" stroke="none"/>
+<polygon points="331,1100 331,1109 340,1109" fill="#eee4a0" stroke="none"/>
+<text x="180.0" y="1137.76" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">ECONÔMICO, ESTATAL E SOCIAL</text>
+<text x="180.0" y="1154.84" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Sem evidência disponível.</text>
+<text x="180.0" y="1171.92" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Sem nível e sem pontuação.</text>
+<text x="180.0" y="1189.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838"></text>
+<text x="180.0" y="1206.08" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Origem: JEV para econômico e social; LLM para</text>
+<text x="180.0" y="1223.16" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">estatal.</text>
+<polyline points="340,1167 390,1167" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polygon points="740,1090 1051,1090 1060,1099 1060,1265 740,1265" fill="#fff4a8" stroke="none"/>
+<polygon points="1051,1090 1051,1099 1060,1099" fill="#eee4a0" stroke="none"/>
+<text x="900.0" y="1131.72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">DIPLOMÁTICO</text>
+<text x="900.0" y="1148.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Nação — moderado; nível −2.</text>
+<text x="900.0" y="1165.88" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Origem: LLM.</text>
+<text x="900.0" y="1182.96" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838"></text>
+<text x="900.0" y="1200.04" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Globo: 25% · Nação: 75%.</text>
+<text x="900.0" y="1217.1200000000001" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Rótulo exploratório por faixa:</text>
+<text x="900.0" y="1234.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">“Patriota”.</text>
+<polyline points="650,1167 740,1167" fill="none" stroke="#b9b9b9" stroke-width="1" stroke-dasharray="2 3"/>
+<polyline points="520,1205 520,1280" fill="none" stroke="#777777" stroke-width="1" />
+<polygon points="520,1280 517.663489946148,1274.4736340359827 522.336510053852,1274.4736340359827" fill="#777777" stroke="none"/>
+<circle cx="520" cy="1290" r="10" fill="white" stroke="#383838"/>
+<circle cx="520" cy="1290" r="7" fill="#383838" stroke="none"/>
+<text x="556" y="1295.07" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#383838">Fim</text>
+<polygon points="205,1330 886,1330 895,1339 895,1395 205,1395" fill="#fff4a8" stroke="none"/>
+<polygon points="886,1330 886,1339 895,1339" fill="#eee4a0" stroke="none"/>
+<text x="550.0" y="1359.42" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Base: um único trecho. Percentuais representam a escala ordinal; não são probabilidades.</text>
+<text x="550.0" y="1376.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#383838">Resultado final e rótulo por faixa são exploratórios.</text>
+<text x="550" y="1425.68" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666666">Fonte: resultado.json, decisoes.csv e evidencias.csv da execução indicada.</text>
+</svg>

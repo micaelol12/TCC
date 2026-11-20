@@ -1,0 +1,13 @@
+### Consultar os resultados sem novas chamadas
+
+A comparação usa os registros da última análise concluída: `eixos_jev` é o JEV
+inicial e `eixos` é a decisão final da cascata. Os detalhes trazem cada par
+pergunta × eixo. Esta célula pode ser reexecutada sem consultar os provedores.
+
+A próxima célula de diagnóstico calcula **acertos conjuntos** e **taxa de acerto conjunta**,
+além da matriz de confusão e do relatório de classificação da **relevância**.
+Escolha `eixos_jev` (JEV inicial) ou `eixos` (cascata final) em
+`ETAPA_METRICAS_BENCHMARK`. Cada etapa usa quatro pares por pergunta, sem somar
+as duas etapas. Relevância indeterminada aparece como `Abstenção`.
+A matriz avalia somente relevância; o acerto conjunto também exige direção correta
+nos pares esperados como relevantes. Todos os números usam os resultados existentes.

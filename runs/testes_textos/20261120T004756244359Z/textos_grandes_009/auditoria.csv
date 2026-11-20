@@ -1,0 +1,20 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,economic,search,found,2,S000,0.0,419.0,"Imposto sobre fortunas pode entrar no debate sobre reforma tributária
+
+Agência Câmara
+
+Parlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.",0.9,0.89,"{'S000': 0.9, 'S001': 0.0, 'S002': 0.0, 'S003': 0.0, 'S004': 0.01, 'S005': 0.0, 'S006': 0.0, 'S007': 0.02, 'S008': 0.0, 'S009': 0.04, 'S010': 0.01, 'S011': 0.0, 'NONE': 0.02}",jev-1.13.0
+0,economic,semantic,sustenta,2,,,,"Imposto sobre fortunas pode entrar no debate sobre reforma tributária
+
+Agência Câmara
+
+Parlamentares da base do governo defendem uma reforma tributária, a ser analisada na Câmara neste semestre, que trate não só da distribuição do bolo dos recursos arrecadados, mas também do aumento da tributação sobre a parcela mais rica da população, com o objetivo de equacionar o ajuste fiscal e reduzir a desigualdade tributária.",,0.94,"{'sustenta': 0.96, 'contradiz': 0.01, 'insuficiente': 0.03}",jev-1.13.0
+1,economic,search,found,2,S007,958.0,1153.0,"Bitributação
+
+Para o tributarista Ives Gandra Martins, o imposto é, sim, uma bitributação e acaba afetando a possibilidade de investimento de empresários, o que resultaria em redução da economia.",0.78,0.17,"{'S000': 0.01, 'S001': 0.0, 'S002': 0.08, 'S003': 0.04, 'S004': 0.08, 'S005': 0.06, 'S006': 0.17, 'S007': 0.23, 'S008': 0.15, 'S009': 0.01, 'S010': 0.01, 'S011': 0.03, 'S012': 0.01, 'NONE': 0.12}",jev-1.13.0
+1,economic,semantic,sustenta,2,,,,"Bitributação
+
+Para o tributarista Ives Gandra Martins, o imposto é, sim, uma bitributação e acaba afetando a possibilidade de investimento de empresários, o que resultaria em redução da economia.",,0.49,"{'sustenta': 0.66, 'contradiz': 0.2, 'insuficiente': 0.14}",jev-1.13.0
+2,economic,search,found,2,S005,766.0,973.0,"Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.",0.84,0.78,"{'S000': 0.0, 'S001': 0.0, 'S002': 0.0, 'S003': 0.01, 'S004': 0.15, 'S005': 0.8, 'S006': 0.0, 'S007': 0.02, 'S008': 0.0, 'NONE': 0.02}",jev-1.13.0
+2,economic,semantic,sustenta,2,,,,"Ele foi coautor de uma proposta (PLP 277/08) para regulamentar o texto constitucional para taxar todo patrimônio acima de R$ 2 milhões, chegando a 5% a alíquota em caso de patrimônios acima de R$ 50 milhões.",,0.94,"{'sustenta': 0.96, 'contradiz': 0.02, 'insuficiente': 0.02}",jev-1.13.0
+3,economic,search,not_selected,0,,,,,0.27,0.6,"{'S000': 0.21, 'S001': 0.11, 'S002': 0.0, 'S003': 0.0, 'NONE': 0.68}",jev-1.13.0

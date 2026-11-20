@@ -28,7 +28,7 @@ async def check(save_demo=False):
     # Do not run document processing, credentials or any real execution section.
     for cell in notebook['cells']:
         source = ''.join(cell['source'])
-        if source.startswith('## Construir uma avaliação'):
+        if cell['cell_type'] == 'markdown' and source.startswith(('## Construir uma avaliação', '## Benchmark 8values:')):
             break
         if cell['cell_type'] != 'code':
             continue

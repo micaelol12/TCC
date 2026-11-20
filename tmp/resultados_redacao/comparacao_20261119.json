@@ -1,0 +1,736 @@
+{
+  "benchmark": {
+    "antes": {
+      "trechos": 70,
+      "chamadas_llm": 49,
+      "chamadas_llm_efetivas": 49,
+      "chamadas_jev": 70,
+      "tentativas_jev": 70,
+      "chamadas_jev_evidencias": 0,
+      "eixos_encaminhados": 65,
+      "trechos_com_llm": 49,
+      "latencia_jev_s": {
+        "media": 0.29248937571412953,
+        "mediana": 0.28787799999918207,
+        "min": 0.2357440999985556,
+        "max": 0.4614798000002338
+      },
+      "latencia_llm_s": {
+        "media": 0.7014076714288032,
+        "mediana": 0.8567211499976111,
+        "min": 0.0,
+        "max": 1.5750103000027593
+      },
+      "latencia_total_s": {
+        "media": 0.9962251085714732,
+        "mediana": 1.1619505000016943,
+        "min": 0.2375008999988495,
+        "max": 2.038473900000099
+      },
+      "eixos_jev": {
+        "estados": {
+          "irrelevante": 194,
+          "sem_posicao": 15,
+          "direcional": 71
+        },
+        "evidencias_relevantes": {
+          "None": 86
+        },
+        "erros_llm": {}
+      },
+      "eixos": {
+        "estados": {
+          "irrelevante": 207,
+          "direcional": 66,
+          "sem_posicao": 6,
+          "abstencao": 1
+        },
+        "evidencias_relevantes": {
+          "True": 28,
+          "None": 44
+        },
+        "erros_llm": {}
+      }
+    },
+    "depois": {
+      "trechos": 70,
+      "chamadas_llm": 46,
+      "chamadas_llm_efetivas": 46,
+      "chamadas_jev": 70,
+      "tentativas_jev": 70,
+      "chamadas_jev_evidencias": 100,
+      "eixos_encaminhados": 58,
+      "trechos_com_llm": 46,
+      "latencia_jev_s": {
+        "media": 0.25357485285702364,
+        "mediana": 0.23422019999998156,
+        "min": 0.20647830000052636,
+        "max": 0.735238200000822
+      },
+      "latencia_llm_s": {
+        "media": 0.6607200585712885,
+        "mediana": 0.8823445499992886,
+        "min": 0.0,
+        "max": 1.5700035999998363
+      },
+      "latencia_total_s": {
+        "media": 1.1952751342856833,
+        "mediana": 1.3435025499993571,
+        "min": 0.24121509999895352,
+        "max": 2.095178000001397
+      },
+      "eixos_jev": {
+        "estados": {
+          "irrelevante": 195,
+          "sem_posicao": 15,
+          "direcional": 70
+        },
+        "evidencias_relevantes": {
+          "None": 85
+        },
+        "erros_llm": {}
+      },
+      "eixos": {
+        "estados": {
+          "irrelevante": 204,
+          "direcional": 66,
+          "sem_posicao": 8,
+          "abstencao": 2
+        },
+        "evidencias_relevantes": {
+          "True": 65,
+          "None": 9
+        },
+        "erros_llm": {}
+      }
+    },
+    "metricas_antes": {
+      "eixos_jev": {
+        "pares": 280,
+        "relevantes": 116,
+        "relevancia_acertos": 232,
+        "direcao_acertos": 63,
+        "conjunto_acertos": 218,
+        "matriz": {
+          "R_I": 39,
+          "I_I": 155,
+          "R_R": 77,
+          "I_R": 9
+        }
+      },
+      "eixos": {
+        "pares": 280,
+        "relevantes": 116,
+        "relevancia_acertos": 228,
+        "direcao_acertos": 60,
+        "conjunto_acertos": 220,
+        "matriz": {
+          "R_I": 47,
+          "I_I": 160,
+          "R_R": 68,
+          "I_R": 4,
+          "R_A": 1
+        }
+      }
+    },
+    "metricas_depois": {
+      "eixos_jev": {
+        "pares": 280,
+        "relevantes": 116,
+        "relevancia_acertos": 233,
+        "direcao_acertos": 63,
+        "conjunto_acertos": 219,
+        "matriz": {
+          "R_I": 39,
+          "I_I": 156,
+          "R_R": 77,
+          "I_R": 8
+        }
+      },
+      "eixos": {
+        "pares": 280,
+        "relevantes": 116,
+        "relevancia_acertos": 232,
+        "direcao_acertos": 60,
+        "conjunto_acertos": 221,
+        "matriz": {
+          "R_I": 43,
+          "I_I": 161,
+          "R_R": 71,
+          "I_R": 3,
+          "R_A": 2
+        }
+      }
+    },
+    "erros_depois": 0,
+    "mesmas_perguntas": true
+  },
+  "textos": {
+    "antes": {
+      "trechos": 58,
+      "chamadas_llm": 32,
+      "chamadas_llm_efetivas": 32,
+      "chamadas_jev": 58,
+      "tentativas_jev": 58,
+      "chamadas_jev_evidencias": 84,
+      "eixos_encaminhados": 44,
+      "trechos_com_llm": 32,
+      "latencia_jev_s": {
+        "media": 0.24832825344793522,
+        "mediana": 0.24068205000003218,
+        "min": 0.22309089999907883,
+        "max": 0.4219719999964582
+      },
+      "latencia_llm_s": {
+        "media": 0.5930533396546299,
+        "mediana": 0.8504549999961455,
+        "min": 0.0,
+        "max": 1.6622560000032536
+      },
+      "latencia_total_s": {
+        "media": 1.1508011603449444,
+        "mediana": 1.1409367499982181,
+        "min": 0.22460109999519773,
+        "max": 2.342732500001148
+      },
+      "eixos_jev": {
+        "estados": {
+          "direcional": 56,
+          "irrelevante": 161,
+          "sem_posicao": 15
+        },
+        "evidencias_relevantes": {
+          "None": 71
+        },
+        "erros_llm": {}
+      },
+      "eixos": {
+        "estados": {
+          "direcional": 56,
+          "irrelevante": 170,
+          "sem_posicao": 6
+        },
+        "evidencias_relevantes": {
+          "True": 57,
+          "None": 5
+        },
+        "erros_llm": {}
+      }
+    },
+    "depois": {
+      "trechos": 58,
+      "chamadas_llm": 32,
+      "chamadas_llm_efetivas": 32,
+      "chamadas_jev": 58,
+      "tentativas_jev": 58,
+      "chamadas_jev_evidencias": 83,
+      "eixos_encaminhados": 44,
+      "trechos_com_llm": 32,
+      "latencia_jev_s": {
+        "media": 0.24329363103446794,
+        "mediana": 0.23963860000094428,
+        "min": 0.20553970000037225,
+        "max": 0.44989039999927627
+      },
+      "latencia_llm_s": {
+        "media": 0.5735686982756745,
+        "mediana": 0.846399999998539,
+        "min": 0.0,
+        "max": 1.5097057000002678
+      },
+      "latencia_total_s": {
+        "media": 1.1201195241379724,
+        "mediana": 1.100162800000362,
+        "min": 0.2360035000001517,
+        "max": 2.116069300000163
+      },
+      "eixos_jev": {
+        "estados": {
+          "direcional": 56,
+          "irrelevante": 161,
+          "sem_posicao": 15
+        },
+        "evidencias_relevantes": {
+          "None": 71
+        },
+        "erros_llm": {}
+      },
+      "eixos": {
+        "estados": {
+          "direcional": 55,
+          "irrelevante": 170,
+          "sem_posicao": 6,
+          "abstencao": 1
+        },
+        "evidencias_relevantes": {
+          "True": 55,
+          "None": 6
+        },
+        "erros_llm": {}
+      }
+    },
+    "documentos_antes": 28,
+    "documentos_depois": 28,
+    "status_depois": {
+      "True": 28
+    },
+    "ids_iguais": true,
+    "originais_iguais": true,
+    "trechos_iguais": true
+  },
+  "mudancas_indices": [
+    {
+      "id": "textos_grandes_006",
+      "eixo": "state",
+      "antes": 62.5,
+      "depois": 68.75,
+      "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da sa"
+    },
+    {
+      "id": "textos_grandes_006",
+      "eixo": "society",
+      "antes": null,
+      "depois": 50.0,
+      "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da telessaúde em todo o território nacional, abrangendo todas as profissões da área da sa"
+    },
+    {
+      "id": "textos_grandes_010",
+      "eixo": "state",
+      "antes": 44.04761904761905,
+      "depois": 46.25,
+      "texto": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024\n\nAltera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.\n\nO TRIBUNAL SUPERIOR ELEITORAL, no uso das atribuições que lhe conferem o inciso IX do art. 23 do Código E"
+    },
+    {
+      "id": "textos_pequenos_006",
+      "eixo": "state",
+      "antes": 37.5,
+      "depois": null,
+      "texto": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+    },
+    {
+      "id": "textos_pequenos_006",
+      "eixo": "society",
+      "antes": 0.0,
+      "depois": 12.5,
+      "texto": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+    }
+  ],
+  "mudancas_decisoes": {
+    "benchmark": {
+      "eixos_jev": {
+        "alteradas": 5,
+        "detalhes": [
+          {
+            "indice": 11,
+            "eixo": "state",
+            "antes": [
+              true,
+              3
+            ],
+            "depois": [
+              false,
+              null
+            ],
+            "texto": "A intervenção governamental é uma ameaça à economia."
+          },
+          {
+            "indice": 12,
+            "eixo": "economic",
+            "antes": [
+              true,
+              -4
+            ],
+            "depois": [
+              true,
+              -1
+            ],
+            "texto": "Aqueles com maior capacidade de pagamento deveriam receber melhores cuidados de saúde."
+          },
+          {
+            "indice": 40,
+            "eixo": "state",
+            "antes": [
+              true,
+              -4
+            ],
+            "depois": [
+              true,
+              -3
+            ],
+            "texto": "Quanto mais forte a liderança, melhor."
+          },
+          {
+            "indice": 58,
+            "eixo": "diplomatic",
+            "antes": [
+              true,
+              -1
+            ],
+            "depois": [
+              true,
+              -2
+            ],
+            "texto": "Se aceitarmos imigrantes, é importante que eles se assimilem à nossa cultura."
+          },
+          {
+            "indice": 65,
+            "eixo": "society",
+            "antes": [
+              true,
+              1
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "A modificação genética é uma força para o bem, mesmo em humanos."
+          }
+        ],
+        "respostas_jev_brutas_distintas": 70
+      },
+      "eixos": {
+        "alteradas": 14,
+        "detalhes": [
+          {
+            "indice": 0,
+            "eixo": "state",
+            "antes": [
+              true,
+              -1
+            ],
+            "depois": [
+              true,
+              1
+            ],
+            "texto": "A opressão por corporações é uma preocupação maior do que a opressão por governos."
+          },
+          {
+            "indice": 7,
+            "eixo": "society",
+            "antes": [
+              true,
+              -2
+            ],
+            "depois": [
+              false,
+              null
+            ],
+            "texto": "Seria melhor se os programas sociais fossem abolidos em favor da caridade privada."
+          },
+          {
+            "indice": 18,
+            "eixo": "diplomatic",
+            "antes": [
+              true,
+              -1
+            ],
+            "depois": [
+              null,
+              null
+            ],
+            "texto": "É importante manter nossa soberania nacional."
+          },
+          {
+            "indice": 36,
+            "eixo": "diplomatic",
+            "antes": [
+              false,
+              null
+            ],
+            "depois": [
+              true,
+              -1
+            ],
+            "texto": "Independentemente de opiniões políticas, é importante ficar do lado de seu país."
+          },
+          {
+            "indice": 43,
+            "eixo": "society",
+            "antes": [
+              false,
+              null
+            ],
+            "depois": [
+              true,
+              0
+            ],
+            "texto": "Um mundo melhor virá da automação, ciência e tecnologia."
+          },
+          {
+            "indice": 45,
+            "eixo": "society",
+            "antes": [
+              true,
+              1
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "As tradições não têm valor por si só."
+          },
+          {
+            "indice": 46,
+            "eixo": "state",
+            "antes": [
+              false,
+              null
+            ],
+            "depois": [
+              true,
+              -2
+            ],
+            "texto": "A religião deveria desempenhar um papel no governo."
+          },
+          {
+            "indice": 49,
+            "eixo": "diplomatic",
+            "antes": [
+              true,
+              2
+            ],
+            "depois": [
+              true,
+              1
+            ],
+            "texto": "É importante que trabalhemos como um mundo unido para combater a mudança climática."
+          },
+          {
+            "indice": 50,
+            "eixo": "society",
+            "antes": [
+              true,
+              -2
+            ],
+            "depois": [
+              true,
+              -1
+            ],
+            "texto": "A sociedade era melhor há muitos anos do que agora."
+          },
+          {
+            "indice": 53,
+            "eixo": "society",
+            "antes": [
+              true,
+              2
+            ],
+            "depois": [
+              true,
+              3
+            ],
+            "texto": "A razão é mais importante do que manter nossa cultura."
+          },
+          {
+            "indice": 54,
+            "eixo": "society",
+            "antes": [
+              false,
+              null
+            ],
+            "depois": [
+              true,
+              0
+            ],
+            "texto": "O uso de drogas deveria ser legalizado ou descriminalizado."
+          },
+          {
+            "indice": 64,
+            "eixo": "society",
+            "antes": [
+              true,
+              -2
+            ],
+            "depois": [
+              true,
+              -1
+            ],
+            "texto": "Perseguir o progresso a qualquer custo é perigoso."
+          },
+          {
+            "indice": 65,
+            "eixo": "society",
+            "antes": [
+              true,
+              1
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "A modificação genética é uma força para o bem, mesmo em humanos."
+          },
+          {
+            "indice": 67,
+            "eixo": "diplomatic",
+            "antes": [
+              true,
+              2
+            ],
+            "depois": [
+              true,
+              1
+            ],
+            "texto": "Os governos deveriam se preocupar tanto com estrangeiros quanto com seus próprios cidadãos."
+          }
+        ],
+        "respostas_jev_brutas_distintas": 70
+      }
+    },
+    "textos": {
+      "eixos_jev": {
+        "alteradas": 1,
+        "detalhes": [
+          {
+            "indice": 53,
+            "eixo": "diplomatic",
+            "antes": [
+              true,
+              3
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "O programa propõe retirar o Brasil do BRICS e buscar ingresso na OCDE mediante reformas institucionais."
+          }
+        ],
+        "respostas_jev_brutas_distintas": 58
+      },
+      "eixos": {
+        "alteradas": 7,
+        "detalhes": [
+          {
+            "indice": 8,
+            "eixo": "state",
+            "antes": [
+              true,
+              0
+            ],
+            "depois": [
+              true,
+              1
+            ],
+            "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da teless"
+          },
+          {
+            "indice": 8,
+            "eixo": "society",
+            "antes": [
+              false,
+              null
+            ],
+            "depois": [
+              true,
+              0
+            ],
+            "texto": "Deputados aprovam projeto que regulamenta telessaúde\n\nA Câmara dos Deputados aprovou nesta quarta-feira (27) o projeto de lei que autoriza e conceitua a prática da teless"
+          },
+          {
+            "indice": 19,
+            "eixo": "state",
+            "antes": [
+              true,
+              1
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "RESOLUÇÃO Nº 23.732, DE 27 DE FEVEREIRO DE 2024\n\nAltera a Res.-TSE nº 23.610, de 18 de dezembro de 2019, dispondo sobre a propaganda eleitoral.\n\nO TRIBUNAL SUPERIOR ELEIT"
+          },
+          {
+            "indice": 26,
+            "eixo": "state",
+            "antes": [
+              true,
+              -2
+            ],
+            "depois": [
+              null,
+              null
+            ],
+            "texto": "§ 3º As informações relativas ao número do processo, ao teor das decisões do Tribunal Superior Eleitoral, à data de remoção, à descrição dos elementos essenciais e aos me"
+          },
+          {
+            "indice": 28,
+            "eixo": "state",
+            "antes": [
+              true,
+              1
+            ],
+            "depois": [
+              true,
+              2
+            ],
+            "texto": "§ 8º O canal de comunicação e o nome do encarregado de tratamento de dados pessoais informados nos termos do § 5º deste artigo serão divulgados pela Justiça Eleitoral jun"
+          },
+          {
+            "indice": 45,
+            "eixo": "state",
+            "antes": [
+              true,
+              -1
+            ],
+            "depois": [
+              false,
+              null
+            ],
+            "texto": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+          },
+          {
+            "indice": 45,
+            "eixo": "society",
+            "antes": [
+              true,
+              -4
+            ],
+            "depois": [
+              true,
+              -3
+            ],
+            "texto": "O PL 5167/09 pretende impedir que uniões de pessoas do mesmo sexo recebam o reconhecimento de casamento ou família."
+          }
+        ],
+        "respostas_jev_brutas_distintas": 58
+      }
+    }
+  },
+  "diferencas_config_benchmark": [
+    {
+      "campo": ".escala.id",
+      "antes": "ordinal_9_teste_prompt_rubricas_v1",
+      "depois": "ordinal_9_v1"
+    },
+    {
+      "campo": ".jev_evidence_search",
+      "antes": false,
+      "depois": true
+    },
+    {
+      "campo": ".semantic_evidence_check",
+      "antes": false,
+      "depois": true
+    }
+  ],
+  "diferencas_config_textos": [
+    {
+      "campo": ".escala.id",
+      "antes": "ordinal_9_teste_prompt_rubricas_v1",
+      "depois": "ordinal_9_v1"
+    }
+  ],
+  "diferencas_api_escala": [],
+  "contexto_textos_igual_api": true,
+  "contexto_benchmark_igual_api": true,
+  "segmentacao_api": 500,
+  "segmentacao_teste": {
+    "estrategia": "sentencas",
+    "tokens_alvo": 600,
+    "limite_tokens_entrada": null,
+    "overlap_tokens": 0,
+    "encoding_name": "cl100k_base"
+  },
+  "indices_documentos_antes": 33,
+  "indices_documentos_depois": 33
+}

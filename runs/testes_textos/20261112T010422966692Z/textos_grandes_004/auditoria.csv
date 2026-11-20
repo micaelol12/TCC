@@ -1,0 +1,2 @@
+﻿trecho,eixo,kind,status,level,quote,confidence,probabilities,model
+0,society,semantic,insuficiente,0,discutir a transição demográfica e o envelhecimento da população brasileira,0.79,"{'sustenta': 0.14, 'contradiz': 0.0, 'insuficiente': 0.86}",jev-1.13.0

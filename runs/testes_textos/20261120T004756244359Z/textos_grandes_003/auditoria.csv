@@ -1,0 +1,15 @@
+﻿trecho,eixo,kind,status,level,sentence_id,start,end,quote,existence_probability,confidence,probabilities,model
+0,state,search,found,-2,S000,0.0,264.0,"Proposta aumenta pena de feminicídio para até 40 anos
+
+O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",0.89,0.69,"{'S000': 0.71, 'S001': 0.01, 'S002': 0.0, 'S003': 0.0, 'S004': 0.01, 'S005': 0.03, 'S006': 0.02, 'S007': 0.0, 'S008': 0.01, 'S009': 0.03, 'S010': 0.02, 'S011': 0.0, 'NONE': 0.16}",jev-1.13.0
+0,state,semantic,sustenta,-2,,,,"Proposta aumenta pena de feminicídio para até 40 anos
+
+O Projeto de Lei 4266/23 transforma o feminicídio em um crime autônomo, agravando a pena dos atuais 12 a 30 anos para 20 a 40 anos de reclusão sem necessidade de qualificá-lo para aplicar penas mais rigorosas.",,0.92,"{'sustenta': 0.95, 'contradiz': 0.03, 'insuficiente': 0.02}",jev-1.13.0
+0,society,semantic,sustenta,2,,,,"transforma o feminicídio em um crime autônomo, agravando a pena",,0.38,"{'sustenta': 0.59, 'contradiz': 0.04, 'insuficiente': 0.37}",jev-1.13.0
+1,state,search,found,-2,S001,155.0,333.0,"Transferência
+
+A proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.",0.86,0.38,"{'S000': 0.07, 'S001': 0.43, 'S002': 0.01, 'S003': 0.13, 'S004': 0.02, 'S005': 0.06, 'S006': 0.07, 'S007': 0.01, 'S008': 0.0, 'S009': 0.01, 'S010': 0.01, 'NONE': 0.18}",jev-1.13.0
+1,state,semantic,sustenta,-2,,,,"Transferência
+
+A proposta determina a transferência de condenado ou preso provisório que ameace ou pratique violência contra a vítima ou familiares durante o cumprimento da pena.",,0.97,"{'sustenta': 0.98, 'contradiz': 0.01, 'insuficiente': 0.01}",jev-1.13.0
+1,society,semantic,sustenta,2,,,,"promover a justiça, proporcionando um ambiente seguro e igualitário",,0.82,"{'sustenta': 0.88, 'contradiz': 0.01, 'insuficiente': 0.11}",jev-1.13.0
