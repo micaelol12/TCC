@@ -1,0 +1,690 @@
+TCC2
+https://pypi.org/project/pymupdf4llm/
+https://www.idrlabs.com/8-values-political/test.php?srsltid=AfmBOor4vguOP9JaqVa0Qlwsr2PiOyicUJRqGjFM4BgnCsudssnCVzm1
+https://8values.cc/ideologies/
+https://www.instagram.com/reel/Dce2_LjxQ4l/?igsi=azRtYXVmbmhlM3c5
+https://github.com/micaelol12/PresiTinder
+Textos eixos
+ECONÔMICO
+IGUALDADE
+Aqueles com pontuações mais altas de Igualdade acreditam que a economia deve distribuir valor uniformemente entre a população. Eles tendem a apoiar códigos tributários progressivos, programas sociais e, em valores altos, socialismo.
+MERCADOS
+Aqueles com pontuações mais altas de Mercados acreditam que a economia deve se concentrar no crescimento rápido. Eles tendem a apoiar impostos mais baixos, privatização, desregulamentação e, em valores altos, capitalismo laissez-faire.
+DIPLOMÁTICO
+NAÇÃO
+Aqueles com pontuações mais altas de Nação são patriotas e nacionalistas. Eles frequentemente acreditam em uma política externa agressiva, valorizando o militar, força, soberania e, em valores altos, expansão territorial.
+GLOBO
+Aqueles com pontuações mais altas de Globo são cosmopolitas e globalistas. Eles frequentemente acreditam em uma política externa pacífica, enfatizando diplomacia, cooperação, integração e, em valores altos, um governo mundial.
+CIVIL
+LIBERDADE
+Aqueles com pontuações mais altas de Liberdade acreditam em fortes liberdades civis. Eles tendem a apoiar a democracia e se opor à intervenção do estado nas vidas pessoais. Note que isso se refere a liberdades civis, não liberdades econômicas.
+AUTORIDADE
+Aqueles com pontuações mais altas de Autoridade acreditam em poder estatal forte. Eles tendem a apoiar intervenção do estado nas vidas pessoais, vigilância governamental e, em valores altos, censura ou autocracia.
+SOCIAL
+TRADIÇÃO
+Aqueles com pontuações mais altas de Tradição acreditam em valores tradicionais e adesão estrita a um código moral. Embora nem sempre, eles geralmente são religiosos e apoiam o status quo ou o status quo ante.
+PROGRESSO
+Aqueles com pontuações mais altas de Progresso acreditam em mudança social e racionalidade. Embora nem sempre, eles geralmente são seculares ou ateus e apoiam ação ambiental e pesquisa científica ou tecnológica.
+BOBBIO
+Dicionario_de_Politica_Norberto_Bobbio.pdf
+ECONÔMICO
+Capitalismo p.151 - p.158
+Podemos elencar algumas características que distinguem o Capitalismo dos outros modos históricos de produção. Eles são: 
+propriedade privada dos meios de produção, para cuja ativação é necessária a
+presença do trabalho assalariado formalmente livre;
+sistema de mercado, baseado na iniciativa e na empresa privada, não necessariamente pessoal;
+processos de racionalização dos meios e métodos diretos e indiretos para a valorização do capital e a exploração das oportunidades de mercado para efeito de lucro.
+Para Marx, o Capitalismo se baseia na relação entre trabalho assalariado e capital, mais exatamente na valorização do capital através da mais-valia extorquida ao trabalhador.
+Se quisermos falar de"essência do Capitalismo", ela consiste nos processos de racionalização e otimização das oportunidades do mercado — inclusive o mercado do trabalho livre.
+"A Revolução Industrial representa um momento de transição de uma fase primitiva e ainda imatura do Capitalismo — na qual a pequena produção pré-capitalista estava permeada da influência do capital, subordinada a este, espoliada de sua independência como fenômeno econômico, mas não ainda totalmente transformada — para a fase em que o Capitalismo, com base na transformação técnica, atingiu a realização de seu específico processo produtivo, fundado na fábrica como unidade coletiva de produção de massa.
+Socialismo p. 1207 -  1211
+Em geral, o Socialismo tem sido historicamente definido como programa político das classes trabalhadoras que se foram formando durante a Revolução Industrial.
+A base comum das múltiplas variantes do Socialismo pode ser identificada na transformação substancial do ordenamento jurídico e econômico fundado na propriedade privada dos meios de produção e troca, numa organização social na qual: 
+o direito de propriedade seja fortemente limitado;
+os principais recursos econômicos estejam sob o controle das classes trabalhadoras; 
+A sua gestão tem por objetivo promover a igualdade social (e não somente jurídica ou política), através da intervenção dos poderes públicos.
+Comunismo p.214 - 220
+Propriedade
+Liberalismo p.696 - 715
+Teste GEMINI
+ECONÔMICO
+IGUALDADE
+ Aqueles com pontuações mais altas de Igualdade acreditam que a economia deve distribuir valor uniformemente entre a população. Eles tendem a apoiar códigos tributários progressivos, programas sociais e, em valores altos, socialismo e comunismo. Para eles, é fundamental superar a estrutura capitalista e a propriedade privada, pois acreditam que esse sistema aliena o ser humano e transforma o seu trabalho em uma mera mercadoria. O objetivo final é acabar com a exploração e garantir que a riqueza seja reapropriada por todos de forma justa, eliminando a divisão de classes e o antagonismo gerado pela competição.
+Fonte das informações:
+ Os acréscimos foram baseados no verbete "Alienação", que explica a crítica teórica à propriedade privada, o estranhamento do trabalhador em relação ao que produz e a proposta de transição para um modo de produção comunista ou socialista que supere essas desigualdades.
+MERCADOS
+ Aqueles com pontuações mais altas de Mercados acreditam que a economia deve se concentrar no crescimento rápido. Eles tendem a apoiar impostos mais baixos, privatização, desregulamentação e, em valores altos, capitalismo laissez-faire. Essa visão defende que o mercado deve funcionar com a máxima eficiência produtiva e sem interferências externas, baseando-se no cálculo e na livre concorrência. Em seus níveis mais extremos, essa perspectiva aceita que as relações sociais sejam guiadas pela lógica do lucro e do desempenho empresarial, tratando a economia como um sistema autônomo focado exclusivamente na produtividade.
+Fonte das informações:
+ As adições derivam do verbete "Alienação" (especialmente nas referências a sociólogos contemporâneos como Lukács e Marcuse), que analisa como o capitalismo maduro enfatiza a racionalidade baseada no cálculo, a eficiência como fim em si mesma e a lógica produtiva do mercado.
+DIPLOMÁTICO
+NAÇÃO
+ Aqueles com pontuações mais altas de Nação são patriotas e nacionalistas. Eles frequentemente acreditam em uma política externa agressiva, valorizando o militar, força, soberania e, em valores altos, expansão territorial. Eles veem o aumento do poderio militar como a principal forma de garantir a segurança do país e de estender a sua esfera de influência sobre outras nações. Em sua forma mais extrema, essa visão justifica a agressão internacional, seja através de ataques armados diretos, penetração econômica ou apoio à subversão nos territórios de outros Estados.
+Fonte das informações:
+ As informações foram retiradas dos verbetes "Agressão", que detalha os atos de intervenção violenta ou indireta (como espionagem e penetração econômica) de um Estado contra outro, e "Aliança", que aborda como Estados buscam aumentar sua força militar para expandir suas esferas de influência.
+GLOBO
+ Aqueles com pontuações mais altas de Globo são cosmopolitas e globalistas. Eles frequentemente acreditam em uma política externa pacífica, enfatizando diplomacia, cooperação, integração e, em valores altos, um governo mundial. Eles buscam garantir a estabilidade do sistema internacional através da formação de alianças e do fortalecimento de organizações mundiais (como a ONU), baseando-se em interesses complementares e na segurança coletiva. Para esse grupo, o respeito aos tratados e a proteção dos direitos humanos devem substituir as políticas imperialistas e as ameaças de força.
+Fonte das informações:
+ O texto foi enriquecido com os verbetes "Aliança", que descreve a cooperação prolongada e as organizações internacionais voltadas para a segurança coletiva e estabilidade, e "Asilo, Direito de", que mostra o esforço global para proteger direitos fundamentais além das jurisdições nacionais.
+CIVIL
+LIBERDADE
+ Aqueles com pontuações mais altas de Liberdade acreditam em fortes liberdades civis. Eles tendem a apoiar a democracia e se opor à intervenção do estado nas vidas pessoais. Note que isso se refere a liberdades civis, não liberdades econômicas. Em seus valores mais altos, essa visão se aproxima do anarquismo, que deseja a eliminação total de qualquer forma de governo, leis coercitivas ou hierarquias estatais. Eles defendem que o Estado é um órgão repressivo e que a verdadeira liberdade exige que os indivíduos ajam de forma livre, através da cooperação voluntária e sem a imposição de autoridades.
+Fonte das informações:
+ Os conceitos foram extraídos do verbete "Anarquismo", que explica a repulsa histórica à máquina burocrática estatal, a rejeição da lei como instrumento de opressão e a busca por uma sociedade gerida pela livre associação.
+AUTORIDADE
+ Aqueles com pontuações mais altas de Autoridade acreditam em poder estatal forte. Eles tendem a apoiar intervenção do estado nas vidas pessoais, vigilância governamental e, em valores altos, censura ou autocracia. Essa perspectiva valoriza a centralização das decisões e a obediência civil como as únicas ferramentas capazes de garantir a ordem e evitar o conflito na sociedade. Em sua forma extrema, esse pensamento justifica regimes absolutistas ou totalitários, onde o poder não encontra limites e a vida privada dos cidadãos é absorvida ou rigidamente controlada pela organização do Estado.
+Fonte das informações:
+ As adições baseiam-se no verbete "Absolutismo", que discute a centralização monocrática, a justificação do poder forte para moderar os conflitos sociais, e as diferenças para o totalitarismo, que promove a politização absoluta da vida do indivíduo.
+SOCIAL
+TRADIÇÃO
+ Aqueles com pontuações mais altas de Tradição acreditam em valores tradicionais e adesão estrita a um código moral. Embora nem sempre, eles geralmente são religiosos e apoiam o status quo ou o status quo ante. Eles valorizam a continuidade de costumes seculares, a manutenção das antigas hierarquias sociais e rejeitam transformações profundas. Frequentemente, essa visão defende que a religião deve ter uma influência direta na sociedade civil e na política, buscando proteger um modelo de sociedade alicerçado na moralidade clássica e na autoridade da fé.
+Fonte das informações:
+ O texto foi complementado com os verbetes "Ancien Régime", que descreve uma forma de Estado e sociedade baseada em tradições seculares e privilégios hierárquicos, e "Anticlericalismo" / "Ação Católica", que expõem a tendência do clericalismo de manter a influência da religião na ordem política.
+PROGRESSO
+ Aqueles com pontuações mais altas de Progresso acreditam em mudança social e racionalidade. Embora nem sempre, eles geralmente são seculares ou ateus e apoiam ação ambiental e pesquisa científica ou tecnológica. Eles defendem que a política e a sociedade devem ser totalmente laicas e separadas da religião, guiando-se pela razão, pela ciência e pelo pensamento livre. Essa visão busca a modernização constante, combatendo dogmas para garantir a autonomia moral e a total liberdade de consciência de todos os cidadãos.
+Fonte das informações:
+ As informações vêm dos verbetes "Anticlericalismo", "Ateísmo" e do conceito de secularização contido em "Absolutismo", que abordam a separação entre Estado e Igreja, o avanço do livre-pensamento, do racionalismo e a busca pela autonomia moral livre de condicionamentos metafísicos.
+Teste GPT
+Definições ampliadas dos eixos do 8values
+ECONÔMICO
+IGUALDADE
+Aqueles com pontuações mais altas de 
+Igualdade
+ acreditam que grandes diferenças econômicas e sociais devem ser reduzidas e que a organização da economia deve favorecer uma distribuição mais equilibrada de riqueza, recursos e oportunidades entre os membros da sociedade. Eles tendem a considerar legítima a utilização de políticas públicas para corrigir desigualdades existentes, apoiando medidas redistributivas, tributação progressiva e maior proteção aos grupos economicamente menos favorecidos. Para essas pessoas, tratar todos de maneira exatamente idêntica nem sempre produz maior igualdade, pois diferenças econômicas anteriores podem exigir tratamentos distintos para que as disparidades sejam efetivamente reduzidas. Em pontuações mais altas, podem defender formas mais amplas de nivelamento econômico, maior propriedade pública ou socialização dos meios de produção, entendendo que determinadas formas de propriedade privada podem produzir ou perpetuar relações de desigualdade. De maneira geral, valorizam uma sociedade em que diferenças de riqueza e poder econômico sejam limitadas e não determinem excessivamente as condições de vida dos indivíduos.
+MERCADOS
+Aqueles com pontuações mais altas de 
+Mercados
+ acreditam que indivíduos e empresas devem possuir ampla autonomia para realizar atividades econômicas, celebrar contratos, possuir propriedades e competir entre si. Eles tendem a considerar a iniciativa privada e a concorrência mecanismos importantes para organizar a economia e preferem que grande parte das decisões sobre produção, investimento e consumo seja tomada de maneira descentralizada, em vez de determinada diretamente pelo Estado. Essas pessoas geralmente valorizam a propriedade privada, a liberdade econômica e a possibilidade de cada indivíduo buscar seus próprios interesses dentro de regras jurídicas comuns. Tendem também a desconfiar de formas excessivas de planejamento e controle estatal da economia. Em pontuações mais altas, aproximam-se das concepções de 
+laissez-faire
+, defendendo intervenção governamental bastante limitada e maior liberdade para o funcionamento do mercado. Isso não significa necessariamente rejeitar toda ação estatal: mesmo dentro da tradição liberal, podem ser aceitas intervenções destinadas a garantir contratos, impedir monopólios, arbitrar conflitos e proteger direitos.
+DIPLOMÁTICO
+NAÇÃO
+Aqueles com pontuações mais altas de 
+Nação
+ acreditam que a comunidade nacional constitui uma referência política fundamental e que a soberania, a independência e a capacidade de autodeterminação de um povo devem ser preservadas. Eles tendem a possuir forte identificação com o próprio país e a valorizar elementos compartilhados de pertencimento, como história, cultura, língua, costumes, símbolos e instituições nacionais. Essas pessoas costumam considerar importante que as decisões fundamentais de um Estado sejam tomadas por sua própria população, com pouca interferência de outros Estados ou instituições externas. Também tendem a dar maior peso aos interesses nacionais quando estes entram em conflito com objetivos internacionais mais amplos. Em pontuações elevadas, a lealdade à nação pode adquirir prioridade sobre vínculos políticos, ideológicos ou supranacionais, e a unidade e a independência nacionais podem ser vistas como objetivos políticos especialmente importantes. Essa orientação pode favorecer políticas mais centradas na soberania nacional, mas não implica necessariamente militarismo, expansionismo ou hostilidade a outros povos.
+GLOBO
+Aqueles com pontuações mais altas de 
+Globo
+ acreditam que os indivíduos fazem parte de uma comunidade humana mais ampla e que as fronteiras nacionais não devem ser o limite principal da cooperação política. Eles tendem a enfatizar os valores, interesses e problemas compartilhados entre diferentes povos e a considerar que diversas questões econômicas, sociais e políticas exigem soluções que ultrapassem a atuação isolada dos Estados. Essas pessoas normalmente apoiam cooperação internacional, integração entre países, instituições multilaterais e formas de direito supranacional. Também tendem a aceitar que determinados aspectos da soberania nacional sejam compartilhados quando isso permite solucionar problemas comuns ou estabelecer instituições políticas mais amplas. Em pontuações mais altas, podem favorecer estruturas federativas ou supranacionais capazes de exercer autoridade acima dos Estados em determinadas áreas. De maneira geral, dão maior importância à solidariedade internacional, à interdependência entre sociedades e à ideia de que a pertença à humanidade pode ter importância política comparável ou superior à pertença exclusiva a uma nação.
+CIVIL
+LIBERDADE
+Aqueles com pontuações mais altas de 
+Liberdade
+ acreditam que os indivíduos e grupos devem possuir ampla autonomia para escolher seus próprios valores, opiniões e formas de vida, sem interferência desnecessária do poder político. Eles tendem a apoiar fortes garantias às liberdades civis, incluindo liberdade de expressão, imprensa, reunião, associação e participação política, além da existência de pluralismo social e político. Essas pessoas consideram importante que diferentes ideias, organizações e projetos de vida possam coexistir e competir dentro da sociedade, e normalmente defendem limites jurídicos claros ao poder do Estado. Também tendem a valorizar instituições representativas, opinião pública livre e mecanismos que permitam aos cidadãos questionar e controlar os governantes. Em pontuações mais altas, mostram maior resistência à censura, à vigilância excessiva e às tentativas do Estado de impor aos indivíduos determinada visão moral, política ou social. Para elas, o poder político deve principalmente garantir um espaço no qual cada pessoa possa exercer sua autonomia, desde que respeite os direitos dos demais.
+AUTORIDADE
+Aqueles com pontuações mais altas de 
+Autoridade
+ acreditam que a estabilidade da sociedade depende da existência de instituições fortes, hierarquia, disciplina e capacidade efetiva de comando por parte do poder político. Eles tendem a considerar a manutenção da ordem e da coesão social mais importante do que uma ampla autonomia individual em determinadas circunstâncias e aceitam com maior facilidade restrições impostas pelo Estado quando estas são apresentadas como necessárias à segurança ou à estabilidade. Essas pessoas podem favorecer governos com maior concentração de poder, instituições executivas fortes e menor influência de grupos ou organizações capazes de dificultar a execução das decisões governamentais. Em pontuações mais altas, podem considerar legítima uma redução da participação política, da autonomia das instituições representativas e da oposição em benefício de uma direção política mais centralizada. Também apresentam maior aceitação do uso de mecanismos coercitivos para assegurar o cumprimento das decisões. Nos extremos, essa orientação aproxima-se do autoritarismo, caracterizado pela primazia do comando, da hierarquia e da obediência sobre o consenso e a participação.
+SOCIAL
+TRADIÇÃO
+Aqueles com pontuações mais altas de 
+Tradição
+ acreditam que instituições, costumes e valores desenvolvidos historicamente possuem importância própria e não devem ser abandonados simplesmente em favor de novas ideias ou projetos de transformação social. Eles tendem a valorizar continuidade, estabilidade, experiência acumulada e mudanças graduais, demonstrando maior cautela diante de reformas profundas que pretendam reorganizar rapidamente a sociedade a partir de princípios abstratos. Essas pessoas costumam considerar que a ordem social contém práticas e instituições que foram construídas ao longo do tempo e cuja função nem sempre pode ser substituída por planejamento racional. Podem também atribuir maior importância à religião, à moral tradicional, à família, à autoridade e às formas históricas de organização social, embora nenhuma dessas características seja obrigatória isoladamente. Em pontuações mais altas, mostram maior preferência pela preservação das estruturas existentes e maior resistência a transformações sociais radicais. Isso não significa necessariamente rejeitar toda mudança, mas favorecê-la quando ocorre de maneira gradual e preserva elementos considerados fundamentais da ordem social.
+PROGRESSO
+Aqueles com pontuações mais altas de 
+Progresso
+ acreditam que a sociedade não precisa permanecer limitada pelas instituições e costumes herdados do passado e que os seres humanos são capazes de transformar conscientemente suas condições de vida. Eles tendem a confiar na razão, no conhecimento, na investigação científica e na crítica como instrumentos para avaliar e aperfeiçoar instituições sociais e políticas. Essas pessoas geralmente possuem maior disposição para questionar tradições quando estas são consideradas incompatíveis com novos conhecimentos, valores ou necessidades sociais e costumam enxergar a mudança como uma oportunidade de aperfeiçoamento, e não apenas como uma ameaça à estabilidade. Também atribuem importância à autonomia dos indivíduos para participar do desenvolvimento histórico e influenciar o rumo da sociedade. Em pontuações mais altas, demonstram maior confiança na capacidade humana de reformar profundamente instituições e superar estruturas consideradas injustas, irracionais ou ultrapassadas. Entretanto, progresso não significa simplesmente qualquer mudança ou avanço tecnológico: uma transformação só pode ser considerada progresso quando é avaliada em relação a algum objetivo ou condição considerada melhor do que a anterior.
+Recomendações leituras GPT
+Sim. Para entender 
+as definições que montei
+, eu não recomendaria ler o 
+Dicionário de Política
+ inteiro nem mesmo todos os verbetes completos. Há alguns trechos que correspondem muito diretamente aos oito polos do 8values.
+Uma observação importante: vou usar abaixo a 
+página do arquivo PDF
+, não a numeração impressa do livro. Por exemplo, a página 613 do PDF corresponde à página 603 impressa. E a correspondência não é perfeita: o 
+Dicionário
+ não possui os oito eixos do 8values; eu fiz uma aproximação conceitual a partir dos verbetes mais adequados.
+Eu seguiria esta ordem:
+Antes de todos os eixos — Introdução, PDF pp. 8–9.
+ Leia especialmente a parte em que os autores explicam que a linguagem política é ambígua, que os conceitos mudam historicamente e que termos políticos não possuem significados perfeitamente unívocos. Isso é importante para entender por que não devemos tratar, por exemplo, "Nação = militarismo" ou "Tradição = religião" como equivalências automáticas.
+IGUALDADE — verbete "Igualdade", PDF pp. 612–615.
+ Se quiser economizar tempo, as 
+pp. 613–614 são as mais importantes
+. Na p. 613 aparece justamente a ideia que usei na definição: uma política pode ser considerada mais igualitária na medida em que 
+reduz uma desigualdade previamente existente
+. O texto usa como exemplos o imposto progressivo, a redistribuição e o nivelamento da riqueza. Depois, leia "
+XIII. Nivelamento da riqueza
+", ainda na p. 613, porque daí vêm as partes sobre redução das diferenças econômicas e socialização dos meios de produção. Na p. 614, "
+XIV. Igualdade de oportunidades
+" é particularmente útil para perceber que igualdade não significa necessariamente dar exatamente a mesma coisa a todos: às vezes são necessárias medidas diferentes para colocar pessoas em condições iniciais mais próximas.
+MERCADOS — verbete "Liberalismo", PDF pp. 698–704.
+ Para esse polo, eu focaria primeiro nas 
+pp. 698–700
+, onde o livro distingue liberalismo político, jurídico e econômico. O liberalismo econômico é associado à livre iniciativa, propriedade privada, liberdade individual e, em sua versão livre-cambista, à não intervenção governamental no mercado. Depois, a 
+p. 703 é provavelmente a mais importante de todas para este eixo
+. Ela explica o ideal do Estado como guardião, o 
+laissez-faire
+, a liberdade contratual e a concorrência; mas também mostra que pensadores liberais aceitaram intervenções contra monopólios, na mediação de conflitos e na proteção dos mais fracos. Isso é justamente o motivo de eu não ter definido "Mercados" simplesmente como "Estado zero".
+NAÇÃO — verbetes "Nação" e "Nacionalismo", PDF pp. 805–809.
+ Comece pelas 
+pp. 805–806
+, principalmente pela discussão sobre como a identificação nacional passou historicamente a ocupar uma posição central entre as lealdades das pessoas e sobre os vínculos atribuídos à nação — língua, costumes, território, cultura etc. A 
+p. 807
+ é muito relevante porque apresenta a nação como uma forma de fidelidade política e mostra como a identificação nacional pode prevalecer sobre identificações de classe ou outros vínculos sociais. Na 
+p. 809 começa "Nacionalismo"
+. Leia ao menos a definição e a seção "
+Nacionalismo e democracia
+": aparecem aí soberania, independência, autodeterminação e a ideia de um povo definir seu próprio destino. Esse trecho é essencial para entender por que retirei da definição original do 8values a equivalência automática entre "Nação" e política externa agressiva.
+GLOBO — verbete "Cosmopolitismo", PDF pp. 303–310.
+ Para compreender a definição, a 
+p. 303 é indispensável
+. Logo no início o texto diferencia 
+cosmopolitismo, universalismo e internacionalismo
+: cosmopolitismo envolve a ideia de "cidadão do mundo"; universalismo enfatiza aquilo que os homens têm em comum; internacionalismo aponta para uma unidade jurídica supranacional. Depois eu leria as 
+pp. 307–309
+, que aproximam cosmopolitismo de tolerância, paz, direito internacional e cooperação para além das fronteiras. A p. 307, por exemplo, discute projetos de paz perpétua e união entre nações. As pp. 303 e 307–309 já dão praticamente toda a fundamentação necessária para o polo Globo; o restante do verbete é muito mais histórico.
+LIBERDADE — verbete "Liberalismo", PDF pp. 701–704.
+ Comece na 
+p. 701, seção "III. O substantivo Liberdade"
+. O livro apresenta diferentes concepções de liberdade, e isso ajuda a perceber que "liberdade" é muito mais complicado do que simplesmente "Estado não interfere". Para a definição que fizemos, as 
+pp. 702–704 são as mais importantes
+. Na p. 702 aparece a liberdade como possibilidade de escolher, manifestar e difundir valores, acompanhada de pluralismo e redução de condicionamentos. Na p. 703 aparecem explicitamente liberdade de palavra, reunião, associação, imprensa e empresa, participação política, consenso e limitação do poder estatal pelo direito. E a p. 704 associa a garantia das demais liberdades à participação política dos cidadãos.
+AUTORIDADE — verbetes "Autoridade" e "Autoritarismo", PDF pp. 103–105.
+ Aqui eu recomendo fortemente ler as três páginas. A parte final de 
+"Autoridade"
+, nas pp. 103–104, explica algo fundamental: 
+autoridade não é necessariamente autoritarismo
+; uma relação de autoridade envolve reconhecimento de legitimidade, enquanto o autoritarismo surge quando se exige obediência sem participação ou consenso. Depois, na 
+p. 104, "Autoritarismo — I. Problemas de definição"
+, você encontra praticamente todos os elementos da nossa descrição: concentração de poder, redução das instituições representativas, hierarquia, obediência, menor participação popular e maior emprego de meios coercitivos. A p. 105 aprofunda a relação entre autoritarismo, ordem e hierarquia.
+TRADIÇÃO — verbete "Conservadorismo", PDF pp. 252–256.
+ É provavelmente o verbete que mais vale ler quase inteiro. Nas 
+pp. 252–253
+, o conservadorismo é apresentado como orientação para a manutenção das instituições e como contraparte das forças inovadoras, mas o próprio texto alerta que reduzi-lo simplesmente a imobilismo seria inadequado. As 
+pp. 253–254 são essenciais
+ para a nossa definição: mostram a oposição à ideia de que a razão humana possa reconstruir livremente a sociedade e explicam a importância atribuída à continuidade histórica e aos limites da ação humana. Finalmente, a 
+p. 255
+ é excelente para entender que conservadorismo não significa simplesmente defender poder ilimitado: o texto considera o poder necessário à ordem, mas simultaneamente perigoso e necessitado de limitação pela lei.
+PROGRESSO — verbete "Progresso", PDF pp. 1020–1024.
+ A 
+p. 1020 é a principal
+. Ela explica que progresso não significa simplesmente mudança: é necessário um objetivo considerado desejável pelo qual a mudança possa ser avaliada. Também diferencia uma concepção ligada à perfectibilidade humana e à avaliação crítica da história de outra que vê o progresso como processo necessário. Esse trecho fundamenta diretamente nossa descrição da pessoa progressista como alguém mais confiante na capacidade humana de avaliar e modificar instituições. Depois, as 
+pp. 1021–1023
+ mostram a associação histórica entre progresso, acumulação de conhecimento e ciência, mas também fazem uma crítica importante à crença automática de que todo desenvolvimento tecnológico seja necessariamente progresso. Como complemento, vale ler o início de 
+"Iluminismo" na p. 615
+, porque ele resume muito bem a mentalidade que inspirou parte da nossa definição de Progresso: uso da razão, crítica da tradição e aplicação do conhecimento ao aperfeiçoamento da vida.
+Se seu objetivo é 
+entender especificamente os textos que criamos para o 8values
+, eu faria uma leitura reduzida de aproximadamente 
+35 páginas
+:
+Introdução 8–9 → Igualdade 612–615 → Liberalismo 698–704 → Nação/Nacionalismo 805–809 → Cosmopolitismo 303–309 → Autoridade/Autoritarismo 103–105 → Conservadorismo 252–255 → Progresso 1020–1024.
+E, se tiver que reduzir ainda mais, eu escolheria somente 
+613–614, 703–704, 805–809, 303 + 307–309, 104–105, 253–255 e 1020–1021
+. Esse conjunto já permite verificar quase frase por frase a fundamentação das definições que escrevemos.
+Reuniões
+Reunião 04/08
+TODO:
+Avaliação ponderada com diferentes técnicas
+consulta direta LLM
+similaridade semântica entre texto base e texto novo
+Testar técnicas diferentes
+Testar na fase inicial:
+testo passar pelas perguntas do teste, 1 pergunta por prompt
+testar passar todas perguntas
+Mostrar passo a passo de forma transparente
+Montar texto exemplar de cada eixo, 8 textos no total
+Montar texto com ciência política com embasamento bibliográfico
+https://micaelol12.github.io/8values.github.io/#anchor
+Testar projetos de leis, notícias:
+etapa por etapa
+inteiro
+Maiko:
+Desenho da solução: uso de diferentes métricas (similaridade por cosseno + TF-IDF, cada pergunta para LLM, teste inteiro para LLM)
+Referências para eixos do 8Values // textos base-modelos
+Tarefa para 11/08 - testes com LLMs x 8values
+Livros recomendados:
+FRATESCHI, Yara organizador; MELO, Rúrion organizador; RAMOS, Flamarion Caldeira organizador. Manual de filosofia política: para os cursos de Teoria do Estado & Ciência política, Filosofia e Ciências Sociais.4. ed. São Paulo : Saraiva Jur, 2021. 1 recurso online (163 p.). Disponível em: https://app.minhabiblioteca.com.br/books/9786555595673. Acesso em: 4 ago. 2026.
+BOBBIO, Norberto; MATTEUCCI, Nicola; PASQUINO, Gianfranco. 
+Dicionário de política
+.5. ed. Brasília, D.F : Ed. da UnB; São Paulo : Imprensa Oficial, 2000. 2v. 
+Reunião 11/08
+TODO:
+Focar no BOBBIO
+Pegar um caso e comparar bem as abordagens:
+perguntas individuais
+perguntas total
+“se vira” 
+testar outros modelos
+Testar modelos:
+GPT
+https://www.maritaca.ai/planos
+Claude
+Reunião 18/08
+testar com modelos mais caros para ver se tem menos variação
+testar com textos diferentes:
+Programas de governo candidatos à presidência
+pdf e md
+Candidatos - 2026 - BR - Proposta de governo - Portal de Dados Abertos do TSE
+Testar criação dos eixos com prompt, priorizar padrão.
+caracteres, palavras-chaves.
+deixar setado o openrouter
+Estimado
+Perguntas Total:
+Estimado:
+Perguntas Total:
+Reunião 01/09
+testar parâmetro temperatura
+testar os eixos com explicação técnica, mais genérico:
+conceitos, exemplos
+testar com palavras chaves
+Reunião 08/09
+até 80%
+testar com embedding, large,  da open ai
+testar com embedding da maritaca
+continuar testes
+ir testando técnicas e anotando os resultados
+testar modelo local Qwen
+Entra 21 - Qwen2.5-7B-Instruct no Google Colab.ipynb
+ideia seria juntar técnicas 
+Percepções
+Ao testar o envio das perguntas de forma individual e de forma íntegra, foi percebido um tendência muito grande a neutralidade no primeiro método.
+Posso usar as perguntas como testes, já que o 8 values as classifica 
+Posso usar as perguntas como a própria representação dos eixos
+Relatórios
+funcionalidades
+tempo de estudo,orientação,desenvolvimento
+curso
+Desafíos enfrentados a enfrentar
+futuro
+Cada bloco definir horas
+TCC  - Horas trabalhadas 
+Relatórios
+Relatório 1
+Reunião orientador - 01:30h
+Nas reuniões realizadas semanalmente foram discutidos os passos iniciais e os resultados obtidos durante cada semana.
+Leitura conteúdo Político  - 04:00h
+Realiza leitura de conteúdos indicados pelo orientador para o desenvolvimento de textos representativos dos eixos do teste 8values para posterior uso em técnicas de  similaridade semântica.
+Desenvolvimento - 56:00h
+Realizado desenvolvimento no google colab para avaliar as técnicas de uso do 8 values com modelos de linguagem. Até o momento 3 abordagens foram realizadas: 
+- Envio iterativo/individual: Submissão das perguntas de forma fracionada ao modelo.
+- Envio integral: Submissão do questionário completo em uma única requisição.
+- Indução estrutural: Omitindo as perguntas do questionário e solicitando diretamente a geração do resultado no formato JSON/esquema esperado pelo teste.
+Configuração API modelos LLM - 02:30h
+Configuração das APIs dos modelos de linguagem testados, desde criação de contas, configuração e criação de tokens de acesso.
+Pesquisa conteúdo político - 04:00h
+Pesquisa e extração na Web de conteúdo politicamente relevante para teste no pipeline desenvolvido até o momento
+68
+Relatório 2
+Reunião orientador - 01:00h
+Discussão semanal sobre o andamento do TCC, resultados obtidos e próximos passos do desenvolvimento.
+Leitura e pesquisa de conteúdo político - 07:00h
+Leitura, pesquisa e revisão de conteúdos utilizados para representar os eixos políticos do teste 8values e apoiar a construção dos textos de referência.
+Desenvolvimento - 30:00h
+Desenvolvimento, em Python e Google Colab, de uma abordagem de classificação política baseada em embeddings e similaridade semântica. Foram implementados cálculos de similaridade, margem, projeção e conversão dos resultados para a escala do 8values.
+Testes e validação - 12:00h
+Realização de testes com diferentes textos e estratégias de cálculo, análise dos resultados obtidos e identificação de limitações na separação dos polos ideológicos.
+50h
+TCC
+Trabalho PLN
+Link template trabalho 01
+PLN 2026_1 - Template trabalho 1 - Copiar.docx
+API Base:
+https://dadosabertos.camara.leg.br/swagger/api.html
+Passos iniciais
+Criar script para consumir a api da câmara de deputados e criar base loca
+Pegar discursos: usar reusmo
+pregar projetos de lei
+ir até tokenização
+ver como tratar os pdfs e seus cabeçalhos
+tenho 9000 discursos, mas posso obter mais se necessário:
+discursos dos últimos 8 anos dos atuais 513 deputados
+TODO TCC
+Sistema de Análise de Propostas Políticas Utilizando Processamento de Linguagem Natural para Identificação de Alinhamento com Preferências Políticas do Usuário
+Docs:
+BCC_TermoCompromisso 1 (1)
+projeto TCC BCC
+Testes de Orientação Política Via Software
+TCC - Pré-Projeto
+https://micaelol12.github.io/8values.github.io/
+TODO
+Pré-projeto TCC
+Trabalhos Correlatos 
+SciElo  e Google Acadêmico
+"natural language processing"
+ 
+"political orientation"
+Pesquisar artigos para revisão bibliográfica: “sistematic reveal”
+fazer slides defesa
+Procurar se existe algum fork do questionário para o Brasil
+ler trabalhos correlatos
+verificar possibilidade de passar o questionário 8values para um google forms ou office forms
+traduzir repo do 8values
+pesquisar sobre a definição dos eixos no 8values.
+persistência dos resultados do 8values
+Perguntas TCC1:
+IA pode ser mecanismo de busca?
+tamanho revisão bibliográfica
+ground news
+Pesquisar sobre modelo brasileiro sabiá
+Lovable para front end
+Ideias
+Professores:
+maiko ou aurélio
+Temas:
+Ia com eleições:
+Propostas de campanhas
+Identificação de eixo político
+tipo escolho candidatos que gosto e o sistema indica outros, n sei
+Detecção fake news
+Detecção deepfake
+algo com a biblioteca:
+melhora do sistema, algum tipo de classificação?
+algo com identificação e localização dos livros na estante
+Algum tipo de visão computacional para identificar o estado dos livros?
+algo com música:
+Classificação Automática de Gênero Musical
+Reconhecimento de Emoção em Música
+algo voltado com animais:
+Algum tipo de detecção de maus tratos
+algo para adoção
+reconhecimento de emoções em cães
+Boa noite, professor, tudo bem?
+Gostaria de saber se você ainda tem disponibilidade para ser orientador e se poderia ser o meu. Gostei muito da sua didática e adoraria tê-lo como orientador. Ainda não tenho o tema definido mas pensei em:
+Trabalhar com IA nas eleições com abordagens como:
+Detecção de fake news/deepfake
+Classificação dos candidatos conforme suas propostas, algum tipo de clusterização
+Algo voltado às causas contras violência aos animais
+Detecção de maus tratos através de imagens
+Detecção de cachorros em situação de rua
+Essas são algumas ideias que tive, mas estou bem aberto a sugestões e caso você tenha alguma área de interesse em que eu possa contribuir também adoraria.
+Eleições
+Ideias TCC
+orientador: Maiko Rafael Spiess
+Ideia 1: Utilizar IA e processamento de linguagem natural para analisar propostas dos candidatos e montar software onde a pessoa pode escolher um cadeado de sua preferência e mostraremos opções que se alinham com o candidato escolhido.
+ideia 2: usuário responde breve formulário de orientação política e depois pode enviar notícias ou propostas de candidatos e analisaremos se elas coincidem com a orientação do usuário
+ideias maiko:
+Atualmente, muitas pessoas têm dificuldades em compreender propostas eleitorais, projetos de lei e ferramentas similares, especialmente para associá-las com suas preferências políticas, comportamentais e filosóficas pessoais. Isso ocorre, possivelmente, por baixos níveis de domínio do linguajar específico e dos elementos teórico-conceituais da política. Nesse sentido, as tecnologias atuais de IA e Processamento de Linguagem Natural podem analisar e memorizar as preferências políticas dos usuários e, a partir disso, auxiliar na interpretação de conteúdo propositivo político.
+títulos?
+Sistema de Análise de Propostas Políticas Utilizando Processamento de Linguagem Natural para Identificação de Alinhamento com Preferências Políticas do Usuário
+tcc
+site com dados: 
+divulgacandcontas.tse.jus.br
+api camara deputados: 
+https://dadosabertos.camara.leg.br/swagger/api.html
+dados últimas eleição: 
+https://dadosabertos.tse.jus.br/dataset/candidatos-2024
+Correlatos
+Informações
+Quantidade mínima ou máxima? 3 a 5
+3 seria o
+ ideal
+Fontes de Pesquisa
+ACM Digital Library
+SciELO
+Google Acadêmico
+Artigos
+SciELO Brasil - A natural language measure of ideology in the Brazilian Senate A natural language measure of ideology in the Brazilian Senate
+ 
+A natural language measure.pdf
+O estudo utiliza uma técnica de aprendizado de máquina para classificar discursos políticos como sendo de "esquerda", "centro" ou "direita". Para treinar o algoritmo, os autores utilizaram a classificação prévia de partidos políticos estabelecida por Power e Zucco Jr.
+“term-frequency-inverse-document-frequency”
+Naive Bayes classifier
+Wordfish
+Support Vector Machines
+POSSÍVEL CORRELATO
+Politics on the Web: Using Twitter to Estimate the Ideological Positions of Brazilian Representatives
+Politics on the Web.pdf
+O trabalho usa o mecanismo de seguidores e seguindo do twitter para estimar se o perfil está mais ligado com a direita ou esquerda.
+modelo bayesiano
+homofílica
+NÂO CORRELATO - é baseado muito no conceito da rede social para fazer sua análise, o que não vem ao caso trabalho atual.
+Repositório Institucional UFC: Análise de discursos parlamentares na Câmara dos Deputados
+ANALISE DE DISCURSOS PARLAMENTARES NA C ´ AMARA DOS DEPUTADOS.pdf
+O trabalho faz a análise temporal de mais de 900 mil discursos dos deputados da câmara e a partir disso utiliza técnicas de classificação para identificar temas mais comentados.
+LDA (Latent Dirichlet Allocation)
+BERTopic
+LSI (Latent Semantic Indexing)
+GloVe (Global Vectors for Word Representation)
+Word2Vec
+POSSÍVEL CORRELATO - apesar de usar um método de classificação sem grupos pré-definidos, o trabalho é bem detalhado e pode ser uma base de como estruturar o trabalho atual.
+(PDF) Personality and Political Orientation in Germany: A NLP-based Analysis using Twitter Data
+Personality-and-Political-Orientation-in-Germany-A-NLP-based-Analysis-using-Twitter-Data.pdf
+NÃO CORRELATO - foco em testes de personalidade de políticos com base em suas publicações no twitter
+Politically-oriented information inference from text
+Politically-oriented information inference from text.pdf
+NÃO CORRELATO
+[2406.00018] Large Language Models' Detection of Political Orientation in Newspapers
+LLM Detection of Political Orientation in Newspapers.pdf
+usa llms para classificar a orientação política de sites de notícias
+basicamente pediram para os modelos prontos classificarem os sites
+NÃO CORRELATO
+Assessing the Alignment of Brazilian Local Government Plans.pdf
+text-embedding-ada-002 da OpenAI
+Analisa propostas de governo e compara com os objetivos sustentáveis para ver quais propostas mais se alinham
+POSSÍVEL CORRELATO - apesar de não focar na parte de viés político, achei interessante o fato de  pegarem uma métrica do texto e terem comparado com outra métrica de desenvolvimento sustentável
+ANÁLISE DO DISCURSO PARLAMENTAR POR MEIO DA TÉCNICA DO PROCESSAMENTO DE LINGUAGEM NATURAL ABORDAGEM ESTATÍSTICA E APRENDIZAGEM DE MÁQUINA.pdf
+Apesar de ser meio antigo (2018) aborda o tema com bastante detalhe e pode servir de base em alguns pontos do trabalho atual.
+Utilizar técnicas mais básicas da área de PLN
+POSSÍVEL CORRELATO
+Whose Side Are You On.pdf
+Avalia o uso dos LLM’s para classificar os conteúdos no espectro bipartidário dos EUA
+Achei interessante a metodologia de usar os modelos prontos, porém não sei se cabe no TCC
+POSSÍVEL CORRELATO
+Using Generative AI to Calculate Party Positions: A Comparison of Human Experts and Large Language Models
+Escolhidos
+A Natural Language Measure of Ideology in the Brazilian Senate
+A natural language measure.pdf
+"natural language processing" "political" "Brazil"
+2020 - 2026
+Assessing the Alignment of Brazilian Local Government Plans with the United Nations’ Sustainable Development Goals
+Assessing the Alignment of Brazilian Local Government Plans.pdf
+“Whose Side Are You On?” Estimating Ideology of Political and News Content Using Large Language Models and Few-shot Demonstration Selection
+Whose Side Are You On.pdf
+"natural language processing" "Ideology" "large language models"
+2025-2026
+Repositórios
+link do repositório base para questionário:
+https://github.com/micaelol12/8values.github.io
+https://github.com/9Axes/9Axes.github.io
+https://github.com/Aldhanekaa/8Values?tab=readme-ov-file
+site traduzido:
+8values | Um teste de coordenadas políticas
+Roteiro Apresentação
+Roteiro Apresentação
+Slide 1: Introdução
+Dificuldade da população em interpretar conteúdos políticos e relacioná-los às próprias ideologias.
+Como ocorrido em 2022 onde aproximadamente 22% dos eleitores que se declararam de direita votaram em Luiz Inácio Lula da Silva enquanto 9% dos eleitores que se declararam de esquerda votaram em Jair Bolsonaro, evidenciando a dificuldade de alinhamento entre preferências ideológicas declaradas e decisões políticas efetiva (GLOBO, 2025)
+Avanços em IA e PLN permitem analisar similaridade e alinhamento entre textos.
+Proposta de sistema que compara textos políticos com o perfil ideológico do usuário.
+Slide 2:
+O objetivo geral do trabalho é disponibilizar um sistema baseado em PLN capaz de identificar o alinhamento ideológico entre textos políticos e o perfil de orientação política de um usuário, obtido por meio de um teste estruturado.
+Slide 3:
+Objetivos específicos
+Slide 4:
+Google Acadêmico.
+“natural language processing”, “political”, “Brazil” e “policy analysis”.
+2020 e 2026.
+Google Gemini (Deep Research).
+“Faça uma pesquisa de artigos da área de PLN que abordam política realizados entre os anos de 2020 e 2026”
+Slide 5:
+“A Natural Language Measure of Ideology in the Brazilian Senate” (FIGUEREDO; MUELLER; CAJUEIRO, 2020).
+eixo ideológico de 
+esquerda 
+e 
+direita
+, com base em métricas definidas por Power e Zucco Jr. (2009)
+Naive Bayes (JURAFSKY; MARTIN, 2020) para identificar e classificar padrões linguísticos associados a categorias ideológicas previamente estabelecidas.
+tratamento dos dados
+stopwords
+slide 6:
+“Assessing the Alignment of Brazilian Local Government Plans with the United Nations’ Sustainable Development Goals” (CARVALHO et al., 2024).
+alinhamento dos planos de governo de dez candidatos ao governo do estado de São Paulo, nas eleições de 2022, com os Objetivos de Desenvolvimento Sustentável (ODS) da Organização das Nações Unidas, estabelecidos na Agenda 2030
+Alocação Latente de Dirichlet
+text-embedding-ada-002, da OpenAI;
+sliide 7:
+“Whose Side Are You On? Estimating Ideology of Political and News Content Using Large Language Models and Few-shot Demonstration Selection” (HAROON; WOJCIESZAK; CHHABRA, 2025).
+MLP (multilayer perceptron) e BERT como baseline
+liberal neutro e conservador
+Metodologia:
+Levantamento e análise de requisitos:
+ Definição dos requisitos funcionais e não funcionais do sistema, fundamentada na análise de trabalhos correlatos e nos objetivos centrais do projeto.
+Produção de Dados:
+ Geração de textos sintéticos, com o auxílio de IA generativa, que representarão as principais características de cada eixo político definido pelo questionário 8values.
+Modelagem dos eixos:
+ Será utilizada a estrutura do projeto 8values para a definição dos eixos ideológicos, permitindo uma análise multidimensional que abrange as esferas econômica, diplomática, civil e social.
+Pesquisa de modelos
+: Realização de um estudo comparativo para identificar o LLM mais adequado ao projeto, considerando critérios como desempenho, latência e viabilidade de custo.
+I
+mplementação do sistema
+: Desenvolvimento da solução utilizando técnicas de PLN, englobando a vetorização dos textos e a aplicação de cálculos de similaridade semântica (ex: similaridade de cosseno).
+Integração com modelo de linguagem
+: Implementação da LLM selecionada para a geração de explicações interpretáveis, traduzindo os resultados técnicos em justificativas compreensíveis para o usuário.
+REVISÃO BIBLIOGRÁFICA
+Representação e Similaridade Semântica
+bag-of-words
+ 
+representam textos como vetores de frequência
+embeddings
+, que consistem em representações vetoriais contínuas capazes de capturar relações semânticas e sintáticas entre termos
+Além disso, essas representações vetoriais possibilitam a realização de operações matemáticas que refletem relações semânticas entre palavras, evidenciando a capacidade dos 
+embeddings 
+de preservar regularidades linguísticas no espaço vetorial. Esse avanço representa uma mudança significativa em relação às abordagens tradicionais, que tratavam palavras como unidades independentes, sem considerar contexto ou similaridade semântica
+Ideologia e Orientação Política
+A ideologia política pode ser compreendida como um sistema estruturado de valores, crenças
+A representação do posicionamento político por meio de eixos ideológicos, como o eixo esquerda-direita, permite a simplificação e a sistematização de orientações políticas complexas, podendo ser expandida para modelos multidimensionais que capturam diferentes aspectos da ideologia, como valores econômicos, sociais e culturais. Esses modelos possibilitam uma análise mais refinada das preferências políticas individuais, superando abordagens unidimensionais tradicionais.
+ 
+8values
+, que avalia o posicionamento do usuário com base em oito valores distribuídos em quatro eixos principais, abrangendo dimensões econômicas, diplomáticas, civis e sociais (“
+8values
+”, 2020)
+Modelos de linguagem de grande porte
+aprendizado em contexto
+poucos exemplos
+ número de parâmetros quanto em volume de dados de treinamento
+LGPD
+Aviso Prévio:
+ Você provará que avisou na tela e nos termos para ele não digitar dados pessoais.
+Exemplo de pop-up de aviso:
+Análise de Propostas Políticas com Inteligência Artificial
+Para oferecer uma análise precisa do seu alinhamento político, o conteúdo digitado por você será processado de forma automatizada por meio de uma API de inteligência artificial parceira.
+Para garantir a sua segurança e conformidade com a LGPD, adotamos as seguintes diretrizes:
+Privacidade dos Dados:
+ Nossos modelos não utilizam seus dados para treinamento e suas informações não serão compartilhadas publicamente.
+Minimização:
+ Solicitamos que 
+não insira dados de identificação pessoal
+ (como nome, documentos ou contatos) no campo de texto livre.
+Seu Controle:
+ Você pode revogar seu consentimento e solicitar a exclusão do seu histórico de análises a qualquer momento nas configurações do site.
+[ ] Li e compreendo como meus dados serão processados e 
+autorizo o tratamento das minhas opiniões políticas
+ de forma anônima para os fins desta análise.
+[ Cancelar ]
+ 
+[ Continuar e Analisar ]
+Mitigação de Danos:
+ Você provará que usa filtros de privacidade (como o Presidio ou RegEx) no backend para tentar apagar o que ele digitou de errado.
+Uso de RegEx (Expressões Regulares):
+ É muito fácil barrar ou mascarar CPFs, telefones e e-mails usando padrões de texto. Se o sistema detectar o padrão 
+###.###.###-##
+, ele substitui automaticamente por 
+[CPF_REMOVIDO]
+ antes de enviar para a API.
+Bibliotecas Prontas de PII Masking:
+ Existem ferramentas gratuitas e de código aberto (Open Source) feitas exatamente para isso. A mais famosa é o 
+Microsoft Presidio
+. Ele usa modelos leves de NLP para identificar nomes de pessoas, locais, organizações e documentos em textos livres e os substitui por tags (ex: altera 
+"Meu nome é Carlos"
+ para 
+"Meu nome é [PERSON]"
+).
+Contrato Seguro:
+ Você provará que, mesmo que algo tenha passado pelo filtro, a API de LLM que você contratou possui cláusulas corporativas que garantem o sigilo e a exclusão imediata dos dados, impedindo o vazamento ou uso para treinamento.
+De acordo com o 
+Artigo 12 da LGPD
+:
+"Os dados anonimizados não serão considerados dados pessoais para os fins desta Lei, salvo quando o processo de anonimização ao qual foram submetidos for revertido..."
+1. Aviso de Não-Fornecimento de PII (Isenção de Responsabilidade)
+Ação:
+ Incluir nos termos que o campo não foi feito para dados pessoais e que o envio voluntário de documentos/nomes corre por conta e risco do usuário.
+Cláusula da LGPD: Artigo 7º, § 5º
+"O controlador que obtiver o consentimento de que trata o inciso I do caput deste artigo para o tratamento de dados pessoais caso necessite comunicar ou compartilhar os dados pessoais com outros controladores deverá obter consentimento específico do titular para esse fim..."
+Nexo com a sua defesa:
+ Como você está obtendo um consentimento específico para tratar 
+opiniões
+, o envio de dados que extrapolam essa finalidade (como o CPF) por culpa exclusiva do usuário configura 
+atuação fora das instruções do controlador
+ ou 
+culpa exclusiva do titular
+, mitigando sua responsabilidade civil com base no 
+Artigo 43, inciso II
+ (onde o controlador não responde por danos se provar que a culpa foi exclusiva do titular ou de terceiro).
+2. O Consentimento Amplo/Livre para o Input de Texto
+Ação:
+ O usuário marcar a caixa de seleção (
+checkbox
+) concordando com o processamento das opiniões e informações enviadas voluntariamente naquele campo.
+Cláusula da LGPD: Artigo 5º, inciso XII e Artigo 8º, caput e § 1ºArt. 5º, XII:
+ 
+"consentimento: manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados pessoais para uma finalidade determinada;"
+ 
+Art. 8º, § 1º:
+ 
+"O consentimento por escrito ou por outro meio que demonstre a manifestação de vontade do titular deve conter cláusula destacada da finalidade do tratamento..."
+Nexo com a sua defesa:
+ Ao fazer o usuário marcar ativamente o 
+checkbox
+ em um modal dedicado (fora dos termos de uso gerais), você cumpre o requisito legal de coletar um consentimento 
+inequívoco e destacado
+ para o tratamento de dados sensíveis, conforme exigido também pelo 
+Artigo 11, inciso I
+ (tratamento de dados sensíveis mediante consentimento específico e destacado).
+3. O Aviso no Placeholder e Alerta de Pré-envio (Interface/UX)
+Ação:
+ Colocar textos de alerta na tela e dentro da caixa de digitação instruindo o usuário a não inserir dados identificáveis.
+Cláusula da LGPD: Artigo 6º, incisos II, VI e X (Princípios da LGPD)II - Adequação:
+ 
+"compatibilidade do tratamento com as finalidades informadas ao titular..."
+ 
+VI - Transparência:
+ 
+"garantia, aos titulares, de informações claras, precisas e facilmente acessíveis sobre a realização do tratamento..."
+ 
+X - Responsabilização e prestação de contas:
+ 
+"demonstração, pelo controlador, da adoção de medidas eficazes e capazes de comprovar a observância e o cumprimento das normas de proteção de dados pessoais..."
+Nexo com a sua defesa:
+ Em um eventual processo, esses elementos visuais na interface do app são as suas principais provas materiais de 
+Prestação de Contas
+ (
+Accountability
+). Eles provam ao juiz ou à ANPD que você agiu ativamente com 
+Transparência
+, educando o usuário na boca do caixa (no momento exato do input) para que ele não errasse.
+4. Filtros Automáticos no Backend (RegEx, Microsoft Presidio, etc.)
+Ação:
+ Reter o texto no seu servidor e aplicar filtros automáticos para apagar CPFs, e-mails e nomes antes de disparar o prompt para a API da LLM.
+Cláusula da LGPD: Artigo 6º, incisos III e VII, e Artigo 46Art. 6º, III - Minimização (Necessidade):
+ 
+"limitação do tratamento ao mínimo necessário para a realização de suas finalidades, com abrangência dos dados pertinentes, proporcionais e não excessivos..."
+ 
+Art. 6º, VII - Segurança:
+ 
+"utilização de medidas técnicas e administrativas aptas a proteger os dados pessoais de acessos não autorizados e de situações acidentais ou ilícitas..."
+ 
+Art. 46:
+ 
+"Os agentes de tratamento devem adotar medidas de segurança, técnicas e administrativas aptas a proteger os dados pessoais..."
+Nexo com a sua defesa:
+ Essa é a sua barreira técnica de 
+Privacy by Design
+. Se o usuário errar e digitar o CPF, o seu filtro apaga. Isso prova que o seu software foi programado seguindo estritamente os princípios de 
+Segurança
+ e 
+Minimização
+, reduzindo o risco de incidentes de segurança com o operador terceirizado (a API da LLM).
+5. Contrato Seguro com a LLM (Não usar para treino / Retenção zero)
+Ação:
+ Utilizar chaves de API empresariais cujos termos garantam que os dados enviados não serão guardados para treinar novos modelos de IA.
+Cláusula da LGPD: Artigo 33, inciso I, e Artigo 34Art. 33, I:
+ Permite a 
+Transferência Internacional de Dados
+ para países ou organismos internacionais que proporcionem grau de proteção de dados pessoais adequado ao previsto nesta Lei. 
+Art. 34:
+ 
+"O controlador deve assegurar que o operador estrangeiro cumpra as obrigações previstas na legislação brasileira..."
+Nexo com a sua defesa:
+ As grandes corporações de IA (como OpenAI, Microsoft Azure, AWS) oferecem contratos baseados no GDPR europeu e alinhados à LGPD (como as Cláusulas Contratuais Padrão). Ao assinar um plano corporativo que proíbe o uso dos prompts para treino, você cumpre o Artigo 34, garantindo que o seu 
+Operador
+ (a LLM) está tratando os dados sensíveis com o mesmo nível de segurança exigido pela lei brasileira.

@@ -1,0 +1,1289 @@
+=== PAGINA 1 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  1 
+SISTEMA DE ANÁLISE DE PROPOSTAS POLÍTICAS 
+UTILIZANDO ARQUITETURA HÍBRIDA PARA 
+IDENTIFICAÇÃO DE ALINHAMENTO COM PREFERÊNCIAS 
+POLÍTICAS DO USUÁRIO 
+Micael Luan Conti, Maiko Rafael Spiess – Orientador 
+Curso de Bacharel em Ciência da Computação  
+Departamento de Sistemas e Computação  
+Universidade Regional de Blumenau (FURB) – Blumenau, SC – Brasil 
+mlconti@furb.br, mspiess@furb.br 
+Resumo: A ampla disponibilidade de conteúdos políticos nem sempre é acompanhada de ferramentas que 
+auxili am sua interpretação e comparação com as preferências individuais. Este trabalho apresenta um 
+sistema para classificar textos políticos e compará -los ao perfil ideológico do usuário nos quatro eixos do 
+8values. Para a classificação, utiliza -se uma arquitetu ra híbrida System 1/System 2, na qual o JEV realiza a 
+análise inicial e encaminha decisões de baixa confiança ao modelo de linguagem Sabiá -4. Na avaliação com 
+70 enunciados do questionário, a cascata alcançou 78,93% de acerto conjunto, enquanto o Sabiá -4 isolado 
+obteve 80,36%. Porém a abordagem híbrida reduziu em 76,48% o consumo de tokens de entrada no Sabiá -4 
+e apresentou menor latência média. O sistema foi integrado a um site e a uma extensão para navegador, 
+permitindo explorar posições políticas e compa rá-las ao perfil do usuário.  
+Palavras -chave: Classificação de textos político. JEV. Sabiá -4. 8values. Arquitetura híbrida. Orientação 
+política.  
+1 INTRODUÇÃO 
+O avanço das tecnologias da informação e o aumento do acesso a conteúdos digitais têm ampliado 
+significativamente a disponibilidade de informações políticas à população. Propostas eleitorais, projetos de lei, discursos 
+parlamentares e notícias são amplamen te divulgados por meio de diferentes plataformas. No entanto, apesar desse ampl o 
+acesso, grande parte dos cidadãos ainda apresenta dificuldades em compreender o conteúdo político e em relacioná -lo 
+com suas próprias preferências ideológicas. Como ocorrido e m 2022 onde aproximadamente 22% dos eleitores que se 
+declararam de direita votaram em Luiz Inácio Lula da Silva enquanto 9% dos eleitores que se declararam de esquerda 
+votaram em Jair Bolsonaro, evidenciando a dificuldade de alinhamento entre preferências ideológicas declaradas e 
+decisões políticas efetiva (Agência O Globo, 2025).  
+Esse problema pode ter origem em diversos fatores, como o uso de linguagem técnica, a baixa formação sobre o 
+tema, a complexidade dos assuntos abordados ou a ausência de ferramentas que auxiliem na interpretação e comparação 
+dessas informações (Bischof; Senninger, 2018).  Nesse contexto, estudos sobre sofisticação política indicam que a 
+capacidade dos indivíduos de compreender e interpretar conteúdos políticos está diretamente relacionada ao seu nível de 
+conhecimento e engajamento com o tema (Fuks; Pereira, 2011).  Indivíduos com menor nível de sofisticação política 
+tendem a apresentar maiores dificuldades na interpretação de informações políticas e na formação de opiniões consistentes 
+(Pereira, 2013).  
+Ainda nesse cenário, ferramentas de orientação política, como testes ideológicos baseados em questionários, 
+permitem aos usuários identificarem  suas preferências em diferentes dimensões políticas e compará -las com 
+posicionamentos de partidos e candidatos (Garzia; Marschall, 2016). Entretanto, muitas dessas aplicações dependem de 
+questionários e conjuntos de informações previamente definidos, apre sentando limitações para a análise dinâmica e 
+contextualizada de novos conteúdos políticos (Buryakov et al., 2024). Dessa forma, a integração de técnicas de 
+processamento de linguagem natural pode contribuir para o desenvolvimento de mecanismos complementa res de 
+interpretação e comparação de documentos, propostas e manifestações políticas (Gemenis, 2024).  
+Um exemplo de teste de orientação política é o Political Compass , que utiliza dois eixos para representar o 
+posicionamento do usuário: o econômico, entre esquerda e direita, e o social, entre autoritarismo e libertarianismo. Com 
+base nas respostas a um questionário, o teste apresenta o resultado como um ponto em um pla no de duas dimensões (“The 
+Political Compass”, 2018). Já o 8values organiza as preferências políticas em quatro eixos: econômico, diplomático, 
+estatal ou civil, e social. Cada um composto por dois valores opostos, calculando percentuais a partir do grau de  
+concordância do usuário com as afirmações apresentadas  (“8values”, 2019).  
+Paralelamente, avanços recentes em inteligência artificial (IA) têm aumentado as possibilidades de classificação 
+e análise automatizada de textos, oferecendo alternativas para superar essas limitações. Entre as abordagens disponíveis, 
+destacam -se os modelo s gerais de decisão que atribuem probabilidades sobre alternativas previamente definidas, sem a 
+
+=== PAGINA 2 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  2 
+necessidade de gerar uma sequência textual de raciocínio. Esses modelos têm apresentado resultados competitivos em 
+diferentes tarefas de decisão, com vantagens de latência e custo em relação a modelos generativos . Entretanto, o 
+desempenho varia conforme a tarefa, e modelos com raciocínio explícito podem apresentar maior acurácia em situações 
+que exigem processamento mais complexo (Chen et al., 2026). 
+Com base nas vantagens e limitações dessas abordagens, arquiteturas híbridas têm sido propostas para combi nar 
+a eficiência dos modelos de decisão com a capacidade de processamento de modelos com raciocínio explícito. Nesse 
+contexto, destaca -se o uso de uma  arquitetura híbrida System 1/System 2, na qual um modelo de decisão realiza a 
+classificação inicial e encaminha casos de baixa confiança a um modelo com raciocínio explícito. Esse mecanismo pode 
+reduzir o custo de anotação de textos em tarefas de ciência social computacional, preservando ou superando, em 
+determinadas condições, a qualidade obtida com o uso isolado de um modelo de linguagem de grande porte ( Large 
+Language Model  - LLM) (Ibrahim; Zaki, 2026).  
+Diante desse contexto, este trabalho apresenta o desenvolvimento de um sistema híbrido para classificar 
+posicionamentos expressos em conteúdos políticos e compará -los com o perfil ideológico do usuário, obtido por meio de 
+um questionário estruturado. Para atingir esse objetivo estabelecem -se os seguintes objetivos específicos: (i) implementar 
+um questionário de orientação política individual baseado em múltiplos eixos ideológicos; (ii) desenvolver uma 
+arquitetura híbrida System 1/System 2 para classificação de conteúdos políticos e comparação com o perfil do usuário; 
+(iii) avaliar a qualidade das classificações, a latência e o custo da arquitetura proposta em comparação com o uso isolado 
+de seus componentes; e (iv) apresentar os resultad os de forma interpretável ao usuário, incluindo explicações sobre o 
+alinhamento identificado.  
+2 FUNDAMENTAÇÃO TEÓRICA  
+Esta seção descreve os conceitos que fundamentam este trabalho, organizados da seguinte forma. A subseção 2.1 
+aborda a ideia de ideologia e orientação política. Na subseção 2.2 é discutido sobre os modelos de decisão, com foco no 
+JEV (TypeSafe AI, 2026) e a subseção 2.3 discorre sobre LLMs. Já a subseção 2.4 descreve a arquitetura híbrida System 
+1/System 2. Por fim, a subseção 2.5 discute os trabalhos correlatos.  
+2.1 IDEOLOGIA E ORIENTAÇÃO POLÍTICA  
+A ideologia política pode ser compreendida como um sistema estruturado de valores, crenças e princípios 
+normativos que orientam a interpretação dos indivíduos sobre a organização da sociedade, bem como suas posições em 
+relação a questões sociais, econômica s e culturais. Nesse contexto, a distinção entre esquerda e direita constitui uma das 
+formas mais tradicionais de classificação ideológica, funcionando como um critério analítico para diferenciar visões de 
+mundo e projetos políticos distintos. Essa distinç ão não se limita a uma oposição meramente histórica ou terminológica, 
+mas reflete divergências fundamentais, especialmente no que se refere às concepções de igualdade e desigualdade como 
+princípios organizadores da vida social (Bobbio, 1996).  
+A representação do posicionamento político por meio de eixos ideológicos, como o eixo esquerda -direita, permite 
+a simplificação e a sistematização de orientações políticas complexas, podendo ser expandida para modelos 
+multidimensionais que capturam diferen tes aspectos da ideologia, como valores econômicos, sociais e culturais. Esses 
+modelos possibilitam uma análise mais refinada das preferências políticas individuais, superando abordagens 
+unidimensionais tradicionais. Nesse cenário, testes de orientação pol ítica surgem como instrumentos capazes de 
+operacionalizar tais dimensões ideológicas, identificando o posicionamento dos indivíduos a partir de suas opiniões sobre 
+temas específicos. Em geral, esses testes utilizam múltiplos eixos para representar diferent es dimensões ideológicas, 
+permitindo uma caracterização mais abrangente e detalhada do perfil político.  
+Dentre essas ferramentas, destaca -se o teste 8values, que avalia o posicionamento do usuário com base em oito 
+valores distribuídos em quatro eixos principais, abrangendo dimensões econômicas, diplomáticas, civis e sociais 
+(“8values”, 2019). Embora não seja  um instrumento acadêmico formalmente validado, seus eixos apresentam 
+correspondência com dimensões amplamente discutidas na teoria política. O eixo econômico, por exemplo, relaciona -se 
+ao debate entre maior intervenção estatal e maior liberdade de mercado . Os eixos estatal e social contemplam discussões 
+sobre liberdades individuais, autoridade do Estado, valores culturais e organização da sociedade. Já o eixo diplomático 
+envolve posicionamentos relacionados ao nacionalismo, internacionalismo e relações ent re Estados. Dessa forma, apesar 
+de simplificar conceitos complexos, a estrutura multidimensional do 8values apresenta aderência a categorias 
+consolidadas da teoria política, permitindo representar diferentes dimensões do posicionamento ideológico dos indiv íduos 
+(Bobbio; Matteucci; Pasquino, 2000; Dias, 2013; Robertson, 2004). Além dessa fundamentação conceitual, sua licença 
+de uso gratuito e sua ampla utilização em questionários similares dão à ferramenta a viabilidade técnica que justifica sua 
+adoção para a modelagem do perfil ideo lógico dos usuários neste trabalho.  
+O funcionamento do 8values baseia -se em um questionário no qual o participante indica seu grau de concordânci a 
+com afirmações sobre temas políticos, econômicos e sociais, em uma escala de cinco alternativas, de “discordo 
+totalmente” a “concordo totalmente” . Cada resposta recebe uma pontuação conforme os pesos previamente atribuídos à 
+
+=== PAGINA 3 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  3 
+questão nos quatro eixos avaliados. Ao final, essas pontuações são somadas e normalizadas em percentuais para cada par 
+de valores: igualdade e mercado, nação e globo, liberdade e autoridade, tradição e progresso. Em cada eixo, os dois 
+percentuais totalizam  100%, indicando a posição relativa do participante entre os polos. A combinação dos resultados 
+constitui um perfil ideológico multidimensional, que também é comparado a perfis previamente definidos para sugerir a 
+ideologia política mais próxima. Essa clas sificação é aproximativa, sendo reconhecida pela própria ferramenta como 
+menos precisa que os resultados apresentados nos eixos (“8values”, 2019). A Figura 1 apresenta a página inicial do teste.  
+Figura 1 - Página inicial 8values  
+ 
+Fonte: Digitalizado de 8values (2019). 
+2.2 MODELOS GERAIS DE DECISÃO  
+Modelos gerais de decisão são sistemas de IA voltados à realização de julgamentos e seleções em espaços de 
+resposta previamente delimitados. Sua generalidade consiste na capacidade de realizar decisões estruturadas em diferentes 
+tarefas sem treinamento pré vio. Para investigar as capacidades desses sistemas Duan et al. (2026) desenvolveram o JEVal , 
+um benchmark que reúne tarefas para avaliar e comparar diferentes modelos de decisão. Na formulação das tarefas do 
+JEVal, cada entrada é representada por 𝑥=(𝑠,𝑖,𝑐), em que 𝑠 corresponde ao estado ou contexto, 𝑖 à instrução e 𝑐  aos 
+critérios que delimitam o espaço de resultados admissíveis 𝑌(𝑥). O modelo avaliado deve produzir uma distribuição 
+𝑝𝜃( 𝑦 | 𝑥 ) sobre esse espaço. Em uma tarefa categórica, a alternativa selecionada pode ser expressa por:  
+𝑦̂=𝑎𝑟𝑔 𝑚𝑎𝑥
+𝑦∈𝒴(𝑥)𝑝𝜃(𝑦∣ 𝑥) 
+Essa formulação descreve o problema de decisão adotado pelo benchmark e fornece uma representação 
+conceitual para a discussão desses modelos (Duan et al., 2026). 
+O JEV, por sua vez, é um modelo geral de decisão desenvolvido pela TypeSafe  AI e disponibilizado por meio de 
+uma API ( Application Programming Interface  - Interface de Programação de Aplicações). Segundo sua documentação, 
+ele recebe um estado, denominado state, e perguntas classificadas por tipo, organizadas em questions, retornando 
+respostas estruturadas que podem ser utilizadas diretamente. Uma mesma requisição pode conter diferentes perguntas 
+sobre o estado fornecido. A interface disponibiliza três tipos de perguntas: choice, para selecionar uma alternativa entre 
+opções definidas; noul, para estimar a probabilidade de uma resposta afirmativa a uma pergunta binária; e score, para 
+avaliar o conteúdo segundo níveis ordenados de uma rubrica (TypeSafe AI, 2026).  
+O tipo choice realiza a seleção entre alternativas explicitamente definidas. Sua configuração inclui uma 
+instrução e um conjunto de opções, cujos nomes e descrições delimitam as categorias admissíveis. A resposta contém a 
+alternativa selecionada, a distribuição de prob abilidades entre as opções e uma medida de confiança. Na análise de textos 
+políticos, por exemplo, essa estrutura pode representar a classificação de um trecho como favorável, contrário ou sem 
+posicionamento expresso em relação a uma proposta (TypeSafe AI,  2026). 
+
+
+=== PAGINA 4 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  4 
+Já o tipo noul avalia uma pergunta binária ou proposição e retorna um valor entre zero e um correspondente à 
+probabilidade estimada de uma resposta afirmativa. Valores próximos de um indicam maior probabilidade de “sim”, 
+enquanto valores próximos de zero indicam maior p robabilidade de “não”. Uma aplicação possível seria verificar se 
+determinado trecho apresenta conteúdo relacionado à política econômica. Esse valor expressa uma probabilidade de 
+resposta, e não a intensidade da característica avaliada. Diferentemente de choice e score, o tipo noul não apresenta 
+um campo separado de confiança (TypeSafe AI, 2026).  
+Por fim o tipo score permite avaliar o estado a partir de uma rubrica composta por níveis ordenados e descritos 
+textualmente. A resposta inclui a probabilidade atribuída a cada nível, a legenda da escala, uma medida de confiança e o 
+escore resultante. O Quadro 1 apresenta um exemplo de requisição e resposta do tipo choice. O estado , campo state, 
+contém  um trecho favorável à tributação progressiva, enquanto a pergunta define três posições admissíveis. A resposta 
+mostra a alternativa selecionada , campo choice, e os respectivos campos probabilísticos.  
+Quadro 1 - Requisição API JEV  
+Requisição  Resposta  
+{ 
+    "model": "jev-preview", 
+    "state": { 
+        "state": "Defendemos a tributação 
+progressiva." 
+    }, 
+    "questions": { 
+        "posicao_tributacao": { 
+            "type": "choice", 
+            "instructions": "Qual posição o trecho 
+expressa em relação à tributação progressiva?", 
+            "criteria": { 
+                "apoia": "Defende a medida", 
+                "rejeita": "Rejeita a medida", 
+                "sem_posicao": "Não expressa 
+posição" 
+            } 
+        } 
+    } 
+} 
+{ 
+    "model": "jev-1.14.0", 
+    "answers": { 
+        "posicao_tributacao": { 
+            "type": "choice", 
+            "choice": "apoia", 
+            "confidence": 1, 
+            "probabilities": { 
+                "apoia": 1, 
+                "rejeita": 0, 
+                "sem_posicao": 0 
+            } 
+        } 
+    }, 
+    "usage": { 
+        "input_tokens": 364, 
+        "output_tokens": 49 
+    } 
+} 
+Fonte: elaborado pelo autor (2026). 
+2.3 GRANDES MODELOS DE LINGUAGEM  
+LLMs representam um dos principais avanços recentes na área de Processamento de Linguagem Natural (PLN), 
+sendo capazes de aprender padrões linguísticos complexos a partir de grandes volumes de dados textuais. Esses modelos 
+são treinados por meio de estraté gias de pré -treinamento em larga escala, o que permite o desenvolvimento de 
+representações generalizáveis e aplicáveis a múltiplas tarefas de forma independente de arquitetura específica. Como 
+resultado, têm demonstrado desempenho significativo em diversas  tarefas, como tradução, resposta de perguntas ( question 
+answering ) e compreensão textual (Minaee et al., 2024). 
+Diferentemente de abordagens tradicionais, que exigem grandes volumes de dados rotulados e etapas de ajuste 
+finos (fine-tuning ) para cada tarefa específica, os LLMs apresentam a capacidade de aprendizado em contexto ( in-context 
+learning ), permitindo a realização de tarefas a partir de poucos exemplos ou até mesmo apenas instruções em linguagem 
+natural. Esse paradigma reduz a dependência de dados supervisionados e amplia a flexibilidade de aplicação dos model os 
+em diferentes domínios.  
+Além disso, observa -se que o aumento da escala desses modelos, tanto em número de parâmetros quanto em 
+volume de dados de treinamento, está diretamente relacionado à melhoria de desempenho em tarefas de PLN, 
+evidenciando uma relação entre capacidade do mod elo e generalização. Essa característica permite que LLMs sejam 
+utilizados como ferramentas versáteis para análise, interpretação e geração de conteúdos textuais, tornando -os 
+especialmente relevantes para aplicações que envolvem compreensão semântica e aná lise de textos, como a proposta deste 
+trabalho.  
+2.4 ARQUITETURA SYSTEM 1/SYSTEM 2  
+A arquitetura híbrida System 1/System 2  combina uma etapa de decisão rápida com outra de análise mais 
+aprofundada. Seu funcionamento pode ser organizado como uma cascata: um primeiro modelo recebe a entrada e produz 
+uma resposta; em seguida, uma regra determina se essa resposta será mantida ou se a tarefa será encaminhada a outro 
+modelo. Essa estratégia busca reservar o processamento mais custoso para os casos em que ele pode ser necessário. Zhang 
+
+=== PAGINA 5 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  5 
+et al . (2026) empregam esse princípio no sistema Raciocínio Colaborativo ( Collaborative R easoning  - COREA), que 
+combina dois modelos e utiliza a confiança da resposta inicial para decidir sobre o encaminhamento.  
+Em uma  combinação entre JEV e um LLM de raciocínio, o JEV pode desempenhar a primeira etapa, realizando 
+classificações e julgamentos estruturados sobre o conteúdo recebido. Enquanto o  LLM assume a segunda etapa, 
+analisando os casos mais complexos selecionados pela regra de encaminhamento. Nesse contexto, as denominações 
+System 1  e System 2  descrevem os papéis dos componentes: decisão inicial direta e processamento adicional , 
+respectivamente (Li et al., 2026) 
+O encaminhamento por confiança permite que parte das entradas seja resolvida na primeira etapa. Para isso, 
+estabelece -se um limiar de aceitação: respostas acima desse limiar são preservadas, enquanto as demais recebem uma 
+nova avaliação. A escolha desse va lor deve considerar o desempenho observado na tarefa, pois a confiança informada 
+pelo modelo precisa ser validada antes de orientar a aceitação automática das respostas. O COREA evidencia a 
+importância dessa relação ao incorporar um treinamento específico para melhorar a correspondência entre confiança e 
+correção (Zhang et al., 2026). 
+Em tarefas de anotação textual, Ibrahim e Zaki (2026) avaliam diretamente a combinação entre JEV e LLMs. Os 
+autores mantêm as classificações do JEV que superam um limiar de confiança e encaminham as restantes a outro model o 
+de raciocínio . Nas condições estudadas, algumas configurações apresentam desempenho semelhante ou superior ao uso 
+isolado do modelo de raciocínio , com menor custo e maior velocidade. Os resultados também variam entre tarefas, 
+indicando que os benefícios da arquitetura dependem dos modelos utilizados e da regra de encaminhamento. A Figura 2 
+demonstra um exemplo de  arquitetura híbrida utilizada para avaliar respostas produzidas por LLMs.  
+Figura 2 - Fluxograma arquitetura híbrida  
+ 
+Fonte: adaptado de Li et al. (2026, p. 2). 
+Para a classificação de posicionamentos em textos políticos, essa organização pode ser aplicada atribuindo ao 
+JEV a avaliação inicial de cada trecho e ao LLM a análise dos casos encaminhados. A finalidade é reduzir a necessidade 
+de consultar o LLM para tod as as entradas, preservando a possibilidade de processamento adicional para  quando a 
+primeira avaliação não atende ao critério de aceitação.  
+2.5 TRABALHOS CORRELATOS  
+Nesta subseção, são apresentados os trabalhos com maior correlação ao estudo proposto. O Quadro 2 apresenta 
+o trabalho de Haroon, Wojcieszak e Chhabra (2025), que realizaram uma pesquisa para estimar o posicionamento 
+ideológico de conteúdos políticos com modelos de linguagem. No Quadro 3, é apresentado detalhes do artigo de 
+Figueredo, Mueller e Cajueiro (2022), onde foi criada uma classificação de discursos políticos usando técnicas de PLN. 
+Por fim, no Quadro 4, é descrito o trabalho de Li, Miao, Krishnan e Padman (2026), que desenvolve uma análise do JEV 
+como avaliador automático de respostas de modelos de linguagem.  
+No Quadro 2 é resumido o trabalho de Haroon, Wojcieszak e Chhabra (2025), que investiga o uso de LLMs para 
+classificar notícias e conteúdos políticos como liberais, neutros ou conservadores, considerando o contexto político do 
+Estados Unidos. Os autores propõem uma a bordagem com poucos exemplos ( few-shot learning – FSL), onde o model o 
+recebe exemplos previamente classificados como treinamento. O estudo conclui que o método utilizado pode facilitar na 
+análise ideológica em larga escala, mas alertam para possíveis vieses introduzidos por uso de metadados, como a fonte 
+do con teúdo.  
+
+
+=== PAGINA 6 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  6 
+Quadro 2 - Whose Side Are You On? Estimating Ideology of Political and News Content Using Large Language Models 
+and Few -shot Demonstration Selection  
+Referência  Haroon, Wojcieszak e Chhabra (2025).  
+Objetivos Estimar o posicionamento ideológico de notícias e conteúdos políticos com modelos de 
+linguagem, classificando -os como liberais, neutros ou conservadores no contexto dos Estados 
+Unidos. 
+Principais 
+funcionalidades  
+Classificação ideológica de textos; seleção automática de exemplos equilibrados entre as três 
+classes; utilização de título, fonte e descrição para apoiar a classificação.  
+Ferramentas de 
+desenvolvimento  
+Modelos GPT-4o, Llama -2-13B e Mistral-7B; API da OpenAI e biblioteca Hugging Face; 
+método SET -BSR para seleção de exemplos.  
+Resultados e 
+conclusões  
+O GPT-4o, com 12 exemplos e informação da fonte, alcançou 74% de acurácia no YouTube e 
+87% nas bases Ad Fontes  e AllSides . A abordagem superou os modelos supervisionados de 
+comparação, mas a informação da fonte pode introduzir vieses.  
+Fonte: elaborado pelo autor (2026). 
+No Quadro 3 é apresentado o trabalho de Figueredo, Mueller e Cajueiro (2022), que propõe a utilização de 
+aprendizado de máquina para a classificação de discursos parlamentares em um eixo ideológico de esquerda e direita, 
+com base na classificação definida por Power e  Zucco Jr. (2009). Como principal método, o estudo emprega o algoritmo 
+de aprendizado de máquina Naive Bayes (Jurafsky; Martin, 2020) para identificar e classificar padrões linguísticos 
+associados a categorias ideológicas previamente estabelecidas. O traba lho conclui que os resultados obtidos apontam para 
+um crescimento da polarização política nas últimas legislaturas estudadas. Porém , também ressalta a dificuldade em 
+separar as dimensões esquerda -direita da relação governo -oposição, e sugere o uso de uma análise multidimensional.  
+Quadro 3 - A natural language measure of ideology in the Brazilian Senate  
+Referência  Figueredo, Mueller e Cajueiro (2022).  
+Objetivos Identificar o conteúdo ideológico dos discursos de senadores brasileiros e analisar a evolução 
+da polarização política entre 1995 e 2018.  
+Principais 
+funcionalidades  
+Classificação dos discursos em esquerda, centro e direita; identificação de vocabulários 
+característicos de cada grupo; comparação das mudanças ideológicas e da polarização entre 
+legislaturas. 
+Ferramentas de 
+desenvolvimento  
+Processamento de Linguagem Natural, representação TF -IDF e classificador Naive Bayes 
+multinomial — MultinomialNB, do scikit -learn. Wordfish e SVM foram utilizados em 
+verificações de robustez.  
+Resultados e 
+conclusões  
+A acurácia do modelo principal variou de 65,1% a 81,5% no teste. Os autores interpretam seu 
+crescimento a partir da 52ª legislatura como evidência de aumento da polarização  no senado . 
+A Precisão e o recall variaram entre classes, com baixo recall para a direita em algumas 
+legislaturas. 
+Fonte: elaborado pelo autor (2026). 
+No Quadro 4 é feita uma síntese do trabalho de Li, Miao, Krishnan e Padman (2026), que investiga o uso do JEV 
+como um método de redução do custo e tempo na avaliação automática de respostas de LLMs. O método funciona em 
+duas etapas: primeiramente o JEV avalia a resposta, quando sua confiança atinge um limite previamente estabelecido, a 
+decisão é aceita. Caso contrário, a avaliação é encaminhada a um modelo mais forte. Os autores concluem que o método  
+pode tornar a avaliação mais rápida e econômica, porém ressaltam que o limite de confiança deve ser ajustado ao contexto 
+da tarefa.  
+Quadro 4 - JEV-as-a-Judge: Accept When Confident, Escalate When Unsure  
+Referência  Li, Miao, Krishnan e Padman (2026).   
+Objetivos Investigar se o JEV pode avaliar respostas de modelos de linguagem e encaminhar os casos de 
+baixa confiança a um modelo mais forte, preservando a acurácia.  
+Principais 
+funcionalidades  
+Comparação entre respostas; verificação de informações com base em evidências; avaliação de 
+respostas finais; retorno de decisões e probabilidades; encaminhamento automático de casos 
+incertos a outro avaliador.  
+Ferramentas de 
+desenvolvimento  
+API TypeSafe JEV 1.13.0 e GPT -6 Astra como avaliador de apoio. Nos experimentos 
+comparativos, também foram utilizados outros LLMs, modelos de recompensa e vLLM para 
+executar modelos locais.  
+Resultados e 
+conclusões  
+Em 1.610 pares de teste, a combinação JEV –GPT-6 alcançou 93,4% de acurácia, contra 92,5% 
+do GPT-6 isolado, com 41,4% de seu custo. O encaminhamento por confiança foi eficaz, mas 
+depende da tarefa e apresenta limitações diante de estilos enganosos e textos sem referência.  
+Fonte: elaborado pelo autor (2026). 
+
+=== PAGINA 7 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  7 
+3 DESCRIÇÃO DO SISTEMA  
+Nesta seção são descritos os aspectos mais relevantes da especificação e implementação do sistema de 
+identificação de alinhamento político. A subseção 3.1 aborda as especificações do sistema, enquanto a subseção 3.2 
+descreve a implementação do algoritmo híbrido para análise e comparação de conteúdo político.  
+3.1 ESPECIFICAÇÃO 
+Está seção apresenta os Requisitos Funcionas (RF) e Requisitos Não Funcionais (RNF) definidos para o sistema 
+desenvolvido. O Quadro 5 apresenta os RF e o Quadro 6 apresenta os RNF. Por fim na Figura 3 é apresentado o diagrama 
+de atividades, que representa os processos do sistema para a classificação e comparação de conteúdo político.  
+Quadro 5 - Requisitos Funcionais  
+RF01 Permitir que o usuário responda a um questionário baseado no 8values para determinar seu 
+perfil ideológico. 
+RF02 Permitir que o usuário insira textos de conteúdo político para análise.  
+RF03 Classificar o posicionamento ideológico dos textos inseridos conforme as dimensões adotadas 
+pelo sistema.  
+RF04 Calcular a similaridade entre o perfil ideológico do usuário e o posicionamento ideológico 
+identificado no texto analisado.  
+RF05 Exibir ao usuário o resultado da classificação do texto e seu grau de alinhamento com o perfil 
+ideológico do usuário.  
+Fonte: elaborado pelo autor (2026). 
+Quadro 6 - Requisitos não funcionais  
+RNF01 O sistema deve apresentar os resultados dos quatro eixos ideológicos por meio de gráficos e 
+barras percentuais, com identificação dos polos e distinção dos eixos sem evidências 
+suficientes para classificação.  
+RNF02 O sistema deve adotar um limite de processamento de 120 segundos por análise, mantendo o 
+usuário informado durante a espera e apresentando uma mensagem caso o limite seja 
+excedido.  
+RNF03 O site e a extensão devem utilizar linguagem compreensível para usuários sem conhecimento 
+técnico em inteligência artificial, oferecendo orientações para responder ao questionário, 
+analisar textos e interpretar os resultados.  
+RNF04 O sistema deve manter as respostas do questionário e o perfil ideológico no navegador, sem 
+enviá -los à API de análise. O usuário deve ser informado sobre o envio dos textos aos serviços 
+de IA, e o armazenamento de relatos de problemas deve depender de sua confirmação 
+explícita.  
+RNF05 O sistema deve apresentar as evidências textuais utilizadas nas classificações, sinalizar os 
+eixos sem evidências suficientes e informar que os resultados produzidos por inteligência 
+artificial podem conter erros.  
+Fonte: elaborado pelo autor (2026). 
+A Figura 3 presenta o diagrama de atividades que representa o fluxo de análise, classificação e comparação do 
+texto. O processo inicia com o recebimento do texto e sua divisão em trechos, conforme a estratégia de segmentação e o 
+tamanho -alvo configurados. Os trechos  são processados de forma concorrente, e o JEV avalia a relevância e a polaridade 
+de cada um nos quatro eixos. Caso alguma classificação apresente baixa confiança ou falha, o LLM é acionado para 
+revisar a relevância e a polaridade dos eixos sinalizados, su bstituindo as respectivas decisões do JEV. A busca e a 
+verificação de evidências são realizadas em seguida, sem alterar as pontuações.  
+Após o processamento de todos os trechos, o sistema calcula a média das pontuações dos trechos relevantes e 
+com classificação válida em cada eixo, apresentando a análise ao usuário. Caso o resultado do teste 8values esteja 
+disponível, também é apresentada uma comparação descritiva entre as pontuações do texto e o perfil obtido pelo usuári o 
+no questionário, considerando os eixos que possuem estimativa válida.  
+
+=== PAGINA 8 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  8 
+Figura 3 - Diagrama de atividades da análise de textos e comparação com o teste 8values  
+ 
+Fonte: elaborado pelo autor (2026). 
+3.2 IMPLEMENTAÇÃO 
+Esta seção descreve a implementação do trabalho desenvolvido, abordando os algoritmos utilizados e as 
+interfaces criadas. A cascata de classificação foi implementada em Python e disponibilizada por meio de uma API  
+desenvolvida com FastAPI. O site e a exten são para navegadores foram desenvolvidos em TypeScript, com o uso da 
+biblioteca React.  
+3.2.1 Aplicação do JEV à classificação política  
+O JEV foi utilizado no trabalho para identificar as posições políticas expressas em um texto segundo os quatro 
+eixos do 8values. A escolha do JEV como modelo System 1 foi realizada por conta  do seu baixo  custo, cerca de R$0,25 
+por milhão de tokens de entrada, sem cobrança pelos tokens de saída  (TypeSafe AI, 2026) . Além da alta velocidade, 
+aproximadamente 250 milissegundos por trecho nos testes realizados . 
+Para cada eixo, a classificação foi dividida em duas perguntas. A primeira avalia a relevância, ou seja, se o trecho 
+contém informação relevante sobre o assunto. A segunda avalia a polaridade, identificando qual dos polos caracteri za a 
+posição apresentada e com que intensidade. Essa distinção é necessária porque um trecho pode abordar um tema sem 
+favorecer nenhum dos polos.  
+Antes da definição da configuração apresentada nesta seção, foram realizados testes exploratórios com diferentes 
+formas de aplicação do JEV. Inicialmente, experimentou -se responder individualmente às 70 perguntas do questionári o 
+8values, utilizando alterna tivas de concordância e discordância, e calcular classificação do texto da mesma forma que o 
+
+
+=== PAGINA 9 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  9 
+questionário original. Entretanto, nos textos avaliados, observou -se uma tendência a pontuações próximas ao centro dos 
+eixos, com pouca diferenciação entre os resultados.  
+A partir dessa exploração, adotou -se a classificação direta das posições expressas no texto, separando as 
+perguntas de relevância e polaridade por eixo. Os prompts foram construídos a partir das definições dos polos de cada 
+eixo. A pergunta de relevância ap resenta o tema e os critérios para considerar um trecho relevante. Já a pergunta de 
+polaridade descreve os dois polos e as situações que caracterizam cada nível da escala. As instruções também especifi cam 
+como interpretar citações, negações e descrições pr opostas. O Quadro 7 apresenta a pergunta de relevância do tipo choice 
+(Linha 2) referente ao eixo econômico no formato JSON ( JavaScript Object Notation  - Notação de Objetos JavaScript) 
+enviado à API do JEV. O campo instructions (Linha 3) contém a descrição da pergunta e o campo criteria (Linha 
+19) as alternativas possíveis.  
+Quadro 7 - Pergunta de Relevância  
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+28 
+29 
+30 
+31 
+32 
+{ 
+   "type":"choice", 
+   "instructions":"Contexto da análise: os textos fornecidos apresentam sempre 
+posições políticas de alguém. Classifique as posições políticas expressas no 
+trecho, independentemente de quem as enuncia, incluindo falas citadas ou atribuídas 
+a terceiros, sem exigir adesão do autor ou narrador. Interprete as ideias 
+apresentadas como posições expressas, mesmo quando o texto usa linguagem impessoal, 
+descritiva ou de definição de uma ideologia, sem exigir declaração explícita de 
+apoio. Não classifique como sem posição apenas por esse formato. Interprete 
+negações e críticas pelo seu sentido, sem transformar rejeição em defesa. Quando 
+houver posições opostas, avalie sua predominância conforme as rubricas. Avalie cada 
+eixo separadamente, sem inventar posições sobre temas ausentes nem intensidade não 
+sustentada pelo conteúdo. Preserve a distinção entre defender e rejeitar uma 
+posição. Não atribua ao enunciador a posição rejeitada nem converta automaticamente 
+essa rejeição em defesa do polo oposto. Só atribua direção e intensidade quando 
+sustentadas pelo sentido do trecho e pelas rubricas. O trecho contém conteúdo 
+substantivo sobre economia, incluindo propostas, ideias, definições ou modelos 
+políticos?", 
+   "criteria":{ 
+      "A":"Sim. Há evidência substantiva sobre distribuição de renda e riqueza, 
+desigualdade econômica, tributação, políticas sociais, serviços públicos, 
+propriedade dos meios de produção, regulação econômica, intervenção estatal, 
+privatização, livre mercado, concorrência, relações de trabalho ou política 
+fiscal.", 
+      "B":"Não. Não há evidência substantiva sobre distribuição de renda e riqueza, 
+desigualdade econômica, tributação, políticas sociais, serviços públicos, 
+propriedade dos meios de produção, regulação econômica, intervenção estatal, 
+privatização, livre mercado, concorrência, relações de trabalho ou política 
+fiscal." 
+   } 
+} 
+Fonte: elaborado pelo autor (2026). 
+A pergunta de polaridade, também do tipo choice, utiliza uma escala ordinal bipolar de nove categorias por 
+eixo, estruturada de maneira semelhante às escalas de diferencial semântico propostas por Osgood, Suci e Tannenbaum 
+(1957). São definidos quatro graus de intensidade para cada polo e uma categoria  central, denominada “sem posição”. No 
+eixo econômico, por exemplo, o polo A corresponde à “igualdade” e o polo B ao “mercado”. As categorias distinguem a 
+direção da posição expressa e sua intensidade, operacionalizada conforme o alcance e a abrangência da s propostas ou dos 
+modelos identificados  no trecho.  
+A classificação é aplicada às posições identificadas nos conteúdos textuais com base em critérios semânticos 
+previamente estabelecidos. O Quadro 8 apresenta os critérios e exemplos utilizados nessa classificação para o eixo 
+econômico.  
+Quadro 8 - Níveis Pergunta Polaridade Econômica  
+Nível Descrição  Exemplos  
+Polo A muito forte  Propõe ou caracteriza a ampliação ampl a 
+e estrutural do papel do Estado para 
+redistribuir renda, riqueza ou 
+propriedade.  
+Estatizar setores inteiros da economia.  
+Redistribuir amplamente renda, riqueza 
+ou propriedade, ou planejar centralmente 
+a economia.  
+
+=== PAGINA 10 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  10 
+Polo A forte  Propõe ou caracteriza reformas 
+redistributivas abrangentes em vários 
+instrumentos, preservando a economia 
+mista e a propriedade privada.  
+Combinar reforma tributária progressiva, 
+ampliação de serviços universais e 
+proteção trabalhista.  
+Ampliar de forma coordenada a 
+redistribuição de renda e a provisão 
+pública em vários setores.  
+Polo A moderado  Propõe ou caracteriza medidas pontuais 
+ou graduais na direção da igualdade 
+econômica, mantendo a estrutura 
+existente. 
+Ampliar de forma focalizada um 
+programa social ou serviço público.  
+Tornar um tributo específico mais 
+progressivo. 
+Polo A leve  Expressa ou caracteriza uma preferência 
+limitada pela redistribuição, com ajuste 
+de alcance mínimo e sem ampliar 
+substancialmente programas ou tributos.  
+Priorizar famílias de menor renda nas 
+vagas já existentes de um benefício.  
+Corrigir pontualmente o cadastro de um 
+programa para incluir famílias pobres 
+excluídas.  
+Sem posição  O trecho trata do tema, mas não 
+apresenta proposta, ideia, modelo ou 
+arranjo com características direcionais 
+de um polo, ou combina os dois sem 
+predominância. Dados, diagnósticos e 
+menções temáticas só entram aqui 
+quando não caracterizam direção. A 
+forma d escritiva ou de definição, por si 
+só, não indica ausência de posição.  
+Apresentar dados ou diagnóstico sobre 
+emprego, renda ou contas públicas.  
+Prometer crescimento ou eficiência sem 
+dizer se o meio é o Estado ou o mercado.  
+Polo B leve Expressa ou caracteriza uma preferência 
+limitada por soluções de mercado, com 
+ajuste de alcance mínimo e sem reforma 
+de um setor.  
+Dar preferência a fornecedores privados 
+em um pequeno projeto piloto.  
+Reduzir uma exigência burocrática 
+específica para pequenos negócios.  
+Polo B moderado  Propõe ou caracteriza medidas pontuais 
+ou graduais na direção do mercado, 
+mantendo a estrutura existente.  
+Conceder à iniciativa privada a gestão de 
+alguns serviços ou obras.  
+Simplificar tributos ou conter o 
+crescimento do gasto público.  
+Polo B forte  Propõe ou caracteriza um conjunto 
+abrangente de reformas de mercado em 
+vários setores, preservando serviços 
+públicos e funções regulatórias 
+essenciais. 
+Privatizar empresas de vários setores 
+mantendo saúde e educação públicas.  
+Reduzir de modo coordenado barreiras 
+de entrada e regulações em diversos 
+mercados.  
+Polo B muito forte  Propõe ou caracteriza a redução ampla e 
+estrutural do papel do Estado na 
+economia em favor do mercado.  
+Privatizar a maior parte das empresas e 
+dos serviços estatais.  
+Cortar amplamente tributos e gastos 
+públicos e desregulamentar a economia 
+em geral. 
+Fonte: elaborado pelo autor (2026). 
+Com base nessas categorias, a pergunta de polaridade pode ser formulada da seguinte maneira: “Considerando 
+os critérios apresentados, qual das nove categorias melhor caracteriza a posição econômica expressa no trecho?”. As 
+descrições e os exemplos do Quadro 8 compõem as alternativas que orientam a escolha. Assim como na pergunta de 
+relevância, as instruções consideram as posições expressas no conteúdo, incluindo aquelas citadas ou atribuídas a 
+terceiros, sem exigir adesão do autor ou narrador.  
+Os resultados das perguntas de relevância e polaridade são apresentados em formato JSON, conforme o exempl o 
+do Quadro 9. Na pergunta de relevância o campo choice (Linha 4) é considerado com a resposta final. Porém, na 
+pergunta de polaridade, a escolha ocorre em duas etapas: primeiro, somam -se os valores do campo probabilities 
+(linha 11) das alternativas de cada polo e seleciona -se o polo com a maior soma. Em seguida, entre as alternativas 
+pertencentes ao polo selecionado, escolhe -se aquela com o maior valor de probabilidade. No exemplo apresentado, 
+considerando apenas a avalia ção do JEV, o trecho “Nacionalização e estatização do sistema monetário, financeiro e 
+bancário” seria classificado como relevante para o eixo econômico e associado ao polo da igualdade com intensidade 
+muito forte. Posteriormente na etapa de decisão da casc ata, os campos retornados pelo JEV são utilizados para determinar 
+se a classificação atende ao critério de confiança adotado ou se o trecho deve ser encaminhado ao LLM.  A resposta 
+completa do JEV pode ser vista no APÊNDICE A. 
+
+=== PAGINA 11 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  11 
+Quadro 9 - Retorno JEV 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+{ 
+  "relevancia": { 
+    "type": "choice", 
+    "choice": "A", 
+    "confidence": 0.98, 
+    "probabilities": { 
+      "A": 0.99, 
+      "B": 0.01 
+    } 
+  }, 
+  "polaridade": { 
+    "type": "choice", 
+    "choice": "polo_A_muito_forte", 
+    "confidence": 1.0, 
+    "probabilities": { 
+      "polo_B_muito_forte": 0.0, 
+      "polo_B_forte": 0.0, 
+      "polo_B_moderado": 0.0, 
+      "polo_B_leve": 0.0, 
+      "sem_posicao": 0.0, 
+      "polo_A_leve": 0.0, 
+      "polo_A_moderado": 0.0, 
+      "polo_A_forte": 0.0, 
+      "polo_A_muito_forte": 1.0 
+    } 
+  } 
+} 
+Fonte: elaborado pelo autor (2026). 
+3.2.2 Classificação política com modelos de linguagem  
+O LLM  também  foi utilizado para identificar as posições políticas expressas em um texto segundo os quatro 
+eixos do 8values. Para cada eixo solicitado, o modelo avalia se o trecho contém conteúdo relevante sobre o tema e, quando 
+presente, identifica a direção e a inten sidade da posição apresentada. Essas avaliações são retornadas conjuntamente em 
+uma resposta estruturada, acompanhadas de uma passagem do texto que fundamenta a classificação.  
+Para definir o modelo utilizado como System 2 foi realizado um teste exploratório de estabilidade apresentado na 
+Tabela 1. No teste cada modelo realizou dez classificações de um mesmo texto. O desvio padrão foi calculado a partir da 
+variação das pontuações nos quatro eixos do 8values, enquanto o tempo mediano foi obtido a partir da duração das 
+chamadas e o valor por milhão d e token da documentação de cada fornecedor. O modelo Sabiá -4 (Maritaca AI, 2026) foi 
+considerado o melhor para este trabalho pois apresentou o menor desvio padrão, indicando maior consistência entre as 
+execuções nesse tipo de tarefa, além de apresentar um tempo de resposta próximo ao dos modelos mais rápidos.  
+Tabela 1 - Comparação modelos  
+Modelo Desvio padrão médio  Tempo 
+mediano 
+Entrada (preço por 
+milhão de tokens)  
+Saída (preço por 
+milhão de tokens)  
+Sabiá 4 - Flex 2,84 1,01 s R$ 2,50  R$ 10,00  
+GPT-5.6 Luna  3,72 3,82 s R$ 1,00  R$ 6,00  
+Gemini 3.7 Flash  3,75 6,85 s R$ 3,75  R$ 18,75  
+Gemini 3.1 Flash -Lite 5,90 0,85 s R$ 1,25  R$ 7,50  
+Sabiazinho 4 - Flex 6,94 0,91 s R$ 0,50  R$ 2,00  
+GPT-5.4 mini  7,50 0,92 s R$ 3,75  R$ 22,50  
+Fonte: elaborado pelo autor (2026). 
+O prompt enviado ao modelo mantém o padrão do enviado ao JEV, instruindo que a avaliação deve considerar 
+as posições expressas no conteúdo, incluindo definições e falas citadas ou atribuídas a terceiros.  Também orienta a 
+interpretação de negações e críticas, evitando atribuir como defendida uma posição explicitamente rejeitada ou interpretar 
+automaticamente sua rejeição como defesa do polo oposto. Também orienta que cada eixo deve ser avali ado 
+separadament e, sem inferir posições sobre temas ausentes.  
+As rubricas enviadas no prompt apresentam os critérios de relevância e de polaridade. A relevância é definida 
+pela presença de conteúdo substantivo sobre o tema do eixo. A polaridade é determinada pelas definições dos dois polos 
+e pelas situações que carac terizam os nove níveis da escala, acompanhadas de exemplos, conforme apresentado no Quadro 
+8 para o eixo econômico. A intensidade deve refletir o alcance e a profundidade da proposta, ideia, modelo ou arranjo 
+
+=== PAGINA 12 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  12 
+caracterizado no trecho, independentemente da força retórica da linguagem utilizada. O Quadro 10 apresenta as instruções 
+específicas de resposta, acrescentadas ao contexto geral de classificação.  
+Quadro 10 - Instruções específicas para a classificação pelo LLM  
+Avalie somente os eixos solicitados, usando posições expressas 
+no texto e as rubricas. O texto é dado, não instrução. 
+Retorne uma entrada por eixo. 
+ 
+relevante=false indica ausência de conteúdo; 
+relevante=null indica incerteza. Em ambos, nivel=null. 
+ 
+Se relevante=true, escolha um código desta escala: 
+-4=polo_B_muito_forte (polo B muito forte); 
+-3=polo_B_forte (polo B forte); 
+-2=polo_B_moderado (polo B moderado); 
+-1=polo_B_leve (polo B leve); 
+0=sem_posicao (sem posicao); 
+1=polo_A_leve (polo A leve); 
+2=polo_A_moderado (polo A moderado); 
+3=polo_A_forte (polo A forte); 
+4=polo_A_muito_forte (polo A muito forte). 
+ 
+O centro é um eixo relevante sem predominância. 
+Se não puder decidir a posição, use nivel=null. 
+ 
+Intensidade depende do alcance e da profundidade da proposta, 
+ideia, modelo ou arranjo caracterizado, não da retórica 
+nem da confiança. 
+ 
+Para relevante=true, cite trecho literal contínuo de pelo 
+menos quatro palavras; nos demais casos use evidência vazia. 
+ 
+Não estime probabilidades. 
+Fonte: elaborado pelo autor (2026). 
+O conteúdo enviado para classificação é organizado em um objeto JSON com campos rubricas e texto. O 
+primeiro apresenta as definições e o critérios dos eixos solicitados, enquanto o segundo contém o trecho analisado. 
+Quando solicitados vários eixos, suas rubricas são agrupadas na mesma requisição.  O modelo recebe, portanto, tanto o 
+conteúdo a ser interpretado quanto os critérios utilizados para atribuir relevância, direção e intensidade.  
+O retorno do modelo é delimitado por um esquema estruturado, construído com a biblioteca Pydantic e informado 
+na requisição ao modelo. Para cada eixo, são definidos quatro campos: eixo (linha 4), que identifica a dimensão avali ada; 
+relevante (linha 5), que informa a presença de conteúdo relevante ao tema; nível (linha 6), que representa a categori a 
+de polaridade; e evidencia (linha 7), que reproduz uma passagem do texto associada à decisão. O esquema restringe os 
+identificadores aos eixos solicitados e os níveis aos códigos da escala utilizada. O Quadro 11 apresenta um exempl o 
+ilustrativo de resposta para o eixo econômico.  
+Quadro 11 - Retorno LLM  
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+{ 
+  "eixos": [ 
+    { 
+      "eixo": "economic", 
+      "relevante": true, 
+      "nivel": 4, 
+      "evidencia": "Nacionalização e 
+estatização do sistema monetário, financeiro e 
+bancário" 
+    } 
+  ] 
+} 
+Fonte: elaborado pelo autor (2026). 
+No exemplo, relevante=true (linha 5)  indica a presença de conteúdo relevante sobre economia, enquanto 
+nivel=4 (linha 6) corresponde ao polo da igualdade com intensidade muito forte. A evidência , campo evidencia (linha 
+7), permite localizar a passagem associada à classificação. A estrutura também distingue ausência de conteúdo, posição 
+central e incerteza. Quando o eixo é considerado irrelevante, relevante recebe false e nivel recebe null. Quando 
+
+=== PAGINA 13 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  13 
+não é possível determinar a relevância, ambos recebem null. Quando o conteúdo é relevante, mas a posição não pode 
+ser determinada, relevante recebe true e nivel permanece null. 
+3.2.3 Integração dos classificadores em cascata  
+Antes da classificação, o texto é segmentado em sentenças utilizando o tokenizador Punkt, da biblioteca NLTK, 
+com parâmetros para a língua portuguesa e regras complementares para o tratamento de abreviações, referências legais e 
+estruturas textuais. As sentenças são agrupadas sequencialmente em trechos com tamanho -alvo de 500 tokens, sem 
+sobreposição, procurando preservar os parágrafos completos quando possível. Caso uma sentença ou unidade estrutural 
+ultrapasse individualmente esse tamanho, ela é preservada integralmente em um trecho próprio. Dessa forma, os 500 
+tokens representam um alvo de agrupamento, e não um limite rígido. A contagem de tokens é realizada pela biblioteca 
+tiktoken, com a codificação cl100k_base . 
+Para realizar a classificação , a integração do JEV e do Sabiá -4 foi feita através de uma arquitetura em cascata, na 
+qual o encaminhamento para o segundo classificador depende de critérios de confiança relacionados à relevância, direção 
+e intensidade da classificação inicial. Para o cri tério de relevância é considerada uma margem mínima entre as 
+probabilidades de o texto ser relevante ao assunto ou não. Essa margem é definida por:  
+𝑚rel = |𝑃(relevante) −𝑃(não relevante)|. (1) 
+Já para a margem de direção é calculada a diferença entre as duas maiores probabilidades entre os grupos A, B e 
+sem posição:  
+𝑚dir= 𝑃(𝑔(1))−𝑃(𝑔(2)), (2) 
+em que 𝑔(1) e 𝑔(2) representam, respectivamente, o grupo mais provável e o segundo mais provável. Por fim o 
+suporte de intensidade representa a proporção da probabilidade do nível escolhido ℓ∗ em relação à probabilidade total do 
+polo selecionado 𝑔∗: 
+𝑐int=
+𝑃(ℓ∗)
+𝑃(𝑔∗) . (3) 
+Os valores para esses critérios foram escolhidos após testes exploratórios, sendo o valor mínimo definido para a 
+margem de relevância igual a 0,60. Para trechos considerados relevantes, também são verificados a margem de direção, 
+cujo mínimo é 0,20, e, qua ndo um polo direcional é selecionado, o suporte da intensidade, cujo mínimo é 0,50. O 
+encaminhamento ao Sabiá -4 ocorre individualmente por eixo quando pelo menos um dos critérios aplicáveis apresenta 
+valor inferior ao respectivo limiar, ou quando são identificados empates ou respostas inválidas. Nos demais casos, a 
+classificação do JEV é mantida. Para os eixos encaminhados, a resposta validada do Sabiá -4 pass a a constituir a 
+classificação final.  
+Porém o encaminhamento ao Sabiá -4 não garante obtenção de uma classificação válida. Quando a resposta 
+permanece inválida após as tentativas de processamento, não apresenta uma decisão definida ou fornece uma evidênci a 
+textual que não pode ser verificada no  trecho analisado, o sistema registra uma abstenção para o respectivo eixo. A 
+verificação da evidência exige que ela corresponda a uma passagem contínua do texto, admitindo normalizações de 
+formatação. Já a  abstenção representa a impossibilidade de estabelecer uma decisão válida e não deve ser interpretada 
+como ausência de relevância ou posição central. As decisões em abstenção não recebem pontuação e são excluídas da 
+agregação. Os demais trechos com classif icação válida continuam contribuindo para o cálculo do eixo.  
+Para os eixos considerados relevantes cuja classificação final é mantida pelo JEV, realiza -se uma busca 
+complementar de evidência textual. As passagens do trecho são identificadas e apresentadas ao modelo, que busca 
+selecionar aquela que melhor sustenta a posição e a intensidade atribuídas . Além da seleção da passagem, o JEV aval i a 
+se há, no trecho analisado, evidência textual que sustente a posição e a intensidade atribuídas. Essa avaliação retorna um 
+valor entre 0 e 1, e a passagem selecionada somente é registrada como evidência quando esse  valor é igual ou superior a 
+0,70. Esse procedimento tem caráter documental e não interfere na classificação ou na agregação das pontuações. Quando 
+nenhuma passagem atende aos critérios de seleção, a classificação do JEV é mantida sem evidência textual associada.  
+Após a classificação dos trechos, os resultados são agregados separadamente para cada um dos quatro eixos. Os 
+nove níveis da escala ordinal, de −4 a +4, são convertidos linearmente para uma escala de 0 a 100, com intervalos de 12,5 
+pontos, na qual os extre mos representam os polos B e A, respectivamente. Em seguida, calcula -se a média aritmética dos 
+valores dos trechos considerados relevantes e com nível definido, atribuindo o mesmo peso a cada trecho. Trechos 
+irrelevantes ou sem classificação válida são exc luídos do cálculo, enquanto trechos relevantes sem predominância entre 
+os polos contribuem com o valor 50. A média obtida corresponde à pontuação do polo A na escala do 8values, e a 
+pontuação do polo B é calculada por seu complemento em relação a 100. Quando nenhum trecho apresenta classificação 
+válida para um eixo, o resultado é registrado como ausência de evidência.  
+
+=== PAGINA 14 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  14 
+Além das pontuações numéricas, atribui -se um rótulo descritivo a cada eixo conforme a faixa em que se encontra 
+a pontuação do polo A. São utilizadas sete faixas: de 0 a menos de 10; de 10 a menos de 25; de 25 a menos de 40; de 40 
+a 60; acima de 60 até 75; acima de 75 até 90; e acima de 90 até 100. Cada faixa corresponde a um rótulo específico do 
+respectivo eixo, seguindo as denominações do 8values. Por exemplo, no eixo econômico, uma pontuação entre 40 e 60 
+recebe o rótulo “Centrista”, enquanto uma pontuação acima de 60 até 75 recebe o rótulo “Social”. Esse procedimento é 
+aplicado à pontuação agregada do texto, e eixos sem evidência válida permanecem sem rótulo. A Figura 4 mostra um 
+fluxograma da classificação de um texto utilizando a cascata.  
+Figura 4 - Fluxograma cascata  
+ 
+Fonte: elaborado pelo autor (2026). 
+3.2.4 Site e extensão para navegador: funcionalidade e integração  
+Com o objetivo de disponibilizar a classificação em cascata para o usuário foi desenvolvido uma extensão de 
+navegador e um site, ambos utilizando React e Typescript. As duas interfaces compartilham componentes de entrada de 
+texto, apresentação de resultado  e comparação, com adaptações à cada ambiente. A Figura 5(a) mostra a tela inicial da 
+extensão, enquanto a Figura 5(b) mostra a tela do resultado da análise do texto enviado.  A extensão utiliza um painel 
+lateral, permitindo analisar trechos durante a navegação sem a necessidade de alternar para a aba do site.  Outras telas da 
+extensão podem ser vistas no APÊNDICE B. 
+Para obter um perfil de valores políticos do usuário, o questionário 8values foi reimplementado no site, com 70 
+perguntas e cálculo das pontuações no próprio navegador. Os resultados são apresentados nos eixos econômico, 
+diplomático, estatal e social, perm itindo sua comparação com as posições identificadas nos textos analisados. Para utilizar 
+o perfil na extensão, o usuário pode transferir o resultado diretamente pelo site ou importar um arquivo JSON previamente 
+exportado  do site.  
+
+
+=== PAGINA 15 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  15 
+A integração das interfaces com o algoritmo é realizada por uma API REST ( Representational State Transfer  - 
+Transferência de Estado Representacional) desenvolvida em Python com o framework FastAPI. O endpoint  de análise 
+recebe o texto e o modo de processamento selecionado e retorna os resultados em formato JSON. A aplicação 
+disponibiliza três modos: classificação direta pelo JEV, classificação com revisão por modelo de linguagem quando 
+necessária e classificação diretamente por modelo de linguagem. Dessa forma, o modo com revisão disponibiliza o 
+funcionamento em cascata descr ito neste trabalho.  
+Os resultados são apresentados por meio de barras por eixo e gráfico radar, acompanhados de informações sobre 
+os trechos analisados, evidências textuais quando disponíveis e avisos sobre limitações da classificação. A interface 
+também diferencia eixos sem relevância temática daqueles para os quais não foi possível obter uma estimativa váli da, 
+evitando interpretar a ausência de classificação como uma posição neutra.  
+Na extensão, o fluxo pode começar pela seleção de um trecho em uma página e pelo acionamento da opção 
+“Analisar com 8values” no menu de contexto. O texto é então disponibilizado no painel lateral para revisão. Após escolher 
+o modo de processamento e clicar  em “Analisar texto”, o usuário recebe os resultados e pode compará -los com seu perfil, 
+caso este tenha sido transferido para a extensão. Também é possível inserir o texto diretamente no painel. Além disso, 
+caso  discorde do resultado, o usuário pode acionar a funcionalidade de relato de problemas. O endpoint de relato recebe 
+o texto original, o resultado completo da análise, um comentário opcional e a confirmação explícita de consentimento 
+para envio e armazename nto. Os relatos são armazenados em SQLite para avaliação posterior.  
+As respostas ao questionário são mantidas temporariamente durante seu preenchimento, e o usuário pode optar 
+por guardar o resultado agregado no navegador. O perfil e as respostas não são enviados à API de classificação, e a 
+comparação é realizada no própri o cliente. O texto submetido à análise é encaminhado aos modelos  utilizados pelo modo 
+selecionado. O usuário pode apagar os dados locais pelas respectivas interfaces, mas essa exclusão não remove cópias 
+existentes na outra interface nem relatos anteriormente enviados ao servidor.  
+Figura 5 - Telas extensão  
+ 
+(a)  
+ 
+(b)  
+Fonte: elaborado pelo autor (2026). 
+4 RESULTADOS 
+Esta seção apresenta os resultados da avaliação do sistema de análise de textos políticos nos quatro eixos do 
+8values. A subseção 4.1 compara as classificações usando somente o JEV, apenas o Sabia -4 e os dois em cascata. A 
+subseção 4.2 apresenta os resultados obtidos com textos de diferentes tamanhos e discute exemplos de classificação.  
+
+
+=== PAGINA 16 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  16 
+4.1 TESTES E RESULTADOS DA CLASSIFICAÇÃO DOS ENUNCIADOS DO 8VALUES  
+Para avaliar a classificação, foram utilizados os 70 enunciados do questionário 8values, considerando os eixos 
+econômico, diplomático, estatal e social. Cada enunciado foi analisado nos quatro eixos, totalizando 280 pares de 
+avaliação. A referência foi obt ida a partir dos efeitos associados às perguntas no próprio questionário: efeitos positivos e 
+negativos indicaram as direções esperadas, enquanto efeitos iguais a zero foram considerados sem relevância para o eixo.  
+Por exemplo, o enunciado “É necessário que o governo intervenha na economia para proteger os consumidores” 
+apresenta efeito positivo (+10) no eixo econômico e efeito zero nos demais eixos. Assim, sua referência indica relevânci a 
+para o eixo econômico, com direção favorável ao polo de igualdade. Já o enunciado “Quanto mais livres os mercados, 
+mais livres as pessoas” apresenta efeito negativo (−10) nesse mesmo eixo e zero nos demais, indicando direção favorável 
+ao polo de mercado.  
+Essa referência permite verificar a concordância com a estrutura do 8values, mas apresenta limitações. O sinal 
+do efeito fornece uma referência de direção, sem estabelecer uma correspondência validada com a intensidade da escal a 
+de nove níveis utilizada pe lo sistema. Dessa forma, a avaliação quantitativa concentrou -se na relevância e na direção, sem 
+medir o acerto da intensidade.  
+Foram consideradas três métricas. A taxa de acerto de relevância corresponde à proporção de pares cuja presença 
+ou ausência de relação com o eixo foi identificada conforme a referência. A taxa de acerto de direção considera somente 
+os pares esperados como relevantes e exige a identificação do polo correspondente. Nesses pares, classificações como 
+irrelevantes, sem posição ou abstenção são contabilizadas como insucesso. O acerto conjunto exige relevância correta e, 
+quando o par é esperado como relevante, tam bém a direção correta. A Tabela 2 apresenta os resultados por eixo.  
+Tabela 2 - Resultado por eixo na avaliação do 8values  
+Eixo Pares 
+Relevantes  
+Acerto de 
+Relevância  
+cascata  
+Acerto de Direção  
+cascata  
+Acerto 
+conjunto do 
+JEV 
+Acerto conjunto 
+Sabiá -4 
+Acerto 
+conjunto 
+cascata  
+Econômico  22 90,00%  63,64%  87,14%  88,57%  88,57%  
+Diplomático  24 84,29%  54,17%  82,86%  81,43%  82,86%  
+Estatal  37 74,29%  43,24%  67,14%  71,43%  70,00%  
+Social 33 82,86%  51,52%  75,71%  80,00%  74,29%  
+Fonte: elaborado pelo autor (2026). 
+O eixo econômico apresentou o maior acerto conjunto nas abordagens com a cascata e somente com o Sabiá -4, 
+ambas com 88,57%. No eixo diplomático, o JEV e a cascata obtiveram 82,86%, enquanto o Sabiá -4 sozinho alcançou 
+81,43%. No eixo estatal, o acerto conju nto passou de 67,14% na classificação do JEV para 70,00% na cascata, atingindo 
+71,43% com o uso exclusivo do Sabiá -4. 
+A maior diferença entre a cascata e o modelo de linguagem isolado ocorreu no eixo social. Nesse eixo, a cascata 
+obteve 74,29%, enquanto o Sabiá -4 alcançou 80,00%, correspondendo a quatro acertos adicionais em 70 pares. O 
+resultado também superou os 75,71% obtidos pelo JEV. Esses valores mostram que o desempenho das abordagens vari ou 
+entre os eixos, sem predomínio de uma única estratégia em todos eles.  
+No conjunto dos 280 pares, o JEV obteve 219 acertos conjuntos, equivalentes a 78,21%, enquanto a cascata 
+alcançou 221, correspondentes a 78,93%. O Sabiá -4 sozinho apresentou 225 acertos, equivalentes a 80,36%. Assim, a 
+cascata acrescentou dois acertos em r elação à decisão inicial do JEV, enquanto o modelo de linguagem isolado obteve 
+quatro acertos adicionais em relação à cascata. A Tabela 3 apresenta os indicadores globais.  
+Tabela 3 - Comparação Geral  
+Indicador  JEV  Sabiá -4 Cascata  
+Acerto de relevância em 280 pares  83,21%  82,86%  82,86%  
+Acerto de direção em 116 pares relevantes  54,31%  56,03%  51,72%  
+Acerto conjunto em 280 pares  78,21%  80,36%  78,93%  
+Pares classificados como irrelevantes  195 200 204 
+Pares com decisão direcional  70 73 66 
+Pares relevantes sem posição predominante  15 3 8 
+Abstenções  0 4 2 
+Fonte: elaborado pelo autor (2026). 
+O pequeno aumento do acerto conjunto da cascata em relação ao JEV ocorreu acompanhado de redução no acerto 
+de direção. Os falsos positivos de relevância diminuíram de oito para três, enquanto os pares relevantes classificados 
+como irrelevantes aumentaram d e 39 para 43. A cascata também apresentou duas abstenções em pares esperados como 
+relevantes. Portanto, a revisão reduziu atribuições indevidas de relevância, mas deixou de reconhecer parte dos conteúdos 
+relevantes segundo a referência.  
+
+=== PAGINA 17 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  17 
+Além da qualidade das classificações, foi analisado o consumo dos modelos nas duas abordagens. O uso 
+exclusivo do Sabiá -4 realizou 70 chamadas, enquanto a cascata utilizou 46, correspondendo a uma redução de 34,29%. 
+O consumo de entrada no Sabiá -4 passou d e 692.071 para 162.799 tokens, uma redução de 76,48%. Essa diferença 
+também está relacionada ao tamanho das solicitações: enquanto a abordagem exclusivamente baseada no modelo de 
+linguagem avaliou os quatro eixos em todas as chamadas, a cascata encaminhou somente os eixos que necessitavam de 
+revisão. A latência média por en unciado também foi menor na cascata, de aproximadamente 1,20 segundo, contra 1,56 
+segundo do Sabiá -4 isolado. 
+Os resultados indicam que o uso exclusivo do Sabiá -4 apresentou o maior acerto conjunto e o maior acerto de 
+direção entre os pares relevantes. A cascata, por sua vez, apresentou menor consumo de tokens no Sabiá -4 e menor 
+latência média, sem diminuir drasti camente os acertos.  
+4.2 TESTE E RESULTADOS DA ANÁLISE DE TEXTOS POLÍTICOS  
+A avaliação com textos utilizou 28 documentos organizados em dois grupos: 18 textos pequenos e dez textos 
+grandes. A segmentação foi realizada por sentenças, com alvo de 500 tokens e sem sobreposição entre trechos. Após essa 
+etapa, os textos pequenos produ ziram 18 trechos e os textos grandes produziram 47, totalizando 65 unidades de análise. 
+Como cada unidade foi avaliada nos quatro eixos, foram obtidas 260 decisões.  
+A avaliação produziu 256 classificações válidas: 63 pares de trecho e eixo receberam classificação direcional, 
+seis foram considerados relevantes sem posição predominante e 187 foram classificados como irrelevantes. Entretanto, 
+foram registradas quatro abs tenções, correspondentes a situações em que o sistema não conseguiu manter uma deci são 
+válida . O Quadro 12 apresenta exemplos dos resultados.  
+Quadro 12 - Exemplos de classificação dos textos  
+Conteúdo do trecho  Eixo Resultado  
+Privatização de todas as empresas estatais  Econômico  Igualdade 0; Mercado 100  
+Nacionalização e estatização do sistema monetário, 
+financeiro e bancário  
+Econômico  Igualdade 100; Mercado 0  
+Redução da maioridade penal para 16 anos ou menos  Estatal  Liberdade 25; Autoridade 75  
+Fortalecimento da ONU e ampliação de sua capacidade 
+de interromper guerras  
+Diplomático  Globo 87,5; Nação 12,5  
+Rejeição à subordinação estrangeira e respeito às leis 
+brasileiras 
+Diplomático  Globo 25; Nação 75  
+Impedimento do reconhecimento de uniões 
+homoafetivas como casamento ou família  
+Social Progresso 0; Tradição 100  
+Saída do BRICS e busca de ingresso na OCDE  Diplomático  Globo 87,5; Nação 12,5  
+Consultas a distância e integração digital de registros de 
+saúde  
+Todos Ausência de índice nos quatro eixos  
+Fonte: elaborado pelo autor (2026). 
+Os exemplos de privatização e estatização produziram direções opostas no eixo econômico, enquanto a proposta 
+de redução da maioridade penal recebeu predominância de autoridade. No eixo diplomático, os trechos sobre 
+fortalecimento da ONU e rejeição à subord inação estrangeira também produziram direções opostas. Esses casos ilustram 
+a diferenciação de posições explícitas. O trecho sobre consultas a distância, por sua vez, não recebeu índice em nenhum 
+eixo, mostrando que a presença de um tema de política públic a não foi suficiente para gerar classificação ideológica nessa 
+ocorrência.  
+As quatro abstenções ocorreram por falta de verificação das evidências retornadas pelo modelo de linguagem. 
+Três envolveram o documento sobre regulamentação da telessaúde, sendo duas no eixo estatal e uma no social. A outra 
+ocorreu no eixo estatal de um tr echo da resolução sobre propaganda eleitoral. Essas decisões foram desconsideradas na 
+composição dos índices, preservando -se as classificações válidas dos demais trechos.  
+Os testes produziram classificações distintas para propostas explícitas e preservaram ausências de índice em parte 
+dos textos sem orientação identificada. Entretanto, conteúdos mistos e dificuldades na verificação das evidências 
+permaneceram como limitaçõe s. Uma avaliação quantitativa da qualidade exigiria anotação independente de relevância, 
+direção e intensidade.  
+5 CONCLUSÕES 
+Estre trabalho consistiu no desenvolvimento de um sistema para classificação e comparação de conteúdo com o 
+perfil político do usuário. Para compor o algoritmo em cascata foi utilizado como modelo System 1 o JEV, que apresentou 
+resultados satisfatórios em relação a seu custo e velocidade. Já para atuar como System 2, dentre os modelos testados, o 
+Sabiá -4 mostrou -se o mais adequado por conta da estabilidade de suas respostas.  
+
+=== PAGINA 18 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  18 
+Diante do atual cenário de alta exposição a conteúdos políticos e dificuldade em sua interpretação, é importante 
+o desenvolvimento de ferramentas que possam ajudar a população a analisá -los e compará -los com suas próprias 
+ideologias. Dessa forma a principa l contribuição prática do trabalho é oferecer aos usuários uma forma de explorar 
+conteúdos políticos por diferentes dimensões e relacioná -los ao próprio perfil. A apresentação de passagens associadas às 
+classificações pode apoiar a leitura crítica e facilitar a conferência das interpretações produzidas. Essa contribuição 
+representa um potencial de apoio à compreensão de propostas e posicionamentos políticos, cuja efetividade deverá ser 
+investigada em avaliações com usuários. No âmbito científico e tecnológico, o trabalho contribui com a implementação 
+e a avaliação exploratória de uma ab ordagem que integra classificação multidimensional, além de avaliar o uso do JEV, 
+uma ferramenta muito recente na área de IA.  
+As principais limitações estão relacionadas à disponibilidade de dados de referência e ao alcance da avaliação. 
+Os textos políticos analisados não possuíam anotações humanas independentes, impossibilitando quantificar a correção 
+das classificações nesse conj unto. No questionário, os efeitos originais do 8values forneceram uma referência para 
+relevância e direção, mas não permitiram validar a intensidade dos níveis atribuídos pelo sistema. Além disso foram 
+observadas dificuldades na interpretação de conteúdos com posições combinadas e na delimitação da relevância dos eixos. 
+Como trabalhos futuros, propõe -se construir uma base de dados de textos políticos em português, rotulada por 
+avaliadores com critérios explícitos de relevância, direção e intensidade em cada eixo. A inclusão de diferentes temas, 
+gêneros textuais e posições  políticas, acompanhada da análise de concordância entre os avaliadores, permitiria realizar 
+testes mais representativos. Com a separação entre conjuntos de treinamento, validação e teste, essa base também poderi a 
+apoiar o treinamento ou ajuste de modelos e a comparação entre diferentes estratégias de classificação. Outra possibilidade 
+de continuidade seria realizar estudos com usuários para verificar a clareza das explicações e a utilidade da comparação 
+com o perfil político.  
+REFERÊNCIAS 
+8VALUES. 8values , 2019. Disponível em: https://8values.github.io/. Acesso em: 18 nov. 2026.  
+AGÊNCIA O GLOBO. Datafolha: 35% se identificam com a direita, 22% com a esquerda e 17%, com o centro. 
+InfoMoney , 25 dez. 2025. Disponível em: https://www.infomoney.com.br/politica/datafolha -35-se-identificam -com -a-
+direita-22-com -a-esquerda -e-17-com-o-centro/. Acesso em: 31 mar. 2026.  
+BISCHOF, Daniel; SENNINGER, Roman. Simple politics for the people? Complexity in campaign messages and 
+political knowledge. European Journal of Political Research , v. 57, n. 2, p. 473–495, 2018. DOI: 
+https://doi.org/10.1111/1475 -6765.12235.  
+BOBBIO, Norberto. Direita e esquerda: razões e significados de uma distinção política . São Paulo: Editora Unesp, 
+1996.  
+BOBBIO, Norberto; MATTEUCCI, Nicola; PASQUINO, Gianfranco. Dicionário de política . 5. ed. Brasília, DF: 
+Editora Universidade de Brasília; São Paulo: Imprensa Oficial do Estado, 2000. 2 v. 
+BURYAKOV, Daniil et al. Enhancing the design of voting advice applications with BERT language model. Frontiers 
+in Artificial Intelligence , v. 7, 2024. DOI: https://doi.org/10.3389/frai.2024.1343214.  
+CHEN, Tianyu et al. System1-Arena: Which Decisions Can Be Left to System 1?  arXiv, 2026. Disponível em: 
+https://arxiv.org/abs/2610.21244. Acesso em: 20 nov. 2026.  
+DIAS, Reinaldo. Ciência política . 2. ed. rev. e ampl. São Paulo: Atlas, 2013.  
+DUAN, Feiyu et al. General Decision Models: Benchmarking and Insights Beyond Jev . arXiv, 2026. Disponível 
+em: https://arxiv.org/abs/2610.03935. Acesso em: 20 nov. 2026.  
+FIGUEREDO, Felipe C. de; MUELLER, Bernardo; CAJUEIRO, Daniel O. A natural language measure of ideology in 
+the Brazilian Senate. Revista Brasileira de Ciência Política , n. 37, e246618, 2022. DOI: https://doi.org/10.1590/0103 -
+3352.2022.37.246618.  
+FUKS, Mario; PEREIRA, Frederico Batista. Informação e conceituação: a dimensão cognitiva da desigualdade política 
+entre jovens de Belo Horizonte. Revista Brasileira de Ciências Sociais , v. 26, n. 76, p. 123–143, 2011. DOI: 
+https://doi.org/10.1590/S0102 -69092011000200007.   
+GARZIA, Diego; MARSCHALL, Stefan. Research on Voting Advice Applications: State of the Art and Future 
+Directions. Policy & Internet, v. 8, n. 4, p. 376 –390, 2016. DOI: https://doi.org/10.1002/poi3.140.  
+GEMENIS, Kostas. Artificial intelligence and voting advice applications. Frontiers in Political Science , v. 6, artigo 
+1286893, 2024. DOI: https://doi.org/10.3389/fpos.2024.1286893.  
+
+=== PAGINA 19 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  19 
+HAROON, Muhammad; WOJCIESZAK, Magdalena; CHHABRA, Anshuman. “Whose Side Are You On?” Estimating 
+Ideology of Political and News Content Using Large Language Models and Few -shot Demonstration Selection. 
+Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference 
+of the Asia -Pacific Chapter of the Association for Computational Linguistics , p. 224–243, 2025. DOI: 
+https://doi.org/10.18653/v1/2025.findings -ijcnlp.13. 
+IBRAHIM, Hazem; ZAKI, Yasir. Evaluating Decision Models for Text Annotation in Computational Social 
+Science. arXiv, 2026. Disponível em: https://arxiv.org/abs/2609.24574. Acesso em: 20 nov. 2026.  
+JURAFSKY, Daniel; MARTIN, James H. Speech and Language Processing . 3. ed. [S.l.]: Draft, 2020. Disponível em: 
+https://web.stanford.edu/~jurafsky/slp3/. Acesso em: 6 abr. 2026.  
+LI, Yubo et al. JEV-as-a-Judge: Accept When Confident, Escalate When Unsure . arXiv, 2026. Disponível em: 
+https://arxiv.org/abs/2609.26550. Acesso em: 20 nov. 2026.  
+MARITACA AI. Maritaca AI, 2026 . Disponível em: https://www.maritaca.ai/. Acesso em: 20 nov. 2026.  
+MINAEE, Shervin et al. Large Language Models: A Survey . arXiv, 2024. Disponível em: 
+https://arxiv.org/abs/2402.06196. Acesso em: 20 nov. 2026.  
+OSGOOD, Charles Egerton; SUCI, George J.; TANNENBAUM, Percy H. The measurement of meaning . Urbana: 
+University of Illinois Press, 1957.  
+PEREIRA, Frederico Batista. Sofisticação política e opinião pública no Brasil: revisitando hipóteses clássicas. Opinião 
+Pública, Campinas, v. 19, n. 2, p. 291 –319, 2013. . 
+POWER, Timothy J.; ZUCCO JR., Cesar. Estimating Ideology of Brazilian Legislative Parties, 1990 –2005: A Research 
+Communication. Latin American Research Review , v. 44, n. 1, p. 218–246, 2009.  
+ROBERTSON, David. The Routledge dictionary of politics . 3rd ed. London: Routledge, 2004.  
+THE POLITICAL COMPASS. The Political Compass , 2018. Disponível em: https://www.politicalcompass.org. 
+Acesso em: 20 nov. 2026.  
+TYPESAFE AI. TypeSafe AI, 2026. Disponível em: https://typesafe.ai/. Acesso em: 20 nov. 2026.  
+ZHANG, Chuang et al. Confidence -Calibrated Small -Large Language Model Collaboration for Cost -Efficient 
+Reasoning. Proceedings of the 19th Conference of the European Chapter of the Association for Computational 
+Linguistics (Volume 1: Long Papers) , p. 4480–4501, 2026. DOI: https://doi.org/10.18653/v1/2026.eacl -long.208. 
+
+=== PAGINA 20 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  20 
+APÊNDICE A – EXEMPLO DE RESPOSTA DO JEV  
+O Quadro 13 apresenta um exemplo de resposta  retornado pela  API do JEV para  a análise do trecho “Privatização 
+de todas as empresas estatais”. A resposta  reúne os resultados das perguntas de relevância e polaridade dos quatro eixos 
+políticos avaliados: econômico, diplomático, estatal e social.  
+Quadro 13 - Resposta completa da API do JEV  
+{ 
+  "model": "jev-1.13.0", 
+  "answers": { 
+    "economic_relevancia": { 
+      "type": "choice", 
+      "choice": "A", 
+      "confidence": 1.0, 
+      "probabilities": { 
+        "A": 1.0, 
+        "B": 0.0 
+      } 
+    }, 
+    "economic_polaridade": { 
+      "type": "choice", 
+      "choice": "polo_B_muito_forte", 
+      "confidence": 1.0, 
+      "probabilities": { 
+        "polo_B_muito_forte": 1.0, 
+        "polo_B_forte": 0.0, 
+        "polo_B_moderado": 0.0, 
+        "polo_B_leve": 0.0, 
+        "sem_posicao": 0.0, 
+        "polo_A_leve": 0.0, 
+        "polo_A_moderado": 0.0, 
+        "polo_A_forte": 0.0, 
+        "polo_A_muito_forte": 0.0 
+      } 
+    }, 
+    "diplomatic_relevancia": { 
+      "type": "choice", 
+      "choice": "B", 
+      "confidence": 1.0, 
+      "probabilities": { 
+        "A": 0.0, 
+        "B": 1.0 
+      } 
+    }, 
+    "diplomatic_polaridade": { 
+      "type": "choice", 
+      "choice": "sem_posicao", 
+      "confidence": 0.98, 
+      "probabilities": { 
+        "polo_B_muito_forte": 0.0, 
+        "polo_B_forte": 0.01, 
+        "polo_B_moderado": 0.01, 
+        "polo_B_leve": 0.0, 
+        "sem_posicao": 0.98, 
+        "polo_A_leve": 0.0, 
+        "polo_A_moderado": 0.0, 
+        "polo_A_forte": 0.0, 
+        "polo_A_muito_forte": 0.0 
+      } 
+    }, 
+ 
+    "state_relevancia": { 
+      "type": "choice", 
+      "choice": "B", 
+      "confidence": 0.84, 
+      "probabilities": { 
+        "A": 0.08, 
+        "B": 0.92 
+      } 
+    }, 
+    "state_polaridade": { 
+      "type": "choice", 
+      "choice": "sem_posicao", 
+      "confidence": 0.53, 
+      "probabilities": { 
+        "polo_B_muito_forte": 0.0, 
+        "polo_B_forte": 0.0, 
+        "polo_B_moderado": 0.0, 
+        "polo_B_leve": 0.01, 
+        "sem_posicao": 0.58, 
+        "polo_A_leve": 0.03, 
+        "polo_A_moderado": 0.06, 
+        "polo_A_forte": 0.16, 
+        "polo_A_muito_forte": 0.16 
+      } 
+    }, 
+    "society_relevancia": { 
+      "type": "choice", 
+      "choice": "B", 
+      "confidence": 0.94, 
+      "probabilities": { 
+        "A": 0.03, 
+        "B": 0.97 
+      } 
+    }, 
+    "society_polaridade": { 
+      "type": "choice", 
+      "choice": "polo_A_muito_forte", 
+      "confidence": 0.43, 
+      "probabilities": { 
+        "polo_B_muito_forte": 0.0, 
+        "polo_B_forte": 0.0, 
+        "polo_B_moderado": 0.0, 
+        "polo_B_leve": 0.0, 
+        "sem_posicao": 0.37, 
+        "polo_A_leve": 0.01, 
+        "polo_A_moderado": 0.02, 
+        "polo_A_forte": 0.11, 
+        "polo_A_muito_forte": 0.49 
+      } 
+    } 
+  }, 
+  "usage": { 
+    "input_tokens": 9658, 
+    "output_tokens": 635 
+  } 
+} 
+Fonte: elaborado pelo autor (2026). 
+
+=== PAGINA 21 ===
+   
+ 
+Trabalho de Conclusão de Curso - Ano/Semestre: 2026/2  21 
+APÊNDICE B – OUTRAS TELAS DA EXTENSÃO  
+Neste apêndice são apresentadas  telas adicionais da extensão. Na Figura 6(a) é  mostrado a comparação dos 
+resultados da análise do texto e do perfil do usuário. Já na Figura 6(b) é apresentada  a caixa de diálogo para reportagem 
+de problemas na análise. Por fim na Figura 6(c) são exibidas as evidências que sustentam a análise.  
+Figura 6 - Telas adicionais extensão  
+ 
+(a)  
+ 
+(b)  
+ 
+(c) 
+Fonte: elaborado pelo autor (2026). 
+ 
