@@ -20,6 +20,7 @@ from .execution_store import begin_execution, finish_execution, recover_interrup
 
 @asynccontextmanager
 async def lifespan(application):
+    """Recupera registros interrompidos do Lab durante a inicialização da aplicação."""
     if settings.app_env == 'lab':
         # Execuções ainda marcadas como running pertencem ao processo anterior.
         recover_interrupted(settings.reports_db_path)
@@ -36,6 +37,7 @@ app.include_router(lab_router)
 
 @app.middleware("http")
 async def privacy_headers(request: Request, call_next):
+    """Aplica limites de corpo e cabeçalhos de privacidade, encaminhando o registro do Lab."""
     # O Lab registra a análise automaticamente; a edição comum segue direto
     # para a rota e só grava uma análise quando há envio explícito de report.
     if request.url.path == '/api/analyze' and settings.app_env == 'lab':
@@ -73,6 +75,7 @@ async def privacy_headers(request: Request, call_next):
 
 
 async def record_lab_execution(request, call_next):
+    """Registra a entrada e o desfecho da análise Lab, incluindo falhas e cancelamentos."""
     started = monotonic()
 
     body = bytearray()
@@ -149,6 +152,7 @@ async def record_lab_execution(request, call_next):
 
 @app.exception_handler(RequestValidationError)
 async def safe_validation_error(request: Request, exc: RequestValidationError):
+    """Informa os campos inválidos sem devolver o conteúdo recebido na requisição."""
     # Informa os campos inválidos sem devolver texto ou credenciais recebidos.
     fields = [".".join(str(part) for part in error["loc"] if part != "body") for error in exc.errors()]
     return JSONResponse({"detail": "Contrato inválido.", "fields": fields}, status_code=422)
@@ -162,4 +166,5 @@ if dist.is_dir():
 
     @app.get("/{path:path}")
     def spa(path: str):
+        """Entrega a página React para que o navegador resolva a navegação do site."""
         return FileResponse(dist / "index.html")

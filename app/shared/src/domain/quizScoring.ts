@@ -10,6 +10,7 @@ export const QUESTION_HASH = '0a908fc283dbf7daa5b24712f4614644661cd2430c488a6ed9
 const effectKey: Record<Axis, keyof Question['effect']> = { economic: 'econ', diplomatic: 'dipl', state: 'govt', society: 'scty' }
 export const maximums = Object.fromEntries(Object.entries(effectKey).map(([axis, key]) => [axis, QUESTIONS.reduce((sum, q) => sum + Math.abs(q.effect[key]), 0)])) as Scores
 
+/** Exige as 70 respostas e normaliza a soma ponderada de cada eixo para zero a cem. */
 export function scoreAnswers(answers: Answers): Scores {
   if (QUESTIONS.length !== 70 || QUESTIONS.some(q => !Object.hasOwn(answers, q.id))) throw new Error('Responda às 70 perguntas.')
   return Object.fromEntries(Object.entries(effectKey).map(([axis, key]) => {

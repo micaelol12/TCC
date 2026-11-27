@@ -18,6 +18,7 @@ def normalizar_citacao(texto):
 
 
 def remover_marcacao_markdown(texto):
+    """Remove marcações de apresentação antes da comparação literal da citação."""
     return _MARCACAO_MD.sub(" ", texto)
 
 

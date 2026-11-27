@@ -10,6 +10,7 @@ type AnalysisHistoryPanelProps = {
   onSelectEntry: (id: number) => void
 }
 
+/** Lista análises da sessão e permite abrir um resultado ou iniciar uma nova composição. */
 export default function AnalysisHistoryPanel({ entries, selectedId, showComposer, busy, onNewAnalysis, onSelectEntry }: AnalysisHistoryPanelProps) {
   return <aside className="history" aria-label="Histórico desta sessão">
     {entries.length > 0 && <button className="newAnalysisButton" disabled={busy} onClick={onNewAnalysis}>+ Nova análise</button>}

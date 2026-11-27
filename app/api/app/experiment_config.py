@@ -62,6 +62,7 @@ class ExperimentConfig(BaseModel):
 
     @model_validator(mode='after')
     def complete_axes(self):
+        """Exige os quatro eixos e protege suas definições contra alterações no dicionário."""
         if set(self.axis_specs) != set(EIXOS_ESCALA):
             raise ValueError('As definições devem cobrir exatamente os quatro eixos.')
         object.__setattr__(self, 'axis_specs', MappingProxyType(dict(self.axis_specs)))
@@ -69,9 +70,11 @@ class ExperimentConfig(BaseModel):
 
     @field_serializer('axis_specs')
     def serialize_axes(self, value):
+        """Converte as definições imutáveis dos eixos em objetos compatíveis com JSON."""
         return {axis: spec.model_dump(mode='json') for axis, spec in value.items()}
 
     def jev_config(self):
+        """Traduz a configuração pública para os nomes esperados pelas regras do JEV."""
         return {"escala": self.escala.model_dump(mode="json"), "tipo_relevancia": "choice", "primitiva_polaridade": self.primitiva_polaridade,
                 "regra_decisao": self.regra_decisao,
                 "margem_relevancia_minima": self.relevance_margin_min,
@@ -110,6 +113,7 @@ class ExperimentOverrides(BaseModel):
 
 
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
+    """Identifica a configuração e a versão do pipeline, preservando o formato histórico."""
     # O hash identifica parâmetros e versão, não comprova a autenticidade de
     # uma classificação. As remoções preservam os hashes de resultados antigos.
     effective = config.model_dump()
@@ -148,6 +152,7 @@ def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSI
 
 
 def config_ranges(max_tokens: int, max_chunks: int) -> dict:
+    """Calcula os intervalos de edição do Lab conforme os limites do servidor."""
     return {"chunk_tokens": {"min": 100, "max": min(2000, max_tokens), "step": 1},
             **{name: {"min": 0, "max": 1, "step": 0.01} for name in
                ("relevance_margin_min", "level_confidence_min", "direction_margin_min")},
@@ -157,6 +162,7 @@ def config_ranges(max_tokens: int, max_chunks: int) -> dict:
 
 
 def resolve_config(settings, overrides: ExperimentOverrides | None) -> ExperimentConfig:
+    """Aplica as substituições enviadas e valida limites de infraestrutura e modelos permitidos."""
     from .lab_credentials import model_catalog
 
     # Une os padrões do servidor aos campos explicitamente enviados no Lab.

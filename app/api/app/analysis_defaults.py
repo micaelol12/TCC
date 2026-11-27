@@ -9,6 +9,7 @@ DEFAULT_CONFIG_PATH = API_ROOT / 'analysis-config.json'
 
 
 def read_algorithm_data(path=None):
+    """Lê o objeto JSON de configuração e aceita arquivos com BOM do Windows."""
     source = Path(path) if path is not None else DEFAULT_CONFIG_PATH
     if not source.is_absolute():
         source = API_ROOT / source
@@ -22,6 +23,7 @@ def read_algorithm_data(path=None):
 
 
 def default_value(name):
+    """Devolve uma cópia do parâmetro para evitar alterações nos valores compartilhados."""
     try:
         return deepcopy(read_algorithm_data()[name])
     except KeyError:
@@ -46,6 +48,7 @@ def five_level_scale(scale):
 
 
 def configured_scales(scale):
+    """Lista a escala configurada e sua projeção de cinco níveis, sem duplicatas."""
     projected = five_level_scale(scale)
     return [projected, scale] if projected.hash != scale.hash else [scale]
 

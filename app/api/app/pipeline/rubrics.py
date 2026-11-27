@@ -4,6 +4,7 @@ from ..polarity import DefinicaoEixo, validar_escala
 
 
 def definicao_eixo(axis, axis_specs):
+    """Obtém a definição do eixo como dicionário, aceitando o modelo validado ou dados brutos."""
     definicao = axis_specs[axis]
     return definicao.model_dump(mode="json") if isinstance(definicao, DefinicaoEixo) else definicao
 
@@ -22,6 +23,7 @@ def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=C
 
 
 def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
+    """Monta a rubrica de polaridade com os polos e as âncoras da escala desta execução."""
     # As definições vêm da configuração; a mesma rubrica é usada por JEV e LLM.
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
 

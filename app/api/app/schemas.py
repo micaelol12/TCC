@@ -22,6 +22,7 @@ class AnalyzeRequest(BaseModel):
     @model_validator(mode="before")
     @classmethod
     def no_null_override(cls, value):
+        """Exige um objeto de substituições com valores explícitos quando o campo está presente."""
         if isinstance(value, dict) and "experiment_config" in value:
             config = value["experiment_config"]
             if not isinstance(config, dict) or any(item is None for item in config.values()):
@@ -30,6 +31,7 @@ class AnalyzeRequest(BaseModel):
 
     @model_validator(mode="after")
     def nonblank(self):
+        """Rejeita textos de análise que contenham somente espaços."""
         if not self.text.strip():
             raise ValueError("O texto não pode estar vazio.")
         return self
@@ -89,6 +91,7 @@ class JevDiagnostic(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize(self, handler):
+        """Omite o marcador de desempate quando ele não ocorreu."""
         result = handler(self)
         if not self.desempate_intensidade:
             result.pop("desempate_intensidade", None)
@@ -96,6 +99,7 @@ class JevDiagnostic(BaseModel):
 
     @model_validator(mode="after")
     def distributions(self):
+        """Confere as classes dos grupos e a soma das distribuições de diagnóstico."""
         if set(self.probabilities_abc) != {"A", "B", "C"} or any(abs(sum(p.values()) - 1) > 1e-6 for p in (self.probabilities_nivel, self.probabilities_abc)):
             raise ValueError("Distribuição de diagnóstico inválida.")
         return self
@@ -132,6 +136,7 @@ class AxisResult(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize(self, handler):
+        """Omite campos opcionais ausentes e preserva o formato compatível com a versão do resultado."""
         result = handler(self)
         if not self.evidence_audit:
             result.pop("evidence_audit", None)
@@ -181,6 +186,7 @@ class AnalysisResponse(BaseModel):
 
     @model_validator(mode="after")
     def config_metadata(self):
+        """Confere compatibilidade entre versão, escala, diagnósticos, contagens e hashes."""
         # Evita misturar escala, contagens, diagnósticos ou hashes de execuções
         # incompatíveis, inclusive ao receber snapshots em reports.
         if self.schema_version not in ("1", "2", "3"):
@@ -218,6 +224,7 @@ class AnalysisResponse(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize(self, handler):
+        """Omite campos opcionais ausentes e preserva o formato compatível com a versão do resultado."""
         result = handler(self)
         for name in ("effective_config", "config_version", "config_hash", "environment", "lab_execution_id", "escala", "escala_hash"):
             if result.get(name) is None:

@@ -9,14 +9,17 @@ export type Session = {
   showComposer: boolean; pending: Capture | null; seenCapture: string | null; seenAt: number;
   request: Request | null; notice: string
 }
+/** Cria uma sessão vazia no modo escolhido, com a composição aberta. */
 export function emptySession(mode: Mode = 'medium'): Session {
   return { version: 1, draft: { text: '', title: '' }, mode, entries: [], selectedId: null, showComposer: true, pending: null, seenCapture: null, seenAt: 0, request: null, notice: '' }
 }
+/** Confere texto, título e domínio opcional de um rascunho restaurado. */
 function isDraft(value: unknown): value is Draft {
   if (!value || typeof value !== 'object') return false
   const draft = value as Draft
   return typeof draft.text === 'string' && typeof draft.title === 'string' && (draft.source === undefined || typeof draft.source === 'string')
 }
+/** Restaura dados válidos e recupera como rascunho o texto de uma análise interrompida. */
 export function hydrateSession(raw: unknown, mode: Mode = 'medium'): Session {
   const fresh = emptySession(mode)
   if (!raw || typeof raw !== 'object') return fresh
@@ -48,6 +51,7 @@ export type Action =
   | { type: 'failure'; id: string; message: string }
   | { type: 'select'; id: string } | { type: 'compose' } | { type: 'close-composer' }
   | { type: 'reuse'; entry: Entry } | { type: 'clear' }
+/** Aplica eventos de captura, edição e análise, ignorando resultados de requisições antigas. */
 export function reduceSession(state: Session, action: Action): Session {
   switch (action.type) {
     case 'capture': {
@@ -75,7 +79,9 @@ export function reduceSession(state: Session, action: Action): Session {
   }
 }
 export const MAX_SESSION_BYTES = 700_000
+/** Remove entradas antigas até caber no limite e preserva o rascunho ou informa excesso de espaço. */
 export function fitSession(state: Session): { state: Session; trimmed: boolean } {
+  /** Mede os bytes UTF-8 do JSON que será salvo, incluindo o custo dos caracteres acentuados. */
   const size = (value: Session) => new TextEncoder().encode(JSON.stringify(value)).length
   const result = { ...state, entries: state.entries.slice(-10) }
   let trimmed = result.entries.length !== state.entries.length

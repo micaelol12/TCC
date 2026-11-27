@@ -21,10 +21,12 @@ export default function ConfirmAction({ label, title, description, confirmLabel,
   useEffect(() => {
     if (open && dialog.current && !dialog.current.open) { dialog.current.showModal(); cancel.current?.focus() }
   }, [open])
+  /** Fecha a confirmação quando não há operação pendente e devolve o foco ao botão de origem. */
   function close() {
     if (pending.current) return
     dialog.current?.close(); setOpen(false); trigger.current?.focus()
   }
+  /** Executa a ação uma única vez por tentativa e mantém o diálogo aberto em caso de falha. */
   async function confirm() {
     if (pending.current || disabled) return
     pending.current = true; setBusy(true); setError('')

@@ -1,10 +1,12 @@
 import { useRef } from 'react'
 import { AXES, axisOrder } from '../../domain/axes'
 
+/** Apresenta o guia dos quatro eixos em uma janela modal acessível. */
 export default function AxisGuide() {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
 
+  /** Abre o guia e posiciona o foco no botão de fechar. */
   function open() {
     dialogRef.current?.showModal()
     closeRef.current?.focus()

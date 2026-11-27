@@ -5,6 +5,7 @@ import LevelDistribution from './LevelDistribution'
 import { formatLevelName, formatLevelCode, formatProbability } from './evidenceFormatting'
 import styles from '../../styles/Evidence.module.css'
 
+/** Apresenta probabilidades e decisões iniciais do JEV para o trecho selecionado. */
 export default function JevModelDiagnostic({ diagnostic, analysis, axis, levels }: { diagnostic: JevDiagnostic; analysis: Analysis; axis: Axis; levels: ScaleLevel[] }) {
   const threshold = analysis.effective_config?.level_confidence_min
   const checksIntensity = diagnostic.relevante && diagnostic.regra_decisao === 'polo_primeiro' && (diagnostic.grupo_mais_provavel === 'A' || diagnostic.grupo_mais_provavel === 'B')

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { validateProfile, type Profile } from '@8values/shared/profile'
 import { readPreferences, saveProfile, LOCAL_PROFILE_KEY } from '../../storage/preferences'
 
+/** Mantém o perfil local sincronizado e controla importação, exclusão e mensagens de erro. */
 export function useExtensionProfile() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [profileError, setProfileError] = useState('')
@@ -9,6 +10,7 @@ export function useExtensionProfile() {
   useEffect(() => {
     let generation = 0
     let mounted = true
+    /** Atualiza o perfil após mudanças locais, ignorando leituras ultrapassadas ou painel fechado. */
     const syncProfile = async (changes: Record<string, chrome.storage.StorageChange>, area: string) => {
       if (area !== 'local' || !changes[LOCAL_PROFILE_KEY]) return
       const revision = ++generation
@@ -22,6 +24,7 @@ export function useExtensionProfile() {
     return () => { mounted = false; generation++; chrome.storage.onChanged.removeListener(syncProfile) }
   }, [])
 
+  /** Confere tamanho e contrato do arquivo antes de salvar e exibir o perfil importado. */
   async function importProfile(file?: File) {
     if (!file) return
     setProfileError(''); setProfileBusy(true)
@@ -37,6 +40,7 @@ export function useExtensionProfile() {
     } catch (err) { setProfileError(err instanceof Error ? err.message : 'Não foi possível importar o perfil.') }
     finally { setProfileBusy(false) }
   }
+  /** Remove o perfil da tela somente após confirmar a exclusão no armazenamento. */
   async function deleteProfile() {
     setProfileBusy(true); setProfileError('')
     try { await saveProfile(null); setProfile(null) }

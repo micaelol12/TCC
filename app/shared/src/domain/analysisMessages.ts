@@ -15,6 +15,7 @@ const reasonMessages: Record<string, string> = {
   intensidade_ambigua: 'Há incerteza sobre a intensidade da posição em um ou mais trechos.',
 }
 
+/** Transforma um código de motivo em explicação legível, incluindo códigos desconhecidos. */
 export function describeAnalysisReason(reason: string): string {
   return Object.hasOwn(reasonMessages, reason) ? reasonMessages[reason] : 'O serviço registrou uma limitação adicional. Confira as evidências e interprete o resultado com cautela.'
 }

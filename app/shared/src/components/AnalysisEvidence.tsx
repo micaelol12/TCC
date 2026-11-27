@@ -10,6 +10,7 @@ import JevModelDiagnostic from './evidence/JevModelDiagnostic'
 
 type View = 'evidence' | 'distribution' | 'model'
 
+/** Organiza citações, distribuição final e diagnóstico JEV por eixo e trecho. */
 export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
   const id = useId()
   const [axis, setAxis] = useState<Axis>('economic')
@@ -22,6 +23,7 @@ export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
   const diagnostic = result?.jev_diagnostics?.find(d => d.chunk_index === chunkIndex) ?? result?.jev_diagnostics?.[0]
   const limited = result?.status === 'estimated' && result.valid_chunks > 0 && !result.sufficient_evidence
   const minimum = analysis.effective_config?.min_valid_chunks
+  /** Implementa navegação por setas, Home e End com atualização do foco da aba ativa. */
   function navigateTabs(event: KeyboardEvent<HTMLButtonElement>) {
     const offset = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0
     if (!offset && event.key !== 'Home' && event.key !== 'End') return

@@ -25,6 +25,7 @@ JEV_DIAGNOSTIC_FIELDS = (
 
 
 def abstained_decision(reason: str, method: str | None = None) -> dict:
+    """Representa falha ou incerteza sem atribuir uma posição central ao eixo."""
     # Falha ou incerteza não deve virar uma posição central na escala.
     return {
         "relevante": None, "nivel": None, "method": method,
@@ -33,11 +34,13 @@ def abstained_decision(reason: str, method: str | None = None) -> dict:
 
 
 def is_authentication_error(error):
+    """Reconhece recusas de autenticação nos formatos de erro dos clientes HTTP."""
     status_code = getattr(error, "status_code", None) or getattr(getattr(error, "response", None), "status_code", None)
     return status_code in (401, 403)
 
 
 def jev_decisions(response, config=None) -> tuple[dict, str | None]:
+    """Converte as respostas JEV por eixo e transforma respostas inválidas em abstenções."""
     effective_config = config if config is not None else JEV_CONFIG
     answers = response["answers"] if isinstance(response, dict) else response.answers
     model = response.get("model") if isinstance(response, dict) else getattr(response, "model", None)
@@ -59,6 +62,7 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
 
 
 def build_axis_rubrics(axes, escala, contexto_posicao_politica, axis_specs):
+    """Monta rubricas de relevância e polaridade somente para os eixos solicitados."""
     return {
         axis: {
             "relevancia": criar_questoes_eixo(
@@ -74,6 +78,7 @@ def build_axis_rubrics(axes, escala, contexto_posicao_politica, axis_specs):
 
 async def ask_llm(client, model: str, text: str, axes: list[str], escala=None,
                   contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
+    """Solicita e valida a classificação estruturada, com uma nova tentativa em falhas gerais."""
     effective_scale = ESCALA_ATUAL if escala is None else escala
     rubrics = build_axis_rubrics(axes, effective_scale, contexto_posicao_politica, axis_specs)
     prompt = json.dumps({"rubricas": rubrics, "texto": text}, ensure_ascii=False)
@@ -100,6 +105,7 @@ async def ask_llm(client, model: str, text: str, axes: list[str], escala=None,
 
 
 def llm_request_options(settings, config):
+    """Seleciona modelo, escala e contexto efetivos para a chamada ao LLM."""
     return {
         "model": config.llm_model if config else settings.llm_model,
         "escala": config.escala if config else None,
@@ -109,6 +115,7 @@ def llm_request_options(settings, config):
 
 
 async def classify_with_jev(text, jev, questions, config):
+    """Classifica o trecho pelo JEV e converte falhas do provedor em decisões de abstenção."""
     try:
         response = await jev.system_one(state=text, questions=questions)
         return jev_decisions(response, config.jev_config() if config else None)
@@ -120,6 +127,7 @@ async def classify_with_jev(text, jev, questions, config):
 
 
 def merge_reviewed_decision(original_decision, reviewed_decision):
+    """Incorpora a revisão LLM preservando os motivos e o diagnóstico inicial do JEV."""
     if "jev_diagnostic" in original_decision:
         reviewed_decision["jev_diagnostic"] = original_decision["jev_diagnostic"]
     reviewed_decision["reason"] = list(dict.fromkeys(original_decision["reason"] + reviewed_decision["reason"]))
@@ -128,6 +136,7 @@ def merge_reviewed_decision(original_decision, reviewed_decision):
 
 
 async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+    """Coordena os modos direto, com revisão seletiva e LLM, contabilizando chamadas e modelos."""
     logical_calls = {"jev": 0, "llm": 0}
     models_used = []
     # High classifica todos os eixos diretamente; os demais modos começam no JEV.
@@ -159,6 +168,7 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
 
 
 async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+    """Executa a classificação e, quando habilitada, a auditoria observacional de evidências."""
     decisions, logical_calls, models_used = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
     if config and (config.semantic_evidence_check or config.jev_evidence_search):
         evidence_rubrics = {

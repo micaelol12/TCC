@@ -6,10 +6,12 @@ export type LabSessionStorage = {
   removeItem: (key: string) => void | Promise<void>
 }
 
+/** Isola o token Lab por endereço de API e adapta o armazenamento do site ou da extensão. */
 export function createLabSession(apiBaseUrl: string, labClient: 'web' | 'extension', sessionStore?: LabSessionStorage) {
   const sessionKey = `8values-lab-key-session-v1:${apiBaseUrl || 'same-origin'}`
   let memoryToken = ''
 
+  /** Lê o token salvo e usa a cópia em memória se a leitura do armazenamento falhar. */
   async function readToken(): Promise<string> {
     try {
       return await (sessionStore ?? sessionStorage).getItem(sessionKey) ?? ''
@@ -18,6 +20,7 @@ export function createLabSession(apiBaseUrl: string, labClient: 'web' | 'extensi
     }
   }
 
+  /** Atualiza a cópia em memória e persiste ou remove o token no armazenamento escolhido. */
   async function saveToken(token: string): Promise<void> {
     memoryToken = token
     try {
@@ -29,6 +32,7 @@ export function createLabSession(apiBaseUrl: string, labClient: 'web' | 'extensi
     }
   }
 
+  /** Monta os cabeçalhos de sessão e de identificação do cliente Lab. */
   async function buildHeaders() {
     const token = await readToken()
     return {

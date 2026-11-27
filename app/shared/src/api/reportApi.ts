@@ -10,14 +10,17 @@ export type ReportRequest = {
 export type ReportResponse = { report_id: string; received_at: string; status: 'pending' }
 export type ReportClient = ReturnType<typeof createReportClient>
 
+/** Seleciona texto, análise e comentário para o relato, mantendo o identificador da tentativa. */
 export function buildReport(entry: AnalysisEntry<number | string>, client: ReportRequest['client'], comment: string, submissionId: string): ReportRequest {
   // Explicit allowlist: source URL/domain, title, profile and history never enter this payload.
   return { submission_id: submissionId, text: entry.text, analysis: entry.analysis, comment, client, storage_consent: true, notice_version: REPORT_NOTICE_VERSION }
 }
 
+/** Cria o cliente de relatos com prazo de envio e validação do recibo de armazenamento. */
 export function createReportClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args)) {
   const base = baseUrl.replace(/\/$/, '')
   return {
+    /** Exige consentimento, envia o snapshot e confirma o recibo antes de indicar sucesso. */
     async report(payload: ReportRequest, signal?: AbortSignal): Promise<ReportResponse> {
       if (payload.storage_consent !== true) throw new Error('Confirme o envio e o armazenamento para continuar.')
       const controller = new AbortController()

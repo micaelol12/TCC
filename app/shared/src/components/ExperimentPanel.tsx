@@ -8,6 +8,7 @@ import ExperimentProcessingFields from './experiment/ExperimentProcessingFields'
 import ExperimentEvidenceFields from './experiment/ExperimentEvidenceFields'
 import ExperimentPresetControls from './experiment/ExperimentPresetControls'
 
+/** Organiza os campos de configuração Lab, presets e chaves disponíveis antes do envio. */
 export default function ExperimentPanel({ capabilities, config, onChange, mode, busy, error, notice, onNotice, client, onKeysUpdated, collapsible = false }: {
   capabilities: ExperimentCapabilities; config: ExperimentConfig | null; onChange: (config: ExperimentConfig) => void;
   mode: Mode; busy: boolean; error: string; notice: string; onNotice: (value: string) => void;

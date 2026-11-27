@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from 'react'
 import { QUESTIONS } from '../../domain/quizScoring'
 import { readQuizDraft, reduceQuizSession, saveQuizDraft } from './quizSession'
 
+/** Controla as respostas, conta perguntas preenchidas e sinaliza falha ao salvar o progresso. */
 export function useQuizSession() {
   const [state, dispatch] = useReducer(reduceQuizSession, undefined, readQuizDraft)
   const [storageWarning, setStorageWarning] = useState(false)

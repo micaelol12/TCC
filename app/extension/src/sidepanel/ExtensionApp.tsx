@@ -19,6 +19,7 @@ import ExtensionProfileSettings from './components/ExtensionProfileSettings'
 import ExtensionFooter from './components/ExtensionFooter'
 import PendingCaptureNotice from './components/PendingCaptureNotice'
 
+/** Integra análise, capturas pendentes, perfil e comparações no painel lateral. */
 export default function ExtensionApp() {
   const [activeView, setActiveView] = useState<'analysis' | 'comparison' | 'experiments'>('analysis')
   const showAnalysis = useCallback(() => setActiveView('analysis'), [])
@@ -31,27 +32,32 @@ export default function ExtensionApp() {
     session, capabilities, experimentConfig: experiment.requestConfig, configBlocked: experiment.blocked,
   })
 
+  /** Limpa a sessão persistida e depois remove a mensagem de erro da análise. */
   async function clearSession() {
     await session.clearSession()
     clearError()
   }
+  /** Abre uma análise do histórico e limpa o erro anterior. */
   function selectHistoryEntry(entryId: string) {
     updateSession({ type: 'select', id: entryId })
     clearError()
   }
 
+  /** Usa a seleção pendente no rascunho e retorna à visualização de análise. */
   function applyPendingCapture() {
     updateSession({ type: 'use-pending' })
     clearError()
     setActiveView('analysis')
   }
 
+  /** Abre a composição e retorna à aba de análise. */
   function startNewAnalysis() {
     updateSession({ type: 'compose' })
     clearError()
     setActiveView('analysis')
   }
 
+  /** Esvazia texto, título e origem do rascunho sem remover o histórico. */
   function discardDraft() {
     updateSession({ type: 'edit', draft: { text: '', title: '', source: undefined } })
     clearError()
@@ -60,6 +66,7 @@ export default function ExtensionApp() {
   const selectedEntry = sessionState.entries.find(entry => entry.id === sessionState.selectedId) ?? null
   const isBusy = busy || !!sessionState.request
   const replacesDraft = !!selectedEntry && !!(sessionState.draft.text || sessionState.draft.title) && (sessionState.draft.text !== selectedEntry.text || sessionState.draft.title !== selectedEntry.title)
+  /** Reabre a análise selecionada como rascunho para um novo envio. */
   function reuseSelectedAnalysis() {
     if (!selectedEntry) return
     updateSession({ type: 'reuse', entry: selectedEntry })

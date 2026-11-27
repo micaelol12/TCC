@@ -5,6 +5,7 @@ export const MODE_KEY = `${storagePrefix}-mode-v1`
 export const LOCAL_PROFILE_KEY = `${storagePrefix}-profile-local-v1`
 export const TEMP_PROFILE_KEY = `${storagePrefix}-profile-session-v1`
 export type Preferences = { mode: Mode; profile: Profile | null }
+/** Recupera modo e perfil e migra um perfil temporário válido de versões anteriores. */
 export async function readPreferences(): Promise<Preferences> {
   return write(async () => {
     const [saved, session] = await Promise.all([
@@ -20,16 +21,19 @@ export async function readPreferences(): Promise<Preferences> {
   })
 }
 let queue: Promise<unknown> = Promise.resolve()
+/** Serializa operações de preferências para impedir que gravações concorrentes se ultrapassem. */
 function write<T>(action: () => Promise<T>) {
   const current = queue.catch(() => undefined).then(action)
   queue = current
   return current
 }
+/** Guarda o modo de análise na fila de preferências persistentes. */
 export async function saveMode(mode: Mode) {
   return write(async () => {
     await chrome.storage.local.set({ [MODE_KEY]: mode })
   })
 }
+/** Guarda ou apaga o perfil persistente e remove a cópia temporária antiga. */
 export async function saveProfile(profile: Profile | null) {
   return write(async () => {
     await chrome.storage.local.set({ [LOCAL_PROFILE_KEY]: profile })

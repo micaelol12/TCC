@@ -7,4 +7,5 @@ export const AXES = {
 
 export type Axis = keyof typeof AXES
 export const axisOrder = Object.keys(AXES) as Axis[]
+/** Formata a pontuação em português com uma casa decimal. */
 export const formatScore = (value: number) => value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })

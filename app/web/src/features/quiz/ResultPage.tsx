@@ -8,6 +8,7 @@ import { downloadProfile } from '@8values/shared/profile'
 import ExtensionTransfer from './ExtensionTransfer'
 import ConfirmAction from '@8values/shared/components/ConfirmAction'
 
+/** Apresenta o perfil concluído e as ações de exportação, transferência e exclusão. */
 export default function ResultPage({ profile, stored, onDelete }: { profile: Profile | null; stored: boolean; onDelete: () => void }) {
   if (!profile) return <main className="narrow flow"><h1>Meu resultado</h1><p>Você ainda não concluiu o teste neste navegador.</p><Link className="button" to="/teste">Fazer meu teste</Link></main>
   return <main className="narrow flow"><div className="eyebrow">Meu resultado</div><h1>Seus quatro eixos</h1>

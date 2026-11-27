@@ -16,6 +16,7 @@ class ReportAnalysis(AnalysisResponse):
 
     @model_validator(mode="after")
     def consistent_snapshot(self):
+        """Confere a coerência dos eixos, trechos, contagens e evidências do snapshot enviado."""
         if len(self.axes) != 4 or {axis.axis for axis in self.axes} != {"economic", "diplomatic", "state", "society"}:
             raise ValueError("Os quatro eixos devem estar presentes uma única vez.")
         if not self.chunks or [chunk.index for chunk in self.chunks] != list(range(len(self.chunks))):
@@ -71,12 +72,14 @@ class ReportRequest(BaseModel):
     @field_validator("storage_consent", mode="before")
     @classmethod
     def explicit_consent(cls, value):
+        """Exige o booleano True para confirmar expressamente o armazenamento do relato."""
         if value is not True:
             raise ValueError("Confirmação de armazenamento obrigatória.")
         return value
 
     @model_validator(mode="after")
     def original_text(self):
+        """Confere se a concatenação dos trechos reproduz o texto original do relato."""
         if not self.text.strip() or "".join(chunk.text for chunk in self.analysis.chunks) != self.text:
             raise ValueError("O texto deve corresponder aos trechos da análise.")
         return self

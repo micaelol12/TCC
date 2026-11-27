@@ -3,12 +3,14 @@ import type { Analysis } from '../api/analysisApi'
 
 const center = 120
 const radius = 86
+/** Converte uma pontuação percentual em coordenadas SVG na direção do eixo correspondente. */
 const point = (index: number, value: number) => {
   const angle = index * Math.PI / 2 - Math.PI / 2
   const distance = radius * Math.max(0, Math.min(100, value)) / 100
   return `${center + Math.cos(angle) * distance},${center + Math.sin(angle) * distance}`
 }
 
+/** Exibe os quatro eixos da análise no radar sem atribuir valores a eixos sem estimativa. */
 export default function AnalysisRadar({ analysis }: { analysis: Analysis }) {
   const results = axisOrder.map(axis => analysis.axes.find(result => result.axis === axis))
   const available = results.map((result, index) => result?.pole_a == null ? null : { index, value: result.pole_a })

@@ -12,10 +12,12 @@ type RequestOptions = {
   configBlocked: boolean
 }
 
+/** Conecta o envio e cancelamento de análises ao estado persistido do painel. */
 export function useExtensionAnalysis({ session, capabilities, experimentConfig, configBlocked }: RequestOptions) {
   const owner = useRef(crypto.randomUUID())
   const cancelRequested = useRef(false)
   const request = useAnalysisRequest(client)
+  /** Valida a sessão, salva o texto em processamento e associa o resultado à tentativa correta. */
   async function submitAnalysis() {
     const current = session.getCurrentSession()
     if (!session.isReady() || current.request || !capabilities || !capabilities.modes[current.mode] || !current.draft.text.trim() || Array.from(current.draft.text).length > capabilities.max_chars || configBlocked) return
@@ -41,6 +43,7 @@ export function useExtensionAnalysis({ session, capabilities, experimentConfig, 
     }
   }
 
+  /** Sinaliza o cancelamento mesmo antes de a gravação inicial permitir o envio HTTP. */
   function cancelAnalysis() {
     cancelRequested.current = true
     request.cancel()

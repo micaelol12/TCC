@@ -10,12 +10,14 @@ export { modes, modeLabels, modeDescriptions, recipients, configuredRecipients }
 export { isAnalysis, isCapabilities } from './analysisValidation'
 
 export class AnalysisTimeoutError extends Error {
+  /** Identifica o término do prazo de espera com uma mensagem que informa a preservação do texto. */
   constructor() {
     super('A análise excedeu o tempo de espera. O texto foi preservado.')
     this.name = 'AnalysisTimeoutError'
   }
 }
 
+/** Traduz o status HTTP em uma orientação adequada à edição comum ou ao Lab. */
 function analysisErrorMessage(status: number): string {
   const messages: Record<number, string> = {
     401: isLabBuild ? 'Sessão de chaves expirada. Atualize a conexão e cadastre novamente na aba API keys.' : 'O serviço de análise está com um problema de acesso. Verifique a conexão ou avise a equipe responsável.',
@@ -29,6 +31,7 @@ function analysisErrorMessage(status: number): string {
   return messages[status] ?? 'Falha na análise. Tente novamente.'
 }
 
+/** Confere o contrato, o modo solicitado e a confirmação dos parâmetros experimentais. */
 function validateAnalysisResponse(data: unknown, processingLevel: Mode, requestedConfig?: ExperimentConfig): Analysis {
   if (!isAnalysis(data) || data.processing_level !== processingLevel) {
     throw new Error('A API retornou uma análise inválida.')
@@ -44,10 +47,12 @@ function validateAnalysisResponse(data: unknown, processingLevel: Mode, requeste
   return data
 }
 
+/** Cria o cliente compartilhado de análise, capacidades e chaves com controle de sessão Lab. */
 export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...args) => fetch(...args), labClient: 'web' | 'extension' = 'web', sessionStore?: LabSessionStorage) {
   const apiBaseUrl = baseUrl.replace(/\/$/, '')
   const session = createLabSession(apiBaseUrl, labClient, sessionStore)
 
+  /** Salva ou remove uma chave na API Lab e atualiza o token de sessão retornado. */
   async function updateLabKey(provider: LabProvider, apiKey?: string) {
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 10000)
@@ -69,8 +74,11 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
     }
   }
   return {
+    /** Cadastra a chave do provedor na sessão Lab atual. */
     saveLabKey: (provider: LabProvider, apiKey: string) => updateLabKey(provider, apiKey),
+    /** Desabilita o provedor removendo sua chave da sessão Lab. */
     removeLabKey: (provider: LabProvider) => updateLabKey(provider),
+    /** Encerra a sessão na API antes de apagar seu identificador no navegador. */
     async clearLabSession() {
       const controller = new AbortController()
       const timer = setTimeout(() => controller.abort(), 10000)
@@ -82,6 +90,7 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
         clearTimeout(timer)
       }
     },
+    /** Consulta e valida modos e limites, descartando uma sessão de chaves expirada. */
     async getCapabilities(signal?: AbortSignal): Promise<Capabilities> {
       const controller = new AbortController()
       const abort = () => controller.abort()
@@ -105,6 +114,7 @@ export function createAnalysisClient(baseUrl = '', fetcher: typeof fetch = (...a
         signal?.removeEventListener('abort', abort)
       }
     },
+    /** Envia o texto com cancelamento e prazo limitado e valida a análise recebida. */
     async analyze(text: string, processingLevel: Mode, signal: AbortSignal, timeoutSeconds = 120, experimentConfig?: ExperimentConfig): Promise<Analysis> {
       const controller = new AbortController()
       let timedOut = false

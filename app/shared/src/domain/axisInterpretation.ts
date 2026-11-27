@@ -8,6 +8,7 @@ const labels: Record<Axis, readonly string[]> = {
   society: ['Revolucionário', 'Muito Progressista', 'Progressista', 'Neutro', 'Tradicional', 'Muito Tradicional', 'Reacionário'],
 }
 
+/** Interpreta a faixa da pontuação de um eixo e retorna null para valores inválidos ou ausentes. */
 export function interpretAxisScore(axis: Axis, score: number | null): { label: string; description: string } | null {
   if (score === null || !Number.isFinite(score) || score < 0 || score > 100) return null
   const index = score > 90 ? 0 : score > 75 ? 1 : score > 60 ? 2 : score >= 40 ? 3 : score >= 25 ? 4 : score >= 10 ? 5 : 6

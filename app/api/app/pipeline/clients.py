@@ -4,11 +4,13 @@ from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA
 
 
 def jev_client(api_key: str, model: str):
+    """Instancia o cliente assíncrono TypeSafe com o modelo escolhido para a análise."""
     from typesafe_sdk import AsyncTypeSafeClient
     return AsyncTypeSafeClient(api_key=api_key, model=model)
 
 
 def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
+    """Monta as perguntas de relevância e polaridade para os quatro eixos."""
     from typesafe_sdk import Choice
 
     if primitiva_polaridade not in {"score", "choice"}:
@@ -29,6 +31,7 @@ def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_po
 
 
 def polarity_question(rubric, primitive):
+    """Representa a rubrica ordinal usando a primitiva Score ou Choice configurada."""
     from typesafe_sdk import Choice, Score
 
     if primitive == "score":
@@ -37,6 +40,7 @@ def polarity_question(rubric, primitive):
 
 
 def llm_client(api_key: str, timeout: int):
+    """Configura o cliente Maritaca; as novas tentativas ficam a cargo do pipeline."""
     from openai import AsyncOpenAI
 
     # O SDK OpenAI acessa o endpoint compatível da Maritaca. As tentativas
@@ -45,5 +49,6 @@ def llm_client(api_key: str, timeout: int):
 
 
 def gemini_client(api_key: str, timeout: int):
+    """Cria o adaptador Gemini com a chave e o prazo desta análise."""
     from .gemini import GeminiClient
     return GeminiClient(api_key, timeout)

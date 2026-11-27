@@ -11,6 +11,7 @@ const numericFieldHelp = {
   bootstrap_seed: 'Reproduz o bootstrap. As respostas dos provedores ainda podem variar.',
 }
 
+/** Ajusta a explicação do parâmetro ao modo e à regra de decisão selecionados. */
 function getNumericFieldHelp(fieldName: NumericField, config: ExperimentConfig, inactive: boolean): string {
   if (inactive) return 'Não se aplica ao modo alto.'
   if (config.regra_decisao === 'polo_primeiro') {
@@ -20,6 +21,7 @@ function getNumericFieldHelp(fieldName: NumericField, config: ExperimentConfig, 
   return numericFieldHelp[fieldName]
 }
 
+/** Edita parâmetros numéricos dentro dos intervalos anunciados pela API. */
 export default function ExperimentNumericFields({ capabilities, config, mode, onChange }: ExperimentFieldProps) {
   return <>{numericFields.map(name => {
     const inactive = mode === 'high' && ['relevance_margin_min', 'level_confidence_min', 'direction_margin_min'].includes(name)

@@ -3,6 +3,7 @@ import type { Analysis, Mode } from '../../services/analysisApi'
 import { readAnalysisDraft, saveAnalysisDraft, type AnalysisDraft } from './analysisDraft'
 import { readAnalysisHistory, saveAnalysisHistory, type Entry } from './analysisHistory'
 
+/** Mantém rascunho e histórico entre navegações e informa falhas na persistência da aba. */
 export function useAnalysisSession() {
   const [draft, setDraft] = useState(readAnalysisDraft)
   const [entries, setEntries] = useState(readAnalysisHistory)
@@ -14,6 +15,7 @@ export function useAnalysisSession() {
   useEffect(() => { setHistoryStored(saveAnalysisHistory(entries)) }, [entries])
   useEffect(() => {
     if (draftStored || !(draft.text || draft.title)) return
+    /** Aciona o aviso de saída quando há texto que não pôde ser salvo. */
     function warnAboutUnsavedDraft(event: BeforeUnloadEvent) {
       event.preventDefault()
       event.returnValue = ''
@@ -22,10 +24,12 @@ export function useAnalysisSession() {
     return () => window.removeEventListener('beforeunload', warnAboutUnsavedDraft)
   }, [draftStored, draft.text, draft.title])
 
+  /** Aplica uma alteração parcial sem perder os demais campos do rascunho. */
   function updateDraft(change: Partial<AnalysisDraft>) {
     setDraft(current => ({ ...current, ...change }))
   }
 
+  /** Acrescenta o resultado ao histórico com identificador crescente e título padrão quando necessário. */
   function appendAnalysis(text: string, title: string, mode: Mode, analysis: Analysis): Entry {
     const id = ++lastEntryId.current
     const entry: Entry = { id, title: title.trim() || `Análise ${id}`, text, mode, analysis }

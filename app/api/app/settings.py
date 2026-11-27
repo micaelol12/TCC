@@ -13,11 +13,14 @@ load_environment(Path(__file__).resolve().parents[3])
 
 
 def env(name, default=""):
+    """Define um campo que lê a variável de ambiente no momento de criar a configuração."""
     return field(default_factory=lambda: os.getenv(name, default))
 
 
 def number(name, default, convert=int):
+    """Define um campo numérico com conversão e mensagem de erro para variável inválida."""
     def read():
+        """Lê e converte a variável do campo conforme a regra definida pela função externa."""
         try:
             return convert(os.getenv(name, str(default)))
         except (ValueError, OverflowError):
@@ -26,7 +29,9 @@ def number(name, default, convert=int):
 
 
 def boolean(name):
+    """Define um campo booleano que aceita somente true ou false no ambiente."""
     def read():
+        """Lê e converte a variável do campo conforme a regra definida pela função externa."""
         value = os.getenv(name, "false").lower()
         if value not in {"true", "false"}:
             raise ValueError(f"Variável inválida: {name}.")
@@ -35,6 +40,7 @@ def boolean(name):
 
 
 def models(name):
+    """Lê modelos separados por vírgula, removendo espaços e duplicatas."""
     return field(default_factory=lambda: tuple(dict.fromkeys(
         value.strip() for value in os.environ[name].split(",") if value.strip())) if name in os.environ else None)
 
@@ -42,6 +48,7 @@ def models(name):
 def algorithm_env(name, convert=str):
     """An absent environment override leaves the JSON value in effect."""
     def read():
+        """Lê e converte a variável do campo conforme a regra definida pela função externa."""
         if name not in os.environ:
             return None
         try:
@@ -52,6 +59,7 @@ def algorithm_env(name, convert=str):
 
 
 def parse_bool(value):
+    """Converte true ou false e rejeita qualquer outra representação."""
     if value.lower() not in {"true", "false"}:
         raise ValueError("Booleano inválido.")
     return value.lower() == "true"
@@ -103,7 +111,7 @@ class Settings:
     jev_evidence_search: bool | None = algorithm_env("JEV_EVIDENCE_SEARCH", parse_bool)
     evidence_existence_min: float | None = algorithm_env("EVIDENCE_EXISTENCE_MIN", float)
 
-    # Limites de entrada, tempo, concorrência e orçamento por processo.
+    # Limites de entrada, tempo e concorrência por processo.
     max_chars: int = number("MAX_CHARS", 60000)
     max_tokens: int = number("MAX_TOKENS", 12000)
     max_chunks: int = number("MAX_CHUNKS", 20)
@@ -113,9 +121,6 @@ class Settings:
     concurrent_chunks: int = number("CONCURRENT_CHUNKS", 2)
     concurrent_requests: int = number("CONCURRENT_REQUESTS", 3)
 
-    hourly_requests: int = number("HOURLY_REQUESTS", 30)
-    daily_calls: int = number("DAILY_PROVIDER_CALLS", 1000)
-
     # Reports e execuções Lab usam arquivos distintos por padrão.
     reports_db_path: str = field(default_factory=lambda: os.getenv(
         "LAB_REPORTS_DB_PATH" if os.getenv("APP_ENV") == "lab" else "REPORTS_DB_PATH", str(
@@ -124,10 +129,12 @@ class Settings:
     reports_hourly_requests: int = number("REPORTS_HOURLY_REQUESTS", 60)
 
     def algorithm_defaults(self):
+        """Produz somente a configuração pública do algoritmo, excluindo credenciais e infraestrutura."""
         # Expõe somente parâmetros do algoritmo, sem as credenciais do servidor.
         return ExperimentConfig(**{name: getattr(self, name) for name in ExperimentConfig.model_fields})
 
     def __post_init__(self):
+        """Combina JSON e substituições, valida os limites e impede uma configuração inconsistente."""
         if self.app_env == "lab":
             # O Lab exige chaves da sessão e não herda credenciais do servidor.
             for name in ("typesafe_key", "maritaca_key", "gemini_key"):
@@ -145,10 +152,11 @@ class Settings:
         values = {**base.model_dump(), **{name: getattr(self, name) for name in ExperimentConfig.model_fields
                                          if getattr(self, name) is not None}}
 
-        for name in ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",
-                     "concurrent_requests", "hourly_requests", "daily_calls", "reports_hourly_requests"):
+        limit_names = ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",
+                       "concurrent_requests", "reports_hourly_requests")
+        for name in limit_names:
             if getattr(self, name) <= 0:
-                variable = {"timeout_seconds": "ANALYSIS_TIMEOUT_SECONDS", "daily_calls": "DAILY_PROVIDER_CALLS"}.get(name, name.upper())
+                variable = "ANALYSIS_TIMEOUT_SECONDS" if name == "timeout_seconds" else name.upper()
                 raise ValueError(f"Limite inválido: {variable}.")
 
         try:

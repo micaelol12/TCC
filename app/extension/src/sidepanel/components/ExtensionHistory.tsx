@@ -10,6 +10,7 @@ type ExtensionHistoryProps = {
   onClear: () => Promise<void>
 }
 
+/** Lista resultados da janela e oferece a limpeza confirmada da sessão. */
 export default function ExtensionHistory({ session, ready, busy, onSelect, onClear }: ExtensionHistoryProps) {
   return <details className="sessionHistory"><summary>Histórico desta sessão ({session.entries.length})</summary>{session.entries.length ? <ul>{session.entries.map(entry => <li key={entry.id}><button className="secondary historyEntry" aria-pressed={entry.id === session.selectedId && !session.showComposer} disabled={busy} onClick={() => onSelect(entry.id)}>{entry.title}<span>{modeLabels[entry.mode]}</span></button></li>)}</ul> : <p className="muted small">Nenhuma análise nesta sessão.</p>}
           <p className="muted small">Até 10 análises, com limite de espaço. Os dados temporários são removidos ao reiniciar o navegador ou recarregar a extensão.</p>

@@ -7,6 +7,7 @@ from .settings import Settings
 
 
 def build_capabilities(settings: Settings, provider_keys: dict[str, str]) -> dict:
+    """Descreve limites e modos disponíveis a partir das chaves, sem consultar provedores."""
     defaults = settings.algorithm_defaults()
     model_providers = model_catalog(settings)
     jev_available = bool(provider_keys["typesafe"])
@@ -39,6 +40,7 @@ def build_capabilities(settings: Settings, provider_keys: dict[str, str]) -> dic
 def build_experimental_capabilities(
     settings: Settings, provider_keys: dict[str, str], model_providers: dict[str, str]
 ) -> dict:
+    """Expõe opções do Lab e prioriza um modelo cujo provedor tenha chave na sessão."""
     defaults = settings.algorithm_defaults().model_dump()
     if not provider_keys[model_providers[defaults["llm_model"]]]:
         defaults["llm_model"] = next(

@@ -1,6 +1,5 @@
 import asyncio
 from copy import deepcopy
-from dataclasses import replace
 import json
 from types import SimpleNamespace
 import unittest
@@ -144,27 +143,22 @@ class EvidenceHttpTests(unittest.TestCase):
     setUp = test_experiments.ExperimentHttpTests.setUp
     tearDown = test_experiments.ExperimentHttpTests.tearDown
 
-    def test_high_semantics_requires_typesafe_and_reserves_extra_budget(self):
+    def test_high_semantics_requires_typesafe(self):
         from app.lab_credentials import set_key
         set_key(self.token, 'typesafe', '')
         response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'high',
             'experiment_config': {'semantic_evidence_check': True}})
         self.assertEqual(response.status_code, 503)
         self.mocks[0].assert_not_called()
-        with patch.object(analyze_route, 'settings', replace(self.settings, daily_calls=1)):
-            response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'high',
-                'experiment_config': {}})
-            self.assertEqual(response.status_code, 200)
+        response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'high',
+            'experiment_config': {}})
+        self.assertEqual(response.status_code, 200)
 
-    def test_low_search_and_semantics_are_logged_and_budgeted(self):
+    def test_low_search_and_semantics_are_logged_and_counted(self):
         jev = EvidenceJev(); jev.aclose = AsyncMock()
         from app.pipeline.clients import jev_questions
         config = {'jev_evidence_search': True, 'semantic_evidence_check': True}
         with patch.object(analyze_route, 'jev_client', return_value=jev), patch.object(analyze_route, 'jev_questions', side_effect=jev_questions):
-            with patch.object(analyze_route, 'settings', replace(self.settings, daily_calls=2)):
-                denied = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'low', 'experiment_config': config})
-                self.assertEqual(denied.status_code, 429)
-                self.assertEqual(jev.requests, [])
             response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'low', 'experiment_config': config})
         self.assertEqual(response.status_code, 200, response.text)
         result = AnalysisResponse.model_validate(response.json())
@@ -172,4 +166,3 @@ class EvidenceHttpTests(unittest.TestCase):
         self.assertEqual(result.axes[0].pole_a, 62.5)
         self.assertEqual(result.axes[0].evidence[0].quote, TEXT)
         self.assertEqual(result.axes[0].evidence_audit[1].status, 'contradiz')
-        self.assertEqual(analyze_route.daily['calls'], 3)

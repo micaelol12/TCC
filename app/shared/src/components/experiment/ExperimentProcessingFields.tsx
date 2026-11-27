@@ -4,6 +4,7 @@ import type { ExperimentFieldProps } from './experimentFieldTypes'
 import ExperimentNumericFields from './ExperimentNumericFields'
 import ExperimentModelFields from './ExperimentModelFields'
 
+/** Edita escala, segmentação e regras JEV conforme o modo de processamento. */
 export default function ExperimentProcessingFields({ capabilities, config, mode, busy, onChange }: ExperimentFieldProps) {
   return <fieldset disabled={busy}><legend>Parâmetros da próxima análise</legend><div className="experimentFields">
       <div><label htmlFor="lab-chunk_strategy">{configLabels.chunk_strategy}</label>

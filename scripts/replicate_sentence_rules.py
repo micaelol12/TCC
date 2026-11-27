@@ -7,21 +7,30 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def sentence_source():
+    """Extrai as regras compartilhadas, preservando comentários e formatação."""
     source = (ROOT / "tcc_lib/segmentacao.py").read_text(encoding="utf-8")
+    lines = source.splitlines(keepends=True)
     excluded = {"_encoder", "normalizar_quebras_texto", "configuracao_chunks", "preparar_segmentacao"}
     parts = []
+    previous_end = 0
     for node in ast.parse(source).body:
+        # Inclui o espaço e os comentários entre declarações. O AST sozinho
+        # não representa esses comentários e a extração anterior os descartava.
+        part = "".join(lines[previous_end:node.end_lineno])
+        previous_end = node.end_lineno
         if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant):
             continue
         if isinstance(node, ast.Import) and any(alias.name == "tiktoken" for alias in node.names):
             continue
         if getattr(node, "name", None) in excluded:
             continue
-        start = min([node.lineno, *[d.lineno for d in getattr(node, "decorator_list", [])]])
-        parts.append("\n".join(source.splitlines()[start - 1:node.end_lineno]))
-    header = ('"""Portuguese sentence rules mirrored from tcc_lib/segmentacao.py.\n\n'
-              'Regenerate with scripts/replicate_sentence_rules.py. No network access.\n"""\n')
-    return header + "\n\n".join(parts) + "\n"
+        parts.append(part)
+    header = ('"""Segmentação em português para chunks e evidências, sem acesso à rede.\n\n'
+              'Fluxo: blocos estruturais -> sentenças com índices originais -> chunks.\n'
+              'As referências conhecidas são protegidas contra cortes internos.\n\n'
+              'Gerado de tcc_lib/segmentacao.py; edite a origem e execute\n'
+              'scripts/replicate_sentence_rules.py para atualizar este arquivo.\n"""\n')
+    return header + "".join(parts).rstrip("\n") + "\n"
 
 
 if __name__ == "__main__":

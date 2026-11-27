@@ -1,5 +1,6 @@
 import type { ExperimentFieldProps } from './experimentFieldTypes'
 
+/** Edita busca de citações, checagem semântica e o limiar de existência de evidência. */
 export default function ExperimentEvidenceFields({ config, mode, busy, onChange }: ExperimentFieldProps) {
   return <fieldset disabled={busy}><legend>Evidências experimentais</legend>
       <label><input id="lab-semantic_evidence_check" type="checkbox" checked={config.semantic_evidence_check ?? false} onChange={e => onChange({ ...config, semantic_evidence_check: e.target.checked })} /> Verificar apoio semântico da citação</label>

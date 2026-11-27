@@ -92,7 +92,7 @@ Os campos `jev_model` e `llm_model` do arquivo de parâmetros (ou as substituiç
 
 ## Limites e dados
 
-Por padrão, um envio admite 60.000 caracteres, 12.000 tokens e 20 trechos de cerca de 600 tokens, com prazo total de 120 segundos. Há até dois trechos em paralelo por análise, três análises simultâneas, 30 requisições por hora no processo e orçamento de 1.000 chamadas lógicas de provedores por dia. Configure `MAX_CHARS`, `MAX_TOKENS`, `MAX_CHUNKS`, `ANALYSIS_TIMEOUT_SECONDS`, `CONCURRENT_CHUNKS`, `CONCURRENT_REQUESTS`, `HOURLY_REQUESTS` e `DAILY_PROVIDER_CALLS`. Contadores em memória reiniciam com o processo e não substituem proteção no proxy de produção.
+Por padrão, um envio admite 60.000 caracteres, 12.000 tokens e 20 trechos de cerca de 600 tokens, com prazo total de 120 segundos. Há até dois trechos em paralelo por análise e três análises simultâneas. Configure `MAX_CHARS`, `MAX_TOKENS`, `MAX_CHUNKS`, `ANALYSIS_TIMEOUT_SECONDS`, `CONCURRENT_CHUNKS` e `CONCURRENT_REQUESTS`.
 
 As respostas individuais do teste ficam apenas em `sessionStorage` durante o preenchimento. O resultado agregado pode ficar em `localStorage` ou somente em memória, conforme escolha ao concluir. O histórico de análises fica em `sessionStorage` durante a sessão da aba, inclusive ao navegar pelo app ou recarregar a página. O corpo de `POST /api/analyze` contém somente `text` e `processing_level`; o servidor não recebe respostas, perfil ou comparação. A análise comum não é gravada no banco; o armazenamento ocorre quando o usuário confirma um report. O vocabulário do tokenizador está incluído no pacote, sem download durante requisições.
 
@@ -104,7 +104,7 @@ No site e na extensão, **Relatar problema na classificação** abre uma confirm
 
 A rota retorna `201` com `report_id`, `received_at` (UTC) e `status: "pending"` após confirmar a transação. Uma tentativa repetida com o mesmo UUID e conteúdo retorna `200` com o recibo original; conteúdo diferente com o mesmo UUID retorna `409`. A interface preserva o identificador em tentativas manuais enquanto o resultado estiver aberto, inclusive ao fechar e reabrir o modal. Editar o comentário após uma tentativa cria um novo report. Fechar o painel, recarregar ou trocar o resultado reinicia esse estado da interface; não há reenvio automático.
 
-SQLite cria o arquivo `app/api/data/reports.sqlite3` e a tabela `classification_reports` no primeiro report aceito. `REPORTS_DB_PATH` permite usar outro caminho persistente. Há limite de 2 MB para o corpo, os limites configurados de texto/trechos e `REPORTS_HOURLY_REQUESTS=60` tentativas válidas por hora no processo, independentemente do orçamento de análises. Falha de armazenamento retorna `503`, sem confirmar sucesso ou expor conteúdo. A base é ignorada pelo Git e não é servida pelo frontend.
+SQLite cria o arquivo `app/api/data/reports.sqlite3` e a tabela `classification_reports` no primeiro report aceito. `REPORTS_DB_PATH` permite usar outro caminho persistente. Há limite de 2 MB para o corpo, os limites configurados de texto/trechos e `REPORTS_HOURLY_REQUESTS=60` tentativas válidas por hora no processo. Falha de armazenamento retorna `503`, sem confirmar sucesso ou expor conteúdo. A base é ignorada pelo Git e não é servida pelo frontend.
 
 Para exportar reports pendentes em JSONL, execute na pasta `app/api`:
 

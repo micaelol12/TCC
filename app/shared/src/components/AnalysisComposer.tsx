@@ -11,6 +11,7 @@ type Props = {
   onSend: () => void; onCancel: () => void; onRetry?: () => void; onClose?: () => void; onDiscard?: () => void; source?: string; children?: ReactNode;
   experimentPanel?: ReactNode; configBlocked?: boolean; recipient?: string; draftNotice?: string
 }
+/** Reúne texto, modo e controles de envio com limites, estado de conexão e cancelamento. */
 export default function AnalysisComposer(props: Props) {
   const { text, title, mode, caps, busy, seconds, error, capsError, onText, onTitle, onMode, onSend, onCancel, onRetry, onClose, source, children } = props
   const limit = caps?.max_chars ?? 60000

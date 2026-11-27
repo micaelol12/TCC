@@ -1,13 +1,17 @@
 import { storagePrefix } from '@8values/shared/domain/experimentConfig'
 export const MENU_ID = `${storagePrefix}-analyze-selection`
 export type Capture = { id: string; text: string; createdAt: number; windowId: number; tabId: number; source?: string }
+/** Separa a seleção capturada por janela e edição da extensão. */
 export const captureKey = (windowId: number) => `${storagePrefix}-capture-v1:${windowId}`
+/** Separa os dados temporários da sessão por janela e edição da extensão. */
 export const sessionKey = (windowId: number) => `${storagePrefix}-session-v1:${windowId}`
+/** Identifica a seleção e guarda apenas o domínio de origem de páginas HTTP ou HTTPS. */
 export function makeCapture(text: string, windowId: number, tabId: number, url?: string): Capture {
   let source: string | undefined
   try { const parsed = new URL(url ?? ''); if (['http:', 'https:'].includes(parsed.protocol)) source = parsed.hostname } catch { /* no origin available */ }
   return { id: crypto.randomUUID(), text, createdAt: Date.now(), windowId, tabId, source }
 }
+/** Valida os campos mínimos de uma seleção recebida por mensagem ou armazenamento. */
 export function isCapture(value: unknown): value is Capture {
   if (!value || typeof value !== 'object') return false
   const item = value as Capture

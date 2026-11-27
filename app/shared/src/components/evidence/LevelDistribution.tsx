@@ -3,6 +3,7 @@ import type { ScaleLevel } from '../../domain/ordinalScale'
 import { formatLevelName, formatProbability } from './evidenceFormatting'
 import styles from '../../styles/Evidence.module.css'
 
+/** Renderiza contagens ou probabilidades de cada nível com rótulos do eixo correspondente. */
 export default function LevelDistribution({ axis, levels, values, unit, label, total = 1 }: { axis: Axis; levels: ScaleLevel[]; values: Record<string, number>; unit: 'count' | 'probability'; label: string; total?: number }) {
   return <ul className={styles.levelList} aria-label={label}>{levels.map(level => {
     const value = values[level.chave] ?? 0

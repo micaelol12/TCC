@@ -1,11 +1,14 @@
 import type { Profile } from '../../storage/localProfile'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
+/** Envia o perfil pela ponte local e aguarda uma resposta da mesma origem, edição e tentativa. */
 export function sendProfileToExtension(profile: Profile): Promise<void> {
   return new Promise((resolve, reject) => {
     const requestId = crypto.randomUUID()
     const origin = window.location.origin
+    /** Cancela o prazo e remove o ouvinte de resposta ao encerrar a transferência. */
     const cleanup = () => { clearTimeout(timer); window.removeEventListener('message', receive) }
+    /** Aceita somente a confirmação correspondente ao identificador desta transferência. */
     const receive = (event: MessageEvent) => {
       if (event.source !== window || event.origin !== origin || event.data?.type !== '8values:save-profile-result' || event.data.requestId !== requestId || (event.data.variant ?? 'standard') !== (isLabBuild ? 'lab' : 'standard')) return
       cleanup()

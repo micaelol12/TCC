@@ -4,11 +4,13 @@ import { modeLabels } from '../api/analysisApi'
 import { configLabels, numericFields, evidenceFields, isLabBuild } from '../domain/experimentConfig'
 import AnalysisComparisonChart from './AnalysisComparisonChart'
 
+/** Compara resultados e parâmetros registrados em duas análises do histórico. */
 export default function ExperimentComparison({ entry, entries, initialOtherId }: { entry: AnalysisEntry<number | string>; entries: AnalysisEntry<number | string>[]; initialOtherId?: number | string | null }) {
   const [otherId, setOtherId] = useState(String(initialOtherId ?? ''))
   const candidates = entries.filter(other => String(other.id) !== String(entry.id))
   const other = candidates.find(item => String(item.id) === otherId)
   const config = entry.analysis.effective_config
+  /** Formata o parâmetro registrado e identifica padrões históricos ou valores não registrados. */
   const configValue = (value: typeof config, name: string) => String(value?.[name as keyof NonNullable<typeof config>] ?? (value && name === 'primitiva_polaridade' ? 'score (padrão histórico)' : value && name === 'regra_decisao' ? 'nivel (padrão histórico)' : value && name === 'chunk_strategy' ? 'tokens (padrão histórico)' : 'Não registrada'))
   return <section className="experimentComparison" aria-label="Comparar análises">
     <h2>Comparar análises</h2><p className="small muted">Análise selecionada: <strong>{entry.title}</strong></p><p className="small muted">Selecione qualquer outra análise do histórico, do mesmo texto ou de textos diferentes. As respostas dos modelos podem variar entre execuções.</p>

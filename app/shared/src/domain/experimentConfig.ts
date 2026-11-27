@@ -36,7 +36,9 @@ export const configLabels: Record<keyof ExperimentConfig, string> = {
   min_valid_chunks: 'Trechos para evidência suficiente', bootstrap_samples: 'Reamostragens do intervalo',
   bootstrap_seed: 'Semente da reamostragem', jev_model: 'Modelo JEV', llm_model: 'Modelo LLM',
 }
+/** Reconhece um objeto de configuração sem aceitar null ou listas. */
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
+/** Exige os quatro eixos e descrições preenchidas para os dois polos de cada um. */
 export function isAxisDefinitions(value: unknown): value is AxisDefinitions {
   const axes = ['economic', 'diplomatic', 'state', 'society']
   const text = (item: unknown) => typeof item === 'string' && !!item.trim()
@@ -50,6 +52,7 @@ export function isAxisDefinitions(value: unknown): value is AxisDefinitions {
     })
   })
 }
+/** Valida os campos públicos e os limites gerais de uma configuração experimental. */
 export function isExperimentConfig(value: unknown): value is ExperimentConfig {
   if (!object(value) || Object.keys(value).some(name => ![...fields, ...evidenceFields, 'contexto_posicao_politica', 'axis_specs', 'escala', 'primitiva_polaridade', 'regra_decisao', 'chunk_strategy'].includes(name)) || fields.some(name => !(name in value))) return false
   if (value.axis_specs !== undefined && !isAxisDefinitions(value.axis_specs)) return false
@@ -69,6 +72,7 @@ export function isExperimentConfig(value: unknown): value is ExperimentConfig {
     Number.isSafeInteger(config.bootstrap_seed) && config.bootstrap_seed >= 0 && config.bootstrap_seed <= 2 ** 32 - 1 &&
     [config.jev_model, config.llm_model].every(model => typeof model === 'string' && model.length <= 100 && /^[A-Za-z0-9_.:/-]+$/.test(model))
 }
+/** Confere os limites e modelos permitidos pela API e retorna a primeira mensagem de erro. */
 export function configError(config: unknown, caps: ExperimentCapabilities): string {
   if (!isExperimentConfig(config)) return 'Preencha todos os parâmetros com valores válidos.'
   for (const name of numericFields) {
@@ -77,12 +81,15 @@ export function configError(config: unknown, caps: ExperimentCapabilities): stri
   if (!caps.allowed_models.jev.includes(config.jev_model) || !caps.allowed_models.llm.includes(config.llm_model)) return 'Escolha modelos permitidos nesta API.'
   return ''
 }
+/** Resolve o provedor do modelo, preservando Maritaca como padrão de respostas antigas. */
 export function modelProvider(caps: ExperimentCapabilities, model: string): 'maritaca' | 'gemini' {
   return caps.model_providers?.[model] ?? 'maritaca'
 }
+/** Verifica se o provedor do modelo selecionado tem chave disponível. */
 export function modelReady(caps: ExperimentCapabilities, model: string): boolean {
   return !!caps.providers[modelProvider(caps, model)]
 }
+/** Confere o contrato Lab e a compatibilidade dos padrões com os limites anunciados. */
 export function isExperimentCapabilities(value: unknown): value is ExperimentCapabilities {
   if (!object(value) || value.enabled !== true || value.config_version !== '1' || !isExperimentConfig(value.defaults) ||
     !object(value.ranges) || !object(value.allowed_models) || !object(value.providers)) return false
@@ -100,10 +107,12 @@ export function isExperimentCapabilities(value: unknown): value is ExperimentCap
   return !configError(value.defaults, value as ExperimentCapabilities)
 }
 
+/** Valida a configuração e a envolve no formato versionado de exportação do Lab. */
 export function exportPreset(config: ExperimentConfig) {
   if (!isExperimentConfig(config)) throw new Error('Configuração inválida.')
   return { format: '8values-lab-preset', format_version: config.escala ? 2 : 1, environment: 'lab', config_version: '1', config }
 }
+/** Valida o arquivo e completa parâmetros históricos com os padrões compatíveis da API. */
 export function importPreset(value: unknown, caps: ExperimentCapabilities): ExperimentConfig {
   if (!object(value) || Object.keys(value).sort().join(',') !== 'config,config_version,environment,format,format_version' ||
     value.format !== '8values-lab-preset' || ![1, 2].includes(value.format_version as number) || value.environment !== 'lab' || value.config_version !== caps.config_version) throw new Error('Arquivo de configuração Lab inválido ou de outra versão.')
@@ -118,6 +127,7 @@ export function importPreset(value: unknown, caps: ExperimentCapabilities): Expe
     ...config, ...(!config.escala && legacy ? { escala: structuredClone(legacy) } : {}) }
 }
 
+/** Informa quais provedores recebem texto conforme o modo, o modelo e a auditoria ativa. */
 export function experimentRecipients(mode: 'low' | 'medium' | 'high', config: ExperimentConfig | null, caps: ExperimentCapabilities | null): string {
   const llm = config && caps && modelProvider(caps, config.llm_model) === 'gemini' ? 'Google Gemini' : 'Maritaca (Sabiá)'
   if (mode === 'low') return 'TypeSafe (JEV)'

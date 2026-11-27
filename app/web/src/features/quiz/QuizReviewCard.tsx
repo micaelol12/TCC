@@ -14,6 +14,7 @@ type QuizReviewCardProps = {
   discardButton: ReactNode
 }
 
+/** Reúne as respostas para revisão e permite editar perguntas antes de concluir o teste. */
 export default function QuizReviewCard({ answers, answeredCount, headingRef, keepResult, onKeepResult, onFinish, onEditQuestion, discardButton }: QuizReviewCardProps) {
   return <section className={styles.card}>
       <h2 ref={headingRef} tabIndex={-1}>Revisar respostas</h2><p>{answeredCount} de {QUESTIONS.length} respondidas.</p>

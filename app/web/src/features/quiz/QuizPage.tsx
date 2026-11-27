@@ -9,6 +9,7 @@ import QuizReviewCard from './QuizReviewCard'
 import { removeQuizDraft } from './quizSession'
 import { useQuizSession } from './useQuizSession'
 
+/** Coordena preenchimento, revisão e conclusão do teste com persistência do progresso. */
 export default function QuizPage({ onComplete }: { onComplete: (profile: Profile, stored: boolean) => void }) {
   const { state, dispatch, answeredCount, storageWarning } = useQuizSession()
   const [keepResult, setKeepResult] = useState(true)
@@ -19,6 +20,7 @@ export default function QuizPage({ onComplete }: { onComplete: (profile: Profile
     if (initialQuestion.current) { initialQuestion.current = false; return }
     headingRef.current?.focus()
   }, [state.index, state.review])
+  /** Exige todas as respostas, calcula o perfil e respeita a escolha de guardar o resultado. */
   function finishQuiz() {
     if (answeredCount !== QUESTIONS.length) { dispatch({ type: 'review' }); return }
     const profile: Profile = { schema_version: 1, question_hash: QUESTION_HASH, completed_at: new Date().toISOString(), scores: scoreAnswers(state.answers) }
@@ -28,11 +30,13 @@ export default function QuizPage({ onComplete }: { onComplete: (profile: Profile
     onComplete(profile, stored)
     navigate('/resultado')
   }
+  /** Apaga o rascunho antes de reiniciar o teste e voltar ao início. */
   function discardQuiz() {
     try { removeQuizDraft() }
     catch { throw new Error('Não foi possível apagar o rascunho salvo. Verifique as permissões de armazenamento do navegador e tente novamente.') }
     dispatch({ type: 'reset' }); navigate('/')
   }
+  /** Avança à pergunta seguinte ou abre a revisão ao chegar ao fim do teste. */
   function nextQuestion() {
     if (state.index === QUESTIONS.length - 1) dispatch({ type: 'review' })
     else dispatch({ type: 'index', index: state.index + 1 })

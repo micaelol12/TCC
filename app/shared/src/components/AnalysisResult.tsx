@@ -12,6 +12,7 @@ import AnalysisEvidence from './AnalysisEvidence'
 import { isLabBuild } from '../domain/experimentConfig'
 import { describeAnalysisReason } from '../domain/analysisMessages'
 
+/** Apresenta a análise selecionada com seus eixos, evidências e acesso ao relato de problemas. */
 export default function AnalysisResult({ entry, reportClient, reportOrigin, compact = false, children }: { entry: AnalysisEntry<number | string>; reportClient: ReportClient; reportOrigin: ReportRequest['client']; compact?: boolean; children?: ReactNode }) {
   const analysis = entry.analysis
   const scores = Object.fromEntries(analysis.axes.map(axis => [axis.axis, axis.pole_a])) as Scores

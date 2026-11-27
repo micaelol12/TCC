@@ -2,10 +2,12 @@ import { useState } from 'react'
 import type { Profile } from '../../storage/localProfile'
 import { sendProfileToExtension } from './sendProfileToExtension'
 
+/** Exibe o envio do perfil à extensão e acompanha sua confirmação ou falha. */
 export default function ExtensionTransfer({ profile }: { profile: Profile }) {
   const [busy, setBusy] = useState(false)
   const [status, setStatus] = useState('')
   const [error, setError] = useState('')
+  /** Transfere o perfil e só indica sucesso após a confirmação da extensão. */
   async function send() {
     setBusy(true); setStatus(''); setError('')
     try {

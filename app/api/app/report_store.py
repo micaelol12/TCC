@@ -14,6 +14,7 @@ class SubmissionConflict(Exception):
 
 
 def save_report(database: str, payload: ReportRequest) -> tuple[ReportResponse, bool]:
+    """Persiste o relato em transação e reutiliza o recibo apenas em reenvios de conteúdo idêntico."""
     path = Path(database).expanduser().resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
 

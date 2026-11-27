@@ -4,9 +4,12 @@ import { AXES, axisOrder, formatScore } from '../domain/axes'
 import styles from '../styles/AnalysisComparisonChart.module.css'
 
 type Entry = AnalysisEntry<number | string>
+/** Converte a pontuação limitada entre zero e cem em posição horizontal no gráfico. */
 const position = (value: number) => 14 + Math.max(0, Math.min(100, value)) * 3.12
+/** Formata a pontuação ou informa que o eixo não tem estimativa. */
 const scoreLabel = (result?: AxisResult) => result?.pole_a == null ? 'Sem estimativa' : formatScore(result.pole_a)
 
+/** Apresenta a pontuação de uma análise com cobertura e indicação de evidência limitada. */
 function ResultLabel({ result, title, symbol }: { result?: AxisResult; title: string; symbol: string }) {
   return <div className={styles.result}>
     <span>{symbol} {title}: <strong>{scoreLabel(result)}</strong></span>
@@ -14,6 +17,7 @@ function ResultLabel({ result, title, symbol }: { result?: AxisResult; title: st
   </div>
 }
 
+/** Compara duas análises na mesma escala e mantém eixos sem estimativa sem marcador. */
 export default function AnalysisComparisonChart({ entry, other }: { entry: Entry; other: Entry }) {
   const headingId = useId()
   return <section className={styles.summary} aria-labelledby={headingId}>

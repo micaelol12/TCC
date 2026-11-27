@@ -6,16 +6,19 @@ import styles from '../styles/ComparisonRadar.module.css'
 
 const center = 160
 const radius = 100
+/** Projeta a pontuação limitada entre zero e cem nas coordenadas do eixo do radar. */
 function point(index: number, value: number) {
   const angle = index * Math.PI / 2 - Math.PI / 2
   const distance = radius * Math.max(0, Math.min(100, value)) / 100
   return { x: center + Math.cos(angle) * distance, y: center + Math.sin(angle) * distance }
 }
+/** Converte o ponto calculado para o formato de coordenadas aceito pelo SVG. */
 const coordinates = (index: number, value: number) => {
   const { x, y } = point(index, value)
   return `${x},${y}`
 }
 
+/** Compara perfil e texto no radar, indicando quando faltam estimativas. */
 export default function ComparisonRadar({ profile, analysis }: { profile: Profile; analysis: Analysis }) {
   const headingId = useId()
   const values = axisOrder.map(axis => analysis.axes.find(result => result.axis === axis)?.pole_a ?? null)

@@ -6,6 +6,7 @@ import type { Analysis } from '../api/analysisApi'
 import ComparisonRadar from './ComparisonRadar'
 import styles from '../styles/Cards.module.css'
 
+/** Compara os eixos do texto com o perfil e orienta quando faltam dados para a comparação. */
 export default function ComparisonPanel({ profile, analysis, analysisTitle, profileAction }: { profile: Profile | null; analysis: Analysis | null; analysisTitle?: string; profileAction?: ReactNode }) {
   return <aside className={styles.card} aria-label="Comparação pessoal"><h2>Comparação</h2>
     {analysisTitle && <p className="small muted">Análise selecionada: <strong>{analysisTitle}</strong></p>}

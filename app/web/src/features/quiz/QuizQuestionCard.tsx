@@ -15,6 +15,7 @@ type QuizQuestionCardProps = {
   discardButton: ReactNode
 }
 
+/** Exibe a pergunta atual, as alternativas e os controles de navegação do teste. */
 export default function QuizQuestionCard({ state, answeredCount, headingRef, onAnswer, onNavigate, onNextQuestion, onReview, discardButton }: QuizQuestionCardProps) {
   const question = QUESTIONS[state.index]
   return <section className={styles.card}>

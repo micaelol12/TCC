@@ -10,6 +10,7 @@ import { clearAnalysisHistory } from './features/analysis/analysisHistory'
 import { clearAnalysisDraft } from './features/analysis/analysisDraft'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
+/** Organiza as rotas e mantém o perfil compartilhado entre as páginas do site. */
 export default function App() {
   const [profile, setProfile] = useState<Profile | null>(() => readProfile())
   const [stored, setStored] = useState(() => readProfile() !== null)
@@ -19,6 +20,7 @@ export default function App() {
   const initialRoute = useRef(true)
   useEffect(() => { if (isLabBuild) document.title = '8values Lab · versão de teste' }, [])
   useEffect(() => {
+    /** Sincroniza o perfil quando outra aba altera ou remove os dados locais. */
     const sync = (event: StorageEvent) => {
       if (event.key === PROFILE_KEY || event.key === null) { const current = readProfile(); setProfile(current); setStored(current !== null) }
     }
@@ -30,6 +32,7 @@ export default function App() {
     window.scrollTo(0, 0)
     contentRef.current?.focus({ preventScroll: true })
   }, [location.pathname])
+  /** Apaga rascunho, histórico e perfil antes de limpar o estado e voltar ao início. */
   function clearSiteData() {
     try { clearAnalysisDraft(); clearAnalysisHistory(); removeLocalData(true) }
     catch { throw new Error('Não foi possível apagar todos os dados do site. Verifique as permissões de armazenamento do navegador e tente novamente.') }

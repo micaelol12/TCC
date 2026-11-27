@@ -4,6 +4,7 @@ import { AXES, formatScore } from '../domain/axes'
 import { interpretAxisScore } from '../domain/axisInterpretation'
 import styles from '../styles/Cards.module.css'
 
+/** Exibe os percentuais dos polos e distingue estimativa, ausência de evidência e abstenção. */
 export default function AxisBar({ axis, score, status, headingLevel = 3, showInterpretation = false }: { axis: Axis; score: number | null; status?: AxisResult['status']; headingLevel?: 3 | 4; showInterpretation?: boolean }) {
   const item = AXES[axis]
   const Heading = headingLevel === 4 ? 'h4' : 'h3'

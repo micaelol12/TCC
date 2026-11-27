@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createAnalysisClient, type Capabilities, type Mode } from '../api/analysisApi'
 import type { ExperimentConfig } from '../domain/experimentConfig'
 
+/** Compartilha o estado de envio, o tempo decorrido, os erros e o cancelamento da análise. */
 export function useAnalysisRequest(client: ReturnType<typeof createAnalysisClient>) {
   const [busy, setBusy] = useState(false)
   const [seconds, setSeconds] = useState(0)
@@ -23,6 +24,7 @@ export function useAnalysisRequest(client: ReturnType<typeof createAnalysisClien
     return () => clearInterval(elapsedTimeTimer)
   }, [busy])
 
+  /** Impede envios simultâneos e controla a requisição até o resultado, falha ou cancelamento. */
   const run = useCallback(async (text: string, mode: Mode, capabilities: Capabilities, experimentConfig?: ExperimentConfig) => {
     if (activeRequest.current) throw new Error('Uma análise já está em andamento.')
     const controller = new AbortController()

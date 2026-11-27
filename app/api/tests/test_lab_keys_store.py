@@ -36,8 +36,6 @@ class LabKeysAndStoreTests(unittest.TestCase):
         self.patches = [patch.object(module, 'settings', self.settings) for module in (main_module, route_module, key_module)]
         for item in self.patches:
             item.start()
-        route_module.recent_requests.clear()
-        route_module.daily['calls'] = 0
         with lock:
             sessions.clear()
         self.client = TestClient(app).__enter__()

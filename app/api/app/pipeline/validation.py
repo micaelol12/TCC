@@ -22,12 +22,14 @@ class LlmAxis(BaseModel):
     @field_validator("nivel", mode="before")
     @classmethod
     def integer_level(cls, value):
+        """Rejeita níveis que não sejam inteiros ou None antes da conversão do modelo."""
         if value is not None and type(value) is not int:
             raise ValueError("Nível deve ser um inteiro ou null.")
         return value
 
     @model_validator(mode="after")
     def validate_position(self):
+        """Impede atribuir um nível quando a relevância não foi confirmada."""
         # Um nível só tem sentido quando a relevância foi confirmada.
         if self.relevante is not True and self.nivel is not None:
             raise ValueError("Nível exige relevância confirmada.")
@@ -40,6 +42,7 @@ class LlmAnswer(BaseModel):
 
 
 def schema_for(axes, escala=None):
+    """Restringe o contrato de saída aos eixos pedidos e aos códigos da escala utilizada."""
     # Restringe a saída aos eixos pedidos e aos códigos da escala desta execução.
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
 
@@ -52,6 +55,7 @@ def schema_for(axes, escala=None):
 
 
 def decision_from_llm_axis(axis_answer: LlmAxis, text: str) -> dict:
+    """Converte um eixo LLM e se abstém quando a evidência de uma resposta relevante não confere."""
     # Uma citação ausente torna o eixo indeterminado, em vez de estimar sem evidência.
     if axis_answer.relevante is True and not evidencia_literal_confere(text, axis_answer.evidencia):
         return {
@@ -66,6 +70,7 @@ def decision_from_llm_axis(axis_answer: LlmAxis, text: str) -> dict:
 
 
 def validate_answer(raw, requested: list[str], text: str, escala=None) -> dict:
+    """Valida o contrato e exige que cada eixo solicitado apareça exatamente uma vez."""
     response_data = raw.model_dump() if isinstance(raw, BaseModel) else raw
     answer = schema_for(requested, escala).model_validate(response_data)
     if sorted(axis_answer.eixo for axis_answer in answer.eixos) != sorted(requested):

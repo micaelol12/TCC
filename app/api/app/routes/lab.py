@@ -15,6 +15,7 @@ class KeyRequest(BaseModel):
     @field_validator('api_key')
     @classmethod
     def safe_key(cls, value):
+        """Rejeita espaços e caracteres de controle na chave sem expor seu conteúdo."""
         key = value.get_secret_value()
         if key != key.strip() or any(ord(char) < 33 or ord(char) > 126 for char in key):
             raise ValueError('Formato de chave inválido.')
@@ -23,6 +24,7 @@ class KeyRequest(BaseModel):
 
 @router.post('/api-keys')
 def save_key(payload: KeyRequest, request: Request):
+    """Guarda a chave em memória no Lab local e devolve o token opaco da sessão."""
     require_local_lab(request, settings)
     token = set_key(request.headers.get('x-lab-session'), payload.provider, payload.api_key.get_secret_value())
     return {'session_token': token, 'expires_in_seconds': SESSION_SECONDS}
@@ -30,6 +32,7 @@ def save_key(payload: KeyRequest, request: Request):
 
 @router.delete('/api-keys/{provider}')
 def remove_key(provider: Literal['typesafe', 'maritaca', 'gemini'], request: Request):
+    """Esvazia a chave do provedor na sessão do Lab local."""
     require_local_lab(request, settings)
     token = set_key(request.headers.get('x-lab-session'), provider, '')
     return {'session_token': token, 'expires_in_seconds': SESSION_SECONDS}
@@ -37,6 +40,7 @@ def remove_key(provider: Literal['typesafe', 'maritaca', 'gemini'], request: Req
 
 @router.delete('/session')
 def reset_session(request: Request):
+    """Remove a sessão de chaves da memória, aceitando também uma sessão já ausente."""
     require_local_lab(request, settings)
     token = request.headers.get('x-lab-session')
     with lock:

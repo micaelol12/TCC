@@ -11,6 +11,7 @@ type ExtensionProfileSettingsProps = {
   onDelete: () => Promise<void>
 }
 
+/** Apresenta o perfil de comparação e os controles de importação e exclusão local. */
 export default function ExtensionProfileSettings({ profile, ready, busy, error, onImport, onDelete }: ExtensionProfileSettingsProps) {
   return <section className="profileSettings" aria-label="Perfil pessoal"><h2>Meu perfil local</h2><p className="muted small">No site, abra “Meu resultado” e clique em “Usar resultado na extensão”. A comparação será atualizada aqui automaticamente.</p>
           <a className="button secondary" href={`${WEB_BASE_URL}/resultado`} target="_blank" rel="noreferrer">Abrir meu resultado no site</a>

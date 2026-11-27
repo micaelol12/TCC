@@ -4,6 +4,7 @@ import type { AnalysisEntry } from '../api/analysisApi'
 import { buildReport, REPORT_COMMENT_LIMIT, REPORT_NOTICE, type ReportClient, type ReportRequest, type ReportResponse } from '../api/reportApi'
 import { AXES } from '../domain/axes'
 
+/** Apresenta o snapshot e coleta consentimento antes de enviar um relato de classificação. */
 export default function ReportDialog({ entry, client, origin }: { entry: AnalysisEntry<number | string>; client: ReportClient; origin: ReportRequest['client'] }) {
   const [open, setOpen] = useState(false)
   const [consent, setConsent] = useState(false)
@@ -25,10 +26,12 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
     if (open && dialog.current && !dialog.current.open) { dialog.current.showModal(); heading.current?.focus() }
   }, [open])
 
+  /** Fecha o diálogo e reinicia o consentimento quando não há envio em andamento. */
   function close() {
     if (controller.current || busy) return
     dialog.current?.close(); setOpen(false); setConsent(false)
   }
+  /** Mantém a navegação por Tab dentro dos controles visíveis do diálogo. */
   function keepFocus(event: KeyboardEvent<HTMLDialogElement>) {
     if (event.key !== 'Tab') return
     const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), textarea:not(:disabled), summary'))
@@ -38,6 +41,7 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
     if (event.shiftKey && (document.activeElement === first || document.activeElement === heading.current)) { event.preventDefault(); last.focus() }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
   }
+  /** Envia o relato com consentimento e preserva o identificador em novas tentativas do mesmo conteúdo. */
   async function send() {
     if (!consent || controller.current || receipt || Array.from(comment).length > REPORT_COMMENT_LIMIT) return
     // Preserve the UUID and snapshot on retries, including an uncertain network outcome.

@@ -5,6 +5,7 @@ from dotenv import load_dotenv, dotenv_values
 
 
 def load_environment(project_root: Path) -> None:
+    """Carrega os arquivos de ambiente respeitando o processo e exclui chaves herdadas no Lab."""
     # Precedence: terminal/service > API-specific .env > project-wide .env.
     # Explicit paths make startup independent of the current working directory.
     api = project_root / "app" / "api"

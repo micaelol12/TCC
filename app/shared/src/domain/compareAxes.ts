@@ -3,6 +3,7 @@ import type { Axis } from './axes'
 import type { Scores } from './quizScoring'
 import type { AxisResult } from '../api/analysisApi'
 
+/** Calcula distância e direção entre perfil e texto; um eixo sem estimativa não é comparado. */
 export function compareAxis(user: Scores, text: AxisResult) {
   if (text.pole_a === null) return null
   const delta = text.pole_a - user[text.axis]

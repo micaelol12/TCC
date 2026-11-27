@@ -8,6 +8,7 @@ export const modeDescriptions: Record<Mode, string> = {
   high: 'Um modelo de linguagem avalia diretamente as posições políticas de cada trecho.',
 }
 export const recipients: Record<Mode, string> = { low: 'TypeSafe (JEV)', medium: 'TypeSafe (JEV) e, quando necessário, Maritaca (Sabiá)', high: 'Maritaca (Sabiá)' }
+/** Descreve os provedores que podem receber o texto conforme o modo e os padrões da API. */
 export function configuredRecipients(mode: Mode, capabilities: Capabilities | null): string {
   const config = capabilities?.analysis_defaults
   if (!config) return recipients[mode]

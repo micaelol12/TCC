@@ -1,10 +1,14 @@
 export type ScaleLevel = { chave: string; codigo: number; rotulo: string; polo: 'A' | 'B' | null; valor: number }
 export type OrdinalScale = { id: string; versao: number; niveis: ScaleLevel[]; rubricas_por_eixo: Record<string, Record<string, { situacao: string; exemplos: string[] }>> }
 const axes = ['economic', 'diplomatic', 'state', 'society']
+/** Reconhece objetos de dados para validar a escala sem aceitar listas. */
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
+/** Exige texto com ao menos um caractere diferente de espaço. */
 function text(value: unknown): value is string { return typeof value === 'string' && !!value.trim() }
+/** Confere o conjunto exato de campos sem depender de sua ordem no objeto. */
 function keys(value: Record<string, unknown>, expected: string[]) { return Object.keys(value).sort().join(',') === [...expected].sort().join(',') }
 
+/** Valida níveis ordenados de B a A, centro único e rubricas completas para todos os eixos. */
 export function isOrdinalScale(value: unknown): value is OrdinalScale {
   if (!object(value) || !keys(value, ['id', 'versao', 'niveis', 'rubricas_por_eixo']) || !text(value.id) || !Number.isSafeInteger(value.versao) || Number(value.versao) < 1 || !Array.isArray(value.niveis) || value.niveis.length < 3 || value.niveis.length % 2 !== 1 || !object(value.rubricas_por_eixo) || !keys(value.rubricas_por_eixo, axes)) return false
   const levels = value.niveis
@@ -18,11 +22,14 @@ export function isOrdinalScale(value: unknown): value is OrdinalScale {
   })
 }
 
+/** Compara conteúdo recursivo sem depender da ordem das chaves dos objetos. */
 export function sameContent(a: unknown, b: unknown): boolean {
+  /** Ordena chaves de objetos recursivamente, preservando a ordem dos elementos das listas. */
   const canonical = (v: unknown): unknown => Array.isArray(v) ? v.map(canonical) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => [k, canonical(x)])) : v
   return JSON.stringify(canonical(a)) === JSON.stringify(canonical(b))
 }
 
+/** Reconstrói os níveis fixos usados pelas versões históricas sem snapshot de escala. */
 export function historicalLevels(version: string): ScaleLevel[] {
   const extent = version === '1' ? 2 : 4
   return Array.from({ length: 2 * extent + 1 }, (_, i) => ({ chave: i < extent ? `minus${extent - i}` : i === extent ? 'zero' : `plus${i - extent}`, codigo: i - extent, polo: i < extent ? 'B' : i === extent ? null : 'A', rotulo: `${i - extent}`, valor: i / (2 * extent) }))

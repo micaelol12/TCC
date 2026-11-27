@@ -88,8 +88,6 @@ class AlgorithmFileTests(unittest.TestCase):
         llm = FakeLlm(llm_payload())
         llm.parse = AsyncMock(wraps=llm.parse)
         llm.close = AsyncMock()
-        route.recent_requests.clear()
-        route.daily['calls'] = 0
         with patch.object(route, 'settings', settings), patch.object(route, 'gemini_client', return_value=llm) as factory, \
              patch.object(route, 'llm_client') as maritaca, TestClient(app) as client:
             caps = client.get('/api/capabilities').json()

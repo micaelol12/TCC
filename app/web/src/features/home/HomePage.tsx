@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+/** Apresenta os caminhos para fazer o teste, consultar o perfil ou analisar um texto. */
 export default function HomePage({ hasProfile }: { hasProfile: boolean }) {
   return <main className="home">
     <div className="homeHero"><div className="eyebrow">POLÍTICA · LEITURA CRÍTICA · QUATRO EIXOS</div><h1>Conheça seus valores e compare com as posições presentes em um texto.</h1><p>Responda ao questionário 8values, analise textos políticos e veja as diferenças eixo por eixo, com limites e evidências à vista.</p>

@@ -4,6 +4,7 @@ from .experiment_config import ExperimentConfig
 from .analysis_defaults import API_ROOT, DEFAULT_CONFIG_PATH, read_algorithm_data
 
 def load_algorithm_file(path: str | Path) -> ExperimentConfig:
+    """Carrega e valida o contrato completo do JSON, resolvendo caminhos relativos à API."""
     source = Path(path)
     if not source.is_absolute():
         source = API_ROOT / source

@@ -7,6 +7,7 @@ type AnalysisResultActionsProps = {
   onCompareAnalyses: () => void
 }
 
+/** Reúne as ações de reutilizar e comparar um resultado, confirmando a substituição de rascunho. */
 export default function AnalysisResultActions({ replacesDraft, onReuseAnalysis, onCompareProfile, onCompareAnalyses }: AnalysisResultActionsProps) {
   return <div className="actions">
     {replacesDraft ? <ConfirmAction label="Editar e reanalisar" className="secondary" title="Substituir o rascunho atual?"

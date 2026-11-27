@@ -3,10 +3,12 @@ import { storagePrefix } from '@8values/shared/domain/experimentConfig'
 
 export type AnalysisDraft = { title: string; text: string; mode: Mode }
 const DRAFT_KEY = `${storagePrefix}-analysis-draft-v1`
+/** Cria um rascunho vazio no modo padrão de análise. */
 const emptyDraft = (): AnalysisDraft => ({ title: '', text: '', mode: 'medium' })
 let memoryDraft = emptyDraft()
 let memoryOnly = false
 
+/** Recupera o rascunho válido da aba ou mantém a última cópia disponível em memória. */
 export function readAnalysisDraft(): AnalysisDraft {
   if (memoryOnly) return memoryDraft
   try {
@@ -21,12 +23,14 @@ export function readAnalysisDraft(): AnalysisDraft {
   return memoryDraft
 }
 
+/** Atualiza a cópia em memória e informa se o rascunho também foi salvo na aba. */
 export function saveAnalysisDraft(draft: AnalysisDraft): boolean {
   memoryDraft = draft
   try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); memoryOnly = false; return true }
   catch { memoryOnly = true; return false }
 }
 
+/** Remove o rascunho salvo antes de reiniciar a cópia em memória. */
 export function clearAnalysisDraft(): void {
   sessionStorage.removeItem(DRAFT_KEY)
   memoryDraft = emptyDraft(); memoryOnly = false

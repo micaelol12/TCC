@@ -155,7 +155,7 @@ class ReportTests(unittest.TestCase):
             self.assertEqual(self.client.post("/api/reports", json=report_payload()).status_code, 413)
         self.assertFalse(Path(self.database).exists())
 
-    def test_rate_limit_is_separate_from_analysis_budget(self):
+    def test_report_rate_limit(self):
         with patch.object(route_module, "settings", replace(route_module.settings, reports_hourly_requests=1)):
             self.assertEqual(self.client.post("/api/reports", json=report_payload()).status_code, 201)
             self.assertEqual(self.client.post("/api/reports", json=report_payload()).status_code, 429)

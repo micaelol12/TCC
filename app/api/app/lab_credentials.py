@@ -26,6 +26,7 @@ lock = Lock()
 
 
 def require_local_lab(request: Request, settings):
+    """Restringe as operações de chaves ao Lab habilitado e a conexões locais."""
     if settings.app_env != 'lab' or not settings.experimental_config_enabled:
         raise HTTPException(404, 'Função Lab indisponível.')
     if request.client and request.client.host not in {'127.0.0.1', '::1', 'localhost', 'testclient'}:
@@ -33,6 +34,7 @@ def require_local_lab(request: Request, settings):
 
 
 def _purge():
+    """Remove sessões expiradas; o chamador deve manter o bloqueio do armazenamento."""
     now = monotonic()
     for token in list(sessions):
         if sessions[token].expires_at <= now:
@@ -40,6 +42,7 @@ def _purge():
 
 
 def session_keys(token: str | None) -> dict[str, str]:
+    """Devolve uma cópia das chaves da sessão ou rejeita um token expirado."""
     if not token:
         return {}
     with lock:
@@ -53,6 +56,7 @@ def session_keys(token: str | None) -> dict[str, str]:
 
 
 def set_key(token: str | None, provider: str, key: str) -> str:
+    """Cria ou atualiza uma sessão de chaves sem renovar sua validade original."""
     with lock:
         _purge()
         if token and token not in sessions:
@@ -70,6 +74,7 @@ def set_key(token: str | None, provider: str, key: str) -> str:
 
 
 def effective_keys(settings, request: Request) -> dict[str, str]:
+    """Seleciona as chaves da sessão no Lab e as do servidor nos demais ambientes."""
     # No Lab, uma sessão sem chave não pode usar a credencial do servidor.
     if settings.app_env == 'lab':
         return {'typesafe': '', 'maritaca': '', 'gemini': '',
@@ -78,6 +83,7 @@ def effective_keys(settings, request: Request) -> dict[str, str]:
 
 
 def model_catalog(settings) -> dict[str, str]:
+    """Relaciona cada modelo LLM permitido ao provedor que deve receber a chamada."""
     # Permite selecionar o cliente correto a partir do nome do modelo LLM.
     models = {model: 'maritaca' for model in settings.allowed_llm_models}
 

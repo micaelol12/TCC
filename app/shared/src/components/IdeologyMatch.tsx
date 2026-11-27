@@ -1,6 +1,7 @@
 import { closestIdeology } from '../domain/closestIdeology'
 import type { Scores } from '../domain/quizScoring'
 
+/** Apresenta a correspondência exploratória do resultado com os perfis ideológicos de referência. */
 export default function IdeologyMatch({ scores, source }: { scores: Scores; source: 'test' | 'analysis' }) {
   const match = closestIdeology(scores)
   if (!match) return null

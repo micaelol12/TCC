@@ -8,6 +8,7 @@ const auditLabels: Record<EvidenceAudit['status'], string> = {
   uncertain: 'Parecer empatado', failed: 'Falha ao consultar o verificador', invalid: 'Resposta inválida do verificador',
 }
 
+/** Exibe a observação de auditoria, seus diagnósticos e a citação quando solicitada. */
 export default function AuditObservation({ audit, showQuote }: { audit: EvidenceAudit; showQuote: boolean }) {
   const tone = audit.status === 'sustenta' ? styles.supported : ['contradiz', 'insuficiente', 'not_literal', 'failed', 'invalid', 'uncertain'].includes(audit.status) ? styles.caution : styles.neutral
   return <div className={styles.audit}>

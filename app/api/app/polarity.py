@@ -18,6 +18,7 @@ class PoloEixo(BaseModel):
     @field_validator('*')
     @classmethod
     def nonblank(cls, value):
+        """Rejeita campos descritivos formados apenas por espaços."""
         if not value.strip():
             raise ValueError('Definição de polo vazia.')
         return value
@@ -34,12 +35,14 @@ class DefinicaoEixo(BaseModel):
     @field_validator('effect', 'name', 'topic', 'note')
     @classmethod
     def nonblank(cls, value):
+        """Rejeita campos descritivos formados apenas por espaços."""
         if not value.strip():
             raise ValueError('Definição de eixo vazia.')
         return value
 
     @model_validator(mode='after')
     def poles_complete(self):
+        """Exige os dois polos e torna seu mapeamento imutável."""
         if set(self.poles) != {'A', 'B'}:
             raise ValueError('Cada eixo exige os polos A e B.')
         object.__setattr__(self, 'poles', MappingProxyType(dict(self.poles)))
@@ -47,6 +50,7 @@ class DefinicaoEixo(BaseModel):
 
     @field_serializer('poles')
     def serialize_poles(self, value):
+        """Serializa os polos imutáveis no formato público de JSON."""
         return {key: pole.model_dump(mode='json') for key, pole in value.items()}
 
 
@@ -60,6 +64,7 @@ class NivelEscala(BaseModel):
 
     @model_validator(mode="after")
     def textos(self):
+        """Exige preenchimento dos campos textuais usados para interpretar a escala."""
         if not self.chave.strip() or not self.rotulo.strip():
             raise ValueError("Chave e rótulo devem estar preenchidos.")
         return self
@@ -72,6 +77,7 @@ class AncoraEscala(BaseModel):
 
     @model_validator(mode="after")
     def textos(self):
+        """Exige preenchimento dos campos textuais usados para interpretar a escala."""
         if not self.situacao.strip() or any(not x.strip() for x in self.exemplos):
             raise ValueError("Âncoras exigem situação e exemplos preenchidos.")
         return self
@@ -89,6 +95,7 @@ class EscalaOrdinal(BaseModel):
 
     @model_validator(mode="after")
     def contrato(self):
+        """Valida a ordem bipolar, o centro único e a correspondência das rubricas com os níveis."""
         # A escala deve crescer de B para A, com exatamente um centro.
         # Códigos identificam alternativas; valor define a posição numérica.
         n = len(self.niveis)
@@ -114,27 +121,33 @@ class EscalaOrdinal(BaseModel):
 
     @field_serializer("niveis")
     def serializar_niveis(self, value):
+        """Converte os níveis imutáveis em uma lista de objetos JSON."""
         return [n.model_dump(mode="json") for n in value]
 
     @field_serializer("rubricas_por_eixo")
     def serializar_rubricas(self, value):
+        """Converte os mapeamentos imutáveis de rubricas para o contrato JSON."""
         return {e: {k: a.model_dump(mode="json") for k, a in r.items()} for e, r in value.items()}
 
     @property
     def hash(self):
+        """Identifica o conteúdo completo da escala por SHA-256 de uma serialização canônica."""
         canonical = json.dumps(self.model_dump(mode="json"), sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
         return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
     @property
     def por_codigo(self):
+        """Indexa os níveis por código para consultar alternativas sem presumir sua ordem numérica."""
         return {x.codigo: x for x in self.niveis}
 
     @property
     def por_chave(self):
+        """Indexa os níveis pela chave textual usada nas probabilidades e rubricas."""
         return {x.chave: x for x in self.niveis}
 
     @property
     def centro(self):
+        """Obtém o único nível sem polo da escala validada."""
         return next(x for x in self.niveis if x.polo is None)
 
 
@@ -144,6 +157,7 @@ def validar_escala(escala):
 
 
 def valor_nivel(nivel, escala):
+    """Traduz um código válido para a posição do polo A na escala de zero a cem."""
     # A nota vem do valor configurado, não da magnitude do código do nível.
     # Exemplo: valor 0,75 corresponde a 75 para A e 25 para B na agregação.
     if type(nivel) is not int or nivel not in escala.por_codigo:
@@ -152,6 +166,7 @@ def valor_nivel(nivel, escala):
 
 
 def classe_nivel(nivel, escala):
+    """Obtém o polo do nível ou C para o centro e para um nível ausente."""
     return "C" if nivel is None else escala.por_codigo[nivel].polo or "C"
 
 
@@ -162,4 +177,5 @@ COUNT_KEYS = {-4: "minus4", -3: "minus3", -2: "minus2", -1: "minus1", 0: "zero",
 
 
 def level_score(level, escala):
+    """Valida a escala recebida antes de converter o nível em pontuação percentual."""
     return valor_nivel(level, validar_escala(escala))

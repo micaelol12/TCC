@@ -8,6 +8,7 @@ from tiktoken.load import load_tiktoken_bpe
 
 @lru_cache(maxsize=1)
 def encoder():
+    """Carrega e mantém em cache o tokenizador a partir do vocabulário distribuído com a API."""
     # O vocabulário acompanha a API: não há download durante a requisição.
     vocabulary = Path(__file__).with_name("cl100k_base.tiktoken")
 
@@ -23,6 +24,7 @@ def encoder():
 
 def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
                strategy: str = "tokens") -> tuple[list[str], int]:
+    """Valida o limite total e divide o texto pela estratégia de tokens ou sentenças."""
     if strategy not in {"sentencas", "tokens"} or type(chunk_tokens) is not int or chunk_tokens <= 0:
         raise ValueError("invalid_segmentation")
 
@@ -41,52 +43,75 @@ def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
 
 
 def split_by_sentences(text, tokenizer, chunk_tokens):
+    """Agrupa sentenças por alvo de tokens e recupera os cortes no texto original."""
     from .sentences import _agrupar_sentencas, _unidades
 
     # chunk_tokens é um alvo: uma sentença indivisível pode ultrapassá-lo.
     def count_tokens(value):
+        """Conta tokens sem tratar sequências especiais do texto como comandos do tokenizador."""
         return len(tokenizer.encode(value, disallowed_special=()))
 
     grouped = _agrupar_sentencas(text, _unidades(text), chunk_tokens, count_tokens)
 
-    # Recupera as fronteiras no original para manter inclusive os espaços.
-    # Assim, unir os trechos reconstrói o texto e preserva suas evidências.
-    starts = []
+    return _restore_original_chunks(text, grouped)
 
+
+def _restore_original_chunks(text: str, grouped: list[str]) -> list[str]:
+    """Recupera os chunks no texto original, incluindo espaços e quebras de linha.
+
+    Os grupos chegam sem espaços nas bordas. Seus inícios definem os cortes
+    para que a concatenação dos chunks reconstrua exatamente o texto recebido.
+    """
+    starts = []
     offset = 0
 
     for chunk in grouped:
+        # Avança a busca para localizar corretamente até trechos repetidos.
         start = text.index(chunk, offset)
         starts.append(start)
         offset = start + len(chunk)
+
     if not starts:
         return [text] if text else []
 
     boundaries = [0, *starts[1:], len(text)]
+    intervals = list(zip(boundaries, boundaries[1:]))
 
-    return [text[start:end] for start, end in zip(boundaries, boundaries[1:])]
+    return [text[start:end] for start, end in intervals]
 
 
 def split_by_tokens(tokens, tokenizer, chunk_tokens):
+    """Divide os tokens preservando caracteres UTF-8 completos nas fronteiras dos trechos."""
     chunks = []
-
     start = 0
+    total_tokens = len(tokens)
 
-    while start < len(tokens):
-        end = min(start + chunk_tokens, len(tokens))
-
-        encoded_chunk = b"".join(tokenizer.decode_single_token_bytes(token) for token in tokens[start:end])
-
-        # Um token pode conter parte dos bytes de um caractere. Estende o corte
-        # até completar o UTF-8, evitando corromper acentos e outros símbolos.
-        while end < len(tokens):
-            try:
-                encoded_chunk.decode("utf-8")
-                break
-            except UnicodeDecodeError:
-                encoded_chunk += tokenizer.decode_single_token_bytes(tokens[end])
-                end += 1
-        chunks.append(encoded_chunk.decode("utf-8"))
+    while start < total_tokens:
+        end = min(start + chunk_tokens, total_tokens)
+        chunk, end = _decode_token_chunk(tokens, tokenizer, start, end)
+        chunks.append(chunk)
         start = end
 
     return chunks
+
+
+def _decode_token_chunk(tokens, tokenizer, start, end):
+    """Decodifica um trecho e retorna seu texto e a posição final ajustada.
+
+    Um token pode conter apenas parte dos bytes de um caractere. Se necessário,
+    inclui tokens seguintes até completar o UTF-8, preservando acentos e símbolos.
+    A posição retornada indica onde o próximo chunk deve começar.
+    """
+    selected_tokens = tokens[start:end]
+    encoded_chunk = b"".join(tokenizer.decode_single_token_bytes(token) for token in selected_tokens)
+    total_tokens = len(tokens)
+
+    while end < total_tokens:
+        try:
+            encoded_chunk.decode("utf-8")
+            break
+        except UnicodeDecodeError:
+            encoded_chunk += tokenizer.decode_single_token_bytes(tokens[end])
+            end += 1
+
+    return encoded_chunk.decode("utf-8"), end

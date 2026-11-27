@@ -12,6 +12,7 @@ AXES = ("economic", "diplomatic", "state", "society")
 
 
 def bootstrap_confidence_interval(values: list[float], config: ExperimentConfig):
+    """Estima o intervalo de 95% por reamostragem com semente fixa; exige duas notas."""
     if len(values) < 2:
         return None
     random_generator = random.Random(config.bootstrap_seed)
@@ -26,12 +27,14 @@ def bootstrap_confidence_interval(values: list[float], config: ExperimentConfig)
 
 
 def axis_estimation_status(decisions: list[dict], valid_scores: list[float]) -> str:
+    """Distingue um eixo estimado de ausência de evidência ou abstenção."""
     if valid_scores:
         return "estimated"
     return "no_evidence" if all(decision["relevante"] is False for decision in decisions) else "abstained"
 
 
 def collect_axis_reasons(decisions: list[dict], valid_count: int, minimum_valid_count: int) -> list[str]:
+    """Reúne motivos sem repetição e sinaliza quantidade insuficiente de trechos válidos."""
     reasons = list(dict.fromkeys(reason for decision in decisions for reason in decision["reason"]))
     if 0 < valid_count < minimum_valid_count:
         reasons.append("evidencia_limitada")
@@ -39,6 +42,7 @@ def collect_axis_reasons(decisions: list[dict], valid_count: int, minimum_valid_
 
 
 def collect_axis_methods(decisions: list[dict]) -> list[str]:
+    """Reúne os métodos usados no eixo, preservando a ordem e os formatos anteriores."""
     return list(dict.fromkeys(
         method for decision in decisions
         for method in decision.get("methods", [decision["method"]] if decision["method"] else [])
@@ -46,6 +50,7 @@ def collect_axis_methods(decisions: list[dict]) -> list[str]:
 
 
 def aggregate_axis(axis: str, decisions: list[dict], total_chunks: int, config: ExperimentConfig) -> AxisResult:
+    """Calcula a média dos trechos válidos e reúne cobertura, incerteza e evidências do eixo."""
     # O centro é válido; ausência de evidência não equivale a uma posição 50.
     valid_decisions = [
         decision for decision in decisions
@@ -86,6 +91,7 @@ def aggregate_axis(axis: str, decisions: list[dict], total_chunks: int, config: 
 
 
 def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig | None = None) -> list[AxisResult]:
+    """Agrupa as decisões dos trechos e produz o resultado dos quatro eixos."""
     effective_config = config or ExperimentConfig()
     return [
         aggregate_axis(axis, [chunk[axis] for chunk in results], total_chunks, effective_config)

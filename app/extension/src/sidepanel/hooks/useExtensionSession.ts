@@ -7,6 +7,7 @@ import { readPreferences } from '../../storage/preferences'
 
 type SessionCallbacks = { onCapture: () => void; onProfileLoaded: (profile: Profile | null) => void }
 
+/** Coordena restauração, capturas e persistência da sessão da janela do navegador. */
 export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallbacks) {
   const [sessionState, setSessionState] = useState<Session>(emptySession)
   const sessionRef = useRef(sessionState)
@@ -17,6 +18,7 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
   const sessionStore = useRef<ReturnType<typeof createSessionStore> | null>(null)
   const isMountedRef = useRef(true)
 
+  /** Aplica a ação, ajusta o histórico ao espaço disponível e sincroniza estado e referência. */
   const updateSession = useCallback((action: Action) => {
     const reducedSession = reduceSession(sessionRef.current, action)
     let nextSession = reducedSession
@@ -33,16 +35,19 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
   useEffect(() => {
     isMountedRef.current = true
     const pendingEvents: Capture[] = []
+    /** Enfileira capturas durante a restauração e aplica apenas as destinadas à janela atual. */
     const receive = (capture: Capture) => {
       if (capture.windowId !== windowIdRef.current) return
       if (!isReadyRef.current) pendingEvents.push(capture)
       else { updateSession({ type: 'capture', capture }); onCapture() }
     }
+    /** Recebe novas capturas persistidas na sessão desta janela. */
     const onStorage = (changes: Record<string, chrome.storage.StorageChange>, area: string) => {
       if (area !== 'session' || windowIdRef.current === null) return
       const capture = changes[captureKey(windowIdRef.current)]?.newValue
       if (isCapture(capture)) receive(capture)
     }
+    /** Recupera uma seleção entregue por mensagem quando sua gravação temporária falhou. */
     const onMessage = (message: unknown) => {
       const data = message as { type?: string; capture?: Capture; windowId?: number }
       if (data?.type === 'capture-storage-failed' && data.windowId === windowIdRef.current && isCapture(data.capture)) {
@@ -52,6 +57,7 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
     // Subscribe before reading to avoid losing a capture while hydrating.
     chrome.storage.onChanged.addListener(onStorage)
     chrome.runtime.onMessage.addListener(onMessage)
+    /** Restaura preferências e histórico e reaplica capturas recebidas durante a inicialização. */
     async function restoreSavedSession() {
       try {
         const current = await chrome.windows.getCurrent()
@@ -85,6 +91,7 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
     catch (err) { setStorageError(err instanceof Error ? err.message : 'Falha no armazenamento.') }
   }, [ready, sessionState])
 
+  /** Confirma a limpeza persistida antes de apagar o histórico exibido no painel. */
   async function clearSession() {
     if (!isReadyRef.current || sessionRef.current.request) throw new Error('Aguarde ou cancele a análise antes de limpar o histórico.')
     const nextSession = reduceSession(sessionRef.current, { type: 'clear' })
@@ -97,6 +104,7 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
     setStorageError('')
   }
 
+  /** Aguarda a gravação do estado que permite recuperar uma análise interrompida. */
   async function saveSnapshot(snapshot: Session) {
     if (sessionStore.current) await sessionStore.current.save(snapshot)
   }

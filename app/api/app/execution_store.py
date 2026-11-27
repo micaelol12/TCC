@@ -10,16 +10,19 @@ from .experiment_config import ExperimentConfig
 
 
 def now():
+    """Gera o instante UTC no formato usado pelos registros de execução."""
     return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 
 
 def connect(database):
+    """Cria o diretório do banco e abre uma conexão SQLite com espera limitada."""
     path = Path(database).expanduser().resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
     return sqlite3.connect(path, timeout=5)
 
 
 def initialize(connection):
+    """Cria a tabela e o índice das execuções caso ainda não existam."""
     connection.execute('''CREATE TABLE IF NOT EXISTS lab_executions (
         execution_id TEXT PRIMARY KEY, started_at TEXT NOT NULL, finished_at TEXT,
         status TEXT NOT NULL, http_status INTEGER, client TEXT NOT NULL,
@@ -30,6 +33,7 @@ def initialize(connection):
 
 
 def public_request(payload, settings):
+    """Filtra os campos públicos permitidos antes de persistir a requisição do Lab."""
     # Seleciona somente os campos públicos reconhecidos. Cabeçalhos de sessão
     # e credenciais não fazem parte do registro persistido.
     if not isinstance(payload, dict):
@@ -74,6 +78,7 @@ def public_request(payload, settings):
 
 
 def begin_execution(database, payload, settings, client='unknown'):
+    """Confirma o registro inicial da execução antes que os provedores sejam chamados."""
     identifier = str(uuid4())
 
     text, mode, config = public_request(payload, settings)
@@ -95,6 +100,7 @@ def begin_execution(database, payload, settings, client='unknown'):
 
 
 def finish_execution(database, identifier, status, http_status, elapsed_ms, analysis=None, error_code=None):
+    """Atualiza o registro com o estado final, a duração e o resultado ou código de erro."""
     effective = analysis.get('effective_config') if isinstance(analysis, dict) else None
 
     with closing(connect(database)) as connection, connection:
@@ -104,6 +110,7 @@ def finish_execution(database, identifier, status, http_status, elapsed_ms, anal
 
 
 def recover_interrupted(database):
+    """Marca como interrompidas as execuções que ficaram abertas após reinício do servidor."""
     # Após um reinício, registros running não representam trabalho em andamento.
     with closing(connect(database)) as connection, connection:
         initialize(connection)

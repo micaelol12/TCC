@@ -21,6 +21,7 @@ import { useAnalysisSession } from './useAnalysisSession'
 const client = createAnalysisClient()
 const reportClient = createReportClient()
 
+/** Integra composição, histórico, resultados e comparações de análises no site. */
 export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const { draft, updateDraft, draftStored, entries, historyStored, appendAnalysis } = useAnalysisSession()
   const { title, text, mode } = draft
@@ -33,6 +34,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
 
   const selectedEntry = entries.find(entry => entry.id === selectedId) ?? null
   const replacesDraft = !!selectedEntry && !!(text || title) && (text !== selectedEntry.text || title !== selectedEntry.title)
+  /** Copia texto, título e modo da análise selecionada para o rascunho. */
   function reuseSelectedAnalysis() {
     if (!selectedEntry) return
     updateDraft({ text: selectedEntry.text, title: selectedEntry.title, mode: selectedEntry.mode })
@@ -42,22 +44,26 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const characterLimit = capabilities?.max_chars ?? 60000
   const modeAvailable = capabilities?.modes[mode] ?? false
 
+  /** Abre a composição de análise e limpa a mensagem de erro anterior. */
   function startNewAnalysis() {
     clearError()
     setShowComposer(true)
     setView('analysis')
   }
 
+  /** Seleciona um resultado do histórico e fecha a composição. */
   function selectHistoryEntry(entryId: number) {
     setSelectedId(entryId)
     setShowComposer(false)
   }
 
+  /** Esvazia texto e título do rascunho e limpa o erro apresentado. */
   function discardDraft() {
     updateDraft({ text: '', title: '' })
     clearError()
   }
 
+  /** Valida o envio e registra o resultado; limpa o rascunho somente depois do sucesso. */
   async function submitAnalysis(inputText = text, inputTitle = title) {
     if (!inputText.trim() || Array.from(inputText).length > characterLimit || busy || !modeAvailable || !capabilities || experiment.blocked) return
     try {

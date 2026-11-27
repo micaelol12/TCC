@@ -4,15 +4,23 @@ import { isOrdinalScale, sameContent, type OrdinalScale } from '../domain/ordina
 import type { Analysis, Capabilities, EvidenceAudit, JevDiagnostic, Mode } from './analysisContracts'
 import { modes } from './analysisModes'
 
+/** Reconhece objetos de dados e exclui null e listas. */
 function isRecord(value: unknown): value is Record<string, unknown> { return !!value && typeof value === 'object' && !Array.isArray(value) }
+/** Confere se todos os elementos da lista são textos. */
 function isStringArray(value: unknown): value is string[] { return Array.isArray(value) && value.every(item => typeof item === 'string') }
+/** Valida contagens e índices como inteiros seguros não negativos. */
 function isNonNegativeInteger(value: unknown): value is number { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 }
+/** Valida limites que exigem inteiros seguros maiores que zero. */
 function isPositiveInteger(value: unknown): value is number { return isNonNegativeInteger(value) && value > 0 }
+/** Aceita somente percentuais finitos entre zero e cem. */
 function isPercentage(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100 }
+/** Aceita somente probabilidades finitas entre zero e um. */
 function isProbability(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1 }
+/** Confere as alternativas esperadas e a soma unitária da distribuição. */
 function isProbabilityDistribution(value: unknown, keys: string[]): boolean {
   return isRecord(value) && Object.keys(value).length === keys.length && keys.every(key => isProbability(value[key])) && Math.abs(Object.values(value).reduce<number>((sum, p) => sum + Number(p), 0) - 1) < 1e-6
 }
+/** Confere o trecho, os níveis e as probabilidades do diagnóstico na escala utilizada. */
 function isJevDiagnostic(value: unknown, chunks: Analysis['chunks'], scale: OrdinalScale, rule?: string): value is JevDiagnostic {
   return isRecord(value) && isNonNegativeInteger(value.chunk_index) && chunks.some(chunk => chunk.index === value.chunk_index) &&
     ['nivel', 'polo_primeiro'].includes(value.regra_decisao as string) && (!rule || value.regra_decisao === rule) && typeof value.relevante === 'boolean' &&
@@ -22,6 +30,7 @@ function isJevDiagnostic(value: unknown, chunks: Analysis['chunks'], scale: Ordi
     isProbability(value.margem_grupo) && isProbability(value.confianca_nivel) && (value.probabilidade_nivel_condicional === null || isProbability(value.probabilidade_nivel_condicional)) &&
     (value.desempate_intensidade === undefined || typeof value.desempate_intensidade === 'boolean')
 }
+/** Valida a auditoria e confere os limites e o texto de passagens encontradas. */
 function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersion: string, codes?: number[]): value is EvidenceAudit {
   if (!isRecord(value) || !isNonNegativeInteger(value.chunk_index) || !chunks.some(chunk => chunk.index === value.chunk_index) ||
       !['search', 'semantic'].includes(value.kind as string) || !['found', 'not_selected', 'not_literal', 'sustenta', 'contradiz', 'insuficiente', 'uncertain', 'failed', 'invalid'].includes(value.status as string) ||
@@ -36,6 +45,7 @@ function isEvidenceAudit(value: unknown, chunks: Analysis['chunks'], schemaVersi
   }
   return true
 }
+/** Valida os limites, modos e opções Lab recebidos antes de habilitar a interface. */
 export function isCapabilities(value: unknown): value is Capabilities {
   if (!isRecord(value) || !isRecord(value.modes)) return false
   const available = value.modes
@@ -48,6 +58,7 @@ export function isCapabilities(value: unknown): value is Capabilities {
     typeof value.timeout_seconds === 'number' && Number.isFinite(value.timeout_seconds) && value.timeout_seconds > 0 &&
     modes.every(mode => typeof available[mode] === 'boolean')
 }
+/** Confere o formato e a presença conjunta dos metadados opcionais da execução. */
 function hasValidExecutionMetadata(analysis: Record<string, unknown>): boolean {
   if (analysis.lab_execution_id !== undefined &&
       (typeof analysis.lab_execution_id !== 'string' || !/^[a-f0-9-]{36}$/.test(analysis.lab_execution_id))) return false
@@ -57,12 +68,14 @@ function hasValidExecutionMetadata(analysis: Record<string, unknown>): boolean {
     ['development', 'lab', 'production'].includes(analysis.environment as string))
 }
 
+/** Exige o snapshot na versão atual e sua correspondência com a configuração efetiva. */
 function hasValidScale(analysis: Record<string, unknown>, scale?: OrdinalScale): boolean {
   if (analysis.schema_version !== '3') return analysis.escala === undefined && analysis.escala_hash === undefined
   return !!scale && typeof analysis.escala_hash === 'string' && /^[a-f0-9]{64}$/.test(analysis.escala_hash) &&
     (!isExperimentConfig(analysis.effective_config) || sameContent(analysis.effective_config.escala, scale))
 }
 
+/** Valida contagens históricas ou contagens por chave da escala atual. */
 function hasValidLevelCounts(axis: Record<string, unknown>, schemaVersion: string, scale?: OrdinalScale): boolean {
   if (!isRecord(axis.level_counts)) return false
   const legacyCounts = axis.level_counts
@@ -75,16 +88,19 @@ function hasValidLevelCounts(axis: Record<string, unknown>, schemaVersion: strin
     Object.values(countsByKey).reduce<number>((sum, count) => sum + Number(count), 0) === axis.valid_chunks
 }
 
+/** Exige polos complementares quando há estimativa e valores nulos nos demais estados. */
 function hasValidPoleEstimates(axis: Record<string, unknown>): boolean {
   if (axis.status !== 'estimated') return axis.pole_a === null && axis.pole_b === null
   return isPercentage(axis.pole_a) && isPercentage(axis.pole_b) && Math.abs(axis.pole_a + axis.pole_b - 100) <= 0.01
 }
 
+/** Aceita intervalo ausente ou dois percentuais em ordem crescente. */
 function isConfidenceInterval(value: unknown): boolean {
   return value === null || (Array.isArray(value) && value.length === 2 &&
     value.every(isPercentage) && value[0] <= value[1])
 }
 
+/** Confere estado, cobertura, contagens e evidências do resultado de um eixo. */
 function isAxisResult(
   axis: unknown, chunks: Analysis['chunks'], schemaVersion: string, scale?: OrdinalScale, decisionRule?: string,
 ): boolean {
@@ -103,6 +119,7 @@ function isAxisResult(
   return hasValidLevelCounts(axis, schemaVersion, scale) && hasValidPoleEstimates(axis) && isConfidenceInterval(axis.ci95)
 }
 
+/** Valida a resposta completa e exige uma ocorrência de cada um dos quatro eixos. */
 export function isAnalysis(value: unknown): value is Analysis {
   if (!isRecord(value) || !hasValidExecutionMetadata(value)) return false
   if (!['1', '2', '3'].includes(value.schema_version as string) || typeof value.pipeline_version !== 'string' ||

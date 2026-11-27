@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Capabilities } from '../api/analysisApi'
 import { configError, exportPreset, importPreset, isLabBuild, modelReady, type ExperimentConfig } from '../domain/experimentConfig'
 
+/** Restaura o preset Lab, valida sua disponibilidade e prepara os parâmetros do próximo envio. */
 export function useExperimentConfig(caps: Capabilities | null, scope: string, mode: 'low' | 'medium' | 'high' = 'medium') {
   const available = isLabBuild && caps?.environment === 'lab' && caps.experimental?.enabled === true ? caps.experimental : null
   const [config, updateConfig] = useState<ExperimentConfig | null>(null)
@@ -19,6 +20,7 @@ export function useExperimentConfig(caps: Capabilities | null, scope: string, mo
     } catch { setNotice('A configuração salva não está disponível nesta API. Os padrões foram restaurados.') }
     updateConfig(next)
   }, [available, key])
+  /** Atualiza a edição e persiste automaticamente apenas configurações válidas para a API. */
   function setConfig(next: ExperimentConfig) {
     updateConfig(next)
     if (!available || configError(next, available)) return

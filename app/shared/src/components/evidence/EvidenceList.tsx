@@ -2,6 +2,7 @@ import type { Analysis, AxisResult } from '../../api/analysisApi'
 import AuditObservation from './AuditObservation'
 import styles from '../../styles/Evidence.module.css'
 
+/** Associa cada citação ao trecho original e às observações de auditoria disponíveis. */
 export default function EvidenceList({ analysis, result }: { analysis: Analysis; result: AxisResult }) {
   const indices = [...new Set([...result.evidence.map(ev => ev.chunk_index), ...(result.evidence_audit ?? []).map(audit => audit.chunk_index)])].sort((a, b) => a - b)
   if (result.status === 'no_evidence' && !indices.length) return <p className={styles.help}>Não há evidências relevantes a exibir neste eixo.{result.jev_diagnostics?.length ? ' Consulte a avaliação por trecho na aba Modelo JEV.' : ''}</p>

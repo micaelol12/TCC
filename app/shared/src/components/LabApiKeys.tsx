@@ -10,6 +10,7 @@ const providerHelp = {
   gemini: 'Libera gemini-3.1-flash-lite e gemini-3.7-flash.',
 }
 
+/** Permite configurar provedores da sessão Lab e atualiza os modos disponíveis após cada mudança. */
 export default function LabApiKeys({ client, caps, busy, onUpdated }: {
   client: ReturnType<typeof createAnalysisClient>; caps: ExperimentCapabilities; busy: boolean; onUpdated: () => Promise<void>
 }) {
@@ -17,6 +18,7 @@ export default function LabApiKeys({ client, caps, busy, onUpdated }: {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  /** Salva ou remove a chave do provedor e limpa o campo após a confirmação da API. */
   async function update(provider: LabProvider, remove = false) {
     setSaving(true); setError(''); setMessage('')
     try {
@@ -28,6 +30,7 @@ export default function LabApiKeys({ client, caps, busy, onUpdated }: {
     } catch (err) { setError(err instanceof Error ? err.message : 'Falha ao configurar a chave.') }
     finally { setSaving(false) }
   }
+  /** Encerra a sessão de chaves e atualiza a disponibilidade dos provedores na interface. */
   async function reset() {
     setSaving(true); setError('')
     try { await client.clearLabSession(); setKeys(emptyKeys); await onUpdated(); setMessage('Sessão encerrada. Cadastre suas chaves para voltar a analisar.') }

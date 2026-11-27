@@ -4,6 +4,7 @@ import type { ScaleLevel } from '../../domain/ordinalScale'
 import LevelDistribution from './LevelDistribution'
 import styles from '../../styles/Evidence.module.css'
 
+/** Apresenta a distribuição de níveis finais conforme a escala registrada na análise. */
 export default function FinalLevelDistribution({ analysis, result, levels }: { analysis: Analysis; result: AxisResult; levels: ScaleLevel[] }) {
   if (!result.valid_chunks) return <div className={styles.empty}><strong>Sem distribuição final</strong><p>{result.status === 'no_evidence' ? 'Os trechos foram considerados sem relevância para este eixo, por isso não receberam níveis para compor o resultado.' : 'Nenhum trecho recebeu uma estimativa válida para compor a distribuição deste eixo.'}</p></div>
   const counts = Object.fromEntries(levels.map(level => [level.chave, analysis.escala ? result.level_counts_by_key?.[level.chave] ?? 0 : result.level_counts[level.chave as keyof typeof result.level_counts] ?? 0]))

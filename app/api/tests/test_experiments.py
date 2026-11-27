@@ -138,8 +138,6 @@ class ExperimentHttpTests(unittest.TestCase):
         self.settings = lab_settings(allowed_jev_models=('jev-1.13.0', 'jev-test'), allowed_llm_models=('sabia-4', 'llm-test'))
         self.settings_patch = patch.object(analyze_route, 'settings', self.settings)
         self.settings_patch.start()
-        analyze_route.recent_requests.clear()
-        analyze_route.daily['calls'] = 0
         self.jev = FakeJev({'answers': answers(), 'model': 'jev-test'})
         self.jev.aclose = AsyncMock()
         self.llm = FakeLlm(llm_payload())
@@ -175,7 +173,6 @@ class ExperimentHttpTests(unittest.TestCase):
             self.assertEqual(denied.status_code, 403)
         for factory in self.mocks:
             factory.assert_not_called()
-        self.assertEqual(analyze_route.daily['calls'], 0)
 
     def test_polarity_selection_reaches_provider_snapshot_and_hash_per_request(self):
         from app.analysis_defaults import ESCALA_9_NIVEIS
@@ -261,15 +258,20 @@ class ExperimentHttpTests(unittest.TestCase):
                 self.assertEqual(response.json()['effective_config'][name], value)
         self.assertNotEqual(responses[0].json()['config_hash'], responses[1].json()['config_hash'])
 
-    def test_max_chunks_and_budget_still_apply(self):
+    def test_max_chunks_still_applies(self):
         settings = replace(self.settings, max_chunks=1, min_valid_chunks=1)
         with patch.object(analyze_route, 'settings', settings):
             response = self.client.post('/api/analyze', json={'text': (TEXT + ' ') * 50, 'processing_level': 'low', 'experiment_config': {'chunk_tokens': 100}})
             self.assertEqual(response.status_code, 413)
             self.mocks[0].assert_not_called()
-        with patch.object(analyze_route, 'settings', replace(self.settings, daily_calls=1)):
-            response = self.client.post('/api/analyze', json={'text': TEXT, 'processing_level': 'medium', 'experiment_config': {}})
-            self.assertEqual(response.status_code, 429)
+
+    def test_repeated_analyses_are_not_limited_by_an_hourly_quota(self):
+        payload = {'text': TEXT, 'processing_level': 'medium', 'experiment_config': {}}
+        attempts = range(31)
+        for attempt in attempts:
+            with self.subTest(attempt=attempt):
+                response = self.client.post('/api/analyze', json=payload)
+                self.assertEqual(response.status_code, 200, response.text)
 
     def test_report_retains_metadata_and_rejects_tampering_or_wrong_environment(self):
         payload = report_payload()

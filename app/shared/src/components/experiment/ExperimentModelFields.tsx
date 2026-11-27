@@ -1,6 +1,7 @@
 import { configLabels, modelProvider, modelReady } from '../../domain/experimentConfig'
 import type { ExperimentFieldProps } from './experimentFieldTypes'
 
+/** Explica a disponibilidade e o papel do modelo conforme o provedor e o modo de análise. */
 function getModelHelp(provider: 'jev' | 'llm', { config, capabilities, mode }: ExperimentFieldProps): string {
   if (provider === 'llm') {
     if (mode === 'low') return 'O modo baixo usa apenas JEV. O modelo LLM escolhido será usado nos modos médio e alto.'
@@ -13,6 +14,7 @@ function getModelHelp(provider: 'jev' | 'llm', { config, capabilities, mode }: E
     : 'Modelo JEV usado para classificação e checagem de evidências.'
 }
 
+/** Exibe os modelos permitidos e a disponibilidade das chaves de seus provedores. */
 export default function ExperimentModelFields(props: ExperimentFieldProps) {
   const { capabilities, config, mode, onChange } = props
   return <>{(['jev', 'llm'] as const).map(provider => {

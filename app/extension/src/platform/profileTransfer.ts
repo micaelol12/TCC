@@ -2,6 +2,7 @@ import { validateProfile } from '@8values/shared/profile'
 import { saveProfile } from '../storage/preferences'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
 
+/** Recebe perfis somente do site autorizado, valida a versão e confirma a gravação local. */
 export function registerProfileTransfer(webOrigin: string) {
   chrome.runtime.onMessage.addListener((message: unknown, sender, respond) => {
     if (!message || typeof message !== 'object' || !('type' in message) || message.type !== '8values:save-profile') return

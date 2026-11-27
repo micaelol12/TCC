@@ -32,16 +32,19 @@ def sentence_spans(text, limit=200):
 
 
 def field(value, key):
+    """Lê um campo de resposta tanto em dicionários quanto em objetos do SDK."""
     return value[key] if isinstance(value, dict) else getattr(value, key)
 
 
 def probability(value):
+    """Aceita somente probabilidades numéricas finitas entre zero e um, excluindo booleanos."""
     if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value <= 1:
         raise ValueError("Invalid probability")
     return float(value)
 
 
 def choice_result(answer, keys):
+    """Valida a distribuição e a escolha, representando empates como seleção indeterminada."""
     probabilities = {str(key): probability(value) for key, value in dict(field(answer, "probabilities")).items()}
 
     if set(probabilities) != set(keys) or abs(sum(probabilities.values()) - 1) > .03:
@@ -58,6 +61,7 @@ def choice_result(answer, keys):
 
 
 def is_eligible_decision(axis, decision, rubrics):
+    """Seleciona decisões relevantes com nível inteiro compatível com a rubrica."""
     if decision.get("relevante") is not True or type(decision.get("nivel")) is not int:
         return False
     configured_levels = rubrics.get(axis, {}).get("niveis")
@@ -68,6 +72,7 @@ class EvidenceAuditor:
     """Registra observações em uma cópia, sem alterar a classificação original."""
 
     def __init__(self, text, decisions, jev, rubrics, literal_check, *, existence_min, model, contexto_posicao_politica):
+        """Copia as decisões e prepara as afirmações elegíveis para uma auditoria observacional."""
         self.text = text
         self.decisions = deepcopy(decisions)
         self.jev = jev
@@ -87,11 +92,13 @@ class EvidenceAuditor:
         }
 
     def record_observation(self, axis, kind, status, **data):
+        """Acrescenta uma observação de auditoria sem modificar o nível nem a relevância."""
         self.decisions[axis].setdefault("evidence_audit", []).append({
             "kind": kind, "status": status, "level": self.eligible_decisions[axis]["nivel"], **data,
         })
 
     async def ask_jev(self, state, questions):
+        """Executa uma chamada de auditoria e registra a contagem lógica e o modelo retornado."""
         self.logical_calls += 1
         response = await self.jev.system_one(
             state=state, questions=questions, **({"model": self.model} if self.model else {}),
@@ -102,6 +109,7 @@ class EvidenceAuditor:
         return field(response, "answers"), actual_model if isinstance(actual_model, str) else None
 
     def build_search_questions(self, axes, spans):
+        """Prepara perguntas sobre a passagem que sustenta a classificação e sua existência."""
         questions = {}
         for axis in axes:
             questions[f"{axis}_where"] = Choice(
@@ -117,6 +125,7 @@ class EvidenceAuditor:
         return questions
 
     def record_search_answer(self, axis, answers, spans, model):
+        """Registra a busca e associa a citação somente se ela superar o limiar e for literal."""
         existence_probability = probability(field(answers[f"{axis}_exists"], "noul"))
         selected_id, confidence, probabilities = choice_result(answers[f"{axis}_where"], [*spans, "NONE"])
         diagnostics = {
@@ -134,6 +143,7 @@ class EvidenceAuditor:
             self.record_observation(axis, "search", "not_literal", **diagnostics)
 
     async def search_jev_quotes(self):
+        """Busca evidências em lote para decisões JEV e registra falhas por eixo."""
         axes_to_search = [axis for axis, decision in self.eligible_decisions.items() if decision.get("method") == "jev"]
         if not axes_to_search:
             return
@@ -157,6 +167,7 @@ class EvidenceAuditor:
                     self.record_observation(axis, "search", "invalid")
 
     def axes_with_literal_quotes(self):
+        """Seleciona citações presentes no texto e registra as que falham na conferência."""
         axes_to_check = []
         for axis in self.eligible_decisions:
             quote = self.decisions[axis].get("quote")
@@ -168,6 +179,7 @@ class EvidenceAuditor:
         return axes_to_check
 
     def build_semantic_questions(self, axes):
+        """Monta perguntas para avaliar se as citações sustentam a posição e a intensidade."""
         return {
             f"{axis}_relation": Choice(
                 instructions=self.political_context.rstrip() + " " +
@@ -178,6 +190,7 @@ class EvidenceAuditor:
         }
 
     def record_semantic_answer(self, axis, answer, model):
+        """Registra a relação semântica e suas probabilidades sem corrigir a classificação."""
         relation, confidence, probabilities = choice_result(answer, RELATIONS)
         self.record_observation(
             axis, "semantic", relation or "uncertain", quote=self.decisions[axis]["quote"],
@@ -185,6 +198,7 @@ class EvidenceAuditor:
         )
 
     async def check_semantic_support(self):
+        """Audita em lote o apoio semântico das citações literais disponíveis."""
         axes_to_check = self.axes_with_literal_quotes()
         if not axes_to_check:
             return
