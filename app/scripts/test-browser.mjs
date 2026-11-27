@@ -136,6 +136,7 @@ try {
   assert.equal(await input.inputValue(), 'Próximo trecho, sem substituir a análise.')
   await page.getByRole('button', { name: 'Limpar histórico e rascunhos' }).click()
   await page.getByRole('dialog').getByRole('button', { name: 'Sim, limpar histórico e rascunhos', exact: true }).click()
+  await page.getByRole('dialog').waitFor({ state: 'hidden' })
   assert.equal(await input.inputValue(), '')
   await page.reload(); await input.waitFor(); assert.equal(await input.inputValue(), '')
   await input.fill('x'.repeat(60001))

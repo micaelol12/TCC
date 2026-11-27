@@ -117,6 +117,12 @@ A exportação abre o banco somente para leitura e recusa sobrescrever uma saíd
 
 O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente o provedor LLM configurado no médio, ou o provedor LLM configurado no alto. Maritaca é o padrão; Gemini pode ser configurado. A checagem semântica de evidências também usa TypeSafe no modo alto quando habilitada. A aplicação não controla a retenção feita por esses provedores. Antes da publicação, revise políticas, contratos, transferência internacional, HTTPS, configuração do proxy e logs de infraestrutura. O corte de 16 trechos válidos por eixo para evidência suficiente é uma escolha metodológica do notebook, mantida aqui mesmo em textos curtos.
 
+## Organização do site e da extensão
+
+O painel da extensão separa a sessão e as capturas (`useExtensionSession`), o perfil local (`useExtensionProfile`) e o envio de análises (`useExtensionAnalysis`). Os componentes de histórico, seleção pendente e perfil ficam em `extension/src/sidepanel/components`. O site separa as regras e a persistência do questionário em `quizSession.ts`, o estado React em `useQuizSession` e as telas de pergunta e revisão em componentes próprios.
+
+Site e extensão compartilham a consulta de capacidades da API, as ações dos resultados, os componentes de evidências e os campos de configuração do Lab. Esses componentes ficam em `shared/src/components`, com os detalhes de evidências em `evidence/` e os parâmetros do Lab em `experiment/`.
+
 ## Organização do pipeline
 
 Em `api/app/pipeline`, `domain.py` concentra as decisões de relevância, polaridade e revisão. As rubricas ficam em `rubrics.py`, a leitura de probabilidades em `probabilities.py` e a conferência literal de citações em `quotes.py`. `strategies.py` coordena JEV e LLM; `evidence.py` separa busca de citações e auditoria semântica; `aggregation.py` reúne as estimativas e os diagnósticos por eixo. Os consumidores importam diretamente as funções dos módulos responsáveis, usando os nomes atuais.

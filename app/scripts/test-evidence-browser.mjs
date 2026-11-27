@@ -144,8 +144,13 @@ try {
     const comparison = page.getByRole('complementary', { name: 'Comparação pessoal', exact: true })
     await comparison.waitFor()
     for (const index of [0, 2, 0, 2]) {
-      if (name === 'extension') await page.getByLabel('Análise do histórico', { exact: true }).selectOption({ index })
-      else await page.locator('.historyButton').nth(index).click()
+      if (name === 'extension') {
+        await page.getByRole('button', { name: 'Análise', exact: true }).click()
+        const history = page.locator('.sessionHistory')
+        if (!await history.evaluate(element => element.open)) await history.locator(':scope > summary').click()
+        await history.locator('.historyEntry').nth(index).click()
+        await page.getByRole('button', { name: 'Comparar comigo', exact: true }).click()
+      } else await page.locator('.historyButton').nth(index).click()
       await comparison.getByText(`Análise selecionada: Caso ${index + 1}`, { exact: true }).waitFor()
       assert.equal(await comparison.count(), 1, 'A troca no histórico deve manter uma única comparação.')
       assert.equal(await page.getByRole('region', { name: 'Análise selecionada', exact: true }).count(), 0, 'O histórico não deve abrir a análise enquanto se está comparando.')

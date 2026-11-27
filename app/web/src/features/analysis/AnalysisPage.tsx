@@ -1,21 +1,20 @@
 import { experimentRecipients } from '@8values/shared/domain/experimentConfig'
 import { configuredRecipients } from '@8values/shared/api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Profile } from '../../storage/localProfile'
 import { createAnalysisClient } from '../../services/analysisApi'
 import AnalysisResult from '@8values/shared/components/AnalysisResult'
 import AnalysisComposer from '@8values/shared/components/AnalysisComposer'
 import { useAnalysisRequest } from '@8values/shared/hooks/useAnalysisRequest'
-import type { Capabilities } from '../../services/analysisApi'
 import ComparisonPanel from '../comparison/ComparisonPanel'
 import { createReportClient } from '@8values/shared/reports'
 import ExperimentPanel from '@8values/shared/components/ExperimentPanel'
 import ExperimentComparison from '@8values/shared/components/ExperimentComparison'
 import { useExperimentConfig } from '@8values/shared/hooks/useExperimentConfig'
 import { isLabBuild } from '@8values/shared/domain/experimentConfig'
-import { CONNECTION_ERROR } from '@8values/shared/domain/analysisMessages'
-import ConfirmAction from '@8values/shared/components/ConfirmAction'
+import { useAnalysisCapabilities } from '@8values/shared/hooks/useAnalysisCapabilities'
+import AnalysisResultActions from '@8values/shared/components/AnalysisResultActions'
 import AnalysisHistoryPanel from './AnalysisHistoryPanel'
 import { useAnalysisSession } from './useAnalysisSession'
 
@@ -25,14 +24,12 @@ const reportClient = createReportClient()
 export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   const { draft, updateDraft, draftStored, entries, historyStored, appendAnalysis } = useAnalysisSession()
   const { title, text, mode } = draft
-  const [capabilities, setCapabilities] = useState<Capabilities | null>(null)
-  const [capabilitiesError, setCapabilitiesError] = useState('')
+  const { capabilities, capabilitiesError, refreshCapabilities, setCapabilities } = useAnalysisCapabilities(client)
   const [selectedId, setSelectedId] = useState<number | null>(() => entries.at(-1)?.id ?? null)
   const [showComposer, setShowComposer] = useState(() => !!(text || title) || entries.length === 0)
   const [view, setView] = useState<'analysis' | 'comparison' | 'experiments'>('analysis')
   const { busy, seconds, error, run, cancel, clearError } = useAnalysisRequest(client)
   const experiment = useExperimentConfig(capabilities, window.location.origin, mode)
-  useEffect(() => { void refreshCapabilities() }, [])
 
   const selectedEntry = entries.find(entry => entry.id === selectedId) ?? null
   const replacesDraft = !!selectedEntry && !!(text || title) && (text !== selectedEntry.text || title !== selectedEntry.title)
@@ -44,16 +41,6 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
   }
   const characterLimit = capabilities?.max_chars ?? 60000
   const modeAvailable = capabilities?.modes[mode] ?? false
-
-  async function refreshCapabilities() {
-    setCapabilitiesError('')
-    setCapabilities(null)
-    try {
-      setCapabilities(await client.getCapabilities())
-    } catch {
-      setCapabilitiesError(CONNECTION_ERROR)
-    }
-  }
 
   function startNewAnalysis() {
     clearError()
@@ -96,11 +83,11 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
         <div className="analysisViewTabs" role="group" aria-label="Visualização"><button aria-pressed={view === 'analysis'} className={view === 'analysis' ? '' : 'secondary'} onClick={() => setView('analysis')}>Análise</button><button aria-pressed={view !== 'analysis'} className={view !== 'analysis' ? '' : 'secondary'} onClick={() => setView('comparison')}>Comparação</button></div>
         {view === 'analysis' ? <div className="analysisContent">
           {!showComposer && selectedEntry && <AnalysisResult entry={selectedEntry} reportClient={reportClient} reportOrigin="web">
-            <div className="actions">{replacesDraft ? <ConfirmAction label="Editar e reanalisar" className="secondary" title="Substituir o rascunho atual?" description="O rascunho ainda não enviado será substituído pelo texto desta análise. Cancele para manter seu rascunho." confirmLabel="Sim, substituir rascunho" onConfirm={reuseSelectedAnalysis} /> : <button className="secondary" onClick={reuseSelectedAnalysis}>Editar e reanalisar</button>}<button className="secondary" onClick={() => setView('comparison')}>Comparar comigo</button><button className="secondary" onClick={() => setView('experiments')}>Comparar análises</button></div>
+            <AnalysisResultActions replacesDraft={replacesDraft} onReuseAnalysis={reuseSelectedAnalysis} onCompareProfile={() => setView('comparison')} onCompareAnalyses={() => setView('experiments')} />
           </AnalysisResult>}
           {showComposer && <AnalysisComposer text={text} title={title} mode={mode} caps={capabilities} busy={busy} seconds={seconds} error={error} capsError={capabilitiesError}
             recipient={experiment.available ? experimentRecipients(mode, experiment.config, experiment.available) : configuredRecipients(mode, capabilities)}
-            configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel caps={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={mode} busy={busy} error={experiment.error} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCapabilities(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
+            configBlocked={experiment.blocked} experimentPanel={experiment.available ? <ExperimentPanel capabilities={experiment.available} config={experiment.config} onChange={experiment.setConfig} mode={mode} busy={busy} error={experiment.error} notice={experiment.notice} onNotice={experiment.setNotice} client={client} onKeysUpdated={async () => setCapabilities(await client.getCapabilities())} /> : isLabBuild ? <p className="notice small">Conecte a API Lab com a configuração experimental habilitada para editar parâmetros.</p> : undefined}
             onText={text => updateDraft({ text })} onTitle={title => updateDraft({ title })} onMode={mode => updateDraft({ mode })} onSend={() => void submitAnalysis()} onCancel={cancel}
             draftNotice={draftStored && (text || title) ? 'Rascunho guardado nesta aba. Você pode navegar e voltar ou recarregar a página. Fechar a aba encerra esta sessão.' : undefined}
             onDiscard={discardDraft}

@@ -1,4 +1,4 @@
-import config from '../../../api/analysis-config.json'
+import config from '../../../api/analysis-config.json' with { type: 'json' }
 import type { OrdinalScale } from '../domain/ordinalScale'
 
 // Tests derive their data from the same definition file as the API.
