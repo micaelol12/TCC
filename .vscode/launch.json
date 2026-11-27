@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Depurar API",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/app/api/.venv/Scripts/python.exe",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--host", "127.0.0.1",
+        "--port", "8000"
+      ],
+      "cwd": "${workspaceFolder}/app/api",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "APP_ENV": "development",
+        "EXPERIMENTAL_CONFIG_ENABLED": "false",
+        "ANALYSIS_TIMEOUT_SECONDS": "3600"
+      }
+    }
+  ]
+}

@@ -11,22 +11,33 @@ def jev_client(api_key: str, model: str):
 
 def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
     from typesafe_sdk import Choice, Score
+
     if primitiva_polaridade not in {"score", "choice"}:
         raise ValueError("primitiva_polaridade deve ser score ou choice.")
+
     questions = {}
+
     for axis in AXIS_SPECS:
+        # Relevância e polaridade são perguntas separadas, enviadas juntas.
         questions[f"{axis}_relevancia"] = Choice(**criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica))
+
         rubric = criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)
+
+        # Score usa índices de uma lista; Choice usa as chaves dos níveis.
         questions[f"{axis}_polaridade"] = (
             Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
             if primitiva_polaridade == "score" else
             Choice(instructions=rubric["instructions"], criteria=dict(rubric["niveis"]))
         )
+
     return questions
 
 
 def llm_client(api_key: str, timeout: int):
     from openai import AsyncOpenAI
+
+    # O SDK OpenAI acessa o endpoint compatível da Maritaca. As tentativas
+    # adicionais são controladas em ask_llm(), sem retries internos do SDK.
     return AsyncOpenAI(api_key=api_key, base_url="https://chat.maritaca.ai/api", timeout=timeout, max_retries=0)
 
 

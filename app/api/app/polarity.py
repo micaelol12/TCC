@@ -79,19 +79,26 @@ class AncoraEscala(BaseModel):
 
 class EscalaOrdinal(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
+
     id: StrictStr = Field(min_length=1)
     versao: StrictInt = Field(ge=1)
+
     niveis: tuple[NivelEscala, ...]
+
     rubricas_por_eixo: dict[str, dict[str, AncoraEscala]]
 
     @model_validator(mode="after")
     def contrato(self):
+        # A escala deve crescer de B para A, com exatamente um centro.
+        # Códigos identificam alternativas; valor define a posição numérica.
         n = len(self.niveis)
+
         if not self.id.strip() or n < 3 or n % 2 != 1:
             raise ValueError("Escala bipolar exige quantidade ímpar de ao menos três níveis.")
         if len({x.chave for x in self.niveis}) != n or len({x.codigo for x in self.niveis}) != n:
             raise ValueError("Chaves e códigos devem ser únicos.")
         valores = [x.valor for x in self.niveis]
+
         if valores[0] != 0 or valores[-1] != 1 or valores[n // 2] != .5 or any(a >= b for a, b in zip(valores, valores[1:])):
             raise ValueError("Valores devem crescer de 0 a 1, com centro 0,5.")
         if [x.polo for x in self.niveis] != ["B"] * (n // 2) + [None] + ["A"] * (n // 2):
@@ -137,6 +144,8 @@ def validar_escala(escala):
 
 
 def valor_nivel(nivel, escala):
+    # A nota vem do valor configurado, não da magnitude do código do nível.
+    # Exemplo: valor 0,75 corresponde a 75 para A e 25 para B na agregação.
     if type(nivel) is not int or nivel not in escala.por_codigo:
         raise ValueError("Código não pertence à escala desta execução.")
     return 100.0 * escala.por_codigo[nivel].valor
@@ -147,7 +156,10 @@ def classe_nivel(nivel, escala):
 
 
 PolarityLevel = Literal[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+
 COUNT_KEYS = {-4: "minus4", -3: "minus3", -2: "minus2", -1: "minus1", 0: "zero",
               1: "plus1", 2: "plus2", 3: "plus3", 4: "plus4"}
+
+
 def level_score(level, escala):
     return valor_nivel(level, validar_escala(escala))

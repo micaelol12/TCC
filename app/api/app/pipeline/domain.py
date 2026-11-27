@@ -4,20 +4,29 @@ import re
 import unicodedata
 from collections.abc import Mapping
 from copy import deepcopy
+
 from .rubrics import AXIS_SPECS
 from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, NIVEIS_POLARIDADE
 from ..polarity import DefinicaoEixo, validar_escala, valor_nivel, classe_nivel
+
+
 CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
+
 MIN_PALAVRAS_EVIDENCIA = 4
+
 MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
+
 _MARCACAO_MD = re.compile(r"(\*\*|__|<br\s*/?>|^#{1,6}\s+|^>\s?|\|)", re.M)
+
 _RETICENCIAS = re.compile(r"^(\.\.\.|…)\s*|\s*(\.\.\.|…)$")
+
 
 def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
     """Cria a pergunta de relevância; a polaridade é definida pela rubrica ordinal."""
     spec = axis_specs[axis]
     if isinstance(spec, DefinicaoEixo):
         spec = spec.model_dump(mode='json')
+
     return {
         "instructions": contexto_posicao_politica.rstrip() + " " + f"O trecho contém conteúdo substantivo sobre {spec['name']}, incluindo propostas, ideias, definições ou modelos políticos?",
         "criteria": {
@@ -26,30 +35,40 @@ def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=C
         },
     }
 
+
 def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
+    # As definições vêm da configuração; a mesma rubrica é usada por JEV e LLM.
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
+
     spec = axis_specs[axis]
+
     if isinstance(spec, DefinicaoEixo):
         spec = spec.model_dump(mode='json')
     polos = spec["poles"]
+
     instructions = (contexto_posicao_politica.rstrip() + " " +
         f"Qual situação caracteriza a proposta, ideia, modelo ou arranjo apresentado no trecho sobre {spec['name']}? "
         f"Polo B ({polos['B']['label']}): {polos['B']['description']} "
         f"Polo A ({polos['A']['label']}): {polos['A']['description']} "
         "Intensidade depende do alcance e da profundidade da proposta, ideia, modelo ou arranjo caracterizado, não da retórica "
         "nem da confiança. Diferencie as características do objeto descrito da adesão do enunciador. Uma definição com características direcionais não é mera menção temática. Não atribua como defendida uma posição explicitamente rejeitada nem converta automaticamente sua rejeição em defesa do polo oposto. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
+
     niveis = {n.chave: {"valor": n.codigo, "nivel": n.rotulo,
         **escala.rubricas_por_eixo[axis][n.chave].model_dump(mode="json")} for n in escala.niveis}
+
     return {"instructions": instructions, "niveis": niveis}
+
 
 def _score_campo(objeto, nome):
     return objeto[nome] if isinstance(objeto, Mapping) else getattr(objeto, nome)
+
 
 def _score_probabilidade(valor, nome):
     valor = float(valor)
     if not math.isfinite(valor) or not 0 <= valor <= 1:
         raise ValueError(f"{nome} deve estar entre 0 e 1; recebido {valor}.")
     return valor
+
 
 def _score_distribuicao(valores, chaves):
     probabilidades = {
@@ -58,38 +77,52 @@ def _score_distribuicao(valores, chaves):
     }
     if set(probabilidades) != set(chaves):
         raise ValueError(f"Esperadas as probabilidades {list(chaves)}.")
+
     total = math.fsum(probabilidades.values())
+
     if total <= 0 or abs(total - 1.0) > 0.03:
         raise ValueError(f"Distribuição inválida: soma={total}; {probabilidades}.")
+    # Tolera pequeno arredondamento do provedor e normaliza a soma para 1.
     return {k: v / total for k, v in probabilidades.items()}
+
 
 def _score_margem(distribuicao):
     valores = sorted(distribuicao.values(), reverse=True)
     return valores[0] - valores[1]
 
+
 def _score_classe(distribuicao):
     maior = max(distribuicao.values())
+
     vencedores = [
         k for k, p in distribuicao.items()
         if math.isclose(p, maior, rel_tol=0, abs_tol=1e-12)
     ]
     return vencedores[0] if len(vencedores) == 1 else "C"
 
+
 def _normalizar_relevancia_noul_2_polos(resposta, limiar=0.5):
     if not 0.0 <= limiar <= 1.0:
         raise ValueError('limiar deve estar entre 0 e 1.')
     p = float(_score_campo(resposta, 'noul'))
+
     if not 0.0 <= p <= 1.0:
         raise ValueError('A probabilidade Noul deve estar entre 0 e 1.')
     return {'choice': 'A' if p >= limiar else 'B', 'probabilities': {'A': p, 'B': 1.0 - p}}
+
 
 def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escala=None, regra_decisao='nivel'):
     """MAP global ou polo primeiro; preserva distribuição e decisão global para auditoria."""
     if regra_decisao not in {'nivel', 'polo_primeiro'}:
         raise ValueError('regra_decisao deve ser nivel ou polo_primeiro.')
+
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
+
     chaves = tuple(n.chave for n in escala.niveis)
+
     brutas = dict(_score_campo(resposta, 'probabilities'))
+
+    # Score devolve índices; Choice já devolve as chaves dos níveis da escala.
     if primitiva == 'score':
         indices = {str(i) for i in range(len(chaves))}
         if {str(k) for k in brutas} != indices or len(brutas) != len(chaves):
@@ -97,31 +130,62 @@ def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escal
         brutas = {chaves[int(k)]: v for k, v in brutas.items()}
     elif primitiva != 'choice':
         raise ValueError('Primitiva inválida.')
+
     probabilidades = _score_distribuicao(brutas, chaves)
+
+    # Preserva o vencedor global como diagnóstico, mesmo se a regra posterior
+    # selecionar primeiro o polo e chegar a outro nível.
     maior = max(probabilidades.values())
+
     vencedores = [k for k, v in probabilidades.items() if math.isclose(v, maior, abs_tol=1e-12, rel_tol=0)]
+
     selecionado = escala.por_chave[vencedores[0]] if len(vencedores) == 1 else None
+
     nivel_jev = selecionado.codigo if selecionado else None
+
+    # Agrupa a massa de probabilidade dos polos A, B e do centro C.
     p_a = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'A')
+
     p_b = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'B')
+
     p_0 = probabilidades[escala.centro.chave]
+
     grupos = {'A': p_a, 'B': p_b, 'C': p_0}
+
     maior_grupo = max(grupos.values())
+
     vencedores_grupo = [g for g, p in grupos.items() if math.isclose(p, maior_grupo, abs_tol=1e-12, rel_tol=0)]
+
     grupo = vencedores_grupo[0] if len(vencedores_grupo) == 1 else None
+
     desempate_intensidade = False
+
     if regra_decisao == 'polo_primeiro':
+        # Primeiro escolhe a direção; depois, a intensidade dentro do grupo.
+        # Empate entre grupos deixa a decisão sem nível definido.
         candidatos = [n for n in escala.niveis if (n.polo or 'C') == grupo]
+
         maior_no_grupo = max((probabilidades[n.chave] for n in candidatos), default=0)
+
         vencedores_no_grupo = [n for n in candidatos if math.isclose(probabilidades[n.chave], maior_no_grupo, abs_tol=1e-12, rel_tol=0)]
+
+        # No empate de intensidade, prefere o nível mais próximo do centro.
         # Os códigos são identificadores; a intensidade segue a posição na escala.
         selecionado = min(vencedores_no_grupo, key=lambda n: abs(n.valor - .5), default=None)
+
         desempate_intensidade = relevante and grupo in ('A', 'B') and len(vencedores_no_grupo) > 1
+
+    # Sem relevância confirmada, não atribui posição ao eixo.
     nivel = selecionado.codigo if relevante and selecionado else None
+
+    # Mede o apoio ao nível dentro do polo vencedor, separando intensidade
+    # de direção. Esse apoio é usado nos motivos de revisão.
     suporte_condicional = (probabilidades[selecionado.chave] / grupos[selecionado.polo or 'C']
                            if selecionado and selecionado.polo is not None else None)
+
     status = ('sem_evidencia' if not relevante else 'empate' if nivel is None
               else 'sem_posicao' if escala.por_codigo[nivel].polo is None else 'direcional')
+
     return {
         'nivel': nivel, 'chave_nivel': selecionado.chave if relevante and selecionado else None,
         'nivel_jev_bruto': nivel_jev,
@@ -141,8 +205,12 @@ def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escal
         'status': status, 'escala_id': escala.id, 'escala_versao': escala.versao, 'escala_hash': escala.hash,
     }
 
+
 def decidir_jev(eixo, respostas, config):
+    # Relevância decide se há conteúdo no eixo; polaridade decide sua posição.
+    # A alternativa A da relevância significa "sim", não "polo político A".
     resposta_rel = respostas[f"{eixo}_relevancia"]
+
     if config["tipo_relevancia"] == "noul":
         rel = _normalizar_relevancia_noul_2_polos(
             resposta_rel, limiar=config["limiar_noul"],
@@ -157,11 +225,13 @@ def decidir_jev(eixo, respostas, config):
                 _score_campo(resposta_rel, "probabilities"), ("A", "B")),
         }
     relevante = rel["choice"] == "A"
+
     posicao = _normalizar_polaridade_ordinal(
         respostas[f"{eixo}_polaridade"], relevante,
         primitiva=config["primitiva_polaridade"], escala=config.get("escala"),
         regra_decisao=config.get("regra_decisao", "nivel"),
     )
+
     return {
         "eixo": eixo, "relevante": relevante,
         "probabilities_relevancia": rel["probabilities"],
@@ -172,14 +242,20 @@ def decidir_jev(eixo, respostas, config):
         "llm_reverteu_relevancia": False, "erro_llm": None, "meta_llm": None,
     }
 
+
 def motivos_fallback(decisao, config):
+    # Apenas sinaliza motivos. strategies.py usa essa lista para solicitar
+    # revisão no modo medium; esta função não modifica a decisão original.
     motivos = []
+
     if decisao["margem_relevancia"] < config["margem_relevancia_minima"]:
         motivos.append("relevancia_ambigua")
     if decisao["relevante"]:
         if decisao["nivel"] is None:
             motivos.append("empate_nivel")
         if config.get("regra_decisao", "nivel") == "polo_primeiro":
+            # Direção usa a margem entre grupos; intensidade usa o apoio
+            # condicional ao nível escolhido dentro do grupo.
             if decisao['margem_grupo'] < config['margem_direcao_minima']:
                 motivos.append('direcao_ambigua')
             if (decisao['grupo_mais_provavel'] in ('A', 'B')
@@ -195,6 +271,7 @@ def motivos_fallback(decisao, config):
             motivos.append("direcao_ambigua")
     return motivos
 
+
 def _score_normalizar_citacao(texto):
     """Normaliza apresentação preservando palavras, acentos e pontuação."""
     texto = unicodedata.normalize("NFKC", texto).translate(str.maketrans({
@@ -203,8 +280,10 @@ def _score_normalizar_citacao(texto):
     }))
     return " ".join(texto.split()).casefold()
 
+
 def _sem_markdown(texto):
     return _MARCACAO_MD.sub(" ", texto)
+
 
 def _score_evidencia_confere(texto, evidencia, min_palavras=MIN_PALAVRAS_EVIDENCIA):
     """Trecho contínuo do texto, ignorando marcação Markdown e escapes do JSON do prompt.
@@ -212,11 +291,14 @@ def _score_evidencia_confere(texto, evidencia, min_palavras=MIN_PALAVRAS_EVIDENC
     Paráfrases, omissões internas e citações com menos de `min_palavras` palavras são recusadas.
     """
     citacao = evidencia.replace("\\n", " ").replace('\\"', '"')
+
     citacao = _score_normalizar_citacao(_sem_markdown(citacao)).strip(" \"'.,;:")
     citacao = _RETICENCIAS.sub("", citacao).strip(" \"'")
+
     if len(citacao.split()) < min_palavras:
         return False
     return citacao in _score_normalizar_citacao(_sem_markdown(texto))
+
 
 def decisao_vazia(eixo):
     """Campos de uma decisão sem probabilidades (LLM ou falha)."""
@@ -232,12 +314,17 @@ def decisao_vazia(eixo):
         "llm_reverteu_relevancia": False, "erro_llm": None, "meta_llm": None,
     }
 
+
 def decidir_llm(item, texto, original, motivos, modelo, meta, escala=None):
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
+
     evidencia_ok = (_score_evidencia_confere(texto, item.evidencia)
                     if item.relevante is True else None)
+
     relevante = None if evidencia_ok is False else item.relevante
+
     nivel = None if evidencia_ok is False else item.nivel
+
     if evidencia_ok is False:
         status = "evidencia_nao_verificada"
     elif relevante is None:
@@ -248,6 +335,7 @@ def decidir_llm(item, texto, original, motivos, modelo, meta, escala=None):
         status = "posicao_indeterminada"
     else:
         status = "sem_posicao" if escala.por_codigo[nivel].polo is None else "direcional"
+
     return {
         **decisao_vazia(item.eixo), "relevante": relevante, "nivel": nivel,
         "valor_0_100": None if nivel is None else valor_nivel(nivel, escala),

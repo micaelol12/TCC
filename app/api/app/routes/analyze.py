@@ -3,7 +3,9 @@ from contextlib import suppress
 from collections import deque
 from datetime import date
 from time import monotonic
+
 from fastapi import APIRouter, HTTPException, Request
+
 from ..schemas import AnalyzeRequest, AnalysisResponse, Chunk, LogicalCalls
 from ..settings import settings
 from ..pipeline.segmentation import split_text
@@ -15,8 +17,13 @@ from ..experiment_config import resolve_config, config_ranges, config_hash, CONF
 from ..analysis_defaults import configured_scales
 
 router = APIRouter(prefix="/api")
+
+# Estes controles são compartilhados pelas requisições deste processo.
+# Reiniciar a API reinicia os contadores de uso em memória.
 slots = asyncio.Semaphore(settings.concurrent_requests)
+
 recent_requests: deque[float] = deque()
+
 daily = {"date": date.today(), "calls": 0}
 
 
@@ -27,19 +34,29 @@ def health():
 
 @router.get("/capabilities")
 def capabilities(request: Request):
+    # A interface consulta esta rota para habilitar os modos disponíveis.
     keys = effective_keys(settings, request)
+
     jev = bool(keys['typesafe'])
+
     defaults = settings.algorithm_defaults()
+
     catalog = model_catalog(settings)
+
     llm = bool(keys['maritaca'] or keys['gemini']) if settings.app_env == 'lab' else bool(keys[catalog[defaults.llm_model]])
+
     high = llm and (jev or not defaults.semantic_evidence_check or settings.app_env == 'lab')
+
     result = {"max_chars": settings.max_chars, "max_tokens": settings.max_tokens, "max_chunks": settings.max_chunks,
               "modes": {"low": jev, "medium": jev and llm, "high": high}, "timeout_seconds": settings.timeout_seconds,
               "analysis_defaults": defaults.model_dump(mode="json"), "model_providers": catalog,
               "environment": settings.app_env, "experimental": {"enabled": settings.experimental_config_enabled}}
+
     if settings.experimental_config_enabled:
         catalog = model_catalog(settings)
+
         defaults = settings.algorithm_defaults().model_dump()
+
         if not keys[catalog[defaults['llm_model']]]:
             defaults['llm_model'] = next((model for model, provider in catalog.items() if keys[provider]), defaults['llm_model'])
         result["experimental"].update(config_version=CONFIG_VERSION, defaults=defaults,
@@ -47,27 +64,40 @@ def capabilities(request: Request):
             allowed_models={"jev": list(settings.allowed_jev_models), "llm": list(catalog)}, model_providers=catalog,
             providers={provider: bool(key) for provider, key in keys.items()}, execution_storage=True,
             scales=[s.model_dump(mode="json") for s in configured_scales(settings.escala)])
+
     return result
 
 
 @router.post("/analyze", response_model=AnalysisResponse)
 async def analyze(payload: AnalyzeRequest, request: Request):
+    # Resolve os parâmetros antes de chamar provedores. Somente o Lab aceita
+    # substituições enviadas pelo cliente em experiment_config.
     mode = payload.processing_level
+
     keys = effective_keys(settings, request)
+
     if payload.experiment_config is not None and not settings.experimental_config_enabled:
         raise HTTPException(403, "Configuração experimental disponível somente na API Lab.")
+
     try:
         config = resolve_config(settings, payload.experiment_config)
     except ValueError:
         raise HTTPException(422, "Configuração incompatível com os limites ou modelos permitidos da API.") from None
     if len(payload.text) > settings.max_chars:
         raise HTTPException(413, "Texto acima do limite de caracteres.")
+
+    # Mesmo no modo high, a checagem semântica pode precisar do JEV.
     provider = model_catalog(settings)[config.llm_model]
+
     needs_jev = mode != "high" or config.semantic_evidence_check
+
     if (needs_jev and not keys['typesafe']) or (mode in ("medium", "high") and not keys[provider]):
         if settings.app_env == 'lab':
             raise HTTPException(503, "Cadastre suas chaves na aba API keys para usar este modo e modelo.")
         raise HTTPException(503, "Modo indisponível: configure os provedores necessários.")
+
+    # Cada trecho será classificado separadamente; o resultado do documento
+    # será calculado depois, reunindo as decisões válidas de cada eixo.
     try:
         chunks, _ = split_text(payload.text, max_tokens=settings.max_tokens,
                                chunk_tokens=config.chunk_tokens, strategy=config.chunk_strategy)
@@ -75,22 +105,35 @@ async def analyze(payload: AnalyzeRequest, request: Request):
         raise HTTPException(413, "Texto acima do limite de tokens.") from None
     if len(chunks) > settings.max_chunks:
         raise HTTPException(413, "Texto acima do limite de trechos; aumente os tokens por trecho ou reduza o texto.")
+
     now = monotonic()
+
     while recent_requests and recent_requests[0] < now - 3600:
         recent_requests.popleft()
     if len(recent_requests) >= settings.hourly_requests:
         raise HTTPException(429, "Limite temporário de análises atingido.")
     if daily["date"] != date.today():
         daily.update(date=date.today(), calls=0)
+
+    # Reserva um teto de chamadas lógicas antes da execução. Inclui a possível
+    # revisão do modo medium e as etapas opcionais de evidências.
     extra_calls = int(config.jev_evidence_search and mode != "high") + int(config.semantic_evidence_check)
+
     maximum_calls = len(chunks) * ((2 if mode == "medium" else 1) + extra_calls)
+
     if daily["calls"] + maximum_calls > settings.daily_calls:
         raise HTTPException(429, "Orçamento diário de análises atingido.")
     recent_requests.append(now)
     daily["calls"] += maximum_calls
+
+    # Os clientes são criados conforme o modo e fechados no bloco finally.
     jev = jev_client(keys['typesafe'], config.jev_model) if needs_jev else None
+
     questions = jev_questions(config.escala, config.primitiva_polaridade, config.contexto_posicao_politica, config.axis_specs) if mode != "high" else None
+
     llm = (gemini_client if provider == 'gemini' else llm_client)(keys[provider], settings.timeout_seconds) if mode != "low" else None
+
+    # Limita trechos simultâneos dentro desta análise; slots limita análises.
     semaphore = asyncio.Semaphore(settings.concurrent_chunks)
 
     async def run_one(text: str):
@@ -100,6 +143,7 @@ async def analyze(payload: AnalyzeRequest, request: Request):
             return await classify_chunk(text, mode, jev, questions, llm, settings, config)
 
     async def stop_on_disconnect(work):
+        # Interrompe o processamento quando o cliente encerra a requisição.
         while not work.done():
             if await request.is_disconnected():
                 work.cancel()
@@ -108,7 +152,9 @@ async def analyze(payload: AnalyzeRequest, request: Request):
 
     async with slots:
         work = asyncio.gather(*(run_one(chunk) for chunk in chunks))
+
         watcher = asyncio.create_task(stop_on_disconnect(work))
+
         try:
             async with asyncio.timeout(settings.timeout_seconds):
                 result = await work
@@ -124,10 +170,18 @@ async def analyze(payload: AnalyzeRequest, request: Request):
                 await llm.close()
             if jev:
                 await jev.aclose()
+
+    # Cada item contém decisões, chamadas e modelos de um trecho.
+    # A agregação calcula as posições finais e mantém os dados de auditoria.
     axes = aggregate([item[0] for item in result], len(chunks), config)
+
     calls = LogicalCalls(jev=sum(x[1]["jev"] for x in result), llm=sum(x[1]["llm"] for x in result))
+
     models = list(dict.fromkeys(model for x in result for model in x[2] if model))
+
     warnings = list(dict.fromkeys(reason for axis in axes for reason in axis.reason_codes if reason in {"falha_jev", "falha_llm", "falha_autenticacao_jev", "falha_autenticacao_llm", "resposta_jev_invalida", "evidencia_nao_verificada"}))
+
+    # O snapshot e os hashes identificam a configuração usada nesta execução.
     return AnalysisResponse(processing_level=mode, models_used=models, axes=axes,
                             escala=config.escala, escala_hash=config.escala.hash,
                             chunks=[Chunk(index=i, text=text) for i, text in enumerate(chunks)],

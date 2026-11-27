@@ -30,15 +30,20 @@ def initialize(connection):
 
 
 def public_request(payload, settings):
+    # Seleciona somente os campos públicos reconhecidos. Cabeçalhos de sessão
+    # e credenciais não fazem parte do registro persistido.
     if not isinstance(payload, dict):
         return '', None, {}
     text = payload.get('text')
     text = text[:settings.max_chars] if isinstance(text, str) else ''
+
     mode = payload.get('processing_level')
     mode = mode if mode in ('low', 'medium', 'high') else None
     from .lab_credentials import model_catalog
     incoming = payload.get('experiment_config')
+
     config = {}
+
     if isinstance(incoming, dict):
         for name in ExperimentConfig.model_fields:
             value = incoming.get(name)
@@ -70,13 +75,18 @@ def public_request(payload, settings):
 
 def begin_execution(database, payload, settings, client='unknown'):
     identifier = str(uuid4())
+
     text, mode, config = public_request(payload, settings)
+
     from .experiment_config import ExperimentOverrides, resolve_config
     try:
         incoming = payload.get('experiment_config', {}) if isinstance(payload, dict) else {}
         effective = resolve_config(settings, ExperimentOverrides.model_validate(incoming)).model_dump()
     except ValueError:
         effective = None
+
+    # Persiste running antes de iniciar a análise. Mesmo uma entrada inválida
+    # pode ser registrada e depois finalizada com seu código de erro.
     with closing(connect(database)) as connection, connection:
         initialize(connection)
         connection.execute('INSERT INTO lab_executions (execution_id, started_at, status, client, text, processing_level, requested_config_json, effective_config_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -86,6 +96,7 @@ def begin_execution(database, payload, settings, client='unknown'):
 
 def finish_execution(database, identifier, status, http_status, elapsed_ms, analysis=None, error_code=None):
     effective = analysis.get('effective_config') if isinstance(analysis, dict) else None
+
     with closing(connect(database)) as connection, connection:
         connection.execute('UPDATE lab_executions SET finished_at=?, status=?, http_status=?, elapsed_ms=?, effective_config_json=COALESCE(?, effective_config_json), analysis_json=?, error_code=? WHERE execution_id=?',
             (now(), status, http_status, elapsed_ms, json.dumps(effective) if effective else None,
@@ -93,6 +104,7 @@ def finish_execution(database, identifier, status, http_status, elapsed_ms, anal
 
 
 def recover_interrupted(database):
+    # Após um reinício, registros running não representam trabalho em andamento.
     with closing(connect(database)) as connection, connection:
         initialize(connection)
         connection.execute("UPDATE lab_executions SET status='interrupted', finished_at=?, error_code='server_restarted' WHERE status='running'", (now(),))

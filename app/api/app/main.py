@@ -4,10 +4,12 @@ from contextlib import asynccontextmanager
 import json
 import sqlite3
 from time import monotonic
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, FileResponse, Response
 from fastapi.staticfiles import StaticFiles
+
 from .routes.analyze import router
 from .routes.reports import router as reports_router
 from .report_schemas import MAX_REPORT_BYTES
@@ -19,10 +21,14 @@ from .execution_store import begin_execution, finish_execution, recover_interrup
 @asynccontextmanager
 async def lifespan(application):
     if settings.app_env == 'lab':
+        # Execuções ainda marcadas como running pertencem ao processo anterior.
         recover_interrupted(settings.reports_db_path)
     yield
 
+
+# Conecta as rotas da API. A documentação interativa padrão está desabilitada.
 app = FastAPI(title="8values — análise de textos", docs_url=None, redoc_url=None, lifespan=lifespan)
+
 app.include_router(router)
 app.include_router(reports_router)
 app.include_router(lab_router)
@@ -30,9 +36,13 @@ app.include_router(lab_router)
 
 @app.middleware("http")
 async def privacy_headers(request: Request, call_next):
+    # O Lab registra a análise automaticamente; a edição comum segue direto
+    # para a rota e só grava uma análise quando há envio explícito de report.
     if request.url.path == '/api/analyze' and settings.app_env == 'lab':
         return await record_lab_execution(request, call_next)
+
     length = request.headers.get("content-length", "0")
+
     if request.url.path.startswith('/api/lab/'):
         body = bytearray()
         async for chunk in request.stream():
@@ -45,14 +55,16 @@ async def privacy_headers(request: Request, call_next):
     if request.url.path == "/api/reports":
         if length.isdigit() and int(length) > MAX_REPORT_BYTES:
             return JSONResponse({"detail": "Report acima do limite."}, status_code=413, headers={"Cache-Control": "no-store"})
-        # Bound actual bytes too, including requests without Content-Length.
+        # Confere também os bytes recebidos, mesmo sem Content-Length.
         body = bytearray()
         async for chunk in request.stream():
             if len(body) + len(chunk) > MAX_REPORT_BYTES:
                 return JSONResponse({"detail": "Report acima do limite."}, status_code=413, headers={"Cache-Control": "no-store"})
             body.extend(chunk)
         request._body = bytes(body)
+
     response = await call_next(request)
+
     response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Referrer-Policy"] = "no-referrer"
@@ -62,34 +74,45 @@ async def privacy_headers(request: Request, call_next):
 
 async def record_lab_execution(request, call_next):
     started = monotonic()
+
     body = bytearray()
+
     oversized = False
+
     async for chunk in request.stream():
         if len(body) + len(chunk) > 250000:
             oversized = True
             break
         body.extend(chunk)
     request._body = bytes(body)
+
     try:
         payload = json.loads(body) if not oversized else {}
     except (ValueError, UnicodeDecodeError):
         payload = {}
+
+    # Confirma o registro inicial antes de permitir chamadas aos provedores.
+    # Assim, falhas de validação ou execução também deixam um registro no Lab.
     try:
         identifier = begin_execution(settings.reports_db_path, payload, settings, request.headers.get('x-lab-client', 'unknown'))
     except (sqlite3.Error, OSError):
         return JSONResponse({'detail': 'Não foi possível registrar a execução Lab. Nenhum provedor foi chamado.'}, status_code=503, headers={'Cache-Control': 'no-store'})
     elapsed = lambda: round((monotonic() - started) * 1000)
+
     try:
         if oversized:
             finish_execution(settings.reports_db_path, identifier, 'failed', 413, elapsed(), error_code='input_limit')
             return JSONResponse({'detail': 'Entrada acima do limite.', 'lab_execution_id': identifier}, status_code=413, headers={'Cache-Control': 'no-store'})
         response = await call_next(request)
+
         content = b''.join([part async for part in response.body_iterator])
+
         try:
             data = json.loads(content)
         except (ValueError, UnicodeDecodeError):
             data = None
         success = response.status_code == 200 and isinstance(data, dict) and 'axes' in data
+
         if success:
             data['lab_execution_id'] = identifier
             status = 'completed_with_warnings' if data.get('warnings') else 'completed'
@@ -101,6 +124,9 @@ async def record_lab_execution(request, call_next):
             if isinstance(data, dict):
                 data['lab_execution_id'] = identifier
                 content = json.dumps(data, ensure_ascii=False).encode('utf-8')
+
+        # O corpo pode ter recebido lab_execution_id; o tamanho anterior
+        # precisa ser recalculado ao construir a resposta.
         headers = dict(response.headers)
         headers.pop('content-length', None)
         headers.update({'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer'})
@@ -109,7 +135,7 @@ async def record_lab_execution(request, call_next):
         try:
             finish_execution(settings.reports_db_path, identifier, 'cancelled', 499, elapsed(), error_code='cancelled')
         except (sqlite3.Error, OSError):
-            pass  # The durable initial record is recovered on the next startup.
+            pass  # O registro inicial será recuperado na próxima inicialização.
         raise
     except (sqlite3.Error, OSError):
         return JSONResponse({'detail': 'Falha ao confirmar o registro da execução Lab.', 'lab_execution_id': identifier}, status_code=503, headers={'Cache-Control': 'no-store'})
@@ -123,11 +149,14 @@ async def record_lab_execution(request, call_next):
 
 @app.exception_handler(RequestValidationError)
 async def safe_validation_error(request: Request, exc: RequestValidationError):
+    # Informa os campos inválidos sem devolver texto ou credenciais recebidos.
     fields = [".".join(str(part) for part in error["loc"] if part != "body") for error in exc.errors()]
     return JSONResponse({"detail": "Contrato inválido.", "fields": fields}, status_code=422)
 
 
+# Quando o frontend foi compilado, a API também entrega a aplicação React.
 dist = Path(__file__).resolve().parents[2] / "web" / ("dist-lab" if settings.app_env == "lab" else "dist")
+
 if dist.is_dir():
     app.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
 

@@ -3,19 +3,25 @@ from dataclasses import dataclass, field
 from secrets import token_urlsafe
 from threading import Lock
 from time import monotonic
+
 from fastapi import HTTPException, Request
 
 SESSION_SECONDS = 8 * 3600
+
 MAX_SESSIONS = 100
 
 
 @dataclass
 class KeySession:
     expires_at: float
+
     keys: dict[str, str] = field(default_factory=dict, repr=False)
 
 
+# As chaves ficam somente na memória deste processo, por sessão. O banco de
+# execuções recebe a configuração pública, sem chaves ou tokens de sessão.
 sessions: dict[str, KeySession] = {}
+
 lock = Lock()
 
 
@@ -38,7 +44,9 @@ def session_keys(token: str | None) -> dict[str, str]:
         return {}
     with lock:
         _purge()
+
         session = sessions.get(token)
+
         if session is None:
             raise HTTPException(401, 'Sessão de chaves expirada. Cadastre novamente na aba API keys.')
         return dict(session.keys)
@@ -53,12 +61,16 @@ def set_key(token: str | None, provider: str, key: str) -> str:
             if len(sessions) >= MAX_SESSIONS:
                 raise HTTPException(429, 'Limite temporário de sessões de chaves atingido.')
             token = token_urlsafe(32)
+
+            # A validade começa na criação e não é renovada ao editar chaves.
             sessions[token] = KeySession(monotonic() + SESSION_SECONDS)
+
         sessions[token].keys[provider] = key
         return token
 
 
 def effective_keys(settings, request: Request) -> dict[str, str]:
+    # No Lab, uma sessão sem chave não pode usar a credencial do servidor.
     if settings.app_env == 'lab':
         return {'typesafe': '', 'maritaca': '', 'gemini': '',
                 **session_keys(request.headers.get('x-lab-session'))}
@@ -66,7 +78,9 @@ def effective_keys(settings, request: Request) -> dict[str, str]:
 
 
 def model_catalog(settings) -> dict[str, str]:
+    # Permite selecionar o cliente correto a partir do nome do modelo LLM.
     models = {model: 'maritaca' for model in settings.allowed_llm_models}
+
     if settings.app_env == 'lab':
         models.update({model: 'maritaca' for model in ('sabia-4', 'sabiazinho-4')})
     models.update({model: 'gemini' for model in settings.allowed_gemini_models})

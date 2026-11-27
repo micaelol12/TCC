@@ -1,6 +1,7 @@
 import asyncio
 import json
 from copy import deepcopy
+
 from .domain import decidir_jev, motivos_fallback, criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from .rubrics import AXIS_SPECS
 from .validation import validate_answer
@@ -11,6 +12,8 @@ from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL
 from ..prompting import instrucoes_escala
 from .validation import schema_for
 
+# Compatibilidade para chamadas sem configuração explícita. Na rota de análise,
+# os parâmetros efetivos vêm de settings e de analysis-config.json.
 JEV_CONFIG = {
     "tipo_relevancia": "choice", "primitiva_polaridade": "score",
     "margem_relevancia_minima": 0.60, "confianca_nivel_minima": 0.50,
@@ -21,6 +24,7 @@ INSTRUCTIONS = instrucoes_escala(ESCALA_ATUAL)
 
 
 def empty(reason: str, method: str | None = None) -> dict:
+    # Falha ou incerteza não deve virar uma posição central na escala.
     return {"relevante": None, "nivel": None, "method": method, "methods": [method] if method else [], "reason": [reason], "quote": None}
 
 
@@ -31,13 +35,21 @@ def authentication_failure(error):
 
 def jev_decisions(response, config=None) -> tuple[dict, str | None]:
     config = config if config is not None else JEV_CONFIG
+
     answers = response["answers"] if isinstance(response, dict) else response.answers
+
     model = response.get("model") if isinstance(response, dict) else getattr(response, "model", None)
+
     decisions = {}
+
     for axis in AXIS_SPECS:
         try:
             original = decidir_jev(axis, answers, config)
+
             reasons = motivos_fallback(original, config)
+
+            # Guarda a decisão e as probabilidades iniciais para auditoria,
+            # inclusive quando o LLM revisar este eixo posteriormente.
             decisions[axis] = {
                 "relevante": original["relevante"], "nivel": original["nivel"],
                 "method": "jev", "methods": ["jev"], "reason": reasons, "quote": None,
@@ -50,15 +62,23 @@ def jev_decisions(response, config=None) -> tuple[dict, str | None]:
             original = None
             decisions[axis] = empty("resposta_jev_invalida", "jev")
         decisions[axis]["original"] = original
+
     return decisions, model
 
 
 async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
     escala = ESCALA_ATUAL if escala is None else escala
+
+    # JEV e LLM usam as mesmas definições políticas e a mesma escala.
     rubrics = {axis: {"relevancia": criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica),
                       "polaridade": criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)} for axis in axes}
+
     prompt = json.dumps({"rubricas": rubrics, "texto": text}, ensure_ascii=False)
+
     schema = schema_for(axes, escala)
+
+    # Tenta novamente uma vez em falhas gerais. Erros de autenticação encerram
+    # a tentativa; cancelamentos são propagados para a rota.
     for attempt in range(2):
         try:
             response = await client.responses.parse(model=model, input=prompt, instructions=instrucoes_escala(escala, contexto_posicao_politica), text_format=schema)
@@ -75,8 +95,11 @@ async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, c
     return {axis: empty("falha_llm", "llm") for axis in axes}, model
 
 
-async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+async def  classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
     decisions, calls, models = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
+
+    # A auditoria acrescenta citações e verificações, sem modificar os níveis
+    # escolhidos pela classificação nem a regra de agregação.
     if config and (config.semantic_evidence_check or config.jev_evidence_search):
         decisions, extra_calls, extra_models = await audit_evidence(
             text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, axis_specs=config.axis_specs, escala=config.escala, contexto_posicao_politica=config.contexto_posicao_politica) for axis in AXIS_SPECS},
@@ -85,14 +108,20 @@ async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, co
             contexto_posicao_politica=config.contexto_posicao_politica)
         calls["jev"] += extra_calls
         models.extend(extra_models)
+
     return decisions, calls, models
 
 
 async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
     calls = {"jev": 0, "llm": 0}
+
     models = []
+
     contexto = config.contexto_posicao_politica if config else CONTEXTO_POSICAO_POLITICA
+
     axis_specs = config.axis_specs if config else AXIS_SPECS
+
+    # High: o LLM classifica todos os eixos diretamente.
     if mode == "high":
         calls["llm"] = 1
         result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None, contexto, axis_specs)
@@ -100,6 +129,8 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
             decision["methods"] = ["llm"]
         models.append(model)
         return result, calls, models
+
+    # Low e medium começam com uma chamada JEV contendo todos os eixos.
     try:
         calls["jev"] = 1
         response = await jev.system_one(state=text, questions=questions)
@@ -110,19 +141,28 @@ async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, c
         raise
     except Exception as error:
         reason = "falha_autenticacao_jev" if authentication_failure(error) else "falha_jev"
+
         decisions = {axis: empty(reason, "jev") for axis in AXIS_SPECS}
+
+    # Medium: somente os eixos com motivos de revisão são enviados ao LLM.
+    # Os demais conservam a decisão JEV, sem uma chamada de revisão adicional.
     if mode == "medium":
         requested = [axis for axis, d in decisions.items() if d["reason"]]
+
         if requested:
             calls["llm"] = 1
             reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None, contexto, axis_specs)
+
             models.append(model)
+
             for axis in requested:
                 if "jev_diagnostic" in decisions[axis]:
                     reviewed[axis]["jev_diagnostic"] = decisions[axis]["jev_diagnostic"]
                 reviewed[axis]["reason"] = list(dict.fromkeys(decisions[axis]["reason"] + reviewed[axis]["reason"]))
                 reviewed[axis]["methods"] = ["jev", "llm"]
                 decisions[axis] = reviewed[axis]
+
     for decision in decisions.values():
         decision.pop("original", None)
+
     return decisions, calls, models

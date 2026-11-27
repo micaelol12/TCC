@@ -10,33 +10,52 @@ from .analysis_defaults import CONTEXTO_POSICAO_POLITICA
 from .polarity import EscalaOrdinal, validar_escala
 
 CONFIG_VERSION = "1"
+
 PIPELINE_VERSION = "jev-escalas-ordinal-13"
+
+# Tipos reutilizados na validação de parâmetros públicos do algoritmo.
 Probability = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
+
 ChunkSize = Annotated[int, Field(strict=True, ge=100, le=2000)]
+
 Positive = Annotated[int, Field(strict=True, ge=1)]
+
 Samples = Annotated[int, Field(strict=True, ge=200, le=10000)]
+
 Seed = Annotated[int, Field(strict=True, ge=0, le=2**32 - 1)]
+
 ModelName = Annotated[str, Field(strict=True, min_length=1, max_length=100, pattern=r"^[A-Za-z0-9_.:/-]+$")]
+
 PoliticalContext = Annotated[str, Field(strict=True, min_length=1, max_length=20000, pattern=r"\S")]
 
 
 class ExperimentConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
+
+    # Definições políticas compartilhadas pelo classificador e pela auditoria.
     escala: EscalaOrdinal = Field(default_factory=lambda: validar_escala(default_value('escala')))
     contexto_posicao_politica: PoliticalContext = Field(default_factory=lambda: default_value('contexto_posicao_politica'), validate_default=True)
     axis_specs: dict[str, DefinicaoEixo] = Field(default_factory=lambda: default_value('axis_specs'), validate_default=True)
+
+    # Estes são padrões do modelo de dados. A configuração do servidor é
+    # carregada integralmente do JSON e pode definir outros valores.
     primitiva_polaridade: Literal["score", "choice"] = "score"
     regra_decisao: Literal["nivel", "polo_primeiro"] = "nivel"
+
     chunk_tokens: ChunkSize = 600
     chunk_strategy: Literal["sentencas", "tokens"] = "tokens"
+
     relevance_margin_min: Probability = 0.60
     level_confidence_min: Probability = 0.50
     direction_margin_min: Probability = 0.20
+
     min_valid_chunks: Positive = 16
     bootstrap_samples: Samples = 2000
     bootstrap_seed: Seed = 42
+
     jev_model: ModelName = "jev-1.13.0"
     llm_model: ModelName = "sabia-4"
+
     semantic_evidence_check: StrictBool = False
     jev_evidence_search: StrictBool = False
     evidence_existence_min: Probability = 0.70
@@ -61,29 +80,40 @@ class ExperimentConfig(BaseModel):
 
 
 class ExperimentOverrides(BaseModel):
+    # Na requisição Lab, somente os campos enviados substituem os padrões.
     model_config = ConfigDict(extra="forbid", frozen=True)
+
     escala: EscalaOrdinal | None = None
     contexto_posicao_politica: PoliticalContext | None = None
     axis_specs: dict[str, DefinicaoEixo] | None = None
+
     primitiva_polaridade: Literal["score", "choice"] | None = None
     regra_decisao: Literal["nivel", "polo_primeiro"] | None = None
+
     chunk_tokens: ChunkSize | None = None
     chunk_strategy: Literal["sentencas", "tokens"] | None = None
+
     relevance_margin_min: Probability | None = None
     level_confidence_min: Probability | None = None
     direction_margin_min: Probability | None = None
+
     min_valid_chunks: Positive | None = None
     bootstrap_samples: Samples | None = None
     bootstrap_seed: Seed | None = None
+
     jev_model: ModelName | None = None
     llm_model: ModelName | None = None
+
     semantic_evidence_check: StrictBool | None = None
     jev_evidence_search: StrictBool | None = None
     evidence_existence_min: Probability | None = None
 
 
 def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSION) -> str:
+    # O hash identifica parâmetros e versão, não comprova a autenticidade de
+    # uma classificação. As remoções preservam os hashes de resultados antigos.
     effective = config.model_dump()
+
     if pipeline_version != PIPELINE_VERSION:
         effective.pop('axis_specs', None)
     if pipeline_version not in ('jev-escalas-ordinal-12', PIPELINE_VERSION):
@@ -104,13 +134,16 @@ def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSI
         effective.pop("primitiva_polaridade", None)
     if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         effective.pop("escala", None)
-    # Preserve hashes of saved analyses from before the optional evidence fields.
+    # Preserva análises anteriores aos campos opcionais de evidências.
     if pipeline_version == "jev-2-polos-mvp-1":
         for name in ("semantic_evidence_check", "jev_evidence_search", "evidence_existence_min"):
             effective.pop(name)
+
     public = {"config_version": CONFIG_VERSION, "pipeline_version": pipeline_version,
               "effective_config": effective}
+
     canonical = json.dumps(public, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
@@ -125,8 +158,12 @@ def config_ranges(max_tokens: int, max_chunks: int) -> dict:
 
 def resolve_config(settings, overrides: ExperimentOverrides | None) -> ExperimentConfig:
     from .lab_credentials import model_catalog
+
+    # Une os padrões do servidor aos campos explicitamente enviados no Lab.
+    # Depois valida o conjunto e as restrições de infraestrutura/modelos.
     config = ExperimentConfig.model_validate({**settings.algorithm_defaults().model_dump(),
         **(overrides.model_dump(exclude_unset=True) if overrides is not None else {})})
+
     if config.chunk_tokens > settings.max_tokens or config.min_valid_chunks > settings.max_chunks:
         raise ValueError("Parâmetros incompatíveis com os limites da API.")
     if config.jev_model not in settings.allowed_jev_models or config.llm_model not in model_catalog(settings):

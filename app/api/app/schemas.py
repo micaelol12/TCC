@@ -4,13 +4,19 @@ from .experiment_config import ExperimentOverrides, ExperimentConfig, CONFIG_VER
 from .polarity import EscalaOrdinal
 
 Axis = Literal["economic", "diplomatic", "state", "society"]
+
 Level = Literal["low", "medium", "high"]
 
 
 class AnalyzeRequest(BaseModel):
+    # O perfil do usuário não participa da análise. A entrada contém somente
+    # o texto, o modo e, no Lab, as substituições de parâmetros.
     model_config = ConfigDict(extra="forbid")
+
     text: str = Field(min_length=1)
+
     processing_level: Level
+
     experiment_config: ExperimentOverrides | None = None
 
     @model_validator(mode="before")
@@ -31,7 +37,10 @@ class AnalyzeRequest(BaseModel):
 
 class Evidence(BaseModel):
     chunk_index: int
+
     quote: str
+
+    # Indica presença literal no texto, não aprovação pela auditoria semântica.
     verified: Literal[True] = True
 
 
@@ -94,18 +103,29 @@ class JevDiagnostic(BaseModel):
 
 class AxisResult(BaseModel):
     axis: Axis
+
+    # Posição na escala: A e B somam 100 quando existe estimativa.
+    # Valores null distinguem ausência/incerteza de uma posição central.
     pole_a: float | None
     pole_b: float | None
+
     status: Literal["estimated", "no_evidence", "abstained"]
+
+    # Cobertura e suficiência descrevem os trechos usados na estimativa.
     coverage: float
     valid_chunks: int
     total_chunks: int
     sufficient_evidence: bool
+
     level_counts: LevelCounts
     level_counts_by_key: dict[str, int] | None = None
+
     ci95: tuple[float, float] | None
+
     methods_used: list[Literal["jev", "llm"]]
     reason_codes: list[str]
+
+    # Citações, auditoria semântica e diagnóstico inicial do JEV são separados.
     evidence: list[Evidence]
     evidence_audit: list[EvidenceAudit] = Field(default_factory=list)
     jev_diagnostics: list[JevDiagnostic] = Field(default_factory=list)
@@ -133,24 +153,36 @@ class LogicalCalls(BaseModel):
 
 
 class AnalysisResponse(BaseModel):
+    # O contrato mantém versões históricas e inclui um snapshot da escala nas
+    # respostas novas, para interpretar resultados com os parâmetros originais.
     schema_version: str = "3"
+
     escala: EscalaOrdinal | None = None
     escala_hash: str | None = None
+
     pipeline_version: str = PIPELINE_VERSION
+
     processing_level: Level
     models_used: list[str]
+
     axes: list[AxisResult]
     chunks: list[Chunk]
+
     logical_calls: LogicalCalls
     warnings: list[str]
+
+    # Estes metadados registram a configuração pública efetivamente utilizada.
     effective_config: ExperimentConfig | None = None
     config_version: Literal["1"] | None = None
     config_hash: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
     environment: Literal["development", "lab", "production"] | None = None
+
     lab_execution_id: str | None = Field(default=None, pattern=r'^[a-f0-9-]{36}$')
 
     @model_validator(mode="after")
     def config_metadata(self):
+        # Evita misturar escala, contagens, diagnósticos ou hashes de execuções
+        # incompatíveis, inclusive ao receber snapshots em reports.
         if self.schema_version not in ("1", "2", "3"):
             raise ValueError("Versão de resposta desconhecida.")
         if self.schema_version in ("1", "2"):

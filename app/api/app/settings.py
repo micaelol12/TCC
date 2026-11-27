@@ -59,43 +59,64 @@ def parse_bool(value):
 
 @dataclass(frozen=True)
 class Settings:
+    # Ambiente e credenciais de infraestrutura. repr=False evita que as chaves
+    # apareçam na representação textual desta configuração.
     app_env: str = env("APP_ENV", "development")
     experimental_config_enabled: bool = boolean("EXPERIMENTAL_CONFIG_ENABLED")
+
     typesafe_key: str = field(default_factory=lambda: os.getenv("TYPESAFE_API_KEY", ""), repr=False)
     maritaca_key: str = field(default_factory=lambda: os.getenv("MARITACA_API_KEY", ""), repr=False)
     gemini_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""), repr=False)
+
     allowed_gemini_models: tuple[str, ...] = field(default_factory=lambda: tuple(value.strip() for value in os.getenv('ALLOWED_GEMINI_MODELS', 'gemini-3.1-flash-lite,gemini-3.7-flash').split(',') if value.strip()))
+
     algorithm_config_path: str = env("ALGORITHM_CONFIG_PATH")
-    # None means no constructor/environment override. __post_init__ fills every
-    # field from the same validated JSON in both editions.
+
+    # None indica ausência de substituição. __post_init__ preenche esses campos
+    # com o JSON validado, compartilhado pela edição comum e pelo Lab.
     escala: EscalaOrdinal | None = None
     contexto_posicao_politica: str | None = algorithm_env("CONTEXTO_POSICAO_POLITICA")
     axis_specs: dict[str, DefinicaoEixo] | None = None
+
+    # Modelos e regra que transforma as probabilidades JEV em uma decisão.
     jev_model: str | None = algorithm_env("JEV_MODEL")
     primitiva_polaridade: str | None = algorithm_env("JEV_POLARITY_PRIMITIVE")
     regra_decisao: str | None = algorithm_env("JEV_DECISION_RULE")
     llm_model: str | None = algorithm_env("LLM_MODEL")
     allowed_jev_models: tuple[str, ...] | None = models("ALLOWED_JEV_MODELS")
     allowed_llm_models: tuple[str, ...] | None = models("ALLOWED_LLM_MODELS")
+
+    # Segmentação do texto e limiares que sinalizam a necessidade de revisão.
     chunk_tokens: int | None = algorithm_env("CHUNK_TOKENS", int)
     chunk_strategy: str | None = algorithm_env("CHUNK_STRATEGY")
     relevance_margin_min: float | None = algorithm_env("JEV_RELEVANCE_MARGIN_MIN", float)
     level_confidence_min: float | None = algorithm_env("JEV_LEVEL_CONFIDENCE_MIN", float)
     direction_margin_min: float | None = algorithm_env("JEV_DIRECTION_MARGIN_MIN", float)
+
+    # Agregação das posições e intervalo calculado por reamostragem bootstrap.
     min_valid_chunks: int | None = algorithm_env("MIN_VALID_CHUNKS", int)
     bootstrap_samples: int | None = algorithm_env("BOOTSTRAP_SAMPLES", int)
     bootstrap_seed: int | None = algorithm_env("BOOTSTRAP_SEED", int)
+
+    # Busca de citações e auditoria semântica, sem ajuste automático da nota.
     semantic_evidence_check: bool | None = algorithm_env("SEMANTIC_EVIDENCE_CHECK", parse_bool)
     jev_evidence_search: bool | None = algorithm_env("JEV_EVIDENCE_SEARCH", parse_bool)
     evidence_existence_min: float | None = algorithm_env("EVIDENCE_EXISTENCE_MIN", float)
+
+    # Limites de entrada, tempo, concorrência e orçamento por processo.
     max_chars: int = number("MAX_CHARS", 60000)
     max_tokens: int = number("MAX_TOKENS", 12000)
     max_chunks: int = number("MAX_CHUNKS", 20)
+
     timeout_seconds: int = number("ANALYSIS_TIMEOUT_SECONDS", 120)
+
     concurrent_chunks: int = number("CONCURRENT_CHUNKS", 2)
     concurrent_requests: int = number("CONCURRENT_REQUESTS", 3)
+
     hourly_requests: int = number("HOURLY_REQUESTS", 30)
     daily_calls: int = number("DAILY_PROVIDER_CALLS", 1000)
+
+    # Reports e execuções Lab usam arquivos distintos por padrão.
     reports_db_path: str = field(default_factory=lambda: os.getenv(
         "LAB_REPORTS_DB_PATH" if os.getenv("APP_ENV") == "lab" else "REPORTS_DB_PATH", str(
             Path(__file__).resolve().parents[1] / "data" /
@@ -103,31 +124,42 @@ class Settings:
     reports_hourly_requests: int = number("REPORTS_HOURLY_REQUESTS", 60)
 
     def algorithm_defaults(self):
+        # Expõe somente parâmetros do algoritmo, sem as credenciais do servidor.
         return ExperimentConfig(**{name: getattr(self, name) for name in ExperimentConfig.model_fields})
 
     def __post_init__(self):
         if self.app_env == "lab":
+            # O Lab exige chaves da sessão e não herda credenciais do servidor.
             for name in ("typesafe_key", "maritaca_key", "gemini_key"):
                 object.__setattr__(self, name, "")
         if self.app_env not in {"development", "lab", "production"}:
             raise ValueError("Variável inválida: APP_ENV.")
         if self.experimental_config_enabled and self.app_env != "lab":
             raise ValueError("EXPERIMENTAL_CONFIG_ENABLED exige APP_ENV=lab.")
+
+        # Prioridade: substituições do construtor/ambiente sobre o JSON.
         path = self.algorithm_config_path or str(DEFAULT_CONFIG_PATH)
+
         base = load_algorithm_file(path)
+
         values = {**base.model_dump(), **{name: getattr(self, name) for name in ExperimentConfig.model_fields
                                          if getattr(self, name) is not None}}
+
         for name in ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",
                      "concurrent_requests", "hourly_requests", "daily_calls", "reports_hourly_requests"):
             if getattr(self, name) <= 0:
                 variable = {"timeout_seconds": "ANALYSIS_TIMEOUT_SECONDS", "daily_calls": "DAILY_PROVIDER_CALLS"}.get(name, name.upper())
                 raise ValueError(f"Limite inválido: {variable}.")
+
         try:
             defaults = ExperimentConfig.model_validate(values)
         except ValidationError as error:
             names = {"regra_decisao": "JEV_DECISION_RULE", "primitiva_polaridade": "JEV_POLARITY_PRIMITIVE", "relevance_margin_min": "JEV_RELEVANCE_MARGIN_MIN", "level_confidence_min": "JEV_LEVEL_CONFIDENCE_MIN", "direction_margin_min": "JEV_DIRECTION_MARGIN_MIN"}
             invalid = ", ".join(names.get(str(item["loc"][0]), str(item["loc"][0]).upper()) for item in error.errors())
             raise ValueError(f"Variáveis inválidas: {invalid}.") from None
+
+        # Interrompe a inicialização se os parâmetros forem incompatíveis;
+        # não deixa a primeira requisição descobrir uma configuração inválida.
         for name in ExperimentConfig.model_fields:
             object.__setattr__(self, name, getattr(defaults, name))
         if self.allowed_jev_models is None:

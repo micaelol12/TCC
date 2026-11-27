@@ -2,6 +2,7 @@ from collections import Counter
 from statistics import mean
 import random
 from math import ceil
+
 from ..experiment_config import ExperimentConfig
 from ..schemas import AxisResult, Evidence, EvidenceAudit, JevDiagnostic, LevelCounts
 from ..polarity import COUNT_KEYS, level_score
@@ -11,22 +12,43 @@ AXES = ("economic", "diplomatic", "state", "society")
 
 def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig | None = None) -> list[AxisResult]:
     config = config or ExperimentConfig()
+
     output = []
+
     for axis in AXES:
         decisions = [chunk[axis] for chunk in results]
+
+        # Somente trechos relevantes e com nível definido entram na média.
+        # O nível central é válido; ausência de evidência não equivale a 50.
         values = [level_score(d["nivel"], config.escala) for d in decisions if d["relevante"] is True and d["nivel"] is not None]
+
         count = Counter(d["nivel"] for d in decisions if d["relevante"] is True and d["nivel"] is not None)
+
+        # Todos os trechos válidos têm o mesmo peso, independentemente do tamanho.
         score = mean(values) if values else None
+
         ci = None
+
+        # O bootstrap reamostra as posições dos trechos para estimar um intervalo
+        # de 95%. A semente fixa torna esse cálculo reproduzível.
         if len(values) >= 2:
             rng = random.Random(config.bootstrap_seed)
+
             samples = sorted(mean(rng.choices(values, k=len(values))) for _ in range(config.bootstrap_samples))
-            # Nearest rank preserves the original indices 49/1949 for 2,000 draws.
+
+            # O posto mais próximo preserva os índices 49/1949 em 2.000 amostras.
             ci = (samples[ceil(0.025 * len(samples)) - 1], samples[ceil(0.975 * len(samples)) - 1])
+
         reasons = list(dict.fromkeys(r for d in decisions for r in d["reason"]))
+
         if values and len(values) < config.min_valid_chunks:
             reasons.append("evidencia_limitada")
+
+        # Sem estimativa, distingue ausência de conteúdo de uma decisão incerta.
         status = "estimated" if values else "no_evidence" if all(d["relevante"] is False for d in decisions) else "abstained"
+
+        # pole_b é o complemento da posição de A, não outra classificação.
+        # coverage indica a fração dos trechos que entrou na estimativa do eixo.
         output.append(AxisResult(
             axis=axis, pole_a=score, pole_b=None if score is None else 100 - score,
             status=status, coverage=len(values) / total_chunks, valid_chunks=len(values), total_chunks=total_chunks,
@@ -39,4 +61,5 @@ def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig |
             evidence_audit=[EvidenceAudit(chunk_index=i, **audit) for i, d in enumerate(decisions) for audit in d.get("evidence_audit", [])],
             jev_diagnostics=[JevDiagnostic(chunk_index=i, **d["jev_diagnostic"]) for i, d in enumerate(decisions) if d.get("jev_diagnostic")],
         ))
+
     return output
