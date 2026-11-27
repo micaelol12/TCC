@@ -7,7 +7,8 @@ import unittest
 from unittest.mock import AsyncMock, patch
 
 from app.pipeline.evidence import audit_evidence, sentence_spans
-from app.pipeline.domain import _score_evidencia_confere, criar_rubrica_polaridade_ordinal
+from app.pipeline.quotes import evidencia_literal_confere
+from app.pipeline.rubrics import criar_rubrica_polaridade_ordinal
 from app.pipeline.strategies import classify_chunk
 from app.pipeline.aggregation import aggregate
 from app.experiment_config import ExperimentConfig, config_hash
@@ -49,7 +50,7 @@ class EvidenceTests(unittest.IsolatedAsyncioTestCase):
                 decisions = {'economic': {'relevante': True, 'nivel': level, 'method': 'jev', 'quote': None}}
                 result, calls, _ = await audit_evidence(TEXT, decisions, EvidenceJev(),
                     {'economic': criar_rubrica_polaridade_ordinal('economic')},
-                    _score_evidencia_confere, quote_search=True)
+                    evidencia_literal_confere, quote_search=True)
                 self.assertEqual(calls, 1)
                 self.assertEqual(result['economic']['evidence_audit'][0]['level'], level)
                 self.assertEqual(result['economic']['evidence_audit'][0]['status'], 'found')
@@ -58,7 +59,7 @@ class EvidenceTests(unittest.IsolatedAsyncioTestCase):
         decisions = {'economic': {'relevante': True, 'nivel': 1, 'method': 'jev', 'quote': None}}
         snapshot = deepcopy(decisions)
         result = await audit_evidence(TEXT, decisions, jev, {'economic': criar_rubrica_polaridade_ordinal('economic')},
-            _score_evidencia_confere, **options)
+            evidencia_literal_confere, **options)
         self.assertEqual(decisions, snapshot)
         self.assertEqual(result[0]['economic']['nivel'], 1)
         return result
@@ -114,7 +115,7 @@ class EvidenceTests(unittest.IsolatedAsyncioTestCase):
         jev = EvidenceJev()
         result, calls, _ = await audit_evidence(TEXT,
             {'economic': {'relevante': True, 'nivel': 1, 'method': 'llm', 'quote': 'Quatro palavras que inexistem'}}, jev,
-            {'economic': {}}, _score_evidencia_confere, semantic_check=True)
+            {'economic': {}}, evidencia_literal_confere, semantic_check=True)
         self.assertEqual(calls, 0)
         self.assertEqual(result['economic']['evidence_audit'][0]['status'], 'not_literal')
 

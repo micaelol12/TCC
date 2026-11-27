@@ -1,303 +1,203 @@
-"""Réplica das regras puras validadas no notebook autoritativo."""
+"""Regras de decisão da análise, com paridade verificada contra o notebook."""
 import math
-import re
-import unicodedata
-from collections.abc import Mapping
-from copy import deepcopy
 
-from .rubrics import AXIS_SPECS
-from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL, NIVEIS_POLARIDADE
-from ..polarity import DefinicaoEixo, validar_escala, valor_nivel, classe_nivel
-
-
-CHAVES_NIVEIS = tuple(NIVEIS_POLARIDADE)
-
-MIN_PALAVRAS_EVIDENCIA = 4
+from ..analysis_defaults import ESCALA_ATUAL
+from ..polarity import classe_nivel, validar_escala, valor_nivel
+from .probabilities import (
+    chaves_mais_provaveis, ler_campo_resposta,
+    margem_distribuicao, normalizar_distribuicao, validar_probabilidade,
+)
+from .quotes import evidencia_literal_confere
 
 MOTIVOS_POLARIDADE = {"empate_nivel", "baixa_confianca_nivel", "direcao_ambigua", "intensidade_ambigua"}
 
-_MARCACAO_MD = re.compile(r"(\*\*|__|<br\s*/?>|^#{1,6}\s+|^>\s?|\|)", re.M)
 
-_RETICENCIAS = re.compile(r"^(\.\.\.|…)\s*|\s*(\.\.\.|…)$")
-
-
-def criar_questoes_eixo(axis, axis_specs=AXIS_SPECS, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
-    """Cria a pergunta de relevância; a polaridade é definida pela rubrica ordinal."""
-    spec = axis_specs[axis]
-    if isinstance(spec, DefinicaoEixo):
-        spec = spec.model_dump(mode='json')
-
-    return {
-        "instructions": contexto_posicao_politica.rstrip() + " " + f"O trecho contém conteúdo substantivo sobre {spec['name']}, incluindo propostas, ideias, definições ou modelos políticos?",
-        "criteria": {
-            "A": f"Sim. Há evidência substantiva sobre {spec['topic']}.",
-            "B": f"Não. Não há evidência substantiva sobre {spec['topic']}.",
-        },
-    }
-
-
-def criar_rubrica_polaridade_ordinal(axis, axis_specs=AXIS_SPECS, escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA):
-    # As definições vêm da configuração; a mesma rubrica é usada por JEV e LLM.
-    escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
-
-    spec = axis_specs[axis]
-
-    if isinstance(spec, DefinicaoEixo):
-        spec = spec.model_dump(mode='json')
-    polos = spec["poles"]
-
-    instructions = (contexto_posicao_politica.rstrip() + " " +
-        f"Qual situação caracteriza a proposta, ideia, modelo ou arranjo apresentado no trecho sobre {spec['name']}? "
-        f"Polo B ({polos['B']['label']}): {polos['B']['description']} "
-        f"Polo A ({polos['A']['label']}): {polos['A']['description']} "
-        "Intensidade depende do alcance e da profundidade da proposta, ideia, modelo ou arranjo caracterizado, não da retórica "
-        "nem da confiança. Diferencie as características do objeto descrito da adesão do enunciador. Uma definição com características direcionais não é mera menção temática. Não atribua como defendida uma posição explicitamente rejeitada nem converta automaticamente sua rejeição em defesa do polo oposto. Não deduza posições por identidade do autor nem informação externa. " + spec["note"])
-
-    niveis = {n.chave: {"valor": n.codigo, "nivel": n.rotulo,
-        **escala.rubricas_por_eixo[axis][n.chave].model_dump(mode="json")} for n in escala.niveis}
-
-    return {"instructions": instructions, "niveis": niveis}
-
-
-def _score_campo(objeto, nome):
-    return objeto[nome] if isinstance(objeto, Mapping) else getattr(objeto, nome)
-
-
-def _score_probabilidade(valor, nome):
-    valor = float(valor)
-    if not math.isfinite(valor) or not 0 <= valor <= 1:
-        raise ValueError(f"{nome} deve estar entre 0 e 1; recebido {valor}.")
-    return valor
-
-
-def _score_distribuicao(valores, chaves):
-    probabilidades = {
-        str(k): _score_probabilidade(v, f"probabilidade {k}")
-        for k, v in valores.items()
-    }
-    if set(probabilidades) != set(chaves):
-        raise ValueError(f"Esperadas as probabilidades {list(chaves)}.")
-
-    total = math.fsum(probabilidades.values())
-
-    if total <= 0 or abs(total - 1.0) > 0.03:
-        raise ValueError(f"Distribuição inválida: soma={total}; {probabilidades}.")
-    # Tolera pequeno arredondamento do provedor e normaliza a soma para 1.
-    return {k: v / total for k, v in probabilidades.items()}
-
-
-def _score_margem(distribuicao):
-    valores = sorted(distribuicao.values(), reverse=True)
-    return valores[0] - valores[1]
-
-
-def _score_classe(distribuicao):
-    maior = max(distribuicao.values())
-
-    vencedores = [
-        k for k, p in distribuicao.items()
-        if math.isclose(p, maior, rel_tol=0, abs_tol=1e-12)
-    ]
-    return vencedores[0] if len(vencedores) == 1 else "C"
-
-
-def _normalizar_relevancia_noul_2_polos(resposta, limiar=0.5):
+def normalizar_relevancia_noul(resposta, limiar=0.5):
     if not 0.0 <= limiar <= 1.0:
-        raise ValueError('limiar deve estar entre 0 e 1.')
-    p = float(_score_campo(resposta, 'noul'))
-
-    if not 0.0 <= p <= 1.0:
-        raise ValueError('A probabilidade Noul deve estar entre 0 e 1.')
-    return {'choice': 'A' if p >= limiar else 'B', 'probabilities': {'A': p, 'B': 1.0 - p}}
-
-
-def _normalizar_polaridade_ordinal(resposta, relevante, primitiva='score', escala=None, regra_decisao='nivel'):
-    """MAP global ou polo primeiro; preserva distribuição e decisão global para auditoria."""
-    if regra_decisao not in {'nivel', 'polo_primeiro'}:
-        raise ValueError('regra_decisao deve ser nivel ou polo_primeiro.')
-
-    escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
-
-    chaves = tuple(n.chave for n in escala.niveis)
-
-    brutas = dict(_score_campo(resposta, 'probabilities'))
-
-    # Score devolve índices; Choice já devolve as chaves dos níveis da escala.
-    if primitiva == 'score':
-        indices = {str(i) for i in range(len(chaves))}
-        if {str(k) for k in brutas} != indices or len(brutas) != len(chaves):
-            raise ValueError(f'Esperados os índices Score {sorted(indices)}.')
-        brutas = {chaves[int(k)]: v for k, v in brutas.items()}
-    elif primitiva != 'choice':
-        raise ValueError('Primitiva inválida.')
-
-    probabilidades = _score_distribuicao(brutas, chaves)
-
-    # Preserva o vencedor global como diagnóstico, mesmo se a regra posterior
-    # selecionar primeiro o polo e chegar a outro nível.
-    maior = max(probabilidades.values())
-
-    vencedores = [k for k, v in probabilidades.items() if math.isclose(v, maior, abs_tol=1e-12, rel_tol=0)]
-
-    selecionado = escala.por_chave[vencedores[0]] if len(vencedores) == 1 else None
-
-    nivel_jev = selecionado.codigo if selecionado else None
-
-    # Agrupa a massa de probabilidade dos polos A, B e do centro C.
-    p_a = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'A')
-
-    p_b = math.fsum(probabilidades[n.chave] for n in escala.niveis if n.polo == 'B')
-
-    p_0 = probabilidades[escala.centro.chave]
-
-    grupos = {'A': p_a, 'B': p_b, 'C': p_0}
-
-    maior_grupo = max(grupos.values())
-
-    vencedores_grupo = [g for g, p in grupos.items() if math.isclose(p, maior_grupo, abs_tol=1e-12, rel_tol=0)]
-
-    grupo = vencedores_grupo[0] if len(vencedores_grupo) == 1 else None
-
-    desempate_intensidade = False
-
-    if regra_decisao == 'polo_primeiro':
-        # Primeiro escolhe a direção; depois, a intensidade dentro do grupo.
-        # Empate entre grupos deixa a decisão sem nível definido.
-        candidatos = [n for n in escala.niveis if (n.polo or 'C') == grupo]
-
-        maior_no_grupo = max((probabilidades[n.chave] for n in candidatos), default=0)
-
-        vencedores_no_grupo = [n for n in candidatos if math.isclose(probabilidades[n.chave], maior_no_grupo, abs_tol=1e-12, rel_tol=0)]
-
-        # No empate de intensidade, prefere o nível mais próximo do centro.
-        # Os códigos são identificadores; a intensidade segue a posição na escala.
-        selecionado = min(vencedores_no_grupo, key=lambda n: abs(n.valor - .5), default=None)
-
-        desempate_intensidade = relevante and grupo in ('A', 'B') and len(vencedores_no_grupo) > 1
-
-    # Sem relevância confirmada, não atribui posição ao eixo.
-    nivel = selecionado.codigo if relevante and selecionado else None
-
-    # Mede o apoio ao nível dentro do polo vencedor, separando intensidade
-    # de direção. Esse apoio é usado nos motivos de revisão.
-    suporte_condicional = (probabilidades[selecionado.chave] / grupos[selecionado.polo or 'C']
-                           if selecionado and selecionado.polo is not None else None)
-
-    status = ('sem_evidencia' if not relevante else 'empate' if nivel is None
-              else 'sem_posicao' if escala.por_codigo[nivel].polo is None else 'direcional')
-
+        raise ValueError("limiar deve estar entre 0 e 1.")
+    probabilidade_relevancia = float(ler_campo_resposta(resposta, "noul"))
+    if not 0.0 <= probabilidade_relevancia <= 1.0:
+        raise ValueError("A probabilidade Noul deve estar entre 0 e 1.")
     return {
-        'nivel': nivel, 'chave_nivel': selecionado.chave if relevante and selecionado else None,
-        'nivel_jev_bruto': nivel_jev,
-        'regra_decisao': regra_decisao,
-        'desempate_intensidade': desempate_intensidade,
-        'grupo_mais_provavel': grupo,
-        'margem_grupo': _score_margem(grupos),
-        'probabilidade_nivel_condicional': suporte_condicional,
-        'valor_0_100': None if nivel is None else valor_nivel(nivel, escala),
-        'classe': classe_nivel(nivel, escala),
-        'probabilities_nivel': probabilidades,
-        'probabilities_abc': grupos,
-        'p_polo_A': p_a, 'p_polo_B': p_b, 'p_sem_posicao': p_0,
-        'margem_direcao': abs(p_a - p_b),
-        'nivel_esperado_diagnostico': math.fsum(escala.por_chave[k].codigo * p for k, p in probabilidades.items()),
-        'confianca_nivel': _score_probabilidade(_score_campo(resposta, 'confidence'), 'confidence'),
-        'status': status, 'escala_id': escala.id, 'escala_versao': escala.versao, 'escala_hash': escala.hash,
+        "choice": "A" if probabilidade_relevancia >= limiar else "B",
+        "probabilities": {"A": probabilidade_relevancia, "B": 1.0 - probabilidade_relevancia},
+    }
+
+
+def normalizar_relevancia_choice(resposta):
+    escolha = ler_campo_resposta(resposta, "choice")
+    if escolha not in {"A", "B"}:
+        raise ValueError("Choice de relevância deve retornar A ou B.")
+    return {
+        "choice": escolha,
+        "probabilities": normalizar_distribuicao(ler_campo_resposta(resposta, "probabilities"), ("A", "B")),
+    }
+
+
+def probabilidades_por_nivel(resposta, primitiva, escala):
+    chaves_niveis = tuple(nivel.chave for nivel in escala.niveis)
+    probabilidades_brutas = dict(ler_campo_resposta(resposta, "probabilities"))
+    # Score usa índices; Choice já devolve as chaves configuradas na escala.
+    if primitiva == "score":
+        indices_esperados = {str(indice) for indice in range(len(chaves_niveis))}
+        if {str(chave) for chave in probabilidades_brutas} != indices_esperados or len(probabilidades_brutas) != len(chaves_niveis):
+            raise ValueError(f"Esperados os índices Score {sorted(indices_esperados)}.")
+        probabilidades_brutas = {
+            chaves_niveis[int(indice)]: probabilidade
+            for indice, probabilidade in probabilidades_brutas.items()
+        }
+    elif primitiva != "choice":
+        raise ValueError("Primitiva inválida.")
+    return normalizar_distribuicao(probabilidades_brutas, chaves_niveis)
+
+
+def agrupar_probabilidades_por_polo(probabilidades, escala):
+    return {
+        "A": math.fsum(probabilidades[nivel.chave] for nivel in escala.niveis if nivel.polo == "A"),
+        "B": math.fsum(probabilidades[nivel.chave] for nivel in escala.niveis if nivel.polo == "B"),
+        "C": probabilidades[escala.centro.chave],
+    }
+
+
+def selecionar_nivel_global(probabilidades, escala):
+    chaves_vencedoras = chaves_mais_provaveis(probabilidades)
+    return escala.por_chave[chaves_vencedoras[0]] if len(chaves_vencedoras) == 1 else None
+
+
+def selecionar_grupo_politico(probabilidades_grupos):
+    grupos_vencedores = chaves_mais_provaveis(probabilidades_grupos)
+    return grupos_vencedores[0] if len(grupos_vencedores) == 1 else None
+
+
+def selecionar_nivel_no_grupo(probabilidades, escala, grupo):
+    candidatos = [nivel for nivel in escala.niveis if (nivel.polo or "C") == grupo]
+    maior_probabilidade = max((probabilidades[nivel.chave] for nivel in candidatos), default=0)
+    vencedores = [
+        nivel for nivel in candidatos
+        if math.isclose(probabilidades[nivel.chave], maior_probabilidade, abs_tol=1e-12, rel_tol=0)
+    ]
+    # A intensidade segue a posição na escala, e não o código numérico do nível.
+    nivel_selecionado = min(vencedores, key=lambda nivel: abs(nivel.valor - .5), default=None)
+    return nivel_selecionado, len(vencedores) > 1
+
+
+def probabilidade_condicional_nivel(nivel_selecionado, probabilidades, probabilidades_grupos):
+    if nivel_selecionado is None or nivel_selecionado.polo is None:
+        return None
+    return probabilidades[nivel_selecionado.chave] / probabilidades_grupos[nivel_selecionado.polo]
+
+
+def status_polaridade(relevante, nivel, escala):
+    if not relevante:
+        return "sem_evidencia"
+    if nivel is None:
+        return "empate"
+    return "sem_posicao" if escala.por_codigo[nivel].polo is None else "direcional"
+
+
+def normalizar_polaridade_ordinal(resposta, relevante, primitiva="score", escala=None, regra_decisao="nivel"):
+    """Seleciona por nível global ou por polo, preservando ambos nos diagnósticos."""
+    if regra_decisao not in {"nivel", "polo_primeiro"}:
+        raise ValueError("regra_decisao deve ser nivel ou polo_primeiro.")
+    escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
+    probabilidades = probabilidades_por_nivel(resposta, primitiva, escala)
+    nivel_global = selecionar_nivel_global(probabilidades, escala)
+    probabilidades_grupos = agrupar_probabilidades_por_polo(probabilidades, escala)
+    grupo_selecionado = selecionar_grupo_politico(probabilidades_grupos)
+    nivel_selecionado = nivel_global
+    desempate_intensidade = False
+    if regra_decisao == "polo_primeiro":
+        nivel_selecionado, empate_no_grupo = selecionar_nivel_no_grupo(probabilidades, escala, grupo_selecionado)
+        desempate_intensidade = relevante and grupo_selecionado in ("A", "B") and empate_no_grupo
+    nivel = nivel_selecionado.codigo if relevante and nivel_selecionado else None
+    return {
+        "nivel": nivel,
+        "chave_nivel": nivel_selecionado.chave if relevante and nivel_selecionado else None,
+        "nivel_jev_bruto": nivel_global.codigo if nivel_global else None,
+        "regra_decisao": regra_decisao,
+        "desempate_intensidade": desempate_intensidade,
+        "grupo_mais_provavel": grupo_selecionado,
+        "margem_grupo": margem_distribuicao(probabilidades_grupos),
+        "probabilidade_nivel_condicional": probabilidade_condicional_nivel(nivel_selecionado, probabilidades, probabilidades_grupos),
+        "valor_0_100": None if nivel is None else valor_nivel(nivel, escala),
+        "classe": classe_nivel(nivel, escala),
+        "probabilities_nivel": probabilidades,
+        "probabilities_abc": probabilidades_grupos,
+        "p_polo_A": probabilidades_grupos["A"],
+        "p_polo_B": probabilidades_grupos["B"],
+        "p_sem_posicao": probabilidades_grupos["C"],
+        "margem_direcao": abs(probabilidades_grupos["A"] - probabilidades_grupos["B"]),
+        "nivel_esperado_diagnostico": math.fsum(
+            escala.por_chave[chave].codigo * probabilidade for chave, probabilidade in probabilidades.items()
+        ),
+        "confianca_nivel": validar_probabilidade(ler_campo_resposta(resposta, "confidence"), "confidence"),
+        "status": status_polaridade(relevante, nivel, escala),
+        "escala_id": escala.id, "escala_versao": escala.versao, "escala_hash": escala.hash,
     }
 
 
 def decidir_jev(eixo, respostas, config):
-    # Relevância decide se há conteúdo no eixo; polaridade decide sua posição.
-    # A alternativa A da relevância significa "sim", não "polo político A".
-    resposta_rel = respostas[f"{eixo}_relevancia"]
-
-    if config["tipo_relevancia"] == "noul":
-        rel = _normalizar_relevancia_noul_2_polos(
-            resposta_rel, limiar=config["limiar_noul"],
-        )
-    else:
-        escolha = _score_campo(resposta_rel, "choice")
-        if escolha not in {"A", "B"}:
-            raise ValueError("Choice de relevância deve retornar A ou B.")
-        rel = {
-            "choice": escolha,
-            "probabilities": _score_distribuicao(
-                _score_campo(resposta_rel, "probabilities"), ("A", "B")),
-        }
-    relevante = rel["choice"] == "A"
-
-    posicao = _normalizar_polaridade_ordinal(
+    # A alternativa A da relevância significa "sim", não o polo político A.
+    resposta_relevancia = respostas[f"{eixo}_relevancia"]
+    relevancia = (
+        normalizar_relevancia_noul(resposta_relevancia, limiar=config["limiar_noul"])
+        if config["tipo_relevancia"] == "noul" else normalizar_relevancia_choice(resposta_relevancia)
+    )
+    relevante = relevancia["choice"] == "A"
+    polaridade = normalizar_polaridade_ordinal(
         respostas[f"{eixo}_polaridade"], relevante,
         primitiva=config["primitiva_polaridade"], escala=config.get("escala"),
         regra_decisao=config.get("regra_decisao", "nivel"),
     )
-
     return {
         "eixo": eixo, "relevante": relevante,
-        "probabilities_relevancia": rel["probabilities"],
-        "margem_relevancia": _score_margem(rel["probabilities"]),
-        **posicao,
+        "probabilities_relevancia": relevancia["probabilities"],
+        "margem_relevancia": margem_distribuicao(relevancia["probabilities"]),
+        **polaridade,
         "metodo": "jev_ordinal", "modelo": None, "evidencia": None,
         "evidencia_verificada": None, "resposta_llm": None,
         "llm_reverteu_relevancia": False, "erro_llm": None, "meta_llm": None,
     }
 
 
-def motivos_fallback(decisao, config):
-    # Apenas sinaliza motivos. strategies.py usa essa lista para solicitar
-    # revisão no modo medium; esta função não modifica a decisão original.
+def motivos_revisao_polo_primeiro(decisao, config):
     motivos = []
+    if decisao["margem_grupo"] < config["margem_direcao_minima"]:
+        motivos.append("direcao_ambigua")
+    if decisao["grupo_mais_provavel"] in ("A", "B"):
+        intensidade_ambigua = (
+            decisao.get("desempate_intensidade", False)
+            or decisao["probabilidade_nivel_condicional"] is None
+            or decisao["probabilidade_nivel_condicional"] < config["confianca_nivel_minima"]
+        )
+        if intensidade_ambigua:
+            motivos.append("intensidade_ambigua")
+    return motivos
 
-    if decisao["margem_relevancia"] < config["margem_relevancia_minima"]:
-        motivos.append("relevancia_ambigua")
-    if decisao["relevante"]:
-        if decisao["nivel"] is None:
-            motivos.append("empate_nivel")
-        if config.get("regra_decisao", "nivel") == "polo_primeiro":
-            # Direção usa a margem entre grupos; intensidade usa o apoio
-            # condicional ao nível escolhido dentro do grupo.
-            if decisao['margem_grupo'] < config['margem_direcao_minima']:
-                motivos.append('direcao_ambigua')
-            if (decisao['grupo_mais_provavel'] in ('A', 'B')
-                    and (decisao.get('desempate_intensidade', False)
-                         or decisao['probabilidade_nivel_condicional'] is None
-                         or decisao['probabilidade_nivel_condicional'] < config['confianca_nivel_minima'])):
-                motivos.append('intensidade_ambigua')
-            return motivos
-        if decisao["confianca_nivel"] < config["confianca_nivel_minima"]:
-            motivos.append("baixa_confianca_nivel")
-        if (decisao["nivel"] is not None and classe_nivel(decisao["nivel"], validar_escala(config.get("escala", ESCALA_ATUAL))) != "C"
-                and decisao["margem_direcao"] < config["margem_direcao_minima"]):
+
+def motivos_revisao_nivel_global(decisao, config):
+    motivos = []
+    if decisao["confianca_nivel"] < config["confianca_nivel_minima"]:
+        motivos.append("baixa_confianca_nivel")
+    if decisao["nivel"] is not None:
+        escala = validar_escala(config.get("escala", ESCALA_ATUAL))
+        if classe_nivel(decisao["nivel"], escala) != "C" and decisao["margem_direcao"] < config["margem_direcao_minima"]:
             motivos.append("direcao_ambigua")
     return motivos
 
 
-def _score_normalizar_citacao(texto):
-    """Normaliza apresentação preservando palavras, acentos e pontuação."""
-    texto = unicodedata.normalize("NFKC", texto).translate(str.maketrans({
-        "“": '"', "”": '"', "‘": "'", "’": "'",
-        "–": "-", "—": "-", "\u00ad": None, "\u200b": None, "\ufeff": None,
-    }))
-    return " ".join(texto.split()).casefold()
-
-
-def _sem_markdown(texto):
-    return _MARCACAO_MD.sub(" ", texto)
-
-
-def _score_evidencia_confere(texto, evidencia, min_palavras=MIN_PALAVRAS_EVIDENCIA):
-    """Trecho contínuo do texto, ignorando marcação Markdown e escapes do JSON do prompt.
-
-    Paráfrases, omissões internas e citações com menos de `min_palavras` palavras são recusadas.
-    """
-    citacao = evidencia.replace("\\n", " ").replace('\\"', '"')
-
-    citacao = _score_normalizar_citacao(_sem_markdown(citacao)).strip(" \"'.,;:")
-    citacao = _RETICENCIAS.sub("", citacao).strip(" \"'")
-
-    if len(citacao.split()) < min_palavras:
-        return False
-    return citacao in _score_normalizar_citacao(_sem_markdown(texto))
+def motivos_fallback(decisao, config):
+    """Sinaliza revisão sem modificar a decisão nem os limiares estritos."""
+    motivos = []
+    if decisao["margem_relevancia"] < config["margem_relevancia_minima"]:
+        motivos.append("relevancia_ambigua")
+    if not decisao["relevante"]:
+        return motivos
+    if decisao["nivel"] is None:
+        motivos.append("empate_nivel")
+    if config.get("regra_decisao", "nivel") == "polo_primeiro":
+        return motivos + motivos_revisao_polo_primeiro(decisao, config)
+    return motivos + motivos_revisao_nivel_global(decisao, config)
 
 
 def decisao_vazia(eixo):
@@ -315,33 +215,35 @@ def decisao_vazia(eixo):
     }
 
 
+def status_decisao_llm(relevante, nivel, evidencia_verificada, escala):
+    if evidencia_verificada is False:
+        return "evidencia_nao_verificada"
+    if relevante is None:
+        return "relevancia_indeterminada"
+    if not relevante:
+        return "sem_evidencia"
+    if nivel is None:
+        return "posicao_indeterminada"
+    return "sem_posicao" if escala.por_codigo[nivel].polo is None else "direcional"
+
+
 def decidir_llm(item, texto, original, motivos, modelo, meta, escala=None):
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
 
-    evidencia_ok = (_score_evidencia_confere(texto, item.evidencia)
-                    if item.relevante is True else None)
+    evidencia_verificada = evidencia_literal_confere(texto, item.evidencia) if item.relevante is True else None
 
-    relevante = None if evidencia_ok is False else item.relevante
+    relevante = None if evidencia_verificada is False else item.relevante
 
-    nivel = None if evidencia_ok is False else item.nivel
+    nivel = None if evidencia_verificada is False else item.nivel
 
-    if evidencia_ok is False:
-        status = "evidencia_nao_verificada"
-    elif relevante is None:
-        status = "relevancia_indeterminada"
-    elif not relevante:
-        status = "sem_evidencia"
-    elif nivel is None:
-        status = "posicao_indeterminada"
-    else:
-        status = "sem_posicao" if escala.por_codigo[nivel].polo is None else "direcional"
+    status = status_decisao_llm(relevante, nivel, evidencia_verificada, escala)
 
     return {
         **decisao_vazia(item.eixo), "relevante": relevante, "nivel": nivel,
         "valor_0_100": None if nivel is None else valor_nivel(nivel, escala),
         "classe": classe_nivel(nivel, escala),
         "status": status, "metodo": "llm_ordinal", "modelo": modelo,
-        "evidencia": item.evidencia, "evidencia_verificada": evidencia_ok,
+        "evidencia": item.evidencia, "evidencia_verificada": evidencia_verificada,
         "resposta_llm": item.model_dump(), "meta_llm": meta,
         "llm_reverteu_relevancia": bool(
             set(motivos) <= MOTIVOS_POLARIDADE and original["relevante"]

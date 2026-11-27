@@ -12,7 +12,7 @@ from app.execution_store import public_request
 from app.experiment_config import ExperimentConfig, config_hash
 from app.pipeline.aggregation import aggregate
 from app.pipeline.clients import jev_questions
-from app.pipeline.domain import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
+from app.pipeline.rubrics import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from app.pipeline.strategies import classify_chunk
 from app.analysis_defaults import CONTEXTO_POSICAO_POLITICA
 from app.prompting import instrucoes_escala

@@ -3,7 +3,8 @@ import unittest
 from types import SimpleNamespace
 
 from app.pipeline.aggregation import aggregate
-from app.pipeline.domain import motivos_fallback, criar_rubrica_polaridade_ordinal, _normalizar_polaridade_ordinal, decidir_llm
+from app.pipeline.domain import motivos_fallback, normalizar_polaridade_ordinal, decidir_llm
+from app.pipeline.rubrics import criar_rubrica_polaridade_ordinal
 from app.pipeline.clients import jev_questions
 from app.pipeline.validation import LlmAxis
 from app.polarity import COUNT_KEYS
@@ -83,7 +84,7 @@ class DomainTests(unittest.TestCase):
         for index, level in enumerate(range(-4, 5)):
             with self.subTest(level=level):
                 response = {'probabilities': {str(i): int(i == index) for i in range(9)}, 'confidence': .9}
-                jev = _normalizar_polaridade_ordinal(response, True)
+                jev = normalizar_polaridade_ordinal(response, True)
                 self.assertEqual(jev['nivel'], level)
                 self.assertEqual(jev['valor_0_100'], index * 12.5)
                 self.assertEqual(jev['p_polo_A'], int(level > 0))
@@ -99,13 +100,13 @@ class DomainTests(unittest.TestCase):
 
     def test_nine_level_distribution_ties_and_invalid_levels(self):
         response = {'probabilities': {str(i): .5 if i in (2, 6) else 0 for i in range(9)}, 'confidence': .5}
-        tied = _normalizar_polaridade_ordinal(response, True)
+        tied = normalizar_polaridade_ordinal(response, True)
         self.assertEqual(tied['status'], 'empate')
         self.assertIsNone(tied['valor_0_100'])
         self.assertEqual(tied['margem_direcao'], 0)
-        self.assertIsNone(_normalizar_polaridade_ordinal(response, False)['nivel'])
+        self.assertIsNone(normalizar_polaridade_ordinal(response, False)['nivel'])
         with self.assertRaises(ValueError):
-            _normalizar_polaridade_ordinal({'probabilities': {str(i): .2 for i in range(5)}, 'confidence': .8}, True)
+            normalizar_polaridade_ordinal({'probabilities': {str(i): .2 for i in range(5)}, 'confidence': .8}, True)
         for level in (-5, 5, 1.5):
             with self.assertRaises(ValueError):
                 LlmAxis(eixo='economic', relevante=True, nivel=level, evidencia=TEXT)

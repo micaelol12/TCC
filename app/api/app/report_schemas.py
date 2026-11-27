@@ -4,7 +4,7 @@ from typing import Literal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from .schemas import AnalysisResponse
-from .pipeline.domain import _score_evidencia_confere
+from .pipeline.quotes import evidencia_literal_confere
 
 MAX_REPORT_BYTES = 2_000_000
 
@@ -42,13 +42,13 @@ class ReportAnalysis(AnalysisResponse):
                 raise ValueError("Estimativa ausente inválida.")
             if axis.ci95 is not None and not (all(math.isfinite(value) and 0 <= value <= 100 for value in axis.ci95) and axis.ci95[0] <= axis.ci95[1]):
                 raise ValueError("Intervalo inválido.")
-            if any(ev.chunk_index not in chunks or not _score_evidencia_confere(chunks[ev.chunk_index], ev.quote) for ev in axis.evidence):
+            if any(ev.chunk_index not in chunks or not evidencia_literal_confere(chunks[ev.chunk_index], ev.quote) for ev in axis.evidence):
                 raise ValueError("Evidência inválida.")
             for audit in axis.evidence_audit:
                 if audit.chunk_index not in chunks:
                     raise ValueError("Trecho de auditoria inválido.")
                 text = chunks[audit.chunk_index]
-                if audit.quote and not _score_evidencia_confere(text, audit.quote):
+                if audit.quote and not evidencia_literal_confere(text, audit.quote):
                     raise ValueError("Citação de auditoria inválida.")
                 if audit.status == 'found' and (audit.start is None or audit.end is None or
                         not 0 <= audit.start < audit.end <= len(text) or text[audit.start:audit.end] != audit.quote):

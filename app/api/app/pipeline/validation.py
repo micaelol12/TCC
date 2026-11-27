@@ -3,7 +3,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator, create_model, field_validator
 
-from .domain import _score_evidencia_confere
+from .quotes import evidencia_literal_confere
 from ..polarity import PolarityLevel
 from ..analysis_defaults import ESCALA_ATUAL
 from ..polarity import validar_escala
@@ -43,26 +43,31 @@ def schema_for(axes, escala=None):
     # Restringe a saída aos eixos pedidos e aos códigos da escala desta execução.
     escala = validar_escala(ESCALA_ATUAL if escala is None else escala)
 
-    item = create_model("EixoSolicitado", __base__=LlmAxis, eixo=(Literal[tuple(axes)], ...),
-        nivel=(Literal[tuple(n.codigo for n in escala.niveis)] | None, ...))
+    axis_schema = create_model(
+        "EixoSolicitado", __base__=LlmAxis, eixo=(Literal[tuple(axes)], ...),
+        nivel=(Literal[tuple(level.codigo for level in escala.niveis)] | None, ...),
+    )
 
-    return create_model("RespostaSolicitada", __base__=LlmAnswer, eixos=(list[item], ...))
+    return create_model("RespostaSolicitada", __base__=LlmAnswer, eixos=(list[axis_schema], ...))
+
+
+def decision_from_llm_axis(axis_answer: LlmAxis, text: str) -> dict:
+    # Uma citação ausente torna o eixo indeterminado, em vez de estimar sem evidência.
+    if axis_answer.relevante is True and not evidencia_literal_confere(text, axis_answer.evidencia):
+        return {
+            "relevante": None, "nivel": None, "method": "llm",
+            "reason": ["evidencia_nao_verificada"], "quote": None,
+        }
+    has_position = axis_answer.relevante is True and axis_answer.nivel is not None
+    return {
+        "relevante": axis_answer.relevante, "nivel": axis_answer.nivel,
+        "method": "llm", "reason": [], "quote": axis_answer.evidencia if has_position else None,
+    }
 
 
 def validate_answer(raw, requested: list[str], text: str, escala=None) -> dict:
-    answer = schema_for(requested, escala).model_validate(raw.model_dump() if isinstance(raw, BaseModel) else raw)
-
-    if sorted(x.eixo for x in answer.eixos) != sorted(requested):
+    response_data = raw.model_dump() if isinstance(raw, BaseModel) else raw
+    answer = schema_for(requested, escala).model_validate(response_data)
+    if sorted(axis_answer.eixo for axis_answer in answer.eixos) != sorted(requested):
         raise ValueError("Eixos ausentes, repetidos ou extras.")
-
-    result = {}
-
-    for item in answer.eixos:
-        # A citação precisa existir no texto. Se não conferir, o eixo se torna
-        # indeterminado em vez de exibir uma posição sem evidência literal.
-        if item.relevante is True and not _score_evidencia_confere(text, item.evidencia):
-            result[item.eixo] = {"relevante": None, "nivel": None, "method": "llm", "reason": ["evidencia_nao_verificada"], "quote": None}
-        else:
-            result[item.eixo] = {"relevante": item.relevante, "nivel": item.nivel, "method": "llm", "reason": [], "quote": item.evidencia if item.relevante is True and item.nivel is not None else None}
-
-    return result
+    return {axis_answer.eixo: decision_from_llm_axis(axis_answer, text) for axis_answer in answer.eixos}

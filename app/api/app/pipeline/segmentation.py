@@ -34,30 +34,40 @@ def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
         raise ValueError("token_limit")
 
     if strategy == "sentencas":
-        from .sentences import _agrupar_sentencas, _unidades
+        chunks = split_by_sentences(text, tokenizer, chunk_tokens)
+    else:
+        chunks = split_by_tokens(tokens, tokenizer, chunk_tokens)
+    return chunks, len(tokens)
 
-        # chunk_tokens é um alvo: uma sentença indivisível pode ultrapassá-lo.
-        count = lambda value: len(tokenizer.encode(value, disallowed_special=()))
 
-        grouped = _agrupar_sentencas(text, _unidades(text), chunk_tokens, count)
+def split_by_sentences(text, tokenizer, chunk_tokens):
+    from .sentences import _agrupar_sentencas, _unidades
 
-        # Recupera as fronteiras no original para manter inclusive os espaços.
-        # Assim, unir os trechos reconstrói o texto e preserva suas evidências.
-        starts = []
+    # chunk_tokens é um alvo: uma sentença indivisível pode ultrapassá-lo.
+    def count_tokens(value):
+        return len(tokenizer.encode(value, disallowed_special=()))
 
-        offset = 0
+    grouped = _agrupar_sentencas(text, _unidades(text), chunk_tokens, count_tokens)
 
-        for chunk in grouped:
-            start = text.index(chunk, offset)
-            starts.append(start)
-            offset = start + len(chunk)
-        if not starts:
-            return ([text] if text else []), len(tokens)
+    # Recupera as fronteiras no original para manter inclusive os espaços.
+    # Assim, unir os trechos reconstrói o texto e preserva suas evidências.
+    starts = []
 
-        boundaries = [0, *starts[1:], len(text)]
+    offset = 0
 
-        return [text[a:b] for a, b in zip(boundaries, boundaries[1:])], len(tokens)
+    for chunk in grouped:
+        start = text.index(chunk, offset)
+        starts.append(start)
+        offset = start + len(chunk)
+    if not starts:
+        return [text] if text else []
 
+    boundaries = [0, *starts[1:], len(text)]
+
+    return [text[start:end] for start, end in zip(boundaries, boundaries[1:])]
+
+
+def split_by_tokens(tokens, tokenizer, chunk_tokens):
     chunks = []
 
     start = 0
@@ -65,18 +75,18 @@ def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
     while start < len(tokens):
         end = min(start + chunk_tokens, len(tokens))
 
-        raw = b"".join(tokenizer.decode_single_token_bytes(token) for token in tokens[start:end])
+        encoded_chunk = b"".join(tokenizer.decode_single_token_bytes(token) for token in tokens[start:end])
 
         # Um token pode conter parte dos bytes de um caractere. Estende o corte
         # até completar o UTF-8, evitando corromper acentos e outros símbolos.
         while end < len(tokens):
             try:
-                raw.decode("utf-8")
+                encoded_chunk.decode("utf-8")
                 break
             except UnicodeDecodeError:
-                raw += tokenizer.decode_single_token_bytes(tokens[end])
+                encoded_chunk += tokenizer.decode_single_token_bytes(tokens[end])
                 end += 1
-        chunks.append(raw.decode("utf-8"))
+        chunks.append(encoded_chunk.decode("utf-8"))
         start = end
 
-    return chunks, len(tokens)
+    return chunks

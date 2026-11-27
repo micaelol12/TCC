@@ -1,6 +1,5 @@
 """Provider clients are created only for the selected mode."""
-from .domain import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
-from .rubrics import AXIS_SPECS
+from .rubrics import AXIS_SPECS, criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA
 
 
@@ -10,7 +9,7 @@ def jev_client(api_key: str, model: str):
 
 
 def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
-    from typesafe_sdk import Choice, Score
+    from typesafe_sdk import Choice
 
     if primitiva_polaridade not in {"score", "choice"}:
         raise ValueError("primitiva_polaridade deve ser score ou choice.")
@@ -24,13 +23,17 @@ def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_po
         rubric = criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)
 
         # Score usa índices de uma lista; Choice usa as chaves dos níveis.
-        questions[f"{axis}_polaridade"] = (
-            Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
-            if primitiva_polaridade == "score" else
-            Choice(instructions=rubric["instructions"], criteria=dict(rubric["niveis"]))
-        )
+        questions[f"{axis}_polaridade"] = polarity_question(rubric, primitiva_polaridade)
 
     return questions
+
+
+def polarity_question(rubric, primitive):
+    from typesafe_sdk import Choice, Score
+
+    if primitive == "score":
+        return Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
+    return Choice(instructions=rubric["instructions"], criteria=dict(rubric["niveis"]))
 
 
 def llm_client(api_key: str, timeout: int):

@@ -27,18 +27,19 @@ from typesafe_sdk import Choice, Noul, NoulCriteria, Score, TypeSafeClient, Retr
 ROOT = Path(__file__).resolve().parents[1]
 # Namespace próprio: não depende da ordem das células ou de um pacote `app` já importado.
 _PACKAGE = "_tcc_cookbook_reference"
-_PATH = ROOT / "app/api/app/pipeline"
+_API_PACKAGE_PATH = ROOT / "app/api/app"
+_PIPELINE_PATH = _API_PACKAGE_PATH / "pipeline"
 if _PACKAGE not in sys.modules:
     _spec = importlib.util.spec_from_file_location(
-        _PACKAGE, _PATH / "__init__.py", submodule_search_locations=[str(_PATH)])
+        _PACKAGE, _API_PACKAGE_PATH / "__init__.py", submodule_search_locations=[str(_API_PACKAGE_PATH)])
     _package = importlib.util.module_from_spec(_spec)
     sys.modules[_PACKAGE] = _package
     _spec.loader.exec_module(_package)
-from _tcc_cookbook_reference.domain import (  # noqa: E402
-    criar_questoes_eixo, criar_rubrica_polaridade_ordinal, decidir_jev,
-    motivos_fallback, _score_evidencia_confere,
+from _tcc_cookbook_reference.pipeline.domain import decidir_jev, motivos_fallback  # noqa: E402
+from _tcc_cookbook_reference.pipeline.quotes import evidencia_literal_confere  # noqa: E402
+from _tcc_cookbook_reference.pipeline.rubrics import (  # noqa: E402
+    AXIS_SPECS, criar_questoes_eixo, criar_rubrica_polaridade_ordinal,
 )
-from _tcc_cookbook_reference.rubrics import AXIS_SPECS  # noqa: E402
 
 AXES = tuple(AXIS_SPECS)
 DECISION_CONFIG = dict(tipo_relevancia="choice", primitiva_polaridade="score",
@@ -106,7 +107,8 @@ class Lab:
             "max_calls": max_calls, "models": [jev_model, small_model, large_model],
             "decision_config": DECISION_CONFIG, "sources": SOURCES,
             "hashes": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                       for p in [Path(__file__), _PATH / "domain.py", _PATH / "rubrics.py",
+                       for p in [Path(__file__), _PIPELINE_PATH / "domain.py", _PIPELINE_PATH / "rubrics.py",
+                                 _PIPELINE_PATH / "probabilities.py", _PIPELINE_PATH / "quotes.py",
                                  ROOT / "tcc/questions.json"]},
         }
         if (self.output / "manifest.json").exists():
@@ -310,7 +312,7 @@ def stability(lab, cases=PILOT, repeats=3):
 
 
 def citation_verdict(lab, text, quote, claim):
-    if not _score_evidencia_confere(text, quote):
+    if not evidencia_literal_confere(text, quote):
         return {"verdict": "nao_localizada", "confidence": None}
     response = lab.jev({"texto": text, "citacao": quote, "afirmacao": claim}, {
         "relation": Choice(instructions="O contexto da citação sustenta a afirmação? Considere negação, autoria e alcance.",
@@ -332,7 +334,7 @@ def citations(lab):
     for case_id, text, quote, claim, expected in cases:
         verdict = citation_verdict(lab, text, quote, claim)
         rows.append({"caso": case_id, "esperado_sintetico": expected,
-                     "localizada": _score_evidencia_confere(text, quote), **verdict,
+                     "localizada": evidencia_literal_confere(text, quote), **verdict,
                      "acerto_sintetico": verdict["verdict"] == expected,
                      "revisar": verdict["confidence"] is not None and verdict["confidence"] < .8})
     return pd.DataFrame(rows)
@@ -471,7 +473,7 @@ def ask_position(lab, case, model):
                          "level: -2 polo B forte, -1 B moderado, 0 sem posição entre polos, 1 A moderado, 2 A forte. "
                          "Se irrelevante ou incerto, level=null. Se relevante, cite uma sequência literal de pelo menos quatro palavras."))
     valid = ((answer["relevant"] and answer["level"] is not None and
-              _score_evidencia_confere(case["text"], answer["quote"])) or
+              evidencia_literal_confere(case["text"], answer["quote"])) or
              (not answer["relevant"] and answer["level"] is None))
     return {**answer, "valid": valid}
 

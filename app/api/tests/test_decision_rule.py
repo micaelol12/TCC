@@ -1,12 +1,13 @@
 """Replay and edge cases for the experimental rule; no remote inference."""
 import asyncio
 from copy import deepcopy
+import random
 import unittest
 
 from pydantic import ValidationError
 from app.experiment_config import ExperimentConfig, config_hash
 from app.execution_store import public_request
-from app.pipeline.domain import _normalizar_polaridade_ordinal, motivos_fallback
+from app.pipeline.domain import normalizar_polaridade_ordinal, motivos_fallback
 from app.pipeline.strategies import classify_chunk
 from app.analysis_defaults import ESCALA_5_NIVEIS, ESCALA_9_NIVEIS
 from app.polarity import validar_escala
@@ -35,12 +36,40 @@ class DecisionRuleTests(unittest.TestCase):
         from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
         cls.notebook = carregar_pipeline_notebook()
 
+    def test_varied_distributions_preserve_notebook_decisions_and_review_reasons(self):
+        random_generator = random.Random(8642)
+        arbitrary_scale = ESCALA_9_NIVEIS.model_dump(mode='json')
+        for level, code in zip(arbitrary_scale['niveis'], (101, 88, 22, -7, -9, -55, -99, 0, 4)):
+            level['codigo'] = code
+        for scale in (ESCALA_5_NIVEIS, ESCALA_9_NIVEIS, validar_escala(arbitrary_scale)):
+            notebook_scale = self.notebook['validar_escala'](scale.model_dump(mode='json'))
+            for sample_index in range(20):
+                weights = [random_generator.choice((0, 1, 3, 7)) for _ in scale.niveis]
+                weights[0] += 1
+                rounding_factor = random_generator.choice((.99, 1., 1.02))
+                values = [weight / sum(weights) * rounding_factor for weight in weights]
+                confidence = random_generator.random()
+                for primitive in ('score', 'choice'):
+                    response = raw(scale, values, primitive)['diplomatic_polaridade']
+                    response['confidence'] = confidence
+                    original_response = deepcopy(response)
+                    for rule in ('nivel', 'polo_primeiro'):
+                        config = ExperimentConfig(escala=scale, regra_decisao=rule).jev_config()
+                        for relevant in (False, True):
+                            with self.subTest(scale=scale.id, sample=sample_index, primitive=primitive, rule=rule, relevant=relevant):
+                                actual = normalizar_polaridade_ordinal(response, relevant, primitive, scale, rule)
+                                expected = self.notebook['_normalizar_polaridade_ordinal'](response, relevant, primitive, notebook_scale, rule)
+                                self.assertEqual(actual, expected)
+                                decision = {'relevante': relevant, 'margem_relevancia': .4, **actual}
+                                self.assertEqual(motivos_fallback(decision, config), self.notebook['motivos_fallback'](decision, config))
+                    self.assertEqual(response, original_response)
+
     def test_replay_preserves_raw_distribution_and_separates_intensity(self):
         for primitive in ('score', 'choice'):
             for scale, values, old_level, new_level in ((ESCALA_5_NIVEIS, FIVE, -2, -2), (ESCALA_9_NIVEIS, NINE, 0, -3)):
                 response = raw(scale, values, primitive)['diplomatic_polaridade']
-                original = _normalizar_polaridade_ordinal(response, True, primitive, scale)
-                grouped = _normalizar_polaridade_ordinal(response, True, primitive, scale, 'polo_primeiro')
+                original = normalizar_polaridade_ordinal(response, True, primitive, scale)
+                grouped = normalizar_polaridade_ordinal(response, True, primitive, scale, 'polo_primeiro')
                 self.assertEqual(original['nivel'], old_level)
                 self.assertEqual(grouped['nivel'], new_level)
                 self.assertEqual(grouped['nivel_jev_bruto'], old_level)
@@ -59,12 +88,12 @@ class DecisionRuleTests(unittest.TestCase):
                                        ([.5, 0, 0, 0, .5, 0, 0, 0, 0], None, None),
                                        ([.1, 0, 0, 0, .8, 0, 0, 0, .1], 0, 'C'),
                                        ([.3, 0, 0, 0, .4, 0, 0, 0, .3], 0, 'C')):
-            d = _normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, values)['diplomatic_polaridade'], True, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+            d = normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, values)['diplomatic_polaridade'], True, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
             self.assertEqual(d['nivel'], expected)
             self.assertEqual(d['grupo_mais_provavel'], group)
             if values[4] == .4:
                 self.assertIn('direcao_ambigua', motivos_fallback({'relevante': True, 'margem_relevancia': .98, **d}, ExperimentConfig(regra_decisao='polo_primeiro').jev_config()))
-        absent = _normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, NINE)['diplomatic_polaridade'], False, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+        absent = normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, NINE)['diplomatic_polaridade'], False, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
         self.assertIsNone(absent['nivel'])
         self.assertIsNone(absent['valor_0_100'])
         self.assertEqual(absent['status'], 'sem_evidencia')
@@ -81,7 +110,7 @@ class DecisionRuleTests(unittest.TestCase):
             for primitive in ('score', 'choice'):
                 with self.subTest(scale=scale.id, expected=expected, primitive=primitive):
                     response = raw(scale, values, primitive)['diplomatic_polaridade']
-                    d = _normalizar_polaridade_ordinal(response, True, primitive, scale, 'polo_primeiro')
+                    d = normalizar_polaridade_ordinal(response, True, primitive, scale, 'polo_primeiro')
                     self.assertEqual(d['nivel'], expected)
                     self.assertTrue(d['desempate_intensidade'])
                     self.assertEqual(d['status'], 'direcional')
@@ -95,14 +124,14 @@ class DecisionRuleTests(unittest.TestCase):
 
     def test_tie_policy_preserves_group_abstention_irrelevance_and_global_rule(self):
         for values in ([.5, 0, 0, 0, 0, 0, 0, 0, .5], [.5, 0, 0, 0, .5, 0, 0, 0, 0]):
-            d = _normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, values)['diplomatic_polaridade'], True, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+            d = normalizar_polaridade_ordinal(raw(ESCALA_9_NIVEIS, values)['diplomatic_polaridade'], True, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
             self.assertIsNone(d['nivel'])
             self.assertFalse(d['desempate_intensidade'])
         tied = raw(ESCALA_9_NIVEIS, [.5, .5, 0, 0, 0, 0, 0, 0, 0])['diplomatic_polaridade']
-        original = _normalizar_polaridade_ordinal(tied, True, 'choice', ESCALA_9_NIVEIS, 'nivel')
+        original = normalizar_polaridade_ordinal(tied, True, 'choice', ESCALA_9_NIVEIS, 'nivel')
         self.assertIsNone(original['nivel'])
         self.assertFalse(original['desempate_intensidade'])
-        absent = _normalizar_polaridade_ordinal(tied, False, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
+        absent = normalizar_polaridade_ordinal(tied, False, 'choice', ESCALA_9_NIVEIS, 'polo_primeiro')
         self.assertIsNone(absent['nivel'])
         self.assertFalse(absent['desempate_intensidade'])
 
@@ -112,7 +141,7 @@ class DecisionRuleTests(unittest.TestCase):
             n['codigo'] = code
         scale = validar_escala(data)
         response = raw(scale, [.5, .5, 0, 0, 0, 0, 0, 0, 0])['diplomatic_polaridade']
-        api = _normalizar_polaridade_ordinal(response, True, 'choice', scale, 'polo_primeiro')
+        api = normalizar_polaridade_ordinal(response, True, 'choice', scale, 'polo_primeiro')
         self.assertEqual(api['nivel'], 2)
         self.assertEqual(api, self.notebook['_normalizar_polaridade_ordinal'](response, True, 'choice', data, 'polo_primeiro'))
 
@@ -123,7 +152,7 @@ class DecisionRuleTests(unittest.TestCase):
         scale = validar_escala(data)
         for rule in ('nivel', 'polo_primeiro'):
             response = raw(scale, NINE)['diplomatic_polaridade']
-            api = _normalizar_polaridade_ordinal(response, True, 'choice', scale, rule)
+            api = normalizar_polaridade_ordinal(response, True, 'choice', scale, rule)
             nb_scale = self.notebook['validar_escala'](data)
             nb = self.notebook['_normalizar_polaridade_ordinal'](response, True, 'choice', nb_scale, rule)
             self.assertEqual(api, nb)
@@ -133,7 +162,7 @@ class DecisionRuleTests(unittest.TestCase):
         self.assertEqual(ExperimentConfig().regra_decisao, 'nivel')
         self.assertNotEqual(config_hash(ExperimentConfig()), config_hash(ExperimentConfig(regra_decisao='polo_primeiro')))
         with self.assertRaises(ValidationError): ExperimentConfig(regra_decisao='unknown')
-        with self.assertRaises(ValueError): _normalizar_polaridade_ordinal({}, True, regra_decisao='unknown')
+        with self.assertRaises(ValueError): normalizar_polaridade_ordinal({}, True, regra_decisao='unknown')
         with self.assertRaises(ValueError): config_hash(ExperimentConfig(regra_decisao='polo_primeiro'), 'jev-escalas-ordinal-5')
 
 

@@ -19,7 +19,7 @@ from app.lab_credentials import effective_keys
 from starlette.requests import Request
 from app.execution_store import recover_interrupted
 from app.pipeline.gemini import GeminiClient
-from app.pipeline.strategies import schema_for
+from app.pipeline.validation import schema_for
 from test_experiments import lab_settings
 from test_pipeline import FakeLlm, llm_payload, TEXT, AXES
 

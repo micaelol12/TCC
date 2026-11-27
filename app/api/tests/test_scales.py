@@ -16,6 +16,7 @@ from app.prompting import instrucoes_escala
 from app.polarity import validar_escala, valor_nivel
 from app.experiment_config import ExperimentConfig, config_hash
 from app.pipeline import domain
+from app.pipeline.rubrics import criar_questoes_eixo, criar_rubrica_polaridade_ordinal
 from app.pipeline.aggregation import aggregate
 from app.pipeline.clients import jev_questions
 from app.pipeline.strategies import classify_chunk
@@ -135,7 +136,7 @@ class ScaleTests(unittest.TestCase):
                     answer = raw(escala, index)['economic_polaridade']
                     if primitive == 'choice':
                         answer['probabilities'] = {level.chave: int(i == index) for i, level in enumerate(escala.niveis)}
-                    actual = domain._normalizar_polaridade_ordinal(answer, True, primitive, escala)
+                    actual = domain.normalizar_polaridade_ordinal(answer, True, primitive, escala)
                     expected = self.ns['_normalizar_polaridade_ordinal'](answer, True, primitive, notebook_scale)
                     self.assertEqual(actual, expected)
                     self.assertEqual(actual['nivel'], n.codigo)
@@ -151,27 +152,27 @@ class ScaleTests(unittest.TestCase):
                 self.assertEqual(api.pole_a, nb['índice A'])
                 self.assertEqual(api.level_counts_by_key[n.chave], nb[f'n {n.chave}'])
                 self.assertEqual(api.pole_a, 100 * n.valor)
-                self.assertEqual(domain.criar_rubrica_polaridade_ordinal('economic', escala=escala), self.ns['criar_rubrica_polaridade_ordinal']('economic', escala=notebook_scale, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
+                self.assertEqual(criar_rubrica_polaridade_ordinal('economic', escala=escala), self.ns['criar_rubrica_polaridade_ordinal']('economic', escala=notebook_scale, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
             questions = jev_questions(escala)
             self.assertEqual(len(questions['economic_polaridade'].criteria), len(escala.niveis))
             self.assertEqual(instrucoes_escala(escala), self.ns['instrucoes_escala'](notebook_scale, CONTEXTO_POSICAO_POLITICA))
             for axis in AXES:
-                self.assertEqual(domain.criar_questoes_eixo(axis), self.ns['criar_questoes_eixo'](axis, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
+                self.assertEqual(criar_questoes_eixo(axis), self.ns['criar_questoes_eixo'](axis, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA))
                 self.assertTrue(questions[f'{axis}_relevancia'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
                 self.assertTrue(questions[f'{axis}_polaridade'].instructions.startswith(CONTEXTO_POSICAO_POLITICA))
 
     def test_center_absence_tie_and_masses_are_distinct(self):
         scale = sete()
         center = raw(scale, 3)['economic_polaridade']
-        self.assertEqual(domain._normalizar_polaridade_ordinal(center, True, escala=scale)['status'], 'sem_posicao')
-        absent = domain._normalizar_polaridade_ordinal(center, False, escala=scale)
+        self.assertEqual(domain.normalizar_polaridade_ordinal(center, True, escala=scale)['status'], 'sem_posicao')
+        absent = domain.normalizar_polaridade_ordinal(center, False, escala=scale)
         self.assertEqual(absent['status'], 'sem_evidencia'); self.assertIsNone(absent['valor_0_100'])
         center['probabilities'] = {str(i): .5 if i in (0, 6) else 0 for i in range(7)}
-        tie = domain._normalizar_polaridade_ordinal(center, True, escala=scale)
+        tie = domain.normalizar_polaridade_ordinal(center, True, escala=scale)
         self.assertEqual(tie['status'], 'empate'); self.assertIsNone(tie['nivel'])
         self.assertEqual(tie['p_polo_A'], .5); self.assertEqual(tie['p_polo_B'], .5)
         center['probabilities'] = dict(zip(map(str, range(7)), [.05, .1, .15, .1, .2, .15, .25]))
-        d = domain._normalizar_polaridade_ordinal(center, True, escala=scale)
+        d = domain.normalizar_polaridade_ordinal(center, True, escala=scale)
         self.assertEqual(d['nivel'], -99)  # MAP, never the expectation or a confidence-based interpolation.
         self.assertAlmostEqual(d['p_polo_A'], .6); self.assertAlmostEqual(d['p_polo_B'], .3)
 

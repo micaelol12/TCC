@@ -117,6 +117,12 @@ A exportação abre o banco somente para leitura e recusa sobrescrever uma saíd
 
 O texto enviado vai para TypeSafe no modo baixo, TypeSafe e eventualmente o provedor LLM configurado no médio, ou o provedor LLM configurado no alto. Maritaca é o padrão; Gemini pode ser configurado. A checagem semântica de evidências também usa TypeSafe no modo alto quando habilitada. A aplicação não controla a retenção feita por esses provedores. Antes da publicação, revise políticas, contratos, transferência internacional, HTTPS, configuração do proxy e logs de infraestrutura. O corte de 16 trechos válidos por eixo para evidência suficiente é uma escolha metodológica do notebook, mantida aqui mesmo em textos curtos.
 
+## Organização do pipeline
+
+Em `api/app/pipeline`, `domain.py` concentra as decisões de relevância, polaridade e revisão. As rubricas ficam em `rubrics.py`, a leitura de probabilidades em `probabilities.py` e a conferência literal de citações em `quotes.py`. `strategies.py` coordena JEV e LLM; `evidence.py` separa busca de citações e auditoria semântica; `aggregation.py` reúne as estimativas e os diagnósticos por eixo. Os consumidores importam diretamente as funções dos módulos responsáveis, usando os nomes atuais.
+
+Os testes de paridade comparam as regras com o notebook, incluindo empates, arredondamento das probabilidades e escalas com códigos arbitrários. `python scripts/replicate_notebook_scales.py`, executado na raiz do projeto, agora exporta referências para `app/api/.runtime/notebook-reference`, sem sobrescrever o pipeline refatorado. Use `--output-dir` para outro diretório de referência. Incorpore mudanças das regras nos módulos da API e execute os testes de paridade. O sentenciador continua sendo gerado por `scripts/replicate_sentence_rules.py` a partir de `tcc_lib/segmentacao.py`.
+
 ## Testar
 
 Para comparar os níveis atuais com a cascata em diferentes limiares de confiança JEV, use [benchmark_reasoning.py](api/scripts/benchmark_reasoning.py). Na raiz do projeto, execute `python app/api/scripts/benchmark_reasoning.py` para mostrar o plano; `--live --repeats 2` executa as chamadas reais. O script gera somente resultados JSONL, resumo CSV e relatório Markdown, com acurácia conjunta, relevância, direção, chamadas e latência. `--summarize PASTA` recalcula o resumo e o relatório sem chamar provedores.

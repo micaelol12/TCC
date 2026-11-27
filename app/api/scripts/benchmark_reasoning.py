@@ -25,7 +25,7 @@ sys.path.insert(0, str(API))
 
 from app.experiment_config import PIPELINE_VERSION
 from app.pipeline.rubrics import AXIS_SPECS
-from app.pipeline.strategies import classify_chunk, empty, jev_decisions
+from app.pipeline.strategies import abstained_decision, classify_chunk, jev_decisions
 
 TRACE = ContextVar("benchmark_trace")
 
@@ -289,7 +289,7 @@ async def execute_case(q, arm, repeat, split, jev, llm, questions, settings):
                 timeout=settings.timeout_seconds)
         except asyncio.TimeoutError:
             timeout = True
-            decisions = {axis: empty("falha_timeout") for axis in AXIS_SPECS}
+            decisions = {axis: abstained_decision("falha_timeout") for axis in AXIS_SPECS}
             calls = {provider: int(count > 0) for provider, count in trace["http_attempts"].items()}
             models = []
         return {"type": "result", "question_id": q["id"], "text": q["question"], "arm": name, "mode": mode,

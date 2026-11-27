@@ -1,168 +1,177 @@
+"""Estratégias de classificação direta, revisão seletiva e auditoria de evidências."""
 import asyncio
 import json
-from copy import deepcopy
 
-from .domain import decidir_jev, motivos_fallback, criar_questoes_eixo, criar_rubrica_polaridade_ordinal
-from .rubrics import AXIS_SPECS
-from .validation import validate_answer
-from .clients import jev_client, jev_questions, llm_client
-from .evidence import audit_evidence
-from .domain import _score_evidencia_confere
 from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA, ESCALA_ATUAL
 from ..prompting import instrucoes_escala
-from .validation import schema_for
+from .domain import decidir_jev, motivos_fallback
+from .evidence import audit_evidence
+from .quotes import evidencia_literal_confere
+from .rubrics import AXIS_SPECS, criar_questoes_eixo, criar_rubrica_polaridade_ordinal
+from .validation import schema_for, validate_answer
 
-# Compatibilidade para chamadas sem configuração explícita. Na rota de análise,
-# os parâmetros efetivos vêm de settings e de analysis-config.json.
+# Valores padrão para chamadas sem configuração explícita.
 JEV_CONFIG = {
     "tipo_relevancia": "choice", "primitiva_polaridade": "score",
     "margem_relevancia_minima": 0.60, "confianca_nivel_minima": 0.50,
     "margem_direcao_minima": 0.20,
 }
-
 INSTRUCTIONS = instrucoes_escala(ESCALA_ATUAL)
+JEV_DIAGNOSTIC_FIELDS = (
+    "regra_decisao", "relevante", "nivel_jev_bruto", "nivel", "grupo_mais_provavel",
+    "probabilities_nivel", "probabilities_abc", "margem_grupo",
+    "probabilidade_nivel_condicional", "confianca_nivel", "desempate_intensidade",
+)
 
 
-def empty(reason: str, method: str | None = None) -> dict:
+def abstained_decision(reason: str, method: str | None = None) -> dict:
     # Falha ou incerteza não deve virar uma posição central na escala.
-    return {"relevante": None, "nivel": None, "method": method, "methods": [method] if method else [], "reason": [reason], "quote": None}
+    return {
+        "relevante": None, "nivel": None, "method": method,
+        "methods": [method] if method else [], "reason": [reason], "quote": None,
+    }
 
 
-def authentication_failure(error):
-    status = getattr(error, "status_code", None) or getattr(getattr(error, "response", None), "status_code", None)
-    return status in (401, 403)
+def is_authentication_error(error):
+    status_code = getattr(error, "status_code", None) or getattr(getattr(error, "response", None), "status_code", None)
+    return status_code in (401, 403)
 
 
 def jev_decisions(response, config=None) -> tuple[dict, str | None]:
-    config = config if config is not None else JEV_CONFIG
-
+    effective_config = config if config is not None else JEV_CONFIG
     answers = response["answers"] if isinstance(response, dict) else response.answers
-
     model = response.get("model") if isinstance(response, dict) else getattr(response, "model", None)
-
     decisions = {}
-
     for axis in AXIS_SPECS:
         try:
-            original = decidir_jev(axis, answers, config)
-
-            reasons = motivos_fallback(original, config)
-
-            # Guarda a decisão e as probabilidades iniciais para auditoria,
-            # inclusive quando o LLM revisar este eixo posteriormente.
+            original_decision = decidir_jev(axis, answers, effective_config)
             decisions[axis] = {
-                "relevante": original["relevante"], "nivel": original["nivel"],
-                "method": "jev", "methods": ["jev"], "reason": reasons, "quote": None,
-                "jev_diagnostic": {name: original[name] for name in (
-                    "regra_decisao", "relevante", "nivel_jev_bruto", "nivel", "grupo_mais_provavel",
-                    "probabilities_nivel", "probabilities_abc", "margem_grupo",
-                    "probabilidade_nivel_condicional", "confianca_nivel", "desempate_intensidade")},
+                "relevante": original_decision["relevante"], "nivel": original_decision["nivel"],
+                "method": "jev", "methods": ["jev"],
+                "reason": motivos_fallback(original_decision, effective_config), "quote": None,
+                "jev_diagnostic": {name: original_decision[name] for name in JEV_DIAGNOSTIC_FIELDS},
             }
         except (ValueError, KeyError, TypeError, AttributeError):
-            original = None
-            decisions[axis] = empty("resposta_jev_invalida", "jev")
-        decisions[axis]["original"] = original
-
+            original_decision = None
+            decisions[axis] = abstained_decision("resposta_jev_invalida", "jev")
+        decisions[axis]["original"] = original_decision
     return decisions, model
 
 
-async def ask_llm(client, model: str, text: str, axes: list[str], escala=None, contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
-    escala = ESCALA_ATUAL if escala is None else escala
+def build_axis_rubrics(axes, escala, contexto_posicao_politica, axis_specs):
+    return {
+        axis: {
+            "relevancia": criar_questoes_eixo(
+                axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica,
+            ),
+            "polaridade": criar_rubrica_polaridade_ordinal(
+                axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica,
+            ),
+        }
+        for axis in axes
+    }
 
-    # JEV e LLM usam as mesmas definições políticas e a mesma escala.
-    rubrics = {axis: {"relevancia": criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica),
-                      "polaridade": criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)} for axis in axes}
 
+async def ask_llm(client, model: str, text: str, axes: list[str], escala=None,
+                  contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
+    effective_scale = ESCALA_ATUAL if escala is None else escala
+    rubrics = build_axis_rubrics(axes, effective_scale, contexto_posicao_politica, axis_specs)
     prompt = json.dumps({"rubricas": rubrics, "texto": text}, ensure_ascii=False)
-
-    schema = schema_for(axes, escala)
-
-    # Tenta novamente uma vez em falhas gerais. Erros de autenticação encerram
-    # a tentativa; cancelamentos são propagados para a rota.
+    response_schema = schema_for(axes, effective_scale)
+    # Uma nova tentativa em falhas gerais; autenticação e cancelamento encerram a chamada.
     for attempt in range(2):
         try:
-            response = await client.responses.parse(model=model, input=prompt, instructions=instrucoes_escala(escala, contexto_posicao_politica), text_format=schema)
+            response = await client.responses.parse(
+                model=model, input=prompt,
+                instructions=instrucoes_escala(effective_scale, contexto_posicao_politica),
+                text_format=response_schema,
+            )
             if response.output_parsed is None:
                 raise ValueError("Saída estruturada ausente")
-            return validate_answer(response.output_parsed, axes, text, escala), getattr(response, "model", model)
+            return validate_answer(response.output_parsed, axes, text, effective_scale), getattr(response, "model", model)
         except asyncio.CancelledError:
             raise
         except Exception as error:
-            if authentication_failure(error):
-                return {axis: empty("falha_autenticacao_llm", "llm") for axis in axes}, model
+            if is_authentication_error(error):
+                return {axis: abstained_decision("falha_autenticacao_llm", "llm") for axis in axes}, model
             if attempt == 0:
                 await asyncio.sleep(0.25)
-    return {axis: empty("falha_llm", "llm") for axis in axes}, model
+    return {axis: abstained_decision("falha_llm", "llm") for axis in axes}, model
 
 
-async def  classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
-    decisions, calls, models = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
-
-    # A auditoria acrescenta citações e verificações, sem modificar os níveis
-    # escolhidos pela classificação nem a regra de agregação.
-    if config and (config.semantic_evidence_check or config.jev_evidence_search):
-        decisions, extra_calls, extra_models = await audit_evidence(
-            text, decisions, jev, {axis: criar_rubrica_polaridade_ordinal(axis, axis_specs=config.axis_specs, escala=config.escala, contexto_posicao_politica=config.contexto_posicao_politica) for axis in AXIS_SPECS},
-            _score_evidencia_confere, semantic_check=config.semantic_evidence_check,
-            quote_search=config.jev_evidence_search, existence_min=config.evidence_existence_min,
-            contexto_posicao_politica=config.contexto_posicao_politica)
-        calls["jev"] += extra_calls
-        models.extend(extra_models)
-
-    return decisions, calls, models
+def llm_request_options(settings, config):
+    return {
+        "model": config.llm_model if config else settings.llm_model,
+        "escala": config.escala if config else None,
+        "contexto_posicao_politica": config.contexto_posicao_politica if config else CONTEXTO_POSICAO_POLITICA,
+        "axis_specs": config.axis_specs if config else AXIS_SPECS,
+    }
 
 
-async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
-    calls = {"jev": 0, "llm": 0}
-
-    models = []
-
-    contexto = config.contexto_posicao_politica if config else CONTEXTO_POSICAO_POLITICA
-
-    axis_specs = config.axis_specs if config else AXIS_SPECS
-
-    # High: o LLM classifica todos os eixos diretamente.
-    if mode == "high":
-        calls["llm"] = 1
-        result, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, list(AXIS_SPECS), config.escala if config else None, contexto, axis_specs)
-        for decision in result.values():
-            decision["methods"] = ["llm"]
-        models.append(model)
-        return result, calls, models
-
-    # Low e medium começam com uma chamada JEV contendo todos os eixos.
+async def classify_with_jev(text, jev, questions, config):
     try:
-        calls["jev"] = 1
         response = await jev.system_one(state=text, questions=questions)
-        decisions, model = jev_decisions(response, config.jev_config() if config else None)
-        if model:
-            models.append(model)
+        return jev_decisions(response, config.jev_config() if config else None)
     except asyncio.CancelledError:
         raise
     except Exception as error:
-        reason = "falha_autenticacao_jev" if authentication_failure(error) else "falha_jev"
+        reason = "falha_autenticacao_jev" if is_authentication_error(error) else "falha_jev"
+        return {axis: abstained_decision(reason, "jev") for axis in AXIS_SPECS}, None
 
-        decisions = {axis: empty(reason, "jev") for axis in AXIS_SPECS}
 
-    # Medium: somente os eixos com motivos de revisão são enviados ao LLM.
-    # Os demais conservam a decisão JEV, sem uma chamada de revisão adicional.
-    if mode == "medium":
-        requested = [axis for axis, d in decisions.items() if d["reason"]]
+def merge_reviewed_decision(original_decision, reviewed_decision):
+    if "jev_diagnostic" in original_decision:
+        reviewed_decision["jev_diagnostic"] = original_decision["jev_diagnostic"]
+    reviewed_decision["reason"] = list(dict.fromkeys(original_decision["reason"] + reviewed_decision["reason"]))
+    reviewed_decision["methods"] = ["jev", "llm"]
+    return reviewed_decision
 
-        if requested:
-            calls["llm"] = 1
-            reviewed, model = await ask_llm(llm, config.llm_model if config else settings.llm_model, text, requested, config.escala if config else None, contexto, axis_specs)
 
-            models.append(model)
+async def _classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+    logical_calls = {"jev": 0, "llm": 0}
+    models_used = []
+    # High classifica todos os eixos diretamente; os demais modos começam no JEV.
+    if mode == "high":
+        logical_calls["llm"] = 1
+        decisions, model = await ask_llm(llm, text=text, axes=list(AXIS_SPECS), **llm_request_options(settings, config))
+        for decision in decisions.values():
+            decision["methods"] = ["llm"]
+        models_used.append(model)
+        return decisions, logical_calls, models_used
 
-            for axis in requested:
-                if "jev_diagnostic" in decisions[axis]:
-                    reviewed[axis]["jev_diagnostic"] = decisions[axis]["jev_diagnostic"]
-                reviewed[axis]["reason"] = list(dict.fromkeys(decisions[axis]["reason"] + reviewed[axis]["reason"]))
-                reviewed[axis]["methods"] = ["jev", "llm"]
-                decisions[axis] = reviewed[axis]
+    logical_calls["jev"] = 1
+    decisions, model = await classify_with_jev(text, jev, questions, config)
+    if model:
+        models_used.append(model)
+
+    # Medium revisa apenas os eixos com motivos de fallback.
+    axes_to_review = [axis for axis, decision in decisions.items() if decision["reason"]] if mode == "medium" else []
+    if axes_to_review:
+        logical_calls["llm"] = 1
+        reviewed_decisions, model = await ask_llm(llm, text=text, axes=axes_to_review, **llm_request_options(settings, config))
+        models_used.append(model)
+        for axis in axes_to_review:
+            decisions[axis] = merge_reviewed_decision(decisions[axis], reviewed_decisions[axis])
 
     for decision in decisions.values():
         decision.pop("original", None)
+    return decisions, logical_calls, models_used
 
-    return decisions, calls, models
+
+async def classify_chunk(text: str, mode: str, jev, questions, llm, settings, config=None):
+    decisions, logical_calls, models_used = await _classify_chunk(text, mode, jev, questions, llm, settings, config)
+    if config and (config.semantic_evidence_check or config.jev_evidence_search):
+        evidence_rubrics = {
+            axis: criar_rubrica_polaridade_ordinal(
+                axis, axis_specs=config.axis_specs, escala=config.escala,
+                contexto_posicao_politica=config.contexto_posicao_politica,
+            ) for axis in AXIS_SPECS
+        }
+        decisions, evidence_calls, evidence_models = await audit_evidence(
+            text, decisions, jev, evidence_rubrics, evidencia_literal_confere,
+            semantic_check=config.semantic_evidence_check, quote_search=config.jev_evidence_search,
+            existence_min=config.evidence_existence_min, contexto_posicao_politica=config.contexto_posicao_politica,
+        )
+        logical_calls["jev"] += evidence_calls
+        models_used.extend(evidence_models)
+    return decisions, logical_calls, models_used

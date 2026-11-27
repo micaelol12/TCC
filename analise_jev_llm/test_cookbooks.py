@@ -9,10 +9,12 @@ from tcc_lib import jev_cookbooks as cb
 
 def answer(relevant=True, level=4):
     result = {}
+    questions = cb.questions()
     for axis in cb.AXES:
         result[axis + "_relevancia"] = {"choice": "A" if relevant else "B",
                                        "probabilities": {"A": float(relevant), "B": float(not relevant)}}
-        result[axis + "_polaridade"] = {"confidence": 1., "probabilities": {str(i): float(i == level) for i in range(5)}}
+        level_count = len(questions[axis + "_polaridade"].criteria)
+        result[axis + "_polaridade"] = {"confidence": 1., "probabilities": {str(i): float(i == level) for i in range(level_count)}}
     return {"answers": result, "model": "fixed"}
 
 
@@ -53,7 +55,7 @@ class CookbookTests(unittest.TestCase):
         self.assertEqual(lab.calls, [])
 
     def test_negation_quote_is_found_before_semantic_check(self):
-        self.assertTrue(cb._score_evidencia_confere(
+        self.assertTrue(cb.evidencia_literal_confere(
             "Rejeitamos a proposta de privatizar todos os hospitais públicos.",
             "privatizar todos os hospitais públicos"))
 

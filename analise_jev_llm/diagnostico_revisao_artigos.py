@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "app/api"))
 
 from app.experiment_config import ExperimentConfig
 from app.pipeline.aggregation import aggregate
-from app.pipeline.domain import _normalizar_polaridade_ordinal
+from app.pipeline.domain import normalizar_polaridade_ordinal
 from tcc_lib.notebook_pipeline import carregar_pipeline_notebook
 
 
@@ -53,7 +53,7 @@ def main():
     # or calibration conclusion is derived from this synthetic field.
     raw = {"probabilities": probabilities, "confidence": .2}
     output["decision_rule_illustration"] = {
-        rule: _normalizar_polaridade_ordinal(raw, True, primitiva="choice", escala=scale,
+        rule: normalizar_polaridade_ordinal(raw, True, primitiva="choice", escala=scale,
                                            regra_decisao=rule)
         for rule in ("nivel", "polo_primeiro")
     }
