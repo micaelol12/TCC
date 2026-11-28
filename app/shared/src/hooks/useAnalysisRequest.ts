@@ -12,6 +12,7 @@ export function useAnalysisRequest(client: ReturnType<typeof createAnalysisClien
 
   useEffect(() => {
     isMounted.current = true
+
     return () => {
       isMounted.current = false
       activeRequest.current?.abort()
@@ -21,6 +22,7 @@ export function useAnalysisRequest(client: ReturnType<typeof createAnalysisClien
   useEffect(() => {
     if (!busy) return
     const elapsedTimeTimer = window.setInterval(() => setSeconds(seconds => seconds + 1), 1000)
+
     return () => clearInterval(elapsedTimeTimer)
   }, [busy])
 

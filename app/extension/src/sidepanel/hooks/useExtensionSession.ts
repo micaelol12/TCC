@@ -29,24 +29,28 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
     } catch (err) { setStorageError(err instanceof Error ? err.message : 'Não foi possível guardar estes dados.') }
     sessionRef.current = nextSession
     if (isMountedRef.current) setSessionState(nextSession)
+
     return nextSession
   }, [])
 
   useEffect(() => {
     isMountedRef.current = true
     const pendingEvents: Capture[] = []
+
     /** Enfileira capturas durante a restauração e aplica apenas as destinadas à janela atual. */
     const receive = (capture: Capture) => {
       if (capture.windowId !== windowIdRef.current) return
       if (!isReadyRef.current) pendingEvents.push(capture)
       else { updateSession({ type: 'capture', capture }); onCapture() }
     }
+
     /** Recebe novas capturas persistidas na sessão desta janela. */
     const onStorage = (changes: Record<string, chrome.storage.StorageChange>, area: string) => {
       if (area !== 'session' || windowIdRef.current === null) return
       const capture = changes[captureKey(windowIdRef.current)]?.newValue
       if (isCapture(capture)) receive(capture)
     }
+
     /** Recupera uma seleção entregue por mensagem quando sua gravação temporária falhou. */
     const onMessage = (message: unknown) => {
       const data = message as { type?: string; capture?: Capture; windowId?: number }
@@ -54,9 +58,11 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
         setStorageError('Não foi possível guardar a seleção. Ela ficará apenas neste painel.'); receive(data.capture)
       }
     }
+
     // Subscribe before reading to avoid losing a capture while hydrating.
     chrome.storage.onChanged.addListener(onStorage)
     chrome.runtime.onMessage.addListener(onMessage)
+
     /** Restaura preferências e histórico e reaplica capturas recebidas durante a inicialização. */
     async function restoreSavedSession() {
       try {
@@ -81,7 +87,9 @@ export function useExtensionSession({ onCapture, onProfileLoaded }: SessionCallb
         sessionRef.current = nextSession; setSessionState(nextSession)
       } finally { if (isMountedRef.current) { isReadyRef.current = true; setReady(true) } }
     }
+
     void restoreSavedSession()
+
     return () => { isMountedRef.current = false; isReadyRef.current = false; chrome.storage.onChanged.removeListener(onStorage); chrome.runtime.onMessage.removeListener(onMessage) }
   }, [onCapture, onProfileLoaded, updateSession])
 

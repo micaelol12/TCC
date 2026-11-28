@@ -11,6 +11,7 @@ const auditLabels: Record<EvidenceAudit['status'], string> = {
 /** Exibe a observação de auditoria, seus diagnósticos e a citação quando solicitada. */
 export default function AuditObservation({ audit, showQuote }: { audit: EvidenceAudit; showQuote: boolean }) {
   const tone = audit.status === 'sustenta' ? styles.supported : ['contradiz', 'insuficiente', 'not_literal', 'failed', 'invalid', 'uncertain'].includes(audit.status) ? styles.caution : styles.neutral
+
   return <div className={styles.audit}>
     <span className={styles.caption}>{audit.kind === 'search' ? 'Busca de citação' : 'Checagem semântica'} · nível {formatLevelCode(audit.level)}</span>
     <strong className={`${styles.badge} ${tone}`}>{auditLabels[audit.status]}</strong>

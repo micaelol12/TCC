@@ -17,6 +17,7 @@ export function useExtensionAnalysis({ session, capabilities, experimentConfig, 
   const owner = useRef(crypto.randomUUID())
   const cancelRequested = useRef(false)
   const request = useAnalysisRequest(client)
+
   /** Valida a sessão, salva o texto em processamento e associa o resultado à tentativa correta. */
   async function submitAnalysis() {
     const current = session.getCurrentSession()

@@ -10,6 +10,7 @@ export function useExperimentConfig(caps: Capabilities | null, scope: string, mo
   const [storageError, setStorageError] = useState('')
   const loaded = useRef(false)
   const key = `8values-lab-preset-v1:${scope}`
+
   useEffect(() => {
     if (!available || loaded.current) return
     loaded.current = true
@@ -20,6 +21,7 @@ export function useExperimentConfig(caps: Capabilities | null, scope: string, mo
     } catch { setNotice('A configuração salva não está disponível nesta API. Os padrões foram restaurados.') }
     updateConfig(next)
   }, [available, key])
+
   /** Atualiza a edição e persiste automaticamente apenas configurações válidas para a API. */
   function setConfig(next: ExperimentConfig) {
     updateConfig(next)
@@ -29,7 +31,9 @@ export function useExperimentConfig(caps: Capabilities | null, scope: string, mo
       setStorageError('')
     } catch { setStorageError('Não foi possível salvar automaticamente a configuração neste navegador. Tente alterar o parâmetro novamente.') }
   }
+
   const error = available ? configError(config, available) || (mode === 'high' && config?.semantic_evidence_check && !available.providers.typesafe ? 'Cadastre a chave TypeSafe para a checagem semântica no modo alto.' : '') || (mode !== 'low' && config && !modelReady(available, config.llm_model) ? 'Cadastre a chave do provedor selecionado na aba API keys ou escolha um modelo com chave configurada.' : '') : ''
+
   return { available, config, setConfig, notice: storageError || notice, setNotice, error,
     requestConfig: available && config && !error ? { ...config } : undefined,
     blocked: !!available && !!error }

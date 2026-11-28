@@ -7,6 +7,7 @@ import { describeAnalysisReason } from '../domain/analysisMessages'
 import EvidenceList from './evidence/EvidenceList'
 import FinalLevelDistribution from './evidence/FinalLevelDistribution'
 import JevModelDiagnostic from './evidence/JevModelDiagnostic'
+import Button from './Button'
 
 type View = 'evidence' | 'distribution' | 'model'
 
@@ -23,6 +24,7 @@ export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
   const diagnostic = result?.jev_diagnostics?.find(d => d.chunk_index === chunkIndex) ?? result?.jev_diagnostics?.[0]
   const limited = result?.status === 'estimated' && result.valid_chunks > 0 && !result.sufficient_evidence
   const minimum = analysis.effective_config?.min_valid_chunks
+
   /** Implementa navegação por setas, Home e End com atualização do foco da aba ativa. */
   function navigateTabs(event: KeyboardEvent<HTMLButtonElement>) {
     const offset = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0
@@ -32,12 +34,14 @@ export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
     setView(tabs[index].key)
     document.getElementById(`${id}-${tabs[index].key}-tab`)?.focus()
   }
+
   return <section className={styles.explorer} aria-label="Distribuição e evidências">
     <div className={styles.heading}><div className="eyebrow">Entenda o resultado</div><h3>Distribuição e evidências</h3><p className={styles.help}>Escolha um eixo para conferir as citações e os dados que explicam a análise.</p></div>
     <div className={styles.axisPicker} role="group" aria-label="Eixo das evidências">{axisOrder.map(item => {
       const status = analysis.axes.find(result => result.axis === item)?.status
       const statusLabel = status === 'no_evidence' ? 'Sem relevância' : status === 'abstained' ? 'Indeterminado' : null
-      return <button key={item} type="button" className={`secondary ${styles.axisButton}`} aria-label={AXES[item].title} aria-describedby={statusLabel ? `${id}-${item}-status` : undefined} aria-pressed={axis === item} onClick={() => { setAxis(item); setView('evidence'); setChunkIndex(null) }}><span>{AXES[item].title}</span>{statusLabel && <small id={`${id}-${item}-status`}>{statusLabel}</small>}</button>
+
+      return <Button key={item} type="button" variant="secondary" className={styles.axisButton} aria-label={AXES[item].title} aria-describedby={statusLabel ? `${id}-${item}-status` : undefined} aria-pressed={axis === item} onClick={() => { setAxis(item); setView('evidence'); setChunkIndex(null) }}><span>{AXES[item].title}</span>{statusLabel && <small id={`${id}-${item}-status`}>{statusLabel}</small>}</Button>
     })}</div>
     {result ? <>
       <div className={styles.coverage}><strong>{AXES[axis].title}</strong><span>Cobertura: {result.valid_chunks} de {result.total_chunks} trechos válidos</span>{limited && <span className={`${styles.badge} ${styles.caution}`}>Poucos trechos válidos</span>}</div>
@@ -46,7 +50,7 @@ export default function AnalysisEvidence({ analysis }: { analysis: Analysis }) {
       {limited && <p className={styles.help}>{result.valid_chunks === 1 ? 'Há 1 trecho válido' : `Há ${result.valid_chunks} trechos válidos`} neste eixo.{minimum !== undefined ? ` O mínimo configurado nesta análise é ${minimum}.` : ' A quantidade ficou abaixo do mínimo exigido, cujo valor não foi registrado nesta análise.'} O aviso se refere à quantidade de trechos usados na estimativa.</p>}
       {result.reason_codes.includes('intensidade_ambigua') && !result.methods_used.includes('llm') && <p className="notice small">Intensidade incerta no JEV: houve empate ou suporte abaixo do limiar em pelo menos um trecho. Sem revisão pelo LLM, a pontuação é preliminar.{result.jev_diagnostics?.length ? ' Confira a aba Modelo JEV.' : ' Diagnósticos por trecho não registrados nesta análise.'}</p>}
       {result.reason_codes.includes('direcao_ambigua') && analysis.effective_config?.regra_decisao === 'polo_primeiro' && !result.methods_used.includes('llm') && <p className="notice small">Direção incerta no JEV. Os grupos estão próximos; a pontuação é preliminar.</p>}
-      <div className={styles.tabs} role="tablist" aria-label={`Detalhamento de ${AXES[axis].title}`}>{tabs.map(tab => <button key={tab.key} type="button" id={`${id}-${tab.key}-tab`} role="tab" aria-selected={activeView === tab.key} aria-controls={`${id}-panel`} tabIndex={activeView === tab.key ? 0 : -1} className={`secondary ${styles.tab}`} onClick={() => setView(tab.key)} onKeyDown={navigateTabs}>{tab.label}</button>)}</div>
+      <div className={styles.tabs} role="tablist" aria-label={`Detalhamento de ${AXES[axis].title}`}>{tabs.map(tab => <Button key={tab.key} type="button" id={`${id}-${tab.key}-tab`} role="tab" aria-selected={activeView === tab.key} aria-controls={`${id}-panel`} tabIndex={activeView === tab.key ? 0 : -1} variant="secondary" className={styles.tab} onClick={() => setView(tab.key)} onKeyDown={navigateTabs}>{tab.label}</Button>)}</div>
       <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-${activeView}-tab`} className={styles.content}>
         {activeView === 'evidence' && <EvidenceList analysis={analysis} result={result} />}
         {activeView === 'distribution' && <FinalLevelDistribution analysis={analysis} result={result} levels={levels} />}

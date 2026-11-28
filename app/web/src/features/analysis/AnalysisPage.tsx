@@ -17,6 +17,7 @@ import { useAnalysisCapabilities } from '@8values/shared/hooks/useAnalysisCapabi
 import AnalysisResultActions from '@8values/shared/components/AnalysisResultActions'
 import AnalysisHistoryPanel from './AnalysisHistoryPanel'
 import { useAnalysisSession } from './useAnalysisSession'
+import Button from '@8values/shared/components/Button'
 
 const client = createAnalysisClient()
 const reportClient = createReportClient()
@@ -34,6 +35,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
 
   const selectedEntry = entries.find(entry => entry.id === selectedId) ?? null
   const replacesDraft = !!selectedEntry && !!(text || title) && (text !== selectedEntry.text || title !== selectedEntry.title)
+
   /** Copia texto, título e modo da análise selecionada para o rascunho. */
   function reuseSelectedAnalysis() {
     if (!selectedEntry) return
@@ -41,6 +43,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
     clearError()
     setShowComposer(true)
   }
+
   const characterLimit = capabilities?.max_chars ?? 60000
   const modeAvailable = capabilities?.modes[mode] ?? false
 
@@ -86,7 +89,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
       <AnalysisHistoryPanel entries={entries} selectedId={selectedId} showComposer={showComposer} busy={busy}
         onNewAnalysis={startNewAnalysis} onSelectEntry={selectHistoryEntry} />
       <div className="conversation">
-        <div className="analysisViewTabs" role="group" aria-label="Visualização"><button aria-pressed={view === 'analysis'} className={view === 'analysis' ? '' : 'secondary'} onClick={() => setView('analysis')}>Análise</button><button aria-pressed={view !== 'analysis'} className={view !== 'analysis' ? '' : 'secondary'} onClick={() => setView('comparison')}>Comparação</button></div>
+        <div className="analysisViewTabs" role="group" aria-label="Visualização"><Button aria-pressed={view === 'analysis'} variant={view === 'analysis' ? 'primary' : 'secondary'} onClick={() => setView('analysis')}>Análise</Button><Button aria-pressed={view !== 'analysis'} variant={view !== 'analysis' ? 'primary' : 'secondary'} onClick={() => setView('comparison')}>Comparação</Button></div>
         {view === 'analysis' ? <div className="analysisContent">
           {!showComposer && selectedEntry && <AnalysisResult entry={selectedEntry} reportClient={reportClient} reportOrigin="web">
             <AnalysisResultActions replacesDraft={replacesDraft} onReuseAnalysis={reuseSelectedAnalysis} onCompareProfile={() => setView('comparison')} onCompareAnalyses={() => setView('experiments')} />
@@ -100,7 +103,7 @@ export default function AnalysisPage({ profile }: { profile: Profile | null }) {
             onRetry={() => void refreshCapabilities()}
             onClose={entries.length ? () => setShowComposer(false) : undefined} />}
         </div> : <div className="analysisContent">
-          <nav className="comparisonModes" aria-label="Tipo de comparação"><button className={view === 'comparison' ? '' : 'secondary'} aria-pressed={view === 'comparison'} onClick={() => setView('comparison')}>Com meu perfil</button><button className={view === 'experiments' ? '' : 'secondary'} aria-pressed={view === 'experiments'} disabled={!selectedEntry} onClick={() => setView('experiments')}>Entre análises</button></nav>
+          <nav className="comparisonModes" aria-label="Tipo de comparação"><Button variant={view === 'comparison' ? 'primary' : 'secondary'} aria-pressed={view === 'comparison'} onClick={() => setView('comparison')}>Com meu perfil</Button><Button variant={view === 'experiments' ? 'primary' : 'secondary'} aria-pressed={view === 'experiments'} disabled={!selectedEntry} onClick={() => setView('experiments')}>Entre análises</Button></nav>
           {view === 'experiments' && selectedEntry ? <ExperimentComparison key={selectedEntry.id} entry={selectedEntry} entries={entries} /> : <ComparisonPanel profile={profile} analysis={selectedEntry?.analysis ?? null} analysisTitle={selectedEntry?.title} />}
         </div>}
       </div>

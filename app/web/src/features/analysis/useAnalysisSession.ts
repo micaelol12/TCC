@@ -12,15 +12,20 @@ export function useAnalysisSession() {
   const lastEntryId = useRef(Math.max(0, ...entries.map(entry => entry.id)))
 
   useEffect(() => { setDraftStored(saveAnalysisDraft(draft)) }, [draft])
+
   useEffect(() => { setHistoryStored(saveAnalysisHistory(entries)) }, [entries])
+
   useEffect(() => {
     if (draftStored || !(draft.text || draft.title)) return
+
     /** Aciona o aviso de saída quando há texto que não pôde ser salvo. */
     function warnAboutUnsavedDraft(event: BeforeUnloadEvent) {
       event.preventDefault()
       event.returnValue = ''
     }
+
     window.addEventListener('beforeunload', warnAboutUnsavedDraft)
+
     return () => window.removeEventListener('beforeunload', warnAboutUnsavedDraft)
   }, [draftStored, draft.text, draft.title])
 
@@ -34,6 +39,7 @@ export function useAnalysisSession() {
     const id = ++lastEntryId.current
     const entry: Entry = { id, title: title.trim() || `Análise ${id}`, text, mode, analysis }
     setEntries(current => [...current, entry])
+
     return entry
   }
 

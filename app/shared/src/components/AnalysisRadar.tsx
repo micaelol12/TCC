@@ -1,12 +1,15 @@
 import { AXES, axisOrder, formatScore } from '../domain/axes'
 import type { Analysis } from '../api/analysisApi'
+import HelperText from './HelperText'
 
 const center = 120
 const radius = 86
+
 /** Converte uma pontuação percentual em coordenadas SVG na direção do eixo correspondente. */
 const point = (index: number, value: number) => {
   const angle = index * Math.PI / 2 - Math.PI / 2
   const distance = radius * Math.max(0, Math.min(100, value)) / 100
+
   return `${center + Math.cos(angle) * distance},${center + Math.sin(angle) * distance}`
 }
 
@@ -17,6 +20,7 @@ export default function AnalysisRadar({ analysis }: { analysis: Analysis }) {
   const complete = available.every(Boolean)
   const description = axisOrder.map((axis, index) => {
     const value = results[index]?.pole_a
+
     return `${AXES[axis].title}: ${value == null ? 'sem posição identificada' : `${formatScore(value)}% ${AXES[axis].a}`}`
   }).join('; ')
 
@@ -32,9 +36,10 @@ export default function AnalysisRadar({ analysis }: { analysis: Analysis }) {
       <div className="radarLegend">
         {axisOrder.map((axis, index) => {
           const result = results[index]
+
           return <div className="radarLegendRow" key={axis}><strong>{AXES[axis].title}</strong><span>{result?.pole_a == null || result.pole_b == null ? 'Sem posição identificada' : `${AXES[axis].a} ${formatScore(result.pole_a)} · ${AXES[axis].b} ${formatScore(result.pole_b)}`}</span></div>
         })}
-        <p className="muted small">Os pontos mostram o primeiro polo de cada eixo. Eixos sem posição não formam área no gráfico.</p>
+        <HelperText>Os pontos mostram o primeiro polo de cada eixo. Eixos sem posição não formam área no gráfico.</HelperText>
       </div>
     </div>
   </section>

@@ -18,11 +18,15 @@ import ExtensionHistory from './components/ExtensionHistory'
 import ExtensionProfileSettings from './components/ExtensionProfileSettings'
 import ExtensionFooter from './components/ExtensionFooter'
 import PendingCaptureNotice from './components/PendingCaptureNotice'
+import HelperText from '@8values/shared/components/HelperText'
+import Button from '@8values/shared/components/Button'
 
 /** Integra análise, capturas pendentes, perfil e comparações no painel lateral. */
 export default function ExtensionApp() {
   const [activeView, setActiveView] = useState<'analysis' | 'comparison' | 'experiments'>('analysis')
+
   const showAnalysis = useCallback(() => setActiveView('analysis'), [])
+
   const { profile, setProfile, profileError, profileBusy, importProfile, deleteProfile } = useExtensionProfile()
   const session = useExtensionSession({ onCapture: showAnalysis, onProfileLoaded: setProfile })
   const { sessionState, ready, storageError, setStorageError, updateSession } = session
@@ -37,6 +41,7 @@ export default function ExtensionApp() {
     await session.clearSession()
     clearError()
   }
+
   /** Abre uma análise do histórico e limpa o erro anterior. */
   function selectHistoryEntry(entryId: string) {
     updateSession({ type: 'select', id: entryId })
@@ -66,24 +71,26 @@ export default function ExtensionApp() {
   const selectedEntry = sessionState.entries.find(entry => entry.id === sessionState.selectedId) ?? null
   const isBusy = busy || !!sessionState.request
   const replacesDraft = !!selectedEntry && !!(sessionState.draft.text || sessionState.draft.title) && (sessionState.draft.text !== selectedEntry.text || sessionState.draft.title !== selectedEntry.title)
+
   /** Reabre a análise selecionada como rascunho para um novo envio. */
   function reuseSelectedAnalysis() {
     if (!selectedEntry) return
     updateSession({ type: 'reuse', entry: selectedEntry })
     clearError()
   }
+
   return <>
     <a className="skipLink" href="#panel-content">Pular para o conteúdo</a>
-    <header className="panelHeader"><div className="brand"><span className="brandMark">8</span><span>valores <span className="brandPlus">+ textos</span></span></div><button className="secondary" disabled={!ready || isBusy} onClick={startNewAnalysis}>+ Nova</button></header>
+    <header className="panelHeader"><div className="brand"><span className="brandMark">8</span><span>valores <span className="brandPlus">+ textos</span></span></div><Button variant="secondary" disabled={!ready || isBusy} onClick={startNewAnalysis}>+ Nova</Button></header>
     <main id="panel-content" className="panelMain analysisContent">
       {isLabBuild && <p className="labBadge">8values Lab · Versão de teste</p>}
       <div className="eyebrow">Leitura crítica · quatro eixos</div><h1>Analise um trecho</h1>
-      <p className="muted small">Selecione um texto na página e use “Analisar com 8values” no botão direito.</p>
+      <HelperText>Selecione um texto na página e use “Analisar com 8values” no botão direito.</HelperText>
       <p className="aiDisclaimer small">A IA pode cometer erros. Confira o texto, a cobertura e as evidências.</p>
       {!ready && <p role="status">Carregando os dados desta sessão…</p>}
       {storageError && <p className="notice small" role="status">{storageError}</p>}
       {sessionState.pending && <PendingCaptureNotice capture={sessionState.pending} busy={isBusy} onUseCapture={applyPendingCapture} onKeepDraft={() => updateSession({ type: 'ignore-pending' })} />}
-      <nav className="panelTabs" aria-label="Visualização"><button className={activeView === 'analysis' ? '' : 'secondary'} aria-pressed={activeView === 'analysis'} onClick={() => setActiveView('analysis')}>Análise</button><button className={activeView !== 'analysis' ? '' : 'secondary'} aria-pressed={activeView !== 'analysis'} onClick={() => setActiveView('comparison')}>Comparação</button></nav>
+      <nav className="panelTabs" aria-label="Visualização"><Button variant={activeView === 'analysis' ? 'primary' : 'secondary'} aria-pressed={activeView === 'analysis'} onClick={() => setActiveView('analysis')}>Análise</Button><Button variant={activeView !== 'analysis' ? 'primary' : 'secondary'} aria-pressed={activeView !== 'analysis'} onClick={() => setActiveView('comparison')}>Comparação</Button></nav>
       {activeView === 'analysis' ? <>
         {ready && sessionState.showComposer && <AnalysisComposer text={sessionState.draft.text} title={sessionState.draft.title} source={sessionState.draft.source} mode={sessionState.mode} caps={capabilities} busy={isBusy} seconds={seconds} error={sessionState.notice || error} capsError={capabilitiesError}
           recipient={experiment.available ? experimentRecipients(sessionState.mode, experiment.config, experiment.available) : configuredRecipients(sessionState.mode, capabilities)}
@@ -95,7 +102,7 @@ export default function ExtensionApp() {
         {!sessionState.showComposer && selectedEntry && <AnalysisResult entry={selectedEntry} reportClient={reportClient} reportOrigin="extension" compact><AnalysisResultActions replacesDraft={replacesDraft} onReuseAnalysis={reuseSelectedAnalysis} onCompareProfile={() => setActiveView('comparison')} onCompareAnalyses={() => setActiveView('experiments')} /></AnalysisResult>}
         <ExtensionHistory session={sessionState} ready={ready} busy={isBusy} onSelect={selectHistoryEntry} onClear={clearSession} />
       </> : <>
-        <nav className="comparisonModes" aria-label="Tipo de comparação"><button className={activeView === 'comparison' ? '' : 'secondary'} aria-pressed={activeView === 'comparison'} onClick={() => setActiveView('comparison')}>Com meu perfil</button><button className={activeView === 'experiments' ? '' : 'secondary'} aria-pressed={activeView === 'experiments'} disabled={!selectedEntry} onClick={() => setActiveView('experiments')}>Entre análises</button></nav>
+        <nav className="comparisonModes" aria-label="Tipo de comparação"><Button variant={activeView === 'comparison' ? 'primary' : 'secondary'} aria-pressed={activeView === 'comparison'} onClick={() => setActiveView('comparison')}>Com meu perfil</Button><Button variant={activeView === 'experiments' ? 'primary' : 'secondary'} aria-pressed={activeView === 'experiments'} disabled={!selectedEntry} onClick={() => setActiveView('experiments')}>Entre análises</Button></nav>
         {activeView === 'experiments' && selectedEntry ? <ExperimentComparison key={selectedEntry.id} entry={selectedEntry} entries={sessionState.entries} /> : <>
         <ComparisonPanel profile={profile} analysis={selectedEntry?.analysis ?? null} analysisTitle={selectedEntry?.title} profileAction={<a className="button secondary" href={`${WEB_BASE_URL}/teste`} target="_blank" rel="noreferrer">Fazer meu teste no site</a>} />
         <ExtensionProfileSettings profile={profile} ready={ready} busy={profileBusy} error={profileError} onImport={importProfile} onDelete={deleteProfile} />

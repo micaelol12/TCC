@@ -3,6 +3,9 @@ import { createPortal } from 'react-dom'
 import type { AnalysisEntry } from '../api/analysisApi'
 import { buildReport, REPORT_COMMENT_LIMIT, REPORT_NOTICE, type ReportClient, type ReportRequest, type ReportResponse } from '../api/reportApi'
 import { AXES } from '../domain/axes'
+import HelperText from './HelperText'
+import Actions from './Actions'
+import Button from './Button'
 
 /** Apresenta o snapshot e coleta consentimento antes de enviar um relato de classificação. */
 export default function ReportDialog({ entry, client, origin }: { entry: AnalysisEntry<number | string>; client: ReportClient; origin: ReportRequest['client'] }) {
@@ -18,10 +21,13 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
   const attempt = useRef<ReportRequest | null>(null)
   const mounted = useRef(true)
   const id = useId()
+
   useEffect(() => {
     mounted.current = true
+
     return () => { mounted.current = false; controller.current?.abort() }
   }, [])
+
   useEffect(() => {
     if (open && dialog.current && !dialog.current.open) { dialog.current.showModal(); heading.current?.focus() }
   }, [open])
@@ -31,6 +37,7 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
     if (controller.current || busy) return
     dialog.current?.close(); setOpen(false); setConsent(false)
   }
+
   /** Mantém a navegação por Tab dentro dos controles visíveis do diálogo. */
   function keepFocus(event: KeyboardEvent<HTMLDialogElement>) {
     if (event.key !== 'Tab') return
@@ -41,6 +48,7 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
     if (event.shiftKey && (document.activeElement === first || document.activeElement === heading.current)) { event.preventDefault(); last.focus() }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
   }
+
   /** Envia o relato com consentimento e preserva o identificador em novas tentativas do mesmo conteúdo. */
   async function send() {
     if (!consent || controller.current || receipt || Array.from(comment).length > REPORT_COMMENT_LIMIT) return
@@ -57,12 +65,12 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
   }
 
   return <div className="reportAction">
-    <button className="secondary" disabled={!!receipt} onClick={() => setOpen(true)} aria-haspopup="dialog">{receipt ? 'Relato enviado' : 'Relatar problema na classificação'}</button>
+    <Button variant="secondary" disabled={!!receipt} onClick={() => setOpen(true)} aria-haspopup="dialog">{receipt ? 'Relato enviado' : 'Relatar problema na classificação'}</Button>
     {receipt && <p role="status" className="small reportReceipt">Relato enviado. O trecho e a análise foram armazenados para avaliação. <span>Identificador: {receipt.report_id}</span></p>}
     {open && createPortal(<dialog ref={dialog} className="reportDialog analysisContent" aria-labelledby={`${id}-title`} aria-describedby={`${id}-notice`}
       onKeyDown={keepFocus} onCancel={event => { event.preventDefault(); close() }} onClose={() => { setOpen(false); setConsent(false) }}>
       <h2 id={`${id}-title`} ref={heading} tabIndex={-1}>Relatar problema na classificação</h2>
-      <p className="muted small">Envie sua discordância para posterior avaliação pela equipe responsável.</p>
+      <HelperText>Envie sua discordância para posterior avaliação pela equipe responsável.</HelperText>
       <p id={`${id}-notice`} className="privacyNote"><strong>{REPORT_NOTICE}</strong></p>
       <details className="sourceDetails"><summary>Ver trecho que será armazenado</summary><p className="sourceText">{entry.text}</p></details>
       <details><summary>Ver análise que será armazenada</summary>
@@ -72,11 +80,11 @@ export default function ReportDialog({ entry, client, origin }: { entry: Analysi
       </details>
       <label htmlFor={`${id}-comment`}>Por que você discorda dessa classificação? <span className="muted small">(opcional)</span></label>
       <textarea id={`${id}-comment`} rows={3} value={comment} disabled={busy} onChange={event => setComment(event.target.value)} aria-describedby={`${id}-limit`} />
-      <p id={`${id}-limit`} className={Array.from(comment).length > REPORT_COMMENT_LIMIT ? 'error small' : 'muted small'}>{Array.from(comment).length} de {REPORT_COMMENT_LIMIT} caracteres.</p>
+      <HelperText id={`${id}-limit`} error={Array.from(comment).length > REPORT_COMMENT_LIMIT}>{Array.from(comment).length} de {REPORT_COMMENT_LIMIT} caracteres.</HelperText>
       <label className="check reportConsent"><input type="checkbox" checked={consent} disabled={busy} onChange={event => setConsent(event.target.checked)} /><span>Estou ciente e concordo com o envio e o armazenamento desses dados.</span></label>
       {error && <p className="error" role="alert">{error}</p>}
-      <div className="actions"><button className="secondary" disabled={busy} onClick={close}>Cancelar</button><button disabled={busy || !consent || Array.from(comment).length > REPORT_COMMENT_LIMIT} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar relato'}</button></div>
-      <p className="small muted" role="status" aria-live="polite">{busy ? 'Enviando o relato e aguardando confirmação de armazenamento…' : ''}</p>
+      <Actions><Button variant="secondary" disabled={busy} onClick={close}>Cancelar</Button><Button disabled={busy || !consent || Array.from(comment).length > REPORT_COMMENT_LIMIT} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar relato'}</Button></Actions>
+      <HelperText role="status" aria-live="polite">{busy ? 'Enviando o relato e aguardando confirmação de armazenamento…' : ''}</HelperText>
     </dialog>, document.body)}
   </div>
 }

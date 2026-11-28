@@ -3,6 +3,7 @@ import type { AxisResult } from '../api/analysisApi'
 import { AXES, formatScore } from '../domain/axes'
 import { interpretAxisScore } from '../domain/axisInterpretation'
 import styles from '../styles/Cards.module.css'
+import HelperText from './HelperText'
 
 /** Exibe os percentuais dos polos e distingue estimativa, ausência de evidência e abstenção. */
 export default function AxisBar({ axis, score, status, headingLevel = 3, showInterpretation = false }: { axis: Axis; score: number | null; status?: AxisResult['status']; headingLevel?: 3 | 4; showInterpretation?: boolean }) {
@@ -18,6 +19,7 @@ export default function AxisBar({ axis, score, status, headingLevel = 3, showInt
       <p>{status === 'no_evidence' ? 'Nenhum trecho foi considerado relevante para este eixo. Por isso, não há pontuação a exibir.' : 'Não foi possível obter uma estimativa válida para este eixo.'}</p>
     </div>
   </div>
+
   return <div className={styles.axis}>
     <div className={styles.axisHeader}><Heading>{item.title}</Heading>{shownA === null && <span>Sem estimativa</span>}</div>
     <div className={styles.poles}>
@@ -31,7 +33,7 @@ export default function AxisBar({ axis, score, status, headingLevel = 3, showInt
       </>}
     </div>
     {interpretation
-      ? <p className="muted small"><strong>{interpretation.label}.</strong> {interpretation.description}</p>
-      : <p className="muted small">{item.explanation}</p>}
+      ? <HelperText><strong>{interpretation.label}.</strong> {interpretation.description}</HelperText>
+      : <HelperText>{item.explanation}</HelperText>}
   </div>
 }

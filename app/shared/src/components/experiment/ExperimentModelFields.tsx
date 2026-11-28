@@ -9,6 +9,7 @@ function getModelHelp(provider: 'jev' | 'llm', { config, capabilities, mode }: E
       ? 'Modelo usado nos modos médio e alto.'
       : 'Cadastre a chave deste provedor na aba API keys para analisar com este modelo.'
   }
+
   return mode === 'high' && !config.semantic_evidence_check
     ? 'Não se aplica ao modo alto sem checagem semântica.'
     : 'Modelo JEV usado para classificação e checagem de evidências.'
@@ -17,8 +18,10 @@ function getModelHelp(provider: 'jev' | 'llm', { config, capabilities, mode }: E
 /** Exibe os modelos permitidos e a disponibilidade das chaves de seus provedores. */
 export default function ExperimentModelFields(props: ExperimentFieldProps) {
   const { capabilities, config, mode, onChange } = props
+
   return <>{(['jev', 'llm'] as const).map(provider => {
     const name = `${provider}_model` as 'jev_model' | 'llm_model'
+
     return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label><select id={`lab-${name}`} value={config[name]} disabled={provider === 'jev' && mode === 'high' && !config.semantic_evidence_check} aria-describedby={`help-${name}`} onChange={e => onChange({ ...config, [name]: e.target.value })}>
       {!capabilities.allowed_models[provider].includes(config[name]) && <option value={config[name]}>Modelo indisponível</option>}
       {capabilities.allowed_models[provider].map(model => <option key={model} value={model}>{model}{provider === 'llm' ? ` · ${modelProvider(capabilities, model) === 'gemini' ? 'Gemini' : 'Maritaca'}${modelReady(capabilities, model) ? '' : ' · chave ausente'}` : ''}</option>)}</select>

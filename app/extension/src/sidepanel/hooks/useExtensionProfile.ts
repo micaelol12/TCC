@@ -7,9 +7,11 @@ export function useExtensionProfile() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [profileError, setProfileError] = useState('')
   const [profileBusy, setProfileBusy] = useState(false)
+
   useEffect(() => {
     let generation = 0
     let mounted = true
+
     /** Atualiza o perfil após mudanças locais, ignorando leituras ultrapassadas ou painel fechado. */
     const syncProfile = async (changes: Record<string, chrome.storage.StorageChange>, area: string) => {
       if (area !== 'local' || !changes[LOCAL_PROFILE_KEY]) return
@@ -20,7 +22,9 @@ export function useExtensionProfile() {
         setProfile(preferences.profile)
       } catch { /* keep the last usable profile until storage recovers */ }
     }
+
     chrome.storage.onChanged.addListener(syncProfile)
+
     return () => { mounted = false; generation++; chrome.storage.onChanged.removeListener(syncProfile) }
   }, [])
 
@@ -40,6 +44,7 @@ export function useExtensionProfile() {
     } catch (err) { setProfileError(err instanceof Error ? err.message : 'Não foi possível importar o perfil.') }
     finally { setProfileBusy(false) }
   }
+
   /** Remove o perfil da tela somente após confirmar a exclusão no armazenamento. */
   async function deleteProfile() {
     setProfileBusy(true); setProfileError('')

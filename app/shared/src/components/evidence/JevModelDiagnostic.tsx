@@ -10,6 +10,7 @@ export default function JevModelDiagnostic({ diagnostic, analysis, axis, levels 
   const threshold = analysis.effective_config?.level_confidence_min
   const checksIntensity = diagnostic.relevante && diagnostic.regra_decisao === 'polo_primeiro' && (diagnostic.grupo_mais_provavel === 'A' || diagnostic.grupo_mais_provavel === 'B')
   const selected = levels.find(level => level.codigo === diagnostic.nivel)
+
   return <div className={styles.diagnostic}>
     {!diagnostic.relevante && <div className={styles.statusNotice}><strong>Trecho sem relevância neste eixo</strong><p>A avaliação inicial do JEV considerou este trecho sem relevância para o eixo {AXES[axis].title.toLocaleLowerCase('pt-BR')}.</p></div>}
     <dl className={styles.facts}>

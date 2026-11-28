@@ -18,6 +18,7 @@ function getNumericFieldHelp(fieldName: NumericField, config: ExperimentConfig, 
     if (fieldName === 'level_confidence_min') return 'No modo médio, revisa intensidades com suporte condicional abaixo deste limiar. Não é probabilidade de acerto.'
     if (fieldName === 'direction_margin_min') return 'Compara o grupo vencedor com o segundo, incluindo sem posição. No modo médio, margem menor aciona o LLM.'
   }
+
   return numericFieldHelp[fieldName]
 }
 
@@ -25,6 +26,7 @@ function getNumericFieldHelp(fieldName: NumericField, config: ExperimentConfig, 
 export default function ExperimentNumericFields({ capabilities, config, mode, onChange }: ExperimentFieldProps) {
   return <>{numericFields.map(name => {
     const inactive = mode === 'high' && ['relevance_margin_min', 'level_confidence_min', 'direction_margin_min'].includes(name)
+
     return <div key={name}><label htmlFor={`lab-${name}`}>{configLabels[name]}</label>
       <input id={`lab-${name}`} type="number" min={capabilities.ranges[name].min} max={capabilities.ranges[name].max} step={capabilities.ranges[name].step}
         value={Number.isFinite(config[name]) ? config[name] : ''} disabled={inactive} onChange={e => onChange({ ...config, [name]: e.target.value === '' ? NaN : Number(e.target.value) })} aria-describedby={`help-${name}`} />

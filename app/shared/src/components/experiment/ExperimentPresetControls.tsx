@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { exportPreset, importPreset, type ExperimentConfig, type ExperimentCapabilities } from '../../domain/experimentConfig'
+import Actions from '../Actions'
+import Button from '../Button'
 
 type PresetControlsProps = {
   capabilities: ExperimentCapabilities
@@ -14,6 +16,7 @@ type PresetControlsProps = {
 /** Reúne importação, exportação e restauração dos parâmetros de uma análise Lab. */
 export default function ExperimentPresetControls({ capabilities, config, busy, error, notice, onNotice, onChange }: PresetControlsProps) {
   const [fileError, setFileError] = useState('')
+
   /** Restringe o tamanho e valida o preset antes de aplicá-lo à próxima análise. */
   async function importPresetFile(file?: File) {
     if (!file) return
@@ -24,6 +27,7 @@ export default function ExperimentPresetControls({ capabilities, config, busy, e
       onNotice('Configuração importada para a próxima análise.')
     } catch (err) { setFileError(err instanceof Error ? err.message : 'Não foi possível importar.') }
   }
+
   /** Gera o arquivo JSON versionado da configuração atual e libera a URL temporária. */
   function downloadPreset() {
     const url = URL.createObjectURL(new Blob([JSON.stringify(exportPreset(config), null, 2)], { type: 'application/json' }))
@@ -33,6 +37,7 @@ export default function ExperimentPresetControls({ capabilities, config, busy, e
     link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
+
   /** Restaura os padrões anunciados pela API e limpa os erros de importação. */
   function restoreDefaults() {
     onChange({ ...capabilities.defaults })
@@ -40,7 +45,7 @@ export default function ExperimentPresetControls({ capabilities, config, busy, e
     onNotice('Padrões restaurados para a próxima análise.')
   }
 
-  return <><div className="actions"><button className="secondary" disabled={busy} onClick={restoreDefaults}>Restaurar padrões</button><button className="secondary" disabled={busy || !!error} onClick={downloadPreset}>Exportar JSON</button></div>
+  return <><Actions><Button variant="secondary" disabled={busy} onClick={restoreDefaults}>Restaurar padrões</Button><Button variant="secondary" disabled={busy || !!error} onClick={downloadPreset}>Exportar JSON</Button></Actions>
     <label htmlFor="lab-import">Importar configuração JSON</label><input id="lab-import" type="file" accept="application/json,.json" disabled={busy} onChange={e => { void importPresetFile(e.target.files?.[0]); e.target.value = '' }} />
     {fileError && <p className="error" role="alert">{fileError}</p>}{notice && <p className="small" role="status">{notice}</p>}</>
 }

@@ -3,18 +3,23 @@ import type { Analysis } from '../api/analysisApi'
 import { AXES, axisOrder, formatScore } from '../domain/axes'
 import type { Profile } from '../domain/profile'
 import styles from '../styles/ComparisonRadar.module.css'
+import HelperText from './HelperText'
 
 const center = 160
 const radius = 100
+
 /** Projeta a pontuação limitada entre zero e cem nas coordenadas do eixo do radar. */
 function point(index: number, value: number) {
   const angle = index * Math.PI / 2 - Math.PI / 2
   const distance = radius * Math.max(0, Math.min(100, value)) / 100
+
   return { x: center + Math.cos(angle) * distance, y: center + Math.sin(angle) * distance }
 }
+
 /** Converte o ponto calculado para o formato de coordenadas aceito pelo SVG. */
 const coordinates = (index: number, value: number) => {
   const { x, y } = point(index, value)
+
   return `${x},${y}`
 }
 
@@ -36,6 +41,7 @@ export default function ComparisonRadar({ profile, analysis }: { profile: Profil
       {axisOrder.map((axis, index) => {
         const end = point(index, 100)
         const label = point(index, 131)
+
         return <g key={axis}>
           <line className={styles.spoke} x1={center} y1={center} x2={end.x} y2={end.y} />
           <text className={styles.label} x={label.x} y={label.y} textAnchor="middle" dominantBaseline="middle">{AXES[axis].a}</text>
@@ -46,15 +52,17 @@ export default function ComparisonRadar({ profile, analysis }: { profile: Profil
       {complete && <polygon className={styles.textArea} points={values.map((value, index) => coordinates(index, value!)).join(' ')} />}
       {axisOrder.map((axis, index) => {
         const { x, y } = point(index, profile.scores[axis])
+
         return <circle key={axis} className={styles.profilePoint} cx={x} cy={y} r="4" />
       })}
       {values.map((value, index) => {
         if (value === null) return null
         const { x, y } = point(index, value)
+
         return <rect key={axisOrder[index]} className={styles.textPoint} x={x - 3.5} y={y - 3.5} width="7" height="7" transform={`rotate(45 ${x} ${y})`} />
       })}
     </svg>
-    <p className="small muted">Escala de 0 a 100 para o primeiro polo de cada eixo: Igualdade, Globo, Liberdade e Progresso.</p>
-    {!complete && <p className="small muted">Eixos sem posição no texto ficam sem ponto; a área do texto só aparece quando os quatro eixos têm resultado.</p>}
+    <HelperText>Escala de 0 a 100 para o primeiro polo de cada eixo: Igualdade, Globo, Liberdade e Progresso.</HelperText>
+    {!complete && <HelperText>Eixos sem posição no texto ficam sem ponto; a área do texto só aparece quando os quatro eixos têm resultado.</HelperText>}
   </section>
 }

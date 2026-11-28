@@ -1,5 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import Actions from './Actions'
+import Button from './Button'
 
 type Props = {
   label: string; title: string; description: string; confirmLabel: string;
@@ -17,15 +19,19 @@ export default function ConfirmAction({ label, title, description, confirmLabel,
   const pending = useRef(false)
   const mounted = useRef(true)
   const id = useId()
+
   useEffect(() => { mounted.current = true; return () => { mounted.current = false } }, [])
+
   useEffect(() => {
     if (open && dialog.current && !dialog.current.open) { dialog.current.showModal(); cancel.current?.focus() }
   }, [open])
+
   /** Fecha a confirmação quando não há operação pendente e devolve o foco ao botão de origem. */
   function close() {
     if (pending.current) return
     dialog.current?.close(); setOpen(false); trigger.current?.focus()
   }
+
   /** Executa a ação uma única vez por tentativa e mantém o diálogo aberto em caso de falha. */
   async function confirm() {
     if (pending.current || disabled) return
@@ -40,13 +46,14 @@ export default function ConfirmAction({ label, title, description, confirmLabel,
       if (mounted.current) setBusy(false)
     }
   }
+
   return <>
-    <button ref={trigger} type="button" className={className} disabled={disabled} aria-haspopup="dialog" onClick={() => { setError(''); setOpen(true) }}>{label}</button>
+    <Button ref={trigger} type="button" className={className} disabled={disabled} aria-haspopup="dialog" onClick={() => { setError(''); setOpen(true) }}>{label}</Button>
     {open && createPortal(<dialog ref={dialog} className="confirmDialog" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}
       onCancel={event => { event.preventDefault(); close() }} onClose={() => setOpen(false)}>
       <h2 id={`${id}-title`}>{title}</h2><p id={`${id}-description`}>{description}</p>
       {error && <p className="error" role="alert">{error}</p>}
-      <div className="actions"><button ref={cancel} type="button" className="secondary" disabled={busy} onClick={close}>Cancelar</button><button type="button" className="danger" disabled={busy || disabled} onClick={() => void confirm()}>{busy ? 'Aguarde…' : confirmLabel}</button></div>
+      <Actions><Button ref={cancel} type="button" variant="secondary" disabled={busy} onClick={close}>Cancelar</Button><Button type="button" variant="danger" disabled={busy || disabled} onClick={() => void confirm()}>{busy ? 'Aguarde…' : confirmLabel}</Button></Actions>
     </dialog>, document.body)}
   </>
 }

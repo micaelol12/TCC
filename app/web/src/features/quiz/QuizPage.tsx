@@ -16,10 +16,12 @@ export default function QuizPage({ onComplete }: { onComplete: (profile: Profile
   const navigate = useNavigate()
   const headingRef = useRef<HTMLHeadingElement>(null)
   const initialQuestion = useRef(true)
+
   useEffect(() => {
     if (initialQuestion.current) { initialQuestion.current = false; return }
     headingRef.current?.focus()
   }, [state.index, state.review])
+
   /** Exige todas as respostas, calcula o perfil e respeita a escolha de guardar o resultado. */
   function finishQuiz() {
     if (answeredCount !== QUESTIONS.length) { dispatch({ type: 'review' }); return }
@@ -30,20 +32,24 @@ export default function QuizPage({ onComplete }: { onComplete: (profile: Profile
     onComplete(profile, stored)
     navigate('/resultado')
   }
+
   /** Apaga o rascunho antes de reiniciar o teste e voltar ao início. */
   function discardQuiz() {
     try { removeQuizDraft() }
     catch { throw new Error('Não foi possível apagar o rascunho salvo. Verifique as permissões de armazenamento do navegador e tente novamente.') }
     dispatch({ type: 'reset' }); navigate('/')
   }
+
   /** Avança à pergunta seguinte ou abre a revisão ao chegar ao fim do teste. */
   function nextQuestion() {
     if (state.index === QUESTIONS.length - 1) dispatch({ type: 'review' })
     else dispatch({ type: 'index', index: state.index + 1 })
   }
+
   const discardButton = <ConfirmAction label="Descartar teste" className="textButton" title="Descartar as respostas do teste?"
     description="As respostas preenchidas neste teste serão apagadas. Seu resultado anterior e as análises de textos serão mantidos. Esta ação não pode ser desfeita."
     confirmLabel="Sim, descartar respostas" onConfirm={discardQuiz} />
+
   return <main className="narrow flow quizPage">
     <div className="eyebrow">Questionário 8values</div>
     <h1>Conheça seus valores</h1>
@@ -56,6 +62,5 @@ export default function QuizPage({ onComplete }: { onComplete: (profile: Profile
         onAnswer={(id, value) => dispatch({ type: 'answer', id, value })}
         onNavigate={index => dispatch({ type: 'index', index })}
         onReview={() => dispatch({ type: 'review' })} onNextQuestion={nextQuestion} discardButton={discardButton} />}
-
   </main>
 }

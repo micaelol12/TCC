@@ -25,6 +25,7 @@ export function useAnalysisCapabilities(client: ReturnType<typeof createAnalysis
 
   useEffect(() => {
     void refreshCapabilities()
+
     return () => activeRequest.current?.abort()
   }, [refreshCapabilities])
 

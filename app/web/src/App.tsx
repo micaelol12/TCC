@@ -18,26 +18,33 @@ export default function App() {
   const location = useLocation()
   const contentRef = useRef<HTMLDivElement>(null)
   const initialRoute = useRef(true)
+
   useEffect(() => { if (isLabBuild) document.title = '8values Lab · versão de teste' }, [])
+
   useEffect(() => {
     /** Sincroniza o perfil quando outra aba altera ou remove os dados locais. */
     const sync = (event: StorageEvent) => {
       if (event.key === PROFILE_KEY || event.key === null) { const current = readProfile(); setProfile(current); setStored(current !== null) }
     }
+
     window.addEventListener('storage', sync)
+
     return () => window.removeEventListener('storage', sync)
   }, [])
+
   useEffect(() => {
     if (initialRoute.current) { initialRoute.current = false; return }
     window.scrollTo(0, 0)
     contentRef.current?.focus({ preventScroll: true })
   }, [location.pathname])
+
   /** Apaga rascunho, histórico e perfil antes de limpar o estado e voltar ao início. */
   function clearSiteData() {
     try { clearAnalysisDraft(); clearAnalysisHistory(); removeLocalData(true) }
     catch { throw new Error('Não foi possível apagar todos os dados do site. Verifique as permissões de armazenamento do navegador e tente novamente.') }
     setProfile(null); setStored(false); navigate('/')
   }
+
   return <>
     <a className="skipLink" href="#main-content">Pular para o conteúdo</a>
     <header className="siteHeader"><Link to="/" className="brand"><span className="brandMark">8</span><span>valores<span className="brandPlus">+ textos</span></span></Link><nav aria-label="Navegação principal"><NavLink to="/teste">Teste</NavLink><NavLink to="/resultado">Meu resultado</NavLink><NavLink to="/analise">Analisar texto</NavLink></nav></header>

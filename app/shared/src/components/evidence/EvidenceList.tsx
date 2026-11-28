@@ -6,12 +6,14 @@ import styles from '../../styles/Evidence.module.css'
 export default function EvidenceList({ analysis, result }: { analysis: Analysis; result: AxisResult }) {
   const indices = [...new Set([...result.evidence.map(ev => ev.chunk_index), ...(result.evidence_audit ?? []).map(audit => audit.chunk_index)])].sort((a, b) => a - b)
   if (result.status === 'no_evidence' && !indices.length) return <p className={styles.help}>Não há evidências relevantes a exibir neste eixo.{result.jev_diagnostics?.length ? ' Consulte a avaliação por trecho na aba Modelo JEV.' : ''}</p>
+
   return <>
     <p className={styles.help}>Encontrar uma citação no texto e verificar se ela sustenta a classificação são etapas diferentes.</p>
     {indices.length ? <div className={styles.evidenceList}>{indices.map(index => {
       const evidence = result.evidence.filter(ev => ev.chunk_index === index)
       const audits = (result.evidence_audit ?? []).filter(audit => audit.chunk_index === index)
       const chunk = analysis.chunks.find(chunk => chunk.index === index)
+
       return <article key={index} className={styles.evidenceCard} aria-label={`Evidências do trecho ${index + 1}`}>
         <div className={styles.cardHeader}><h5>Trecho {index + 1}</h5>{evidence.length > 0 && <span className={`${styles.badge} ${styles.neutral}`}>Citação localizada</span>}</div>
         {evidence.map((ev, i) => <blockquote key={i}>“{ev.quote}”</blockquote>)}
