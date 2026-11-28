@@ -6,6 +6,7 @@ from ..polarity import DefinicaoEixo, validar_escala
 def definicao_eixo(axis, axis_specs):
     """Obtém a definição do eixo como dicionário, aceitando o modelo validado ou dados brutos."""
     definicao = axis_specs[axis]
+
     return definicao.model_dump(mode="json") if isinstance(definicao, DefinicaoEixo) else definicao
 
 

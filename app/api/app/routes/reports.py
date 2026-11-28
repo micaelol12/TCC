@@ -17,20 +17,25 @@ rate_lock = Lock()
 @router.post("/reports", response_model=ReportResponse, status_code=201)
 def report(payload: ReportRequest, response: Response):
     """Valida ambiente e limites, armazena o relato e confirma o recibo de criação ou reenvio."""
+
     # O report guarda o snapshot enviado pelo cliente e não chama os modelos.
     # Mantém separados os dados da edição comum e os dados do Lab.
     if (payload.analysis.environment == "lab" and settings.app_env != "lab") or (settings.app_env == "lab" and payload.analysis.environment != "lab"):
         raise HTTPException(422, "Envie o report à API do ambiente em que a análise foi realizada.")
+
     if len(payload.text) > settings.max_chars or len(payload.analysis.chunks) > settings.max_chunks:
         raise HTTPException(413, "Report acima do limite.")
 
     # Limita as tentativas de envio de reports por hora neste processo.
     with rate_lock:
         now = monotonic()
+
         while recent_requests and recent_requests[0] < now - 3600:
             recent_requests.popleft()
+
         if len(recent_requests) >= settings.reports_hourly_requests:
             raise HTTPException(429, "Limite temporário de reports atingido.")
+
         recent_requests.append(now)
 
     try:
@@ -42,4 +47,5 @@ def report(payload: ReportRequest, response: Response):
 
     # Reenvio idêntico retorna o recibo existente; uma criação retorna 201.
     response.status_code = 201 if created else 200
+
     return result

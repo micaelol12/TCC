@@ -30,10 +30,12 @@ def build_capabilities(settings: Settings, provider_keys: dict[str, str]) -> dic
         "environment": settings.app_env,
         "experimental": {"enabled": settings.experimental_config_enabled},
     }
+
     if settings.experimental_config_enabled:
         capabilities["experimental"].update(
             build_experimental_capabilities(settings, provider_keys, model_providers)
         )
+
     return capabilities
 
 
@@ -42,11 +44,13 @@ def build_experimental_capabilities(
 ) -> dict:
     """Expõe opções do Lab e prioriza um modelo cujo provedor tenha chave na sessão."""
     defaults = settings.algorithm_defaults().model_dump()
+
     if not provider_keys[model_providers[defaults["llm_model"]]]:
         defaults["llm_model"] = next(
             (model for model, provider in model_providers.items() if provider_keys[provider]),
             defaults["llm_model"],
         )
+
     return {
         "config_version": CONFIG_VERSION,
         "defaults": defaults,

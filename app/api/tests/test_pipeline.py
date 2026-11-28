@@ -1,6 +1,7 @@
 import asyncio
 import unittest
 from types import SimpleNamespace
+from unittest.mock import AsyncMock
 
 from app.pipeline.aggregation import aggregate
 from app.pipeline.domain import motivos_fallback, normalizar_polaridade_ordinal, decidir_llm
@@ -164,6 +165,11 @@ class StrategyTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(calls, {"jev": 1, "llm": 1})
         self.assertEqual(result["economic"]["method"], "llm")
         self.assertEqual(result["state"]["method"], "jev")
+        self.assertEqual(result["economic"]["methods"], ["jev", "llm"])
+        self.assertEqual(result["economic"]["reason"], ["baixa_confianca_nivel"])
+        self.assertEqual(result["economic"]["jev_diagnostic"]["confianca_nivel"], .1)
+        axis_decisions = list(result.values())
+        self.assertTrue(all("original" not in decision for decision in axis_decisions))
 
     async def test_medium_skips_llm_when_confident(self):
         jev, llm = FakeJev({"answers": answers()}), FakeLlm(llm_payload())
@@ -176,6 +182,44 @@ class StrategyTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(calls, {"jev": 0, "llm": 1})
         self.assertEqual(jev.calls, 0)
         self.assertEqual(result["economic"]["method"], "llm")
+
+    async def test_llm_retries_missing_structured_output_without_counting_another_logical_call(self):
+        responses = [
+            SimpleNamespace(output_parsed=None, model="fake"),
+            SimpleNamespace(output_parsed=llm_payload(), model="returned-model"),
+        ]
+        parse = AsyncMock(side_effect=responses)
+        llm = SimpleNamespace(responses=SimpleNamespace(parse=parse))
+        result, calls, models = await classify_chunk(TEXT, "high", None, None, llm, SimpleNamespace(llm_model="fake"))
+        self.assertEqual(parse.await_count, 2)
+        self.assertEqual(calls, {"jev": 0, "llm": 1})
+        self.assertEqual(models, ["returned-model"])
+        self.assertEqual(result["economic"]["nivel"], 1)
+
+    async def test_llm_abstains_after_exhausting_retries_without_exposing_the_error(self):
+        parse = AsyncMock(side_effect=RuntimeError("private-provider-error"))
+        llm = SimpleNamespace(responses=SimpleNamespace(parse=parse))
+        result, calls, models = await classify_chunk(TEXT, "high", None, None, llm, SimpleNamespace(llm_model="fake"))
+        self.assertEqual(parse.await_count, 2)
+        self.assertEqual(calls, {"jev": 0, "llm": 1})
+        self.assertEqual(models, ["fake"])
+        self.assertNotIn("private-provider-error", str(result))
+        axis_decisions = list(result.values())
+        for decision in axis_decisions:
+            self.assertIsNone(decision["nivel"])
+            self.assertEqual(decision["reason"], ["falha_llm"])
+            self.assertEqual(decision["methods"], ["llm"])
+
+    async def test_provider_cancellation_propagates_without_retry(self):
+        modes = ("low", "high")
+        for mode in modes:
+            with self.subTest(mode=mode):
+                call = AsyncMock(side_effect=asyncio.CancelledError())
+                jev = SimpleNamespace(system_one=call)
+                llm = SimpleNamespace(responses=SimpleNamespace(parse=call))
+                with self.assertRaises(asyncio.CancelledError):
+                    await classify_chunk(TEXT, mode, jev, {}, llm, SimpleNamespace(llm_model="fake"))
+                self.assertEqual(call.await_count, 1)
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ def normalizar_citacao(texto):
         "“": '"', "”": '"', "‘": "'", "’": "'",
         "–": "-", "—": "-", "\u00ad": None, "\u200b": None, "\ufeff": None,
     }))
+
     return " ".join(texto.split()).casefold()
 
 
@@ -34,4 +35,5 @@ def evidencia_literal_confere(texto, evidencia, min_palavras=MIN_PALAVRAS_EVIDEN
 
     if len(citacao.split()) < min_palavras:
         return False
+
     return citacao in normalizar_citacao(remover_marcacao_markdown(texto))

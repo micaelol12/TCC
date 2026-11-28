@@ -61,6 +61,7 @@ def save_report(database: str, payload: ReportRequest) -> tuple[ReportResponse, 
 
         if row[2] != digest:
             raise SubmissionConflict()
+
         result = ReportResponse(report_id=row[0], received_at=row[1])
 
         created = cursor.rowcount == 1

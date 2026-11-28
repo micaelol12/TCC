@@ -21,10 +21,12 @@ def number(name, default, convert=int):
     """Define um campo numérico com conversão e mensagem de erro para variável inválida."""
     def read():
         """Lê e converte a variável do campo conforme a regra definida pela função externa."""
+
         try:
             return convert(os.getenv(name, str(default)))
         except (ValueError, OverflowError):
             raise ValueError(f"Variável inválida: {name}.") from None
+
     return field(default_factory=read)
 
 
@@ -33,9 +35,12 @@ def boolean(name):
     def read():
         """Lê e converte a variável do campo conforme a regra definida pela função externa."""
         value = os.getenv(name, "false").lower()
+
         if value not in {"true", "false"}:
             raise ValueError(f"Variável inválida: {name}.")
+
         return value == "true"
+
     return field(default_factory=read)
 
 
@@ -49,19 +54,24 @@ def algorithm_env(name, convert=str):
     """An absent environment override leaves the JSON value in effect."""
     def read():
         """Lê e converte a variável do campo conforme a regra definida pela função externa."""
+
         if name not in os.environ:
             return None
+
         try:
             return convert(os.environ[name])
         except (ValueError, OverflowError):
             raise ValueError(f"Variável inválida: {name}.") from None
+
     return field(default_factory=read)
 
 
 def parse_bool(value):
     """Converte true ou false e rejeita qualquer outra representação."""
+
     if value.lower() not in {"true", "false"}:
         raise ValueError("Booleano inválido.")
+
     return value.lower() == "true"
 
 
@@ -135,12 +145,15 @@ class Settings:
 
     def __post_init__(self):
         """Combina JSON e substituições, valida os limites e impede uma configuração inconsistente."""
+
         if self.app_env == "lab":
             # O Lab exige chaves da sessão e não herda credenciais do servidor.
             for name in ("typesafe_key", "maritaca_key", "gemini_key"):
                 object.__setattr__(self, name, "")
+
         if self.app_env not in {"development", "lab", "production"}:
             raise ValueError("Variável inválida: APP_ENV.")
+
         if self.experimental_config_enabled and self.app_env != "lab":
             raise ValueError("EXPERIMENTAL_CONFIG_ENABLED exige APP_ENV=lab.")
 
@@ -154,6 +167,7 @@ class Settings:
 
         limit_names = ("max_chars", "max_tokens", "max_chunks", "timeout_seconds", "concurrent_chunks",
                        "concurrent_requests", "reports_hourly_requests")
+
         for name in limit_names:
             if getattr(self, name) <= 0:
                 variable = "ANALYSIS_TIMEOUT_SECONDS" if name == "timeout_seconds" else name.upper()
@@ -170,17 +184,24 @@ class Settings:
         # não deixa a primeira requisição descobrir uma configuração inválida.
         for name in ExperimentConfig.model_fields:
             object.__setattr__(self, name, getattr(defaults, name))
+
         if self.allowed_jev_models is None:
             object.__setattr__(self, "allowed_jev_models", (self.jev_model,))
+
         if self.allowed_llm_models is None:
             object.__setattr__(self, "allowed_llm_models", ("sabia-4",) if self.llm_model in self.allowed_gemini_models else (self.llm_model,))
+
         if defaults.chunk_tokens > self.max_tokens or defaults.min_valid_chunks > self.max_chunks:
             raise ValueError("CHUNK_TOKENS/MIN_VALID_CHUNKS excedem MAX_TOKENS/MAX_CHUNKS.")
+
         from .lab_credentials import model_catalog
+
         if self.jev_model not in self.allowed_jev_models or self.llm_model not in model_catalog(self):
             raise ValueError("JEV_MODEL/LLM_MODEL devem constar nos modelos permitidos da API.")
+
         if set(self.allowed_gemini_models) & (set(self.allowed_llm_models) | {'sabia-4', 'sabiazinho-4'}):
             raise ValueError('ALLOWED_GEMINI_MODELS conflita com os modelos Maritaca.')
+
         for name, allowed in (("jev_model", self.allowed_jev_models), ("llm_model", self.allowed_llm_models), ('llm_model', self.allowed_gemini_models)):
             for value in allowed:
                 try:

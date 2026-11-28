@@ -17,45 +17,63 @@ class ReportAnalysis(AnalysisResponse):
     @model_validator(mode="after")
     def consistent_snapshot(self):
         """Confere a coerência dos eixos, trechos, contagens e evidências do snapshot enviado."""
+
         if len(self.axes) != 4 or {axis.axis for axis in self.axes} != {"economic", "diplomatic", "state", "society"}:
             raise ValueError("Os quatro eixos devem estar presentes uma única vez.")
+
         if not self.chunks or [chunk.index for chunk in self.chunks] != list(range(len(self.chunks))):
             raise ValueError("Trechos inválidos.")
+
         chunks = {chunk.index: chunk.text for chunk in self.chunks}
+
         for axis in self.axes:
             if self.schema_version == "1" and (
                     any(getattr(axis.level_counts, key) for key in ("minus4", "minus3", "plus3", "plus4"))
                     or any(abs(audit.level) > 2 for audit in axis.evidence_audit)):
                 raise ValueError("A escala de nove níveis exige schema_version 2.")
+
             if not math.isfinite(axis.coverage) or not 0 <= axis.coverage <= 1:
                 raise ValueError("Cobertura inválida.")
+
             if not 0 <= axis.valid_chunks <= axis.total_chunks == len(self.chunks):
                 raise ValueError("Contagem de trechos inválida.")
+
             counts = (axis.level_counts_by_key if self.schema_version == "3" else axis.level_counts.model_dump()).values()
+
             if any(count < 0 for count in counts) or sum(counts) != axis.valid_chunks:
                 raise ValueError("Distribuição inválida.")
+
             if axis.status == "estimated":
                 if any(value is None or not math.isfinite(value) or not 0 <= value <= 100 for value in (axis.pole_a, axis.pole_b)):
                     raise ValueError("Estimativa inválida.")
+
                 if abs(axis.pole_a + axis.pole_b - 100) > 0.01:
                     raise ValueError("Polos inválidos.")
             elif axis.pole_a is not None or axis.pole_b is not None:
                 raise ValueError("Estimativa ausente inválida.")
+
             if axis.ci95 is not None and not (all(math.isfinite(value) and 0 <= value <= 100 for value in axis.ci95) and axis.ci95[0] <= axis.ci95[1]):
                 raise ValueError("Intervalo inválido.")
+
             if any(ev.chunk_index not in chunks or not evidencia_literal_confere(chunks[ev.chunk_index], ev.quote) for ev in axis.evidence):
                 raise ValueError("Evidência inválida.")
+
             for audit in axis.evidence_audit:
                 if audit.chunk_index not in chunks:
                     raise ValueError("Trecho de auditoria inválido.")
+
                 text = chunks[audit.chunk_index]
+
                 if audit.quote and not evidencia_literal_confere(text, audit.quote):
                     raise ValueError("Citação de auditoria inválida.")
+
                 if audit.status == 'found' and (audit.start is None or audit.end is None or
                         not 0 <= audit.start < audit.end <= len(text) or text[audit.start:audit.end] != audit.quote):
                     raise ValueError("Posição da citação inválida.")
+
         if self.logical_calls.jev < 0 or self.logical_calls.llm < 0:
             raise ValueError("Contagem de chamadas inválida.")
+
         return self
 
 
@@ -73,15 +91,19 @@ class ReportRequest(BaseModel):
     @classmethod
     def explicit_consent(cls, value):
         """Exige o booleano True para confirmar expressamente o armazenamento do relato."""
+
         if value is not True:
             raise ValueError("Confirmação de armazenamento obrigatória.")
+
         return value
 
     @model_validator(mode="after")
     def original_text(self):
         """Confere se a concatenação dos trechos reproduz o texto original do relato."""
+
         if not self.text.strip() or "".join(chunk.text for chunk in self.analysis.chunks) != self.text:
             raise ValueError("O texto deve corresponder aos trechos da análise.")
+
         return self
 
 

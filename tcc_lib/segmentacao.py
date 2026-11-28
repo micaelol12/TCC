@@ -56,11 +56,14 @@ def _intervalos_referencias(texto):
     da frase. Os índices continuam relativos ao texto recebido.
     """
     intervalos = []
+
     for padrao in _REFERENCIAS:
         referencias_encontradas = list(padrao.finditer(texto))
+
         for referencia in referencias_encontradas:
             conteudo = referencia.group().rstrip('.,;:!?)]}”’»')
             intervalos.append((referencia.start(), referencia.start() + len(conteudo)))
+
     return intervalos
 
 
@@ -69,16 +72,19 @@ def _intervalos_linguisticos(texto):
     referencias = _intervalos_referencias(texto)
     intervalos = []
     sentencas = list(_sentenciador().span_tokenize(texto))
+
     for inicio, fim in sentencas:
         # Se o corte anterior atravessou uma referência, estende a sentença.
         corte_em_referencia = bool(intervalos) and any(
             inicio_ref < intervalos[-1][1] < fim_ref
             for inicio_ref, fim_ref in referencias
         )
+
         if corte_em_referencia:
             intervalos[-1] = (intervalos[-1][0], fim)
         else:
             intervalos.append((inicio, fim))
+
     return intervalos
 
 
@@ -103,20 +109,26 @@ def _sentenciador():
     pasta = Path(__file__).with_name("resources") / "punkt_portuguese"
     parametros = PunktParameters()
     decoder = PunktDecoder()
+
     # Lê somente os quatro recursos fixos do projeto, sem procurar nltk_data
     # externo nem depender das permissões globais de caminhos do NLTK.
     with (pasta / "collocations.tab").open(encoding="utf-8") as arquivo:
         parametros.collocations = set(decoder.tab2tups(arquivo))
+
     with (pasta / "sent_starters.txt").open(encoding="utf-8") as arquivo:
         parametros.sent_starters = decoder.txt2set(arquivo)
+
     with (pasta / "abbrev_types.txt").open(encoding="utf-8") as arquivo:
         parametros.abbrev_types = decoder.txt2set(arquivo)
+
     with (pasta / "ortho_context.tab").open(encoding="utf-8") as arquivo:
         parametros.ortho_context = decoder.tab2intdict(arquivo)
+
     parametros.abbrev_types.update({
         "art", "arts", "dr", "dra", "sr", "sra", "prof", "profa", "n", "nº", "n°", "no", "n.º",
         "inc", "incs", "pág", "págs", "exmo", "exma", "av", "rod",
     })
+
     return PunktSentenceTokenizer(parametros, lang_vars=Portugues())
 
 
@@ -131,10 +143,12 @@ def normalizar_quebras_texto(texto):
     saida = []
     unidas = 0
     anterior_titulo = False
+
     for linha in linhas:
         atual = linha.strip()
         titulo = _e_titulo(atual)
         estrutura = bool(_ESTRUTURA.match(atual))
+
         if (saida and saida[-1] and atual and not estrutura
                 and not titulo and not anterior_titulo
                 and not saida[-1].lstrip().startswith("|")):
@@ -142,7 +156,9 @@ def normalizar_quebras_texto(texto):
             unidas += 1
         else:
             saida.append(atual)
+
         anterior_titulo = titulo
+
     return "\n".join(saida).strip(), unidas
 
 
@@ -188,21 +204,28 @@ def _blocos_estruturais(texto):
     offset = 0
     referencias = _intervalos_referencias(texto)
     linhas = texto.splitlines(keepends=True)
+
     for linha in linhas:
         conteudo = linha.strip()
         # Uma referência pode continuar na linha seguinte, como em "Art.\n9º".
         continuacao = _continua_referencia(offset, referencias)
         titulo = _e_titulo(conteudo)
+
         if conteudo and not continuacao and (_ESTRUTURA.match(linha) or titulo):
             if texto[inicio:offset].strip():
                 blocos.append((inicio, offset, False))
+
             inicio = offset
+
             if titulo or conteudo.startswith("|"):
                 blocos.append((inicio, offset + len(linha), True))
                 inicio = offset + len(linha)
+
         offset += len(linha)
+
     if texto[inicio:].strip():
         blocos.append((inicio, len(texto), False))
+
     return blocos
 
 
@@ -212,6 +235,7 @@ def _intervalos_bloco(bloco, titulo):
     Os intervalos são relativos ao bloco. Títulos, tabelas e blocos sem
     sentenças reconhecidas permanecem inteiros.
     """
+
     if titulo:
         return [(0, len(bloco))]
 
@@ -222,11 +246,13 @@ def _intervalos_bloco(bloco, titulo):
         (inicio + prefixo, fim + prefixo)
         for inicio, fim in intervalos_linguisticos
     ]
+
     if not intervalos:
         return [(0, len(bloco))]
 
     # O marcador pertence à primeira sentença, nunca vira um chunk separado.
     intervalos[0] = (0, intervalos[0][1])
+
     return intervalos
 
 
@@ -251,6 +277,7 @@ def _unidades(texto):
         # Blocos de lista/título também separam grupos sem exigir linha em branco.
         grupo_base = len(unidades)
         intervalos = _intervalos_bloco(bloco, titulo)
+
         for inicio_local, fim_local in intervalos:
             inicio_sentenca = inicio + inicio_local
             unidades.append(_Unidade(
@@ -259,12 +286,14 @@ def _unidades(texto):
                 paragrafo=(grupo_base, bisect_right(paragrafos, inicio_sentenca)),
                 titulo=titulo,
             ))
+
     return unidades
 
 
 def intervalos_sentencas(texto):
     """Fronteiras compartilhadas pelos chunks e evidências, no texto original."""
     unidades = _unidades(texto)
+
     return [(unidade.inicio, unidade.fim) for unidade in unidades]
 
 
@@ -273,20 +302,27 @@ def configuracao_chunks(*, estrategia="sentencas", tokens_alvo=None, max_tokens=
                        limite_tokens_entrada=None):
     if estrategia not in {"sentencas", "tokens"}:
         raise ValueError("estrategia deve ser 'sentencas' ou 'tokens'.")
+
     if tokens_alvo is not None and max_tokens is not None:
         raise ValueError("Use tokens_alvo ou o alias antigo max_tokens, não os dois.")
+
     alvo = tokens_alvo if tokens_alvo is not None else max_tokens
     alvo = 600 if alvo is None else alvo
+
     if type(alvo) is not int or alvo <= 0:
         raise ValueError("tokens_alvo deve ser um inteiro positivo.")
+
     if type(overlap_tokens) is not int or not 0 <= overlap_tokens < alvo:
         raise ValueError("overlap_tokens deve estar entre zero e tokens_alvo - 1.")
+
     if estrategia == "sentencas" and overlap_tokens != 0:
         raise ValueError("A estratégia por sentenças exige overlap_tokens=0.")
+
     if limite_tokens_entrada is not None and (
         type(limite_tokens_entrada) is not int or limite_tokens_entrada < alvo
     ):
         raise ValueError("limite_tokens_entrada deve ser None ou um inteiro >= tokens_alvo.")
+
     return {"estrategia": estrategia, "tokens_alvo": alvo, "overlap_tokens": overlap_tokens,
             "encoding_name": encoding_name, "limite_tokens_entrada": limite_tokens_entrada}
 
@@ -300,12 +336,15 @@ def _grupos_com_titulos(unidades):
     grupos_por_paragrafo = groupby(unidades, key=lambda unidade: unidade.paragrafo)
     grupos = [list(grupo) for _, grupo in grupos_por_paragrafo]
     reunidos = []
+
     for grupo in grupos:
         grupo_anterior = reunidos[-1] if reunidos else []
+
         if reunidos and all(unidade.titulo for unidade in grupo_anterior):
             grupo_anterior.extend(grupo)
         else:
             reunidos.append(grupo)
+
     return reunidos
 
 
@@ -325,16 +364,20 @@ def _agrupar_sentencas(texto, unidades, alvo, contar):
     def adicionar(novas_unidades):
         """Acumula unidades e fecha o chunk quando a adição ultrapassa o alvo."""
         nonlocal atual
+
         if atual and contar(trecho(atual + novas_unidades)) > alvo:
             chunks.append(trecho(atual))
             atual = []
+
         atual.extend(novas_unidades)
+
         if contar(trecho(atual)) > alvo:
             # Uma unidade indivisível acima do alvo fica sozinha, sem corte.
             chunks.append(trecho(atual))
             atual = []
 
     grupos = _grupos_com_titulos(unidades)
+
     for grupo in grupos:
         if contar(trecho(grupo)) <= alvo:
             adicionar(grupo)
@@ -344,10 +387,13 @@ def _agrupar_sentencas(texto, unidades, alvo, contar):
                 # parágrafo longo. Ele acompanha a primeira sentença se couber.
                 chunks.append(trecho(atual))
                 atual = []
+
             for unidade in grupo:
                 adicionar([unidade])
+
     if atual:
         chunks.append(trecho(atual))
+
     return chunks
 
 
@@ -359,14 +405,18 @@ def preparar_segmentacao(texto, *, dividir_em_chunks=True, **opcoes):
     ``limite_tokens_entrada`` é um orçamento opcional nesta codificação, já
     descontado o espaço necessário aos prompts; não mede tokens dos provedores.
     """
+
     if not isinstance(texto, str):
         raise TypeError("texto deve ser uma string.")
+
     if type(dividir_em_chunks) is not bool:
         raise ValueError("dividir_em_chunks deve ser booleano.")
+
     config = configuracao_chunks(**opcoes)
     encoder = _encoder(config["encoding_name"])
     contar = lambda t: len(encoder.encode(t, disallowed_special=()))
     alvo = config["tokens_alvo"]
+
     if not texto.strip():
         chunks = []
     elif not dividir_em_chunks:
@@ -383,21 +433,26 @@ def preparar_segmentacao(texto, *, dividir_em_chunks=True, **opcoes):
         chunks = _agrupar_sentencas(texto, _unidades(texto), alvo, contar)
 
     diagnostico = []
+
     for i, chunk in enumerate(chunks, 1):
         unidades = _unidades(chunk)
         tokens = contar(chunk)
+
         if config["limite_tokens_entrada"] is not None and tokens > config["limite_tokens_entrada"]:
             raise ValueError(
                 f"Trecho {i}: {tokens} tokens excedem limite_tokens_entrada="
                 f"{config['limite_tokens_entrada']}. O texto não foi truncado."
             )
+
         longas = sum(not u.titulo and contar(chunk[u.inicio:u.fim]) > alvo for u in unidades)
         diagnostico.append({"trecho": i, "caracteres": len(chunk), "tokens": tokens,
                             "sentencas": sum(not u.titulo for u in unidades),
                             "acima_alvo": tokens > alvo, "sentencas_longas": longas,
                             "texto": chunk})
+
     versao = (("punkt_pt_referencias_v2" if config["estrategia"] == "sentencas" else "recursive_tokens_v1")
               if dividir_em_chunks else "texto_inteiro")
+
     return {"chunks": chunks, "config": config if dividir_em_chunks else None,
             "segmentador_versao": versao, "diagnostico": diagnostico,
             "metadados": {"chunks": config if dividir_em_chunks else None,

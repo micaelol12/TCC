@@ -6,21 +6,22 @@ from ..analysis_defaults import CONTEXTO_POSICAO_POLITICA
 def jev_client(api_key: str, model: str):
     """Instancia o cliente assíncrono TypeSafe com o modelo escolhido para a análise."""
     from typesafe_sdk import AsyncTypeSafeClient
+
     return AsyncTypeSafeClient(api_key=api_key, model=model)
 
 
 def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_politica=CONTEXTO_POSICAO_POLITICA, axis_specs=AXIS_SPECS):
     """Monta as perguntas de relevância e polaridade para os quatro eixos."""
-    from typesafe_sdk import Choice
 
     if primitiva_polaridade not in {"score", "choice"}:
         raise ValueError("primitiva_polaridade deve ser score ou choice.")
 
     questions = {}
+    axes = list(AXIS_SPECS)
 
-    for axis in AXIS_SPECS:
+    for axis in axes:
         # Relevância e polaridade são perguntas separadas, enviadas juntas.
-        questions[f"{axis}_relevancia"] = Choice(**criar_questoes_eixo(axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica))
+        questions[f"{axis}_relevancia"] = relevance_question(axis, axis_specs, contexto_posicao_politica)
 
         rubric = criar_rubrica_polaridade_ordinal(axis, axis_specs=axis_specs, escala=escala, contexto_posicao_politica=contexto_posicao_politica)
 
@@ -30,12 +31,24 @@ def jev_questions(escala=None, primitiva_polaridade="score", contexto_posicao_po
     return questions
 
 
+def relevance_question(axis, axis_specs, contexto_posicao_politica):
+    """Transforma as instruções e alternativas de relevância em uma pergunta Choice."""
+    from typesafe_sdk import Choice
+
+    question_data = criar_questoes_eixo(
+        axis, axis_specs=axis_specs, contexto_posicao_politica=contexto_posicao_politica,
+    )
+
+    return Choice(**question_data)
+
+
 def polarity_question(rubric, primitive):
     """Representa a rubrica ordinal usando a primitiva Score ou Choice configurada."""
     from typesafe_sdk import Choice, Score
 
     if primitive == "score":
         return Score(instructions=rubric["instructions"], criteria=list(rubric["niveis"].values()))
+
     return Choice(instructions=rubric["instructions"], criteria=dict(rubric["niveis"]))
 
 
@@ -51,4 +64,5 @@ def llm_client(api_key: str, timeout: int):
 def gemini_client(api_key: str, timeout: int):
     """Cria o adaptador Gemini com a chave e o prazo desta análise."""
     from .gemini import GeminiClient
+
     return GeminiClient(api_key, timeout)

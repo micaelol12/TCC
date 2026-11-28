@@ -47,11 +47,13 @@ async def analyze(payload: AnalyzeRequest, request: Request):
     chunk_results = await classify_analysis_chunks(
         chunks, payload.processing_level, config, provider_keys, llm_provider, request
     )
+
     return build_analysis_response(chunks, chunk_results, payload.processing_level, config)
 
 
 def resolve_analysis_config(payload: AnalyzeRequest) -> ExperimentConfig:
     """Valida o uso de parâmetros Lab, a configuração efetiva e o tamanho em caracteres."""
+
     if payload.experiment_config is not None and not settings.experimental_config_enabled:
         raise HTTPException(403, "Configuração experimental disponível somente na API Lab.")
 
@@ -59,8 +61,10 @@ def resolve_analysis_config(payload: AnalyzeRequest) -> ExperimentConfig:
         config = resolve_config(settings, payload.experiment_config)
     except ValueError:
         raise HTTPException(422, "Configuração incompatível com os limites ou modelos permitidos da API.") from None
+
     if len(payload.text) > settings.max_chars:
         raise HTTPException(413, "Texto acima do limite de caracteres.")
+
     return config
 
 
@@ -75,21 +79,26 @@ def validate_provider_keys(
     """Rejeita modos cujos provedores necessários não tenham chave disponível."""
     missing_jev = requires_jev(mode, config) and not provider_keys['typesafe']
     missing_llm = mode in ("medium", "high") and not provider_keys[llm_provider]
+
     if missing_jev or missing_llm:
         if settings.app_env == 'lab':
             raise HTTPException(503, "Cadastre suas chaves na aba API keys para usar este modo e modelo.")
+
         raise HTTPException(503, "Modo indisponível: configure os provedores necessários.")
 
 
 def split_analysis_text(text: str, config: ExperimentConfig) -> list[str]:
     """Segmenta o texto e converte excesso de tokens ou trechos em erro HTTP 413."""
+
     try:
         chunks, _ = split_text(text, max_tokens=settings.max_tokens,
                                chunk_tokens=config.chunk_tokens, strategy=config.chunk_strategy)
     except ValueError:
         raise HTTPException(413, "Texto acima do limite de tokens.") from None
+
     if len(chunks) > settings.max_chunks:
         raise HTTPException(413, "Texto acima do limite de trechos; aumente os tokens por trecho ou reduza o texto.")
+
     return chunks
 
 
@@ -111,18 +120,23 @@ async def classify_analysis_chunks(
 
     async def classify_with_chunk_limit(text: str):
         """Adquire uma vaga de trecho e verifica desconexão antes de chamar os classificadores."""
+
         async with chunk_slots:
             if await request.is_disconnected():
                 raise asyncio.CancelledError()
+
             return await classify_chunk(text, mode, jev, questions, llm, settings, config)
 
     async def cancel_on_disconnect(classification_task):
         """Observa a conexão e cancela o conjunto de tarefas quando o cliente sai."""
+
         # Interrompe o processamento quando o cliente encerra a requisição.
         while not classification_task.done():
             if await request.is_disconnected():
                 classification_task.cancel()
+
                 return
+
             await asyncio.sleep(0.25)
 
     async with slots:
@@ -139,12 +153,16 @@ async def classify_analysis_chunks(
             raise HTTPException(504, "O prazo da análise foi excedido.") from None
         finally:
             disconnect_watcher.cancel()
+
             with suppress(asyncio.CancelledError):
                 await disconnect_watcher
+
             if llm:
                 await llm.close()
+
             if jev:
                 await jev.aclose()
+
     return chunk_results
 
 

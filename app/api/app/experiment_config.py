@@ -63,9 +63,12 @@ class ExperimentConfig(BaseModel):
     @model_validator(mode='after')
     def complete_axes(self):
         """Exige os quatro eixos e protege suas definições contra alterações no dicionário."""
+
         if set(self.axis_specs) != set(EIXOS_ESCALA):
             raise ValueError('As definições devem cobrir exatamente os quatro eixos.')
+
         object.__setattr__(self, 'axis_specs', MappingProxyType(dict(self.axis_specs)))
+
         return self
 
     @field_serializer('axis_specs')
@@ -120,24 +123,34 @@ def config_hash(config: ExperimentConfig, pipeline_version: str = PIPELINE_VERSI
 
     if pipeline_version != PIPELINE_VERSION:
         effective.pop('axis_specs', None)
+
     if pipeline_version not in ('jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.contexto_posicao_politica != CONTEXTO_POSICAO_POLITICA:
             raise ValueError("Versão histórica da API não suporta contexto configurável.")
+
         effective.pop("contexto_posicao_politica", None)
+
     if pipeline_version not in ("jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.chunk_strategy != "tokens":
             raise ValueError("Versão histórica da API não suporta segmentação por sentenças.")
+
         effective.pop("chunk_strategy", None)
+
     if pipeline_version not in ("jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.regra_decisao != "nivel":
             raise ValueError("Versão histórica da API não suporta polo_primeiro.")
+
         effective.pop("regra_decisao", None)
+
     if pipeline_version not in ("jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         if config.primitiva_polaridade != "score":
             raise ValueError("Versão histórica da API não suporta polaridade Choice.")
+
         effective.pop("primitiva_polaridade", None)
+
     if pipeline_version not in ("jev-escalas-ordinal-4", "jev-escalas-ordinal-5", "jev-escalas-ordinal-6", "jev-escalas-ordinal-7", "jev-escalas-ordinal-8", "jev-escalas-ordinal-9", "jev-escalas-ordinal-10", "jev-escalas-ordinal-11", 'jev-escalas-ordinal-12', PIPELINE_VERSION):
         effective.pop("escala", None)
+
     # Preserva análises anteriores aos campos opcionais de evidências.
     if pipeline_version == "jev-2-polos-mvp-1":
         for name in ("semantic_evidence_check", "jev_evidence_search", "evidence_existence_min"):
@@ -172,6 +185,8 @@ def resolve_config(settings, overrides: ExperimentOverrides | None) -> Experimen
 
     if config.chunk_tokens > settings.max_tokens or config.min_valid_chunks > settings.max_chunks:
         raise ValueError("Parâmetros incompatíveis com os limites da API.")
+
     if config.jev_model not in settings.allowed_jev_models or config.llm_model not in model_catalog(settings):
         raise ValueError("Modelo não permitido nesta API.")
+
     return config

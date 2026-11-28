@@ -25,6 +25,7 @@ def encoder():
 def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
                strategy: str = "tokens") -> tuple[list[str], int]:
     """Valida o limite total e divide o texto pela estratégia de tokens ou sentenças."""
+
     if strategy not in {"sentencas", "tokens"} or type(chunk_tokens) is not int or chunk_tokens <= 0:
         raise ValueError("invalid_segmentation")
 
@@ -39,6 +40,7 @@ def split_text(text: str, *, max_tokens: int, chunk_tokens: int = 600,
         chunks = split_by_sentences(text, tokenizer, chunk_tokens)
     else:
         chunks = split_by_tokens(tokens, tokenizer, chunk_tokens)
+
     return chunks, len(tokens)
 
 

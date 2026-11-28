@@ -19,8 +19,10 @@ class PoloEixo(BaseModel):
     @classmethod
     def nonblank(cls, value):
         """Rejeita campos descritivos formados apenas por espaços."""
+
         if not value.strip():
             raise ValueError('Definição de polo vazia.')
+
         return value
 
 
@@ -36,16 +38,21 @@ class DefinicaoEixo(BaseModel):
     @classmethod
     def nonblank(cls, value):
         """Rejeita campos descritivos formados apenas por espaços."""
+
         if not value.strip():
             raise ValueError('Definição de eixo vazia.')
+
         return value
 
     @model_validator(mode='after')
     def poles_complete(self):
         """Exige os dois polos e torna seu mapeamento imutável."""
+
         if set(self.poles) != {'A', 'B'}:
             raise ValueError('Cada eixo exige os polos A e B.')
+
         object.__setattr__(self, 'poles', MappingProxyType(dict(self.poles)))
+
         return self
 
     @field_serializer('poles')
@@ -65,8 +72,10 @@ class NivelEscala(BaseModel):
     @model_validator(mode="after")
     def textos(self):
         """Exige preenchimento dos campos textuais usados para interpretar a escala."""
+
         if not self.chave.strip() or not self.rotulo.strip():
             raise ValueError("Chave e rótulo devem estar preenchidos.")
+
         return self
 
 
@@ -78,8 +87,10 @@ class AncoraEscala(BaseModel):
     @model_validator(mode="after")
     def textos(self):
         """Exige preenchimento dos campos textuais usados para interpretar a escala."""
+
         if not self.situacao.strip() or any(not x.strip() for x in self.exemplos):
             raise ValueError("Âncoras exigem situação e exemplos preenchidos.")
+
         return self
 
 
@@ -102,21 +113,28 @@ class EscalaOrdinal(BaseModel):
 
         if not self.id.strip() or n < 3 or n % 2 != 1:
             raise ValueError("Escala bipolar exige quantidade ímpar de ao menos três níveis.")
+
         if len({x.chave for x in self.niveis}) != n or len({x.codigo for x in self.niveis}) != n:
             raise ValueError("Chaves e códigos devem ser únicos.")
+
         valores = [x.valor for x in self.niveis]
 
         if valores[0] != 0 or valores[-1] != 1 or valores[n // 2] != .5 or any(a >= b for a, b in zip(valores, valores[1:])):
             raise ValueError("Valores devem crescer de 0 a 1, com centro 0,5.")
+
         if [x.polo for x in self.niveis] != ["B"] * (n // 2) + [None] + ["A"] * (n // 2):
             raise ValueError("Esperados polos B, um centro, e polos A, nesta ordem.")
+
         if set(self.rubricas_por_eixo) != set(EIXOS_ESCALA):
             raise ValueError("Rubricas devem cobrir exatamente os quatro eixos.")
+
         for rubrica in self.rubricas_por_eixo.values():
             if set(rubrica) != {x.chave for x in self.niveis}:
                 raise ValueError("Rubricas devem corresponder exatamente às chaves dos níveis.")
+
         object.__setattr__(self, "rubricas_por_eixo", MappingProxyType({
             eixo: MappingProxyType(dict(rubrica)) for eixo, rubrica in self.rubricas_por_eixo.items()}))
+
         return self
 
     @field_serializer("niveis")
@@ -133,6 +151,7 @@ class EscalaOrdinal(BaseModel):
     def hash(self):
         """Identifica o conteúdo completo da escala por SHA-256 de uma serialização canônica."""
         canonical = json.dumps(self.model_dump(mode="json"), sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
+
         return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
     @property
@@ -158,10 +177,12 @@ def validar_escala(escala):
 
 def valor_nivel(nivel, escala):
     """Traduz um código válido para a posição do polo A na escala de zero a cem."""
+
     # A nota vem do valor configurado, não da magnitude do código do nível.
     # Exemplo: valor 0,75 corresponde a 75 para A e 25 para B na agregação.
     if type(nivel) is not int or nivel not in escala.por_codigo:
         raise ValueError("Código não pertence à escala desta execução.")
+
     return 100.0 * escala.por_codigo[nivel].valor
 
 

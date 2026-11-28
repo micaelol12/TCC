@@ -18,6 +18,7 @@ def connect(database):
     """Cria o diretório do banco e abre uma conexão SQLite com espera limitada."""
     path = Path(database).expanduser().resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
+
     return sqlite3.connect(path, timeout=5)
 
 
@@ -34,10 +35,12 @@ def initialize(connection):
 
 def public_request(payload, settings):
     """Filtra os campos públicos permitidos antes de persistir a requisição do Lab."""
+
     # Seleciona somente os campos públicos reconhecidos. Cabeçalhos de sessão
     # e credenciais não fazem parte do registro persistido.
     if not isinstance(payload, dict):
         return '', None, {}
+
     text = payload.get('text')
     text = text[:settings.max_chars] if isinstance(text, str) else ''
 
@@ -51,8 +54,10 @@ def public_request(payload, settings):
     if isinstance(incoming, dict):
         for name in ExperimentConfig.model_fields:
             value = incoming.get(name)
+
             if name == 'escala':
                 from .polarity import validar_escala
+
                 try:
                     config[name] = validar_escala(value).model_dump(mode='json')
                 except (ValueError, TypeError):
@@ -74,6 +79,7 @@ def public_request(payload, settings):
                 config[name] = value
             elif name not in ('jev_model', 'llm_model') and type(value) in (int, float) and math.isfinite(value):
                 config[name] = value
+
     return text, mode, config
 
 
@@ -84,6 +90,7 @@ def begin_execution(database, payload, settings, client='unknown'):
     text, mode, config = public_request(payload, settings)
 
     from .experiment_config import ExperimentOverrides, resolve_config
+
     try:
         incoming = payload.get('experiment_config', {}) if isinstance(payload, dict) else {}
         effective = resolve_config(settings, ExperimentOverrides.model_validate(incoming)).model_dump()
@@ -96,6 +103,7 @@ def begin_execution(database, payload, settings, client='unknown'):
         initialize(connection)
         connection.execute('INSERT INTO lab_executions (execution_id, started_at, status, client, text, processing_level, requested_config_json, effective_config_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
             (identifier, now(), 'running', client if client in ('web', 'extension') else 'unknown', text, mode, json.dumps(config, allow_nan=False), json.dumps(effective) if effective else None))
+
     return identifier
 
 
@@ -111,6 +119,7 @@ def finish_execution(database, identifier, status, http_status, elapsed_ms, anal
 
 def recover_interrupted(database):
     """Marca como interrompidas as execuções que ficaram abertas após reinício do servidor."""
+
     # Após um reinício, registros running não representam trabalho em andamento.
     with closing(connect(database)) as connection, connection:
         initialize(connection)

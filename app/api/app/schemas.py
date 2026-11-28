@@ -23,17 +23,22 @@ class AnalyzeRequest(BaseModel):
     @classmethod
     def no_null_override(cls, value):
         """Exige um objeto de substituições com valores explícitos quando o campo está presente."""
+
         if isinstance(value, dict) and "experiment_config" in value:
             config = value["experiment_config"]
+
             if not isinstance(config, dict) or any(item is None for item in config.values()):
                 raise ValueError("Configuração experimental inválida.")
+
         return value
 
     @model_validator(mode="after")
     def nonblank(self):
         """Rejeita textos de análise que contenham somente espaços."""
+
         if not self.text.strip():
             raise ValueError("O texto não pode estar vazio.")
+
         return self
 
 
@@ -93,15 +98,19 @@ class JevDiagnostic(BaseModel):
     def serialize(self, handler):
         """Omite o marcador de desempate quando ele não ocorreu."""
         result = handler(self)
+
         if not self.desempate_intensidade:
             result.pop("desempate_intensidade", None)
+
         return result
 
     @model_validator(mode="after")
     def distributions(self):
         """Confere as classes dos grupos e a soma das distribuições de diagnóstico."""
+
         if set(self.probabilities_abc) != {"A", "B", "C"} or any(abs(sum(p.values()) - 1) > 1e-6 for p in (self.probabilities_nivel, self.probabilities_abc)):
             raise ValueError("Distribuição de diagnóstico inválida.")
+
         return self
 
 
@@ -138,12 +147,16 @@ class AxisResult(BaseModel):
     def serialize(self, handler):
         """Omite campos opcionais ausentes e preserva o formato compatível com a versão do resultado."""
         result = handler(self)
+
         if not self.evidence_audit:
             result.pop("evidence_audit", None)
+
         if not self.jev_diagnostics:
             result.pop("jev_diagnostics", None)
+
         if self.level_counts_by_key is None:
             result.pop("level_counts_by_key", None)
+
         return result
 
 
@@ -187,62 +200,85 @@ class AnalysisResponse(BaseModel):
     @model_validator(mode="after")
     def config_metadata(self):
         """Confere compatibilidade entre versão, escala, diagnósticos, contagens e hashes."""
+
         # Evita misturar escala, contagens, diagnósticos ou hashes de execuções
         # incompatíveis, inclusive ao receber snapshots em reports.
         if self.schema_version not in ("1", "2", "3"):
             raise ValueError("Versão de resposta desconhecida.")
+
         if self.schema_version in ("1", "2"):
             if self.escala is not None or self.escala_hash is not None:
                 raise ValueError("Resultados históricos usam a escala da versão original.")
+
             maximum = 2 if self.schema_version == "1" else 4
+
             if any(abs(a.level) > maximum for axis in self.axes for a in axis.evidence_audit):
                 raise ValueError("Auditoria incompatível com a escala histórica.")
+
         if self.schema_version == "3":
             if self.escala is None or self.escala_hash != self.escala.hash:
                 raise ValueError("Snapshot de escala ausente ou hash inválido.")
+
             if self.effective_config is not None and self.effective_config.escala.hash != self.escala.hash:
                 raise ValueError("Escala difere da configuração efetiva.")
+
             for axis in self.axes:
                 counts = axis.level_counts_by_key
+
                 if counts is None or set(counts) != set(self.escala.por_chave) or any(type(c) is not int or c < 0 for c in counts.values()) or sum(counts.values()) != axis.valid_chunks:
                     raise ValueError("Contagens incompatíveis com a escala.")
+
                 if any(a.level not in self.escala.por_codigo for a in axis.evidence_audit):
                     raise ValueError("Auditoria incompatível com a escala.")
+
                 for d in axis.jev_diagnostics:
                     if (d.chunk_index not in {c.index for c in self.chunks}
                             or set(d.probabilities_nivel) != set(self.escala.por_chave)
                             or any(n is not None and n not in self.escala.por_codigo for n in (d.nivel_jev_bruto, d.nivel))
                             or self.effective_config is not None and d.regra_decisao != self.effective_config.regra_decisao):
                         raise ValueError("Diagnóstico JEV incompatível com a execução.")
+
         metadata = (self.effective_config, self.config_version, self.config_hash, self.environment)
+
         if any(item is not None for item in metadata):
             if any(item is None for item in metadata) or self.config_version != CONFIG_VERSION:
                 raise ValueError("Metadados de configuração incompletos.")
+
             if self.config_hash != config_hash(self.effective_config, self.pipeline_version):
                 raise ValueError("Hash de configuração inválido.")
+
         return self
 
     @model_serializer(mode="wrap")
     def serialize(self, handler):
         """Omite campos opcionais ausentes e preserva o formato compatível com a versão do resultado."""
         result = handler(self)
+
         for name in ("effective_config", "config_version", "config_hash", "environment", "lab_execution_id", "escala", "escala_hash"):
             if result.get(name) is None:
                 result.pop(name, None)
+
         if self.schema_version in ("1", "2") and self.effective_config is not None and "escala" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("escala", None)
+
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "primitiva_polaridade" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("primitiva_polaridade", None)
+
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "regra_decisao" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("regra_decisao", None)
+
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "chunk_strategy" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("chunk_strategy", None)
+
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and "contexto_posicao_politica" not in self.effective_config.model_fields_set:
             result["effective_config"].pop("contexto_posicao_politica", None)
+
         if self.effective_config is not None and self.pipeline_version != PIPELINE_VERSION and 'axis_specs' not in self.effective_config.model_fields_set:
             result['effective_config'].pop('axis_specs', None)
+
         if self.schema_version == "1":
             for axis in result["axes"]:
                 for key in ("minus4", "minus3", "plus3", "plus4"):
                     axis["level_counts"].pop(key, None)
+
         return result

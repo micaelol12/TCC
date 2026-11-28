@@ -11,12 +11,16 @@ DEFAULT_CONFIG_PATH = API_ROOT / 'analysis-config.json'
 def read_algorithm_data(path=None):
     """Lê o objeto JSON de configuração e aceita arquivos com BOM do Windows."""
     source = Path(path) if path is not None else DEFAULT_CONFIG_PATH
+
     if not source.is_absolute():
         source = API_ROOT / source
+
     try:
         data = json.loads(source.read_text(encoding='utf-8-sig'))
+
         if not isinstance(data, dict):
             raise ValueError('Expected configuration object')
+
         return data
     except (OSError, UnicodeError, ValueError):
         raise ValueError('Arquivo ALGORITHM_CONFIG_PATH ausente ou inválido; use o contrato de analysis-config.json.') from None
@@ -24,6 +28,7 @@ def read_algorithm_data(path=None):
 
 def default_value(name):
     """Devolve uma cópia do parâmetro para evitar alterações nos valores compartilhados."""
+
     try:
         return deepcopy(read_algorithm_data()[name])
     except KeyError:
@@ -33,8 +38,10 @@ def default_value(name):
 def five_level_scale(scale):
     """Project the configured nine-level rubric; no alternative anchors are stored."""
     data = scale.model_dump(mode='json')
+
     if len(scale.niveis) != 9:
         return scale
+
     indices = (0, 2, 4, 6, 8)
     keys = ('polo_B_forte', 'polo_B_moderado', 'sem_posicao', 'polo_A_moderado', 'polo_A_forte')
     original = data['niveis']
@@ -44,12 +51,14 @@ def five_level_scale(scale):
                       for offset, (index, key, code) in enumerate(zip(indices, keys, range(-2, 3)))]
     data['rubricas_por_eixo'] = {axis: {key: rubrics[original[index]['chave']] for index, key in zip(indices, keys)}
                                 for axis, rubrics in data['rubricas_por_eixo'].items()}
+
     return validar_escala(data)
 
 
 def configured_scales(scale):
     """Lista a escala configurada e sua projeção de cinco níveis, sem duplicatas."""
     projected = five_level_scale(scale)
+
     return [projected, scale] if projected.hash != scale.hash else [scale]
 
 

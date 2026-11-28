@@ -13,8 +13,10 @@ AXES = ("economic", "diplomatic", "state", "society")
 
 def bootstrap_confidence_interval(values: list[float], config: ExperimentConfig):
     """Estima o intervalo de 95% por reamostragem com semente fixa; exige duas notas."""
+
     if len(values) < 2:
         return None
+
     random_generator = random.Random(config.bootstrap_seed)
     sample_means = sorted(
         mean(random_generator.choices(values, k=len(values)))
@@ -23,21 +25,26 @@ def bootstrap_confidence_interval(values: list[float], config: ExperimentConfig)
     # O posto mais próximo mantém os índices 49/1949 em 2.000 amostras.
     lower_index = ceil(0.025 * len(sample_means)) - 1
     upper_index = ceil(0.975 * len(sample_means)) - 1
+
     return sample_means[lower_index], sample_means[upper_index]
 
 
 def axis_estimation_status(decisions: list[dict], valid_scores: list[float]) -> str:
     """Distingue um eixo estimado de ausência de evidência ou abstenção."""
+
     if valid_scores:
         return "estimated"
+
     return "no_evidence" if all(decision["relevante"] is False for decision in decisions) else "abstained"
 
 
 def collect_axis_reasons(decisions: list[dict], valid_count: int, minimum_valid_count: int) -> list[str]:
     """Reúne motivos sem repetição e sinaliza quantidade insuficiente de trechos válidos."""
     reasons = list(dict.fromkeys(reason for decision in decisions for reason in decision["reason"]))
+
     if 0 < valid_count < minimum_valid_count:
         reasons.append("evidencia_limitada")
+
     return reasons
 
 
@@ -61,6 +68,7 @@ def aggregate_axis(axis: str, decisions: list[dict], total_chunks: int, config: 
     # Todos os trechos válidos têm o mesmo peso, independentemente do tamanho.
     pole_a_score = mean(valid_scores) if valid_scores else None
     valid_count = len(valid_scores)
+
     return AxisResult(
         axis=axis,
         pole_a=pole_a_score,
@@ -93,6 +101,7 @@ def aggregate_axis(axis: str, decisions: list[dict], total_chunks: int, config: 
 def aggregate(results: list[dict], total_chunks: int, config: ExperimentConfig | None = None) -> list[AxisResult]:
     """Agrupa as decisões dos trechos e produz o resultado dos quatro eixos."""
     effective_config = config or ExperimentConfig()
+
     return [
         aggregate_axis(axis, [chunk[axis] for chunk in results], total_chunks, effective_config)
         for axis in AXES

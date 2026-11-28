@@ -20,9 +20,12 @@ def generation_payload(prompt, instructions, response_schema):
 def response_content(response_data):
     """Extrai o texto útil da primeira candidata e rejeita respostas interrompidas."""
     candidates = response_data.get("candidates", [])
+
     if not candidates or candidates[0].get("finishReason") not in (None, "STOP"):
         raise ValueError("Resposta Gemini ausente ou interrompida.")
+
     content_parts = candidates[0].get("content", {}).get("parts", [])
+
     return "".join(part.get("text", "") for part in content_parts if not part.get("thought"))
 
 
@@ -44,6 +47,7 @@ class GeminiClient:
         response.raise_for_status()
         response_data = response.json()
         parsed_answer = text_format.model_validate_json(response_content(response_data))
+
         return SimpleNamespace(output_parsed=parsed_answer, model=response_data.get("modelVersion") or model)
 
     async def close(self):
